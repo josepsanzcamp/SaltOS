@@ -24,1530 +24,1530 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<lang>tlh_TLH</lang>
-	<dir>ltr</dir>
-	<default>common</default>
-	<common>
-		<nopage>App suq started wiv</nopage>
-		<nocheckuser>Incorrect user pagh ngaqha'mohwi'mey</nocheckuser>
-		<nochecktime>User hur working rep</nochecktime>
-		<nocheckday>--jaj user</nocheckday>
-		<view>Legh</view>
-		<edit>Edit</edit>
-		<copy>Copy</copy>
-		<delete>Delete</delete>
-		<first>Page wa'dich</first>
-		<previous>Previous page</previous>
-		<next>Veb page</next>
-		<last>Wa'Hu' page</last>
-		<id>Ngoq.</id>
-		<codigo>Ngoq</codigo>
-		<cif>CIF.</cif>
-		<nombre>Pong</nombre>
-		<apellidos>Surname</apellidos>
-		<tel_fijo>Ti'</tel_fijo>
-		<tel_movil>Mobile</tel_movil>
-		<telefono>Phone</telefono>
-		<fax>Nav</fax>
-		<email>Email</email>
-		<web>'ej bebvo'</web>
-		<filter>Filter duh</filter>
-		<loadsavefilter>Load 'ej predefine filters tod</loadsavefilter>
-		<filtro>Hoch vitu'</filtro>
-		<buscar>Samta'meh</buscar>
-		<buscartip>Search wiv filters</buscartip>
-		<limpiar>Reset</limpiar>
-		<limpiartip>Filter say' 'ej hoch de' bey'</limpiartip>
-		<username>User</username>
-		<datetime>Date poh 'ej</datetime>
-		<direccion>Soq</direccion>
-		<codpostal>Zip ngoq</codpostal>
-		<poblacion>Roghvah</poblacion>
-		<provincia>Province</provincia>
-		<pais>Hatlh</pais>
-		<comentarios>Meb reviews</comentarios>
-		<descripcion>Description</descripcion>
-		<buttoncreate>Chenmoh</buttoncreate>
-		<buttoncreatereturnhere>Chenmoh 'ej nadev chegh</buttoncreatereturnhere>
-		<buttonupdate>Update</buttonupdate>
-		<buttonupdatereturnhere>Update 'ej nadev chegh</buttonupdatereturnhere>
-		<buttoncancel>Qil</buttoncancel>
-		<buttonreturn>Chap</buttonreturn>
-		<date>Date</date>
-		<incidencia>Incidence</incidencia>
-		<estado>Sep</estado>
-		<parte>Lopno'</parte>
-		<tarea>Ghigh</tarea>
-		<tareas>Ghigh</tareas>
-		<liquidado>Settle</liquidado>
-		<base>Waw'</base>
-		<total>Total</total>
-		<cerrado>Soq</cerrado>
-		<cobrado>Huj</cobrado>
-		<empresa>Wey</empresa>
-		<msgdelete>Ta delete daneh'a'?</msgdelete>
-		<permdenied>Chohwi' wiling 'ej ghu'vam qu' bighosnisbe'chohmoh soh</permdenied>
-		<sinnombre>Pagh pong</sinnombre>
-		<deldenied>Pagh deleted 'oh seh ngat neh latlh app</deldenied>
-		<yes>Hija'</yes>
-		<no>Qo'</no>
-		<cliente>Client</cliente>
-		<posiblecli>Potential customer</posiblecli>
-		<password>Ngaqha'mohwi'mey</password>
-		<numfac>N.fac.</numfac>
-		<numc>NC</numc>
-		<numctip>Comments mi'</numctip>
-		<numf>NF</numf>
-		<numftip>Teywi' mi'</numftip>
-		<numt>NT</numt>
-		<numttip>Qu' mi'</numttip>
-		<numv>NV</numv>
-		<numvtip>Maturities mi'</numvtip>
-		<nums>N</nums>
-		<numstip>Follow-ups mi'</numstip>
-		<nump>NP</nump>
-		<numptip>Products mi'</numptip>
-		<fechaini>Sabtahbogh date</fechaini>
-		<fechafin>je</fechafin>
-		<commentdel>Comment huv</commentdel>
-		<attachments>Attachment</attachments>
-		<shortattachments>Attachment</shortattachments>
-		<userdatetime>User, date je poh</userdatetime>
-		<fileandsize>Teywi' size 'ej</fileandsize>
-		<download>Download</download>
-		<activar>Ghus</activar>
-		<newcomment>Comment chu'</newcomment>
-		<newattachments>Attachments chu'</newattachments>
-		<proyecto>Jinmol</proyecto>
-		<documento>Document</documento>
-		<hora>Poh</hora>
-		<horas>Rep</horas>
-		<minutos>Tup</minutos>
-		<precio>'ay'</precio>
-		<liq>Liq.</liq>
-		<aplicacion>Application</aplicacion>
-		<rol>Role</rol>
-		<permiso>Chohwi' wiling</permiso>
-		<pos>Pos.</pos>
-		<posicion>Position</posicion>
-		<trimestre>Quarter</trimestre>
-		<otroscampos>Latlh yotlh</otroscampos>
-		<excel>'ovbe'tahvis</excel>
-		<exceltip>'ovbe'taHvIS teywI' je Qu'mey potlh De' download</exceltip>
-		<pdf>Pdf download</pdf>
-		<pdftip>Download pdf teywI' Qu'mey potlh De'</pdftip>
-		<epigrafe>Nach</epigrafe>
-		<campoauto>(*) automatic yotlh</campoauto>
-		<cerr>Bijatlh 'e' yimev.</cerr>
-		<cobr>Cobr.</cobr>
-		<concepto>Concept</concepto>
-		<unid>Units.</unid>
-		<unidades>Unids.</unidades>
-		<unidadestotal>Total units</unidadestotal>
-		<prun>Pr. ghap mach</prun>
-		<dto>Disc.</dto>
-		<importe>Amount</importe>
-		<percent>Sut chu'</percent>
-		<todos>[Hoch]</todos>
-		<todoslosclientes>[Hoch customers]</todoslosclientes>
-		<todoslosposiblescli>[Hoch prospects]</todoslosposiblescli>
-		<todoslosusuarios>[Hoch Users]</todoslosusuarios>
-		<todoslosgrupos>[Hoch ghom]</todoslosgrupos>
-		<todoslosproveedores>[Hoch Suppliers]</todoslosproveedores>
-		<mostrartodos>['el cha' Hoch]</mostrartodos>
-		<sinusuario>[pagh User]</sinusuario>
-		<paginaspc>Page</paginaspc>
-		<regsfrom>ta</regsfrom>
-		<spcdespc>,</spcdespc>
-		<spcalspc>.</spcalspc>
-		<regspage>Qo'nos qonos per page:</regspage>
-		<registerdata>Qonos de'</registerdata>
-		<userinsert>Chenmoh pong</userinsert>
-		<userupdate>Modified pong</userupdate>
-		<allstates>[Hoch Sep]</allstates>
-		<allenabled>[Hoch Assets..............</allenabled>
-		<alldisabled>[Hoch QI'yaH-pov</alldisabled>
-		<lastinsert>Chenmohta' ta je ngoq:</lastinsert>
-		<lastupdate>Modified registry je ngoq:</lastupdate>
-		<lastdelete>Deleted ta je ngoq:</lastdelete>
-		<proveedor>Supplier</proveedor>
-		<acta>Vang</acta>
-		<presupuesto>Budget</presupuesto>
-		<newfichero>Chu' teywi'</newfichero>
-		<fichero>Teywi'</fichero>
-		<size>Size</size>
-		<mime>Mime segh</mime>
-		<grupo>Ghom</grupo>
-		<ficheroactual>Qu'mey potlh teywi'</ficheroactual>
-		<language>Hol</language>
-		<style>Chut lulajpu'bogh</style>
-		<nodata>'ang ghot'e' pagh</nodata>
-		<nosearch>Wabmey mahvad ghob'e' 'el soh in order to qu' search</nosearch>
-		<prioridad>Priority</prioridad>
-		<sinproyecto>[pagh maqochpu'na' maHtaH jInmol]</sinproyecto>
-		<sintarea>[pagh maqochpu'na' maHtaH Qu']</sintarea>
-		<todoslosproyectos>[Hoch jInmol]</todoslosproyectos>
-		<todaslastareas>[Hoch Qu']</todaslastareas>
-		<todaslascuentas>[Hoch]</todaslascuentas>
-		<graficas>Charts statistics 'ej</graficas>
-		<mail>Pdf ngeH</mail>
-		<mailtip>Pdf ngeH email account</mailtip>
-		<view2>Pdf Viewer</view2>
-		<view2tip>JIH document saltos internal viewer</view2tip>
-		<view2error>Wa'vatlh pdf viewer poS qaS Qagh</view2error>
-		<view2hash>Vaj tah qay', chavmoh contact pong tlha' ngoq 'el:</view2hash>
-		<view2opening>Viewfinder, pos los loq.</view2opening>
-		<msgnotuseremail>Vay' email soq cher bighosnisbe'chohmoh soh</msgnotuseremail>
-		<msgnotsmtpemail>Outgo mail jabwi' wej configured</msgnotsmtpemail>
-		<sincliente>[pagh maqochpu'na' maHtaH Client]</sincliente>
-		<sinposiblecli>[pagh potential maqochpu'na' maHtaH customer]</sinposiblecli>
-		<sinepigrafe>[pagh maqochpu'na' maHtaH caption]</sinepigrafe>
-		<sinprioridad>[pagh Priority]</sinprioridad>
-		<sinestado>[stateless]</sinestado>
-		<dstart>Juh</dstart>
-		<dstop>Rin</dstop>
-		<evento>Wani'</evento>
-		<sincuenta>[pagh account]</sincuenta>
-		<cuenta>Account</cuenta>
-		<sindia>[pagh jaj]</sindia>
-		<sinmes>[pagh jar]</sinmes>
-		<mes>Maqtagh</mes>
-		<factura>Neb</factura>
-		<albaran>Packing slip</albaran>
-		<msglogout>App mej daneh'a'?</msglogout>
-		<mostrarcomo>Cha' je</mostrarcomo>
-		<nif>N.I.F.</nif>
-		<vcard>Vcard</vcard>
-		<cargo>Huj</cargo>
-		<empleado>Employee</empleado>
-		<sinproveedor>[pagh qoch Provider]</sinproveedor>
-		<sinempleado>[pagh maqochpu'na' maHtaH Employee]</sinempleado>
-		<port>Rut mutlha'tah</port>
-		<extra>Hung</extra>
-		<requiredfield>Poq yotlh</requiredfield>
-		<sinpais>[pagh Sep wIv]</sinpais>
-		<sinprovincia>[pagh province wIv]</sinprovincia>
-		<sinpoblacion>[pagh wIv roghvaH]</sinpoblacion>
-		<sincodpostal>[pagh Selection]</sincodpostal>
-		<usedfilter>Filter chu'</usedfilter>
-		<suma>Sum</suma>
-		<average>Motlhbogh</average>
-		<posx>Position x</posx>
-		<posy>Position y</posy>
-		<angle>Tajvaj</angle>
-		<withoutinfo>'os de' pagh</withoutinfo>
-		<sinproducto>[pagh product maqochpu'na' maHtaH]</sinproducto>
-		<preview>Preview</preview>
-		<sortasc>Sal (a-z) Segh</sortasc>
-		<sortdesc>Downstream (z-a) Segh</sortdesc>
-		<confirm>Confirmation</confirm>
-		<alert>Attention</alert>
-		<error>Qagh</error>
-		<buttonaccept>Laj</buttonaccept>
-		<buttoncontinue>Tah</buttoncontinue>
-		<enero>January</enero>
-		<febrero>February</febrero>
-		<marzo>Ma'rich</marzo>
-		<abril>April</abril>
-		<mayo>Jaj</mayo>
-		<junio>June</junio>
-		<julio>July</julio>
-		<agosto>August</agosto>
-		<setiembre>September</setiembre>
-		<octubre>October</octubre>
-		<noviembre>November</noviembre>
-		<diciembre>December</diciembre>
-		<lunes>Monday</lunes>
-		<martes>Tuesday</martes>
-		<miercoles>Wednesday</miercoles>
-		<jueves>Thursday</jueves>
-		<viernes>Friday</viernes>
-		<sabado>Saturday</sabado>
-		<domingo>Jaj wa'</domingo>
-		<sabadoydomingo>Saturday jaj wa' 'ej</sabadoydomingo>
-		<sinpresupuesto>[pagh maqochpu'na' maHtaH budget]</sinpresupuesto>
-		<todoslospresupuestos>[Hoch budgets]</todoslospresupuestos>
-		<unknownerror>May' yotlhdaq connectivity qagh ('e' qap network naw' properly 'ol 'ej vaj tah qay', application administrator contact).</unknownerror>
-		<qrcode>Qr ngoq</qrcode>
-		<lugar>Lan</lugar>
-		<loading>De' loading, loq los.</loading>
-		<sending>Loq los ngeh de'.</sending>
-		<prod>Prod.</prod>
-		<addfile>Teywi' chel</addfile>
-		<addproduct>Product chel</addproduct>
-		<addconcept>Concept chel</addconcept>
-		<addvencimiento>Maturity chel</addvencimiento>
-		<addtarea>Qu' chel</addtarea>
-		<send>Ngeh</send>
-		<notas>Note</notas>
-		<sincampanya>[pagh maqochpu'na' maHtaH campaign]</sincampanya>
-		<campanya>Campaign</campanya>
-		<todaslascampanyas>[Hoch campaigns]</todaslascampanyas>
-		<numpc>NPC</numpc>
-		<numpctip>Prospects mi'</numpctip>
-		<numcl>NCL</numcl>
-		<numcltip>Customers mi'</numcltip>
-		<numag>BOJ</numag>
-		<numagtip>Agenda wani' mi'</numagtip>
-		<numpr>NPR</numpr>
-		<numprtip>Budgets mi'</numprtip>
-		<numpy>NPY</numpy>
-		<numpytip>Jinmol mi'</numpytip>
-		<tipoevento>Wani' segh</tipoevento>
-		<sintipoevento>[pagh wanI' Segh]</sintipoevento>
-		<fileuploaderror>Qas qagh postahvis teywi' ngeh:</fileuploaderror>
-		<postlimiterror>Wa'vatlh de' ngeh jabwi' qas qagh</postlimiterror>
-		<resumeneconomico>Economic summary</resumeneconomico>
-		<pdf2filter_title>Pdf export filter</pdf2filter_title>
-		<pdf2filter_message>De' neH pdf DaH nobvam DaneH'a' wIv:</pdf2filter_message>
-		<view2filter_title>Pdf viewer filter</view2filter_title>
-		<view2filter_message>De' jIH neH pdf DaneH'a' wIv:</view2filter_message>
-		<msgerrorsemaphore>May' yotlhdaq concurrency qagh, qil naw' action</msgerrorsemaphore>
-		<msgnotcheckbox>'op ta ghob'e' wiv soh vo' duh lo' tetlh</msgnotcheckbox>
-		<gotohome>Reload</gotohome>
-		<notifybug>Ja' failure</notifybug>
-		<actioncompress>Teywi' wiv download</actioncompress>
-		<zipformat>ZIP format</zipformat>
-		<tarformat>TAR</tarformat>
-		<gzipformat>GZIP</gzipformat>
-		<bzipformat>BZIP2</bzipformat>
-		<temporalfiles>Ru' archives</temporalfiles>
-		<sessionexpire>Chol session</sessionexpire>
-		<sessionupdate>click nadev 'oh bot vo' closing</sessionupdate>
-		<sessionupdated>Updated session successfully</sessionupdated>
-		<link>Link</link>
-		<importacion>Dughajmoh</importacion>
-		<todaslasimportaciones>[Hoch DughajmoH]</todaslasimportaciones>
-		<sinimportacion>[pagh maqochpu'na' maHtaH DughajmoH]</sinimportacion>
-		<textos_select>BIngDaq ghItlh leghlu' wIv 'ej chel click</textos_select>
-		<textos_add>Boq</textos_add>
-		<selectall>Hoch wiv</selectall>
-		<selectnone>Huvchoh selection</selectnone>
-		<addtofolder>Qastahvis folder cha'</addtofolder>
-		<addtofolderok>Chel 'a ghih folder</addtofolderok>
-		<delfromfolderok>So' qabdaq 'a ghih folder</delfromfolderok>
-		<savedfilters>Filters pol</savedfilters>
-		<optionfilter>Tod filter wiv</optionfilter>
-		<newfilter>Chu' filter pong</newfilter>
-		<loadfilter>Load</loadfilter>
-		<loadfiltertip>Click nadev wiv filter load</loadfiltertip>
-		<updatefilter>Update</updatefilter>
-		<updatefiltertip>Click nadev wiv filter update</updatefiltertip>
-		<deletefilter>Delete</deletefilter>
-		<deletefiltertip>Click nadev wiv filter huv</deletefiltertip>
-		<createfilter>Chenmoh</createfilter>
-		<createfiltertip>Click nadev filter chu' chenmoh</createfiltertip>
-		<createfilterok>Successfully chenmoh filter chu'</createfilterok>
-		<createfilterko>Defined nis pong filter</createfilterko>
-		<loadfilterok>Loaded filter correctly</loadfilterok>
-		<loadfilterko>Filter ghob'e' wiv soh ngejtah lah load soh</loadfilterko>
-		<updatefilterok>Updated filter correctly</updatefilterok>
-		<updatefilterko>Filter ghob'e' wiv soh ngejtah lah modify je soh</updatefilterko>
-		<deletefilterok>Huv filter</deletefilterok>
-		<deletefilterko>Filter ghob'e' wiv soh ngejtah lah delete je soh</deletefilterko>
-		<renamefilter>Rename</renamefilter>
-		<renamefiltertip>Click nadev niv'e' filter rename</renamefiltertip>
-		<renamefilterok>Successfully renamed niv'e' filter</renamefilterok>
-		<renamefilterko1>Filter ghob'e' wiv soh ngejtah lah rename je soh</renamefilterko1>
-		<renamefilterko2>Ghob'e' defined chu' filter pong renamed</renamefilterko2>
-		<showmenu>Hidjolev cha'</showmenu>
-		<hidemenu>Hidjolev so'</hidemenu>
-		<showtools>Cha' tools</showtools>
-		<hidetools>Tools so'</hidetools>
-		<inbackground>Qet action neh patmey lulo'ta', pus ghomchoh los</inbackground>
-		<sentfromsaltos>NgeH vo' saltos email</sentfromsaltos>
-		<foldersdata>Folder</foldersdata>
-		<loweradd>boq</loweradd>
-		<notify>Notification</notify>
-		<help>Qah</help>
-		<desktoptip>Enable built-in notifications desktop</desktoptip>
-		<desktoptxt>Desktop-integrated notifications tlhe'</desktoptxt>
-		<selectallcheckbox>Hoch ta wiv</selectallcheckbox>
-		<selectonecheckbox>Ta wiv</selectonecheckbox>
-		<formapago>Payment method</formapago>
-		<todaslasformasdepago>[Hoch payment methods]</todaslasformasdepago>
-		<sinformapago>[pagh payment method]</sinformapago>
-		<actions>Soh ta</actions>
-		<msgfilesindexed1>Index teywi' neh database</msgfilesindexed1>
-		<msgfilesindexed2>Index teywi' neh database</msgfilesindexed2>
-		<msgregistersindexed1>Index ta neh database</msgregistersindexed1>
-		<msgregistersindexed2>Index ta neh database</msgregistersindexed2>
-		<msgregisterspurged1>Database registration purged</msgregisterspurged1>
-		<msgregisterspurged2>Ta purged vo' database</msgregisterspurged2>
-		<biglist>$limit ta</biglist>
-		<biglisttip>Attention: $limit cha' ta chaq 'e' qet application qit</biglisttip>
-		<activo>Pov</activo>
-		<activo_desc>Pov pagh niv'e' user nitlhdaj lo'tahvis boqwi'vad tu'moh pong disuq</activo_desc>
-		<print>Print</print>
-	</common>
-	<login>
-		<logintitle>Naw' app</logintitle>
-		<remember>Mu'wij de'wi' qaw</remember>
-		<enter>Yi'el</enter>
-		<captcha1>Hung ngoq</captcha1>
-		<captcha2>Nadev ngoq 'el</captcha2>
-		<captcha3>Reload ghitlhvam</captcha3>
-		<mobileaccess>Naw' vo' mobile jan</mobileaccess>
-	</login>
-	<menu>
-		<home>Juh</home>
-		<clientes>Customer</clientes>
-		<contactos>Contact</contactos>
-		<incidencias>Potlh'e'</incidencias>
-		<proyectos>Jinmol</proyectos>
-		<partes>'ay' qap</partes>
-		<documentos>Document</documentos>
-		<facturas>Neb</facturas>
-		<proveedores>Supplier</proveedores>
-		<gastos>Expense</gastos>
-		<epigrafes>Heading</epigrafes>
-		<estados>'ameri'qa'</estados>
-		<formaspago>Payment methods</formaspago>
-		<roles>Role</roles>
-		<usuarios>User</usuarios>
-		<grupos>Ghom</grupos>
-		<prioridades>Priority</prioridades>
-		<agenda>Agenda 'ej wani'</agenda>
-		<actas>Qep tup</actas>
-		<profile>Qoghdu'dajdaq</profile>
-		<maincfg>Configuration</maincfg>
-		<about>VIHtaHbogh saltos</about>
-		<support>Qutlh</support>
-		<logout>Logout</logout>
-		<seguimientos>Ghoch qu'</seguimientos>
-		<datacfg>Database</datacfg>
-		<correo>Email</correo>
-		<cuentas>Account</cuentas>
-		<periodicas>Periodic invoices</periodicas>
-		<empleados>Employee</empleados>
-		<productos>Product</productos>
-		<presupuestos>Budget</presupuestos>
-		<posiblescli>Potential customers</posiblescli>
-		<campanyas>Commercial campaigns</campanyas>
-		<tiposevento>Wani' segh</tiposevento>
-		<textos>Predefine bingdaq ghitlh leghlu'</textos>
-		<ficheros>Attachment</ficheros>
-		<feeds>Yab potlh law' je' rss</feeds>
-		<favoritos>Favorite</favoritos>
-		<ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-		<importaciones>Dughajmoh</importaciones>
-		<gestioncomercial>Commercial</gestioncomercial>
-		<gestionproyectos>Jinmol</gestionproyectos>
-		<gestioncontabilidad>Account</gestioncontabilidad>
-		<gestiongeneral>Sa'</gestiongeneral>
-		<gestionfiltros>Filter</gestionfiltros>
-		<gestionadministracion>Loh</gestionadministracion>
-		<gestiontipos>Segh</gestiontipos>
-		<gestionsistema>Pat</gestionsistema>
-		<folders>Folder</folders>
-		<buscador>Seeker</buscador>
-		<errorlog>Qagh qonos</errorlog>
-		<categorias>Category</categorias>
-		<desc_clientes>Wey customers vu'</desc_clientes>
-		<desc_contactos>Customer contacts naw'</desc_contactos>
-		<desc_incidencias>Customers potlh'e' vu' nadevvo'</desc_incidencias>
-		<desc_proyectos>Je app jinmol pab</desc_proyectos>
-		<desc_partes>Jenwi' hoch qap timesheets lo' sohvad</desc_partes>
-		<desc_facturas>Hoch invoices vu' (slips, huj, etc packing..)</desc_facturas>
-		<desc_proveedores>Wey suppliers vu'</desc_proveedores>
-		<desc_gastos>Check expenses 'ej chaq settled chah visov</desc_gastos>
-		<desc_documentos>Documentation hoch wey nitebha' ghom ghaj</desc_documentos>
-		<desc_agenda>Hoch such qep agenda ghitlh</desc_agenda>
-		<desc_actas>Ta pol heghdi' qep seh latlh data'</desc_actas>
-		<desc_usuarios>Vo' jen, unsubscribe pagh users modify</desc_usuarios>
-		<desc_grupos>Workgroups users chenmoh</desc_grupos>
-		<desc_epigrafes>Headings invoices expenses 'ej define</desc_epigrafes>
-		<desc_formaspago>Payment methods expenses vu' define</desc_formaspago>
-		<desc_estados>Qit dotlh potlh'e', jinmol, etc define.</desc_estados>
-		<desc_prioridades>Hijmeh priorities agenda entries</desc_prioridades>
-		<desc_profile>User preferences choh</desc_profile>
-		<desc_maincfg>App globlalability preferences choh</desc_maincfg>
-		<desc_seguimientos>Yiseh jinmol qu' follow-ups</desc_seguimientos>
-		<desc_datacfg>Hergh dub ghajha'ghach sabha' je</desc_datacfg>
-		<desc_correo>Lad 'ej emails ngeh nadevvo' customers suppliers je</desc_correo>
-		<desc_cuentas>Ledger accounts accounting define</desc_cuentas>
-		<desc_periodicas>Recur invoices je due schedule dates</desc_periodicas>
-		<desc_empleados>Discharge, discharge pagh employees modify</desc_empleados>
-		<desc_posiblescli>Prospects chaq daghaj yiseh</desc_posiblescli>
-		<desc_presupuestos>Budgets chenmoh nom 'ej hergh</desc_presupuestos>
-		<desc_productos>Products nadev define vaj chahvad lah ngev soh</desc_productos>
-		<desc_about>App deq visov</desc_about>
-		<desc_logout>Click nadev heghdi' qap session soq daneh'a'</desc_logout>
-		<desc_home>Naw' 'elbogh jihdaq app</desc_home>
-		<desc_support>Contact qutlh</desc_support>
-		<desc_campanyas>Malja' campaigns follow-ups qu'</desc_campanyas>
-		<desc_tiposevento>Wani' bimejnis segh define</desc_tiposevento>
-		<desc_textos>Predefine bingdaq ghitlh leghlu' lo' chenmoh neh latlh applications</desc_textos>
-		<desc_ficheros>Hoch teywi' qastahvis 'u' application naw'</desc_ficheros>
-		<desc_feeds>Rss Atom 'ej je' tlha' vo' app</desc_feeds>
-		<desc_favoritos>Favorites vu' nadevvo'</desc_favoritos>
-		<desc_ivas>Rup rates vu' nadevvo'</desc_ivas>
-		<desc_importaciones>De' dughajmoh vaj yor apps nadevvo'</desc_importaciones>
-		<desc_buscador>Database naq search</desc_buscador>
-		<desc_errorlog>Saltos Qagh QonoS jIH</desc_errorlog>
-		<desc_categorias>Be applications categories vilegh</desc_categorias>
-		<quick_home>Juh</quick_home>
-		<quick_correo>Mail</quick_correo>
-		<quick_agenda>Agendum</quick_agenda>
-		<quick_profile>Qoghdu'dajdaq</quick_profile>
-		<quick_support>Qutlh</quick_support>
-		<quick_about>Umqu' ghot</quick_about>
-		<quick_logout>Soqmoh</quick_logout>
-		<quick_clientes>Customer</quick_clientes>
-		<quick_contactos>Contact</quick_contactos>
-		<quick_incidencias>Potlh'e'</quick_incidencias>
-		<quick_proyectos>Jinmol</quick_proyectos>
-		<quick_partes>'ay'</quick_partes>
-		<quick_documentos>Document</quick_documentos>
-		<quick_facturas>Neb</quick_facturas>
-		<quick_proveedores>Supplier</quick_proveedores>
-		<quick_gastos>Expense</quick_gastos>
-		<quick_epigrafes>Heading</quick_epigrafes>
-		<quick_estados>'ameri'qa'</quick_estados>
-		<quick_formaspago>F.payment</quick_formaspago>
-		<quick_roles>Role</quick_roles>
-		<quick_usuarios>User</quick_usuarios>
-		<quick_grupos>Ghom</quick_grupos>
-		<quick_prioridades>Priority</quick_prioridades>
-		<quick_actas>Tup</quick_actas>
-		<quick_maincfg>Configuration</quick_maincfg>
-		<quick_seguimientos>Trace</quick_seguimientos>
-		<quick_datacfg>DB</quick_datacfg>
-		<quick_cuentas>Account</quick_cuentas>
-		<quick_periodicas>Periodic</quick_periodicas>
-		<quick_empleados>Employee</quick_empleados>
-		<quick_productos>Product</quick_productos>
-		<quick_presupuestos>Budget</quick_presupuestos>
-		<quick_posiblescli>P.customers</quick_posiblescli>
-		<quick_campanyas>Campaign</quick_campanyas>
-		<quick_tiposevento>T.events</quick_tiposevento>
-		<quick_textos>Bingdaq ghitlh leghlu'</quick_textos>
-		<quick_ficheros>Teywi'</quick_ficheros>
-		<quick_feeds>RSS</quick_feeds>
-		<quick_favoritos>Favorite</quick_favoritos>
-		<quick_importaciones>Dughajmoh</quick_importaciones>
-		<quick_buscador>Seeker</quick_buscador>
-		<quick_errorlog>Qagh</quick_errorlog>
-		<quick_categorias>Category</quick_categorias>
-		<translator>Mughwi'</translator>
-		<translatortip>Bingdaq ghitlh leghlu' mughmeh qu'</translatortip>
-		<corrector>Checker</corrector>
-		<correctortip>Vay' bingdaq ghitlh leghlu' corrections</correctortip>
-		<calculator>Calculator</calculator>
-		<calculatortip>Vay' mathematical calculations</calculatortip>
-		<menu>Hidjoilev</menu>
-		<menutip>Cha' 'ej app hidjolev so'</menutip>
-	</menu>
-	<clientes>
-		<list>Customer tetlh</list>
-		<create>Customer chu'</create>
-		<formview>Customer detail</formview>
-		<forminsert>Customer chu' registration</forminsert>
-		<formupdate>Customer modification</formupdate>
-		<defaultdata>Customer de'</defaultdata>
-		<contactdata>Customer contacts</contactdata>
-		<projectopen>Pov jinmol</projectopen>
-		<projectclose>Soq jinmol</projectclose>
-		<incidentopen>Pov potlh'e'</incidentopen>
-		<incidentclose>Soq potlh'e'</incidentclose>
-		<partesopen>Un liquidated lopno'</partesopen>
-		<partesclose>Liquidate lopno'</partesclose>
-		<albaranes>Invoice</albaranes>
-		<facturaopen>Invoices wej bos</facturaopen>
-		<facturaclose>Invoices huj</facturaclose>
-		<gastosdata>Expenses ghah customer maqochpu'na' mahtah</gastosdata>
-		<documentdata>Customer documents</documentdata>
-		<agendadata>Customer wani'</agendadata>
-		<actasdata>Customer tup</actasdata>
-		<actionliquidar>'ay' wiv settle</actionliquidar>
-		<msgliquidar>Wiv 'ay' settle daneh'a'?</msgliquidar>
-		<plotseguimiento12meses>Wa'hu' dis billing customer</plotseguimiento12meses>
-		<cuentacorriente>Qu'mey potlh account</cuentacorriente>
-		<diapago>Payday</diapago>
-		<cuentacontable>Ledger account</cuentacontable>
-		<nombrecomercial>Sop pong.</nombrecomercial>
-		<nombrefiscal>Rup pong</nombrefiscal>
-		<tipocliente>Customer segh</tipocliente>
-		<clientefiscal>Fiscal</clientefiscal>
-		<clientejuridico>Mub</clientejuridico>
-		<add>Customer chel</add>
-		<presupuestosdata>Customer budgets</presupuestosdata>
-	</clientes>
-	<contactos>
-		<list>Contact tetlh</list>
-		<create>Contact chu'</create>
-		<formview>Detail contact</formview>
-		<forminsert>Contact chu' registration</forminsert>
-		<formupdate>Modification contact</formupdate>
-		<defaultdata>Details contact</defaultdata>
-		<add>Contact chel</add>
-	</contactos>
-	<incidencias>
-		<list>Potlh'e' tetlh</list>
-		<create>Chu' potlh'e'</create>
-		<formview>Potlh'e' detail</formview>
-		<forminsert>Jenwi' potlh'e' chu'</forminsert>
-		<formupdate>Incidence choh</formupdate>
-		<defaultdata>Potlh'e' de'</defaultdata>
-		<usersdata>User</usersdata>
-		<implicados>Involve</implicados>
-		<asignadoa>Assigned</asignadoa>
-		<msgsendemail>Ngeh jiboqqang hoch involve neh potlh'e'</msgsendemail>
-		<boolsendmail>Email ngeh</boolsendmail>
-		<boolsendmailtip>Vaj duh soh enable, ngeh jiboqqang involve hoch</boolsendmailtip>
-		<categoria>Category</categoria>
-		<sincategoria>[pagh category]</sincategoria>
-		<allcategorias>[Hoch categories]</allcategorias>
-	</incidencias>
-	<proyectos>
-		<list>Jinmol tetlh</list>
-		<create>Jinmol chu'</create>
-		<formview>Jinmol, 'ej detail</formview>
-		<forminsert>Jinmol chu' registration</forminsert>
-		<formupdate>Jinmol, 'ej modification</formupdate>
-		<defaultdata>Jinmol de'</defaultdata>
-		<tareasproyecto>Jinmol qu'</tareasproyecto>
-		<desctareas>Qu' description</desctareas>
-		<horastotal>Total rep</horastotal>
-		<preciomedio>Motlhbogh 'ay'</preciomedio>
-		<preciototal>Total 'ay'</preciototal>
-		<plotseguimientotareas>Jinmol deviation</plotseguimientotareas>
-		<legendseguimientotareas>Budget rep 'arghbej rep</legendseguimientotareas>
-		<real>Real</real>
-		<diferencia>Difference</diferencia>
-		<partesopen>Un liquidated lopno'</partesopen>
-		<partesclose>Liquidate lopno'</partesclose>
-		<relatedseguimientos>Relate follow-ups</relatedseguimientos>
-		<relatedincidencias>Relate potlh'e'</relatedincidencias>
-		<actionliquidar>'ay' wiv settle</actionliquidar>
-		<msgliquidar>Wiv 'ay' settle daneh'a'?</msgliquidar>
-		<agendadata>Relate wani'</agendadata>
-		<actasdata>Relate tup</actasdata>
-		<contactdata>Customer contacts</contactdata>
-		<incidentopen>Pov potlh'e'</incidentopen>
-		<incidentclose>Soq potlh'e'</incidentclose>
-		<albaranes>Invoice</albaranes>
-		<facturaopen>Invoices wej bos</facturaopen>
-		<facturaclose>Invoices huj</facturaclose>
-		<gastosdata>Expenses ghah customer maqochpu'na' mahtah</gastosdata>
-		<documentdata>Customer documents</documentdata>
-		<plotseguimientoestados>Jinmol pong sep ghom</plotseguimientoestados>
-		<productosproyecto>Jinmol products</productosproyecto>
-		<descproductos>Product description</descproductos>
-		<actionfacturar>Neb</actionfacturar>
-		<msgfacturar>Jinmol, 'ej invoice daneh?</msgfacturar>
-		<errorfacturar>Jas chonayta' invoice jinmol</errorfacturar>
-		<okfacturar>Successfully neb jinmol</okfacturar>
-		<addseguimientos>Ghoch</addseguimientos>
-		<addactas>Vang</addactas>
-		<addcontactos>Contact</addcontactos>
-		<addagenda>Wani'</addagenda>
-		<resumentareasproductos>Summary qu' products je</resumentareasproductos>
-		<presupuestosdata>Jinmol budgets</presupuestosdata>
-	</proyectos>
-	<documentos>
-		<list>Document listing</list>
-		<create>Document chu'</create>
-		<formview>Document detail</formview>
-		<forminsert>Document chu' registration</forminsert>
-		<formupdate>Modification document</formupdate>
-		<defaultdata>Document de'</defaultdata>
-	</documentos>
-	<partes>
-		<list>'ay' tetlh</list>
-		<create>Chu' 'ay'</create>
-		<formview>Detail 'ay'</formview>
-		<forminsert>Jenwi' 'ay' chu'</forminsert>
-		<formupdate>Modification 'ay'</formupdate>
-		<defaultdata>Ghom de'</defaultdata>
-		<horasfact>Rep checked</horasfact>
-		<preciohora>'ay' ghap rep</preciohora>
-		<liquidar>Settle</liquidar>
-		<dateliq>Date liq.</dateliq>
-		<msgliquidar>Wiv 'ay' settle daneh'a'?</msgliquidar>
-		<msgerror>Lopno' settle neh tetlh daneh'a' ghob'e' wiv soh</msgerror>
-		<fechainiliq>Settle date</fechainiliq>
-		<plotseguimientotop10>10 customers 'ach 'ay' dis qav</plotseguimientotop10>
-		<plotseguimiento12meses>Turnover qastahvis dis qav 'ay'</plotseguimiento12meses>
-	</partes>
-	<usuarios>
-		<list>Users tetlh</list>
-		<create>User chu'</create>
-		<formview>User detail</formview>
-		<forminsert>User chu' registration</forminsert>
-		<formupdate>User modification</formupdate>
-		<personaldata>User de'</personaldata>
-		<entrada>Input</entrada>
-		<salida>Mej</salida>
-		<dias>Jaj</dias>
-		<logged>Rar</logged>
-		<password2>Ngaqha'mohwi'mey jatlhqa'</password2>
-		<errorpassword>Qo' qul naqmey entry ngaqha'mohwi'mey</errorpassword>
-		<contacto>Contact</contacto>
-		<sincontacto>[pagh maqochpu'na' maHtaH contact]</sincontacto>
-		<permdata>Chohwi' wiling per application</permdata>
-		<allow>Chaw'</allow>
-		<deny>Tem</deny>
-		<groupsdata>User ghom</groupsdata>
-		<pop3host>Pop3 jabwI'</pop3host>
-		<pop3delete>Qin jabwi' jivumli' delete</pop3delete>
-		<pop3days>jaj</pop3days>
-		<smtphost>Smtp jabwI'</smtphost>
-		<emailprivated>Account private (neh naw' vighaj)</emailprivated>
-		<emaildefault>Default account (wa' rav lo')</emaildefault>
-		<emaildisabled>Email account yichu'ha'</emaildisabled>
-		<emaildelete>Email account (de' ghah luj reh) delete</emaildelete>
-		<emailsignatureold>Qu'mey potlh signature</emailsignatureold>
-		<emailsignaturenew>Signature chu'</emailsignaturenew>
-		<correonew>Mail chu'</correonew>
-		<addmetocc>JIHvaD chel je CC qaStaHvIS Hoch emails vIngeHlI'</addmetocc>
-		<defaultcrt>Receipt confirmation request enable pong default</defaultcrt>
-		<gcalendar>Google 'ISjaH</gcalendar>
-		<prefgcalendar>Agenda synchronizing google 'ISjaH chavmoH</prefgcalendar>
-		<prefgcalendar2>Je DuH 'ISjaH vo' saltos 'ej google 'ISjaH, De' updated automatically pol je Hutlh yIDaQo' vIHtaHbogh vay' De' replicate vo' 'ISjaH wa' latlh laH lo' SoH</prefgcalendar2>
-		<emailgcalendar>Gmail email account</emailgcalendar>
-		<tokengcalendar>Naw' token</tokengcalendar>
-		<feedstitle>Je' laD vo' saltos (rss 1.0, rss 2.0, 'ej Atom 1.0) DaneH'a' configure</feedstitle>
-		<url>URL</url>
-		<title>Title</title>
-		<description>Description</description>
-		<image>Ghitlhvam</image>
-		<test>Nid</test>
-		<add>Boq</add>
-		<feedslist>HIjmeH puQ rss tetlh</feedslist>
-		<feeds_old>Cher je'</feeds_old>
-		<feeds_new>Chu' je'</feeds_new>
-		<lowerdisabled>doh</lowerdisabled>
-		<singrupo>[pagh ghom]</singrupo>
-		<sinaplicacion>[pagh Application]</sinaplicacion>
-		<registro>Registration</registro>
-		<sinregistro>[pagh registration]</sinregistro>
-		<showdetalles>[legh details]</showdetalles>
-		<hidedetalles>[So' Details]</hidedetalles>
-		<appsregsdata>Per registration chaw'</appsregsdata>
-	</usuarios>
-	<epigrafes>
-		<list>Captions tetlh</list>
-		<create>Caption chu'</create>
-		<formview>Detail caption</formview>
-		<forminsert>Caption chu' discharge</forminsert>
-		<formupdate>Modification heading</formupdate>
-		<defaultdata>De' nach</defaultdata>
-	</epigrafes>
-	<estados>
-		<list>Sep tetlh</list>
-		<create>Sep chu'</create>
-		<formview>Sep detail</formview>
-		<forminsert>Sep chu' discharge</forminsert>
-		<formupdate>Dotlh choh</formupdate>
-		<defaultdata>Sep de'</defaultdata>
-		<activo>Pov</activo>
-	</estados>
-	<grupos>
-		<list>Ghom tetlh</list>
-		<create>Ghom chu'</create>
-		<formview>Detail ghom</formview>
-		<forminsert>Ghom chu' registration</forminsert>
-		<formupdate>Ghom modification</formupdate>
-		<defaultdata>Ghom de'</defaultdata>
-		<permdata>Chohwi' wiling per application</permdata>
-		<allow>Chaw'</allow>
-		<deny>Tem</deny>
-		<showdetalles>[legh details]</showdetalles>
-		<hidedetalles>[So' Details]</hidedetalles>
-	</grupos>
-	<formaspago>
-		<list>Payments chenmoh tetlh</list>
-		<create>Method payment chu'</create>
-		<formview>Method payment detail</formview>
-		<forminsert>Jenwi' chu' payment method</forminsert>
-		<formupdate>Method payment choh</formupdate>
-		<defaultdata>Payment method de'</defaultdata>
-	</formaspago>
-	<gastos>
-		<list>Expenses tetlh</list>
-		<create>Chu' rep</create>
-		<formview>Detail rep</formview>
-		<forminsert>Jenwi' expense chu'</forminsert>
-		<formupdate>Modification rep</formupdate>
-		<defaultdata>De' rep</defaultdata>
-		<pagadopor>Payer</pagadopor>
-		<liquidar>Settle</liquidar>
-		<dateliq>Date liq.</dateliq>
-		<msgliquidar>Wiv expenses settle daneh'a'?</msgliquidar>
-		<msgerror>Expenses settle neh tetlh daneh'a' ghob'e' wiv soh</msgerror>
-		<trimestrereg>Chip. input</trimestrereg>
-		<fechainireg>Entry date</fechainireg>
-		<trimestreliq>Chip. settle</trimestreliq>
-		<fechainiliq>Settle date</fechainiliq>
-		<totalliquidar>Total settled expenses:</totalliquidar>
-		<plotseguimientotop10>Providers niv-turnover 10 yor dis qav</plotseguimientotop10>
-		<plotseguimiento12meses>Wa'hu' dis expenses</plotseguimiento12meses>
-		<sinpagador>[pagh payer]</sinpagador>
-		<vencimientos_old>Maturity</vencimientos_old>
-		<vencimientos_new>Maturities chu'</vencimientos_new>
-		<fechavencimiento>Expiration date</fechavencimiento>
-		<pagado>Yidil</pagado>
-		<fechapagado>Date yidil</fechapagado>
-	</gastos>
-	<facturas>
-		<list>Invoice listing</list>
-		<create>Chu' neb</create>
-		<formview>Invoice detail</formview>
-		<forminsert>Invoice chu' registration</forminsert>
-		<formupdate>Invoice choh</formupdate>
-		<defaultdata>Invoice de'</defaultdata>
-		<errorfac101>Lah pos neh qav invoice</errorfac101>
-		<errorfac103>Soq invoice pagh delete soh</errorfac103>
-		<numfacxxx>Invoice mi'</numfacxxx>
-		<numalbxxx>Slip packing pagh</numalbxxx>
-		<fechaemision>Wani'vammo' tlha' date</fechaemision>
-		<titular>Holder</titular>
-		<baseimponible>Rup waw'</baseimponible>
-		<totalapagar>Total payable</totalapagar>
-		<plotseguimientotop10>10 niv turnover customers yor qav dis</plotseguimientotop10>
-		<plotseguimiento12meses>Wa'hu' dis turnover</plotseguimiento12meses>
-		<concepts_old>Concept</concepts_old>
-		<concepts_new>Concepts chu'</concepts_new>
-		<products_old>Product</products_old>
-		<products_new>Products chu'</products_new>
-		<vencimientos_old>Maturity</vencimientos_old>
-		<vencimientos_new>Maturities chu'</vencimientos_new>
-		<fechavencimiento>Expiration date</fechavencimiento>
-		<fechacobrado>Vudmey tlhopdaq date</fechacobrado>
-		<clientdata>Customer de'</clientdata>
-		<vencimientosfactura>Expirations invoice</vencimientosfactura>
-		<vencimientosalbaran>Packing slip expirations</vencimientosalbaran>
-		<vencimientoscobrado>Choh je'lah 'e' baj huj aging de' yilo'</vencimientoscobrado>
-	</facturas>
-	<prioridades>
-		<list>Priority tetlh</list>
-		<create>Priority chu'</create>
-		<formview>Priority detail</formview>
-		<forminsert>Jenwi' priority chu'</forminsert>
-		<formupdate>Priority choh</formupdate>
-		<defaultdata>Priority de'</defaultdata>
-	</prioridades>
-	<agenda>
-		<list>Wani' tetlh</list>
-		<create>Chu' wani'</create>
-		<formview>Detail wani'</formview>
-		<forminsert>Registration wani' chu'</forminsert>
-		<formupdate>Wani' choh</formupdate>
-		<defaultdata>Wani' de'</defaultdata>
-		<otrasfechas>Latlh dates</otrasfechas>
-		<todoseventos>[Hoch wanI']</todoseventos>
-		<todoayer>Wa'hu' wani'</todoayer>
-		<todohoy>Dahjaj wani'</todohoy>
-		<todomanana>Wa'les wani'</todomanana>
-		<todosemana>Hogh wani'</todosemana>
-		<todomes>Jar wani'</todomes>
-		<todoano>Dis wani'</todoano>
-		<usersdata>Assign users</usersdata>
-		<asignadoa>Assigned</asignadoa>
-		<notifydelay>Notify</notifydelay>
-		<notifysign>rep ghap s</notifysign>
-		<notifydstart>Start notification hev</notifydstart>
-		<notifydstop>Qav notification, hev</notifydstop>
-		<notifyantes>Pa'</notifyantes>
-		<notifydespues>Qaspu'di'</notifydespues>
-		<notifyprev>Pre-wani' notification</notifyprev>
-		<notifypost>Wani' notification naq</notifypost>
-		<notifyclear>Notification</notifyclear>
-		<notifytip>Say' woddi' notifications</notifytip>
-		<notifyclearok>Wani' restarted:</notifyclearok>
-		<notifyclearko>Ghobe' tu' pending wani' restart</notifyclearko>
-		<calendar>Wani' 'isjah</calendar>
-		<prevmonth>Previous jar</prevmonth>
-		<currentmonth>Qu'mey potlh jar</currentmonth>
-		<nextmonth>Veb jar</nextmonth>
-		<today>Dahjaj</today>
-		<yesterday>Wa'hu'</yesterday>
-		<tomorrow>Po</tomorrow>
-		<continue>Contd....</continue>
-		<by>pong</by>
-		<calendarinfo>De' date cha':</calendarinfo>
-		<add>Wani' chel</add>
-		<gcalendar>Google 'ISjaH</gcalendar>
-		<gcalendartip>Sync wanI' DuqIppu'chugh saltos google 'ISjaH</gcalendartip>
-		<notgcalendaremail>Lutmeyvam cher SoH google 'ISjaH account neH preferences</notgcalendaremail>
-		<invalidgcalendartoken>Google 'ISjaH account login details incorrect</invalidgcalendartoken>
-		<requestgcalendartoken>Click nadev naw' token</requestgcalendartoken>
-		<insertgcalendar>ChenmoH saltos wanI' qaStaHvIS google 'ISjaH:</insertgcalendar>
-		<updategcalendar>Update saltos wanI' qaStaHvIS google 'ISjaH:</updategcalendar>
-		<insertsaltos>ChenmoH google 'ISjaH wanI' qaStaHvIS saltos:</insertsaltos>
-		<updatesaltos>Update google 'ISjaH wanI' qaStaHvIS saltos:</updatesaltos>
-		<notinsertupdate>Pagh wani' update</notinsertupdate>
-		<expand>Sach</expand>
-		<expandtip>Sach wani' 'isjah hoch detail cha'</expandtip>
-		<collapse>Dej</collapse>
-		<collapsetip>Dej wani' 'isjah hoch detail so'</collapsetip>
-		<loadingsmall>Loading.</loadingsmall>
-	</agenda>
-	<proveedores>
-		<list>Suppliers tetlh</list>
-		<create>Supplier chu'</create>
-		<formview>Supplier detail</formview>
-		<forminsert>Supplier chu' registration</forminsert>
-		<formupdate>Supplier modification</formupdate>
-		<defaultdata>Supplier de'</defaultdata>
-		<plotseguimiento12meses>Supplier qav dis expenses</plotseguimiento12meses>
-		<cuentacorriente>Qu'mey potlh account</cuentacorriente>
-		<cuentacontable>Ledger account</cuentacontable>
-		<diapago>Payday</diapago>
-		<gastosdata>Costs ghah supplier maqochpu'na' mahtah</gastosdata>
-		<contactdata>Provider contacts</contactdata>
-		<nombrecomercial>Mech pong</nombrecomercial>
-		<nombrefiscal>Rup pong</nombrefiscal>
-		<add>Provider chel</add>
-	</proveedores>
-	<actas>
-		<list>Tup tetlh</list>
-		<create>Chu' tup</create>
-		<formview>Tup detail</formview>
-		<forminsert>Lut chu' registration</forminsert>
-		<formupdate>Tup amendment</formupdate>
-		<defaultdata>De' tup</defaultdata>
-		<dstart>Juh</dstart>
-		<dstop>Rin</dstop>
-		<asistentes>Boqwi'</asistentes>
-		<temas>Topic</temas>
-		<aceptados>Laj</aceptados>
-		<cancelados>Qil</cancelados>
-		<pendientes>Earring</pendientes>
-		<add>Tup chel</add>
-	</actas>
-	<profile>
-		<formupdate>Qoghdu'dajdaq</formupdate>
-		<oldpassword>Tiq ngaqha'mohwi'mey</oldpassword>
-		<newpassword>Chu' ngaqha'mohwi'mey</newpassword>
-		<newpassword2>Ngaqha'mohwi'mey jatlhqa'</newpassword2>
-		<erroroldpassword>Ngaqha'mohwi'mey ngo' incorrect</erroroldpassword>
-		<errornewpassword>Qo' qul naqmey entry ngaqha'mohwi'mey</errornewpassword>
-		<errornewpassword2>Ngaqha'mohwi'mey chu' ghob'e' vita'qo' qatlh</errornewpassword2>
-		<prefgeneral>Sa' preferences</prefgeneral>
-		<cambioclave>Ngaqha'mohwi'mey personal choh</cambioclave>
-		<general>Sa'</general>
-		<title_correo_old>Cher pop3 email account user</title_correo_old>
-		<pop3host>Pop3 jabwI'</pop3host>
-		<pop3delete>Qin jabwi' jivumli' delete</pop3delete>
-		<pop3days>jaj</pop3days>
-		<smtphost>Smtp jabwI'</smtphost>
-		<emailprivated>Account private (neh naw' vighaj)</emailprivated>
-		<emaildefault>Default account (wa' rav lo')</emaildefault>
-		<emaildisabled>Email account yichu'ha'</emaildisabled>
-		<emaildelete>Email account (de' ghah luj reh) delete</emaildelete>
-		<emailsignatureold>Qu'mey potlh signature</emailsignatureold>
-		<emailsignaturenew>Signature chu'</emailsignaturenew>
-		<correonew>Mail chu'</correonew>
-		<title_correo_new>Cher chu' pop3 email account user</title_correo_new>
-		<gcalendar>Google 'ISjaH</gcalendar>
-		<prefgcalendar>Agenda synchronizing google 'ISjaH chavmoH</prefgcalendar>
-		<prefgcalendar2>Je DuH 'ISjaH vo' saltos 'ej google 'ISjaH, De' updated automatically pol je Hutlh yIDaQo' vIHtaHbogh vay' De' replicate vo' 'ISjaH wa' latlh laH lo' SoH</prefgcalendar2>
-		<emailgcalendar>Gmail email account</emailgcalendar>
-		<tokengcalendar>Naw' token</tokengcalendar>
-		<addmetocc>JIHvaD chel je CC qaStaHvIS Hoch emails vIngeHlI'</addmetocc>
-		<defaultcrt>Receipt confirmation request enable pong default</defaultcrt>
-		<feedstitle>Je' laD vo' saltos (rss 1.0, rss 2.0, 'ej Atom 1.0) DaneH'a' configure</feedstitle>
-		<url>URL</url>
-		<title>Title</title>
-		<description>Description</description>
-		<image>Ghitlhvam</image>
-		<test>Nid</test>
-		<add>Boq</add>
-		<feedslist>HIjmeH puQ rss tetlh</feedslist>
-		<feeds_old>Cher je'</feeds_old>
-		<feeds_new>Chu' je'</feeds_new>
-		<lowerdisabled>doh</lowerdisabled>
-		<quick>Qapchu' hidjolev</quick>
-		<prefquick>Cher qapchu' hidjolev legh nadev hidjolev yor</prefquick>
-		<sinaplicacion>[pagh Application]</sinaplicacion>
-		<quick_button_f1>Wa'DIch button (f1)</quick_button_f1>
-		<quick_button_f2>Cha'DIch button (f2)</quick_button_f2>
-		<quick_button_f3>WejDIch button (f3)</quick_button_f3>
-		<quick_button_f4>Fourth button (f4)</quick_button_f4>
-		<quick_button_f5>Fifth button (f5)</quick_button_f5>
-		<quick_button_f6>Sixth button (f6)</quick_button_f6>
-		<quick_button_f7>Seventh button (f7)</quick_button_f7>
-		<quick_button_f8>Eighth button (f8)</quick_button_f8>
-		<quick_button_f9>Patlh HutDIch vIHev button (f9)</quick_button_f9>
-		<quick_button_f10>Tenth (f10) button</quick_button_f10>
-		<quick_button_f11>Eleventh button (f11)</quick_button_f11>
-		<quick_button_f12>Twelveth button (f12)</quick_button_f12>
-		<folderstab>User folders</folderstab>
-		<folderspref>Cher nadev user folders 'ej vaj nuq daneh'a' mej</folderspref>
-		<newfolder>Folder user chu'</newfolder>
-		<withoutparent>[pagh Folder]</withoutparent>
-		<inparentfolder>'ej dir vo' folder</inparentfolder>
-		<namefolder>Folder pong</namefolder>
-		<parentfolder>Tera'vo' folder hus</parentfolder>
-	</profile>
-	<maincfg>
-		<formupdate>Configuration</formupdate>
-		<general>Sa'</general>
-		<title_general>Parameters sa' application 'op hijmeh</title_general>
-		<applicationtitle>App title</applicationtitle>
-		<plotlistsize>Charts listings size</plotlistsize>
-		<plotformsize>Size charts chenmoh</plotformsize>
-		<small>Mach</small>
-		<medium>Medium</medium>
-		<big>Yiteb</big>
-		<agendainterval>Nej 'isjah notifications hoch</agendainterval>
-		<inboxinterval>Nej chu' emails hoch</inboxinterval>
-		<outboxinterval>Check output tray hoch</outboxinterval>
-		<feedsinterval>Nej chu' posts hoch</feedsinterval>
-		<feedstimeout>Rintah delete je' 'e' dalijchugh</feedstimeout>
-		<sessioninterval>Tu' qonos hoch check</sessioninterval>
-		<sessionwarning>Pa' logout notify</sessionwarning>
-		<indexinginterval>Teywi' chu' index hoch</indexinginterval>
-		<integrityinterval>Review integrity hoch</integrityinterval>
-		<purgeinterval>De' purge hoch</purgeinterval>
-		<emailsupport>Email ngaq</emailsupport>
-		<segundos>cha'dich</segundos>
-		<dias>jaj</dias>
-		<title_logo>Logo, position, size je colors lo' neh pdf define</title_logo>
-		<logo>Logo</logo>
-		<logoleft>Position x logo</logoleft>
-		<logotop>JE</logotop>
-		<logowidth>Width</logowidth>
-		<logoheight>Jen</logoheight>
-		<logofile>Teywi' logo qu'mey potlh</logofile>
-		<logofilenew>Chu' teywI' (jpeg neH)</logofilenew>
-		<colorline>Tlhegh color</colorline>
-		<colortext1>Title</colortext1>
-		<colortext2>Bingdaq ghitlh leghlu'</colortext2>
-		<title_correo>'op global parameters vIHtaHbogh emails ngeH vo' saltos cher</title_correo>
-		<cuentasupport>Outgo mail qutlh</cuentasupport>
-		<cuentaincidencias>Outgo mail potlh'e'</cuentaincidencias>
-		<water>Watermark</water>
-		<title_water>Define watermarks lo' neh pdf</title_water>
-		<wateractas>Tup: bIngDaq ghItlh leghlu'</wateractas>
-		<waterpartes>'ay': bIngDaq ghItlh leghlu'</waterpartes>
-		<waterfacturas>Invoices: bIngDaq ghItlh leghlu'</waterfacturas>
-		<wateralbaranes>Packing slips: bIngDaq ghItlh leghlu'</wateralbaranes>
-		<waterpresupuestos>Budgets: bIngDaq ghItlh leghlu'</waterpresupuestos>
-		<waterclientes>Customers: bIngDaq ghItlh leghlu'</waterclientes>
-		<waterproyectos>JInmol: bIngDaq ghItlh leghlu'</waterproyectos>
-		<waterposiblescli>QIt customers: bIngDaq ghItlh leghlu'</waterposiblescli>
-		<watercorreo>Mail: bIngDaq ghItlh leghlu'</watercorreo>
-		<waterfeeds>Je': bIngDaq ghItlh leghlu'</waterfeeds>
-		<emailasync>Asynchronous duj (saghmo') yilo'</emailasync>
-		<accounting>Account</accounting>
-		<title_accounting>Global accounting de' nadev cher</title_accounting>
-		<accounting_currency>Currency</accounting_currency>
-		<accounting_iva_name>Rup pong (chel)</accounting_iva_name>
-		<accounting_irpf_name>Rup pong (boqha')</accounting_irpf_name>
-		<accounting_value>Default (neh vaj lo')</accounting_value>
-		<applications_config>Application</applications_config>
-		<config_tabs>Tab settings</config_tabs>
-		<default_values>Default</default_values>
-		<configuracion_presupuestos>Budget setup</configuracion_presupuestos>
-		<configuracion_agenda>Agenda setup</configuracion_agenda>
-		<configuracion_incidencias>Potlh'e' settings</configuracion_incidencias>
-		<configuracion_facturas>Cher invoices</configuracion_facturas>
-		<configuracion_gastos>Setup cost</configuracion_gastos>
-		<show_tab_objetivos_presupuesto>Ngoq cha'</show_tab_objetivos_presupuesto>
-		<show_tab_condiciones_presupuesto>Cha' je</show_tab_condiciones_presupuesto>
-		<show_tab_funcional_presupuesto>Functional proposal cha'</show_tab_funcional_presupuesto>
-		<show_tab_tecnica_presupuesto>Technical proposal cha'</show_tab_tecnica_presupuesto>
-		<show_tab_info_adicional_presupuesto>Saturjaj de' cha'</show_tab_info_adicional_presupuesto>
-		<show_tab_tareas_presupuesto>Cha' qu'</show_tab_tareas_presupuesto>
-		<show_tab_productos_presupuesto>Cha' products</show_tab_productos_presupuesto>
-		<sin_configurar>[undestably HIjmeH]</sin_configurar>
-		<filtro_grupo_usuarios_incidencias>Users cha' qastahvis user listings ghom</filtro_grupo_usuarios_incidencias>
-		<filtro_grupo_usuarios_implicados_incidencias>Ghom involve</filtro_grupo_usuarios_implicados_incidencias>
-		<filtro_grupo_usuarios_asignados_incidencias>Assign ghom</filtro_grupo_usuarios_asignados_incidencias>
-	</maincfg>
-	<about>
-		<formupdate>VIHtaHbogh saltos</formupdate>
-		<copyright>Distributed software bopummeH gpl-3.0 chaw' wabmey:</copyright>
-		<components>Tlha' 'ay' lo' software:</components>
-		<server_base>Jabwi' waw':</server_base>
-		<php_plugins>Php plugins:</php_plugins>
-		<javascript_base>Javascript pim waw':</javascript_base>
-		<bootstrap_plugins>Bootstrap plugins:</bootstrap_plugins>
-		<jquery_plugins>Jquery plugins:</jquery_plugins>
-		<javascript_plugins>Javascript plugins:</javascript_plugins>
-		<other_plugins>Latlh plugins:</other_plugins>
-		<server_plugins>Plugins jabwi':</server_plugins>
-		<vxinfo>Note: (*) specific version chaw' lo' chaH wej per 'op jInmol</vxinfo>
-		<license>Chaw'</license>
-		<game>Qa'vaq</game>
-		<licensetitle>Below mub bingdaq ghitlh leghlu' chaw'</licensetitle>
-		<gametitle>Vaj 'oH chenmoHta' SoH jIHDaq, ghor qotlh SoH. ghonja'gho loQ!!!</gametitle>
-		<translators>Mughmeh</translators>
-		<developers>Developer</developers>
-		<unavailable>Details not lupoQ contact. [developer vay' pagh suggestions yu'. ghaHDaq contact BERNARDO.</unavailable>
-	</about>
-	<support>
-		<formupdate>Qutlh</formupdate>
-		<contact>Qutlh</contact>
-		<subject>Hap</subject>
-		<msgsendemail>Ngeh jiboqqang ngaq</msgsendemail>
-		<msgnotemailsupport>Per pagh mail ngaq</msgnotemailsupport>
-		<msgnotsubject>'el pagh hap</msgnotsubject>
-		<msgnotcomments>'el pagh comment</msgnotcomments>
-	</support>
-	<home>
-		<formupdate>Juh</formupdate>
-		<buscar2>Search Hoch rIn saltos</buscar2>
-		<buscar3>Search neh qastahvis teywi'</buscar3>
-	</home>
-	<seguimientos>
-		<list>Follow-ups tetlh</list>
-		<create>Follow-up chu'</create>
-		<formview>Detail follow-up</formview>
-		<forminsert>Jenwi' follow-up chu'</forminsert>
-		<formupdate>Follow-up choh</formupdate>
-		<defaultdata>De' ghoch</defaultdata>
-		<add>Tracking chel</add>
-	</seguimientos>
-	<datacfg>
-		<formupdate>Actions database</formupdate>
-		<export>Export</export>
-		<title_export>NaQ database neH sql format export</title_export>
-		<desc_export>Chaw' soh ghah chach naq database tod</desc_export>
-		<desc2_export>Yo'SeH much periodically je teywI' ngevwI' neH QaD Daq such as lulIjbe'lu'bogh flash, cd pagh vay' latlh jan external De'wI'</desc2_export>
-		<import>Dughajmoh</import>
-		<title_import>DughajmoH naQ database neH sql format</title_import>
-		<desc_import>Chaw' soh ghah hoch de' dughajmoh vo' chach</desc_import>
-		<desc2_import>TeywI' DughajmoH pong [Browse] button pressing wIv 'ej vaj [DughajmoH] button De' chu' load vo' chach press</desc2_import>
-		<desc3_import>Potlh: vay' Qu'mey potlh De' Daghaj neH app erase Qu' DughajmoH</desc3_import>
-		<filenotfound>Unable 'a ghih dughajmoh teywi' lad</filenotfound>
-		<filefoundok>Chach, successfully dughajmoh</filefoundok>
-		<fileimporterror>Wa'vatlh teywi' dughajmoh qas qagh</fileimporterror>
-	</datacfg>
-	<correo>
-		<list>Mail listing</list>
-		<create>Mail chu' ngeh</create>
-		<formview>Mail detail</formview>
-		<forminsert>Email chu' ngeh</forminsert>
-		<formupdate>Jiboqqang forward</formupdate>
-		<defaultdata>Mail de'</defaultdata>
-		<from>Jan</from>
-		<to>Meh</to>
-		<cc>CC</cc>
-		<bcc>BCC</bcc>
-		<subject>Hap</subject>
-		<attachments>Attachment</attachments>
-		<message>Qin</message>
-		<recibir>Hev</recibir>
-		<recibirtip>Click nadev chu' emails hev</recibirtip>
-		<enviar>Ngeh</enviar>
-		<enviartip>Click nadev emails ngeh vo' outbox</enviartip>
-		<msgnotpop3email>Pagh email account cher pagh chu' tu'lu'</msgnotpop3email>
-		<msgnotpop3host>Pop3 jabwI' wej configured</msgnotpop3host>
-		<msgerrorpop3email>Qas tlha' qagh:</msgerrorpop3email>
-		<msgnewokpop3email1>Chu' mail, hev neh inbox</msgnewokpop3email1>
-		<msgnewokpop3email2>Chu' emails, hev neh inbox</msgnewokpop3email2>
-		<msggotoemail>ghos post miw'e'</msggotoemail>
-		<msgnewkopop3email>Emails pagh chu'</msgnewkopop3email>
-		<msgconnrefusedpop3email>Connection lajqo' jabwi'</msgconnrefusedpop3email>
-		<msgconnerrorpop3email>Pagh rar jabwi'</msgconnerrorpop3email>
-		<msgopenerrorpop3email>Wej tu' teywi' qin ngas</msgopenerrorpop3email>
-		<msgpropietario>Chepmoh lah lo' neh owner emails</msgpropietario>
-		<msgnotfound>Found pagh wiv emails, filter modify</msgnotfound>
-		<msgnumsileidos>Ghitlhta' chah je lad:</msgnumsileidos>
-		<msgnumsiwait>Ghitlhta' chah je pending:</msgnumsiwait>
-		<msgnumsispam>GhItlh je spam:</msgnumsispam>
-		<msgnumnoleidos>Ghitlhta' chah je un lad:</msgnumnoleidos>
-		<msgnumnowait>Ghitlhta' chah je qi'yah-pending:</msgnumnowait>
-		<msgnumnospam>GhItlhta' chaH je QI'yaH-spam:</msgnumnospam>
-		<msgnumdelete>Deleted:</msgnumdelete>
-		<statenew>Chu'</statenew>
-		<actionnew>Chu'</actionnew>
-		<stateread>Lad</stateread>
-		<statereply>Jang</statereply>
-		<stateforward>Forward</stateforward>
-		<statewait>Slope</statewait>
-		<statespam>SPAM</statespam>
-		<statesent>Ngeh</statesent>
-		<statenotsent>Wej ngeh</statenotsent>
-		<stateerror>Qagh</stateerror>
-		<stateall>Hoch</stateall>
-		<todaslascuentas>[Hoch accounts]</todaslascuentas>
-		<buttonsend>Ngeh</buttonsend>
-		<buttonsendreturnhere>Ngeh 'ej nadev chegh</buttonsendreturnhere>
-		<onlynew>Neh chu'</onlynew>
-		<onlywait>Earrings neh</onlywait>
-		<hidespam>Spam So'</hidespam>
-		<withfiles>Attachments</withfiles>
-		<onlyspam>SPAM NEH</onlyspam>
-		<withoutfiles>Pagh attachments</withoutfiles>
-		<actionwait>Slope</actionwait>
-		<actionspam>SPAM</actionspam>
-		<actionreply>Jang</actionreply>
-		<actionreplyall>Resp. hoch</actionreplyall>
-		<actionforward>Forward</actionforward>
-		<messageid>Id qin</messageid>
-		<fulldata>Mail zoom</fulldata>
-		<sourcedata>Hal mail</sourcedata>
-		<leidos>Lad</leidos>
-		<wait>Slope</wait>
-		<spam>SPAM</spam>
-		<borrar>Delete</borrar>
-		<borrartip>Hoch wiv emails delete</borrartip>
-		<msgleidos>Ghitlh lad ghap wej hoch wiv emails lad daneh?</msgleidos>
-		<msgwait>Wiv hoch emails ghitlh je pending ghap qi'yah-pending daneh'a'?</msgwait>
-		<msgspam>WIv Hoch emails ghItlh je spam ghap wej SPAM DaneH'a'?</msgspam>
-		<msgdelete2>Hoch wiv emails delete daneh?</msgdelete2>
-		<msgnotsendfound>Ngeh qin pagh</msgnotsendfound>
-		<msgerrorsendmail>Qas tlha' qagh:</msgerrorsendmail>
-		<msgtotalsendmail1>Ngeh vo'--box mail</msgtotalsendmail1>
-		<msgtotalsendmail2>Emails ngeh vo' outbox</msgtotalsendmail2>
-		<stateinbox>Input</stateinbox>
-		<stateoutbox>Mej</stateoutbox>
-		<onlyinbox>Starters neh</onlyinbox>
-		<onlyoutbox>Outgoings neh</onlyoutbox>
-		<options>Duh</options>
-		<optionstip>Duh listing latlh cha'</optionstip>
-		<pdfoptions>Pdf DuH</pdfoptions>
-		<sinsubject>(hurdaq subject)</sinsubject>
-		<msgfromkosendmail>Configuration vo': poQ wej vItu'</msgfromkosendmail>
-		<msgsendoksendmail>Successfully ngeh email</msgsendoksendmail>
-		<replysubject>Re:</replysubject>
-		<replyallsubject>Re:</replyallsubject>
-		<forwardsubject>Fwd:</forwardsubject>
-		<embeddedmessage>#datetime, ghitlh #fromname:</embeddedmessage>
-		<actionreplytip>Jang qin sender</actionreplytip>
-		<actionreplyalltip>Jang hoch users qin</actionreplyalltip>
-		<actionforwardtip>Email forward users latlh</actionforwardtip>
-		<noleidos>Qo' lad</noleidos>
-		<nowait>Qo' pending</nowait>
-		<nospam>Pagh spam</nospam>
-		<today>Dahjaj</today>
-		<yesterday>Wa'hu'</yesterday>
-		<week>Hogh</week>
-		<month>Maqtagh</month>
-		<confirmreadingto>Confirmation receipt request</confirmreadingto>
-		<marcarcorreos>Ghitlh je</marcarcorreos>
-		<message0>Qin</message0>
-		<message1>Qin</message1>
-		<message2>Qin</message2>
-		<campos>Fields</campos>
-		<allcampos>[Hoch yotlh]</allcampos>
-		<onlyemail>Neh qastahvis lurgh</onlyemail>
-		<onlysubject>Neh qastahvis qas</onlysubject>
-		<onlybody>Neh choqumta'mo'</onlybody>
-		<filtrarcorreos>Filter pong</filtrarcorreos>
-		<priority>Priority</priority>
-		<priorityhigh>Jen</priorityhigh>
-		<prioritynormal>Motlh</prioritynormal>
-		<prioritylow>'es</prioritylow>
-		<sensitivity>Sensitivity</sensitivity>
-		<sensitivitynormal>Motlh</sensitivitynormal>
-		<sensitivitypersonal>Personal</sensitivitypersonal>
-		<sensitivityprivate>Private</sensitivityprivate>
-		<sensitivityconfidential>Confidential</sensitivityconfidential>
-		<addincidencia>Chenmoh potlh'e'</addincidencia>
-		<addincidenciatip>Potlh'e' chenmoh vo' email</addincidenciatip>
-		<addincidenciamsg>Potlh'e' chenmoh vo' email daneh'a'?</addincidenciamsg>
-		<addincidenciaok>Chenmoh wani'vammo' tlha' je ngoq:</addincidenciaok>
-		<notsupportdefined>Qutlh email account wej defined</notsupportdefined>
-		<notsupportfound>Ngaq email account wej sev email</notsupportfound>
-		<incidenciaexists>Chonayta' niv'e' 'op ngoq potlh'e':</incidenciaexists>
-		<interrorsendmail>Wej ngeh email qagh internal</interrorsendmail>
-	</correo>
-	<cuentas>
-		<list>Accounts tetlh</list>
-		<create>Account chu'</create>
-		<formview>Account detail</formview>
-		<forminsert>Account chu' registration</forminsert>
-		<formupdate>Account modification</formupdate>
-		<defaultdata>Account de'</defaultdata>
-		<logo>Logo</logo>
-		<title_logo>Logo, position, size, 'ej colors lo' invoices define</title_logo>
-		<logoleft>Position x logo</logoleft>
-		<logotop>JE</logotop>
-		<logowidth>Width</logowidth>
-		<logoheight>Jen</logoheight>
-		<logofile>Teywi' logo qu'mey potlh</logofile>
-		<logofilenew>Chu' teywI' (jpeg neH)</logofilenew>
-		<colorline>Tlhegh color</colorline>
-		<colortext1>Title</colortext1>
-		<colortext2>Bingdaq ghitlh leghlu'</colortext2>
-		<title_facturas>Be parameters lo' invoice issuance define</title_facturas>
-		<facturabool>Yan</facturabool>
-		<facturavalue>Default (neh vaj lo')</facturavalue>
-		<facturapie1>Tlhegh qamdu' wa'dich</facturapie1>
-		<facturapie2>Qamdu' tlhegh cha'dich</facturapie2>
-	</cuentas>
-	<periodicas>
-		<list>Periodic invoices tetlh</list>
-		<create>Chu' recur neb</create>
-		<formview>Periodic invoice detail</formview>
-		<forminsert>Chu' recur invoice registration</forminsert>
-		<formupdate>Periodic invoice modification</formupdate>
-		<defaultdata>Periodic invoice de'</defaultdata>
-		<concepts_old>Concept</concepts_old>
-		<concepts_new>Concepts chu'</concepts_new>
-		<products_old>Product</products_old>
-		<products_new>Products chu'</products_new>
-		<vencimientos_old>Maturity</vencimientos_old>
-		<vencimientos_new>Maturities chu'</vencimientos_new>
-		<fechavencimiento>Expiration date</fechavencimiento>
-		<diaemision>'uchtah jaj</diaemision>
-		<diaini>Sabtahbogh jaj</diaini>
-		<dia>Jaj</dia>
-		<meses>Maqtagh</meses>
-		<liquidar>Generate</liquidar>
-		<totalliquidar>Qo'nos mi' invoices pa' total generated:</totalliquidar>
-		<msgerror>Invoices generate tetlh jar lo' 'ej daneh'a' ghob'e' wiv soh</msgerror>
-		<msgliquidar>Wiv invoices generate daneh'a'?</msgliquidar>
-	</periodicas>
-	<empleados>
-		<list>Employee tetlh</list>
-		<create>Employee chu'</create>
-		<formview>Employee detail</formview>
-		<forminsert>Employee chu' discharge</forminsert>
-		<formupdate>Employee modification</formupdate>
-		<defaultdata>Employee de'</defaultdata>
-		<contactdata>Employee contacts</contactdata>
-	</empleados>
-	<denied>
-		<title>Naw' tem</title>
-		<short>Chohwi' wiling 'ej action muh bighosnisbe'chohmoh soh</short>
-		<large>Application vo' running bot pat pong wej yap DIb application 'ay' qet ghaj. vaj Qagh 'e' DaHar'a', app administrator contact</large>
-	</denied>
-	<posiblescli>
-		<list>Prospects tetlh</list>
-		<create>Potential chu' customer</create>
-		<formview>Detail customer wa'dich lubejpu'</formview>
-		<forminsert>Chu' customer potential registration</forminsert>
-		<formupdate>Potential customer modification</formupdate>
-		<defaultdata>Customer de'</defaultdata>
-		<crearcliente>Customer chenmoh</crearcliente>
-		<clientcreatedok>Chenmohta' customer chu' successfully</clientcreatedok>
-		<msgcrear>Damoj wa'dich lubejpu' customer vaj customer daneh?</msgcrear>
-		<agendadata>Wani' customer potential</agendadata>
-		<actasdata>'a qaspa' customer wa'dich lubejpu' sanmaj</actasdata>
-		<presupuestosdata>Wa'dich lubejpu' customer budgets</presupuestosdata>
-		<facturacion>Neb</facturacion>
-		<iaedesc>Description iae</iaedesc>
-		<iaecod>Cod. iae</iaecod>
-		<contacto>Pers. contact</contacto>
-		<changedenied>Wa'dich lubejpu' customer tup, schedule qoj quotes ghajbogh pagh yichu'ha' soh</changedenied>
-	</posiblescli>
-	<productos>
-		<list>Product listing</list>
-		<create>Product chu'</create>
-		<formview>Product detail</formview>
-		<forminsert>Product chu' registration</forminsert>
-		<formupdate>Product modification</formupdate>
-		<defaultdata>Product de'</defaultdata>
-		<ref>Ref.</ref>
-		<peso>Ngi'</peso>
-		<volumen>Muq</volumen>
-		<dimensiones>Dimension</dimensiones>
-		<fotofile>Qu'mey potlh photo</fotofile>
-		<fotofilenew>Photo chu'</fotofilenew>
-		<siniva eval="true">"[Hutlh ".CONFIG("accounting_iva_name")."]"</siniva>
-	</productos>
-	<presupuestos>
-		<list>Budget tetlh</list>
-		<create>Budget chu'</create>
-		<formview>Budget detail</formview>
-		<forminsert>Jenwi' budget chu'</forminsert>
-		<formupdate>Budget choh</formupdate>
-		<defaultdata>Budget de'</defaultdata>
-		<tareaspresupuesto>Budget qu'</tareaspresupuesto>
-		<desctareas>Qu' description</desctareas>
-		<horastotal>Total rep</horastotal>
-		<preciomedio>Motlhbogh 'ay'</preciomedio>
-		<preciototal>Total 'ay'</preciototal>
-		<productospresupuesto>Budget products</productospresupuesto>
-		<descproductos>Product description</descproductos>
-		<objetivos>Budget objectives</objetivos>
-		<funcional>Functional proposal</funcional>
-		<tecnica>Technical proposal</tecnica>
-		<extras>Saturjaj de'</extras>
-		<condiciones>Budget je</condiciones>
-		<valoracion>Economic valuation</valoracion>
-		<crearproyecto>Jinmol chenmoh</crearproyecto>
-		<projectexists>Chonayta' related budget jinmol</projectexists>
-		<clientnotexists>Relate customer (vaj related customer wa'dich lubejpu', customer chenmoh chah wa'dich)</clientnotexists>
-		<projectcreatedok>Chenmoh jinmol chu' successfully</projectcreatedok>
-		<msgcrear>Budget jinmol chenmoh visuq vineh?</msgcrear>
-		<agendadata>Budget wani'</agendadata>
-		<actasdata>Budget tup</actasdata>
-		<plotseguimientoestados>Budgets pong sep ghom</plotseguimientoestados>
-		<resumentareasproductos>Summary qu' products je</resumentareasproductos>
-		<objetivospdf>Objective</objetivospdf>
-		<funcionalpdf>Functional</funcionalpdf>
-		<tecnicapdf>Technical</tecnicapdf>
-		<extraspdf>De'</extraspdf>
-		<condicionespdf>Je</condicionespdf>
-		<actionfacturar>Neb</actionfacturar>
-		<msgfacturar>Jinmol, 'ej invoice daneh?</msgfacturar>
-		<errorfacturar>Jas chonayta' invoice budget</errorfacturar>
-		<okfacturar>Successfully neb budget</okfacturar>
-	</presupuestos>
-	<campanyas>
-		<list>Campaign tetlh</list>
-		<create>Campaign chu'</create>
-		<formview>Campaign detail</formview>
-		<forminsert>Campaign chu' registration</forminsert>
-		<formupdate>Campaign modification</formupdate>
-		<defaultdata>Campaign de'</defaultdata>
-		<agendadata>Campaign wani'</agendadata>
-		<presupuestosdata>Campaign budgets</presupuestosdata>
-		<projectopen>Pov jinmol</projectopen>
-		<projectclose>Soq jinmol</projectclose>
-		<clientesdata>Customers jon</clientesdata>
-		<posiblesclidata>Potential customers</posiblesclidata>
-	</campanyas>
-	<tiposevento>
-		<list>Wani' segh tetlh</list>
-		<create>Chu' segh wani'</create>
-		<formview>Detail wani' segh</formview>
-		<forminsert>Jenwi' chu' segh wani'</forminsert>
-		<formupdate>Wani' segh choh</formupdate>
-		<defaultdata>Wani' segh de'</defaultdata>
-	</tiposevento>
-	<textos>
-		<list>Predefine bingdaq ghitlh leghlu' tetlh</list>
-		<publico>Public</publico>
-		<publico_desc>Predefine bingdaq ghitlh leghlu' lah lo' hoch</publico_desc>
-		<create>Chu' predefine bingdaq ghitlh leghlu'</create>
-		<formview>Detail predefine bingdaq ghitlh leghlu'</formview>
-		<forminsert>Jenwi' chu' predefine bingdaq ghitlh leghlu'</forminsert>
-		<formupdate>Modification predefine bingdaq ghitlh leghlu'</formupdate>
-		<defaultdata>Predefine bingdaq ghitlh leghlu' de'</defaultdata>
-		<sinaplicacion>[pagh Application]</sinaplicacion>
-	</textos>
-	<ficheros>
-		<list>Attachments tetlh</list>
-		<todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>
-	</ficheros>
-	<feeds>
-		<list>Rss je' tetlh</list>
-		<msgnewfeedsok1>Chu' downloaded post</msgnewfeedsok1>
-		<msgnewfeedsok2>Chu' posts, downloaded</msgnewfeedsok2>
-		<msgnewfeedsko>Pagh chu' posts vitu'</msgnewfeedsko>
-		<msgmodifiedfeedsok1>Update post</msgmodifiedfeedsok1>
-		<msgmodifiedfeedsok2>Update posts</msgmodifiedfeedsok2>
-		<msgnotfeeds>Tu'lu' pagh rss je' configured pagh ghuS</msgnotfeeds>
-		<feed>Rss je'</feed>
-		<title>Title</title>
-		<pubdate>Pub date.</pubdate>
-		<recibir>Hev</recibir>
-		<recibirtip>Click nadev chu' posts hev</recibirtip>
-		<todoslosfeeds>[Hoch rss je']</todoslosfeeds>
-		<defaultdata>Post detail</defaultdata>
-		<fulldata>Post zoom</fulldata>
-		<actionwait>Slope</actionwait>
-		<statenew>Chu'</statenew>
-		<actionnew>Chu'</actionnew>
-		<statemodified>Modify</statemodified>
-		<statewait>Slope</statewait>
-		<stateread>Lad</stateread>
-		<actionforward>Forward</actionforward>
-		<actionforwardtip>Post forward pong email</actionforwardtip>
-		<formview>Post detail</formview>
-		<msggotofeeds>ha' rss je'</msggotofeeds>
-		<onlynew>Neh chu'</onlynew>
-		<onlywait>Earrings neh</onlywait>
-		<options>Duh</options>
-		<optionstip>Duh listing latlh cha'</optionstip>
-		<pdfoptions>Pdf DuH</pdfoptions>
-		<stateall>Hoch</stateall>
-		<today>Dahjaj</today>
-		<yesterday>Wa'hu'</yesterday>
-		<week>Hogh</week>
-		<month>Maqtagh</month>
-		<marcarfeeds>Ghitlh je</marcarfeeds>
-		<leidos>Lad</leidos>
-		<wait>Slope</wait>
-		<borrar>Delete</borrar>
-		<borrartip>Hoch wiv posts delete</borrartip>
-		<noleidos>Qo' lad</noleidos>
-		<nowait>Qo' pending</nowait>
-		<msgleidos>Ghitlh hoch lad ghap wej posts, lad hoch wiv daneh?</msgleidos>
-		<msgwait>Hoch wiv posts ghitlh je pending ghap qi'yah-pending daneh'a'?</msgwait>
-		<msgdelete2>Hoch wiv posts delete daneh?</msgdelete2>
-		<msgpropietario>Luchohlu'qu'pu'mo' lah lo' neh owner posts</msgpropietario>
-		<msgnotfound>Found pagh wiv posts, filter modify</msgnotfound>
-		<msgnumsileidos>Ghitlhta' chah je lad:</msgnumsileidos>
-		<msgnumsiwait>Ghitlhta' chah je pending:</msgnumsiwait>
-		<msgnumnoleidos>Ghitlhta' chah je un lad:</msgnumnoleidos>
-		<msgnumnowait>Ghitlhta' chah je qi'yah-pending:</msgnumnowait>
-		<msgnumdelete>Deleted:</msgnumdelete>
-		<message0>Post</message0>
-		<message1>Post</message1>
-		<message2>Post</message2>
-		<msgerrorfeed>Qas qagh tlha' lom nolwi'pu' je':</msgerrorfeed>
-		<sintitle>(untitled)</sintitle>
-		<post>Post rss</post>
-		<filtrarfeeds>Filter pong</filtrarfeeds>
-		<actioncool>Daj</actioncool>
-		<statecool>Daj</statecool>
-		<onlycool>Qu'vetlh daj</onlycool>
-		<cool>Daj</cool>
-		<nocool>Wej daj</nocool>
-		<msgcool>Je daj ghap wej hoch wiv posts daj ghitlh visuq vineh?</msgcool>
-		<msgnumsicool>Chah ghitlhta' je daj:</msgnumsicool>
-		<msgnumnocool>Chah ghitlhta' je un daj:</msgnumnocool>
-		<actionfavoritos>Boq favorites</actionfavoritos>
-	</feeds>
-	<importaciones>
-		<list>Dughajmoh tetlh</list>
-		<create>Chu' dughajmoh</create>
-		<formview>Detail dughajmoh</formview>
-		<forminsert>Registration chu' dughajmoh</forminsert>
-		<formupdate>Modification dughajmoh</formupdate>
-		<defaultdata>De' dughajmoh</defaultdata>
-		<sinaplicacion>[pagh Application]</sinaplicacion>
-		<importdata>Teywi' de'</importdata>
-	</importaciones>
-	<folders>
-		<notfound>Folder wej vitu'</notfound>
-		<todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>
-		<deleteoffolder>Delete vo' folder</deleteoffolder>
-		<defaultfolder>Personal folder</defaultfolder>
-	</folders>
-	<translator>
-		<translator>Mughwi'</translator>
-		<corrector>Checker</corrector>
-		<es>Spanish</es>
-		<ca>Catalan</ca>
-		<en>English hol</en>
-		<pt>Portuguese</pt>
-		<eu>Basque</eu>
-		<gl>Galician</gl>
-		<fr>French</fr>
-		<ar>Arabic</ar>
-	</translator>
-	<buscador>
-		<list>Seeker</list>
-		<todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>
-	</buscador>
-	<errorlog>
-		<formupdate>Qagh qonos</formupdate>
-		<defaultdata>Teywi' 'a ghih</defaultdata>
-	</errorlog>
-	<favoritos>
-		<list>Favourite tetlh</list>
-		<create>Favorite chu'</create>
-		<url>URL</url>
-		<bookmarkexists>Niv'e' url chonayta' tod daneh'a' je favorite.</bookmarkexists>
-		<invalidurl>Url invalid, 'ej bebvo' soq 'ol:</invalidurl>
-		<bookmarkadded>Successfully chel url favorites</bookmarkadded>
-		<previews>Preview</previews>
-	</favoritos>
-	<ivas>
-		<list eval="true">"Tetlh ".CONFIG("accounting_iva_name")</list>
-		<create eval="true">"Chu' ".CONFIG("accounting_iva_name")</create>
-		<formview eval="true">"Detauls ".CONFIG("accounting_iva_name")</formview>
-		<forminsert eval="true">"Chu' chel ".CONFIG("accounting_iva_name")</forminsert>
-		<formupdate eval="true">"choH ".CONFIG("accounting_iva_name")</formupdate>
-		<defaultdata eval="true">"De' ".CONFIG("accounting_iva_name")</defaultdata>
-	</ivas>
-	<categorias>
-		<list>Categories tetlh</list>
-		<create>Category chu'</create>
-		<formview>Detail category</formview>
-		<forminsert>Category chu' registration</forminsert>
-		<formupdate>Modification category</formupdate>
-		<defaultdata>Category de'</defaultdata>
-	</categorias>
+    <lang>tlh_TLH</lang>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <nopage>App suq started wiv</nopage>
+        <nocheckuser>Incorrect user pagh ngaqha'mohwi'mey</nocheckuser>
+        <nochecktime>User hur working rep</nochecktime>
+        <nocheckday>--jaj user</nocheckday>
+        <view>Legh</view>
+        <edit>Edit</edit>
+        <copy>Copy</copy>
+        <delete>Delete</delete>
+        <first>Page wa'dich</first>
+        <previous>Previous page</previous>
+        <next>Veb page</next>
+        <last>Wa'Hu' page</last>
+        <id>Ngoq.</id>
+        <codigo>Ngoq</codigo>
+        <cif>CIF.</cif>
+        <nombre>Pong</nombre>
+        <apellidos>Surname</apellidos>
+        <tel_fijo>Ti'</tel_fijo>
+        <tel_movil>Mobile</tel_movil>
+        <telefono>Phone</telefono>
+        <fax>Nav</fax>
+        <email>Email</email>
+        <web>'ej bebvo'</web>
+        <filter>Filter duh</filter>
+        <loadsavefilter>Load 'ej predefine filters tod</loadsavefilter>
+        <filtro>Hoch vitu'</filtro>
+        <buscar>Samta'meh</buscar>
+        <buscartip>Search wiv filters</buscartip>
+        <limpiar>Reset</limpiar>
+        <limpiartip>Filter say' 'ej hoch de' bey'</limpiartip>
+        <username>User</username>
+        <datetime>Date poh 'ej</datetime>
+        <direccion>Soq</direccion>
+        <codpostal>Zip ngoq</codpostal>
+        <poblacion>Roghvah</poblacion>
+        <provincia>Province</provincia>
+        <pais>Hatlh</pais>
+        <comentarios>Meb reviews</comentarios>
+        <descripcion>Description</descripcion>
+        <buttoncreate>Chenmoh</buttoncreate>
+        <buttoncreatereturnhere>Chenmoh 'ej nadev chegh</buttoncreatereturnhere>
+        <buttonupdate>Update</buttonupdate>
+        <buttonupdatereturnhere>Update 'ej nadev chegh</buttonupdatereturnhere>
+        <buttoncancel>Qil</buttoncancel>
+        <buttonreturn>Chap</buttonreturn>
+        <date>Date</date>
+        <incidencia>Incidence</incidencia>
+        <estado>Sep</estado>
+        <parte>Lopno'</parte>
+        <tarea>Ghigh</tarea>
+        <tareas>Ghigh</tareas>
+        <liquidado>Settle</liquidado>
+        <base>Waw'</base>
+        <total>Total</total>
+        <cerrado>Soq</cerrado>
+        <cobrado>Huj</cobrado>
+        <empresa>Wey</empresa>
+        <msgdelete>Ta delete daneh'a'?</msgdelete>
+        <permdenied>Chohwi' wiling 'ej ghu'vam qu' bighosnisbe'chohmoh soh</permdenied>
+        <sinnombre>Pagh pong</sinnombre>
+        <deldenied>Pagh deleted 'oh seh ngat neh latlh app</deldenied>
+        <yes>Hija'</yes>
+        <no>Qo'</no>
+        <cliente>Client</cliente>
+        <posiblecli>Potential customer</posiblecli>
+        <password>Ngaqha'mohwi'mey</password>
+        <numfac>N.fac.</numfac>
+        <numc>NC</numc>
+        <numctip>Comments mi'</numctip>
+        <numf>NF</numf>
+        <numftip>Teywi' mi'</numftip>
+        <numt>NT</numt>
+        <numttip>Qu' mi'</numttip>
+        <numv>NV</numv>
+        <numvtip>Maturities mi'</numvtip>
+        <nums>N</nums>
+        <numstip>Follow-ups mi'</numstip>
+        <nump>NP</nump>
+        <numptip>Products mi'</numptip>
+        <fechaini>Sabtahbogh date</fechaini>
+        <fechafin>je</fechafin>
+        <commentdel>Comment huv</commentdel>
+        <attachments>Attachment</attachments>
+        <shortattachments>Attachment</shortattachments>
+        <userdatetime>User, date je poh</userdatetime>
+        <fileandsize>Teywi' size 'ej</fileandsize>
+        <download>Download</download>
+        <activar>Ghus</activar>
+        <newcomment>Comment chu'</newcomment>
+        <newattachments>Attachments chu'</newattachments>
+        <proyecto>Jinmol</proyecto>
+        <documento>Document</documento>
+        <hora>Poh</hora>
+        <horas>Rep</horas>
+        <minutos>Tup</minutos>
+        <precio>'ay'</precio>
+        <liq>Liq.</liq>
+        <aplicacion>Application</aplicacion>
+        <rol>Role</rol>
+        <permiso>Chohwi' wiling</permiso>
+        <pos>Pos.</pos>
+        <posicion>Position</posicion>
+        <trimestre>Quarter</trimestre>
+        <otroscampos>Latlh yotlh</otroscampos>
+        <excel>'ovbe'tahvis</excel>
+        <exceltip>'ovbe'taHvIS teywI' je Qu'mey potlh De' download</exceltip>
+        <pdf>Pdf download</pdf>
+        <pdftip>Download pdf teywI' Qu'mey potlh De'</pdftip>
+        <epigrafe>Nach</epigrafe>
+        <campoauto>(*) automatic yotlh</campoauto>
+        <cerr>Bijatlh 'e' yimev.</cerr>
+        <cobr>Cobr.</cobr>
+        <concepto>Concept</concepto>
+        <unid>Units.</unid>
+        <unidades>Unids.</unidades>
+        <unidadestotal>Total units</unidadestotal>
+        <prun>Pr. ghap mach</prun>
+        <dto>Disc.</dto>
+        <importe>Amount</importe>
+        <percent>Sut chu'</percent>
+        <todos>[Hoch]</todos>
+        <todoslosclientes>[Hoch customers]</todoslosclientes>
+        <todoslosposiblescli>[Hoch prospects]</todoslosposiblescli>
+        <todoslosusuarios>[Hoch Users]</todoslosusuarios>
+        <todoslosgrupos>[Hoch ghom]</todoslosgrupos>
+        <todoslosproveedores>[Hoch Suppliers]</todoslosproveedores>
+        <mostrartodos>['el cha' Hoch]</mostrartodos>
+        <sinusuario>[pagh User]</sinusuario>
+        <paginaspc>Page</paginaspc>
+        <regsfrom>ta</regsfrom>
+        <spcdespc>,</spcdespc>
+        <spcalspc>.</spcalspc>
+        <regspage>Qo'nos qonos per page:</regspage>
+        <registerdata>Qonos de'</registerdata>
+        <userinsert>Chenmoh pong</userinsert>
+        <userupdate>Modified pong</userupdate>
+        <allstates>[Hoch Sep]</allstates>
+        <allenabled>[Hoch Assets..............</allenabled>
+        <alldisabled>[Hoch QI'yaH-pov</alldisabled>
+        <lastinsert>Chenmohta' ta je ngoq:</lastinsert>
+        <lastupdate>Modified registry je ngoq:</lastupdate>
+        <lastdelete>Deleted ta je ngoq:</lastdelete>
+        <proveedor>Supplier</proveedor>
+        <acta>Vang</acta>
+        <presupuesto>Budget</presupuesto>
+        <newfichero>Chu' teywi'</newfichero>
+        <fichero>Teywi'</fichero>
+        <size>Size</size>
+        <mime>Mime segh</mime>
+        <grupo>Ghom</grupo>
+        <ficheroactual>Qu'mey potlh teywi'</ficheroactual>
+        <language>Hol</language>
+        <style>Chut lulajpu'bogh</style>
+        <nodata>'ang ghot'e' pagh</nodata>
+        <nosearch>Wabmey mahvad ghob'e' 'el soh in order to qu' search</nosearch>
+        <prioridad>Priority</prioridad>
+        <sinproyecto>[pagh maqochpu'na' maHtaH jInmol]</sinproyecto>
+        <sintarea>[pagh maqochpu'na' maHtaH Qu']</sintarea>
+        <todoslosproyectos>[Hoch jInmol]</todoslosproyectos>
+        <todaslastareas>[Hoch Qu']</todaslastareas>
+        <todaslascuentas>[Hoch]</todaslascuentas>
+        <graficas>Charts statistics 'ej</graficas>
+        <mail>Pdf ngeH</mail>
+        <mailtip>Pdf ngeH email account</mailtip>
+        <view2>Pdf Viewer</view2>
+        <view2tip>JIH document saltos internal viewer</view2tip>
+        <view2error>Wa'vatlh pdf viewer poS qaS Qagh</view2error>
+        <view2hash>Vaj tah qay', chavmoh contact pong tlha' ngoq 'el:</view2hash>
+        <view2opening>Viewfinder, pos los loq.</view2opening>
+        <msgnotuseremail>Vay' email soq cher bighosnisbe'chohmoh soh</msgnotuseremail>
+        <msgnotsmtpemail>Outgo mail jabwi' wej configured</msgnotsmtpemail>
+        <sincliente>[pagh maqochpu'na' maHtaH Client]</sincliente>
+        <sinposiblecli>[pagh potential maqochpu'na' maHtaH customer]</sinposiblecli>
+        <sinepigrafe>[pagh maqochpu'na' maHtaH caption]</sinepigrafe>
+        <sinprioridad>[pagh Priority]</sinprioridad>
+        <sinestado>[stateless]</sinestado>
+        <dstart>Juh</dstart>
+        <dstop>Rin</dstop>
+        <evento>Wani'</evento>
+        <sincuenta>[pagh account]</sincuenta>
+        <cuenta>Account</cuenta>
+        <sindia>[pagh jaj]</sindia>
+        <sinmes>[pagh jar]</sinmes>
+        <mes>Maqtagh</mes>
+        <factura>Neb</factura>
+        <albaran>Packing slip</albaran>
+        <msglogout>App mej daneh'a'?</msglogout>
+        <mostrarcomo>Cha' je</mostrarcomo>
+        <nif>N.I.F.</nif>
+        <vcard>Vcard</vcard>
+        <cargo>Huj</cargo>
+        <empleado>Employee</empleado>
+        <sinproveedor>[pagh qoch Provider]</sinproveedor>
+        <sinempleado>[pagh maqochpu'na' maHtaH Employee]</sinempleado>
+        <port>Rut mutlha'tah</port>
+        <extra>Hung</extra>
+        <requiredfield>Poq yotlh</requiredfield>
+        <sinpais>[pagh Sep wIv]</sinpais>
+        <sinprovincia>[pagh province wIv]</sinprovincia>
+        <sinpoblacion>[pagh wIv roghvaH]</sinpoblacion>
+        <sincodpostal>[pagh Selection]</sincodpostal>
+        <usedfilter>Filter chu'</usedfilter>
+        <suma>Sum</suma>
+        <average>Motlhbogh</average>
+        <posx>Position x</posx>
+        <posy>Position y</posy>
+        <angle>Tajvaj</angle>
+        <withoutinfo>'os de' pagh</withoutinfo>
+        <sinproducto>[pagh product maqochpu'na' maHtaH]</sinproducto>
+        <preview>Preview</preview>
+        <sortasc>Sal (a-z) Segh</sortasc>
+        <sortdesc>Downstream (z-a) Segh</sortdesc>
+        <confirm>Confirmation</confirm>
+        <alert>Attention</alert>
+        <error>Qagh</error>
+        <buttonaccept>Laj</buttonaccept>
+        <buttoncontinue>Tah</buttoncontinue>
+        <enero>January</enero>
+        <febrero>February</febrero>
+        <marzo>Ma'rich</marzo>
+        <abril>April</abril>
+        <mayo>Jaj</mayo>
+        <junio>June</junio>
+        <julio>July</julio>
+        <agosto>August</agosto>
+        <setiembre>September</setiembre>
+        <octubre>October</octubre>
+        <noviembre>November</noviembre>
+        <diciembre>December</diciembre>
+        <lunes>Monday</lunes>
+        <martes>Tuesday</martes>
+        <miercoles>Wednesday</miercoles>
+        <jueves>Thursday</jueves>
+        <viernes>Friday</viernes>
+        <sabado>Saturday</sabado>
+        <domingo>Jaj wa'</domingo>
+        <sabadoydomingo>Saturday jaj wa' 'ej</sabadoydomingo>
+        <sinpresupuesto>[pagh maqochpu'na' maHtaH budget]</sinpresupuesto>
+        <todoslospresupuestos>[Hoch budgets]</todoslospresupuestos>
+        <unknownerror>May' yotlhdaq connectivity qagh ('e' qap network naw' properly 'ol 'ej vaj tah qay', application administrator contact).</unknownerror>
+        <qrcode>Qr ngoq</qrcode>
+        <lugar>Lan</lugar>
+        <loading>De' loading, loq los.</loading>
+        <sending>Loq los ngeh de'.</sending>
+        <prod>Prod.</prod>
+        <addfile>Teywi' chel</addfile>
+        <addproduct>Product chel</addproduct>
+        <addconcept>Concept chel</addconcept>
+        <addvencimiento>Maturity chel</addvencimiento>
+        <addtarea>Qu' chel</addtarea>
+        <send>Ngeh</send>
+        <notas>Note</notas>
+        <sincampanya>[pagh maqochpu'na' maHtaH campaign]</sincampanya>
+        <campanya>Campaign</campanya>
+        <todaslascampanyas>[Hoch campaigns]</todaslascampanyas>
+        <numpc>NPC</numpc>
+        <numpctip>Prospects mi'</numpctip>
+        <numcl>NCL</numcl>
+        <numcltip>Customers mi'</numcltip>
+        <numag>BOJ</numag>
+        <numagtip>Agenda wani' mi'</numagtip>
+        <numpr>NPR</numpr>
+        <numprtip>Budgets mi'</numprtip>
+        <numpy>NPY</numpy>
+        <numpytip>Jinmol mi'</numpytip>
+        <tipoevento>Wani' segh</tipoevento>
+        <sintipoevento>[pagh wanI' Segh]</sintipoevento>
+        <fileuploaderror>Qas qagh postahvis teywi' ngeh:</fileuploaderror>
+        <postlimiterror>Wa'vatlh de' ngeh jabwi' qas qagh</postlimiterror>
+        <resumeneconomico>Economic summary</resumeneconomico>
+        <pdf2filter_title>Pdf export filter</pdf2filter_title>
+        <pdf2filter_message>De' neH pdf DaH nobvam DaneH'a' wIv:</pdf2filter_message>
+        <view2filter_title>Pdf viewer filter</view2filter_title>
+        <view2filter_message>De' jIH neH pdf DaneH'a' wIv:</view2filter_message>
+        <msgerrorsemaphore>May' yotlhdaq concurrency qagh, qil naw' action</msgerrorsemaphore>
+        <msgnotcheckbox>'op ta ghob'e' wiv soh vo' duh lo' tetlh</msgnotcheckbox>
+        <gotohome>Reload</gotohome>
+        <notifybug>Ja' failure</notifybug>
+        <actioncompress>Teywi' wiv download</actioncompress>
+        <zipformat>ZIP format</zipformat>
+        <tarformat>TAR</tarformat>
+        <gzipformat>GZIP</gzipformat>
+        <bzipformat>BZIP2</bzipformat>
+        <temporalfiles>Ru' archives</temporalfiles>
+        <sessionexpire>Chol session</sessionexpire>
+        <sessionupdate>click nadev 'oh bot vo' closing</sessionupdate>
+        <sessionupdated>Updated session successfully</sessionupdated>
+        <link>Link</link>
+        <importacion>Dughajmoh</importacion>
+        <todaslasimportaciones>[Hoch DughajmoH]</todaslasimportaciones>
+        <sinimportacion>[pagh maqochpu'na' maHtaH DughajmoH]</sinimportacion>
+        <textos_select>BIngDaq ghItlh leghlu' wIv 'ej chel click</textos_select>
+        <textos_add>Boq</textos_add>
+        <selectall>Hoch wiv</selectall>
+        <selectnone>Huvchoh selection</selectnone>
+        <addtofolder>Qastahvis folder cha'</addtofolder>
+        <addtofolderok>Chel 'a ghih folder</addtofolderok>
+        <delfromfolderok>So' qabdaq 'a ghih folder</delfromfolderok>
+        <savedfilters>Filters pol</savedfilters>
+        <optionfilter>Tod filter wiv</optionfilter>
+        <newfilter>Chu' filter pong</newfilter>
+        <loadfilter>Load</loadfilter>
+        <loadfiltertip>Click nadev wiv filter load</loadfiltertip>
+        <updatefilter>Update</updatefilter>
+        <updatefiltertip>Click nadev wiv filter update</updatefiltertip>
+        <deletefilter>Delete</deletefilter>
+        <deletefiltertip>Click nadev wiv filter huv</deletefiltertip>
+        <createfilter>Chenmoh</createfilter>
+        <createfiltertip>Click nadev filter chu' chenmoh</createfiltertip>
+        <createfilterok>Successfully chenmoh filter chu'</createfilterok>
+        <createfilterko>Defined nis pong filter</createfilterko>
+        <loadfilterok>Loaded filter correctly</loadfilterok>
+        <loadfilterko>Filter ghob'e' wiv soh ngejtah lah load soh</loadfilterko>
+        <updatefilterok>Updated filter correctly</updatefilterok>
+        <updatefilterko>Filter ghob'e' wiv soh ngejtah lah modify je soh</updatefilterko>
+        <deletefilterok>Huv filter</deletefilterok>
+        <deletefilterko>Filter ghob'e' wiv soh ngejtah lah delete je soh</deletefilterko>
+        <renamefilter>Rename</renamefilter>
+        <renamefiltertip>Click nadev niv'e' filter rename</renamefiltertip>
+        <renamefilterok>Successfully renamed niv'e' filter</renamefilterok>
+        <renamefilterko1>Filter ghob'e' wiv soh ngejtah lah rename je soh</renamefilterko1>
+        <renamefilterko2>Ghob'e' defined chu' filter pong renamed</renamefilterko2>
+        <showmenu>Hidjolev cha'</showmenu>
+        <hidemenu>Hidjolev so'</hidemenu>
+        <showtools>Cha' tools</showtools>
+        <hidetools>Tools so'</hidetools>
+        <inbackground>Qet action neh patmey lulo'ta', pus ghomchoh los</inbackground>
+        <sentfromsaltos>NgeH vo' saltos email</sentfromsaltos>
+        <foldersdata>Folder</foldersdata>
+        <loweradd>boq</loweradd>
+        <notify>Notification</notify>
+        <help>Qah</help>
+        <desktoptip>Enable built-in notifications desktop</desktoptip>
+        <desktoptxt>Desktop-integrated notifications tlhe'</desktoptxt>
+        <selectallcheckbox>Hoch ta wiv</selectallcheckbox>
+        <selectonecheckbox>Ta wiv</selectonecheckbox>
+        <formapago>Payment method</formapago>
+        <todaslasformasdepago>[Hoch payment methods]</todaslasformasdepago>
+        <sinformapago>[pagh payment method]</sinformapago>
+        <actions>Soh ta</actions>
+        <msgfilesindexed1>Index teywi' neh database</msgfilesindexed1>
+        <msgfilesindexed2>Index teywi' neh database</msgfilesindexed2>
+        <msgregistersindexed1>Index ta neh database</msgregistersindexed1>
+        <msgregistersindexed2>Index ta neh database</msgregistersindexed2>
+        <msgregisterspurged1>Database registration purged</msgregisterspurged1>
+        <msgregisterspurged2>Ta purged vo' database</msgregisterspurged2>
+        <biglist>$limit ta</biglist>
+        <biglisttip>Attention: $limit cha' ta chaq 'e' qet application qit</biglisttip>
+        <activo>Pov</activo>
+        <activo_desc>Pov pagh niv'e' user nitlhdaj lo'tahvis boqwi'vad tu'moh pong disuq</activo_desc>
+        <print>Print</print>
+    </common>
+    <login>
+        <logintitle>Naw' app</logintitle>
+        <remember>Mu'wij de'wi' qaw</remember>
+        <enter>Yi'el</enter>
+        <captcha1>Hung ngoq</captcha1>
+        <captcha2>Nadev ngoq 'el</captcha2>
+        <captcha3>Reload ghitlhvam</captcha3>
+        <mobileaccess>Naw' vo' mobile jan</mobileaccess>
+    </login>
+    <menu>
+        <home>Juh</home>
+        <clientes>Customer</clientes>
+        <contactos>Contact</contactos>
+        <incidencias>Potlh'e'</incidencias>
+        <proyectos>Jinmol</proyectos>
+        <partes>'ay' qap</partes>
+        <documentos>Document</documentos>
+        <facturas>Neb</facturas>
+        <proveedores>Supplier</proveedores>
+        <gastos>Expense</gastos>
+        <epigrafes>Heading</epigrafes>
+        <estados>'ameri'qa'</estados>
+        <formaspago>Payment methods</formaspago>
+        <roles>Role</roles>
+        <usuarios>User</usuarios>
+        <grupos>Ghom</grupos>
+        <prioridades>Priority</prioridades>
+        <agenda>Agenda 'ej wani'</agenda>
+        <actas>Qep tup</actas>
+        <profile>Qoghdu'dajdaq</profile>
+        <maincfg>Configuration</maincfg>
+        <about>VIHtaHbogh saltos</about>
+        <support>Qutlh</support>
+        <logout>Logout</logout>
+        <seguimientos>Ghoch qu'</seguimientos>
+        <datacfg>Database</datacfg>
+        <correo>Email</correo>
+        <cuentas>Account</cuentas>
+        <periodicas>Periodic invoices</periodicas>
+        <empleados>Employee</empleados>
+        <productos>Product</productos>
+        <presupuestos>Budget</presupuestos>
+        <posiblescli>Potential customers</posiblescli>
+        <campanyas>Commercial campaigns</campanyas>
+        <tiposevento>Wani' segh</tiposevento>
+        <textos>Predefine bingdaq ghitlh leghlu'</textos>
+        <ficheros>Attachment</ficheros>
+        <feeds>Yab potlh law' je' rss</feeds>
+        <favoritos>Favorite</favoritos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <importaciones>Dughajmoh</importaciones>
+        <gestioncomercial>Commercial</gestioncomercial>
+        <gestionproyectos>Jinmol</gestionproyectos>
+        <gestioncontabilidad>Account</gestioncontabilidad>
+        <gestiongeneral>Sa'</gestiongeneral>
+        <gestionfiltros>Filter</gestionfiltros>
+        <gestionadministracion>Loh</gestionadministracion>
+        <gestiontipos>Segh</gestiontipos>
+        <gestionsistema>Pat</gestionsistema>
+        <folders>Folder</folders>
+        <buscador>Seeker</buscador>
+        <errorlog>Qagh qonos</errorlog>
+        <categorias>Category</categorias>
+        <desc_clientes>Wey customers vu'</desc_clientes>
+        <desc_contactos>Customer contacts naw'</desc_contactos>
+        <desc_incidencias>Customers potlh'e' vu' nadevvo'</desc_incidencias>
+        <desc_proyectos>Je app jinmol pab</desc_proyectos>
+        <desc_partes>Jenwi' hoch qap timesheets lo' sohvad</desc_partes>
+        <desc_facturas>Hoch invoices vu' (slips, huj, etc packing..)</desc_facturas>
+        <desc_proveedores>Wey suppliers vu'</desc_proveedores>
+        <desc_gastos>Check expenses 'ej chaq settled chah visov</desc_gastos>
+        <desc_documentos>Documentation hoch wey nitebha' ghom ghaj</desc_documentos>
+        <desc_agenda>Hoch such qep agenda ghitlh</desc_agenda>
+        <desc_actas>Ta pol heghdi' qep seh latlh data'</desc_actas>
+        <desc_usuarios>Vo' jen, unsubscribe pagh users modify</desc_usuarios>
+        <desc_grupos>Workgroups users chenmoh</desc_grupos>
+        <desc_epigrafes>Headings invoices expenses 'ej define</desc_epigrafes>
+        <desc_formaspago>Payment methods expenses vu' define</desc_formaspago>
+        <desc_estados>Qit dotlh potlh'e', jinmol, etc define.</desc_estados>
+        <desc_prioridades>Hijmeh priorities agenda entries</desc_prioridades>
+        <desc_profile>User preferences choh</desc_profile>
+        <desc_maincfg>App globlalability preferences choh</desc_maincfg>
+        <desc_seguimientos>Yiseh jinmol qu' follow-ups</desc_seguimientos>
+        <desc_datacfg>Hergh dub ghajha'ghach sabha' je</desc_datacfg>
+        <desc_correo>Lad 'ej emails ngeh nadevvo' customers suppliers je</desc_correo>
+        <desc_cuentas>Ledger accounts accounting define</desc_cuentas>
+        <desc_periodicas>Recur invoices je due schedule dates</desc_periodicas>
+        <desc_empleados>Discharge, discharge pagh employees modify</desc_empleados>
+        <desc_posiblescli>Prospects chaq daghaj yiseh</desc_posiblescli>
+        <desc_presupuestos>Budgets chenmoh nom 'ej hergh</desc_presupuestos>
+        <desc_productos>Products nadev define vaj chahvad lah ngev soh</desc_productos>
+        <desc_about>App deq visov</desc_about>
+        <desc_logout>Click nadev heghdi' qap session soq daneh'a'</desc_logout>
+        <desc_home>Naw' 'elbogh jihdaq app</desc_home>
+        <desc_support>Contact qutlh</desc_support>
+        <desc_campanyas>Malja' campaigns follow-ups qu'</desc_campanyas>
+        <desc_tiposevento>Wani' bimejnis segh define</desc_tiposevento>
+        <desc_textos>Predefine bingdaq ghitlh leghlu' lo' chenmoh neh latlh applications</desc_textos>
+        <desc_ficheros>Hoch teywi' qastahvis 'u' application naw'</desc_ficheros>
+        <desc_feeds>Rss Atom 'ej je' tlha' vo' app</desc_feeds>
+        <desc_favoritos>Favorites vu' nadevvo'</desc_favoritos>
+        <desc_ivas>Rup rates vu' nadevvo'</desc_ivas>
+        <desc_importaciones>De' dughajmoh vaj yor apps nadevvo'</desc_importaciones>
+        <desc_buscador>Database naq search</desc_buscador>
+        <desc_errorlog>Saltos Qagh QonoS jIH</desc_errorlog>
+        <desc_categorias>Be applications categories vilegh</desc_categorias>
+        <quick_home>Juh</quick_home>
+        <quick_correo>Mail</quick_correo>
+        <quick_agenda>Agendum</quick_agenda>
+        <quick_profile>Qoghdu'dajdaq</quick_profile>
+        <quick_support>Qutlh</quick_support>
+        <quick_about>Umqu' ghot</quick_about>
+        <quick_logout>Soqmoh</quick_logout>
+        <quick_clientes>Customer</quick_clientes>
+        <quick_contactos>Contact</quick_contactos>
+        <quick_incidencias>Potlh'e'</quick_incidencias>
+        <quick_proyectos>Jinmol</quick_proyectos>
+        <quick_partes>'ay'</quick_partes>
+        <quick_documentos>Document</quick_documentos>
+        <quick_facturas>Neb</quick_facturas>
+        <quick_proveedores>Supplier</quick_proveedores>
+        <quick_gastos>Expense</quick_gastos>
+        <quick_epigrafes>Heading</quick_epigrafes>
+        <quick_estados>'ameri'qa'</quick_estados>
+        <quick_formaspago>F.payment</quick_formaspago>
+        <quick_roles>Role</quick_roles>
+        <quick_usuarios>User</quick_usuarios>
+        <quick_grupos>Ghom</quick_grupos>
+        <quick_prioridades>Priority</quick_prioridades>
+        <quick_actas>Tup</quick_actas>
+        <quick_maincfg>Configuration</quick_maincfg>
+        <quick_seguimientos>Trace</quick_seguimientos>
+        <quick_datacfg>DB</quick_datacfg>
+        <quick_cuentas>Account</quick_cuentas>
+        <quick_periodicas>Periodic</quick_periodicas>
+        <quick_empleados>Employee</quick_empleados>
+        <quick_productos>Product</quick_productos>
+        <quick_presupuestos>Budget</quick_presupuestos>
+        <quick_posiblescli>P.customers</quick_posiblescli>
+        <quick_campanyas>Campaign</quick_campanyas>
+        <quick_tiposevento>T.events</quick_tiposevento>
+        <quick_textos>Bingdaq ghitlh leghlu'</quick_textos>
+        <quick_ficheros>Teywi'</quick_ficheros>
+        <quick_feeds>RSS</quick_feeds>
+        <quick_favoritos>Favorite</quick_favoritos>
+        <quick_importaciones>Dughajmoh</quick_importaciones>
+        <quick_buscador>Seeker</quick_buscador>
+        <quick_errorlog>Qagh</quick_errorlog>
+        <quick_categorias>Category</quick_categorias>
+        <translator>Mughwi'</translator>
+        <translatortip>Bingdaq ghitlh leghlu' mughmeh qu'</translatortip>
+        <corrector>Checker</corrector>
+        <correctortip>Vay' bingdaq ghitlh leghlu' corrections</correctortip>
+        <calculator>Calculator</calculator>
+        <calculatortip>Vay' mathematical calculations</calculatortip>
+        <menu>Hidjoilev</menu>
+        <menutip>Cha' 'ej app hidjolev so'</menutip>
+    </menu>
+    <clientes>
+        <list>Customer tetlh</list>
+        <create>Customer chu'</create>
+        <formview>Customer detail</formview>
+        <forminsert>Customer chu' registration</forminsert>
+        <formupdate>Customer modification</formupdate>
+        <defaultdata>Customer de'</defaultdata>
+        <contactdata>Customer contacts</contactdata>
+        <projectopen>Pov jinmol</projectopen>
+        <projectclose>Soq jinmol</projectclose>
+        <incidentopen>Pov potlh'e'</incidentopen>
+        <incidentclose>Soq potlh'e'</incidentclose>
+        <partesopen>Un liquidated lopno'</partesopen>
+        <partesclose>Liquidate lopno'</partesclose>
+        <albaranes>Invoice</albaranes>
+        <facturaopen>Invoices wej bos</facturaopen>
+        <facturaclose>Invoices huj</facturaclose>
+        <gastosdata>Expenses ghah customer maqochpu'na' mahtah</gastosdata>
+        <documentdata>Customer documents</documentdata>
+        <agendadata>Customer wani'</agendadata>
+        <actasdata>Customer tup</actasdata>
+        <actionliquidar>'ay' wiv settle</actionliquidar>
+        <msgliquidar>Wiv 'ay' settle daneh'a'?</msgliquidar>
+        <plotseguimiento12meses>Wa'hu' dis billing customer</plotseguimiento12meses>
+        <cuentacorriente>Qu'mey potlh account</cuentacorriente>
+        <diapago>Payday</diapago>
+        <cuentacontable>Ledger account</cuentacontable>
+        <nombrecomercial>Sop pong.</nombrecomercial>
+        <nombrefiscal>Rup pong</nombrefiscal>
+        <tipocliente>Customer segh</tipocliente>
+        <clientefiscal>Fiscal</clientefiscal>
+        <clientejuridico>Mub</clientejuridico>
+        <add>Customer chel</add>
+        <presupuestosdata>Customer budgets</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>Contact tetlh</list>
+        <create>Contact chu'</create>
+        <formview>Detail contact</formview>
+        <forminsert>Contact chu' registration</forminsert>
+        <formupdate>Modification contact</formupdate>
+        <defaultdata>Details contact</defaultdata>
+        <add>Contact chel</add>
+    </contactos>
+    <incidencias>
+        <list>Potlh'e' tetlh</list>
+        <create>Chu' potlh'e'</create>
+        <formview>Potlh'e' detail</formview>
+        <forminsert>Jenwi' potlh'e' chu'</forminsert>
+        <formupdate>Incidence choh</formupdate>
+        <defaultdata>Potlh'e' de'</defaultdata>
+        <usersdata>User</usersdata>
+        <implicados>Involve</implicados>
+        <asignadoa>Assigned</asignadoa>
+        <msgsendemail>Ngeh jiboqqang hoch involve neh potlh'e'</msgsendemail>
+        <boolsendmail>Email ngeh</boolsendmail>
+        <boolsendmailtip>Vaj duh soh enable, ngeh jiboqqang involve hoch</boolsendmailtip>
+        <categoria>Category</categoria>
+        <sincategoria>[pagh category]</sincategoria>
+        <allcategorias>[Hoch categories]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>Jinmol tetlh</list>
+        <create>Jinmol chu'</create>
+        <formview>Jinmol, 'ej detail</formview>
+        <forminsert>Jinmol chu' registration</forminsert>
+        <formupdate>Jinmol, 'ej modification</formupdate>
+        <defaultdata>Jinmol de'</defaultdata>
+        <tareasproyecto>Jinmol qu'</tareasproyecto>
+        <desctareas>Qu' description</desctareas>
+        <horastotal>Total rep</horastotal>
+        <preciomedio>Motlhbogh 'ay'</preciomedio>
+        <preciototal>Total 'ay'</preciototal>
+        <plotseguimientotareas>Jinmol deviation</plotseguimientotareas>
+        <legendseguimientotareas>Budget rep 'arghbej rep</legendseguimientotareas>
+        <real>Real</real>
+        <diferencia>Difference</diferencia>
+        <partesopen>Un liquidated lopno'</partesopen>
+        <partesclose>Liquidate lopno'</partesclose>
+        <relatedseguimientos>Relate follow-ups</relatedseguimientos>
+        <relatedincidencias>Relate potlh'e'</relatedincidencias>
+        <actionliquidar>'ay' wiv settle</actionliquidar>
+        <msgliquidar>Wiv 'ay' settle daneh'a'?</msgliquidar>
+        <agendadata>Relate wani'</agendadata>
+        <actasdata>Relate tup</actasdata>
+        <contactdata>Customer contacts</contactdata>
+        <incidentopen>Pov potlh'e'</incidentopen>
+        <incidentclose>Soq potlh'e'</incidentclose>
+        <albaranes>Invoice</albaranes>
+        <facturaopen>Invoices wej bos</facturaopen>
+        <facturaclose>Invoices huj</facturaclose>
+        <gastosdata>Expenses ghah customer maqochpu'na' mahtah</gastosdata>
+        <documentdata>Customer documents</documentdata>
+        <plotseguimientoestados>Jinmol pong sep ghom</plotseguimientoestados>
+        <productosproyecto>Jinmol products</productosproyecto>
+        <descproductos>Product description</descproductos>
+        <actionfacturar>Neb</actionfacturar>
+        <msgfacturar>Jinmol, 'ej invoice daneh?</msgfacturar>
+        <errorfacturar>Jas chonayta' invoice jinmol</errorfacturar>
+        <okfacturar>Successfully neb jinmol</okfacturar>
+        <addseguimientos>Ghoch</addseguimientos>
+        <addactas>Vang</addactas>
+        <addcontactos>Contact</addcontactos>
+        <addagenda>Wani'</addagenda>
+        <resumentareasproductos>Summary qu' products je</resumentareasproductos>
+        <presupuestosdata>Jinmol budgets</presupuestosdata>
+    </proyectos>
+    <documentos>
+        <list>Document listing</list>
+        <create>Document chu'</create>
+        <formview>Document detail</formview>
+        <forminsert>Document chu' registration</forminsert>
+        <formupdate>Modification document</formupdate>
+        <defaultdata>Document de'</defaultdata>
+    </documentos>
+    <partes>
+        <list>'ay' tetlh</list>
+        <create>Chu' 'ay'</create>
+        <formview>Detail 'ay'</formview>
+        <forminsert>Jenwi' 'ay' chu'</forminsert>
+        <formupdate>Modification 'ay'</formupdate>
+        <defaultdata>Ghom de'</defaultdata>
+        <horasfact>Rep checked</horasfact>
+        <preciohora>'ay' ghap rep</preciohora>
+        <liquidar>Settle</liquidar>
+        <dateliq>Date liq.</dateliq>
+        <msgliquidar>Wiv 'ay' settle daneh'a'?</msgliquidar>
+        <msgerror>Lopno' settle neh tetlh daneh'a' ghob'e' wiv soh</msgerror>
+        <fechainiliq>Settle date</fechainiliq>
+        <plotseguimientotop10>10 customers 'ach 'ay' dis qav</plotseguimientotop10>
+        <plotseguimiento12meses>Turnover qastahvis dis qav 'ay'</plotseguimiento12meses>
+    </partes>
+    <usuarios>
+        <list>Users tetlh</list>
+        <create>User chu'</create>
+        <formview>User detail</formview>
+        <forminsert>User chu' registration</forminsert>
+        <formupdate>User modification</formupdate>
+        <personaldata>User de'</personaldata>
+        <entrada>Input</entrada>
+        <salida>Mej</salida>
+        <dias>Jaj</dias>
+        <logged>Rar</logged>
+        <password2>Ngaqha'mohwi'mey jatlhqa'</password2>
+        <errorpassword>Qo' qul naqmey entry ngaqha'mohwi'mey</errorpassword>
+        <contacto>Contact</contacto>
+        <sincontacto>[pagh maqochpu'na' maHtaH contact]</sincontacto>
+        <permdata>Chohwi' wiling per application</permdata>
+        <allow>Chaw'</allow>
+        <deny>Tem</deny>
+        <groupsdata>User ghom</groupsdata>
+        <pop3host>Pop3 jabwI'</pop3host>
+        <pop3delete>Qin jabwi' jivumli' delete</pop3delete>
+        <pop3days>jaj</pop3days>
+        <smtphost>Smtp jabwI'</smtphost>
+        <emailprivated>Account private (neh naw' vighaj)</emailprivated>
+        <emaildefault>Default account (wa' rav lo')</emaildefault>
+        <emaildisabled>Email account yichu'ha'</emaildisabled>
+        <emaildelete>Email account (de' ghah luj reh) delete</emaildelete>
+        <emailsignatureold>Qu'mey potlh signature</emailsignatureold>
+        <emailsignaturenew>Signature chu'</emailsignaturenew>
+        <correonew>Mail chu'</correonew>
+        <addmetocc>JIHvaD chel je CC qaStaHvIS Hoch emails vIngeHlI'</addmetocc>
+        <defaultcrt>Receipt confirmation request enable pong default</defaultcrt>
+        <gcalendar>Google 'ISjaH</gcalendar>
+        <prefgcalendar>Agenda synchronizing google 'ISjaH chavmoH</prefgcalendar>
+        <prefgcalendar2>Je DuH 'ISjaH vo' saltos 'ej google 'ISjaH, De' updated automatically pol je Hutlh yIDaQo' vIHtaHbogh vay' De' replicate vo' 'ISjaH wa' latlh laH lo' SoH</prefgcalendar2>
+        <emailgcalendar>Gmail email account</emailgcalendar>
+        <tokengcalendar>Naw' token</tokengcalendar>
+        <feedstitle>Je' laD vo' saltos (rss 1.0, rss 2.0, 'ej Atom 1.0) DaneH'a' configure</feedstitle>
+        <url>URL</url>
+        <title>Title</title>
+        <description>Description</description>
+        <image>Ghitlhvam</image>
+        <test>Nid</test>
+        <add>Boq</add>
+        <feedslist>HIjmeH puQ rss tetlh</feedslist>
+        <feeds_old>Cher je'</feeds_old>
+        <feeds_new>Chu' je'</feeds_new>
+        <lowerdisabled>doh</lowerdisabled>
+        <singrupo>[pagh ghom]</singrupo>
+        <sinaplicacion>[pagh Application]</sinaplicacion>
+        <registro>Registration</registro>
+        <sinregistro>[pagh registration]</sinregistro>
+        <showdetalles>[legh details]</showdetalles>
+        <hidedetalles>[So' Details]</hidedetalles>
+        <appsregsdata>Per registration chaw'</appsregsdata>
+    </usuarios>
+    <epigrafes>
+        <list>Captions tetlh</list>
+        <create>Caption chu'</create>
+        <formview>Detail caption</formview>
+        <forminsert>Caption chu' discharge</forminsert>
+        <formupdate>Modification heading</formupdate>
+        <defaultdata>De' nach</defaultdata>
+    </epigrafes>
+    <estados>
+        <list>Sep tetlh</list>
+        <create>Sep chu'</create>
+        <formview>Sep detail</formview>
+        <forminsert>Sep chu' discharge</forminsert>
+        <formupdate>Dotlh choh</formupdate>
+        <defaultdata>Sep de'</defaultdata>
+        <activo>Pov</activo>
+    </estados>
+    <grupos>
+        <list>Ghom tetlh</list>
+        <create>Ghom chu'</create>
+        <formview>Detail ghom</formview>
+        <forminsert>Ghom chu' registration</forminsert>
+        <formupdate>Ghom modification</formupdate>
+        <defaultdata>Ghom de'</defaultdata>
+        <permdata>Chohwi' wiling per application</permdata>
+        <allow>Chaw'</allow>
+        <deny>Tem</deny>
+        <showdetalles>[legh details]</showdetalles>
+        <hidedetalles>[So' Details]</hidedetalles>
+    </grupos>
+    <formaspago>
+        <list>Payments chenmoh tetlh</list>
+        <create>Method payment chu'</create>
+        <formview>Method payment detail</formview>
+        <forminsert>Jenwi' chu' payment method</forminsert>
+        <formupdate>Method payment choh</formupdate>
+        <defaultdata>Payment method de'</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>Expenses tetlh</list>
+        <create>Chu' rep</create>
+        <formview>Detail rep</formview>
+        <forminsert>Jenwi' expense chu'</forminsert>
+        <formupdate>Modification rep</formupdate>
+        <defaultdata>De' rep</defaultdata>
+        <pagadopor>Payer</pagadopor>
+        <liquidar>Settle</liquidar>
+        <dateliq>Date liq.</dateliq>
+        <msgliquidar>Wiv expenses settle daneh'a'?</msgliquidar>
+        <msgerror>Expenses settle neh tetlh daneh'a' ghob'e' wiv soh</msgerror>
+        <trimestrereg>Chip. input</trimestrereg>
+        <fechainireg>Entry date</fechainireg>
+        <trimestreliq>Chip. settle</trimestreliq>
+        <fechainiliq>Settle date</fechainiliq>
+        <totalliquidar>Total settled expenses:</totalliquidar>
+        <plotseguimientotop10>Providers niv-turnover 10 yor dis qav</plotseguimientotop10>
+        <plotseguimiento12meses>Wa'hu' dis expenses</plotseguimiento12meses>
+        <sinpagador>[pagh payer]</sinpagador>
+        <vencimientos_old>Maturity</vencimientos_old>
+        <vencimientos_new>Maturities chu'</vencimientos_new>
+        <fechavencimiento>Expiration date</fechavencimiento>
+        <pagado>Yidil</pagado>
+        <fechapagado>Date yidil</fechapagado>
+    </gastos>
+    <facturas>
+        <list>Invoice listing</list>
+        <create>Chu' neb</create>
+        <formview>Invoice detail</formview>
+        <forminsert>Invoice chu' registration</forminsert>
+        <formupdate>Invoice choh</formupdate>
+        <defaultdata>Invoice de'</defaultdata>
+        <errorfac101>Lah pos neh qav invoice</errorfac101>
+        <errorfac103>Soq invoice pagh delete soh</errorfac103>
+        <numfacxxx>Invoice mi'</numfacxxx>
+        <numalbxxx>Slip packing pagh</numalbxxx>
+        <fechaemision>Wani'vammo' tlha' date</fechaemision>
+        <titular>Holder</titular>
+        <baseimponible>Rup waw'</baseimponible>
+        <totalapagar>Total payable</totalapagar>
+        <plotseguimientotop10>10 niv turnover customers yor qav dis</plotseguimientotop10>
+        <plotseguimiento12meses>Wa'hu' dis turnover</plotseguimiento12meses>
+        <concepts_old>Concept</concepts_old>
+        <concepts_new>Concepts chu'</concepts_new>
+        <products_old>Product</products_old>
+        <products_new>Products chu'</products_new>
+        <vencimientos_old>Maturity</vencimientos_old>
+        <vencimientos_new>Maturities chu'</vencimientos_new>
+        <fechavencimiento>Expiration date</fechavencimiento>
+        <fechacobrado>Vudmey tlhopdaq date</fechacobrado>
+        <clientdata>Customer de'</clientdata>
+        <vencimientosfactura>Expirations invoice</vencimientosfactura>
+        <vencimientosalbaran>Packing slip expirations</vencimientosalbaran>
+        <vencimientoscobrado>Choh je'lah 'e' baj huj aging de' yilo'</vencimientoscobrado>
+    </facturas>
+    <prioridades>
+        <list>Priority tetlh</list>
+        <create>Priority chu'</create>
+        <formview>Priority detail</formview>
+        <forminsert>Jenwi' priority chu'</forminsert>
+        <formupdate>Priority choh</formupdate>
+        <defaultdata>Priority de'</defaultdata>
+    </prioridades>
+    <agenda>
+        <list>Wani' tetlh</list>
+        <create>Chu' wani'</create>
+        <formview>Detail wani'</formview>
+        <forminsert>Registration wani' chu'</forminsert>
+        <formupdate>Wani' choh</formupdate>
+        <defaultdata>Wani' de'</defaultdata>
+        <otrasfechas>Latlh dates</otrasfechas>
+        <todoseventos>[Hoch wanI']</todoseventos>
+        <todoayer>Wa'hu' wani'</todoayer>
+        <todohoy>Dahjaj wani'</todohoy>
+        <todomanana>Wa'les wani'</todomanana>
+        <todosemana>Hogh wani'</todosemana>
+        <todomes>Jar wani'</todomes>
+        <todoano>Dis wani'</todoano>
+        <usersdata>Assign users</usersdata>
+        <asignadoa>Assigned</asignadoa>
+        <notifydelay>Notify</notifydelay>
+        <notifysign>rep ghap s</notifysign>
+        <notifydstart>Start notification hev</notifydstart>
+        <notifydstop>Qav notification, hev</notifydstop>
+        <notifyantes>Pa'</notifyantes>
+        <notifydespues>Qaspu'di'</notifydespues>
+        <notifyprev>Pre-wani' notification</notifyprev>
+        <notifypost>Wani' notification naq</notifypost>
+        <notifyclear>Notification</notifyclear>
+        <notifytip>Say' woddi' notifications</notifytip>
+        <notifyclearok>Wani' restarted:</notifyclearok>
+        <notifyclearko>Ghobe' tu' pending wani' restart</notifyclearko>
+        <calendar>Wani' 'isjah</calendar>
+        <prevmonth>Previous jar</prevmonth>
+        <currentmonth>Qu'mey potlh jar</currentmonth>
+        <nextmonth>Veb jar</nextmonth>
+        <today>Dahjaj</today>
+        <yesterday>Wa'hu'</yesterday>
+        <tomorrow>Po</tomorrow>
+        <continue>Contd....</continue>
+        <by>pong</by>
+        <calendarinfo>De' date cha':</calendarinfo>
+        <add>Wani' chel</add>
+        <gcalendar>Google 'ISjaH</gcalendar>
+        <gcalendartip>Sync wanI' DuqIppu'chugh saltos google 'ISjaH</gcalendartip>
+        <notgcalendaremail>Lutmeyvam cher SoH google 'ISjaH account neH preferences</notgcalendaremail>
+        <invalidgcalendartoken>Google 'ISjaH account login details incorrect</invalidgcalendartoken>
+        <requestgcalendartoken>Click nadev naw' token</requestgcalendartoken>
+        <insertgcalendar>ChenmoH saltos wanI' qaStaHvIS google 'ISjaH:</insertgcalendar>
+        <updategcalendar>Update saltos wanI' qaStaHvIS google 'ISjaH:</updategcalendar>
+        <insertsaltos>ChenmoH google 'ISjaH wanI' qaStaHvIS saltos:</insertsaltos>
+        <updatesaltos>Update google 'ISjaH wanI' qaStaHvIS saltos:</updatesaltos>
+        <notinsertupdate>Pagh wani' update</notinsertupdate>
+        <expand>Sach</expand>
+        <expandtip>Sach wani' 'isjah hoch detail cha'</expandtip>
+        <collapse>Dej</collapse>
+        <collapsetip>Dej wani' 'isjah hoch detail so'</collapsetip>
+        <loadingsmall>Loading.</loadingsmall>
+    </agenda>
+    <proveedores>
+        <list>Suppliers tetlh</list>
+        <create>Supplier chu'</create>
+        <formview>Supplier detail</formview>
+        <forminsert>Supplier chu' registration</forminsert>
+        <formupdate>Supplier modification</formupdate>
+        <defaultdata>Supplier de'</defaultdata>
+        <plotseguimiento12meses>Supplier qav dis expenses</plotseguimiento12meses>
+        <cuentacorriente>Qu'mey potlh account</cuentacorriente>
+        <cuentacontable>Ledger account</cuentacontable>
+        <diapago>Payday</diapago>
+        <gastosdata>Costs ghah supplier maqochpu'na' mahtah</gastosdata>
+        <contactdata>Provider contacts</contactdata>
+        <nombrecomercial>Mech pong</nombrecomercial>
+        <nombrefiscal>Rup pong</nombrefiscal>
+        <add>Provider chel</add>
+    </proveedores>
+    <actas>
+        <list>Tup tetlh</list>
+        <create>Chu' tup</create>
+        <formview>Tup detail</formview>
+        <forminsert>Lut chu' registration</forminsert>
+        <formupdate>Tup amendment</formupdate>
+        <defaultdata>De' tup</defaultdata>
+        <dstart>Juh</dstart>
+        <dstop>Rin</dstop>
+        <asistentes>Boqwi'</asistentes>
+        <temas>Topic</temas>
+        <aceptados>Laj</aceptados>
+        <cancelados>Qil</cancelados>
+        <pendientes>Earring</pendientes>
+        <add>Tup chel</add>
+    </actas>
+    <profile>
+        <formupdate>Qoghdu'dajdaq</formupdate>
+        <oldpassword>Tiq ngaqha'mohwi'mey</oldpassword>
+        <newpassword>Chu' ngaqha'mohwi'mey</newpassword>
+        <newpassword2>Ngaqha'mohwi'mey jatlhqa'</newpassword2>
+        <erroroldpassword>Ngaqha'mohwi'mey ngo' incorrect</erroroldpassword>
+        <errornewpassword>Qo' qul naqmey entry ngaqha'mohwi'mey</errornewpassword>
+        <errornewpassword2>Ngaqha'mohwi'mey chu' ghob'e' vita'qo' qatlh</errornewpassword2>
+        <prefgeneral>Sa' preferences</prefgeneral>
+        <cambioclave>Ngaqha'mohwi'mey personal choh</cambioclave>
+        <general>Sa'</general>
+        <title_correo_old>Cher pop3 email account user</title_correo_old>
+        <pop3host>Pop3 jabwI'</pop3host>
+        <pop3delete>Qin jabwi' jivumli' delete</pop3delete>
+        <pop3days>jaj</pop3days>
+        <smtphost>Smtp jabwI'</smtphost>
+        <emailprivated>Account private (neh naw' vighaj)</emailprivated>
+        <emaildefault>Default account (wa' rav lo')</emaildefault>
+        <emaildisabled>Email account yichu'ha'</emaildisabled>
+        <emaildelete>Email account (de' ghah luj reh) delete</emaildelete>
+        <emailsignatureold>Qu'mey potlh signature</emailsignatureold>
+        <emailsignaturenew>Signature chu'</emailsignaturenew>
+        <correonew>Mail chu'</correonew>
+        <title_correo_new>Cher chu' pop3 email account user</title_correo_new>
+        <gcalendar>Google 'ISjaH</gcalendar>
+        <prefgcalendar>Agenda synchronizing google 'ISjaH chavmoH</prefgcalendar>
+        <prefgcalendar2>Je DuH 'ISjaH vo' saltos 'ej google 'ISjaH, De' updated automatically pol je Hutlh yIDaQo' vIHtaHbogh vay' De' replicate vo' 'ISjaH wa' latlh laH lo' SoH</prefgcalendar2>
+        <emailgcalendar>Gmail email account</emailgcalendar>
+        <tokengcalendar>Naw' token</tokengcalendar>
+        <addmetocc>JIHvaD chel je CC qaStaHvIS Hoch emails vIngeHlI'</addmetocc>
+        <defaultcrt>Receipt confirmation request enable pong default</defaultcrt>
+        <feedstitle>Je' laD vo' saltos (rss 1.0, rss 2.0, 'ej Atom 1.0) DaneH'a' configure</feedstitle>
+        <url>URL</url>
+        <title>Title</title>
+        <description>Description</description>
+        <image>Ghitlhvam</image>
+        <test>Nid</test>
+        <add>Boq</add>
+        <feedslist>HIjmeH puQ rss tetlh</feedslist>
+        <feeds_old>Cher je'</feeds_old>
+        <feeds_new>Chu' je'</feeds_new>
+        <lowerdisabled>doh</lowerdisabled>
+        <quick>Qapchu' hidjolev</quick>
+        <prefquick>Cher qapchu' hidjolev legh nadev hidjolev yor</prefquick>
+        <sinaplicacion>[pagh Application]</sinaplicacion>
+        <quick_button_f1>Wa'DIch button (f1)</quick_button_f1>
+        <quick_button_f2>Cha'DIch button (f2)</quick_button_f2>
+        <quick_button_f3>WejDIch button (f3)</quick_button_f3>
+        <quick_button_f4>Fourth button (f4)</quick_button_f4>
+        <quick_button_f5>Fifth button (f5)</quick_button_f5>
+        <quick_button_f6>Sixth button (f6)</quick_button_f6>
+        <quick_button_f7>Seventh button (f7)</quick_button_f7>
+        <quick_button_f8>Eighth button (f8)</quick_button_f8>
+        <quick_button_f9>Patlh HutDIch vIHev button (f9)</quick_button_f9>
+        <quick_button_f10>Tenth (f10) button</quick_button_f10>
+        <quick_button_f11>Eleventh button (f11)</quick_button_f11>
+        <quick_button_f12>Twelveth button (f12)</quick_button_f12>
+        <folderstab>User folders</folderstab>
+        <folderspref>Cher nadev user folders 'ej vaj nuq daneh'a' mej</folderspref>
+        <newfolder>Folder user chu'</newfolder>
+        <withoutparent>[pagh Folder]</withoutparent>
+        <inparentfolder>'ej dir vo' folder</inparentfolder>
+        <namefolder>Folder pong</namefolder>
+        <parentfolder>Tera'vo' folder hus</parentfolder>
+    </profile>
+    <maincfg>
+        <formupdate>Configuration</formupdate>
+        <general>Sa'</general>
+        <title_general>Parameters sa' application 'op hijmeh</title_general>
+        <applicationtitle>App title</applicationtitle>
+        <plotlistsize>Charts listings size</plotlistsize>
+        <plotformsize>Size charts chenmoh</plotformsize>
+        <small>Mach</small>
+        <medium>Medium</medium>
+        <big>Yiteb</big>
+        <agendainterval>Nej 'isjah notifications hoch</agendainterval>
+        <inboxinterval>Nej chu' emails hoch</inboxinterval>
+        <outboxinterval>Check output tray hoch</outboxinterval>
+        <feedsinterval>Nej chu' posts hoch</feedsinterval>
+        <feedstimeout>Rintah delete je' 'e' dalijchugh</feedstimeout>
+        <sessioninterval>Tu' qonos hoch check</sessioninterval>
+        <sessionwarning>Pa' logout notify</sessionwarning>
+        <indexinginterval>Teywi' chu' index hoch</indexinginterval>
+        <integrityinterval>Review integrity hoch</integrityinterval>
+        <purgeinterval>De' purge hoch</purgeinterval>
+        <emailsupport>Email ngaq</emailsupport>
+        <segundos>cha'dich</segundos>
+        <dias>jaj</dias>
+        <title_logo>Logo, position, size je colors lo' neh pdf define</title_logo>
+        <logo>Logo</logo>
+        <logoleft>Position x logo</logoleft>
+        <logotop>JE</logotop>
+        <logowidth>Width</logowidth>
+        <logoheight>Jen</logoheight>
+        <logofile>Teywi' logo qu'mey potlh</logofile>
+        <logofilenew>Chu' teywI' (jpeg neH)</logofilenew>
+        <colorline>Tlhegh color</colorline>
+        <colortext1>Title</colortext1>
+        <colortext2>Bingdaq ghitlh leghlu'</colortext2>
+        <title_correo>'op global parameters vIHtaHbogh emails ngeH vo' saltos cher</title_correo>
+        <cuentasupport>Outgo mail qutlh</cuentasupport>
+        <cuentaincidencias>Outgo mail potlh'e'</cuentaincidencias>
+        <water>Watermark</water>
+        <title_water>Define watermarks lo' neh pdf</title_water>
+        <wateractas>Tup: bIngDaq ghItlh leghlu'</wateractas>
+        <waterpartes>'ay': bIngDaq ghItlh leghlu'</waterpartes>
+        <waterfacturas>Invoices: bIngDaq ghItlh leghlu'</waterfacturas>
+        <wateralbaranes>Packing slips: bIngDaq ghItlh leghlu'</wateralbaranes>
+        <waterpresupuestos>Budgets: bIngDaq ghItlh leghlu'</waterpresupuestos>
+        <waterclientes>Customers: bIngDaq ghItlh leghlu'</waterclientes>
+        <waterproyectos>JInmol: bIngDaq ghItlh leghlu'</waterproyectos>
+        <waterposiblescli>QIt customers: bIngDaq ghItlh leghlu'</waterposiblescli>
+        <watercorreo>Mail: bIngDaq ghItlh leghlu'</watercorreo>
+        <waterfeeds>Je': bIngDaq ghItlh leghlu'</waterfeeds>
+        <emailasync>Asynchronous duj (saghmo') yilo'</emailasync>
+        <accounting>Account</accounting>
+        <title_accounting>Global accounting de' nadev cher</title_accounting>
+        <accounting_currency>Currency</accounting_currency>
+        <accounting_iva_name>Rup pong (chel)</accounting_iva_name>
+        <accounting_irpf_name>Rup pong (boqha')</accounting_irpf_name>
+        <accounting_value>Default (neh vaj lo')</accounting_value>
+        <applications_config>Application</applications_config>
+        <config_tabs>Tab settings</config_tabs>
+        <default_values>Default</default_values>
+        <configuracion_presupuestos>Budget setup</configuracion_presupuestos>
+        <configuracion_agenda>Agenda setup</configuracion_agenda>
+        <configuracion_incidencias>Potlh'e' settings</configuracion_incidencias>
+        <configuracion_facturas>Cher invoices</configuracion_facturas>
+        <configuracion_gastos>Setup cost</configuracion_gastos>
+        <show_tab_objetivos_presupuesto>Ngoq cha'</show_tab_objetivos_presupuesto>
+        <show_tab_condiciones_presupuesto>Cha' je</show_tab_condiciones_presupuesto>
+        <show_tab_funcional_presupuesto>Functional proposal cha'</show_tab_funcional_presupuesto>
+        <show_tab_tecnica_presupuesto>Technical proposal cha'</show_tab_tecnica_presupuesto>
+        <show_tab_info_adicional_presupuesto>Saturjaj de' cha'</show_tab_info_adicional_presupuesto>
+        <show_tab_tareas_presupuesto>Cha' qu'</show_tab_tareas_presupuesto>
+        <show_tab_productos_presupuesto>Cha' products</show_tab_productos_presupuesto>
+        <sin_configurar>[undestably HIjmeH]</sin_configurar>
+        <filtro_grupo_usuarios_incidencias>Users cha' qastahvis user listings ghom</filtro_grupo_usuarios_incidencias>
+        <filtro_grupo_usuarios_implicados_incidencias>Ghom involve</filtro_grupo_usuarios_implicados_incidencias>
+        <filtro_grupo_usuarios_asignados_incidencias>Assign ghom</filtro_grupo_usuarios_asignados_incidencias>
+    </maincfg>
+    <about>
+        <formupdate>VIHtaHbogh saltos</formupdate>
+        <copyright>Distributed software bopummeH gpl-3.0 chaw' wabmey:</copyright>
+        <components>Tlha' 'ay' lo' software:</components>
+        <server_base>Jabwi' waw':</server_base>
+        <php_plugins>Php plugins:</php_plugins>
+        <javascript_base>Javascript pim waw':</javascript_base>
+        <bootstrap_plugins>Bootstrap plugins:</bootstrap_plugins>
+        <jquery_plugins>Jquery plugins:</jquery_plugins>
+        <javascript_plugins>Javascript plugins:</javascript_plugins>
+        <other_plugins>Latlh plugins:</other_plugins>
+        <server_plugins>Plugins jabwi':</server_plugins>
+        <vxinfo>Note: (*) specific version chaw' lo' chaH wej per 'op jInmol</vxinfo>
+        <license>Chaw'</license>
+        <game>Qa'vaq</game>
+        <licensetitle>Below mub bingdaq ghitlh leghlu' chaw'</licensetitle>
+        <gametitle>Vaj 'oH chenmoHta' SoH jIHDaq, ghor qotlh SoH. ghonja'gho loQ!!!</gametitle>
+        <translators>Mughmeh</translators>
+        <developers>Developer</developers>
+        <unavailable>Details not lupoQ contact. [developer vay' pagh suggestions yu'. ghaHDaq contact BERNARDO.</unavailable>
+    </about>
+    <support>
+        <formupdate>Qutlh</formupdate>
+        <contact>Qutlh</contact>
+        <subject>Hap</subject>
+        <msgsendemail>Ngeh jiboqqang ngaq</msgsendemail>
+        <msgnotemailsupport>Per pagh mail ngaq</msgnotemailsupport>
+        <msgnotsubject>'el pagh hap</msgnotsubject>
+        <msgnotcomments>'el pagh comment</msgnotcomments>
+    </support>
+    <home>
+        <formupdate>Juh</formupdate>
+        <buscar2>Search Hoch rIn saltos</buscar2>
+        <buscar3>Search neh qastahvis teywi'</buscar3>
+    </home>
+    <seguimientos>
+        <list>Follow-ups tetlh</list>
+        <create>Follow-up chu'</create>
+        <formview>Detail follow-up</formview>
+        <forminsert>Jenwi' follow-up chu'</forminsert>
+        <formupdate>Follow-up choh</formupdate>
+        <defaultdata>De' ghoch</defaultdata>
+        <add>Tracking chel</add>
+    </seguimientos>
+    <datacfg>
+        <formupdate>Actions database</formupdate>
+        <export>Export</export>
+        <title_export>NaQ database neH sql format export</title_export>
+        <desc_export>Chaw' soh ghah chach naq database tod</desc_export>
+        <desc2_export>Yo'SeH much periodically je teywI' ngevwI' neH QaD Daq such as lulIjbe'lu'bogh flash, cd pagh vay' latlh jan external De'wI'</desc2_export>
+        <import>Dughajmoh</import>
+        <title_import>DughajmoH naQ database neH sql format</title_import>
+        <desc_import>Chaw' soh ghah hoch de' dughajmoh vo' chach</desc_import>
+        <desc2_import>TeywI' DughajmoH pong [Browse] button pressing wIv 'ej vaj [DughajmoH] button De' chu' load vo' chach press</desc2_import>
+        <desc3_import>Potlh: vay' Qu'mey potlh De' Daghaj neH app erase Qu' DughajmoH</desc3_import>
+        <filenotfound>Unable 'a ghih dughajmoh teywi' lad</filenotfound>
+        <filefoundok>Chach, successfully dughajmoh</filefoundok>
+        <fileimporterror>Wa'vatlh teywi' dughajmoh qas qagh</fileimporterror>
+    </datacfg>
+    <correo>
+        <list>Mail listing</list>
+        <create>Mail chu' ngeh</create>
+        <formview>Mail detail</formview>
+        <forminsert>Email chu' ngeh</forminsert>
+        <formupdate>Jiboqqang forward</formupdate>
+        <defaultdata>Mail de'</defaultdata>
+        <from>Jan</from>
+        <to>Meh</to>
+        <cc>CC</cc>
+        <bcc>BCC</bcc>
+        <subject>Hap</subject>
+        <attachments>Attachment</attachments>
+        <message>Qin</message>
+        <recibir>Hev</recibir>
+        <recibirtip>Click nadev chu' emails hev</recibirtip>
+        <enviar>Ngeh</enviar>
+        <enviartip>Click nadev emails ngeh vo' outbox</enviartip>
+        <msgnotpop3email>Pagh email account cher pagh chu' tu'lu'</msgnotpop3email>
+        <msgnotpop3host>Pop3 jabwI' wej configured</msgnotpop3host>
+        <msgerrorpop3email>Qas tlha' qagh:</msgerrorpop3email>
+        <msgnewokpop3email1>Chu' mail, hev neh inbox</msgnewokpop3email1>
+        <msgnewokpop3email2>Chu' emails, hev neh inbox</msgnewokpop3email2>
+        <msggotoemail>ghos post miw'e'</msggotoemail>
+        <msgnewkopop3email>Emails pagh chu'</msgnewkopop3email>
+        <msgconnrefusedpop3email>Connection lajqo' jabwi'</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>Pagh rar jabwi'</msgconnerrorpop3email>
+        <msgopenerrorpop3email>Wej tu' teywi' qin ngas</msgopenerrorpop3email>
+        <msgpropietario>Chepmoh lah lo' neh owner emails</msgpropietario>
+        <msgnotfound>Found pagh wiv emails, filter modify</msgnotfound>
+        <msgnumsileidos>Ghitlhta' chah je lad:</msgnumsileidos>
+        <msgnumsiwait>Ghitlhta' chah je pending:</msgnumsiwait>
+        <msgnumsispam>GhItlh je spam:</msgnumsispam>
+        <msgnumnoleidos>Ghitlhta' chah je un lad:</msgnumnoleidos>
+        <msgnumnowait>Ghitlhta' chah je qi'yah-pending:</msgnumnowait>
+        <msgnumnospam>GhItlhta' chaH je QI'yaH-spam:</msgnumnospam>
+        <msgnumdelete>Deleted:</msgnumdelete>
+        <statenew>Chu'</statenew>
+        <actionnew>Chu'</actionnew>
+        <stateread>Lad</stateread>
+        <statereply>Jang</statereply>
+        <stateforward>Forward</stateforward>
+        <statewait>Slope</statewait>
+        <statespam>SPAM</statespam>
+        <statesent>Ngeh</statesent>
+        <statenotsent>Wej ngeh</statenotsent>
+        <stateerror>Qagh</stateerror>
+        <stateall>Hoch</stateall>
+        <todaslascuentas>[Hoch accounts]</todaslascuentas>
+        <buttonsend>Ngeh</buttonsend>
+        <buttonsendreturnhere>Ngeh 'ej nadev chegh</buttonsendreturnhere>
+        <onlynew>Neh chu'</onlynew>
+        <onlywait>Earrings neh</onlywait>
+        <hidespam>Spam So'</hidespam>
+        <withfiles>Attachments</withfiles>
+        <onlyspam>SPAM NEH</onlyspam>
+        <withoutfiles>Pagh attachments</withoutfiles>
+        <actionwait>Slope</actionwait>
+        <actionspam>SPAM</actionspam>
+        <actionreply>Jang</actionreply>
+        <actionreplyall>Resp. hoch</actionreplyall>
+        <actionforward>Forward</actionforward>
+        <messageid>Id qin</messageid>
+        <fulldata>Mail zoom</fulldata>
+        <sourcedata>Hal mail</sourcedata>
+        <leidos>Lad</leidos>
+        <wait>Slope</wait>
+        <spam>SPAM</spam>
+        <borrar>Delete</borrar>
+        <borrartip>Hoch wiv emails delete</borrartip>
+        <msgleidos>Ghitlh lad ghap wej hoch wiv emails lad daneh?</msgleidos>
+        <msgwait>Wiv hoch emails ghitlh je pending ghap qi'yah-pending daneh'a'?</msgwait>
+        <msgspam>WIv Hoch emails ghItlh je spam ghap wej SPAM DaneH'a'?</msgspam>
+        <msgdelete2>Hoch wiv emails delete daneh?</msgdelete2>
+        <msgnotsendfound>Ngeh qin pagh</msgnotsendfound>
+        <msgerrorsendmail>Qas tlha' qagh:</msgerrorsendmail>
+        <msgtotalsendmail1>Ngeh vo'--box mail</msgtotalsendmail1>
+        <msgtotalsendmail2>Emails ngeh vo' outbox</msgtotalsendmail2>
+        <stateinbox>Input</stateinbox>
+        <stateoutbox>Mej</stateoutbox>
+        <onlyinbox>Starters neh</onlyinbox>
+        <onlyoutbox>Outgoings neh</onlyoutbox>
+        <options>Duh</options>
+        <optionstip>Duh listing latlh cha'</optionstip>
+        <pdfoptions>Pdf DuH</pdfoptions>
+        <sinsubject>(hurdaq subject)</sinsubject>
+        <msgfromkosendmail>Configuration vo': poQ wej vItu'</msgfromkosendmail>
+        <msgsendoksendmail>Successfully ngeh email</msgsendoksendmail>
+        <replysubject>Re:</replysubject>
+        <replyallsubject>Re:</replyallsubject>
+        <forwardsubject>Fwd:</forwardsubject>
+        <embeddedmessage>#datetime, ghitlh #fromname:</embeddedmessage>
+        <actionreplytip>Jang qin sender</actionreplytip>
+        <actionreplyalltip>Jang hoch users qin</actionreplyalltip>
+        <actionforwardtip>Email forward users latlh</actionforwardtip>
+        <noleidos>Qo' lad</noleidos>
+        <nowait>Qo' pending</nowait>
+        <nospam>Pagh spam</nospam>
+        <today>Dahjaj</today>
+        <yesterday>Wa'hu'</yesterday>
+        <week>Hogh</week>
+        <month>Maqtagh</month>
+        <confirmreadingto>Confirmation receipt request</confirmreadingto>
+        <marcarcorreos>Ghitlh je</marcarcorreos>
+        <message0>Qin</message0>
+        <message1>Qin</message1>
+        <message2>Qin</message2>
+        <campos>Fields</campos>
+        <allcampos>[Hoch yotlh]</allcampos>
+        <onlyemail>Neh qastahvis lurgh</onlyemail>
+        <onlysubject>Neh qastahvis qas</onlysubject>
+        <onlybody>Neh choqumta'mo'</onlybody>
+        <filtrarcorreos>Filter pong</filtrarcorreos>
+        <priority>Priority</priority>
+        <priorityhigh>Jen</priorityhigh>
+        <prioritynormal>Motlh</prioritynormal>
+        <prioritylow>'es</prioritylow>
+        <sensitivity>Sensitivity</sensitivity>
+        <sensitivitynormal>Motlh</sensitivitynormal>
+        <sensitivitypersonal>Personal</sensitivitypersonal>
+        <sensitivityprivate>Private</sensitivityprivate>
+        <sensitivityconfidential>Confidential</sensitivityconfidential>
+        <addincidencia>Chenmoh potlh'e'</addincidencia>
+        <addincidenciatip>Potlh'e' chenmoh vo' email</addincidenciatip>
+        <addincidenciamsg>Potlh'e' chenmoh vo' email daneh'a'?</addincidenciamsg>
+        <addincidenciaok>Chenmoh wani'vammo' tlha' je ngoq:</addincidenciaok>
+        <notsupportdefined>Qutlh email account wej defined</notsupportdefined>
+        <notsupportfound>Ngaq email account wej sev email</notsupportfound>
+        <incidenciaexists>Chonayta' niv'e' 'op ngoq potlh'e':</incidenciaexists>
+        <interrorsendmail>Wej ngeh email qagh internal</interrorsendmail>
+    </correo>
+    <cuentas>
+        <list>Accounts tetlh</list>
+        <create>Account chu'</create>
+        <formview>Account detail</formview>
+        <forminsert>Account chu' registration</forminsert>
+        <formupdate>Account modification</formupdate>
+        <defaultdata>Account de'</defaultdata>
+        <logo>Logo</logo>
+        <title_logo>Logo, position, size, 'ej colors lo' invoices define</title_logo>
+        <logoleft>Position x logo</logoleft>
+        <logotop>JE</logotop>
+        <logowidth>Width</logowidth>
+        <logoheight>Jen</logoheight>
+        <logofile>Teywi' logo qu'mey potlh</logofile>
+        <logofilenew>Chu' teywI' (jpeg neH)</logofilenew>
+        <colorline>Tlhegh color</colorline>
+        <colortext1>Title</colortext1>
+        <colortext2>Bingdaq ghitlh leghlu'</colortext2>
+        <title_facturas>Be parameters lo' invoice issuance define</title_facturas>
+        <facturabool>Yan</facturabool>
+        <facturavalue>Default (neh vaj lo')</facturavalue>
+        <facturapie1>Tlhegh qamdu' wa'dich</facturapie1>
+        <facturapie2>Qamdu' tlhegh cha'dich</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>Periodic invoices tetlh</list>
+        <create>Chu' recur neb</create>
+        <formview>Periodic invoice detail</formview>
+        <forminsert>Chu' recur invoice registration</forminsert>
+        <formupdate>Periodic invoice modification</formupdate>
+        <defaultdata>Periodic invoice de'</defaultdata>
+        <concepts_old>Concept</concepts_old>
+        <concepts_new>Concepts chu'</concepts_new>
+        <products_old>Product</products_old>
+        <products_new>Products chu'</products_new>
+        <vencimientos_old>Maturity</vencimientos_old>
+        <vencimientos_new>Maturities chu'</vencimientos_new>
+        <fechavencimiento>Expiration date</fechavencimiento>
+        <diaemision>'uchtah jaj</diaemision>
+        <diaini>Sabtahbogh jaj</diaini>
+        <dia>Jaj</dia>
+        <meses>Maqtagh</meses>
+        <liquidar>Generate</liquidar>
+        <totalliquidar>Qo'nos mi' invoices pa' total generated:</totalliquidar>
+        <msgerror>Invoices generate tetlh jar lo' 'ej daneh'a' ghob'e' wiv soh</msgerror>
+        <msgliquidar>Wiv invoices generate daneh'a'?</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>Employee tetlh</list>
+        <create>Employee chu'</create>
+        <formview>Employee detail</formview>
+        <forminsert>Employee chu' discharge</forminsert>
+        <formupdate>Employee modification</formupdate>
+        <defaultdata>Employee de'</defaultdata>
+        <contactdata>Employee contacts</contactdata>
+    </empleados>
+    <denied>
+        <title>Naw' tem</title>
+        <short>Chohwi' wiling 'ej action muh bighosnisbe'chohmoh soh</short>
+        <large>Application vo' running bot pat pong wej yap DIb application 'ay' qet ghaj. vaj Qagh 'e' DaHar'a', app administrator contact</large>
+    </denied>
+    <posiblescli>
+        <list>Prospects tetlh</list>
+        <create>Potential chu' customer</create>
+        <formview>Detail customer wa'dich lubejpu'</formview>
+        <forminsert>Chu' customer potential registration</forminsert>
+        <formupdate>Potential customer modification</formupdate>
+        <defaultdata>Customer de'</defaultdata>
+        <crearcliente>Customer chenmoh</crearcliente>
+        <clientcreatedok>Chenmohta' customer chu' successfully</clientcreatedok>
+        <msgcrear>Damoj wa'dich lubejpu' customer vaj customer daneh?</msgcrear>
+        <agendadata>Wani' customer potential</agendadata>
+        <actasdata>'a qaspa' customer wa'dich lubejpu' sanmaj</actasdata>
+        <presupuestosdata>Wa'dich lubejpu' customer budgets</presupuestosdata>
+        <facturacion>Neb</facturacion>
+        <iaedesc>Description iae</iaedesc>
+        <iaecod>Cod. iae</iaecod>
+        <contacto>Pers. contact</contacto>
+        <changedenied>Wa'dich lubejpu' customer tup, schedule qoj quotes ghajbogh pagh yichu'ha' soh</changedenied>
+    </posiblescli>
+    <productos>
+        <list>Product listing</list>
+        <create>Product chu'</create>
+        <formview>Product detail</formview>
+        <forminsert>Product chu' registration</forminsert>
+        <formupdate>Product modification</formupdate>
+        <defaultdata>Product de'</defaultdata>
+        <ref>Ref.</ref>
+        <peso>Ngi'</peso>
+        <volumen>Muq</volumen>
+        <dimensiones>Dimension</dimensiones>
+        <fotofile>Qu'mey potlh photo</fotofile>
+        <fotofilenew>Photo chu'</fotofilenew>
+        <siniva eval="true">"[Hutlh ".CONFIG("accounting_iva_name")."]"</siniva>
+    </productos>
+    <presupuestos>
+        <list>Budget tetlh</list>
+        <create>Budget chu'</create>
+        <formview>Budget detail</formview>
+        <forminsert>Jenwi' budget chu'</forminsert>
+        <formupdate>Budget choh</formupdate>
+        <defaultdata>Budget de'</defaultdata>
+        <tareaspresupuesto>Budget qu'</tareaspresupuesto>
+        <desctareas>Qu' description</desctareas>
+        <horastotal>Total rep</horastotal>
+        <preciomedio>Motlhbogh 'ay'</preciomedio>
+        <preciototal>Total 'ay'</preciototal>
+        <productospresupuesto>Budget products</productospresupuesto>
+        <descproductos>Product description</descproductos>
+        <objetivos>Budget objectives</objetivos>
+        <funcional>Functional proposal</funcional>
+        <tecnica>Technical proposal</tecnica>
+        <extras>Saturjaj de'</extras>
+        <condiciones>Budget je</condiciones>
+        <valoracion>Economic valuation</valoracion>
+        <crearproyecto>Jinmol chenmoh</crearproyecto>
+        <projectexists>Chonayta' related budget jinmol</projectexists>
+        <clientnotexists>Relate customer (vaj related customer wa'dich lubejpu', customer chenmoh chah wa'dich)</clientnotexists>
+        <projectcreatedok>Chenmoh jinmol chu' successfully</projectcreatedok>
+        <msgcrear>Budget jinmol chenmoh visuq vineh?</msgcrear>
+        <agendadata>Budget wani'</agendadata>
+        <actasdata>Budget tup</actasdata>
+        <plotseguimientoestados>Budgets pong sep ghom</plotseguimientoestados>
+        <resumentareasproductos>Summary qu' products je</resumentareasproductos>
+        <objetivospdf>Objective</objetivospdf>
+        <funcionalpdf>Functional</funcionalpdf>
+        <tecnicapdf>Technical</tecnicapdf>
+        <extraspdf>De'</extraspdf>
+        <condicionespdf>Je</condicionespdf>
+        <actionfacturar>Neb</actionfacturar>
+        <msgfacturar>Jinmol, 'ej invoice daneh?</msgfacturar>
+        <errorfacturar>Jas chonayta' invoice budget</errorfacturar>
+        <okfacturar>Successfully neb budget</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>Campaign tetlh</list>
+        <create>Campaign chu'</create>
+        <formview>Campaign detail</formview>
+        <forminsert>Campaign chu' registration</forminsert>
+        <formupdate>Campaign modification</formupdate>
+        <defaultdata>Campaign de'</defaultdata>
+        <agendadata>Campaign wani'</agendadata>
+        <presupuestosdata>Campaign budgets</presupuestosdata>
+        <projectopen>Pov jinmol</projectopen>
+        <projectclose>Soq jinmol</projectclose>
+        <clientesdata>Customers jon</clientesdata>
+        <posiblesclidata>Potential customers</posiblesclidata>
+    </campanyas>
+    <tiposevento>
+        <list>Wani' segh tetlh</list>
+        <create>Chu' segh wani'</create>
+        <formview>Detail wani' segh</formview>
+        <forminsert>Jenwi' chu' segh wani'</forminsert>
+        <formupdate>Wani' segh choh</formupdate>
+        <defaultdata>Wani' segh de'</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>Predefine bingdaq ghitlh leghlu' tetlh</list>
+        <publico>Public</publico>
+        <publico_desc>Predefine bingdaq ghitlh leghlu' lah lo' hoch</publico_desc>
+        <create>Chu' predefine bingdaq ghitlh leghlu'</create>
+        <formview>Detail predefine bingdaq ghitlh leghlu'</formview>
+        <forminsert>Jenwi' chu' predefine bingdaq ghitlh leghlu'</forminsert>
+        <formupdate>Modification predefine bingdaq ghitlh leghlu'</formupdate>
+        <defaultdata>Predefine bingdaq ghitlh leghlu' de'</defaultdata>
+        <sinaplicacion>[pagh Application]</sinaplicacion>
+    </textos>
+    <ficheros>
+        <list>Attachments tetlh</list>
+        <todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>
+    </ficheros>
+    <feeds>
+        <list>Rss je' tetlh</list>
+        <msgnewfeedsok1>Chu' downloaded post</msgnewfeedsok1>
+        <msgnewfeedsok2>Chu' posts, downloaded</msgnewfeedsok2>
+        <msgnewfeedsko>Pagh chu' posts vitu'</msgnewfeedsko>
+        <msgmodifiedfeedsok1>Update post</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2>Update posts</msgmodifiedfeedsok2>
+        <msgnotfeeds>Tu'lu' pagh rss je' configured pagh ghuS</msgnotfeeds>
+        <feed>Rss je'</feed>
+        <title>Title</title>
+        <pubdate>Pub date.</pubdate>
+        <recibir>Hev</recibir>
+        <recibirtip>Click nadev chu' posts hev</recibirtip>
+        <todoslosfeeds>[Hoch rss je']</todoslosfeeds>
+        <defaultdata>Post detail</defaultdata>
+        <fulldata>Post zoom</fulldata>
+        <actionwait>Slope</actionwait>
+        <statenew>Chu'</statenew>
+        <actionnew>Chu'</actionnew>
+        <statemodified>Modify</statemodified>
+        <statewait>Slope</statewait>
+        <stateread>Lad</stateread>
+        <actionforward>Forward</actionforward>
+        <actionforwardtip>Post forward pong email</actionforwardtip>
+        <formview>Post detail</formview>
+        <msggotofeeds>ha' rss je'</msggotofeeds>
+        <onlynew>Neh chu'</onlynew>
+        <onlywait>Earrings neh</onlywait>
+        <options>Duh</options>
+        <optionstip>Duh listing latlh cha'</optionstip>
+        <pdfoptions>Pdf DuH</pdfoptions>
+        <stateall>Hoch</stateall>
+        <today>Dahjaj</today>
+        <yesterday>Wa'hu'</yesterday>
+        <week>Hogh</week>
+        <month>Maqtagh</month>
+        <marcarfeeds>Ghitlh je</marcarfeeds>
+        <leidos>Lad</leidos>
+        <wait>Slope</wait>
+        <borrar>Delete</borrar>
+        <borrartip>Hoch wiv posts delete</borrartip>
+        <noleidos>Qo' lad</noleidos>
+        <nowait>Qo' pending</nowait>
+        <msgleidos>Ghitlh hoch lad ghap wej posts, lad hoch wiv daneh?</msgleidos>
+        <msgwait>Hoch wiv posts ghitlh je pending ghap qi'yah-pending daneh'a'?</msgwait>
+        <msgdelete2>Hoch wiv posts delete daneh?</msgdelete2>
+        <msgpropietario>Luchohlu'qu'pu'mo' lah lo' neh owner posts</msgpropietario>
+        <msgnotfound>Found pagh wiv posts, filter modify</msgnotfound>
+        <msgnumsileidos>Ghitlhta' chah je lad:</msgnumsileidos>
+        <msgnumsiwait>Ghitlhta' chah je pending:</msgnumsiwait>
+        <msgnumnoleidos>Ghitlhta' chah je un lad:</msgnumnoleidos>
+        <msgnumnowait>Ghitlhta' chah je qi'yah-pending:</msgnumnowait>
+        <msgnumdelete>Deleted:</msgnumdelete>
+        <message0>Post</message0>
+        <message1>Post</message1>
+        <message2>Post</message2>
+        <msgerrorfeed>Qas qagh tlha' lom nolwi'pu' je':</msgerrorfeed>
+        <sintitle>(untitled)</sintitle>
+        <post>Post rss</post>
+        <filtrarfeeds>Filter pong</filtrarfeeds>
+        <actioncool>Daj</actioncool>
+        <statecool>Daj</statecool>
+        <onlycool>Qu'vetlh daj</onlycool>
+        <cool>Daj</cool>
+        <nocool>Wej daj</nocool>
+        <msgcool>Je daj ghap wej hoch wiv posts daj ghitlh visuq vineh?</msgcool>
+        <msgnumsicool>Chah ghitlhta' je daj:</msgnumsicool>
+        <msgnumnocool>Chah ghitlhta' je un daj:</msgnumnocool>
+        <actionfavoritos>Boq favorites</actionfavoritos>
+    </feeds>
+    <importaciones>
+        <list>Dughajmoh tetlh</list>
+        <create>Chu' dughajmoh</create>
+        <formview>Detail dughajmoh</formview>
+        <forminsert>Registration chu' dughajmoh</forminsert>
+        <formupdate>Modification dughajmoh</formupdate>
+        <defaultdata>De' dughajmoh</defaultdata>
+        <sinaplicacion>[pagh Application]</sinaplicacion>
+        <importdata>Teywi' de'</importdata>
+    </importaciones>
+    <folders>
+        <notfound>Folder wej vitu'</notfound>
+        <todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>
+        <deleteoffolder>Delete vo' folder</deleteoffolder>
+        <defaultfolder>Personal folder</defaultfolder>
+    </folders>
+    <translator>
+        <translator>Mughwi'</translator>
+        <corrector>Checker</corrector>
+        <es>Spanish</es>
+        <ca>Catalan</ca>
+        <en>English hol</en>
+        <pt>Portuguese</pt>
+        <eu>Basque</eu>
+        <gl>Galician</gl>
+        <fr>French</fr>
+        <ar>Arabic</ar>
+    </translator>
+    <buscador>
+        <list>Seeker</list>
+        <todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>
+    </buscador>
+    <errorlog>
+        <formupdate>Qagh qonos</formupdate>
+        <defaultdata>Teywi' 'a ghih</defaultdata>
+    </errorlog>
+    <favoritos>
+        <list>Favourite tetlh</list>
+        <create>Favorite chu'</create>
+        <url>URL</url>
+        <bookmarkexists>Niv'e' url chonayta' tod daneh'a' je favorite.</bookmarkexists>
+        <invalidurl>Url invalid, 'ej bebvo' soq 'ol:</invalidurl>
+        <bookmarkadded>Successfully chel url favorites</bookmarkadded>
+        <previews>Preview</previews>
+    </favoritos>
+    <ivas>
+        <list eval="true">"Tetlh ".CONFIG("accounting_iva_name")</list>
+        <create eval="true">"Chu' ".CONFIG("accounting_iva_name")</create>
+        <formview eval="true">"Detauls ".CONFIG("accounting_iva_name")</formview>
+        <forminsert eval="true">"Chu' chel ".CONFIG("accounting_iva_name")</forminsert>
+        <formupdate eval="true">"choH ".CONFIG("accounting_iva_name")</formupdate>
+        <defaultdata eval="true">"De' ".CONFIG("accounting_iva_name")</defaultdata>
+    </ivas>
+    <categorias>
+        <list>Categories tetlh</list>
+        <create>Category chu'</create>
+        <formview>Detail category</formview>
+        <forminsert>Category chu' registration</forminsert>
+        <formupdate>Modification category</formupdate>
+        <defaultdata>Category de'</defaultdata>
+    </categorias>
 </root>

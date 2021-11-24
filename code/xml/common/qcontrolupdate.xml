@@ -24,6 +24,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="page" match="default" prefix="true" eval="true">make_control(page2id($page),intval(getParam("id")))?"":""</query>
-	<query global="page" match="default" prefix="true" eval="true">make_indexing(page2id($page),intval(getParam("id")))?"":""</query>
+    <query global="page" match="default" prefix="true" eval="true">make_control(page2id($page),intval(getParam("id")))?"":""</query>
+    <query global="page" match="default" prefix="true" eval="true">make_indexing(page2id($page),intval(getParam("id")))?"":""</query>
 </root>

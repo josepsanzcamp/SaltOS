@@ -24,420 +24,420 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">nombre</label>
-				<sort>true</sort>
-				<order>nombre2</order>
-			</field>
-			<field>
-				<name>descripcion</name>
-				<label lang="true">descripcion</label>
-				<sort>true</sort>
-			</field>
-		</fields>
-		<javascript include="xml/common/jslist.xml"/>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>2</colspan>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,filtro" eval="true">"
-		SELECT
-			LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
-			CONCAT('link:openapp(\'grupos\',',-id,'):',nombre) nombre,
-			nombre nombre2,
-			descripcion,
-			id action_id,
-			CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
-		FROM (
-			SELECT
-				a.*,
-				e.id_usuario id_usuario,
-				a.id id_grupo
-			FROM tbl_grupos a
-				LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-		) b
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="id" eval="true">"SELECT * FROM tbl_grupos WHERE id=".abs($id)</default>
-					<permisos>
-						<permisos global="id" eval="true">"
-						SELECT DISTINCT CONCAT(a.id,'_','-2') id,
-							a.id id_aplicacion,
-							a.nombre aplicacion,
-							-2 id_permiso,
-							'link:permiso_details(this):".LANG_ESCAPE("showdetalles")."' permiso,
-							'0' allow,
-							'0' deny,
-							-2 pos
-						FROM tbl_aplicaciones_p ap
-						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
-						UNION
-						SELECT DISTINCT CONCAT(a.id,'_','-1') id,
-							a.id id_aplicacion,
-							a.nombre aplicacion,
-							-1 id_permiso,
-							'link:permiso_details(this):".LANG_ESCAPE("hidedetalles")."' permiso,
-							'0' allow,
-							'0' deny,
-							-1 pos
-						FROM tbl_aplicaciones_p ap
-						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
-						UNION
-						SELECT CONCAT(a.id,'_',b.id) id,
-							a.id id_aplicacion,a.nombre aplicacion,
-							b.id id_permiso,b.nombre permiso,
-							gp.allow allow,
-							gp.deny deny,
-							pos
-						FROM tbl_aplicaciones_p ap
-						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
-						LEFT JOIN tbl_permisos b ON b.id=ap.id_permiso
-						LEFT JOIN tbl_grupos_p gp ON ap.id_aplicacion=gp.id_aplicacion AND ap.id_permiso=gp.id_permiso AND gp.id_grupo=".abs($id)."
-						ORDER BY aplicacion,pos"</permisos>
-					</permisos>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default>SELECT '0' id</default>
-					<permisos>
-						<permisos eval="true">"
-						SELECT DISTINCT CONCAT(a.id,'_','-2') id,
-							a.id id_aplicacion,
-							a.nombre aplicacion,
-							-2 id_permiso,
-							'link:permiso_details(this):".LANG_ESCAPE("showdetalles")."' permiso,
-							'0' allow,
-							'0' deny,
-							-2 pos
-						FROM tbl_aplicaciones_p ap
-						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
-						UNION
-						SELECT DISTINCT CONCAT(a.id,'_','-1') id,
-							a.id id_aplicacion,
-							a.nombre aplicacion,
-							-1 id_permiso,
-							'link:permiso_details(this):".LANG_ESCAPE("hidedetalles")."' permiso,
-							'0' allow,
-							'0' deny,
-							-1 pos
-						FROM tbl_aplicaciones_p ap
-						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
-						UNION
-						SELECT CONCAT(a.id,'_',b.id) id,
-							a.id id_aplicacion,
-							a.nombre aplicacion,
-							b.id id_permiso,
-							b.nombre permiso,
-							'0' allow,
-							'0' deny,
-							pos
-						FROM tbl_aplicaciones_p ap
-						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
-						LEFT JOIN tbl_permisos b ON b.id=ap.id_permiso
-						ORDER BY aplicacion,pos"</permisos>
-					</permisos>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default global="id" eval="true">"SELECT * FROM tbl_grupos WHERE id=".abs($id)</default>
-					<permisos>
-						<permisos global="id" eval="true">"
-						SELECT DISTINCT CONCAT(a.id,'_','-2') id,
-							a.id id_aplicacion,
-							a.nombre aplicacion,
-							-2 id_permiso,
-							'link:permiso_details(this):".LANG_ESCAPE("showdetalles")."' permiso,
-							'0' allow,
-							'0' deny,
-							-2 pos
-						FROM tbl_aplicaciones_p ap
-						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
-						UNION
-						SELECT DISTINCT CONCAT(a.id,'_','-1') id,
-							a.id id_aplicacion,
-							a.nombre aplicacion,
-							-1 id_permiso,
-							'link:permiso_details(this):".LANG_ESCAPE("hidedetalles")."' permiso,
-							'0' allow,
-							'0' deny,
-							-1 pos
-						FROM tbl_aplicaciones_p ap
-						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
-						UNION
-						SELECT CONCAT(a.id,'_',b.id) id,
-							a.id id_aplicacion,
-							a.nombre aplicacion,
-							b.id id_permiso,
-							b.nombre permiso,
-							gp.allow allow,
-							gp.deny deny,
-							pos
-						FROM tbl_aplicaciones_p ap
-						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
-						LEFT JOIN tbl_permisos b ON b.id=ap.id_permiso
-						LEFT JOIN tbl_grupos_p gp ON ap.id_aplicacion=gp.id_aplicacion AND ap.id_permiso=gp.id_permiso AND gp.id_grupo=".abs($id)."
-						ORDER BY aplicacion,pos"</permisos>
-					</permisos>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<required>true</required>
-							</field>
-					</row>
-					<row>
-						<field>
-							<name>descripcion</name>
-							<label lang="true">descripcion</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>3</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<permisos>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">permdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">aplicacion</label>
-							<class>thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">permiso</label>
-							<class>thead</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>thead</class>
-							<colspan>100</colspan>
-						</field>
-					</head>
-					<row>
-						<class>none</class>
-						<field>
-							<type>hidden</type>
-							<name>id_aplicacion</name>
-						</field>
-						<field>
-							<type>hidden</type>
-							<name>id_permiso</name>
-						</field>
-						<field>
-							<type>label</type>
-							<name>aplicacion</name>
-							<class>tbody</class>
-							<width>180px</width>
-						</field>
-						<field>
-							<type>label</type>
-							<name>permiso</name>
-							<class>tbody</class>
-						</field>
-						<field>
-							<type>checkbox</type>
-							<name>allow</name>
-							<label lang="true">allow</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<width>1px</width>
-							<width2>1px</width2>
-							<class>tbody</class>
-							<class2>tbody</class2>
-							<onchange>check_allow_deny(this)</onchange>
-						</field>
-						<field>
-							<type>checkbox</type>
-							<name>deny</name>
-							<label lang="true">deny</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<width>1px</width>
-							<width2>1px</width2>
-							<class>tbody</class>
-							<class2>tbody</class2>
-							<onchange>check_allow_deny(this)</onchange>
-						</field>
-					</row>
-				</fieldset>
-			</permisos>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<javascript include="xml/common/jsform.xml" />
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query match="permisos" prefix="true" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?make_insert_query("tbl_grupos_p",array(
-			"id_aplicacion"=>intval(getParam("id_aplicacion")),
-			"id_permiso"=>intval(getParam("id_permiso")),
-			"allow"=>intval(getParam("allow")),
-			"deny"=>intval(getParam("deny")),
-			"id_grupo"=>execute_query("SELECT MAX(id) FROM tbl_grupos"),
-		)):""</query>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
-		<query match="default" prefix="true" global="id" eval="true">"DELETE FROM tbl_grupos_p WHERE ".make_where_query(array("id_grupo"=>abs($id)))</query>
-		<query match="permisos" prefix="true" global="id" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?make_insert_query("tbl_grupos_p",array(
-			"id_grupo"=>abs($id),
-			"id_aplicacion"=>intval(getParam("id_aplicacion")),
-			"id_permiso"=>intval(getParam("id_permiso")),
-			"allow"=>intval(getParam("allow")),
-			"deny"=>intval(getParam("deny"))
-		)):""</query>
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">nombre</label>
+                <sort>true</sort>
+                <order>nombre2</order>
+            </field>
+            <field>
+                <name>descripcion</name>
+                <label lang="true">descripcion</label>
+                <sort>true</sort>
+            </field>
+        </fields>
+        <javascript include="xml/common/jslist.xml"/>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                        <colspan>2</colspan>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,filtro" eval="true">"
+        SELECT
+            LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
+            CONCAT('link:openapp(\'grupos\',',-id,'):',nombre) nombre,
+            nombre nombre2,
+            descripcion,
+            id action_id,
+            CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+            CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+            CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+        FROM (
+            SELECT
+                a.*,
+                e.id_usuario id_usuario,
+                a.id id_grupo
+            FROM tbl_grupos a
+                LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+        ) b
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND ".check_sql($page,"list")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <default global="id" eval="true">"SELECT * FROM tbl_grupos WHERE id=".abs($id)</default>
+                    <permisos>
+                        <permisos global="id" eval="true">"
+                        SELECT DISTINCT CONCAT(a.id,'_','-2') id,
+                            a.id id_aplicacion,
+                            a.nombre aplicacion,
+                            -2 id_permiso,
+                            'link:permiso_details(this):".LANG_ESCAPE("showdetalles")."' permiso,
+                            '0' allow,
+                            '0' deny,
+                            -2 pos
+                        FROM tbl_aplicaciones_p ap
+                        LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+                        UNION
+                        SELECT DISTINCT CONCAT(a.id,'_','-1') id,
+                            a.id id_aplicacion,
+                            a.nombre aplicacion,
+                            -1 id_permiso,
+                            'link:permiso_details(this):".LANG_ESCAPE("hidedetalles")."' permiso,
+                            '0' allow,
+                            '0' deny,
+                            -1 pos
+                        FROM tbl_aplicaciones_p ap
+                        LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+                        UNION
+                        SELECT CONCAT(a.id,'_',b.id) id,
+                            a.id id_aplicacion,a.nombre aplicacion,
+                            b.id id_permiso,b.nombre permiso,
+                            gp.allow allow,
+                            gp.deny deny,
+                            pos
+                        FROM tbl_aplicaciones_p ap
+                        LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+                        LEFT JOIN tbl_permisos b ON b.id=ap.id_permiso
+                        LEFT JOIN tbl_grupos_p gp ON ap.id_aplicacion=gp.id_aplicacion AND ap.id_permiso=gp.id_permiso AND gp.id_grupo=".abs($id)."
+                        ORDER BY aplicacion,pos"</permisos>
+                    </permisos>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default>SELECT '0' id</default>
+                    <permisos>
+                        <permisos eval="true">"
+                        SELECT DISTINCT CONCAT(a.id,'_','-2') id,
+                            a.id id_aplicacion,
+                            a.nombre aplicacion,
+                            -2 id_permiso,
+                            'link:permiso_details(this):".LANG_ESCAPE("showdetalles")."' permiso,
+                            '0' allow,
+                            '0' deny,
+                            -2 pos
+                        FROM tbl_aplicaciones_p ap
+                        LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+                        UNION
+                        SELECT DISTINCT CONCAT(a.id,'_','-1') id,
+                            a.id id_aplicacion,
+                            a.nombre aplicacion,
+                            -1 id_permiso,
+                            'link:permiso_details(this):".LANG_ESCAPE("hidedetalles")."' permiso,
+                            '0' allow,
+                            '0' deny,
+                            -1 pos
+                        FROM tbl_aplicaciones_p ap
+                        LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+                        UNION
+                        SELECT CONCAT(a.id,'_',b.id) id,
+                            a.id id_aplicacion,
+                            a.nombre aplicacion,
+                            b.id id_permiso,
+                            b.nombre permiso,
+                            '0' allow,
+                            '0' deny,
+                            pos
+                        FROM tbl_aplicaciones_p ap
+                        LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+                        LEFT JOIN tbl_permisos b ON b.id=ap.id_permiso
+                        ORDER BY aplicacion,pos"</permisos>
+                    </permisos>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <default global="id" eval="true">"SELECT * FROM tbl_grupos WHERE id=".abs($id)</default>
+                    <permisos>
+                        <permisos global="id" eval="true">"
+                        SELECT DISTINCT CONCAT(a.id,'_','-2') id,
+                            a.id id_aplicacion,
+                            a.nombre aplicacion,
+                            -2 id_permiso,
+                            'link:permiso_details(this):".LANG_ESCAPE("showdetalles")."' permiso,
+                            '0' allow,
+                            '0' deny,
+                            -2 pos
+                        FROM tbl_aplicaciones_p ap
+                        LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+                        UNION
+                        SELECT DISTINCT CONCAT(a.id,'_','-1') id,
+                            a.id id_aplicacion,
+                            a.nombre aplicacion,
+                            -1 id_permiso,
+                            'link:permiso_details(this):".LANG_ESCAPE("hidedetalles")."' permiso,
+                            '0' allow,
+                            '0' deny,
+                            -1 pos
+                        FROM tbl_aplicaciones_p ap
+                        LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+                        UNION
+                        SELECT CONCAT(a.id,'_',b.id) id,
+                            a.id id_aplicacion,
+                            a.nombre aplicacion,
+                            b.id id_permiso,
+                            b.nombre permiso,
+                            gp.allow allow,
+                            gp.deny deny,
+                            pos
+                        FROM tbl_aplicaciones_p ap
+                        LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+                        LEFT JOIN tbl_permisos b ON b.id=ap.id_permiso
+                        LEFT JOIN tbl_grupos_p gp ON ap.id_aplicacion=gp.id_aplicacion AND ap.id_permiso=gp.id_permiso AND gp.id_grupo=".abs($id)."
+                        ORDER BY aplicacion,pos"</permisos>
+                    </permisos>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre</name>
+                            <label lang="true">nombre</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <required>true</required>
+                            </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>descripcion</name>
+                            <label lang="true">descripcion</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>3</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <permisos>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">permdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">aplicacion</label>
+                            <class>thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">permiso</label>
+                            <class>thead</class>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <class>thead</class>
+                            <colspan>100</colspan>
+                        </field>
+                    </head>
+                    <row>
+                        <class>none</class>
+                        <field>
+                            <type>hidden</type>
+                            <name>id_aplicacion</name>
+                        </field>
+                        <field>
+                            <type>hidden</type>
+                            <name>id_permiso</name>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <name>aplicacion</name>
+                            <class>tbody</class>
+                            <width>180px</width>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <name>permiso</name>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <type>checkbox</type>
+                            <name>allow</name>
+                            <label lang="true">allow</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <width>1px</width>
+                            <width2>1px</width2>
+                            <class>tbody</class>
+                            <class2>tbody</class2>
+                            <onchange>check_allow_deny(this)</onchange>
+                        </field>
+                        <field>
+                            <type>checkbox</type>
+                            <name>deny</name>
+                            <label lang="true">deny</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <width>1px</width>
+                            <width2>1px</width2>
+                            <class>tbody</class>
+                            <class2>tbody</class2>
+                            <onchange>check_allow_deny(this)</onchange>
+                        </field>
+                    </row>
+                </fieldset>
+            </permisos>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <javascript include="xml/common/jsform.xml" />
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query match="permisos" prefix="true" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?make_insert_query("tbl_grupos_p",array(
+            "id_aplicacion"=>intval(getParam("id_aplicacion")),
+            "id_permiso"=>intval(getParam("id_permiso")),
+            "allow"=>intval(getParam("allow")),
+            "deny"=>intval(getParam("deny")),
+            "id_grupo"=>execute_query("SELECT MAX(id) FROM tbl_grupos"),
+        )):""</query>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+        <query match="default" prefix="true" global="id" eval="true">"DELETE FROM tbl_grupos_p WHERE ".make_where_query(array("id_grupo"=>abs($id)))</query>
+        <query match="permisos" prefix="true" global="id" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?make_insert_query("tbl_grupos_p",array(
+            "id_grupo"=>abs($id),
+            "id_aplicacion"=>intval(getParam("id_aplicacion")),
+            "id_permiso"=>intval(getParam("id_permiso")),
+            "allow"=>intval(getParam("allow")),
+            "deny"=>intval(getParam("deny"))
+        )):""</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="id" eval="true">"DELETE FROM tbl_grupos_p WHERE ".make_where_query(array("id_grupo"=>abs($id)))</query>
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query global="id" eval="true">"DELETE FROM tbl_grupos_p WHERE ".make_where_query(array("id_grupo"=>abs($id)))</query>
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
 </root>

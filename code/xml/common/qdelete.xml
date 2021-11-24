@@ -24,5 +24,5 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="page,id" eval="true">"DELETE FROM ".page2table($page)." WHERE ".make_where_query(array("id"=>$id))</query>
+    <query global="page,id" eval="true">"DELETE FROM ".page2table($page)." WHERE ".make_where_query(array("id"=>$id))</query>
 </root>

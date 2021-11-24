@@ -24,11 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<name>style</name>
-	<label lang="true">style</label>
-	<type>select</type>
-	<width>120px</width>
-	<rows include="xml/styles.xml"/>
-	<value eval="true">get_style()</value>
-	<onchange>submit1()</onchange>
+    <name>style</name>
+    <label lang="true">style</label>
+    <type>select</type>
+    <width>120px</width>
+    <rows include="xml/styles.xml"/>
+    <value eval="true">get_style()</value>
+    <onchange>submit1()</onchange>
 </root>

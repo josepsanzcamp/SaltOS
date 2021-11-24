@@ -24,705 +24,705 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>usuario</name>
-				<label lang="true">username</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>dstart</name>
-				<label lang="true">dstart</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>dstop</name>
-				<label lang="true">dstop</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>cliente</name>
-				<label lang="true">cliente</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>cliente2</order>
-			</field>
-			<field>
-				<name>proyecto</name>
-				<label lang="true">proyecto</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>proyecto2</order>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">evento</label>
-				<sort>true</sort>
-				<order>nombre2</order>
-			</field>
-			<field>
-				<name>tipoevento</name>
-				<label lang="true">tipoevento</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>estado</name>
-				<label lang="true">estado</label>
-				<sort>true</sort>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-				<include>js/updatepresupuestos.js</include>
-				<include>js/calendar.js</include>
-			</cache>
-			<function>notify_clear() { setParam("page","agenda"); setParam("action","clear"); submit1(); }</function>
-			<function>google_calendar() { setParam("page","agenda"); setParam("action","gcalendar"); submit1(); }</function>
-		</javascript>
-		<styles>
-			<cache>
-				<include>css/calendar.css</include>
-			</cache>
-		</styles>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>id_usuario</name>
-						<label lang="true">username</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
-					</field>
-					<field>
-						<type>separator</type>
-						<width>10px</width>
-					</field>
-					<field>
-						<name>fecha1</name>
-						<label lang="true">fechaini</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha1","le","fecha2")</onchange>
-					</field>
-					<field>
-						<name>fecha2</name>
-						<label lang="true">fechafin</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
-						<class2>right</class2>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha2","ge","fecha1")</onchange>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_asignado</name>
-						<label lang="true">asignadoa</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_asignado" eval="true">$id_asignado=getParam("id_asignado")</value>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>fecha3</name>
-						<label lang="true">otrasfechas</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoseventos")."' label UNION SELECT 'DATE".current_date(-86400)."' value,'".LANG_ESCAPE("todoayer")."' label UNION SELECT 'DATE".current_date()."' value,'".LANG_ESCAPE("todohoy")."' label UNION SELECT 'DATE".current_date(86400)."' value,'".LANG_ESCAPE("todomanana")."' label UNION SELECT 'WEEK".current_date()."' value,'".LANG_ESCAPE("todosemana")."' label UNION SELECT 'MNTH".current_date()."' value,'".LANG_ESCAPE("todomes")."' label UNION SELECT 'YEAR".current_date()."' value,'".LANG_ESCAPE("todoano")."' label"</query>
-						<value global="fecha3" eval="true">$fecha3=getParam("fecha3")</value>
-						<valuekey global="fecha3,fecha3key" eval="true">$fecha3key=substr($fecha3,0,4)</valuekey>
-						<valueval global="fecha3,fecha3val" eval="true">$fecha3val=substr($fecha3,4)</valueval>
-						<colspan>3</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<type>separator</type>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_posiblecli</name>
-						<label lang="true">posiblecli</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id_posiblecli FROM tbl_agenda")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosposiblescli")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_posiblecli" eval="true">$id_posiblecli=getParam("id_posiblecli")</value>
-						<onchange>update_proyectos();update_presupuestos()</onchange>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>id_presupuesto</name>
-						<label lang="true">presupuesto</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslospresupuestos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
-						<value global="id_presupuesto" eval="true">$id_presupuesto=getParam("id_presupuesto")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_cliente</name>
-						<label lang="true">cliente</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_agenda")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
-						<onchange>update_proyectos();update_presupuestos()</onchange>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>id_proyecto</name>
-						<label lang="true">proyecto</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<type>separator</type>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_campanya</name>
-						<label lang="true">campanya</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>id_tipoevento</name>
-						<label lang="true">tipoevento</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("tiposevento","tbl_tiposevento","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sintipoevento")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_tipoevento" eval="true">$id_tipoevento=getParam("id_tipoevento")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>id_estado</name>
-						<label lang="true">estado</label>
-						<type>select</type>
-						<width>240px</width>
-						<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<form>
-			<fields include="xml/common/calendar.xml" replace="true" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_proyecto'=>'','id_cliente'=>'', 'fecha3'=>'','id_tipoevento'=>'','id_estado'=>'','id_posiblecli'=>'','id_asignado'=>'','id_campanya'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field>
-					<type>button</type>
-					<value lang="true">gcalendar</value>
-					<onclick>google_calendar()</onclick>
-					<icon eval="true">ICON("upload")</icon>
-					<tip lang="true">gcalendartip</tip>
-					<class>nowrap contextmenu</class>
-					<width>1px</width>
-				</field>
-				<field>
-					<type>button</type>
-					<value lang="true">notifyclear</value>
-					<onclick>notify_clear()</onclick>
-					<icon eval="true">ICON("reset")</icon>
-					<tip lang="true">notifytip</tip>
-					<class>nowrap contextmenu</class>
-					<width>1px</width>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,id_proyecto,id_presupuesto,id_estado,id_usuario,fecha1,fecha2,filtro,id_tipoevento,fecha3,fecha3key,fecha3val,id_posiblecli,id_asignado,id_campanya" eval="true">"SELECT id2,id,usuario,dstart,dstop,cliente,cliente2,proyecto,nombre,proyecto2,nombre2,tipoevento,estado,action_id,action_title,action_view,action_edit,action_copy,action_delete,id_usuario,descripcion,id_tipoevento,id_grupo,activo,id_estado,id_cliente,id_proyecto,id_posiblecli,id_presupuesto,id_campanya FROM (
-			SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
-				".make_extra_query_with_login("d.")." usuario,
-				dstart,dstop,
-				CASE
-					WHEN a.id_cliente!='0' THEN CONCAT('link:openapp(\'clientes\',',-a.id_cliente,'):',b1_nombre)
-					WHEN a.id_posiblecli!='0' THEN CONCAT('link:openapp(\'posiblescli\',',-a.id_posiblecli,'):',b2_nombre)
-					ELSE '".LANG_ESCAPE("sincliente")."'
-				END cliente,
-				CASE
-					WHEN a.id_cliente!='0' THEN b1_nombre
-					WHEN a.id_posiblecli!='0' THEN b2_nombre
-					ELSE '".LANG_ESCAPE("sincliente")."'
-				END cliente2,
-				CASE id_proyecto
-					WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."'
-					ELSE CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',p_nombre)
-				END proyecto,
-				CONCAT('link:openapp(\'agenda\',',-a.id,'):',a.nombre) nombre,
-				CASE id_proyecto
-					WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."'
-					ELSE p_nombre
-				END proyecto2,
-				a.nombre nombre2,
-				CASE id_tipoevento WHEN '0' THEN '".LANG_ESCAPE("sintipoevento")."' ELSE e.nombre END tipoevento,
-				CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
-				a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
-				CASE ((".check_sql($page,"view").") OR FIND_IN_SET('".current_user()."',ids_asignados)) WHEN 1 THEN 'true' ELSE 'false' END action_view,
-				CASE ((".check_sql($page,"edit").") OR FIND_IN_SET('".current_user()."',ids_asignados)) WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-				CASE (".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").")) WHEN 1 THEN 'true' ELSE 'false' END action_copy,
-				CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
-				id_usuario,a.descripcion descripcion,id_tipoevento,d.id_grupo id_grupo,c.activo activo,
-				a.id_estado,a.id_cliente,a.id_proyecto,a.ids_asignados,
-				a.id_posiblecli id_posiblecli,a.id_presupuesto id_presupuesto,a.id_campanya id_campanya
-			FROM (SELECT a2.*,b1.nombre b1_nombre,b2.nombre b2_nombre,p.nombre p_nombre FROM tbl_agenda a2
-			LEFT JOIN tbl_clientes b1 ON b1.id=a2.id_cliente
-			LEFT JOIN tbl_posiblescli b2 ON b2.id=a2.id_posiblecli
-			LEFT JOIN tbl_proyectos p ON a2.id_proyecto=p.id) a
-			LEFT JOIN tbl_estados c ON a.id_estado=c.id
-			LEFT JOIN tbl_tiposevento e ON e.id=id_tipoevento
-			LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id AND f.first=1
-			LEFT JOIN tbl_usuarios d ON f.id_usuario=d.id
-			) z
-			WHERE 1=1
-			AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-			AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_presupuesto?"(id_presupuesto='$id_presupuesto')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".($id_tipoevento?"(id_tipoevento='$id_tipoevento')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")."
-			AND (''='$fecha3' OR
-				".($fecha3key=="DATE"?"(DATE('$fecha3val')>=DATE(dstart) AND DATE(dstop)>=DATE('$fecha3val'))":"(1=0)")." OR
-				".($fecha3key=="WEEK"?"(CONCAT(YEAR('$fecha3val'),WEEK('$fecha3val',1))>=CONCAT(YEAR(dstart),WEEK(dstart,1)) AND CONCAT(YEAR(dstop),WEEK(dstop,1))>=CONCAT(YEAR('$fecha3val'),WEEK('$fecha3val',1)))":"(1=0)")." OR
-				".($fecha3key=="MNTH"?"(YEAR('$fecha3val')>=YEAR(dstart) AND MONTH('$fecha3val')>=MONTH(dstart) AND YEAR(dstop)>=YEAR('$fecha3val') AND MONTH(dstop)>=MONTH('$fecha3val'))":"(1=0)")." OR
-				".($fecha3key=="YEAR"?"(YEAR('$fecha3val')>=YEAR(dstart) AND YEAR(dstop)>=YEAR('$fecha3val'))":"(1=0)")."
-			)
-			AND (FIND_IN_SET('".getParam("id_asignado")."',ids_asignados) OR ''='".getParam("id_asignado")."')
-			AND (".check_sql($page,"list")." OR FIND_IN_SET('".current_user()."',ids_asignados))"</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id  AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)"</query>
-					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml" />
-					<files_old include="xml/common/qfilesold.xml" />
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop,'".current_user()."' ids_asignados,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop,'' id_gcalendar,'' sync_gcalendar FROM tbl_agenda WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_posiblecli"))."' id_posiblecli,'".intval(getParam("id_presupuesto"))."' id_presupuesto,'".getParam("dstart",current_datetime())."' dstart,'".getParam("dstop",current_datetime())."' dstop,'".current_user()."' ids_asignados,'".CONFIG('df_tipo_evento_agenda')."' id_tipoevento,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop,'".intval(getParam("id_campanya"))."' id_campanya"</default>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)"</query>
-					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml" />
-					<files_old include="xml/common/qfilesold.xml" />
-					<comments_new include="xml/common/qcommentnew.xml" replace="true"/>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_gcalendar</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_campanya</name>
-							<label lang="true">campanya</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>3</colspan>
-							<link>openapp('campanyas',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_posiblecli</name>
-							<label lang="true">posiblecli</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>openapp('posiblescli',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-							<onchange>$("select[name$=id_cliente]").val(0);update_proyectos();update_presupuestos()</onchange>
-							<colspan>3</colspan>
-						</field>
-						<field>
-							<name>id_presupuesto</name>
-							<label lang="true">presupuesto</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>openapp('presupuestos',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_cliente</name>
-							<label lang="true">cliente</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
-							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-							<colspan>3</colspan>
-						</field>
-						<field>
-							<name>id_proyecto</name>
-							<label lang="true">proyecto</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>dstart</name>
-							<label lang="true">dstart</label>
-							<type>datetime</type>
-							<width>150px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<colspan>3</colspan>
-							<icon eval="true">ICON("calendar")</icon>
-							<icon2 eval="true">ICON("clock")</icon2>
-							<onchange>check_datetime("dstart","le","dstop")</onchange>
-						</field>
-						<field>
-							<name>dstop</name>
-							<label lang="true">dstop</label>
-							<type>datetime</type>
-							<width>150px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<icon eval="true">ICON("calendar")</icon>
-							<icon2 eval="true">ICON("clock")</icon2>
-							<onchange>check_datetime("dstop","ge","dstart")</onchange>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<colspan>3</colspan>
-								<onkey ifeval="!getParam('id')">var orig=this; var dest=$("textarea[name$=descripcion]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkey>
-						</field>
-						<field>
-							<name>id_tipoevento</name>
-							<label lang="true">tipoevento</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("tiposevento","tbl_tiposevento","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sintipoevento")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>lugar</name>
-							<label lang="true">lugar</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>3</colspan>
-							</field>
-						<field>
-							<name>id_estado</name>
-							<label lang="true">estado</label>
-							<type>select</type>
-							<width>240px</width>
-							<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>descripcion</name>
-							<label lang="true">descripcion</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>5</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<onkey ifeval="!getParam('id')">$(this).prop("writed",true)</onkey>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>notify_delay</name>
-							<label lang="true">notifydelay</label>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>notify_sign</name>
-							<label lang="true">notifysign</label>
-							<type>select</type>
-							<width>90px</width>
-							<width2>1px</width2>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<rows>
-								<row>
-									<label lang="true">notifyantes</label>
-									<value>-1</value>
-								</row>
-								<row>
-									<label lang="true">notifydespues</label>
-									<value>1</value>
-								</row>
-							</rows>
-						</field>
-						<field>
-							<name>notify_dstart</name>
-							<label lang="true">notifydstart</label>
-							<type>checkbox</type>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-							<colspan>4</colspan>
-						</field>
-						<field>
-							<name>notify_dstop</name>
-							<label lang="true">notifydstop</label>
-							<type>checkbox</type>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-				</fieldset>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">usersdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<popup>true</popup>
-					<class>tabla</class>
-					<row>
-						<field>
-							<name>ids_asignados</name>
-							<label lang="true">asignadoa</label>
-							<type>multiselect</type>
-							<width>600px</width>
-							<height>120px</height>
-							<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ ORDER BY label ASC,value ASC"</query>
-							<colspan>6</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-							<class2>thead</class2>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<comments_old include="xml/common/commentsold.xml"/>
-			<files_old include="xml/common/filesold.xml" />
-			<comments_new include="xml/common/commentnew.xml"/>
-			<files_new include="xml/common/filesnew.xml"/>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<node path="buttons/row/field[name=buttonupdate]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)")?"true":"false"</disabled>
-		</node>
-		<node path="buttons/row/field[name=buttonupdatereturnhere]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)")?"true":"false"</disabled>
-		</node>
-		<node path="buttons/row/field[name=edit]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)")?"true":"false"</disabled>
-		</node>
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-				<include>js/updatepresupuestos.js</include>
-			</cache>
-		</javascript>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query("tbl_agenda")</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query include="xml/common/qfilesinsert.xml" replace="true"/>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true" />
-		<query match="default" prefix="true" eval="true">setParam("notify_dstart",(execute_query("SELECT dstart FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstart") || execute_query("SELECT dstop FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstop"))?"0":getParam("notify_dstart"))</query>
-		<query match="default" prefix="true" eval="true">setParam("notify_dstop",(execute_query("SELECT dstart FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstart") || execute_query("SELECT dstop FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstop"))?"0":getParam("notify_dstop"))</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query("tbl_agenda")</query>
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>usuario</name>
+                <label lang="true">username</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>dstart</name>
+                <label lang="true">dstart</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>dstop</name>
+                <label lang="true">dstop</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>cliente</name>
+                <label lang="true">cliente</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>cliente2</order>
+            </field>
+            <field>
+                <name>proyecto</name>
+                <label lang="true">proyecto</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>proyecto2</order>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">evento</label>
+                <sort>true</sort>
+                <order>nombre2</order>
+            </field>
+            <field>
+                <name>tipoevento</name>
+                <label lang="true">tipoevento</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>estado</name>
+                <label lang="true">estado</label>
+                <sort>true</sort>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+                <include>js/updatepresupuestos.js</include>
+                <include>js/calendar.js</include>
+            </cache>
+            <function>notify_clear() { setParam("page","agenda"); setParam("action","clear"); submit1(); }</function>
+            <function>google_calendar() { setParam("page","agenda"); setParam("action","gcalendar"); submit1(); }</function>
+        </javascript>
+        <styles>
+            <cache>
+                <include>css/calendar.css</include>
+            </cache>
+        </styles>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>id_usuario</name>
+                        <label lang="true">username</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                        <width>10px</width>
+                    </field>
+                    <field>
+                        <name>fecha1</name>
+                        <label lang="true">fechaini</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha1","le","fecha2")</onchange>
+                    </field>
+                    <field>
+                        <name>fecha2</name>
+                        <label lang="true">fechafin</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
+                        <class2>right</class2>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha2","ge","fecha1")</onchange>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_asignado</name>
+                        <label lang="true">asignadoa</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_asignado" eval="true">$id_asignado=getParam("id_asignado")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>fecha3</name>
+                        <label lang="true">otrasfechas</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoseventos")."' label UNION SELECT 'DATE".current_date(-86400)."' value,'".LANG_ESCAPE("todoayer")."' label UNION SELECT 'DATE".current_date()."' value,'".LANG_ESCAPE("todohoy")."' label UNION SELECT 'DATE".current_date(86400)."' value,'".LANG_ESCAPE("todomanana")."' label UNION SELECT 'WEEK".current_date()."' value,'".LANG_ESCAPE("todosemana")."' label UNION SELECT 'MNTH".current_date()."' value,'".LANG_ESCAPE("todomes")."' label UNION SELECT 'YEAR".current_date()."' value,'".LANG_ESCAPE("todoano")."' label"</query>
+                        <value global="fecha3" eval="true">$fecha3=getParam("fecha3")</value>
+                        <valuekey global="fecha3,fecha3key" eval="true">$fecha3key=substr($fecha3,0,4)</valuekey>
+                        <valueval global="fecha3,fecha3val" eval="true">$fecha3val=substr($fecha3,4)</valueval>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_posiblecli</name>
+                        <label lang="true">posiblecli</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id_posiblecli FROM tbl_agenda")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosposiblescli")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_posiblecli" eval="true">$id_posiblecli=getParam("id_posiblecli")</value>
+                        <onchange>update_proyectos();update_presupuestos()</onchange>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>id_presupuesto</name>
+                        <label lang="true">presupuesto</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslospresupuestos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
+                        <value global="id_presupuesto" eval="true">$id_presupuesto=getParam("id_presupuesto")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_cliente</name>
+                        <label lang="true">cliente</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_agenda")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
+                        <onchange>update_proyectos();update_presupuestos()</onchange>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>id_proyecto</name>
+                        <label lang="true">proyecto</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                        <value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_campanya</name>
+                        <label lang="true">campanya</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>id_tipoevento</name>
+                        <label lang="true">tipoevento</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("tiposevento","tbl_tiposevento","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sintipoevento")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_tipoevento" eval="true">$id_tipoevento=getParam("id_tipoevento")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>id_estado</name>
+                        <label lang="true">estado</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <form>
+            <fields include="xml/common/calendar.xml" replace="true" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_proyecto'=>'','id_cliente'=>'', 'fecha3'=>'','id_tipoevento'=>'','id_estado'=>'','id_posiblecli'=>'','id_asignado'=>'','id_campanya'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field>
+                    <type>button</type>
+                    <value lang="true">gcalendar</value>
+                    <onclick>google_calendar()</onclick>
+                    <icon eval="true">ICON("upload")</icon>
+                    <tip lang="true">gcalendartip</tip>
+                    <class>nowrap contextmenu</class>
+                    <width>1px</width>
+                </field>
+                <field>
+                    <type>button</type>
+                    <value lang="true">notifyclear</value>
+                    <onclick>notify_clear()</onclick>
+                    <icon eval="true">ICON("reset")</icon>
+                    <tip lang="true">notifytip</tip>
+                    <class>nowrap contextmenu</class>
+                    <width>1px</width>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,id_cliente,id_proyecto,id_presupuesto,id_estado,id_usuario,fecha1,fecha2,filtro,id_tipoevento,fecha3,fecha3key,fecha3val,id_posiblecli,id_asignado,id_campanya" eval="true">"SELECT id2,id,usuario,dstart,dstop,cliente,cliente2,proyecto,nombre,proyecto2,nombre2,tipoevento,estado,action_id,action_title,action_view,action_edit,action_copy,action_delete,id_usuario,descripcion,id_tipoevento,id_grupo,activo,id_estado,id_cliente,id_proyecto,id_posiblecli,id_presupuesto,id_campanya FROM (
+            SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
+                ".make_extra_query_with_login("d.")." usuario,
+                dstart,dstop,
+                CASE
+                    WHEN a.id_cliente!='0' THEN CONCAT('link:openapp(\'clientes\',',-a.id_cliente,'):',b1_nombre)
+                    WHEN a.id_posiblecli!='0' THEN CONCAT('link:openapp(\'posiblescli\',',-a.id_posiblecli,'):',b2_nombre)
+                    ELSE '".LANG_ESCAPE("sincliente")."'
+                END cliente,
+                CASE
+                    WHEN a.id_cliente!='0' THEN b1_nombre
+                    WHEN a.id_posiblecli!='0' THEN b2_nombre
+                    ELSE '".LANG_ESCAPE("sincliente")."'
+                END cliente2,
+                CASE id_proyecto
+                    WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."'
+                    ELSE CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',p_nombre)
+                END proyecto,
+                CONCAT('link:openapp(\'agenda\',',-a.id,'):',a.nombre) nombre,
+                CASE id_proyecto
+                    WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."'
+                    ELSE p_nombre
+                END proyecto2,
+                a.nombre nombre2,
+                CASE id_tipoevento WHEN '0' THEN '".LANG_ESCAPE("sintipoevento")."' ELSE e.nombre END tipoevento,
+                CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
+                a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
+                CASE ((".check_sql($page,"view").") OR FIND_IN_SET('".current_user()."',ids_asignados)) WHEN 1 THEN 'true' ELSE 'false' END action_view,
+                CASE ((".check_sql($page,"edit").") OR FIND_IN_SET('".current_user()."',ids_asignados)) WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+                CASE (".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").")) WHEN 1 THEN 'true' ELSE 'false' END action_copy,
+                CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+                id_usuario,a.descripcion descripcion,id_tipoevento,d.id_grupo id_grupo,c.activo activo,
+                a.id_estado,a.id_cliente,a.id_proyecto,a.ids_asignados,
+                a.id_posiblecli id_posiblecli,a.id_presupuesto id_presupuesto,a.id_campanya id_campanya
+            FROM (SELECT a2.*,b1.nombre b1_nombre,b2.nombre b2_nombre,p.nombre p_nombre FROM tbl_agenda a2
+            LEFT JOIN tbl_clientes b1 ON b1.id=a2.id_cliente
+            LEFT JOIN tbl_posiblescli b2 ON b2.id=a2.id_posiblecli
+            LEFT JOIN tbl_proyectos p ON a2.id_proyecto=p.id) a
+            LEFT JOIN tbl_estados c ON a.id_estado=c.id
+            LEFT JOIN tbl_tiposevento e ON e.id=id_tipoevento
+            LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id AND f.first=1
+            LEFT JOIN tbl_usuarios d ON f.id_usuario=d.id
+            ) z
+            WHERE 1=1
+            AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+            AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_presupuesto?"(id_presupuesto='$id_presupuesto')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".($id_tipoevento?"(id_tipoevento='$id_tipoevento')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")."
+            AND (''='$fecha3' OR
+                ".($fecha3key=="DATE"?"(DATE('$fecha3val')>=DATE(dstart) AND DATE(dstop)>=DATE('$fecha3val'))":"(1=0)")." OR
+                ".($fecha3key=="WEEK"?"(CONCAT(YEAR('$fecha3val'),WEEK('$fecha3val',1))>=CONCAT(YEAR(dstart),WEEK(dstart,1)) AND CONCAT(YEAR(dstop),WEEK(dstop,1))>=CONCAT(YEAR('$fecha3val'),WEEK('$fecha3val',1)))":"(1=0)")." OR
+                ".($fecha3key=="MNTH"?"(YEAR('$fecha3val')>=YEAR(dstart) AND MONTH('$fecha3val')>=MONTH(dstart) AND YEAR(dstop)>=YEAR('$fecha3val') AND MONTH(dstop)>=MONTH('$fecha3val'))":"(1=0)")." OR
+                ".($fecha3key=="YEAR"?"(YEAR('$fecha3val')>=YEAR(dstart) AND YEAR(dstop)>=YEAR('$fecha3val'))":"(1=0)")."
+            )
+            AND (FIND_IN_SET('".getParam("id_asignado")."',ids_asignados) OR ''='".getParam("id_asignado")."')
+            AND (".check_sql($page,"list")." OR FIND_IN_SET('".current_user()."',ids_asignados))"</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id  AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)"</query>
+                    <query include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml" />
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop,'".current_user()."' ids_asignados,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop,'' id_gcalendar,'' sync_gcalendar FROM tbl_agenda WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_posiblecli"))."' id_posiblecli,'".intval(getParam("id_presupuesto"))."' id_presupuesto,'".getParam("dstart",current_datetime())."' dstart,'".getParam("dstop",current_datetime())."' dstop,'".current_user()."' ids_asignados,'".CONFIG('df_tipo_evento_agenda')."' id_tipoevento,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop,'".intval(getParam("id_campanya"))."' id_campanya"</default>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)"</query>
+                    <query include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml" />
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <comments_new include="xml/common/qcommentnew.xml" replace="true"/>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_gcalendar</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_campanya</name>
+                            <label lang="true">campanya</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>3</colspan>
+                            <link>openapp('campanyas',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_posiblecli</name>
+                            <label lang="true">posiblecli</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <link>openapp('posiblescli',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                            <onchange>$("select[name$=id_cliente]").val(0);update_proyectos();update_presupuestos()</onchange>
+                            <colspan>3</colspan>
+                        </field>
+                        <field>
+                            <name>id_presupuesto</name>
+                            <label lang="true">presupuesto</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <link>openapp('presupuestos',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_cliente</name>
+                            <label lang="true">cliente</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
+                            <link>openapp('clientes',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                            <colspan>3</colspan>
+                        </field>
+                        <field>
+                            <name>id_proyecto</name>
+                            <label lang="true">proyecto</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <link>openapp('proyectos',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>dstart</name>
+                            <label lang="true">dstart</label>
+                            <type>datetime</type>
+                            <width>150px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <colspan>3</colspan>
+                            <icon eval="true">ICON("calendar")</icon>
+                            <icon2 eval="true">ICON("clock")</icon2>
+                            <onchange>check_datetime("dstart","le","dstop")</onchange>
+                        </field>
+                        <field>
+                            <name>dstop</name>
+                            <label lang="true">dstop</label>
+                            <type>datetime</type>
+                            <width>150px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <icon eval="true">ICON("calendar")</icon>
+                            <icon2 eval="true">ICON("clock")</icon2>
+                            <onchange>check_datetime("dstop","ge","dstart")</onchange>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre</name>
+                            <label lang="true">nombre</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <colspan>3</colspan>
+                                <onkey ifeval="!getParam('id')">var orig=this; var dest=$("textarea[name$=descripcion]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkey>
+                        </field>
+                        <field>
+                            <name>id_tipoevento</name>
+                            <label lang="true">tipoevento</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("tiposevento","tbl_tiposevento","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sintipoevento")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>lugar</name>
+                            <label lang="true">lugar</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>3</colspan>
+                            </field>
+                        <field>
+                            <name>id_estado</name>
+                            <label lang="true">estado</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>descripcion</name>
+                            <label lang="true">descripcion</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>5</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <onkey ifeval="!getParam('id')">$(this).prop("writed",true)</onkey>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>notify_delay</name>
+                            <label lang="true">notifydelay</label>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>notify_sign</name>
+                            <label lang="true">notifysign</label>
+                            <type>select</type>
+                            <width>90px</width>
+                            <width2>1px</width2>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <rows>
+                                <row>
+                                    <label lang="true">notifyantes</label>
+                                    <value>-1</value>
+                                </row>
+                                <row>
+                                    <label lang="true">notifydespues</label>
+                                    <value>1</value>
+                                </row>
+                            </rows>
+                        </field>
+                        <field>
+                            <name>notify_dstart</name>
+                            <label lang="true">notifydstart</label>
+                            <type>checkbox</type>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <colspan>4</colspan>
+                        </field>
+                        <field>
+                            <name>notify_dstop</name>
+                            <label lang="true">notifydstop</label>
+                            <type>checkbox</type>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                </fieldset>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">usersdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <popup>true</popup>
+                    <class>tabla</class>
+                    <row>
+                        <field>
+                            <name>ids_asignados</name>
+                            <label lang="true">asignadoa</label>
+                            <type>multiselect</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ ORDER BY label ASC,value ASC"</query>
+                            <colspan>6</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                            <class2>thead</class2>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <comments_old include="xml/common/commentsold.xml"/>
+            <files_old include="xml/common/filesold.xml" />
+            <comments_new include="xml/common/commentnew.xml"/>
+            <files_new include="xml/common/filesnew.xml"/>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <node path="buttons/row/field[name=buttonupdate]/disabled" replace="true">
+            <disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)")?"true":"false"</disabled>
+        </node>
+        <node path="buttons/row/field[name=buttonupdatereturnhere]/disabled" replace="true">
+            <disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)")?"true":"false"</disabled>
+        </node>
+        <node path="buttons/row/field[name=edit]/disabled" replace="true">
+            <disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)")?"true":"false"</disabled>
+        </node>
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+                <include>js/updatepresupuestos.js</include>
+            </cache>
+        </javascript>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query include="xml/common/autonombre.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query("tbl_agenda")</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query include="xml/common/qfilesinsert.xml" replace="true"/>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true" />
+        <query match="default" prefix="true" eval="true">setParam("notify_dstart",(execute_query("SELECT dstart FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstart") || execute_query("SELECT dstop FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstop"))?"0":getParam("notify_dstart"))</query>
+        <query match="default" prefix="true" eval="true">setParam("notify_dstop",(execute_query("SELECT dstart FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstart") || execute_query("SELECT dstop FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstop"))?"0":getParam("notify_dstop"))</query>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query("tbl_agenda")</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query include="xml/common/qfilesdelete.xml" replace="true" />
-		<query include="xml/common/qfilesupdate.xml" replace="true"/>
-		<query include="xml/common/qcommentsdelete.xml" replace="true" />
-		<query include="xml/common/qcommentsinsert.xml" replace="true" />
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qdeletecomments.xml" replace="true" />
-		<query include="xml/common/qdeletefiles.xml" replace="true" />
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
+        <query include="xml/common/qfilesdelete.xml" replace="true" />
+        <query include="xml/common/qfilesupdate.xml" replace="true"/>
+        <query include="xml/common/qcommentsdelete.xml" replace="true" />
+        <query include="xml/common/qcommentsinsert.xml" replace="true" />
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query include="xml/common/qdeletecomments.xml" replace="true" />
+        <query include="xml/common/qdeletefiles.xml" replace="true" />
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
 </root>

@@ -24,413 +24,413 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>usuario</name>
-				<label lang="true">username</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>cliente</name>
-				<label lang="true">cliente</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>cliente2</order>
-			</field>
-			<field>
-				<name>proyecto</name>
-				<label lang="true">proyecto</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>proyecto2</order>
-			</field>
-			<field>
-				<name>tarea</name>
-				<label lang="true">tarea</label>
-				<sort>true</sort>
-				<order>tarea2</order>
-			</field>
-			<field>
-				<name>fecha</name>
-				<label lang="true">date</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>horas</name>
-				<label lang="true">horas</label>
-				<sort>true</sort>
-				<math>
-					<func>sum()</func>
-					<label lang="true">suma</label>
-				</math>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-				<include>js/updatetareas.js</include>
-			</cache>
-		</javascript>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>id_usuario</name>
-						<label lang="true">username</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
-						<colspan>4</colspan>
-					</field>
-					<field>
-						<name>id_cliente</name>
-						<label lang="true">cliente</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_seguimientos")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
-						<onchange>update_proyectos();update_tareas()</onchange>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>fecha1</name>
-						<label lang="true">fechaini</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha1","le","fecha2")</onchange>
-					</field>
-					<field>
-						<name>fecha2</name>
-						<label lang="true">fechafin</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha2","ge","fecha1")</onchange>
-					</field>
-					<field>
-						<type>separator</type>
-						<width>10px</width>
-					</field>
-					<field>
-						<name>id_proyecto</name>
-						<label lang="true">proyecto</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
-						<onchange>update_tareas()</onchange>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>4</colspan>
-					</field>
-					<field>
-						<name>id_tarea</name>
-						<label lang="true">tarea</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todaslastareas")."' label ORDER BY label"</query>
-						<value global="id_tarea" eval="true">$id_tarea=getParam("id_tarea")</value>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_usuario'=>'','id_cliente'=>'','fecha1'=>'','fecha2'=>'','id_proyecto'=>'','filtro'=>'','id_tarea'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field ifeval="!ismobile()">
-					<type>button</type>
-					<value lang="true">excel</value>
-					<tip lang="true">exceltip</tip>
-					<onclick>excel()</onclick>
-					<icon eval="true">ICON("excel")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,id_tarea,id_usuario,fecha1,fecha2,filtro,id_proyecto" eval="true">"
-		SELECT LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
-			usuario,
-			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
-				CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',cliente) END cliente,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
-				CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',proyecto) END proyecto,
-			CONCAT('link:openapp(\'seguimientos\',',-id,'):',tarea) tarea,
-			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
-			tarea tarea2,fecha,horas,
-			id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',tarea) action_title,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
-		FROM (SELECT a.*,
-				".make_extra_query_with_login("b.")." usuario,
-				c.nombre cliente,e.datetime,e.id_usuario id_usuario,b.id_grupo id_grupo,p.nombre proyecto,t.tarea tarea
-				FROM tbl_seguimientos a
-				LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
-				LEFT JOIN tbl_clientes c ON a.id_cliente=c.id
-				LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id
-				LEFT JOIN tbl_proyectos_t t ON a.id_tarea=t.id
-		) d
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_tarea?"(id_tarea='$id_tarea')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_date()."' fecha FROM tbl_seguimientos WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".current_date()."' fecha,'0.00' horas,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_proyecto"))."' id_proyecto"</default>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_cliente</name>
-							<label lang="true">cliente</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>3</colspan>
-							<onchange>update_proyectos();update_tareas()</onchange>
-							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_proyecto</name>
-							<label lang="true">proyecto</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>3</colspan>
-							<onchange>update_tareas()</onchange>
-							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_tarea</name>
-							<label lang="true">tarea</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sintarea")."' label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>3</colspan>
-							<required>true</required>
-						</field>
-						<field>
-							<name>fecha</name>
-							<label lang="true">date</label>
-							<type>date</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<icon eval="true">ICON("calendar")</icon>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>100px</width>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>comentarios</name>
-							<label lang="true">comentarios</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>7</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>horas</name>
-							<label lang="true">horas</label>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-				<include>js/updatetareas.js</include>
-			</cache>
-		</javascript>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query include="xml/common/autotarea.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>usuario</name>
+                <label lang="true">username</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>cliente</name>
+                <label lang="true">cliente</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>cliente2</order>
+            </field>
+            <field>
+                <name>proyecto</name>
+                <label lang="true">proyecto</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>proyecto2</order>
+            </field>
+            <field>
+                <name>tarea</name>
+                <label lang="true">tarea</label>
+                <sort>true</sort>
+                <order>tarea2</order>
+            </field>
+            <field>
+                <name>fecha</name>
+                <label lang="true">date</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>horas</name>
+                <label lang="true">horas</label>
+                <sort>true</sort>
+                <math>
+                    <func>sum()</func>
+                    <label lang="true">suma</label>
+                </math>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+                <include>js/updatetareas.js</include>
+            </cache>
+        </javascript>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>id_usuario</name>
+                        <label lang="true">username</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
+                        <colspan>4</colspan>
+                    </field>
+                    <field>
+                        <name>id_cliente</name>
+                        <label lang="true">cliente</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_seguimientos")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
+                        <onchange>update_proyectos();update_tareas()</onchange>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>fecha1</name>
+                        <label lang="true">fechaini</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha1","le","fecha2")</onchange>
+                    </field>
+                    <field>
+                        <name>fecha2</name>
+                        <label lang="true">fechafin</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha2","ge","fecha1")</onchange>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                        <width>10px</width>
+                    </field>
+                    <field>
+                        <name>id_proyecto</name>
+                        <label lang="true">proyecto</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                        <value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
+                        <onchange>update_tareas()</onchange>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                        <colspan>4</colspan>
+                    </field>
+                    <field>
+                        <name>id_tarea</name>
+                        <label lang="true">tarea</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todaslastareas")."' label ORDER BY label"</query>
+                        <value global="id_tarea" eval="true">$id_tarea=getParam("id_tarea")</value>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('id_usuario'=>'','id_cliente'=>'','fecha1'=>'','fecha2'=>'','id_proyecto'=>'','filtro'=>'','id_tarea'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">excel</value>
+                    <tip lang="true">exceltip</tip>
+                    <onclick>excel()</onclick>
+                    <icon eval="true">ICON("excel")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,id_cliente,id_tarea,id_usuario,fecha1,fecha2,filtro,id_proyecto" eval="true">"
+        SELECT LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
+            usuario,
+            CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
+                CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',cliente) END cliente,
+            CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
+                CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',proyecto) END proyecto,
+            CONCAT('link:openapp(\'seguimientos\',',-id,'):',tarea) tarea,
+            CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
+            CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
+            tarea tarea2,fecha,horas,
+            id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',tarea) action_title,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+            CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+            CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
+            CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+        FROM (SELECT a.*,
+                ".make_extra_query_with_login("b.")." usuario,
+                c.nombre cliente,e.datetime,e.id_usuario id_usuario,b.id_grupo id_grupo,p.nombre proyecto,t.tarea tarea
+                FROM tbl_seguimientos a
+                LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+                LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+                LEFT JOIN tbl_clientes c ON a.id_cliente=c.id
+                LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id
+                LEFT JOIN tbl_proyectos_t t ON a.id_tarea=t.id
+        ) d
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_tarea?"(id_tarea='$id_tarea')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND ".check_sql($page,"list")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <query include="xml/common/qdefaultview.xml" replace="true" />
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_date()."' fecha FROM tbl_seguimientos WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".current_date()."' fecha,'0.00' horas,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_proyecto"))."' id_proyecto"</default>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <query include="xml/common/qdefaultview.xml" replace="true" />
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_cliente</name>
+                            <label lang="true">cliente</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>3</colspan>
+                            <onchange>update_proyectos();update_tareas()</onchange>
+                            <link>openapp('clientes',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_proyecto</name>
+                            <label lang="true">proyecto</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>3</colspan>
+                            <onchange>update_tareas()</onchange>
+                            <link>openapp('proyectos',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_tarea</name>
+                            <label lang="true">tarea</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '' value,'".LANG_ESCAPE("sintarea")."' label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>3</colspan>
+                            <required>true</required>
+                        </field>
+                        <field>
+                            <name>fecha</name>
+                            <label lang="true">date</label>
+                            <type>date</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <icon eval="true">ICON("calendar")</icon>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>100px</width>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>comentarios</name>
+                            <label lang="true">comentarios</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>7</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>horas</name>
+                            <label lang="true">horas</label>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+                <include>js/updatetareas.js</include>
+            </cache>
+        </javascript>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query include="xml/common/autotarea.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
-	<excel>
-		<query require="php/listsim.php" global="page" eval="true">"
-		SELECT
-			CONCAT('\'',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) '".LANG_ESCAPE("codigo")."',
-			".make_extra_query_with_login("b.")." '".LANG_ESCAPE("username")."',
-			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE c.nombre END '".LANG_ESCAPE("cliente")."',
-			CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END '".LANG_ESCAPE("proyecto")."',
-			CASE a.id_tarea WHEN '0' THEN '".LANG_ESCAPE("sintarea")."' ELSE t.tarea END '".LANG_ESCAPE("tarea")."',
-			a.fecha '".LANG_ESCAPE("date")."',
-			a.horas '".LANG_ESCAPE("horas")."'
-		FROM tbl_seguimientos a
-		LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-		LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
-		LEFT JOIN tbl_clientes c ON a.id_cliente=c.id
-		LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id
-		LEFT JOIN tbl_proyectos_t t ON a.id_tarea=t.id
-		WHERE a.id IN (".list_simulator($page).")"</query>
-	</excel>
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
+    <excel>
+        <query require="php/listsim.php" global="page" eval="true">"
+        SELECT
+            CONCAT('\'',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) '".LANG_ESCAPE("codigo")."',
+            ".make_extra_query_with_login("b.")." '".LANG_ESCAPE("username")."',
+            CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE c.nombre END '".LANG_ESCAPE("cliente")."',
+            CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END '".LANG_ESCAPE("proyecto")."',
+            CASE a.id_tarea WHEN '0' THEN '".LANG_ESCAPE("sintarea")."' ELSE t.tarea END '".LANG_ESCAPE("tarea")."',
+            a.fecha '".LANG_ESCAPE("date")."',
+            a.horas '".LANG_ESCAPE("horas")."'
+        FROM tbl_seguimientos a
+        LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+        LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+        LEFT JOIN tbl_clientes c ON a.id_cliente=c.id
+        LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id
+        LEFT JOIN tbl_proyectos_t t ON a.id_tarea=t.id
+        WHERE a.id IN (".list_simulator($page).")"</query>
+    </excel>
 </root>

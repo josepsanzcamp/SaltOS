@@ -24,584 +24,584 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>cliente</name>
-				<label lang="true">cliente</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>cliente2</order>
-			</field>
-			<field>
-				<name>proyecto</name>
-				<label lang="true">proyecto</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>proyecto2</order>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">nombre</label>
-				<sort>true</sort>
-				<order>nombre2</order>
-			</field>
-			<field>
-				<name>tel_fijo</name>
-				<label lang="true">tel_fijo</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>tel_movil</name>
-				<label lang="true">tel_movil</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>email</name>
-				<label lang="true">email</label>
-				<sort>true</sort>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-			</cache>
-		</javascript>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>id_cliente</name>
-						<label lang="true">cliente</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_registro FROM tbl_contactos WHERE id_aplicacion='".page2id("clientes")."'")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
-						<colspan>2</colspan>
-						<onchange>update_proyectos()</onchange>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_proyecto</name>
-						<label lang="true">proyecto</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
-						<colspan>2</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_proveedor</name>
-						<label lang="true">proveedor</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("proveedores","tbl_proveedores","nombre","SELECT id_registro FROM tbl_contactos WHERE id_aplicacion='".page2id("proveedores")."'")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosproveedores")."' label,-1 pos UNION SELECT '0' value,'".LANG_ESCAPE("sinproveedor")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_proveedor" eval="true">$id_proveedor=getParam("id_proveedor")</value>
-						<colspan>4</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>2</colspan>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_cliente'=>'','id_proyecto'=>'','id_proveedor'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,filtro,id_proyecto,id_proveedor" eval="true">"
-		SELECT id2,id,
-			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
-				CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',cliente) END cliente,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
-				CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',proyecto) END proyecto,
-			CONCAT('link:openapp(\'contactos\',',-id,'):',nombre) nombre,
-			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
-			nombre nombre2,
-			CONCAT('tel:',tel_fijo) tel_fijo,
-			CONCAT('tel:',tel_movil) tel_movil,
-			CONCAT('mailto:',email) email,
-			id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_vcard,
-			CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
-		FROM (
-			SELECT a.*,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
-				".make_extra_query_with_login("b.")." usuario,
-				CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN (SELECT nombre FROM tbl_clientes WHERE id=a.id_registro)
-					WHEN '".page2id("proyectos")."' THEN (SELECT t2.nombre FROM tbl_proyectos t1 LEFT JOIN tbl_clientes t2 ON t1.id_cliente=t2.id WHERE t1.id=a.id_registro) END cliente,
-				CASE a.id_aplicacion WHEN '".page2id("proyectos")."' THEN (SELECT nombre FROM tbl_proyectos WHERE id=a.id_registro) END proyecto,
-				CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN (SELECT nombre FROM tbl_proveedores WHERE id=a.id_registro) END proveedor,
-				CASE a.id_aplicacion WHEN '".page2id("empleados")."' THEN (SELECT nombre FROM tbl_empleados WHERE id=a.id_registro) END empleado,
-				CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN a.id_registro
-					WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=a.id_registro)
-					ELSE '0' END id_cliente,
-				CASE a.id_aplicacion WHEN '".page2id("proyectos")."' THEN a.id_registro ELSE '0' END id_proyecto,
-				CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN a.id_registro ELSE '0' END id_proveedor,
-				CASE a.id_aplicacion WHEN '".page2id("empleados")."' THEN a.id_registro ELSE '0' END id_empleado,
-				e.datetime,e.id_usuario id_usuario,b.id_grupo id_grupo
-				FROM tbl_contactos a
-				LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
-		) d
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND (id_cliente=ROUND('$id_cliente') OR ''='$id_cliente') AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_proveedor='$id_proveedor' OR ''='$id_proveedor') AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="page,id" eval="true">"SELECT *,(SELECT CASE cif WHEN '' THEN nombre ELSE CONCAT(nombre,' (',cif,')') END FROM tbl_clientes WHERE id=id_cliente) nombre_cliente FROM (SELECT *,
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>cliente</name>
+                <label lang="true">cliente</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>cliente2</order>
+            </field>
+            <field>
+                <name>proyecto</name>
+                <label lang="true">proyecto</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>proyecto2</order>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">nombre</label>
+                <sort>true</sort>
+                <order>nombre2</order>
+            </field>
+            <field>
+                <name>tel_fijo</name>
+                <label lang="true">tel_fijo</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>tel_movil</name>
+                <label lang="true">tel_movil</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>email</name>
+                <label lang="true">email</label>
+                <sort>true</sort>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+            </cache>
+        </javascript>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>id_cliente</name>
+                        <label lang="true">cliente</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_registro FROM tbl_contactos WHERE id_aplicacion='".page2id("clientes")."'")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
+                        <colspan>2</colspan>
+                        <onchange>update_proyectos()</onchange>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_proyecto</name>
+                        <label lang="true">proyecto</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                        <value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
+                        <colspan>2</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_proveedor</name>
+                        <label lang="true">proveedor</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("proveedores","tbl_proveedores","nombre","SELECT id_registro FROM tbl_contactos WHERE id_aplicacion='".page2id("proveedores")."'")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosproveedores")."' label,-1 pos UNION SELECT '0' value,'".LANG_ESCAPE("sinproveedor")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_proveedor" eval="true">$id_proveedor=getParam("id_proveedor")</value>
+                        <colspan>4</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                        <colspan>2</colspan>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_cliente'=>'','id_proyecto'=>'','id_proveedor'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,id_cliente,filtro,id_proyecto,id_proveedor" eval="true">"
+        SELECT id2,id,
+            CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
+                CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',cliente) END cliente,
+            CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
+                CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',proyecto) END proyecto,
+            CONCAT('link:openapp(\'contactos\',',-id,'):',nombre) nombre,
+            CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
+            CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
+            nombre nombre2,
+            CONCAT('tel:',tel_fijo) tel_fijo,
+            CONCAT('tel:',tel_movil) tel_movil,
+            CONCAT('mailto:',email) email,
+            id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+            CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+            CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_vcard,
+            CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
+            CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+        FROM (
+            SELECT a.*,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
+                ".make_extra_query_with_login("b.")." usuario,
+                CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN (SELECT nombre FROM tbl_clientes WHERE id=a.id_registro)
+                    WHEN '".page2id("proyectos")."' THEN (SELECT t2.nombre FROM tbl_proyectos t1 LEFT JOIN tbl_clientes t2 ON t1.id_cliente=t2.id WHERE t1.id=a.id_registro) END cliente,
+                CASE a.id_aplicacion WHEN '".page2id("proyectos")."' THEN (SELECT nombre FROM tbl_proyectos WHERE id=a.id_registro) END proyecto,
+                CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN (SELECT nombre FROM tbl_proveedores WHERE id=a.id_registro) END proveedor,
+                CASE a.id_aplicacion WHEN '".page2id("empleados")."' THEN (SELECT nombre FROM tbl_empleados WHERE id=a.id_registro) END empleado,
+                CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN a.id_registro
+                    WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=a.id_registro)
+                    ELSE '0' END id_cliente,
+                CASE a.id_aplicacion WHEN '".page2id("proyectos")."' THEN a.id_registro ELSE '0' END id_proyecto,
+                CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN a.id_registro ELSE '0' END id_proveedor,
+                CASE a.id_aplicacion WHEN '".page2id("empleados")."' THEN a.id_registro ELSE '0' END id_empleado,
+                e.datetime,e.id_usuario id_usuario,b.id_grupo id_grupo
+                FROM tbl_contactos a
+                LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+                LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+        ) d
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND (id_cliente=ROUND('$id_cliente') OR ''='$id_cliente') AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_proveedor='$id_proveedor' OR ''='$id_proveedor') AND ".check_sql($page,"list")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <default global="page,id" eval="true">"SELECT *,(SELECT CASE cif WHEN '' THEN nombre ELSE CONCAT(nombre,' (',cif,')') END FROM tbl_clientes WHERE id=id_cliente) nombre_cliente FROM (SELECT *,
 CASE id_aplicacion WHEN '".page2id("clientes")."' THEN id_registro WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=id_registro) ELSE '0' END id_cliente,
 CASE id_aplicacion WHEN '".page2id("proyectos")."' THEN id_registro ELSE '0' END id_proyecto,
 CASE id_aplicacion WHEN '".page2id("proveedores")."' THEN id_registro ELSE '0' END id_proveedor,
 CASE id_aplicacion WHEN '".page2id("empleados")."' THEN id_registro ELSE '0' END id_empleado
 FROM tbl_contactos WHERE id=".abs($id).") a"</default>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">"SELECT '0' id,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_proveedor"))."' id_proveedor,'".intval(getParam("id_empleado"))."' id_empleado"</default>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default global="page,id" eval="true">"SELECT *,(SELECT CASE cif WHEN '' THEN nombre ELSE CONCAT(nombre,' (',cif,')') END FROM tbl_clientes WHERE id=id_cliente) nombre_cliente FROM (SELECT *,
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default eval="true">"SELECT '0' id,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_proveedor"))."' id_proveedor,'".intval(getParam("id_empleado"))."' id_empleado"</default>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <default global="page,id" eval="true">"SELECT *,(SELECT CASE cif WHEN '' THEN nombre ELSE CONCAT(nombre,' (',cif,')') END FROM tbl_clientes WHERE id=id_cliente) nombre_cliente FROM (SELECT *,
 CASE id_aplicacion WHEN '".page2id("clientes")."' THEN id_registro WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=id_registro) ELSE '0' END id_cliente,
 CASE id_aplicacion WHEN '".page2id("proyectos")."' THEN id_registro ELSE '0' END id_proyecto,
 CASE id_aplicacion WHEN '".page2id("proveedores")."' THEN id_registro ELSE '0' END id_proveedor,
 CASE id_aplicacion WHEN '".page2id("empleados")."' THEN id_registro ELSE '0' END id_empleado
 FROM tbl_contactos WHERE id=".abs($id).") a"</default>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_cliente</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre_cliente</name>
-							<label lang="true">cliente</label>
-							<type>text</type>
-							<width>240px</width>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>clientes</querycomplete>
-							<oncomplete>
-								$("#"+prefix+"id_cliente").val(ui.item.id);
-								$("select[name$=id_proveedor]").val(0);
-								$("select[name$=id_proyecto]").val(0);
-								$("select[name$=id_empleado]").val(0);
-								update_proyectos();
-								update_contacto();
-							</oncomplete>
-							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-						<field>
-							<name>id_proveedor</name>
-							<label lang="true">proveedor</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("proveedores","tbl_proveedores","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinproveedor")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>3</colspan>
-							<link>openapp('proveedores',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-							<onchange>
-								$("input[name$=id_cliente]").val(0);
-								$("input[name$=nombre_cliente]").val("");
-								$("select[name$=id_proyecto]").val(0);
-								$("select[name$=id_empleado]").val(0);
-								update_proyectos();
-								update_contacto();
-							</onchange>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_proyecto</name>
-							<label lang="true">proyecto</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-						<field>
-							<name>id_empleado</name>
-							<label lang="true">empleado</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("empleados","tbl_empleados","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinempleado")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>3</colspan>
-							<link>openapp('empleados',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-							<onchange>
-								$("input[name$=id_cliente]").val(0);
-								$("input[name$=nombre_cliente]").val("");
-								$("select[name$=id_proveedor]").val(0);
-								$("select[name$=id_proyecto]").val(0);
-								update_proyectos();
-								update_contacto();
-							</onchange>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre1</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre2</name>
-							<label lang="true">apellidos</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-						<field>
-							<name>cargo</name>
-							<label lang="true">cargo</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre</name>
-							<label lang="true">mostrarcomo</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>direccion</name>
-							<label lang="true">direccion</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre_pais</name>
-							<label lang="true">pais</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>paises</querycomplete>
-							<oncomplete>$("#"+prefix+"id_pais").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_pais</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre_provincia</name>
-							<label lang="true">provincia</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>provincias</querycomplete>
-							<filtercomplete>id_pais</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_provincia").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_provincia</name>
-							<type>hidden</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre_poblacion</name>
-							<label lang="true">poblacion</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>poblaciones</querycomplete>
-							<filtercomplete>id_provincia</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_poblacion").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_poblacion</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre_codpostal</name>
-							<label lang="true">codpostal</label>
-							<type>text</type>
-							<width>120px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>codpostales</querycomplete>
-							<filtercomplete>id_poblacion</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_codpostal").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_codpostal</name>
-							<type>hidden</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>email</name>
-							<label lang="true">email</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-						<field>
-							<name>tel_fijo</name>
-							<label lang="true">tel_fijo</label>
-							<type>text</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>web</name>
-							<label lang="true">web</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-						<field>
-							<name>fax</name>
-							<label lang="true">fax</label>
-							<type>text</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-							<colspan>2</colspan>
-						</field>
-						<field>
-							<name>tel_movil</name>
-							<label lang="true">tel_movil</label>
-							<type>text</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>comentarios</name>
-							<label lang="true">comentarios</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>4</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-			</cache>
-		</javascript>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">getParam("id_cliente")?setParam("id_registro",getParam("id_cliente")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_cliente")?setParam("id_aplicacion",page2id("clientes")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_proyecto")?setParam("id_registro",getParam("id_proyecto")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_proyecto")?setParam("id_aplicacion",page2id("proyectos")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_proveedor")?setParam("id_registro",getParam("id_proveedor")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_proveedor")?setParam("id_aplicacion",page2id("proveedores")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_registro",getParam("id_empleado")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_aplicacion",page2id("empleados")):""</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">getParam("id_cliente")?setParam("id_registro",getParam("id_cliente")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_cliente")?setParam("id_aplicacion",page2id("clientes")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_proyecto")?setParam("id_registro",getParam("id_proyecto")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_proyecto")?setParam("id_aplicacion",page2id("proyectos")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_proveedor")?setParam("id_registro",getParam("id_proveedor")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_proveedor")?setParam("id_aplicacion",page2id("proveedores")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_registro",getParam("id_empleado")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_aplicacion",page2id("empleados")):""</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_cliente</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre_cliente</name>
+                            <label lang="true">cliente</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>clientes</querycomplete>
+                            <oncomplete>
+                                $("#"+prefix+"id_cliente").val(ui.item.id);
+                                $("select[name$=id_proveedor]").val(0);
+                                $("select[name$=id_proyecto]").val(0);
+                                $("select[name$=id_empleado]").val(0);
+                                update_proyectos();
+                                update_contacto();
+                            </oncomplete>
+                            <link>openapp('clientes',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                        <field>
+                            <name>id_proveedor</name>
+                            <label lang="true">proveedor</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("proveedores","tbl_proveedores","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinproveedor")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>3</colspan>
+                            <link>openapp('proveedores',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                            <onchange>
+                                $("input[name$=id_cliente]").val(0);
+                                $("input[name$=nombre_cliente]").val("");
+                                $("select[name$=id_proyecto]").val(0);
+                                $("select[name$=id_empleado]").val(0);
+                                update_proyectos();
+                                update_contacto();
+                            </onchange>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_proyecto</name>
+                            <label lang="true">proyecto</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <link>openapp('proyectos',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                        <field>
+                            <name>id_empleado</name>
+                            <label lang="true">empleado</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("empleados","tbl_empleados","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinempleado")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>3</colspan>
+                            <link>openapp('empleados',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                            <onchange>
+                                $("input[name$=id_cliente]").val(0);
+                                $("input[name$=nombre_cliente]").val("");
+                                $("select[name$=id_proveedor]").val(0);
+                                $("select[name$=id_proyecto]").val(0);
+                                update_proyectos();
+                                update_contacto();
+                            </onchange>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre1</name>
+                            <label lang="true">nombre</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre2</name>
+                            <label lang="true">apellidos</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                        <field>
+                            <name>cargo</name>
+                            <label lang="true">cargo</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre</name>
+                            <label lang="true">mostrarcomo</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>direccion</name>
+                            <label lang="true">direccion</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre_pais</name>
+                            <label lang="true">pais</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>paises</querycomplete>
+                            <oncomplete>$("#"+prefix+"id_pais").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_pais</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre_provincia</name>
+                            <label lang="true">provincia</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>provincias</querycomplete>
+                            <filtercomplete>id_pais</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_provincia").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_provincia</name>
+                            <type>hidden</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre_poblacion</name>
+                            <label lang="true">poblacion</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>poblaciones</querycomplete>
+                            <filtercomplete>id_provincia</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_poblacion").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_poblacion</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre_codpostal</name>
+                            <label lang="true">codpostal</label>
+                            <type>text</type>
+                            <width>120px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>codpostales</querycomplete>
+                            <filtercomplete>id_poblacion</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_codpostal").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_codpostal</name>
+                            <type>hidden</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>email</name>
+                            <label lang="true">email</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                        <field>
+                            <name>tel_fijo</name>
+                            <label lang="true">tel_fijo</label>
+                            <type>text</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>web</name>
+                            <label lang="true">web</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                        <field>
+                            <name>fax</name>
+                            <label lang="true">fax</label>
+                            <type>text</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <colspan>2</colspan>
+                        </field>
+                        <field>
+                            <name>tel_movil</name>
+                            <label lang="true">tel_movil</label>
+                            <type>text</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>comentarios</name>
+                            <label lang="true">comentarios</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>4</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+            </cache>
+        </javascript>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query include="xml/common/autonombre.xml" replace="true"/>
+        <query match="default" prefix="true" eval="true">getParam("id_cliente")?setParam("id_registro",getParam("id_cliente")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_cliente")?setParam("id_aplicacion",page2id("clientes")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_proyecto")?setParam("id_registro",getParam("id_proyecto")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_proyecto")?setParam("id_aplicacion",page2id("proyectos")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_proveedor")?setParam("id_registro",getParam("id_proveedor")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_proveedor")?setParam("id_aplicacion",page2id("proveedores")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_registro",getParam("id_empleado")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_aplicacion",page2id("empleados")):""</query>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" eval="true">getParam("id_cliente")?setParam("id_registro",getParam("id_cliente")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_cliente")?setParam("id_aplicacion",page2id("clientes")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_proyecto")?setParam("id_registro",getParam("id_proyecto")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_proyecto")?setParam("id_aplicacion",page2id("proyectos")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_proveedor")?setParam("id_registro",getParam("id_proveedor")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_proveedor")?setParam("id_aplicacion",page2id("proveedores")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_registro",getParam("id_empleado")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_aplicacion",page2id("empleados")):""</query>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
 </root>

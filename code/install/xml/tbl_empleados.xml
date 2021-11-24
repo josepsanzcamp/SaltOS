@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<id>1</id>
-		<nombre>Administrador</nombre>
-		<cargo>Administrador</cargo>
-		<email eval="true">getParam("email")</email>
-	</row>
+    <row>
+        <id>1</id>
+        <nombre>Administrador</nombre>
+        <cargo>Administrador</cargo>
+        <email eval="true">getParam("email")</email>
+    </row>
 </root>

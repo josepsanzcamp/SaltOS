@@ -24,34 +24,34 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<id>1</id>
-		<id_usuario>1</id_usuario>
-		<url>http://www.saltos.org/portal/ca/xml/rss.xml</url>
-		<title>Últimes notícies de SaltOS</title>
-		<description>Canal de notícies del projecte SaltOS</description>
-		<image>http://www.saltos.org/portal/ca/img/saltos-logo.png</image>
-		<link>http://www.saltos.org/portal/ca/inici.htm</link>
-		<disabled>0</disabled>
-	</row>
-	<row>
-		<id>2</id>
-		<id_usuario>1</id_usuario>
-		<url>http://www.saltos.org/portal/es/xml/rss.xml</url>
-		<title>Últimas noticias de SaltOS</title>
-		<description>Canal de noticias del proyecto SaltOS</description>
-		<image>http://www.saltos.org/portal/es/img/saltos-logo.png</image>
-		<link>http://www.saltos.org/portal/es/inicio.htm</link>
-		<disabled>0</disabled>
-	</row>
-	<row>
-		<id>3</id>
-		<id_usuario>1</id_usuario>
-		<url>http://www.saltos.org/portal/en/xml/rss.xml</url>
-		<title>Latest news of SaltOS</title>
-		<description>News channel for the SaltOS project</description>
-		<image>http://www.saltos.org/portal/en/img/saltos-logo.png</image>
-		<link>http://www.saltos.org/portal/en/home.htm</link>
-		<disabled>0</disabled>
-	</row>
+    <row>
+        <id>1</id>
+        <id_usuario>1</id_usuario>
+        <url>http://www.saltos.org/portal/ca/xml/rss.xml</url>
+        <title>Últimes notícies de SaltOS</title>
+        <description>Canal de notícies del projecte SaltOS</description>
+        <image>http://www.saltos.org/portal/ca/img/saltos-logo.png</image>
+        <link>http://www.saltos.org/portal/ca/inici.htm</link>
+        <disabled>0</disabled>
+    </row>
+    <row>
+        <id>2</id>
+        <id_usuario>1</id_usuario>
+        <url>http://www.saltos.org/portal/es/xml/rss.xml</url>
+        <title>Últimas noticias de SaltOS</title>
+        <description>Canal de noticias del proyecto SaltOS</description>
+        <image>http://www.saltos.org/portal/es/img/saltos-logo.png</image>
+        <link>http://www.saltos.org/portal/es/inicio.htm</link>
+        <disabled>0</disabled>
+    </row>
+    <row>
+        <id>3</id>
+        <id_usuario>1</id_usuario>
+        <url>http://www.saltos.org/portal/en/xml/rss.xml</url>
+        <title>Latest news of SaltOS</title>
+        <description>News channel for the SaltOS project</description>
+        <image>http://www.saltos.org/portal/en/img/saltos-logo.png</image>
+        <link>http://www.saltos.org/portal/en/home.htm</link>
+        <disabled>0</disabled>
+    </row>
 </root>

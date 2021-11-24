@@ -24,78 +24,78 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<dir>ltr</dir>
-	<default>common</default>
-	<common>
-		<title>SaltOS programme d'installation</title>
-		<yes>Oui</yes>
-		<no>Non</no>
-		<language>Sélection de la langue, la conception et icônes</language>
-		<welcome_message>Bienvenue sur le programme d'installation de SaltOS</welcome_message>
-		<lang_message>Sélectionner la langue</lang_message>
-		<style_message>Sélectionnez la conception</style_message>
-		<begin_message>Appuyer "Prochain" afin de débuter l'installation de SaltOS seulement 5 étapes</begin_message>
-		<back>Retour</back>
-		<next>Prochain</next>
-		<test>Tester</test>
-		<install>Installé SaltOS</install>
-		<saltos>Lancer SaltOS</saltos>
-		<is_writable>Vérifier permission d'écriture</is_writable>
-		<is_executable>vérifier les programmes externes</is_executable>
-		<directory>Répertoire</directory>
-		<file>Fichier</file>
-		<executable>Exécutable</executable>
-		<database_link>Connections a la base de donnée</database_link>
-		<select_dbtype>Sélectionner le DBMS</select_dbtype>
-		<select_prefered> (recommander)</select_prefered>
-		<selected_dbtype>Sélectionner DBMS</selected_dbtype>
-		<dbfile>fichiers base de données</dbfile>
-		<dbtest>Tester la connexion</dbtest>
-		<dbvoid>La base de données est vide</dbvoid>
-		<dbhost>Host</dbhost>
-		<dbport>Port</dbport>
-		<dbuser>Usager</dbuser>
-		<dbpass>Mot passe</dbpass>
-		<dbname>Nom base de donnée</dbname>
-		<admin_account>accéder au compte administrateur de la base</admin_account>
-		<user>Usager</user>
-		<pass>Mot de passe</pass>
-		<email>Courriel</email>
-		<optional>Optionnel</optional>
-		<server_config>Configuration du serveur</server_config>
-		<timezone>Zone géographique</timezone>
-		<hostname>Serveur web</hostname>
-		<pathname>Chemin du serveur</pathname>
-		<automatic>Automatique</automatic>
-		<forcessl>Forcer SSL (https)</forcessl>
-		<porthttp>Port http</porthttp>
-		<porthttps>Port http</porthttps>
-		<initial_data>Données d'importation initiales</initial_data>
-		<exampledata>Importation de données en exemple</exampledata>
-		<undefined>Indéfini</undefined>
-		<install_input>Summaire et confirmation de l'installation</install_input>
-		<install_output>Résultat de l'installation</install_output>
-		<config>Sauvegarder les paramètres pour accéder à la base de données</config>
-		<dbschema>Créer des tables dans la base de données</dbschema>
-		<dbstatic>Importer des données internes</dbstatic>
-		<streetdata>Importer des données</streetdata>
-		<defaultdata>Importer des données génériques</defaultdata>
-		<permissiondata>Créer administrer les permissions pour les groupes administer</permissiondata>
-		<finish>Installation Complété</finish>
-		<gotohome>Rafraîchir la page</gotohome>
-		<notifybug>Rapporter un bug</notifybug>
-		<step>Étape</step>
-		<lang>Langue</lang>
-		<style>Conception</style>
-		<env_vars>Environnements variables</env_vars>
-		<env_path>PATH</env_path>
-		<env_lang>LANG</env_lang>
-		<applications>Applications</applications>
-		<select_layer>Sélectionnez le calque</select_layer>
-		<selected_layer>Calque sélectionné</selected_layer>
-		<layer_all>Toutes les applications</layer_all>
-		<layer_personal>Applications personnelles</layer_personal>
-		<select_apps>Sélectionnez les applications</select_apps>
-		<selected_apps>Applications sélectionnées</selected_apps>
-	</common>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <title>SaltOS programme d'installation</title>
+        <yes>Oui</yes>
+        <no>Non</no>
+        <language>Sélection de la langue, la conception et icônes</language>
+        <welcome_message>Bienvenue sur le programme d'installation de SaltOS</welcome_message>
+        <lang_message>Sélectionner la langue</lang_message>
+        <style_message>Sélectionnez la conception</style_message>
+        <begin_message>Appuyer "Prochain" afin de débuter l'installation de SaltOS seulement 5 étapes</begin_message>
+        <back>Retour</back>
+        <next>Prochain</next>
+        <test>Tester</test>
+        <install>Installé SaltOS</install>
+        <saltos>Lancer SaltOS</saltos>
+        <is_writable>Vérifier permission d'écriture</is_writable>
+        <is_executable>vérifier les programmes externes</is_executable>
+        <directory>Répertoire</directory>
+        <file>Fichier</file>
+        <executable>Exécutable</executable>
+        <database_link>Connections a la base de donnée</database_link>
+        <select_dbtype>Sélectionner le DBMS</select_dbtype>
+        <select_prefered> (recommander)</select_prefered>
+        <selected_dbtype>Sélectionner DBMS</selected_dbtype>
+        <dbfile>fichiers base de données</dbfile>
+        <dbtest>Tester la connexion</dbtest>
+        <dbvoid>La base de données est vide</dbvoid>
+        <dbhost>Host</dbhost>
+        <dbport>Port</dbport>
+        <dbuser>Usager</dbuser>
+        <dbpass>Mot passe</dbpass>
+        <dbname>Nom base de donnée</dbname>
+        <admin_account>accéder au compte administrateur de la base</admin_account>
+        <user>Usager</user>
+        <pass>Mot de passe</pass>
+        <email>Courriel</email>
+        <optional>Optionnel</optional>
+        <server_config>Configuration du serveur</server_config>
+        <timezone>Zone géographique</timezone>
+        <hostname>Serveur web</hostname>
+        <pathname>Chemin du serveur</pathname>
+        <automatic>Automatique</automatic>
+        <forcessl>Forcer SSL (https)</forcessl>
+        <porthttp>Port http</porthttp>
+        <porthttps>Port http</porthttps>
+        <initial_data>Données d'importation initiales</initial_data>
+        <exampledata>Importation de données en exemple</exampledata>
+        <undefined>Indéfini</undefined>
+        <install_input>Summaire et confirmation de l'installation</install_input>
+        <install_output>Résultat de l'installation</install_output>
+        <config>Sauvegarder les paramètres pour accéder à la base de données</config>
+        <dbschema>Créer des tables dans la base de données</dbschema>
+        <dbstatic>Importer des données internes</dbstatic>
+        <streetdata>Importer des données</streetdata>
+        <defaultdata>Importer des données génériques</defaultdata>
+        <permissiondata>Créer administrer les permissions pour les groupes administer</permissiondata>
+        <finish>Installation Complété</finish>
+        <gotohome>Rafraîchir la page</gotohome>
+        <notifybug>Rapporter un bug</notifybug>
+        <step>Étape</step>
+        <lang>Langue</lang>
+        <style>Conception</style>
+        <env_vars>Environnements variables</env_vars>
+        <env_path>PATH</env_path>
+        <env_lang>LANG</env_lang>
+        <applications>Applications</applications>
+        <select_layer>Sélectionnez le calque</select_layer>
+        <selected_layer>Calque sélectionné</selected_layer>
+        <layer_all>Toutes les applications</layer_all>
+        <layer_personal>Applications personnelles</layer_personal>
+        <select_apps>Sélectionnez les applications</select_apps>
+        <selected_apps>Applications sélectionnées</selected_apps>
+    </common>
 </root>

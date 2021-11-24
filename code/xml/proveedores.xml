@@ -24,563 +24,563 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>cif</name>
-				<label lang="true">cif</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>codigo</name>
-				<label lang="true">codigo</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>activo</name>
-				<label lang="true">activo</label>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">nombre</label>
-				<sort>true</sort>
-				<order>nombre2</order>
-			</field>
-			<field>
-				<name>tel_fijo</name>
-				<label lang="true">tel_fijo</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>tel_movil</name>
-				<label lang="true">tel_movil</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>email</name>
-				<label lang="true">email</label>
-				<sort>true</sort>
-			</field>
-		</fields>
-		<javascript include="xml/common/jslist.xml"/>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>activo</name>
-						<label lang="true">activo</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label UNION SELECT '1' value, '".LANG_ESCAPE("yes")."' label UNION SELECT '0' value, '".LANG_ESCAPE("no")."' label"</query>
-						<value global="activo" eval="true">$activo=getParam("activo")</value>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>2</colspan>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>activo</name>
-					<onchange>buscar()</onchange>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','activo'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,filtro,activo" eval="true">"
-		SELECT id2,id,
-			cif,codigo,
-			CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END activo,
-			CONCAT('link:openapp(\'proveedores\',',-id,'):',nombre) nombre,
-			nombre nombre2,
-			CONCAT('tel:',tel_fijo) tel_fijo,
-			CONCAT('tel:',tel_movil) tel_movil,
-			CONCAT('mailto:',email) email,
-			id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE ".check_sql($page,"view")." OR ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_vcard,
-			CASE ".check_sql($page,"view")." OR ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
-		FROM (
-			SELECT a.*,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
-				".make_extra_query_with_login("b.")." usuario,
-				e.datetime datetime,e.id_usuario id_usuario,b.id_grupo id_grupo
-			FROM tbl_proveedores a
-				LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
-		) c
-		WHERE 1=1
-		AND (activo='$activo' OR ''='$activo')
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml"/>
-					<files_old include="xml/common/qfilesold.xml"/>
-					<graficas>SELECT '1' id</graficas>
-					<contactos>
-						<contactos global="id,page" eval="true">"
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>cif</name>
+                <label lang="true">cif</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>codigo</name>
+                <label lang="true">codigo</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>activo</name>
+                <label lang="true">activo</label>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">nombre</label>
+                <sort>true</sort>
+                <order>nombre2</order>
+            </field>
+            <field>
+                <name>tel_fijo</name>
+                <label lang="true">tel_fijo</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>tel_movil</name>
+                <label lang="true">tel_movil</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>email</name>
+                <label lang="true">email</label>
+                <sort>true</sort>
+            </field>
+        </fields>
+        <javascript include="xml/common/jslist.xml"/>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>activo</name>
+                        <label lang="true">activo</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label UNION SELECT '1' value, '".LANG_ESCAPE("yes")."' label UNION SELECT '0' value, '".LANG_ESCAPE("no")."' label"</query>
+                        <value global="activo" eval="true">$activo=getParam("activo")</value>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                        <colspan>2</colspan>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>activo</name>
+                    <onchange>buscar()</onchange>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','activo'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,filtro,activo" eval="true">"
+        SELECT id2,id,
+            cif,codigo,
+            CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END activo,
+            CONCAT('link:openapp(\'proveedores\',',-id,'):',nombre) nombre,
+            nombre nombre2,
+            CONCAT('tel:',tel_fijo) tel_fijo,
+            CONCAT('tel:',tel_movil) tel_movil,
+            CONCAT('mailto:',email) email,
+            id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+            CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+            CASE ".check_sql($page,"view")." OR ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_vcard,
+            CASE ".check_sql($page,"view")." OR ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
+            CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+        FROM (
+            SELECT a.*,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
+                ".make_extra_query_with_login("b.")." usuario,
+                e.datetime datetime,e.id_usuario id_usuario,b.id_grupo id_grupo
+            FROM tbl_proveedores a
+                LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+                LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+        ) c
+        WHERE 1=1
+        AND (activo='$activo' OR ''='$activo')
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND ".check_sql($page,"list")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <query include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml"/>
+                    <files_old include="xml/common/qfilesold.xml"/>
+                    <graficas>SELECT '1' id</graficas>
+                    <contactos>
+                        <contactos global="id,page" eval="true">"
 SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
-	CONCAT('link:openapp(\'contactos\',',-a.id,'):',a.nombre) nombre,
-	CONCAT('tel:',tel_fijo) tel_fijo,
-	CONCAT('tel:',tel_movil) tel_movil,
-	CONCAT('mailto:',email) email,
-	CONCAT('contactos(',-a.id,')') link_view,
-	CONCAT('vcardcontactos(',-a.id,')') link_vcard,
-	CONCAT('qrcodecontactos(',-a.id,')') link_qrcode
+    CONCAT('link:openapp(\'contactos\',',-a.id,'):',a.nombre) nombre,
+    CONCAT('tel:',tel_fijo) tel_fijo,
+    CONCAT('tel:',tel_movil) tel_movil,
+    CONCAT('mailto:',email) email,
+    CONCAT('contactos(',-a.id,')') link_view,
+    CONCAT('vcardcontactos(',-a.id,')') link_vcard,
+    CONCAT('qrcodecontactos(',-a.id,')') link_qrcode
 FROM tbl_contactos a
-	LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("contactos")."' AND e.id_registro=a.id AND e.first=1
-	LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+    LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("contactos")."' AND e.id_registro=a.id AND e.first=1
+    LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proveedores")."') AND (".check_sql("contactos","view").") ORDER BY a.nombre ASC"</contactos>
-					</contactos>
-					<gastos>
-						<gastos global="id" eval="true">"SELECT id_usuario,id_grupo,(SELECT nombre FROM tbl_cuentas c WHERE c.id=id_cuenta) cuenta,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,empresa,fecha,num,base,total,CONCAT('gastos(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,b.nombre empresa FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("gastos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) c WHERE id_proveedor=".abs($id)." AND (".check_sql("gastos","view").") ORDER BY fecha DESC"</gastos>
-					</gastos>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default>SELECT '0' id,'0' diapago</default>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml"/>
-					<files_old include="xml/common/qfilesold.xml"/>
-					<comments_new include="xml/common/qcommentnew.xml" replace="true"/>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens>
-			<hiddens include="xml/common/hiddensform.xml" replace="true" />
-			<field>
-				<name>id_proveedor</name>
-				<type>hidden</type>
-				<value eval="true">getParam("id_proveedor")</value>
-			</field>
-		</hiddens>
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre1</name>
-							<label lang="true">nombrecomercial</label>
-							<type>text</type>
-							<width>240px</width>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<onkey ifeval="!getParam('id')">var orig=this; var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkey>
-						</field>
-						<field>
-							<name>codigo</name>
-							<label lang="true">codigo</label>
-							<type>text</type>
-							<width>120px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre2</name>
-							<label lang="true">nombrefiscal</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-						<field>
-							<name>cif</name>
-							<label lang="true">cif</label>
-							<type>text</type>
-							<width>120px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre</name>
-							<label lang="true">mostrarcomo</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<onkey ifeval="!getParam('id')">$(this).prop("writed",true)</onkey>
-						</field>
-						<field>
-							<name>activo</name>
-							<label lang="true">activo</label>
-							<tip lang="true">activo_desc</tip>
-							<type>checkbox</type>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>direccion</name>
-							<label lang="true">direccion</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre_pais</name>
-							<label lang="true">pais</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>paises</querycomplete>
-							<oncomplete>$("#"+prefix+"id_pais").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_pais</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre_provincia</name>
-							<label lang="true">provincia</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>provincias</querycomplete>
-							<filtercomplete>id_pais</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_provincia").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_provincia</name>
-							<type>hidden</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre_poblacion</name>
-							<label lang="true">poblacion</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>poblaciones</querycomplete>
-							<filtercomplete>id_provincia</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_poblacion").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_poblacion</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre_codpostal</name>
-							<label lang="true">codpostal</label>
-							<type>text</type>
-							<width>120px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>codpostales</querycomplete>
-							<filtercomplete>id_poblacion</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_codpostal").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_codpostal</name>
-							<type>hidden</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>email</name>
-							<label lang="true">email</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-						<field>
-							<name>tel_fijo</name>
-							<label lang="true">tel_fijo</label>
-							<type>text</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>web</name>
-							<label lang="true">web</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-						<field>
-							<name>fax</name>
-							<label lang="true">fax</label>
-							<type>text</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-							<colspan>2</colspan>
-						</field>
-						<field>
-							<name>tel_movil</name>
-							<label lang="true">tel_movil</label>
-							<type>text</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>corriente</name>
-							<label lang="true">cuentacorriente</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>contable</name>
-							<label lang="true">cuentacontable</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>diapago</name>
-							<label lang="true">diapago</label>
-							<type>select</type>
-							<width>75px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<rows include="xml/common/dias.xml" replace="true" />
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>comentarios</name>
-							<label lang="true">comentarios</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>4</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<graficas>
-				<fieldset ifeval="!ismobile()">
-					<title lang="true">graficas</title>
-					<icon eval="true">ICON("plots")</icon>
-					<row>
-						<field>
-							<type>plot</type>
-							<width eval="true">CONFIG("plot_form_width")."px"</width>
-							<height eval="true">CONFIG("plot_form_height")."px"</height>
-							<vars>1</vars>
-							<graph>bars</graph>
-							<title lang="true">plotseguimiento12meses</title>
-							<query global="id" eval="true">"SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND id_proveedor='".abs($id)."' GROUP BY xx ORDER BY xx ASC"</query>
-						</field>
-						<field>
-							<type>plot</type>
-							<width eval="true">CONFIG("plot_form_width")."px"</width>
-							<height eval="true">CONFIG("plot_form_height")."px"</height>
-							<vars>1</vars>
-							<graph>pie</graph>
-							<title lang="true">plotseguimiento12meses</title>
-							<query global="id" eval="true">"SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND id_proveedor='".abs($id)."' GROUP BY xx ORDER BY xx ASC"</query>
-						</field>
-					</row>
-				</fieldset>
-			</graficas>
-			<contactos include="xml/common/relatedcontacts.xml" replace="true" />
-			<gastos include="xml/common/relatedgastos.xml" replace="true" />
-			<comments_old include="xml/common/commentsold.xml"/>
-			<files_old include="xml/common/filesold.xml"/>
-			<comments_new include="xml/common/commentnew.xml"/>
-			<files_new include="xml/common/filesnew.xml"/>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<node path="buttons/row/field" before="true">
-			<field global="id" ifeval="$id&lt;0">
-				<type>button</type>
-				<value eval="true">LANG("add","contactos")</value>
-				<tip eval="true">LANG("add","contactos")</tip>
-				<onclick>setParam("page","contactos");setParam("action","form");setParam("id_proveedor",abs(intval(getParam("id"))));setParam("id","0");submit1()</onclick>
-				<disabled eval="true">check_user("contactos","create")?"false":"true"</disabled>
-				<class>nowrap contextmenu</class>
-				<icon eval="true">ICON("add")</icon>
-			</field>
-		</node>
-		<javascript include="xml/common/jsform.xml"/>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query include="xml/common/qfilesinsert.xml" replace="true"/>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+                    </contactos>
+                    <gastos>
+                        <gastos global="id" eval="true">"SELECT id_usuario,id_grupo,(SELECT nombre FROM tbl_cuentas c WHERE c.id=id_cuenta) cuenta,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,empresa,fecha,num,base,total,CONCAT('gastos(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,b.nombre empresa FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("gastos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) c WHERE id_proveedor=".abs($id)." AND (".check_sql("gastos","view").") ORDER BY fecha DESC"</gastos>
+                    </gastos>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default>SELECT '0' id,'0' diapago</default>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <default include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml"/>
+                    <files_old include="xml/common/qfilesold.xml"/>
+                    <comments_new include="xml/common/qcommentnew.xml" replace="true"/>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens>
+            <hiddens include="xml/common/hiddensform.xml" replace="true" />
+            <field>
+                <name>id_proveedor</name>
+                <type>hidden</type>
+                <value eval="true">getParam("id_proveedor")</value>
+            </field>
+        </hiddens>
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre1</name>
+                            <label lang="true">nombrecomercial</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <onkey ifeval="!getParam('id')">var orig=this; var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkey>
+                        </field>
+                        <field>
+                            <name>codigo</name>
+                            <label lang="true">codigo</label>
+                            <type>text</type>
+                            <width>120px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre2</name>
+                            <label lang="true">nombrefiscal</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                        <field>
+                            <name>cif</name>
+                            <label lang="true">cif</label>
+                            <type>text</type>
+                            <width>120px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre</name>
+                            <label lang="true">mostrarcomo</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <onkey ifeval="!getParam('id')">$(this).prop("writed",true)</onkey>
+                        </field>
+                        <field>
+                            <name>activo</name>
+                            <label lang="true">activo</label>
+                            <tip lang="true">activo_desc</tip>
+                            <type>checkbox</type>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>direccion</name>
+                            <label lang="true">direccion</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre_pais</name>
+                            <label lang="true">pais</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>paises</querycomplete>
+                            <oncomplete>$("#"+prefix+"id_pais").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_pais</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre_provincia</name>
+                            <label lang="true">provincia</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>provincias</querycomplete>
+                            <filtercomplete>id_pais</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_provincia").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_provincia</name>
+                            <type>hidden</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre_poblacion</name>
+                            <label lang="true">poblacion</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>poblaciones</querycomplete>
+                            <filtercomplete>id_provincia</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_poblacion").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_poblacion</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre_codpostal</name>
+                            <label lang="true">codpostal</label>
+                            <type>text</type>
+                            <width>120px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>codpostales</querycomplete>
+                            <filtercomplete>id_poblacion</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_codpostal").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_codpostal</name>
+                            <type>hidden</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>email</name>
+                            <label lang="true">email</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                        <field>
+                            <name>tel_fijo</name>
+                            <label lang="true">tel_fijo</label>
+                            <type>text</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>web</name>
+                            <label lang="true">web</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                        <field>
+                            <name>fax</name>
+                            <label lang="true">fax</label>
+                            <type>text</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <colspan>2</colspan>
+                        </field>
+                        <field>
+                            <name>tel_movil</name>
+                            <label lang="true">tel_movil</label>
+                            <type>text</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>corriente</name>
+                            <label lang="true">cuentacorriente</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>contable</name>
+                            <label lang="true">cuentacontable</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>diapago</name>
+                            <label lang="true">diapago</label>
+                            <type>select</type>
+                            <width>75px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <rows include="xml/common/dias.xml" replace="true" />
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>comentarios</name>
+                            <label lang="true">comentarios</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>4</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <graficas>
+                <fieldset ifeval="!ismobile()">
+                    <title lang="true">graficas</title>
+                    <icon eval="true">ICON("plots")</icon>
+                    <row>
+                        <field>
+                            <type>plot</type>
+                            <width eval="true">CONFIG("plot_form_width")."px"</width>
+                            <height eval="true">CONFIG("plot_form_height")."px"</height>
+                            <vars>1</vars>
+                            <graph>bars</graph>
+                            <title lang="true">plotseguimiento12meses</title>
+                            <query global="id" eval="true">"SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND id_proveedor='".abs($id)."' GROUP BY xx ORDER BY xx ASC"</query>
+                        </field>
+                        <field>
+                            <type>plot</type>
+                            <width eval="true">CONFIG("plot_form_width")."px"</width>
+                            <height eval="true">CONFIG("plot_form_height")."px"</height>
+                            <vars>1</vars>
+                            <graph>pie</graph>
+                            <title lang="true">plotseguimiento12meses</title>
+                            <query global="id" eval="true">"SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND id_proveedor='".abs($id)."' GROUP BY xx ORDER BY xx ASC"</query>
+                        </field>
+                    </row>
+                </fieldset>
+            </graficas>
+            <contactos include="xml/common/relatedcontacts.xml" replace="true" />
+            <gastos include="xml/common/relatedgastos.xml" replace="true" />
+            <comments_old include="xml/common/commentsold.xml"/>
+            <files_old include="xml/common/filesold.xml"/>
+            <comments_new include="xml/common/commentnew.xml"/>
+            <files_new include="xml/common/filesnew.xml"/>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <node path="buttons/row/field" before="true">
+            <field global="id" ifeval="$id&lt;0">
+                <type>button</type>
+                <value eval="true">LANG("add","contactos")</value>
+                <tip eval="true">LANG("add","contactos")</tip>
+                <onclick>setParam("page","contactos");setParam("action","form");setParam("id_proveedor",abs(intval(getParam("id"))));setParam("id","0");submit1()</onclick>
+                <disabled eval="true">check_user("contactos","create")?"false":"true"</disabled>
+                <class>nowrap contextmenu</class>
+                <icon eval="true">ICON("add")</icon>
+            </field>
+        </node>
+        <javascript include="xml/common/jsform.xml"/>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query include="xml/common/autonombre.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query include="xml/common/qfilesinsert.xml" replace="true"/>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query include="xml/common/qfilesdelete.xml" replace="true"/>
-		<query include="xml/common/qfilesupdate.xml" replace="true"/>
-		<query include="xml/common/qcommentsdelete.xml" replace="true"/>
-		<query include="xml/common/qcommentsinsert.xml" replace="true"/>
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qdeletecomments.xml" replace="true"/>
-		<query include="xml/common/qdeletefiles.xml" replace="true"/>
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
+        <query include="xml/common/qfilesdelete.xml" replace="true"/>
+        <query include="xml/common/qfilesupdate.xml" replace="true"/>
+        <query include="xml/common/qcommentsdelete.xml" replace="true"/>
+        <query include="xml/common/qcommentsinsert.xml" replace="true"/>
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query include="xml/common/qdeletecomments.xml" replace="true"/>
+        <query include="xml/common/qdeletefiles.xml" replace="true"/>
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
 </root>

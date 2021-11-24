@@ -24,133 +24,133 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<facturasopen>
-		<fieldset ifeval="check_user('facturas','menu')">
-			<width>700px</width>
-			<title lang="true">facturaopen</title>
-			<icon eval="true">ICON("form")</icon>
-			<head>
-				<field>
-					<type>label</type>
-					<label lang="true">numfac</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">date</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
-					<class>thead</class>
-					<math>
-						<func>sum()</func>
-						<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
-					</math>
-				</field>
-				<field>
-					<type>label</type>
-					<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-					<class>thead</class>
-					<math>
-						<func>sum()</func>
-						<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
-					</math>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">cerrado</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">cobrado</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">cuenta</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>separator</type>
-					<class>thead</class>
-					<colspan>100</colspan>
-					<math>
-						<ignore>true</ignore>
-					</math>
-				</field>
-			</head>
-			<row>
-				<field>
-					<type>label</type>
-					<name>num</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>fecha</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>base</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>total</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>cerrado</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>cobrado</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>cuenta</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_view</name>
-					<type>link</type>
-					<label lang="true">view</label>
-					<width>1px</width>
-					<icon eval="true">ICON("view")</icon>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_pdf</name>
-					<type>link</type>
-					<label lang="true">pdf</label>
-					<width>1px</width>
-					<icon eval="true">ICON("pdf")</icon>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_view2</name>
-					<type>link</type>
-					<label lang="true">view2</label>
-					<width>1px</width>
-					<icon eval="true">ICON("viewpdf")</icon>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_mail</name>
-					<type>link</type>
-					<label lang="true">mail</label>
-					<width>1px</width>
-					<icon eval="true">ICON("correo")</icon>
-					<class>tbody</class>
-				</field>
-			</row>
-		</fieldset>
-	</facturasopen>
+    <facturasopen>
+        <fieldset ifeval="check_user('facturas','menu')">
+            <width>700px</width>
+            <title lang="true">facturaopen</title>
+            <icon eval="true">ICON("form")</icon>
+            <head>
+                <field>
+                    <type>label</type>
+                    <label lang="true">numfac</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">date</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
+                    <class>thead</class>
+                    <math>
+                        <func>sum()</func>
+                        <label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
+                    </math>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                    <class>thead</class>
+                    <math>
+                        <func>sum()</func>
+                        <label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
+                    </math>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">cerrado</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">cobrado</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">cuenta</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <class>thead</class>
+                    <colspan>100</colspan>
+                    <math>
+                        <ignore>true</ignore>
+                    </math>
+                </field>
+            </head>
+            <row>
+                <field>
+                    <type>label</type>
+                    <name>num</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>fecha</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>base</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>total</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>cerrado</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>cobrado</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>cuenta</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_view</name>
+                    <type>link</type>
+                    <label lang="true">view</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("view")</icon>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_pdf</name>
+                    <type>link</type>
+                    <label lang="true">pdf</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("pdf")</icon>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_view2</name>
+                    <type>link</type>
+                    <label lang="true">view2</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("viewpdf")</icon>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_mail</name>
+                    <type>link</type>
+                    <label lang="true">mail</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("correo")</icon>
+                    <class>tbody</class>
+                </field>
+            </row>
+        </fieldset>
+    </facturasopen>
 </root>

@@ -24,60 +24,60 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<field>
-		<name>page</name>
-		<type>hidden</type>
-		<value global="page" eval="true">$page</value>
-		<class>nofilter</class>
-	</field>
-	<field>
-		<name>action</name>
-		<type>hidden</type>
-		<value global="action" eval="true">$action</value>
-		<class>nofilter</class>
-	</field>
-	<field>
-		<name>id</name>
-		<type>hidden</type>
-		<value global="id" eval="true">$id</value>
-		<class>nofilter</class>
-	</field>
-	<field>
-		<name>order</name>
-		<type>hidden</type>
-		<value global="order" eval="true">$order=getParam("order","id desc")</value>
-	</field>
-	<field>
-		<name>limit</name>
-		<type>hidden</type>
-		<temp global="limit" eval="true">$limit=intval(getParam("limit",getDefault("regspagerdef")))</temp>
-		<temp global="limit" eval="true">$limit=in_array($limit,explode(",",getDefault("regspagerlist")))?$limit:intval(getDefault("regspagerdef"))</temp>
-		<temp global="limit" eval="true">$limit=ismobile()?intval(getDefault("regspagermobile")):$limit</temp>
-		<value global="limit" eval="true">$limit</value>
-		<class>nofilter</class>
-	</field>
-	<field>
-		<name>offset</name>
-		<type>hidden</type>
-		<value global="offset" eval="true">$offset=max(intval(getParam("offset",0)),0)</value>
-		<class>nofilter</class>
-	</field>
-	<field>
-		<name>id_folder</name>
-		<type>hidden</type>
-		<value global="id_folder" eval="true">$id_folder=intval(getParam("id_folder"))</value>
-		<class>nofilter</class>
-	</field>
-	<field>
-		<name>is_fichero</name>
-		<type>hidden</type>
-		<value global="is_fichero" eval="true">$is_fichero=(getParam("page")=="ficheros")?1:0</value>
-		<class>nofilter</class>
-	</field>
-	<field>
-		<name>is_buscador</name>
-		<type>hidden</type>
-		<value global="is_buscador" eval="true">$is_buscador=(getParam("page")=="buscador")?1:0</value>
-		<class>nofilter</class>
-	</field>
+    <field>
+        <name>page</name>
+        <type>hidden</type>
+        <value global="page" eval="true">$page</value>
+        <class>nofilter</class>
+    </field>
+    <field>
+        <name>action</name>
+        <type>hidden</type>
+        <value global="action" eval="true">$action</value>
+        <class>nofilter</class>
+    </field>
+    <field>
+        <name>id</name>
+        <type>hidden</type>
+        <value global="id" eval="true">$id</value>
+        <class>nofilter</class>
+    </field>
+    <field>
+        <name>order</name>
+        <type>hidden</type>
+        <value global="order" eval="true">$order=getParam("order","id desc")</value>
+    </field>
+    <field>
+        <name>limit</name>
+        <type>hidden</type>
+        <temp global="limit" eval="true">$limit=intval(getParam("limit",getDefault("regspagerdef")))</temp>
+        <temp global="limit" eval="true">$limit=in_array($limit,explode(",",getDefault("regspagerlist")))?$limit:intval(getDefault("regspagerdef"))</temp>
+        <temp global="limit" eval="true">$limit=ismobile()?intval(getDefault("regspagermobile")):$limit</temp>
+        <value global="limit" eval="true">$limit</value>
+        <class>nofilter</class>
+    </field>
+    <field>
+        <name>offset</name>
+        <type>hidden</type>
+        <value global="offset" eval="true">$offset=max(intval(getParam("offset",0)),0)</value>
+        <class>nofilter</class>
+    </field>
+    <field>
+        <name>id_folder</name>
+        <type>hidden</type>
+        <value global="id_folder" eval="true">$id_folder=intval(getParam("id_folder"))</value>
+        <class>nofilter</class>
+    </field>
+    <field>
+        <name>is_fichero</name>
+        <type>hidden</type>
+        <value global="is_fichero" eval="true">$is_fichero=(getParam("page")=="ficheros")?1:0</value>
+        <class>nofilter</class>
+    </field>
+    <field>
+        <name>is_buscador</name>
+        <type>hidden</type>
+        <value global="is_buscador" eval="true">$is_buscador=(getParam("page")=="buscador")?1:0</value>
+        <class>nofilter</class>
+    </field>
 </root>

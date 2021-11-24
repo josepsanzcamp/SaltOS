@@ -24,78 +24,78 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<dir>nl_nl</dir>
-	<default>common</default>
-	<common>
-		<title>Programa de instalación de SaltOS</title>
-		<yes>Ja</yes>
-		<no>Nee</no>
-		<language>Taalkeuze, ontwerp en pictogrammen</language>
-		<welcome_message>Welkom bij het SaltOS-installatieprogramma</welcome_message>
-		<lang_message>Selecteer taal</lang_message>
-		<style_message>Selecteer ontwerp</style_message>
-		<begin_message>Klik op "Volgende" om SaltOS in 5 eenvoudige stappen te installeren</begin_message>
-		<back>Vorige</back>
-		<next>Volgende</next>
-		<test>Controleer</test>
-		<install>Installeer SaltOS</install>
-		<saltos>Start SaltOS</saltos>
-		<is_writable>Controleer schrijfrechten</is_writable>
-		<is_executable>Externe programma's controleren</is_executable>
-		<directory>Directory</directory>
-		<file>Bestand</file>
-		<executable>Uitvoerbaar</executable>
-		<database_link>Verbinding met de database</database_link>
-		<select_dbtype>Selecteer het DBMS</select_dbtype>
-		<select_prefered>(aanbevolen)</select_prefered>
-		<selected_dbtype>SGBD geselecteerd</selected_dbtype>
-		<dbfile>Database-bestand</dbfile>
-		<dbtest>Testverbinding werkte</dbtest>
-		<dbvoid>De database is leeg</dbvoid>
-		<dbhost>Database-server</dbhost>
-		<dbport>Poort</dbport>
-		<dbuser>Gebruiker</dbuser>
-		<dbpass>Sleutel</dbpass>
-		<dbname>Database naam</dbname>
-		<admin_account>Toegang tot gegevens tot het beheerdersaccount</admin_account>
-		<user>Gebruiker</user>
-		<pass>Sleutel</pass>
-		<email>E-mail</email>
-		<optional>Optioneel</optional>
-		<server_config>Server setup</server_config>
-		<timezone>Tijdzone</timezone>
-		<hostname>Webserver</hostname>
-		<pathname>Serverpad</pathname>
-		<automatic>Automatisch</automatic>
-		<forcessl>SSL afdwingen (https)</forcessl>
-		<porthttp>Http-poort</porthttp>
-		<porthttps>Https-poort</porthttps>
-		<initial_data>Initiële gegevensbelasting</initial_data>
-		<exampledata>Voorbeeldgegevens importeren</exampledata>
-		<undefined>Ongedefinieerd</undefined>
-		<install_input>Installatieoverzicht en bevestiging</install_input>
-		<install_output>Resultaat van installatie</install_output>
-		<config>Sla de instellingen voor databasetoegang op</config>
-		<dbschema>Maak tabellen in de database</dbschema>
-		<dbstatic>Importeer interne gegevens</dbstatic>
-		<streetdata>Straatgegevens importeren</streetdata>
-		<defaultdata>Importeer generieke gegevens</defaultdata>
-		<permissiondata>Maak machtigingen voor de beheerdersgroep</permissiondata>
-		<finish>Einde installatie</finish>
-		<gotohome>Herladen</gotohome>
-		<notifybug>Mislukking melden</notifybug>
-		<step>Stap</step>
-		<lang>Taal</lang>
-		<style>Design</style>
-		<env_vars>Omgevingsvariabelen</env_vars>
-		<env_path>WEG</env_path>
-		<env_lang>LANG</env_lang>
-		<applications>Toepassingen</applications>
-		<select_layer>Selecteer profiel</select_layer>
-		<selected_layer>Geselecteerd profiel</selected_layer>
-		<layer_all>Alle toepassingen</layer_all>
-		<layer_personal>Applicaties voor persoonlijk gebruik</layer_personal>
-		<select_apps>Selecteer applicaties</select_apps>
-		<selected_apps>Geselecteerde applicaties</selected_apps>
-	</common>
+    <dir>nl_nl</dir>
+    <default>common</default>
+    <common>
+        <title>Programa de instalación de SaltOS</title>
+        <yes>Ja</yes>
+        <no>Nee</no>
+        <language>Taalkeuze, ontwerp en pictogrammen</language>
+        <welcome_message>Welkom bij het SaltOS-installatieprogramma</welcome_message>
+        <lang_message>Selecteer taal</lang_message>
+        <style_message>Selecteer ontwerp</style_message>
+        <begin_message>Klik op "Volgende" om SaltOS in 5 eenvoudige stappen te installeren</begin_message>
+        <back>Vorige</back>
+        <next>Volgende</next>
+        <test>Controleer</test>
+        <install>Installeer SaltOS</install>
+        <saltos>Start SaltOS</saltos>
+        <is_writable>Controleer schrijfrechten</is_writable>
+        <is_executable>Externe programma's controleren</is_executable>
+        <directory>Directory</directory>
+        <file>Bestand</file>
+        <executable>Uitvoerbaar</executable>
+        <database_link>Verbinding met de database</database_link>
+        <select_dbtype>Selecteer het DBMS</select_dbtype>
+        <select_prefered>(aanbevolen)</select_prefered>
+        <selected_dbtype>SGBD geselecteerd</selected_dbtype>
+        <dbfile>Database-bestand</dbfile>
+        <dbtest>Testverbinding werkte</dbtest>
+        <dbvoid>De database is leeg</dbvoid>
+        <dbhost>Database-server</dbhost>
+        <dbport>Poort</dbport>
+        <dbuser>Gebruiker</dbuser>
+        <dbpass>Sleutel</dbpass>
+        <dbname>Database naam</dbname>
+        <admin_account>Toegang tot gegevens tot het beheerdersaccount</admin_account>
+        <user>Gebruiker</user>
+        <pass>Sleutel</pass>
+        <email>E-mail</email>
+        <optional>Optioneel</optional>
+        <server_config>Server setup</server_config>
+        <timezone>Tijdzone</timezone>
+        <hostname>Webserver</hostname>
+        <pathname>Serverpad</pathname>
+        <automatic>Automatisch</automatic>
+        <forcessl>SSL afdwingen (https)</forcessl>
+        <porthttp>Http-poort</porthttp>
+        <porthttps>Https-poort</porthttps>
+        <initial_data>Initiële gegevensbelasting</initial_data>
+        <exampledata>Voorbeeldgegevens importeren</exampledata>
+        <undefined>Ongedefinieerd</undefined>
+        <install_input>Installatieoverzicht en bevestiging</install_input>
+        <install_output>Resultaat van installatie</install_output>
+        <config>Sla de instellingen voor databasetoegang op</config>
+        <dbschema>Maak tabellen in de database</dbschema>
+        <dbstatic>Importeer interne gegevens</dbstatic>
+        <streetdata>Straatgegevens importeren</streetdata>
+        <defaultdata>Importeer generieke gegevens</defaultdata>
+        <permissiondata>Maak machtigingen voor de beheerdersgroep</permissiondata>
+        <finish>Einde installatie</finish>
+        <gotohome>Herladen</gotohome>
+        <notifybug>Mislukking melden</notifybug>
+        <step>Stap</step>
+        <lang>Taal</lang>
+        <style>Design</style>
+        <env_vars>Omgevingsvariabelen</env_vars>
+        <env_path>WEG</env_path>
+        <env_lang>LANG</env_lang>
+        <applications>Toepassingen</applications>
+        <select_layer>Selecteer profiel</select_layer>
+        <selected_layer>Geselecteerd profiel</selected_layer>
+        <layer_all>Alle toepassingen</layer_all>
+        <layer_personal>Applicaties voor persoonlijk gebruik</layer_personal>
+        <select_apps>Selecteer applicaties</select_apps>
+        <selected_apps>Geselecteerde applicaties</selected_apps>
+    </common>
 </root>

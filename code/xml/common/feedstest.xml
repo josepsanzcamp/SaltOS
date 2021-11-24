@@ -24,155 +24,155 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<feeds_old>
-		<fieldset>
-			<title lang="true">feeds_old</title>
-			<icon eval="true">ICON("feeds")</icon>
-			<width>700px</width>
-			<buttons>true</buttons>
-			<head>
-				<field>
-					<type>label</type>
-					<label lang="true">feedslist</label>
-					<class>thead</class>
-				</field>
-				<field global="id" ifeval="$id>=0">
-					<type>separator</type>
-					<class>thead</class>
-					<colspan>100</colspan>
-				</field>
-			</head>
-			<row>
-				<field>
-					<name>id</name>
-					<type>hidden</type>
-				</field>
-				<field>
-					<name>id_empleado</name>
-					<type>hidden</type>
-				</field>
-				<field>
-					<name>title</name>
-					<type>label</type>
-					<class>tbody</class>
-				</field>
-				<field global="id" ifeval="$id>=0">
-					<type>checkbox</type>
-					<label lang="true">lowerdisabled</label>
-					<name>disabled</name>
-					<value>1</value>
-					<width>1px</width>
-					<width2>1px</width2>
-					<class>tbody</class>
-					<class2>tbody</class2>
-				</field>
-				<field global="id" ifeval="$id>=0">
-					<type>checkbox</type>
-					<label lang="true">delete</label>
-					<name>feeds_del</name>
-					<value>1</value>
-					<width>1px</width>
-					<width2>1px</width2>
-					<icon eval="true">ICON("delete")</icon>
-					<class>tbody</class>
-					<class2>tbody</class2>
-				</field>
-			</row>
-		</fieldset>
-	</feeds_old>
-	<feeds_new>
-		<fieldset>
-			<title lang="true">feeds_new</title>
-			<icon eval="true">ICON("feeds")</icon>
-			<row>
-				<field>
-					<type>label</type>
-					<label lang="true">feedstitle</label>
-					<class>center bold</class>
-					<colspan>10</colspan>
-				</field>
-			</row>
-			<row>
-				<field>
-					<type>separator</type>
-				</field>
-			</row>
-			<row>
-				<field>
-					<name>url</name>
-					<label lang="true">url</label>
-					<type>text</type>
-					<width>480px</width>
-					<onchange>$("#feeds_new_0_add").addClass("ui-state-disabled")</onchange>
-				</field>
-				<field>
-					<name>test</name>
-					<type>button</type>
-					<value lang="true">test</value>
-					<icon eval="true">ICON("reset")</icon>
-					<onclick>feeds_test()</onclick>
-					<class>nowrap</class>
-				</field>
-			</row>
-			<row>
-				<field>
-					<name>title</name>
-					<label lang="true">title</label>
-					<type>text</type>
-					<width>480px</width>
-					<readonly>false</readonly>
-				</field>
-				<field>
-					<name>add</name>
-					<type>button</type>
-					<value lang="true">add</value>
-					<icon eval="true">ICON("add")</icon>
-					<class>nowrap</class>
-					<class2>disabled</class2>
-					<onclick>if(!is_disabled(this)) submit1()</onclick>
-				</field>
-			</row>
-			<row>
-				<field>
-					<name>link</name>
-					<label lang="true">link</label>
-					<type>text</type>
-					<width>480px</width>
-					<readonly>true</readonly>
-				</field>
-			</row>
-			<row>
-				<field>
-					<name>description</name>
-					<label lang="true">description</label>
-					<type>textarea</type>
-					<width>480px</width>
-					<height>60px</height>
-					<readonly>true</readonly>
-				</field>
-			</row>
-			<row>
-				<field>
-					<name>iframe</name>
-					<label lang="true">image</label>
-					<type>iframe</type>
-					<width>480px</width>
-					<height>100px</height>
-				</field>
-				<field>
-					<name>image</name>
-					<type>hidden</type>
-				</field>
-				<field>
-					<name>id</name>
-					<type>hidden</type>
-				</field>
-				<field>
-					<name>id_empleado</name>
-					<type>hidden</type>
-				</field>
-			</row>
-			<buttons>true</buttons>
-		</fieldset>
-	</feeds_new>
+    <feeds_old>
+        <fieldset>
+            <title lang="true">feeds_old</title>
+            <icon eval="true">ICON("feeds")</icon>
+            <width>700px</width>
+            <buttons>true</buttons>
+            <head>
+                <field>
+                    <type>label</type>
+                    <label lang="true">feedslist</label>
+                    <class>thead</class>
+                </field>
+                <field global="id" ifeval="$id>=0">
+                    <type>separator</type>
+                    <class>thead</class>
+                    <colspan>100</colspan>
+                </field>
+            </head>
+            <row>
+                <field>
+                    <name>id</name>
+                    <type>hidden</type>
+                </field>
+                <field>
+                    <name>id_empleado</name>
+                    <type>hidden</type>
+                </field>
+                <field>
+                    <name>title</name>
+                    <type>label</type>
+                    <class>tbody</class>
+                </field>
+                <field global="id" ifeval="$id>=0">
+                    <type>checkbox</type>
+                    <label lang="true">lowerdisabled</label>
+                    <name>disabled</name>
+                    <value>1</value>
+                    <width>1px</width>
+                    <width2>1px</width2>
+                    <class>tbody</class>
+                    <class2>tbody</class2>
+                </field>
+                <field global="id" ifeval="$id>=0">
+                    <type>checkbox</type>
+                    <label lang="true">delete</label>
+                    <name>feeds_del</name>
+                    <value>1</value>
+                    <width>1px</width>
+                    <width2>1px</width2>
+                    <icon eval="true">ICON("delete")</icon>
+                    <class>tbody</class>
+                    <class2>tbody</class2>
+                </field>
+            </row>
+        </fieldset>
+    </feeds_old>
+    <feeds_new>
+        <fieldset>
+            <title lang="true">feeds_new</title>
+            <icon eval="true">ICON("feeds")</icon>
+            <row>
+                <field>
+                    <type>label</type>
+                    <label lang="true">feedstitle</label>
+                    <class>center bold</class>
+                    <colspan>10</colspan>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <type>separator</type>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <name>url</name>
+                    <label lang="true">url</label>
+                    <type>text</type>
+                    <width>480px</width>
+                    <onchange>$("#feeds_new_0_add").addClass("ui-state-disabled")</onchange>
+                </field>
+                <field>
+                    <name>test</name>
+                    <type>button</type>
+                    <value lang="true">test</value>
+                    <icon eval="true">ICON("reset")</icon>
+                    <onclick>feeds_test()</onclick>
+                    <class>nowrap</class>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <name>title</name>
+                    <label lang="true">title</label>
+                    <type>text</type>
+                    <width>480px</width>
+                    <readonly>false</readonly>
+                </field>
+                <field>
+                    <name>add</name>
+                    <type>button</type>
+                    <value lang="true">add</value>
+                    <icon eval="true">ICON("add")</icon>
+                    <class>nowrap</class>
+                    <class2>disabled</class2>
+                    <onclick>if(!is_disabled(this)) submit1()</onclick>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <name>link</name>
+                    <label lang="true">link</label>
+                    <type>text</type>
+                    <width>480px</width>
+                    <readonly>true</readonly>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <name>description</name>
+                    <label lang="true">description</label>
+                    <type>textarea</type>
+                    <width>480px</width>
+                    <height>60px</height>
+                    <readonly>true</readonly>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <name>iframe</name>
+                    <label lang="true">image</label>
+                    <type>iframe</type>
+                    <width>480px</width>
+                    <height>100px</height>
+                </field>
+                <field>
+                    <name>image</name>
+                    <type>hidden</type>
+                </field>
+                <field>
+                    <name>id</name>
+                    <type>hidden</type>
+                </field>
+                <field>
+                    <name>id_empleado</name>
+                    <type>hidden</type>
+                </field>
+            </row>
+            <buttons>true</buttons>
+        </fieldset>
+    </feeds_new>
 </root>

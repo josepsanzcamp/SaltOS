@@ -24,15 +24,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="id,page" match="files_new" prefix="true" eval="true">getParam("fichero_file")?make_insert_query("tbl_ficheros",array(
-		"id_aplicacion"=>page2id($page),
-		"id_registro"=>abs($id),
-		"id_usuario"=>current_user(),
-		"datetime"=>current_datetime(),
-		"fichero"=>getParam("fichero"),
-		"fichero_file"=>getParam("fichero_file"),
-		"fichero_size"=>intval(getParam("fichero_size")),
-		"fichero_type"=>getParam("fichero_type"),
-		"fichero_hash"=>getParam("fichero_hash")
-	)):""</query>
+    <query global="id,page" match="files_new" prefix="true" eval="true">getParam("fichero_file")?make_insert_query("tbl_ficheros",array(
+        "id_aplicacion"=>page2id($page),
+        "id_registro"=>abs($id),
+        "id_usuario"=>current_user(),
+        "datetime"=>current_datetime(),
+        "fichero"=>getParam("fichero"),
+        "fichero_file"=>getParam("fichero_file"),
+        "fichero_size"=>intval(getParam("fichero_size")),
+        "fichero_type"=>getParam("fichero_type"),
+        "fichero_hash"=>getParam("fichero_hash")
+    )):""</query>
 </root>

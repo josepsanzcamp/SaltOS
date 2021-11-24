@@ -24,72 +24,72 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<name>lang</name>
-	<label lang="true">language</label>
-	<type>select</type>
-	<width>120px</width>
-	<rows>
-		<row>
-			<label>Arabic (Saudi Arabia)</label>
-			<value>ar_SA</value>
-		</row>
-		<row>
-			<label>Català (Espanya)</label>
-			<value>ca_ES</value>
-		</row>
-		<row>
-			<label>Deutsch (Deutschland)</label>
-			<value>de_DE</value>
-		</row>
-		<row>
-			<label>English (USA)</label>
-			<value>en_US</value>
-		</row>
-		<row>
-			<label>Español (España)</label>
-			<value>es_ES</value>
-		</row>
-		<row>
-			<label>Español (América Latina)</label>
-			<value>es_LA</value>
-		</row>
-		<row>
-			<label>French (France)</label>
-			<value>fr_FR</value>
-		</row>
-		<row>
-			<label>Italiano (Italia)</label>
-			<value>it_IT</value>
-		</row>
-		<row>
-			<label>Klingon (Klingon)</label>
-			<value>tlh_TLH</value>
-		</row>
-		<row>
-			<label>Nederlands (Nederland))</label>
-			<value>nl_NL</value>
-		</row>
-		<row>
-			<label>Nynorsk (Noreg)</label>
-			<value>nn_NO</value>
-		</row>
-		<row>
-			<label>Português (Brasil)</label>
-			<value>pt_BR</value>
-		</row>
-		<row>
-			<label>Português (Portugal)</label>
-			<value>pt_PT</value>
-		</row>
-		<row>
-			<label>Suomi (Suomi)</label>
-			<value>fi_FI</value>
-		</row>
-		<row>
-			<label>Svenska (Sverige)</label>
-			<value>sv_SE</value>
-		</row>
-	</rows>
-	<value global="lang" eval="true">$lang</value>
-	<onchange>submit1()</onchange>
+    <name>lang</name>
+    <label lang="true">language</label>
+    <type>select</type>
+    <width>120px</width>
+    <rows>
+        <row>
+            <label>Arabic (Saudi Arabia)</label>
+            <value>ar_SA</value>
+        </row>
+        <row>
+            <label>Català (Espanya)</label>
+            <value>ca_ES</value>
+        </row>
+        <row>
+            <label>Deutsch (Deutschland)</label>
+            <value>de_DE</value>
+        </row>
+        <row>
+            <label>English (USA)</label>
+            <value>en_US</value>
+        </row>
+        <row>
+            <label>Español (España)</label>
+            <value>es_ES</value>
+        </row>
+        <row>
+            <label>Español (América Latina)</label>
+            <value>es_LA</value>
+        </row>
+        <row>
+            <label>French (France)</label>
+            <value>fr_FR</value>
+        </row>
+        <row>
+            <label>Italiano (Italia)</label>
+            <value>it_IT</value>
+        </row>
+        <row>
+            <label>Klingon (Klingon)</label>
+            <value>tlh_TLH</value>
+        </row>
+        <row>
+            <label>Nederlands (Nederland))</label>
+            <value>nl_NL</value>
+        </row>
+        <row>
+            <label>Nynorsk (Noreg)</label>
+            <value>nn_NO</value>
+        </row>
+        <row>
+            <label>Português (Brasil)</label>
+            <value>pt_BR</value>
+        </row>
+        <row>
+            <label>Português (Portugal)</label>
+            <value>pt_PT</value>
+        </row>
+        <row>
+            <label>Suomi (Suomi)</label>
+            <value>fi_FI</value>
+        </row>
+        <row>
+            <label>Svenska (Sverige)</label>
+            <value>sv_SE</value>
+        </row>
+    </rows>
+    <value global="lang" eval="true">$lang</value>
+    <onchange>submit1()</onchange>
 </root>

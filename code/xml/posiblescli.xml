@@ -24,719 +24,719 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">nombre</label>
-				<sort>true</sort>
-				<order>nombre2</order>
-			</field>
-			<field>
-				<name>activo</name>
-				<label lang="true">activo</label>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>estado</name>
-				<label lang="true">estado</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>tel_fijo</name>
-				<label lang="true">tel_fijo</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>tel_movil</name>
-				<label lang="true">tel_movil</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>email</name>
-				<label lang="true">email</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>comentarios</name>
-				<label lang="true">numc</label>
-				<tip lang="true">numctip</tip>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>ficheros</name>
-				<label lang="true">numf</label>
-				<tip lang="true">numftip</tip>
-				<sort>false</sort>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true" />
-			<function eval="true">"lang_agenda() { return '".LANG_ESCAPE("agenda")."'; }"</function>
-			<function eval="true">"lang_presupuestos() { return '".LANG_ESCAPE("presupuestos")."'; }"</function>
-			<function eval="true">"lang_actas() { return '".LANG_ESCAPE("actas")."'; }"</function>
-			<function eval="true">"lang_selectall() { return '".LANG_ESCAPE("selectall")."'; }"</function>
-			<function eval="true">"lang_selectnone() { return '".LANG_ESCAPE("selectnone")."'; }"</function>
-			<function eval="true">"lang_pdf2filter_title() { return '".LANG_ESCAPE("pdf2filter_title")."'; }"</function>
-			<function eval="true">"lang_pdf2filter_message() { return '".LANG_ESCAPE("pdf2filter_message")."'; }"</function>
-			<function eval="true">"lang_buttoncontinue() { return '".LANG_ESCAPE("buttoncontinue")."'; }"</function>
-			<function eval="true">"lang_view2filter_title() { return '".LANG_ESCAPE("view2filter_title")."'; }"</function>
-			<function eval="true">"lang_view2filter_message() { return '".LANG_ESCAPE("view2filter_message")."'; }"</function>
-			<function>pdf2filter(id) { pdf2filter_posiblescli(id); }</function>
-			<function>view2filter(id) { view2filter_posiblescli(id); }</function>
-		</javascript>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>id_campanya</name>
-						<label lang="true">campanya</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_estado</name>
-						<label lang="true">estado</label>
-						<type>select</type>
-						<width>240px</width>
-						<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
-					</field>
-					<field>
-						<type>separator</type>
-						<width>10px</width>
-					</field>
-					<field>
-						<name>activo</name>
-						<label lang="true">activo</label>
-						<type>select</type>
-						<width>90px</width>
-					    <query global="page" eval="true">"SELECT '1' value,'".LANG_ESCAPE("yes")."' label UNION SELECT '0' value,'".LANG_ESCAPE("no")."' label UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label"</query>
-						<value global="activo" eval="true">$activo=getParam("activo")</value>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-					</field>
-					<field>
-						<name>agenda</name>
-						<type>hidden</type>
-						<value>0</value>
-					</field>
-					<field>
-						<name>presupuestos</name>
-						<type>hidden</type>
-						<value>0</value>
-					</field>
-					<field>
-						<name>actas</name>
-						<type>hidden</type>
-						<value>0</value>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','activo'=>'','id_campanya'=>'','id_estado'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field ifeval="!ismobile()">
-					<type>button</type>
-					<value lang="true">excel</value>
-					<tip lang="true">exceltip</tip>
-					<onclick>excel()</onclick>
-					<icon eval="true">ICON("excel")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,filtro,activo,id_campanya,id_estado" eval="true">"
-		SELECT id,id2,
-			CONCAT('link:openapp(\'posiblescli\',',-id,'):',nombre) nombre,
-			CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END activo,
-			nombre nombre2,
-			CONCAT('tel:',tel_fijo) tel_fijo,
-			CONCAT('tel:',tel_movil) tel_movil,
-			CONCAT('mailto:',email) email,
-			pais,provincia,poblacion,codpostal,direccion,
-			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=cc.id) comentarios,
-			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=cc.id) ficheros,
-			id action_id,
-			CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
-			CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE estado END estado,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_vcard,
-			CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2filter,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2filter,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
-		FROM (SELECT a.id id,a.nombre nombre,a.activo activo,a.activo activo2,a.tel_fijo tel_fijo,a.tel_movil tel_movil,a.email email,a.comentarios comentarios,
-					LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
-					a.id_campanya id_campanya,a.id_estado id_estado,
-					e.id_usuario id_usuario,b.id_grupo id_grupo,
-					a.nombre_pais pais,a.nombre_provincia provincia,a.nombre_poblacion poblacion,a.nombre_codpostal codpostal,a.direccion direccion,
-					".make_extra_query_with_login("b.")." usuario,
-					c.nombre estado,c.activo c_activo
-				FROM tbl_posiblescli a
-				LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
-				LEFT JOIN tbl_estados c ON a.id_estado=c.id
-		) cc
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND (activo2='$activo' OR ''='$activo') AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND c_activo='1') OR ('alldisabled'='$id_estado' AND c_activo='0')) AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<query global="id" eval="true">"SELECT CASE IFNULL((SELECT id FROM tbl_posiblescli WHERE id='".abs($id)."'),0) WHEN 0 THEN '0' ELSE '1' END action_commit,CASE IFNULL((SELECT id FROM tbl_posiblescli WHERE id='".abs($id)."'),0) WHEN 0 THEN '-1' ELSE '0' END action_go"</query>
-					<default include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml" />
-					<files_old include="xml/common/qfilesold.xml" />
-					<agenda>
-						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'agenda\',',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_posiblecli=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
-					</agenda>
-					<presupuestos>
-						<presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'presupuestos\',',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_posiblecli=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.datetime DESC"</presupuestos>
-					</presupuestos>
-					<actas>
-						<actas global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'actas\',',-id,'):',nombre) nombre,CONCAT('actas(',-id,')') link_view,CONCAT('pdfacta(',id,')') link_pdf,CONCAT('viewacta(',id,')') link_view2,CONCAT('mailacta(',id,')') link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_posiblecli=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
-					</actas>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default>SELECT '0' id,'0' id_campanya,'0' id_estado</default>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml" />
-					<files_old include="xml/common/qfilesold.xml" />
-					<comments_new include="xml/common/qcommentnew.xml" replace="true"/>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens>
-			<hiddens include="xml/common/hiddensform.xml" replace="true" />
-			<field>
-				<name>id_posiblecli</name>
-				<type>hidden</type>
-				<value></value>
-			</field>
-			<field>
-				<name>id_campanya</name>
-				<type>hidden</type>
-				<value></value>
-			</field>
-		</hiddens>
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_campanya</name>
-							<label lang="true">campanya</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>openapp('campanyas',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_estado</name>
-							<label lang="true">estado</label>
-							<type>select</type>
-							<width>240px</width>
-							<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-						<field>
-							<name>activo</name>
-							<label lang="true">activo_desc</label>
-							<type>checkbox</type>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre</name>
-							<label lang="true">empresa</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							</field>
-						<field>
-							<name>cif</name>
-							<label lang="true">cif</label>
-							<type>text</type>
-							<width>120px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>contacto</name>
-							<label lang="true">contacto</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							</field>
-						<field>
-							<name>cargo</name>
-							<label lang="true">cargo</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>direccion</name>
-							<label lang="true">direccion</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre_pais</name>
-							<label lang="true">pais</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>paises</querycomplete>
-							<oncomplete>$("#"+prefix+"id_pais").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_pais</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre_provincia</name>
-							<label lang="true">provincia</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>provincias</querycomplete>
-							<filtercomplete>id_pais</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_provincia").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_provincia</name>
-							<type>hidden</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre_poblacion</name>
-							<label lang="true">poblacion</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>poblaciones</querycomplete>
-							<filtercomplete>id_provincia</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_poblacion").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_poblacion</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre_codpostal</name>
-							<label lang="true">codpostal</label>
-							<type>text</type>
-							<width>120px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>codpostales</querycomplete>
-							<filtercomplete>id_poblacion</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_codpostal").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_codpostal</name>
-							<type>hidden</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>email</name>
-							<label lang="true">email</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-						<field>
-							<name>tel_fijo</name>
-							<label lang="true">tel_fijo</label>
-							<type>text</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>web</name>
-							<label lang="true">web</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-						<field>
-							<name>fax</name>
-							<label lang="true">fax</label>
-							<type>text</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-							<colspan>2</colspan>
-						</field>
-						<field>
-							<name>tel_movil</name>
-							<label lang="true">tel_movil</label>
-							<type>text</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>facturacion</name>
-							<label lang="true">facturacion</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-					</row>
-					<row>
-						<field>
-							<name>iae_desc</name>
-							<label lang="true">iaedesc</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-						<field>
-							<name>iae_cod</name>
-							<label lang="true">iaecod</label>
-							<type>text</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>comentarios</name>
-							<label lang="true">comentarios</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>4</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<comments_old include="xml/common/commentsold.xml"/>
-			<files_old include="xml/common/filesold.xml" />
-			<comments_new include="xml/common/commentnew.xml"/>
-			<files_new include="xml/common/filesnew.xml"/>
-			<agenda include="xml/common/relatedagenda.xml" replace="true" />
-			<presupuestos include="xml/common/relatedpresupuestos.xml" replace="true" />
-			<actas include="xml/common/relatedactas.xml" replace="true" />
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<node path="buttons/row/field" before="true">
-			<field global="id" ifeval="$id&lt;0">
-				<type>button</type>
-				<value eval="true">LANG("add","agenda")</value>
-				<tip eval="true">LANG("add","agenda")</tip>
-				<onclick>setParam("page","agenda"); setParam("action","form"); setParam("id_campanya",getParam("default_"+abs(intval(getParam("id")))+"_id_campanya")); setParam("id_posiblecli",abs(intval(getParam("id")))); setParam("id","0"); submit1();</onclick>
-				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
-				<class>nowrap contextmenu</class>
-				<icon eval="true">ICON("add")</icon>
-			</field>
-			<field global="id" ifeval="$id&lt;0">
-				<type>button</type>
-				<value eval="true">LANG("add","actas")</value>
-				<tip eval="true">LANG("add","actas")</tip>
-				<onclick>setParam("page","actas"); setParam("action","form"); setParam("id_campanya",getParam("default_"+abs(intval(getParam("id")))+"_id_campanya")); setParam("id_posiblecli",abs(intval(getParam("id")))); setParam("id","0"); submit1();</onclick>
-				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
-				<class>nowrap contextmenu</class>
-				<icon eval="true">ICON("add")</icon>
-			</field>
-			<field global="id" ifeval="$id&lt;0">
-				<type>button</type>
-				<value eval="true">LANG("crearcliente")</value>
-				<tip eval="true">LANG("crearcliente")</tip>
-				<onclick>migrar()</onclick>
-				<disabled eval="true">check_user("clientes","create")?"false":"true"</disabled>
-				<class>nowrap contextmenu</class>
-				<icon eval="true">ICON("add")</icon>
-			</field>
-		</node>
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<function eval="true">"migrar() { dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("msgcrear")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','migrar'); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
-		</javascript>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query include="xml/common/qfilesinsert.xml" replace="true"/>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="id" eval="true">"SELECT '".LANG_ESCAPE("changedenied")."' action_error
-			FROM (SELECT 1) a
-			WHERE 1=1
-			AND (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='${id}')
-				+(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='${id}')
-				+(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='${id}')>0
-			AND '".intval(getParam("activo"))."'='0'"</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
-		<query match="default" prefix="true" global="id" eval="true">make_update_query("tbl_posiblescli",array(
-			"activo"=>1
-		),"id='${id}'
-			AND (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='${id}')
-				+(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='${id}')
-				+(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='${id}')>0
-			AND '".intval(getParam("activo"))."'='0'")</query>
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">nombre</label>
+                <sort>true</sort>
+                <order>nombre2</order>
+            </field>
+            <field>
+                <name>activo</name>
+                <label lang="true">activo</label>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>estado</name>
+                <label lang="true">estado</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>tel_fijo</name>
+                <label lang="true">tel_fijo</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>tel_movil</name>
+                <label lang="true">tel_movil</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>email</name>
+                <label lang="true">email</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>comentarios</name>
+                <label lang="true">numc</label>
+                <tip lang="true">numctip</tip>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>ficheros</name>
+                <label lang="true">numf</label>
+                <tip lang="true">numftip</tip>
+                <sort>false</sort>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true" />
+            <function eval="true">"lang_agenda() { return '".LANG_ESCAPE("agenda")."'; }"</function>
+            <function eval="true">"lang_presupuestos() { return '".LANG_ESCAPE("presupuestos")."'; }"</function>
+            <function eval="true">"lang_actas() { return '".LANG_ESCAPE("actas")."'; }"</function>
+            <function eval="true">"lang_selectall() { return '".LANG_ESCAPE("selectall")."'; }"</function>
+            <function eval="true">"lang_selectnone() { return '".LANG_ESCAPE("selectnone")."'; }"</function>
+            <function eval="true">"lang_pdf2filter_title() { return '".LANG_ESCAPE("pdf2filter_title")."'; }"</function>
+            <function eval="true">"lang_pdf2filter_message() { return '".LANG_ESCAPE("pdf2filter_message")."'; }"</function>
+            <function eval="true">"lang_buttoncontinue() { return '".LANG_ESCAPE("buttoncontinue")."'; }"</function>
+            <function eval="true">"lang_view2filter_title() { return '".LANG_ESCAPE("view2filter_title")."'; }"</function>
+            <function eval="true">"lang_view2filter_message() { return '".LANG_ESCAPE("view2filter_message")."'; }"</function>
+            <function>pdf2filter(id) { pdf2filter_posiblescli(id); }</function>
+            <function>view2filter(id) { view2filter_posiblescli(id); }</function>
+        </javascript>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>id_campanya</name>
+                        <label lang="true">campanya</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_estado</name>
+                        <label lang="true">estado</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                        <width>10px</width>
+                    </field>
+                    <field>
+                        <name>activo</name>
+                        <label lang="true">activo</label>
+                        <type>select</type>
+                        <width>90px</width>
+                        <query global="page" eval="true">"SELECT '1' value,'".LANG_ESCAPE("yes")."' label UNION SELECT '0' value,'".LANG_ESCAPE("no")."' label UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label"</query>
+                        <value global="activo" eval="true">$activo=getParam("activo")</value>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                    </field>
+                    <field>
+                        <name>agenda</name>
+                        <type>hidden</type>
+                        <value>0</value>
+                    </field>
+                    <field>
+                        <name>presupuestos</name>
+                        <type>hidden</type>
+                        <value>0</value>
+                    </field>
+                    <field>
+                        <name>actas</name>
+                        <type>hidden</type>
+                        <value>0</value>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','activo'=>'','id_campanya'=>'','id_estado'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">excel</value>
+                    <tip lang="true">exceltip</tip>
+                    <onclick>excel()</onclick>
+                    <icon eval="true">ICON("excel")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,filtro,activo,id_campanya,id_estado" eval="true">"
+        SELECT id,id2,
+            CONCAT('link:openapp(\'posiblescli\',',-id,'):',nombre) nombre,
+            CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END activo,
+            nombre nombre2,
+            CONCAT('tel:',tel_fijo) tel_fijo,
+            CONCAT('tel:',tel_movil) tel_movil,
+            CONCAT('mailto:',email) email,
+            pais,provincia,poblacion,codpostal,direccion,
+            (SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=cc.id) comentarios,
+            (SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=cc.id) ficheros,
+            id action_id,
+            CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
+            CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE estado END estado,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+            CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+            CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_vcard,
+            CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2filter,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2filter,
+            CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+        FROM (SELECT a.id id,a.nombre nombre,a.activo activo,a.activo activo2,a.tel_fijo tel_fijo,a.tel_movil tel_movil,a.email email,a.comentarios comentarios,
+                    LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
+                    a.id_campanya id_campanya,a.id_estado id_estado,
+                    e.id_usuario id_usuario,b.id_grupo id_grupo,
+                    a.nombre_pais pais,a.nombre_provincia provincia,a.nombre_poblacion poblacion,a.nombre_codpostal codpostal,a.direccion direccion,
+                    ".make_extra_query_with_login("b.")." usuario,
+                    c.nombre estado,c.activo c_activo
+                FROM tbl_posiblescli a
+                LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+                LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+                LEFT JOIN tbl_estados c ON a.id_estado=c.id
+        ) cc
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND (activo2='$activo' OR ''='$activo') AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND c_activo='1') OR ('alldisabled'='$id_estado' AND c_activo='0')) AND ".check_sql($page,"list")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <query global="id" eval="true">"SELECT CASE IFNULL((SELECT id FROM tbl_posiblescli WHERE id='".abs($id)."'),0) WHEN 0 THEN '0' ELSE '1' END action_commit,CASE IFNULL((SELECT id FROM tbl_posiblescli WHERE id='".abs($id)."'),0) WHEN 0 THEN '-1' ELSE '0' END action_go"</query>
+                    <default include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml" />
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <agenda>
+                        <agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'agenda\',',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_posiblecli=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
+                    </agenda>
+                    <presupuestos>
+                        <presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'presupuestos\',',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_posiblecli=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.datetime DESC"</presupuestos>
+                    </presupuestos>
+                    <actas>
+                        <actas global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'actas\',',-id,'):',nombre) nombre,CONCAT('actas(',-id,')') link_view,CONCAT('pdfacta(',id,')') link_pdf,CONCAT('viewacta(',id,')') link_view2,CONCAT('mailacta(',id,')') link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_posiblecli=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
+                    </actas>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default>SELECT '0' id,'0' id_campanya,'0' id_estado</default>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <default include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml" />
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <comments_new include="xml/common/qcommentnew.xml" replace="true"/>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens>
+            <hiddens include="xml/common/hiddensform.xml" replace="true" />
+            <field>
+                <name>id_posiblecli</name>
+                <type>hidden</type>
+                <value></value>
+            </field>
+            <field>
+                <name>id_campanya</name>
+                <type>hidden</type>
+                <value></value>
+            </field>
+        </hiddens>
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_campanya</name>
+                            <label lang="true">campanya</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <link>openapp('campanyas',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_estado</name>
+                            <label lang="true">estado</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                        <field>
+                            <name>activo</name>
+                            <label lang="true">activo_desc</label>
+                            <type>checkbox</type>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre</name>
+                            <label lang="true">empresa</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            </field>
+                        <field>
+                            <name>cif</name>
+                            <label lang="true">cif</label>
+                            <type>text</type>
+                            <width>120px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>contacto</name>
+                            <label lang="true">contacto</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            </field>
+                        <field>
+                            <name>cargo</name>
+                            <label lang="true">cargo</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>direccion</name>
+                            <label lang="true">direccion</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre_pais</name>
+                            <label lang="true">pais</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>paises</querycomplete>
+                            <oncomplete>$("#"+prefix+"id_pais").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_pais</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre_provincia</name>
+                            <label lang="true">provincia</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>provincias</querycomplete>
+                            <filtercomplete>id_pais</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_provincia").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_provincia</name>
+                            <type>hidden</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre_poblacion</name>
+                            <label lang="true">poblacion</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>poblaciones</querycomplete>
+                            <filtercomplete>id_provincia</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_poblacion").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_poblacion</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre_codpostal</name>
+                            <label lang="true">codpostal</label>
+                            <type>text</type>
+                            <width>120px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>codpostales</querycomplete>
+                            <filtercomplete>id_poblacion</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_codpostal").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_codpostal</name>
+                            <type>hidden</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>email</name>
+                            <label lang="true">email</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                        <field>
+                            <name>tel_fijo</name>
+                            <label lang="true">tel_fijo</label>
+                            <type>text</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>web</name>
+                            <label lang="true">web</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                        <field>
+                            <name>fax</name>
+                            <label lang="true">fax</label>
+                            <type>text</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <colspan>2</colspan>
+                        </field>
+                        <field>
+                            <name>tel_movil</name>
+                            <label lang="true">tel_movil</label>
+                            <type>text</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>facturacion</name>
+                            <label lang="true">facturacion</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>iae_desc</name>
+                            <label lang="true">iaedesc</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                        <field>
+                            <name>iae_cod</name>
+                            <label lang="true">iaecod</label>
+                            <type>text</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>comentarios</name>
+                            <label lang="true">comentarios</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>4</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <comments_old include="xml/common/commentsold.xml"/>
+            <files_old include="xml/common/filesold.xml" />
+            <comments_new include="xml/common/commentnew.xml"/>
+            <files_new include="xml/common/filesnew.xml"/>
+            <agenda include="xml/common/relatedagenda.xml" replace="true" />
+            <presupuestos include="xml/common/relatedpresupuestos.xml" replace="true" />
+            <actas include="xml/common/relatedactas.xml" replace="true" />
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <node path="buttons/row/field" before="true">
+            <field global="id" ifeval="$id&lt;0">
+                <type>button</type>
+                <value eval="true">LANG("add","agenda")</value>
+                <tip eval="true">LANG("add","agenda")</tip>
+                <onclick>setParam("page","agenda"); setParam("action","form"); setParam("id_campanya",getParam("default_"+abs(intval(getParam("id")))+"_id_campanya")); setParam("id_posiblecli",abs(intval(getParam("id")))); setParam("id","0"); submit1();</onclick>
+                <disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
+                <class>nowrap contextmenu</class>
+                <icon eval="true">ICON("add")</icon>
+            </field>
+            <field global="id" ifeval="$id&lt;0">
+                <type>button</type>
+                <value eval="true">LANG("add","actas")</value>
+                <tip eval="true">LANG("add","actas")</tip>
+                <onclick>setParam("page","actas"); setParam("action","form"); setParam("id_campanya",getParam("default_"+abs(intval(getParam("id")))+"_id_campanya")); setParam("id_posiblecli",abs(intval(getParam("id")))); setParam("id","0"); submit1();</onclick>
+                <disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
+                <class>nowrap contextmenu</class>
+                <icon eval="true">ICON("add")</icon>
+            </field>
+            <field global="id" ifeval="$id&lt;0">
+                <type>button</type>
+                <value eval="true">LANG("crearcliente")</value>
+                <tip eval="true">LANG("crearcliente")</tip>
+                <onclick>migrar()</onclick>
+                <disabled eval="true">check_user("clientes","create")?"false":"true"</disabled>
+                <class>nowrap contextmenu</class>
+                <icon eval="true">ICON("add")</icon>
+            </field>
+        </node>
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+            <function eval="true">"migrar() { dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("msgcrear")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','migrar'); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+        </javascript>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query include="xml/common/autonombre.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query include="xml/common/qfilesinsert.xml" replace="true"/>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" global="id" eval="true">"SELECT '".LANG_ESCAPE("changedenied")."' action_error
+            FROM (SELECT 1) a
+            WHERE 1=1
+            AND (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='${id}')
+                +(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='${id}')
+                +(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='${id}')>0
+            AND '".intval(getParam("activo"))."'='0'"</query>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+        <query match="default" prefix="true" global="id" eval="true">make_update_query("tbl_posiblescli",array(
+            "activo"=>1
+        ),"id='${id}'
+            AND (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='${id}')
+                +(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='${id}')
+                +(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='${id}')>0
+            AND '".intval(getParam("activo"))."'='0'")</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query include="xml/common/qfilesdelete.xml" replace="true" />
-		<query include="xml/common/qfilesupdate.xml" replace="true"/>
-		<query include="xml/common/qcommentsdelete.xml" replace="true" />
-		<query include="xml/common/qcommentsinsert.xml" replace="true" />
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qdeletecomments.xml" replace="true" />
-		<query include="xml/common/qdeletefiles.xml" replace="true" />
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
-	<excel>
-		<query require="php/listsim.php" global="page" eval="true">"SELECT
-			CONCAT('\'',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) '".LANG_ESCAPE("codigo")."',
-			CASE id_campanya WHEN '0' THEN '".LANG_ESCAPE("sincampanya")."' ELSE (SELECT nombre FROM tbl_campanyas WHERE id_campanya=tbl_campanyas.id) END '".LANG_ESCAPE("campanya")."',
-			CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE (SELECT nombre FROM tbl_estados WHERE id_estado=tbl_estados.id) END '".LANG_ESCAPE("estado")."',
-			nombre '".LANG_ESCAPE("empresa")."',
-			cif '".LANG_ESCAPE("cif")."',
-			contacto '".LANG_ESCAPE("contacto")."',
-			cargo '".LANG_ESCAPE("cargo")."',
-			direccion '".LANG_ESCAPE("direccion")."',
-			CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END '".LANG_ESCAPE("activo")."',
-			nombre_pais '".LANG_ESCAPE("pais")."',
-			nombre_provincia '".LANG_ESCAPE("provincia")."',
-			nombre_poblacion '".LANG_ESCAPE("poblacion")."',
-			CONCAT('\'',nombre_codpostal) '".LANG_ESCAPE("codpostal")."',
-			email '".LANG_ESCAPE("email")."',
-			web '".LANG_ESCAPE("web")."',
-			tel_fijo '".LANG_ESCAPE("tel_fijo")."',
-			fax '".LANG_ESCAPE("fax")."',
-			tel_movil '".LANG_ESCAPE("tel_movil")."',
-			facturacion '".LANG_ESCAPE("facturacion")."',
-			iae_cod '".LANG_ESCAPE("iaecod")."',
-			iae_desc '".LANG_ESCAPE("iaedesc")."',
-			comentarios '".LANG_ESCAPE("comentarios")."'
-		FROM tbl_posiblescli a WHERE id IN (".list_simulator($page).")"</query>
-	</excel>
-	<pdf>
-		<constructor>"P","mm","A4"</constructor>
-		<margins>50,30,30,30</margins>
-		<query>"SELECT *,'".LANG_ESCAPE("defaultdata")."' title,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado,'".page2id("posiblescli")."' id_aplicacion FROM tbl_posiblescli WHERE id IN (".check_ids(getParam("id")).")"</query>
-		<!-- TEMPLATE -->
-		<header>
-			<!-- LOGO -->
-			<margins>0,0,0,0</margins>
-			<image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
-			<!-- PONER MARCA DE AGUA -->
-			<font>"normal","B",CONFIG("water_posiblescli_size"),"#eeeeee"</font>
-			<text>CONFIG("water_posiblescli_posx"),CONFIG("water_posiblescli_posy"),CONFIG("water_posiblescli_text"),CONFIG("water_posiblescli_angle")</text>
-			<margins>50,30,30,30</margins>
-			<setxy>30,50</setxy>
-		</header>
-		<footer>
-			<margins>0,0,0,0</margins>
-			<!-- PONER PIE DE PAGINA -->
-			<font>"normal","",6,CONFIG("color_text2")</font>
-			<pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
-			<margins>50,30,30,30</margins>
-		</footer>
-		<!-- BEGIN -->
-		<color>CONFIG("color_line"),"#000000"</color>
-		<!-- DATOS POSIBLECLI -->
-		<relatedclientes include="xml/common/relatedposiblesclipdf.xml" replace="true" />
-		<foreach>
-			<!-- COMENTARIOS POSIBLESCLI -->
-			<commentspdf include="xml/common/commentspdf.xml" replace="true" />
-			<!-- EVENTOS DEL POSIBLECLI -->
-			<query>"SELECT a.*,'".LANG_ESCAPE("agendadata","posiblescli")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=a.id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
-			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,ids_asignados)) asignadoa
-			FROM tbl_agenda a WHERE a.id_posiblecli='".$row["id"]."' AND '".getParam("agenda")."'='1' ORDER BY a.dstart ASC"</query>
-			<relatedagenda include="xml/common/relatedagendapdf.xml" replace="true" />
-			<!-- PRESUPUESTOS DEL POSIBLECLI -->
-			<query>"SELECT *,'".LANG_ESCAPE("presupuestosdata","posiblescli")."' title,'".page2id("presupuestos")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_presupuestos WHERE id_posiblecli='".$row["id"]."' AND '".getParam("presupuestos")."'='1' ORDER BY id ASC"</query>
-			<relatedpresupuestos include="xml/common/relatedpresupuestospdf.xml" replace="true" />
-			<!-- ACTAS DEL POSIBLECLI -->
-			<query>"SELECT *,'".LANG_ESCAPE("actasdata","posiblescli")."' title,'".page2id("actas")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=id_presupuesto) presupuesto FROM tbl_actas WHERE id_posiblecli='".$row["id"]."' AND '".getParam("actas")."'='1' ORDER BY id ASC"</query>
-			<relatedactas include="xml/common/relatedactaspdf.xml" replace="true" />
-		</foreach>
-		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG_ESCAPE("posiblecli")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
-		FROM tbl_posiblescli WHERE id IN (".check_ids(getParam("id")).")"):LANG("posiblescli"))).".pdf"</output>
-	</pdf>
+        <query include="xml/common/qfilesdelete.xml" replace="true" />
+        <query include="xml/common/qfilesupdate.xml" replace="true"/>
+        <query include="xml/common/qcommentsdelete.xml" replace="true" />
+        <query include="xml/common/qcommentsinsert.xml" replace="true" />
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query include="xml/common/qdeletecomments.xml" replace="true" />
+        <query include="xml/common/qdeletefiles.xml" replace="true" />
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
+    <excel>
+        <query require="php/listsim.php" global="page" eval="true">"SELECT
+            CONCAT('\'',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) '".LANG_ESCAPE("codigo")."',
+            CASE id_campanya WHEN '0' THEN '".LANG_ESCAPE("sincampanya")."' ELSE (SELECT nombre FROM tbl_campanyas WHERE id_campanya=tbl_campanyas.id) END '".LANG_ESCAPE("campanya")."',
+            CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE (SELECT nombre FROM tbl_estados WHERE id_estado=tbl_estados.id) END '".LANG_ESCAPE("estado")."',
+            nombre '".LANG_ESCAPE("empresa")."',
+            cif '".LANG_ESCAPE("cif")."',
+            contacto '".LANG_ESCAPE("contacto")."',
+            cargo '".LANG_ESCAPE("cargo")."',
+            direccion '".LANG_ESCAPE("direccion")."',
+            CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END '".LANG_ESCAPE("activo")."',
+            nombre_pais '".LANG_ESCAPE("pais")."',
+            nombre_provincia '".LANG_ESCAPE("provincia")."',
+            nombre_poblacion '".LANG_ESCAPE("poblacion")."',
+            CONCAT('\'',nombre_codpostal) '".LANG_ESCAPE("codpostal")."',
+            email '".LANG_ESCAPE("email")."',
+            web '".LANG_ESCAPE("web")."',
+            tel_fijo '".LANG_ESCAPE("tel_fijo")."',
+            fax '".LANG_ESCAPE("fax")."',
+            tel_movil '".LANG_ESCAPE("tel_movil")."',
+            facturacion '".LANG_ESCAPE("facturacion")."',
+            iae_cod '".LANG_ESCAPE("iaecod")."',
+            iae_desc '".LANG_ESCAPE("iaedesc")."',
+            comentarios '".LANG_ESCAPE("comentarios")."'
+        FROM tbl_posiblescli a WHERE id IN (".list_simulator($page).")"</query>
+    </excel>
+    <pdf>
+        <constructor>"P","mm","A4"</constructor>
+        <margins>50,30,30,30</margins>
+        <query>"SELECT *,'".LANG_ESCAPE("defaultdata")."' title,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado,'".page2id("posiblescli")."' id_aplicacion FROM tbl_posiblescli WHERE id IN (".check_ids(getParam("id")).")"</query>
+        <!-- TEMPLATE -->
+        <header>
+            <!-- LOGO -->
+            <margins>0,0,0,0</margins>
+            <image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
+            <!-- PONER MARCA DE AGUA -->
+            <font>"normal","B",CONFIG("water_posiblescli_size"),"#eeeeee"</font>
+            <text>CONFIG("water_posiblescli_posx"),CONFIG("water_posiblescli_posy"),CONFIG("water_posiblescli_text"),CONFIG("water_posiblescli_angle")</text>
+            <margins>50,30,30,30</margins>
+            <setxy>30,50</setxy>
+        </header>
+        <footer>
+            <margins>0,0,0,0</margins>
+            <!-- PONER PIE DE PAGINA -->
+            <font>"normal","",6,CONFIG("color_text2")</font>
+            <pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
+            <margins>50,30,30,30</margins>
+        </footer>
+        <!-- BEGIN -->
+        <color>CONFIG("color_line"),"#000000"</color>
+        <!-- DATOS POSIBLECLI -->
+        <relatedclientes include="xml/common/relatedposiblesclipdf.xml" replace="true" />
+        <foreach>
+            <!-- COMENTARIOS POSIBLESCLI -->
+            <commentspdf include="xml/common/commentspdf.xml" replace="true" />
+            <!-- EVENTOS DEL POSIBLECLI -->
+            <query>"SELECT a.*,'".LANG_ESCAPE("agendadata","posiblescli")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=a.id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
+            (SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,ids_asignados)) asignadoa
+            FROM tbl_agenda a WHERE a.id_posiblecli='".$row["id"]."' AND '".getParam("agenda")."'='1' ORDER BY a.dstart ASC"</query>
+            <relatedagenda include="xml/common/relatedagendapdf.xml" replace="true" />
+            <!-- PRESUPUESTOS DEL POSIBLECLI -->
+            <query>"SELECT *,'".LANG_ESCAPE("presupuestosdata","posiblescli")."' title,'".page2id("presupuestos")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_presupuestos WHERE id_posiblecli='".$row["id"]."' AND '".getParam("presupuestos")."'='1' ORDER BY id ASC"</query>
+            <relatedpresupuestos include="xml/common/relatedpresupuestospdf.xml" replace="true" />
+            <!-- ACTAS DEL POSIBLECLI -->
+            <query>"SELECT *,'".LANG_ESCAPE("actasdata","posiblescli")."' title,'".page2id("actas")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=id_presupuesto) presupuesto FROM tbl_actas WHERE id_posiblecli='".$row["id"]."' AND '".getParam("actas")."'='1' ORDER BY id ASC"</query>
+            <relatedactas include="xml/common/relatedactaspdf.xml" replace="true" />
+        </foreach>
+        <output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
+        SELECT CONCAT('".LANG_ESCAPE("posiblecli")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
+        FROM tbl_posiblescli WHERE id IN (".check_ids(getParam("id")).")"):LANG("posiblescli"))).".pdf"</output>
+    </pdf>
 </root>

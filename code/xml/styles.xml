@@ -24,341 +24,341 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<!-- THE FOUR GOOGLE COLORS -->
-	<row ifeval="!ismobile()">
-		<label>Google Multi Light</label>
-		<value>google/multi/light</value>
-		<color>#4285f4</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Google Multi Dark</label>
-		<value>google/multi/dark</value>
-		<color>#4285f4</color>
-	</row>
-	<row>
-		<label>Google Blue Light</label>
-		<value>google/blue/light</value>
-		<color>#4285f4</color>
-	</row>
-	<row>
-		<label>Google Blue Dark</label>
-		<value>google/blue/dark</value>
-		<color>#4285f4</color>
-	</row>
-	<row>
-		<label>Google Green Light</label>
-		<value>google/green/light</value>
-		<color>#34a853</color>
-	</row>
-	<row>
-		<label>Google Green Dark</label>
-		<value>google/green/dark</value>
-		<color>#34a853</color>
-	</row>
-	<row>
-		<label>Google Red Light</label>
-		<value>google/red/light</value>
-		<color>#ea4335</color>
-	</row>
-	<row>
-		<label>Google Red Dark</label>
-		<value>google/red/dark</value>
-		<color>#ea4335</color>
-	</row>
-	<row>
-		<label>Google Yellow Light</label>
-		<value>google/yellow/light</value>
-		<color>#fbbc05</color>
-	</row>
-	<row>
-		<label>Google Yellow Dark</label>
-		<value>google/yellow/dark</value>
-		<color>#fbbc05</color>
-	</row>
-	<!-- UPC OLD AND NEW BLUE COLOR -->
-	<row ifeval="!ismobile()">
-		<label>UPC Multi Light</label>
-		<value>upc/multi/light</value>
-		<color>#007bc0</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>UPC Multi Dark</label>
-		<value>upc/multi/dark</value>
-		<color>#007bc0</color>
-	</row>
-	<row>
-		<label>New UPC Light</label>
-		<value>upc/new/light</value>
-		<color>#007bc0</color>
-	</row>
-	<row>
-		<label>New UPC Dark</label>
-		<value>upc/new/dark</value>
-		<color>#007bc0</color>
-	</row>
-	<row>
-		<label>Old UPC Light</label>
-		<value>upc/old/light</value>
-		<color>#336699</color>
-	</row>
-	<row>
-		<label>Old UPC Dark</label>
-		<value>upc/old/dark</value>
-		<color>#336699</color>
-	</row>
-	<!-- THE FOUR MICROSOFT COLORS -->
-	<row ifeval="!ismobile()">
-		<label>Microsoft Multi Light</label>
-		<value>microsoft/multi/light</value>
-		<color>#04a5f0</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Microsoft Multi Dark</label>
-		<value>microsoft/multi/dark</value>
-		<color>#04a5f0</color>
-	</row>
-	<row>
-		<label>Microsoft Blue Light</label>
-		<value>microsoft/blue/light</value>
-		<color>#04a5f0</color>
-	</row>
-	<row>
-		<label>Microsoft Blue Dark</label>
-		<value>microsoft/blue/dark</value>
-		<color>#04a5f0</color>
-	</row>
-	<row>
-		<label>Microsoft Green Light</label>
-		<value>microsoft/green/light</value>
-		<color>#81bb05</color>
-	</row>
-	<row>
-		<label>Microsoft Green Dark</label>
-		<value>microsoft/green/dark</value>
-		<color>#81bb05</color>
-	</row>
-	<row>
-		<label>Microsoft Red Light</label>
-		<value>microsoft/red/light</value>
-		<color>#f35225</color>
-	</row>
-	<row>
-		<label>Microsoft Red Dark</label>
-		<value>microsoft/red/dark</value>
-		<color>#f35225</color>
-	</row>
-	<row>
-		<label>Microsoft Yellow Light</label>
-		<value>microsoft/yellow/light</value>
-		<color>#ffba07</color>
-	</row>
-	<row>
-		<label>Microsoft Yellow Dark</label>
-		<value>microsoft/yellow/dark</value>
-		<color>#ffba07</color>
-	</row>
-	<!-- THE FOUR OFFICE 365 COLORS -->
-	<row ifeval="!ismobile()">
-		<label>Office 365 Multi Light</label>
-		<value>office365/multi/light</value>
-		<color>#2c579b</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Office 365 Multi Dark</label>
-		<value>office365/multi/dark</value>
-		<color>#2c579b</color>
-	</row>
-	<row>
-		<label>Office 365 Blue Light</label>
-		<value>office365/blue/light</value>
-		<color>#2c579b</color>
-	</row>
-	<row>
-		<label>Office 365 Blue Dark</label>
-		<value>office365/blue/dark</value>
-		<color>#2c579b</color>
-	</row>
-	<row>
-		<label>Office 365 Green Light</label>
-		<value>office365/green/light</value>
-		<color>#107b11</color>
-	</row>
-	<row>
-		<label>Office 365 Green Dark</label>
-		<value>office365/green/dark</value>
-		<color>#107b11</color>
-	</row>
-	<row>
-		<label>Office 365 Red Light</label>
-		<value>office365/red/light</value>
-		<color>#d24726</color>
-	</row>
-	<row>
-		<label>Office 365 Red Dark</label>
-		<value>office365/red/dark</value>
-		<color>#d24726</color>
-	</row>
-	<row>
-		<label>Office 365 Purple Light</label>
-		<value>office365/purple/light</value>
-		<color>#80397b</color>
-	</row>
-	<row>
-		<label>Office 365 Purple Dark</label>
-		<value>office365/purple/dark</value>
-		<color>#80397b</color>
-	</row>
-	<!-- THE SIX COSMO COLORS -->
-	<row ifeval="!ismobile()">
-		<label>Cosmo Multi Light</label>
-		<value>cosmo/multi/light</value>
-		<color>#2780e3</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Cosmo Multi Dark</label>
-		<value>cosmo/multi/dark</value>
-		<color>#2780e3</color>
-	</row>
-	<row>
-		<label>Cosmo Blue Light</label>
-		<value>cosmo/blue/light</value>
-		<color>#2780e3</color>
-	</row>
-	<row>
-		<label>Cosmo Blue Dark</label>
-		<value>cosmo/blue/dark</value>
-		<color>#2780e3</color>
-	</row>
-	<row>
-		<label>Cosmo Geeen Light</label>
-		<value>cosmo/green/light</value>
-		<color>#3fb618</color>
-	</row>
-	<row>
-		<label>Cosmo Green Dark</label>
-		<value>cosmo/green/dark</value>
-		<color>#3fb618</color>
-	</row>
-	<row>
-		<label>Cosmo Red Light</label>
-		<value>cosmo/red/light</value>
-		<color>#ff0039</color>
-	</row>
-	<row>
-		<label>Cosmo Red Dark</label>
-		<value>cosmo/red/dark</value>
-		<color>#ff0039</color>
-	</row>
-	<row>
-		<label>Cosmo Orange Light</label>
-		<value>cosmo/orange/light</value>
-		<color>#ff7518</color>
-	</row>
-	<row>
-		<label>Cosmo Orange Dark</label>
-		<value>cosmo/orange/dark</value>
-		<color>#ff7518</color>
-	</row>
-	<row>
-		<label>Cosmo Purple Light</label>
-		<value>cosmo/purple/light</value>
-		<color>#9954bb</color>
-	</row>
-	<row>
-		<label>Cosmo Purple Dark</label>
-		<value>cosmo/purple/dark</value>
-		<color>#9954bb</color>
-	</row>
-	<row>
-		<label>Cosmo Gray Light</label>
-		<value>cosmo/gray/light</value>
-		<color>#373a3c</color>
-	</row>
-	<row>
-		<label>Cosmo Gray Dark</label>
-		<value>cosmo/gray/dark</value>
-		<color>#373a3c</color>
-	</row>
-	<!-- THE FOUR MARIADB COLORS -->
-	<row ifeval="!ismobile()">
-		<label>MariaDB Multi Light</label>
-		<value>mariadb/multi/light</value>
-		<color>#2780e3</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>MariaDB Multi Dark</label>
-		<value>mariadb/multi/dark</value>
-		<color>#2780e3</color>
-	</row>
-	<row>
-		<label>MariaDB Blue Light</label>
-		<value>mariadb/blue/light</value>
-		<color>#4285f4</color>
-	</row>
-	<row>
-		<label>MariaDB Blue Dark</label>
-		<value>mariadb/blue/dark</value>
-		<color>#4285f4</color>
-	</row>
-	<row>
-		<label>MariaDB Gray Light</label>
-		<value>mariadb/gray/light</value>
-		<color>#34a853</color>
-	</row>
-	<row>
-		<label>MariaDB Gray Dark</label>
-		<value>mariadb/gray/dark</value>
-		<color>#34a853</color>
-	</row>
-	<row>
-		<label>MariaDB Purple Light</label>
-		<value>mariadb/purple/light</value>
-		<color>#ea4335</color>
-	</row>
-	<row>
-		<label>MariaDB Purple Dark</label>
-		<value>mariadb/purple/dark</value>
-		<color>#ea4335</color>
-	</row>
-	<row>
-		<label>MariaDB Orange Light</label>
-		<value>mariadb/orange/light</value>
-		<color>#fbbc05</color>
-	</row>
-	<row>
-		<label>MariaDB Orange Dark</label>
-		<value>mariadb/orange/dark</value>
-		<color>#fbbc05</color>
-	</row>
-	<!-- ORIGINAL THEMES -->
-	<row ifeval="!ismobile()">
-		<label>Original Redmond Light</label>
-		<value>original/redmond/light</value>
-		<color>5c9ccc</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Original Redmond Dark</label>
-		<value>original/redmond/dark</value>
-		<color>5c9ccc</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Original Humanity Light</label>
-		<value>original/humanity/light</value>
-		<color>#cb842e</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Original Humanity Dark</label>
-		<value>original/humanity/dark</value>
-		<color>#cb842e</color>
-	</row>
-	<row ifeval="ismobile()">
-		<label>Original Default Light</label>
-		<value>original/default/light</value>
-		<color>#e9e9e9</color>
-	</row>
-	<row ifeval="ismobile()">
-		<label>Original Default Dark</label>
-		<value>original/default/dark</value>
-		<color>#1d1d1d</color>
-	</row>
+    <!-- THE FOUR GOOGLE COLORS -->
+    <row ifeval="!ismobile()">
+        <label>Google Multi Light</label>
+        <value>google/multi/light</value>
+        <color>#4285f4</color>
+    </row>
+    <row ifeval="!ismobile()">
+        <label>Google Multi Dark</label>
+        <value>google/multi/dark</value>
+        <color>#4285f4</color>
+    </row>
+    <row>
+        <label>Google Blue Light</label>
+        <value>google/blue/light</value>
+        <color>#4285f4</color>
+    </row>
+    <row>
+        <label>Google Blue Dark</label>
+        <value>google/blue/dark</value>
+        <color>#4285f4</color>
+    </row>
+    <row>
+        <label>Google Green Light</label>
+        <value>google/green/light</value>
+        <color>#34a853</color>
+    </row>
+    <row>
+        <label>Google Green Dark</label>
+        <value>google/green/dark</value>
+        <color>#34a853</color>
+    </row>
+    <row>
+        <label>Google Red Light</label>
+        <value>google/red/light</value>
+        <color>#ea4335</color>
+    </row>
+    <row>
+        <label>Google Red Dark</label>
+        <value>google/red/dark</value>
+        <color>#ea4335</color>
+    </row>
+    <row>
+        <label>Google Yellow Light</label>
+        <value>google/yellow/light</value>
+        <color>#fbbc05</color>
+    </row>
+    <row>
+        <label>Google Yellow Dark</label>
+        <value>google/yellow/dark</value>
+        <color>#fbbc05</color>
+    </row>
+    <!-- UPC OLD AND NEW BLUE COLOR -->
+    <row ifeval="!ismobile()">
+        <label>UPC Multi Light</label>
+        <value>upc/multi/light</value>
+        <color>#007bc0</color>
+    </row>
+    <row ifeval="!ismobile()">
+        <label>UPC Multi Dark</label>
+        <value>upc/multi/dark</value>
+        <color>#007bc0</color>
+    </row>
+    <row>
+        <label>New UPC Light</label>
+        <value>upc/new/light</value>
+        <color>#007bc0</color>
+    </row>
+    <row>
+        <label>New UPC Dark</label>
+        <value>upc/new/dark</value>
+        <color>#007bc0</color>
+    </row>
+    <row>
+        <label>Old UPC Light</label>
+        <value>upc/old/light</value>
+        <color>#336699</color>
+    </row>
+    <row>
+        <label>Old UPC Dark</label>
+        <value>upc/old/dark</value>
+        <color>#336699</color>
+    </row>
+    <!-- THE FOUR MICROSOFT COLORS -->
+    <row ifeval="!ismobile()">
+        <label>Microsoft Multi Light</label>
+        <value>microsoft/multi/light</value>
+        <color>#04a5f0</color>
+    </row>
+    <row ifeval="!ismobile()">
+        <label>Microsoft Multi Dark</label>
+        <value>microsoft/multi/dark</value>
+        <color>#04a5f0</color>
+    </row>
+    <row>
+        <label>Microsoft Blue Light</label>
+        <value>microsoft/blue/light</value>
+        <color>#04a5f0</color>
+    </row>
+    <row>
+        <label>Microsoft Blue Dark</label>
+        <value>microsoft/blue/dark</value>
+        <color>#04a5f0</color>
+    </row>
+    <row>
+        <label>Microsoft Green Light</label>
+        <value>microsoft/green/light</value>
+        <color>#81bb05</color>
+    </row>
+    <row>
+        <label>Microsoft Green Dark</label>
+        <value>microsoft/green/dark</value>
+        <color>#81bb05</color>
+    </row>
+    <row>
+        <label>Microsoft Red Light</label>
+        <value>microsoft/red/light</value>
+        <color>#f35225</color>
+    </row>
+    <row>
+        <label>Microsoft Red Dark</label>
+        <value>microsoft/red/dark</value>
+        <color>#f35225</color>
+    </row>
+    <row>
+        <label>Microsoft Yellow Light</label>
+        <value>microsoft/yellow/light</value>
+        <color>#ffba07</color>
+    </row>
+    <row>
+        <label>Microsoft Yellow Dark</label>
+        <value>microsoft/yellow/dark</value>
+        <color>#ffba07</color>
+    </row>
+    <!-- THE FOUR OFFICE 365 COLORS -->
+    <row ifeval="!ismobile()">
+        <label>Office 365 Multi Light</label>
+        <value>office365/multi/light</value>
+        <color>#2c579b</color>
+    </row>
+    <row ifeval="!ismobile()">
+        <label>Office 365 Multi Dark</label>
+        <value>office365/multi/dark</value>
+        <color>#2c579b</color>
+    </row>
+    <row>
+        <label>Office 365 Blue Light</label>
+        <value>office365/blue/light</value>
+        <color>#2c579b</color>
+    </row>
+    <row>
+        <label>Office 365 Blue Dark</label>
+        <value>office365/blue/dark</value>
+        <color>#2c579b</color>
+    </row>
+    <row>
+        <label>Office 365 Green Light</label>
+        <value>office365/green/light</value>
+        <color>#107b11</color>
+    </row>
+    <row>
+        <label>Office 365 Green Dark</label>
+        <value>office365/green/dark</value>
+        <color>#107b11</color>
+    </row>
+    <row>
+        <label>Office 365 Red Light</label>
+        <value>office365/red/light</value>
+        <color>#d24726</color>
+    </row>
+    <row>
+        <label>Office 365 Red Dark</label>
+        <value>office365/red/dark</value>
+        <color>#d24726</color>
+    </row>
+    <row>
+        <label>Office 365 Purple Light</label>
+        <value>office365/purple/light</value>
+        <color>#80397b</color>
+    </row>
+    <row>
+        <label>Office 365 Purple Dark</label>
+        <value>office365/purple/dark</value>
+        <color>#80397b</color>
+    </row>
+    <!-- THE SIX COSMO COLORS -->
+    <row ifeval="!ismobile()">
+        <label>Cosmo Multi Light</label>
+        <value>cosmo/multi/light</value>
+        <color>#2780e3</color>
+    </row>
+    <row ifeval="!ismobile()">
+        <label>Cosmo Multi Dark</label>
+        <value>cosmo/multi/dark</value>
+        <color>#2780e3</color>
+    </row>
+    <row>
+        <label>Cosmo Blue Light</label>
+        <value>cosmo/blue/light</value>
+        <color>#2780e3</color>
+    </row>
+    <row>
+        <label>Cosmo Blue Dark</label>
+        <value>cosmo/blue/dark</value>
+        <color>#2780e3</color>
+    </row>
+    <row>
+        <label>Cosmo Geeen Light</label>
+        <value>cosmo/green/light</value>
+        <color>#3fb618</color>
+    </row>
+    <row>
+        <label>Cosmo Green Dark</label>
+        <value>cosmo/green/dark</value>
+        <color>#3fb618</color>
+    </row>
+    <row>
+        <label>Cosmo Red Light</label>
+        <value>cosmo/red/light</value>
+        <color>#ff0039</color>
+    </row>
+    <row>
+        <label>Cosmo Red Dark</label>
+        <value>cosmo/red/dark</value>
+        <color>#ff0039</color>
+    </row>
+    <row>
+        <label>Cosmo Orange Light</label>
+        <value>cosmo/orange/light</value>
+        <color>#ff7518</color>
+    </row>
+    <row>
+        <label>Cosmo Orange Dark</label>
+        <value>cosmo/orange/dark</value>
+        <color>#ff7518</color>
+    </row>
+    <row>
+        <label>Cosmo Purple Light</label>
+        <value>cosmo/purple/light</value>
+        <color>#9954bb</color>
+    </row>
+    <row>
+        <label>Cosmo Purple Dark</label>
+        <value>cosmo/purple/dark</value>
+        <color>#9954bb</color>
+    </row>
+    <row>
+        <label>Cosmo Gray Light</label>
+        <value>cosmo/gray/light</value>
+        <color>#373a3c</color>
+    </row>
+    <row>
+        <label>Cosmo Gray Dark</label>
+        <value>cosmo/gray/dark</value>
+        <color>#373a3c</color>
+    </row>
+    <!-- THE FOUR MARIADB COLORS -->
+    <row ifeval="!ismobile()">
+        <label>MariaDB Multi Light</label>
+        <value>mariadb/multi/light</value>
+        <color>#2780e3</color>
+    </row>
+    <row ifeval="!ismobile()">
+        <label>MariaDB Multi Dark</label>
+        <value>mariadb/multi/dark</value>
+        <color>#2780e3</color>
+    </row>
+    <row>
+        <label>MariaDB Blue Light</label>
+        <value>mariadb/blue/light</value>
+        <color>#4285f4</color>
+    </row>
+    <row>
+        <label>MariaDB Blue Dark</label>
+        <value>mariadb/blue/dark</value>
+        <color>#4285f4</color>
+    </row>
+    <row>
+        <label>MariaDB Gray Light</label>
+        <value>mariadb/gray/light</value>
+        <color>#34a853</color>
+    </row>
+    <row>
+        <label>MariaDB Gray Dark</label>
+        <value>mariadb/gray/dark</value>
+        <color>#34a853</color>
+    </row>
+    <row>
+        <label>MariaDB Purple Light</label>
+        <value>mariadb/purple/light</value>
+        <color>#ea4335</color>
+    </row>
+    <row>
+        <label>MariaDB Purple Dark</label>
+        <value>mariadb/purple/dark</value>
+        <color>#ea4335</color>
+    </row>
+    <row>
+        <label>MariaDB Orange Light</label>
+        <value>mariadb/orange/light</value>
+        <color>#fbbc05</color>
+    </row>
+    <row>
+        <label>MariaDB Orange Dark</label>
+        <value>mariadb/orange/dark</value>
+        <color>#fbbc05</color>
+    </row>
+    <!-- ORIGINAL THEMES -->
+    <row ifeval="!ismobile()">
+        <label>Original Redmond Light</label>
+        <value>original/redmond/light</value>
+        <color>5c9ccc</color>
+    </row>
+    <row ifeval="!ismobile()">
+        <label>Original Redmond Dark</label>
+        <value>original/redmond/dark</value>
+        <color>5c9ccc</color>
+    </row>
+    <row ifeval="!ismobile()">
+        <label>Original Humanity Light</label>
+        <value>original/humanity/light</value>
+        <color>#cb842e</color>
+    </row>
+    <row ifeval="!ismobile()">
+        <label>Original Humanity Dark</label>
+        <value>original/humanity/dark</value>
+        <color>#cb842e</color>
+    </row>
+    <row ifeval="ismobile()">
+        <label>Original Default Light</label>
+        <value>original/default/light</value>
+        <color>#e9e9e9</color>
+    </row>
+    <row ifeval="ismobile()">
+        <label>Original Default Dark</label>
+        <value>original/default/dark</value>
+        <color>#1d1d1d</color>
+    </row>
 </root>

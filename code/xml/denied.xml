@@ -24,63 +24,63 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<default>
-		<action>form</action>
-		<id global="id" eval="true">$id=current_user()</id>
-	</default>
-	<form>
-		<title lang="true">title</title>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<fields>
-			<buttons>true</buttons>
-			<width>600px</width>
-			<title lang="true">title</title>
-			<icon eval="true">ICON("error")</icon>
-			<row>
-				<field>
-					<label lang="true">title</label>
-					<type>label</type>
-					<class>center bold</class>
-				</field>
-			</row>
-			<row>
-				<field>
-					<type>separator</type>
-				</field>
-			</row>
-			<row>
-				<field>
-					<label lang="true">short</label>
-					<type>label</type>
-					<class>left</class>
-				</field>
-			</row>
-			<row>
-				<field>
-					<type>separator</type>
-				</field>
-			</row>
-			<row>
-				<field>
-					<label lang="true">large</label>
-					<type>label</type>
-					<class>left siwrap</class>
-				</field>
-			</row>
-		</fields>
-		<buttons>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">buttonreturn</value>
-					<onclick>goback()</onclick>
-					<class>right contextmenu</class>
-					<icon eval="true">ICON("back")</icon>
-				</field>
-			</row>
-		</buttons>
-		<javascript include="xml/common/jsform.xml"/>
-	</form>
+    <default>
+        <action>form</action>
+        <id global="id" eval="true">$id=current_user()</id>
+    </default>
+    <form>
+        <title lang="true">title</title>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <fields>
+            <buttons>true</buttons>
+            <width>600px</width>
+            <title lang="true">title</title>
+            <icon eval="true">ICON("error")</icon>
+            <row>
+                <field>
+                    <label lang="true">title</label>
+                    <type>label</type>
+                    <class>center bold</class>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <type>separator</type>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <label lang="true">short</label>
+                    <type>label</type>
+                    <class>left</class>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <type>separator</type>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <label lang="true">large</label>
+                    <type>label</type>
+                    <class>left siwrap</class>
+                </field>
+            </row>
+        </fields>
+        <buttons>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">buttonreturn</value>
+                    <onclick>goback()</onclick>
+                    <class>right contextmenu</class>
+                    <icon eval="true">ICON("back")</icon>
+                </field>
+            </row>
+        </buttons>
+        <javascript include="xml/common/jsform.xml"/>
+    </form>
 </root>

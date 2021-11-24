@@ -24,204 +24,204 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<partesopen>
-		<fieldset ifeval="check_user('partes','menu')">
-			<width>700px</width>
-			<title lang="true">partesopen</title>
-			<icon eval="true">ICON("form")</icon>
-			<head>
-				<field>
-					<type>checkbox</type>
-					<class3>master shortcut_ctrl_a</class3>
-					<class2>thead shortcut_ctrl_a</class2>
-					<width>1px</width>
-					<value>1</value>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">id</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">username</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">date</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">tarea</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">horas</label>
-					<class>thead</class>
-					<math>
-						<func>sum()</func>
-						<label lang="true">suma</label>
-					</math>
-				</field>
-				<field>
-					<type>label</type>
-					<label eval="true">LANG("precio")." (".CONFIG("accounting_currency").")"</label>
-					<class>thead</class>
-					<math>
-						<func>avg()</func>
-						<label eval="true">LANG("average")." (".CONFIG("accounting_currency").")"</label>
-					</math>
-				</field>
-				<field>
-					<type>label</type>
-					<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-					<class>thead</class>
-					<math>
-						<func>sum()</func>
-						<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
-					</math>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">liquidado</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>separator</type>
-					<class>thead</class>
-					<colspan>100</colspan>
-					<math>
-						<ignore>true</ignore>
-					</math>
-				</field>
-			</head>
-			<row>
-				<field>
-					<type>hidden</type>
-					<name>id</name>
-				</field>
-				<field>
-					<type>hidden</type>
-					<name>fecha</name>
-				</field>
-				<field>
-					<type>hidden</type>
-					<name>tarea</name>
-				</field>
-				<field>
-					<type>hidden</type>
-					<name>comentarios</name>
-				</field>
-				<field>
-					<type>hidden</type>
-					<name>horas</name>
-				</field>
-				<field>
-					<type>hidden</type>
-					<name>precio</name>
-				</field>
-				<field>
-					<type>hidden</type>
-					<name>total</name>
-				</field>
-				<field>
-					<type>checkbox</type>
-					<name>liquidar</name>
-					<value>1</value>
-					<class3>slave</class3>
-					<class2>tbody</class2>
-					<width>1px</width>
-				</field>
-				<field>
-					<type>label</type>
-					<name>id</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>usuario</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>fecha</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>tarea</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>horas</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>precio</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>total</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>liquidado</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_view</name>
-					<type>link</type>
-					<label lang="true">view</label>
-					<width>1px</width>
-					<icon eval="true">ICON("view")</icon>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_pdf</name>
-					<type>link</type>
-					<label lang="true">pdf</label>
-					<width>1px</width>
-					<icon eval="true">ICON("pdf")</icon>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_view2</name>
-					<type>link</type>
-					<label lang="true">view2</label>
-					<width>1px</width>
-					<icon eval="true">ICON("viewpdf")</icon>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_mail</name>
-					<type>link</type>
-					<label lang="true">mail</label>
-					<width>1px</width>
-					<icon eval="true">ICON("correo")</icon>
-					<class>tbody</class>
-				</field>
-			</row>
-			<tail>
-				<field>
-					<type>separator</type>
-				</field>
-			</tail>
-			<tail>
-				<field>
-					<type>button</type>
-					<value lang="true">actionliquidar</value>
-					<class>left</class>
-					<onclick>liquidar1()</onclick>
-					<icon eval="true">ICON("save")</icon>
-				</field>
-			</tail>
-		</fieldset>
-	</partesopen>
+    <partesopen>
+        <fieldset ifeval="check_user('partes','menu')">
+            <width>700px</width>
+            <title lang="true">partesopen</title>
+            <icon eval="true">ICON("form")</icon>
+            <head>
+                <field>
+                    <type>checkbox</type>
+                    <class3>master shortcut_ctrl_a</class3>
+                    <class2>thead shortcut_ctrl_a</class2>
+                    <width>1px</width>
+                    <value>1</value>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">id</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">username</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">date</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">tarea</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">horas</label>
+                    <class>thead</class>
+                    <math>
+                        <func>sum()</func>
+                        <label lang="true">suma</label>
+                    </math>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label eval="true">LANG("precio")." (".CONFIG("accounting_currency").")"</label>
+                    <class>thead</class>
+                    <math>
+                        <func>avg()</func>
+                        <label eval="true">LANG("average")." (".CONFIG("accounting_currency").")"</label>
+                    </math>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                    <class>thead</class>
+                    <math>
+                        <func>sum()</func>
+                        <label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
+                    </math>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">liquidado</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <class>thead</class>
+                    <colspan>100</colspan>
+                    <math>
+                        <ignore>true</ignore>
+                    </math>
+                </field>
+            </head>
+            <row>
+                <field>
+                    <type>hidden</type>
+                    <name>id</name>
+                </field>
+                <field>
+                    <type>hidden</type>
+                    <name>fecha</name>
+                </field>
+                <field>
+                    <type>hidden</type>
+                    <name>tarea</name>
+                </field>
+                <field>
+                    <type>hidden</type>
+                    <name>comentarios</name>
+                </field>
+                <field>
+                    <type>hidden</type>
+                    <name>horas</name>
+                </field>
+                <field>
+                    <type>hidden</type>
+                    <name>precio</name>
+                </field>
+                <field>
+                    <type>hidden</type>
+                    <name>total</name>
+                </field>
+                <field>
+                    <type>checkbox</type>
+                    <name>liquidar</name>
+                    <value>1</value>
+                    <class3>slave</class3>
+                    <class2>tbody</class2>
+                    <width>1px</width>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>id</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>usuario</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>fecha</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>tarea</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>horas</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>precio</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>total</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>liquidado</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_view</name>
+                    <type>link</type>
+                    <label lang="true">view</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("view")</icon>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_pdf</name>
+                    <type>link</type>
+                    <label lang="true">pdf</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("pdf")</icon>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_view2</name>
+                    <type>link</type>
+                    <label lang="true">view2</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("viewpdf")</icon>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_mail</name>
+                    <type>link</type>
+                    <label lang="true">mail</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("correo")</icon>
+                    <class>tbody</class>
+                </field>
+            </row>
+            <tail>
+                <field>
+                    <type>separator</type>
+                </field>
+            </tail>
+            <tail>
+                <field>
+                    <type>button</type>
+                    <value lang="true">actionliquidar</value>
+                    <class>left</class>
+                    <onclick>liquidar1()</onclick>
+                    <icon eval="true">ICON("save")</icon>
+                </field>
+            </tail>
+        </fieldset>
+    </partesopen>
 </root>

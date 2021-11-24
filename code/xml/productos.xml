@@ -24,408 +24,408 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">nombre</label>
-				<sort>true</sort>
-				<order>nombre2</order>
-			</field>
-			<field>
-				<name>ref</name>
-				<label lang="true">ref</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>precio</name>
-				<label eval="true">LANG("precio")." (".CONFIG("accounting_currency").")"</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>descuento</name>
-				<label eval="true">LANG("dto")." (%)"</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>iva</name>
-				<label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>total</name>
-				<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>web</name>
-				<label lang="true">web</label>
-				<sort>true</sort>
-				<order>web2</order>
-			</field>
-			<field>
-				<name>ficheros</name>
-				<label lang="true">numf</label>
-				<tip lang="true">numftip</tip>
-				<sort>false</sort>
-			</field>
-		</fields>
-		<javascript include="xml/common/jslist.xml"/>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>2</colspan>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,filtro" eval="true">"
-		SELECT
-			LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
-			CONCAT('link:openapp(\'productos\',',-id,'):',nombre) nombre,
-			nombre nombre2,ref,
-			precio,
-			descuento,
-			iva,
-			ROUND(precio*(1-descuento/100)*(1+IFNULL(iva,0)/100),2) total,
-			CONCAT('href:',web) web,
-			web web2,
-			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) ficheros,
-			id action_id,
-			CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
-		FROM (
-			SELECT
-				a.*,b.valor iva,
-				e.id_usuario id_usuario,
-				d.id_grupo id_grupo
-			FROM tbl_productos a
-				LEFT JOIN tbl_ivas b ON a.id_iva=b.id
-				LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-		) b
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="page,id" eval="true">"SELECT * FROM ".page2table($page)." WHERE id=".abs($id)</default>
-					<files_old include="xml/common/qfilesold.xml" />
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default>SELECT '0' id,'../img/defprod.png' foto_file</default>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default global="page,id" eval="true">"SELECT * FROM ".page2table($page)." WHERE id=".abs($id)</default>
-					<files_old include="xml/common/qfilesold.xml" />
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>foto_file</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<required>true</required>
-								<colspan>4</colspan>
-						</field>
-						<field>
-							<type>separator</type>
-						</field>
-						<field>
-							<name>ref</name>
-							<label lang="true">ref</label>
-							<type>text</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>60px</width>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>descripcion</name>
-							<label lang="true">descripcion</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>8</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>precio</name>
-							<label eval="true">LANG("precio")." (".CONFIG("accounting_currency").")"</label>
-							<type>float</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>60px</width>
-						</field>
-						<field>
-							<name>descuento</name>
-							<label eval="true">LANG("dto")." (%)"</label>
-							<type>float</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>60px</width>
-						</field>
-						<field>
-							<name>id_iva</name>
-							<label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
-							<type>select</type>
-							<width>90px</width>
-							<query eval="true">"SELECT '0' value,'".LANG_ESCAPE("siniva")."' label UNION SELECT id value,nombre label FROM tbl_ivas ORDER BY label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>dimensiones</name>
-							<label lang="true">dimensiones</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>4</colspan>
-						</field>
-						<field>
-							<type>separator</type>
-						</field>
-						<field>
-							<name>peso</name>
-							<label lang="true">peso</label>
-							<type>float</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>web</name>
-							<label lang="true">web</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-								<colspan>4</colspan>
-						</field>
-						<field>
-							<type>separator</type>
-						</field>
-						<field>
-							<name>volumen</name>
-							<label lang="true">volumen</label>
-							<type>float</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>foto_file</name>
-							<type>image</type>
-							<label lang="true">fotofile</label>
-							<colspan>8</colspan>
-							<width>500px</width>
-						</field>
-					</row>
-					<row>
-						<field global="id" ifeval="$id>=0">
-							<name>foto_file_new</name>
-							<label lang="true">fotofilenew</label>
-							<type>file</type>
-							<width>500px</width>
-							<size>50</size>
-							<colspan>8</colspan>
-							<class3>ui-state-default ui-corner-all</class3>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<files_old include="xml/common/filesold.xml" />
-			<files_new include="xml/common/filesnew.xml"/>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<javascript include="xml/common/jsform.xml"/>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">nombre</label>
+                <sort>true</sort>
+                <order>nombre2</order>
+            </field>
+            <field>
+                <name>ref</name>
+                <label lang="true">ref</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>precio</name>
+                <label eval="true">LANG("precio")." (".CONFIG("accounting_currency").")"</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>descuento</name>
+                <label eval="true">LANG("dto")." (%)"</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>iva</name>
+                <label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>total</name>
+                <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>web</name>
+                <label lang="true">web</label>
+                <sort>true</sort>
+                <order>web2</order>
+            </field>
+            <field>
+                <name>ficheros</name>
+                <label lang="true">numf</label>
+                <tip lang="true">numftip</tip>
+                <sort>false</sort>
+            </field>
+        </fields>
+        <javascript include="xml/common/jslist.xml"/>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                        <colspan>2</colspan>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,filtro" eval="true">"
+        SELECT
+            LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
+            CONCAT('link:openapp(\'productos\',',-id,'):',nombre) nombre,
+            nombre nombre2,ref,
+            precio,
+            descuento,
+            iva,
+            ROUND(precio*(1-descuento/100)*(1+IFNULL(iva,0)/100),2) total,
+            CONCAT('href:',web) web,
+            web web2,
+            (SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) ficheros,
+            id action_id,
+            CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+            CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+            CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+        FROM (
+            SELECT
+                a.*,b.valor iva,
+                e.id_usuario id_usuario,
+                d.id_grupo id_grupo
+            FROM tbl_productos a
+                LEFT JOIN tbl_ivas b ON a.id_iva=b.id
+                LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+                LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+        ) b
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND ".check_sql($page,"list")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <default global="page,id" eval="true">"SELECT * FROM ".page2table($page)." WHERE id=".abs($id)</default>
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default>SELECT '0' id,'../img/defprod.png' foto_file</default>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <default global="page,id" eval="true">"SELECT * FROM ".page2table($page)." WHERE id=".abs($id)</default>
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>foto_file</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre</name>
+                            <label lang="true">nombre</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <required>true</required>
+                                <colspan>4</colspan>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                        <field>
+                            <name>ref</name>
+                            <label lang="true">ref</label>
+                            <type>text</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>60px</width>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>descripcion</name>
+                            <label lang="true">descripcion</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>8</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>precio</name>
+                            <label eval="true">LANG("precio")." (".CONFIG("accounting_currency").")"</label>
+                            <type>float</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>60px</width>
+                        </field>
+                        <field>
+                            <name>descuento</name>
+                            <label eval="true">LANG("dto")." (%)"</label>
+                            <type>float</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>60px</width>
+                        </field>
+                        <field>
+                            <name>id_iva</name>
+                            <label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
+                            <type>select</type>
+                            <width>90px</width>
+                            <query eval="true">"SELECT '0' value,'".LANG_ESCAPE("siniva")."' label UNION SELECT id value,nombre label FROM tbl_ivas ORDER BY label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>dimensiones</name>
+                            <label lang="true">dimensiones</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>4</colspan>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                        <field>
+                            <name>peso</name>
+                            <label lang="true">peso</label>
+                            <type>float</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>web</name>
+                            <label lang="true">web</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                                <colspan>4</colspan>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                        <field>
+                            <name>volumen</name>
+                            <label lang="true">volumen</label>
+                            <type>float</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>foto_file</name>
+                            <type>image</type>
+                            <label lang="true">fotofile</label>
+                            <colspan>8</colspan>
+                            <width>500px</width>
+                        </field>
+                    </row>
+                    <row>
+                        <field global="id" ifeval="$id>=0">
+                            <name>foto_file_new</name>
+                            <label lang="true">fotofilenew</label>
+                            <type>file</type>
+                            <width>500px</width>
+                            <size>50</size>
+                            <colspan>8</colspan>
+                            <class3>ui-state-default ui-corner-all</class3>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <files_old include="xml/common/filesold.xml" />
+            <files_new include="xml/common/filesnew.xml"/>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <javascript include="xml/common/jsform.xml"/>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query include="xml/common/autonombre.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query match="default" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
         <query match="default" prefix="true" eval="true">getParam("foto_file_new")?make_update_query("tbl_productos",array(
-			"foto_file"=>getParam("foto_file_new_file")
-		),make_where_query(array(
-			"id"=>getParam("id")
-		))):""</query>
-		<query include="xml/common/qfilesinsert.xml" replace="true"/>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+            "foto_file"=>getParam("foto_file_new_file")
+        ),make_where_query(array(
+            "id"=>getParam("id")
+        ))):""</query>
+        <query include="xml/common/qfilesinsert.xml" replace="true"/>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">getParam("foto_file_new")?"SELECT foto_file action_delete FROM tbl_productos WHERE id='".getParam("id")."' AND SUBSTR(foto_file,1,7)!='../img/'":""</query>
-		<query match="default" prefix="true" eval="true">getParam("foto_file_new")?make_update_query("tbl_productos",array(
-			"foto_file"=>getParam("foto_file_new_file")
-		),make_where_query(array(
-			"id"=>getParam("id")
-		))):""</query>
-		<query include="xml/common/qfilesdelete.xml" replace="true" />
-		<query include="xml/common/qfilesupdate.xml" replace="true"/>
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query eval="true">"SELECT foto_file action_delete FROM tbl_productos WHERE id='".getParam("id")."' AND SUBSTR(foto_file,1,7)!='../img/'"</query>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qdeletefiles.xml" replace="true" />
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
+        <query match="default" prefix="true" eval="true">getParam("foto_file_new")?"SELECT foto_file action_delete FROM tbl_productos WHERE id='".getParam("id")."' AND SUBSTR(foto_file,1,7)!='../img/'":""</query>
+        <query match="default" prefix="true" eval="true">getParam("foto_file_new")?make_update_query("tbl_productos",array(
+            "foto_file"=>getParam("foto_file_new_file")
+        ),make_where_query(array(
+            "id"=>getParam("id")
+        ))):""</query>
+        <query include="xml/common/qfilesdelete.xml" replace="true" />
+        <query include="xml/common/qfilesupdate.xml" replace="true"/>
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query eval="true">"SELECT foto_file action_delete FROM tbl_productos WHERE id='".getParam("id")."' AND SUBSTR(foto_file,1,7)!='../img/'"</query>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query include="xml/common/qdeletefiles.xml" replace="true" />
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
 </root>

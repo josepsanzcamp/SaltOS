@@ -24,11 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<option global="rows,temp" ifeval="count($rows)>0 &amp;&amp; check_user($temp,'menu') &amp;&amp; check_user($temp,'create')">
-		<label global="temp" eval="true">LANG("create",$temp)</label>
-		<onclick global="temp" eval="true">"opencontent('?page=$temp&amp;action=form&amp;id=0')"</onclick>
-		<icon eval="true">ICON("create")</icon>
-		<tip global="temp" eval="true">LANG("create",$temp)</tip>
-		<class>nowrap depth_1</class>
-	</option>
+    <option global="rows,temp" ifeval="count($rows)>0 &amp;&amp; check_user($temp,'menu') &amp;&amp; check_user($temp,'create')">
+        <label global="temp" eval="true">LANG("create",$temp)</label>
+        <onclick global="temp" eval="true">"opencontent('?page=$temp&amp;action=form&amp;id=0')"</onclick>
+        <icon eval="true">ICON("create")</icon>
+        <tip global="temp" eval="true">LANG("create",$temp)</tip>
+        <class>nowrap depth_1</class>
+    </option>
 </root>

@@ -24,97 +24,97 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<fieldset>
-		<title lang="true">logo</title>
-		<icon eval="true">ICON("form")</icon>
-		<row>
-			<field>
-				<type>label</type>
-				<label lang="true">title_logo</label>
-				<class>center bold</class>
-				<colspan>8</colspan>
-			</field>
-		</row>
-		<row>
-			<field>
-				<type>separator</type>
-			</field>
-		</row>
-		<row>
-			<field>
-				<name>logo_left</name>
-				<label lang="true">logoleft</label>
-				<type>text</type>
-				<width>60px</width>
-			</field>
-			<field>
-				<name>logo_top</name>
-				<label lang="true">logotop</label>
-				<type>text</type>
-				<width>60px</width>
-			</field>
-			<field>
-				<name>logo_width</name>
-				<label lang="true">logowidth</label>
-				<type>text</type>
-				<width>60px</width>
-			</field>
-			<field>
-				<name>logo_height</name>
-				<label lang="true">logoheight</label>
-				<type>text</type>
-				<width>60px</width>
-			</field>
-		</row>
-		<row>
-			<field>
-				<name>logo_file</name>
-				<type>image</type>
-				<label lang="true">logofile</label>
-				<colspan>7</colspan>
-				<width>500px</width>
-			</field>
-		</row>
-		<row>
-			<field global="id" ifeval="$id>=0">
-				<name>logo_file_new</name>
-				<label lang="true">logofilenew</label>
-				<type>file</type>
-				<width>500px</width>
-				<size>50</size>
-				<colspan>7</colspan>
-				<class3>ui-state-default ui-corner-all</class3>
-			</field>
-		</row>
-		<row>
-			<field>
-				<type>separator</type>
-			</field>
-		</row>
-		<row>
-			<field>
-				<name>color_line</name>
-				<label lang="true">colorline</label>
-				<type>color</type>
-				<width>60px</width>
-				<colspan>2</colspan>
-				<icon eval="true">ICON("color")</icon>
-			</field>
-			<field>
-				<name>color_text1</name>
-				<label lang="true">colortext1</label>
-				<type>color</type>
-				<width>60px</width>
-				<colspan>2</colspan>
-				<icon eval="true">ICON("color")</icon>
-			</field>
-			<field>
-				<name>color_text2</name>
-				<label lang="true">colortext2</label>
-				<type>color</type>
-				<width>60px</width>
-				<icon eval="true">ICON("color")</icon>
-			</field>
-		</row>
-	</fieldset>
+    <fieldset>
+        <title lang="true">logo</title>
+        <icon eval="true">ICON("form")</icon>
+        <row>
+            <field>
+                <type>label</type>
+                <label lang="true">title_logo</label>
+                <class>center bold</class>
+                <colspan>8</colspan>
+            </field>
+        </row>
+        <row>
+            <field>
+                <type>separator</type>
+            </field>
+        </row>
+        <row>
+            <field>
+                <name>logo_left</name>
+                <label lang="true">logoleft</label>
+                <type>text</type>
+                <width>60px</width>
+            </field>
+            <field>
+                <name>logo_top</name>
+                <label lang="true">logotop</label>
+                <type>text</type>
+                <width>60px</width>
+            </field>
+            <field>
+                <name>logo_width</name>
+                <label lang="true">logowidth</label>
+                <type>text</type>
+                <width>60px</width>
+            </field>
+            <field>
+                <name>logo_height</name>
+                <label lang="true">logoheight</label>
+                <type>text</type>
+                <width>60px</width>
+            </field>
+        </row>
+        <row>
+            <field>
+                <name>logo_file</name>
+                <type>image</type>
+                <label lang="true">logofile</label>
+                <colspan>7</colspan>
+                <width>500px</width>
+            </field>
+        </row>
+        <row>
+            <field global="id" ifeval="$id>=0">
+                <name>logo_file_new</name>
+                <label lang="true">logofilenew</label>
+                <type>file</type>
+                <width>500px</width>
+                <size>50</size>
+                <colspan>7</colspan>
+                <class3>ui-state-default ui-corner-all</class3>
+            </field>
+        </row>
+        <row>
+            <field>
+                <type>separator</type>
+            </field>
+        </row>
+        <row>
+            <field>
+                <name>color_line</name>
+                <label lang="true">colorline</label>
+                <type>color</type>
+                <width>60px</width>
+                <colspan>2</colspan>
+                <icon eval="true">ICON("color")</icon>
+            </field>
+            <field>
+                <name>color_text1</name>
+                <label lang="true">colortext1</label>
+                <type>color</type>
+                <width>60px</width>
+                <colspan>2</colspan>
+                <icon eval="true">ICON("color")</icon>
+            </field>
+            <field>
+                <name>color_text2</name>
+                <label lang="true">colortext2</label>
+                <type>color</type>
+                <width>60px</width>
+                <icon eval="true">ICON("color")</icon>
+            </field>
+        </row>
+    </fieldset>
 </root>

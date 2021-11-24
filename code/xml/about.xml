@@ -24,800 +24,800 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<default>
-		<action global="action" eval="true">($action=="list")?$action="form":$action</action>
-		<id global="id" eval="true">$id=current_user()</id>
-	</default>
-	<form>
-		<views>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<default>SELECT '0' id</default>
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">about</title>
-					<icon eval="true">ICON("about")</icon>
-					<width>100%</width>
-					<class>tabla</class>
-					<row>
-						<field>
-							<type>image</type>
-							<image>img/saltos.png</image>
-							<height>100px</height>
-							<rowspan>100</rowspan>
-							<class>logo</class>
-							<class3>top</class3>
-						</field>
-						<field>
-							<label eval="true">get_name_version_revision(true)</label>
-							<type>label</type>
-							<class>left bold</class>
-							<colspan>3</colspan>
-							<width>100%</width>
-						</field>
-						<field>
-							<type>image</type>
-							<image>img/gplv3.png</image>
-							<width>100px</width>
-							<rowspan>4</rowspan>
-							<class>nada</class>
-							<class3>top right</class3>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">copyright</label>
-							<type>label</type>
-							<class>left bold</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">developers</label>
-							<type>label</type>
-							<class>thead</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Josep Sanz (Main developer)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("josep.sanz@saltos.org")</onclick>
-							<width>25%</width>
-						</field>
-						<field>
-							<label>Jordi Company (Devel &amp; docs)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("jcompany@saltos.org")</onclick>
-							<width>25%</width>
-						</field>
-						<field>
-							<label>Andrés Diaz (Beta tester)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("adiaz@saltos.org")</onclick>
-							<width>25%</width>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>tbody</class>
-							<colspan>1</colspan>
-							<width>25%</width>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">translators</label>
-							<type>label</type>
-							<class>thead</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Arabic-Saudi Arabia (Mohammed Mubarak)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.google.cat/search?q=Mohammed+Mubarak")</onclick>
-						</field>
-						<field>
-							<label>Català-Espanya (Josep Sanz)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("josep.sanz@saltos.org")</onclick>
-						</field>
-						<field>
-							<label>Deutsch-Deutschland (Alex Muller)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.google.cat/search?q=Alex+Muller")</onclick>
-						</field>
-						<field>
-							<label>English-USA (Josep Sanz)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("josep.sanz@saltos.org")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Español-América Latina (Hector Ruben Echaniz)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.google.cat/search?q=Hector+Ruben+Echaniz")</onclick>
-						</field>
-						<field>
-							<label>Español-España (Josep Sanz)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("josep.sanz@saltos.org")</onclick>
-						</field>
-						<field>
-							<label>French-France (Francis Dionne)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("agencewebtictacto@gmail.com")</onclick>
-						</field>
-						<field>
-							<label>Português-Brasil (Benedito Fulvio)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("f.manfredini@hotmail.com")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Português-Portugal (Nuno Lopes)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("nunolopes@nearu.info")</onclick>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>tbody</class>
-							<colspan>3</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">components</label>
-							<type>label</type>
-							<class>left bold</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">server_base</label>
-							<type>label</type>
-							<class>thead</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Apache 2.2/2.4 (ASL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://httpd.apache.org")</onclick>
-						</field>
-						<field>
-							<label>PHP 5.2-8.0 (PHP-3.01)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.php.net")</onclick>
-						</field>
-						<field>
-							<label>SQLite 3 (Public domain)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.sqlite.org")</onclick>
-						</field>
-						<field>
-							<label>MySQL 5.1-5.8 (GPL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://dev.mysql.com/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>MariaDB 5.5-10.5 (GPL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://mariadb.org")</onclick>
-						</field>
-						<field>
-							<label>HipHop VM 3.5.0-dev (PHP-3.01 &amp; ZEND-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/facebook/hhvm")</onclick>
-						</field>
-						<field>
-							<label>Mroonga 4.06-11.04 (LGPL-2.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://mroonga.org/")</onclick>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>tbody</class>
-							<colspan>1</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">php_plugins</label>
-							<type>label</type>
-							<class>thead</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>WarnockPDF 7.0.0 (LGPL-3.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/code-lts/WarnockPDF")</onclick>
-						</field>
-						<field>
-							<label>PHPMailer 6.5.1 (LGPL-2.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
-						</field>
-						<field>
-							<label>PHPSpreadsheet 1.18.0 (LGPL-2.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
-						</field>
-						<field>
-							<label>PHPLOT 6.2.0 (LGPL-2.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://sourceforge.net/projects/phplot/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>PHP Mobile Detect 2.8.36 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
-						</field>
-						<field>
-							<label>MimeParser 1.96 (BSD)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
-						</field>
-						<field>
-							<label>RFC822 Addresses 1.16 (BSD)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
-						</field>
-						<field>
-							<label>Pop3Class 1.24 (BSD)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.phpclasses.org/package/2-PHP-Access-to-e-mail-mailboxes-using-the-POP3-protocol.html")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>ZIP/TAR Archives 2.1 (BSD &amp; GPL)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.phpclasses.org/package/945-PHP-Create-tar-gzip-bzip2-zip-extract-tar-gzip-bzip2-.html")</onclick>
-						</field>
-						<field>
-							<label>WordPress 2.9 (GPL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://wordpress.org/download/")</onclick>
-						</field>
-						<field>
-							<label>EvalMath 2005 (BSD)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.phpclasses.org/package/2695-PHP-Safely-evaluate-mathematical-expressions.html")</onclick>
-						</field>
-						<field>
-							<label>PHPass 0.5 (Public domain)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.openwall.com/phpass/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Password Strength 1.0.0 (GPL-3.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
-						</field>
-						<field>
-							<label>RoundCubeMail 1.5-rc (GPL-3.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/roundcube/roundcubemail")</onclick>
-						</field>
-						<field>
-							<label>BMP-PHP 07.02.2010 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.phpclasses.org/package/5991-PHP-Load-and-save-images-in-the-BMP-format.html")</onclick>
-						</field>
-						<field>
-							<label>HttpClient 1.98 (BSD)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.phpclasses.org/package/3-PHP-HTTP-client-to-access-Web-site-pages.html")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>GeSHi 1.0.9.1 (GPL)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/GeSHi/geshi-1.0/")</onclick>
-						</field>
-						<field>
-							<label>Google API PHP Client v2.11 (ASL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/googleapis/google-api-php-client")</onclick>
-						</field>
-						<field>
-							<label>EDIFACT 0.4.1 (LGPL-3.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/php-edifact/edifact")</onclick>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>tbody</class>
-							<colspan>1</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">javascript_base</label>
-							<type>label</type>
-							<class>thead</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>JQuery 3.6.0 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.jquery.com/")</onclick>
-						</field>
-						<field>
-							<label>JQuery UI 1.12.1 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.jqueryui.com/")</onclick>
-						</field>
-						<field>
-							<label>JQuery Mobile 1.4.5 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://jquerymobile.com/")</onclick>
-						</field>
-						<field>
-							<label>Bootstrap 5.1.3 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://getbootstrap.com/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">bootstrap_plugins</label>
-							<type>label</type>
-							<class>thead</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Bootswatch 5.1.2 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://bootswatch.com/")</onclick>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>tbody</class>
-							<colspan>3</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">jquery_plugins</label>
-							<type>label</type>
-							<class>thead</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>blockUI 2.70 (MIT &amp; GPL*)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://malsup.com/jquery/block/")</onclick>
-						</field>
-						<field>
-							<label>Color picker 23.05.2009 (MIT &amp; GPL*)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.eyecon.ro/colorpicker/")</onclick>
-						</field>
-						<field>
-							<label>Auto-Growing Textarea 24 May 2016 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag/blob/master/javascripts/jquery.autogrow-textarea.js")</onclick>
-						</field>
-						<field>
-							<label>Timepicker Plugin for jQuery 1.13.10 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/jonthornton/jquery-timepicker")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Cookie v1.4.1 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/carhartl/jquery-cookie")</onclick>
-						</field>
-						<field>
-							<label>Form 4.3.0 (MIT &amp; LGPL-2.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>
-						</field>
-						<field>
-							<label>jGrowl 1.4.7 (MIT &amp; GPL*)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://stanlemon.net/projects/jgrowl.html")</onclick>
-						</field>
-						<field>
-							<label>Favicon 0.2.1 (MIT &amp; GPL*)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Locutus 2.0.15 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://locutus.io/php/")</onclick>
-						</field>
-						<field>
-							<label>Handsontable 6.2.2 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/handsontable/handsontable/tree/6.2.2")</onclick>
-						</field>
-						<field>
-							<label>jsTree 3.3.12 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://www.jstree.com/")</onclick>
-						</field>
-						<field>
-							<label>jQuery File Upload 10.31.0 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/blueimp/jQuery-File-Upload")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">javascript_plugins</label>
-							<type>label</type>
-							<class>thead</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Mozilla pdf.js v2.10.377 (ASL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
-						</field>
-						<field>
-							<label>Bouncing Beholder 2012 (ZLib/LibPNG)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
-						</field>
-						<field>
-							<label>timbre.js 14.11.25 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
-						</field>
-						<field>
-							<label>CKEditor 4.17.1 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://ckeditor.com/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>CodeMirror v5.64.0 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://codemirror.net/")</onclick>
-						</field>
-						<field>
-							<label>zlib.js v0.3.1 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/imaya/zlib.js")</onclick>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>tbody</class>
-							<colspan>2</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">other_plugins</label>
-							<type>label</type>
-							<class>thead</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Gorri Sans 1.00 February 3, 2009 (GPL*)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.dafont.com/gorrisans.font")</onclick>
-						</field>
-						<field>
-							<label>Font Awesome Free 5.15.4 (SIL OFL 1.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://fontawesome.com/")</onclick>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>tbody</class>
-							<colspan>2</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">server_plugins</label>
-							<type>label</type>
-							<class>thead</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>LibreOffice 7.1.4.2 (LGPL-3.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.libreoffice.org/")</onclick>
-						</field>
-						<field>
-							<label>ImageMagick 6.9.11 (ImageMagick)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.imagemagick.org/")</onclick>
-						</field>
-						<field>
-							<label>Aspell 0.60.6 (GPL-2.0, LGPL-2.0 &amp; BSD)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://aspell.net/")</onclick>
-						</field>
-						<field>
-							<label>Libtranslate 0.99 (BSD)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.nongnu.org/libtranslate/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Tesseract OCR 3.04 (ASL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/tesseract-ocr/tesseract")</onclick>
-						</field>
-						<field>
-							<label>Poppler 0.26.5 (GPL-2.0, LGPL-2.0 &amp; MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://poppler.freedesktop.org/")</onclick>
-						</field>
-						<field>
-							<label>wkhtmltopdf 0.12.4 (GPLv3+)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://wkhtmltopdf.org/")</onclick>
-						</field>
-						<field>
-							<label>xlsxio 0.2.29 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/brechtsanders/xlsxio/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<class>helperbuttons</class>
-						<field>
-							<label lang="true">vxinfo</label>
-							<type>label</type>
-							<class>left bold</class>
-							<colspan>3</colspan>
-						</field>
-						<field>
-							<type>button</type>
-							<value lang="true">buttonreturn</value>
-							<onclick>goback()</onclick>
-							<icon eval="true">ICON("back")</icon>
-							<class>nowrap right</class>
-						</field>
-					</row>
-				</fieldset>
-				<temp global="directory" eval="true">$directory="lib/licenses/"</temp>
-				<temp global="extension" eval="true">$extension=".txt"</temp>
-				<temp global="directory,extension,files" eval="true">$files=glob_protected($directory."*".$extension)</temp>
-				<temp global="directory,extension,files" eval="true">$files=str_replace(array($directory,$extension),"",$files)</temp>
-				<fieldset ifeval="!ismobile()" global="files,row" foreach="files" as="row">
-					<title global="row" eval="true">LANG("license").$row</title>
-					<icon eval="true">ICON("about")</icon>
-					<row>
-						<field>
-							<label global="row" eval="true">LANG("licensetitle").$row</label>
-							<type>label</type>
-							<class>left bold</class>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name global="row" eval="true">encode_bad_chars($row)</name>
-							<type>textarea</type>
-							<value global="directory,extension,row" eval="true">file_get_contents($directory.$row.$extension)</value>
-							<width>800px</width>
-							<height>240px</height>
-							<readonly>true</readonly>
-							<class3>ascii</class3>
-						</field>
-					</row>
-				</fieldset>
-				<fieldset ifeval="!ismobile()">
-					<title lang="true">game</title>
-					<icon eval="true">ICON("about")</icon>
-					<row>
-						<field>
-							<label lang="true">gametitle</label>
-							<type>label</type>
-							<class>left bold</class>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>game</name>
-							<type>iframe</type>
-							<value eval="true">"?action=game&amp;r=".getDefault("info/revision")</value>
-							<width>800px</width>
-							<height>240px</height>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-		</javascript>
-	</form>
+    <default>
+        <action global="action" eval="true">($action=="list")?$action="form":$action</action>
+        <id global="id" eval="true">$id=current_user()</id>
+    </default>
+    <form>
+        <views>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <default>SELECT '0' id</default>
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">about</title>
+                    <icon eval="true">ICON("about")</icon>
+                    <width>100%</width>
+                    <class>tabla</class>
+                    <row>
+                        <field>
+                            <type>image</type>
+                            <image>img/saltos.png</image>
+                            <height>100px</height>
+                            <rowspan>100</rowspan>
+                            <class>logo</class>
+                            <class3>top</class3>
+                        </field>
+                        <field>
+                            <label eval="true">get_name_version_revision(true)</label>
+                            <type>label</type>
+                            <class>left bold</class>
+                            <colspan>3</colspan>
+                            <width>100%</width>
+                        </field>
+                        <field>
+                            <type>image</type>
+                            <image>img/gplv3.png</image>
+                            <width>100px</width>
+                            <rowspan>4</rowspan>
+                            <class>nada</class>
+                            <class3>top right</class3>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">copyright</label>
+                            <type>label</type>
+                            <class>left bold</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">developers</label>
+                            <type>label</type>
+                            <class>thead</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Josep Sanz (Main developer)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>mailto("josep.sanz@saltos.org")</onclick>
+                            <width>25%</width>
+                        </field>
+                        <field>
+                            <label>Jordi Company (Devel &amp; docs)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>mailto("jcompany@saltos.org")</onclick>
+                            <width>25%</width>
+                        </field>
+                        <field>
+                            <label>Andrés Diaz (Beta tester)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>mailto("adiaz@saltos.org")</onclick>
+                            <width>25%</width>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <class>tbody</class>
+                            <colspan>1</colspan>
+                            <width>25%</width>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">translators</label>
+                            <type>label</type>
+                            <class>thead</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Arabic-Saudi Arabia (Mohammed Mubarak)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.google.cat/search?q=Mohammed+Mubarak")</onclick>
+                        </field>
+                        <field>
+                            <label>Català-Espanya (Josep Sanz)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>mailto("josep.sanz@saltos.org")</onclick>
+                        </field>
+                        <field>
+                            <label>Deutsch-Deutschland (Alex Muller)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.google.cat/search?q=Alex+Muller")</onclick>
+                        </field>
+                        <field>
+                            <label>English-USA (Josep Sanz)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>mailto("josep.sanz@saltos.org")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Español-América Latina (Hector Ruben Echaniz)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.google.cat/search?q=Hector+Ruben+Echaniz")</onclick>
+                        </field>
+                        <field>
+                            <label>Español-España (Josep Sanz)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>mailto("josep.sanz@saltos.org")</onclick>
+                        </field>
+                        <field>
+                            <label>French-France (Francis Dionne)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>mailto("agencewebtictacto@gmail.com")</onclick>
+                        </field>
+                        <field>
+                            <label>Português-Brasil (Benedito Fulvio)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>mailto("f.manfredini@hotmail.com")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Português-Portugal (Nuno Lopes)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>mailto("nunolopes@nearu.info")</onclick>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <class>tbody</class>
+                            <colspan>3</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">components</label>
+                            <type>label</type>
+                            <class>left bold</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">server_base</label>
+                            <type>label</type>
+                            <class>thead</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Apache 2.2/2.4 (ASL-2.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://httpd.apache.org")</onclick>
+                        </field>
+                        <field>
+                            <label>PHP 5.2-8.0 (PHP-3.01)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.php.net")</onclick>
+                        </field>
+                        <field>
+                            <label>SQLite 3 (Public domain)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.sqlite.org")</onclick>
+                        </field>
+                        <field>
+                            <label>MySQL 5.1-5.8 (GPL-2.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://dev.mysql.com/")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>MariaDB 5.5-10.5 (GPL-2.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://mariadb.org")</onclick>
+                        </field>
+                        <field>
+                            <label>HipHop VM 3.5.0-dev (PHP-3.01 &amp; ZEND-2.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/facebook/hhvm")</onclick>
+                        </field>
+                        <field>
+                            <label>Mroonga 4.06-11.04 (LGPL-2.1)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://mroonga.org/")</onclick>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <class>tbody</class>
+                            <colspan>1</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">php_plugins</label>
+                            <type>label</type>
+                            <class>thead</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>WarnockPDF 7.0.0 (LGPL-3.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/code-lts/WarnockPDF")</onclick>
+                        </field>
+                        <field>
+                            <label>PHPMailer 6.5.1 (LGPL-2.1)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
+                        </field>
+                        <field>
+                            <label>PHPSpreadsheet 1.18.0 (LGPL-2.1)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
+                        </field>
+                        <field>
+                            <label>PHPLOT 6.2.0 (LGPL-2.1)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://sourceforge.net/projects/phplot/")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>PHP Mobile Detect 2.8.36 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
+                        </field>
+                        <field>
+                            <label>MimeParser 1.96 (BSD)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
+                        </field>
+                        <field>
+                            <label>RFC822 Addresses 1.16 (BSD)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
+                        </field>
+                        <field>
+                            <label>Pop3Class 1.24 (BSD)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.phpclasses.org/package/2-PHP-Access-to-e-mail-mailboxes-using-the-POP3-protocol.html")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>ZIP/TAR Archives 2.1 (BSD &amp; GPL)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.phpclasses.org/package/945-PHP-Create-tar-gzip-bzip2-zip-extract-tar-gzip-bzip2-.html")</onclick>
+                        </field>
+                        <field>
+                            <label>WordPress 2.9 (GPL-2.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://wordpress.org/download/")</onclick>
+                        </field>
+                        <field>
+                            <label>EvalMath 2005 (BSD)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.phpclasses.org/package/2695-PHP-Safely-evaluate-mathematical-expressions.html")</onclick>
+                        </field>
+                        <field>
+                            <label>PHPass 0.5 (Public domain)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.openwall.com/phpass/")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Password Strength 1.0.0 (GPL-3.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
+                        </field>
+                        <field>
+                            <label>RoundCubeMail 1.5-rc (GPL-3.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/roundcube/roundcubemail")</onclick>
+                        </field>
+                        <field>
+                            <label>BMP-PHP 07.02.2010 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.phpclasses.org/package/5991-PHP-Load-and-save-images-in-the-BMP-format.html")</onclick>
+                        </field>
+                        <field>
+                            <label>HttpClient 1.98 (BSD)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.phpclasses.org/package/3-PHP-HTTP-client-to-access-Web-site-pages.html")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>GeSHi 1.0.9.1 (GPL)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/GeSHi/geshi-1.0/")</onclick>
+                        </field>
+                        <field>
+                            <label>Google API PHP Client v2.11 (ASL-2.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/googleapis/google-api-php-client")</onclick>
+                        </field>
+                        <field>
+                            <label>EDIFACT 0.4.1 (LGPL-3.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/php-edifact/edifact")</onclick>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <class>tbody</class>
+                            <colspan>1</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">javascript_base</label>
+                            <type>label</type>
+                            <class>thead</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>JQuery 3.6.0 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.jquery.com/")</onclick>
+                        </field>
+                        <field>
+                            <label>JQuery UI 1.12.1 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.jqueryui.com/")</onclick>
+                        </field>
+                        <field>
+                            <label>JQuery Mobile 1.4.5 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://jquerymobile.com/")</onclick>
+                        </field>
+                        <field>
+                            <label>Bootstrap 5.1.3 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://getbootstrap.com/")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">bootstrap_plugins</label>
+                            <type>label</type>
+                            <class>thead</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Bootswatch 5.1.2 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://bootswatch.com/")</onclick>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <class>tbody</class>
+                            <colspan>3</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">jquery_plugins</label>
+                            <type>label</type>
+                            <class>thead</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>blockUI 2.70 (MIT &amp; GPL*)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://malsup.com/jquery/block/")</onclick>
+                        </field>
+                        <field>
+                            <label>Color picker 23.05.2009 (MIT &amp; GPL*)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.eyecon.ro/colorpicker/")</onclick>
+                        </field>
+                        <field>
+                            <label>Auto-Growing Textarea 24 May 2016 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/jaz303/jquery-grab-bag/blob/master/javascripts/jquery.autogrow-textarea.js")</onclick>
+                        </field>
+                        <field>
+                            <label>Timepicker Plugin for jQuery 1.13.10 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/jonthornton/jquery-timepicker")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Cookie v1.4.1 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/carhartl/jquery-cookie")</onclick>
+                        </field>
+                        <field>
+                            <label>Form 4.3.0 (MIT &amp; LGPL-2.1)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://malsup.com/jquery/form/")</onclick>
+                        </field>
+                        <field>
+                            <label>jGrowl 1.4.7 (MIT &amp; GPL*)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://stanlemon.net/projects/jgrowl.html")</onclick>
+                        </field>
+                        <field>
+                            <label>Favicon 0.2.1 (MIT &amp; GPL*)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Locutus 2.0.15 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://locutus.io/php/")</onclick>
+                        </field>
+                        <field>
+                            <label>Handsontable 6.2.2 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/handsontable/handsontable/tree/6.2.2")</onclick>
+                        </field>
+                        <field>
+                            <label>jsTree 3.3.12 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://www.jstree.com/")</onclick>
+                        </field>
+                        <field>
+                            <label>jQuery File Upload 10.31.0 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/blueimp/jQuery-File-Upload")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">javascript_plugins</label>
+                            <type>label</type>
+                            <class>thead</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Mozilla pdf.js v2.10.377 (ASL-2.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
+                        </field>
+                        <field>
+                            <label>Bouncing Beholder 2012 (ZLib/LibPNG)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
+                        </field>
+                        <field>
+                            <label>timbre.js 14.11.25 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
+                        </field>
+                        <field>
+                            <label>CKEditor 4.17.1 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://ckeditor.com/")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>CodeMirror v5.64.0 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://codemirror.net/")</onclick>
+                        </field>
+                        <field>
+                            <label>zlib.js v0.3.1 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/imaya/zlib.js")</onclick>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <class>tbody</class>
+                            <colspan>2</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">other_plugins</label>
+                            <type>label</type>
+                            <class>thead</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Gorri Sans 1.00 February 3, 2009 (GPL*)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.dafont.com/gorrisans.font")</onclick>
+                        </field>
+                        <field>
+                            <label>Font Awesome Free 5.15.4 (SIL OFL 1.1)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://fontawesome.com/")</onclick>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <class>tbody</class>
+                            <colspan>2</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label lang="true">server_plugins</label>
+                            <type>label</type>
+                            <class>thead</class>
+                            <colspan>4</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>LibreOffice 7.1.4.2 (LGPL-3.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.libreoffice.org/")</onclick>
+                        </field>
+                        <field>
+                            <label>ImageMagick 6.9.11 (ImageMagick)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.imagemagick.org/")</onclick>
+                        </field>
+                        <field>
+                            <label>Aspell 0.60.6 (GPL-2.0, LGPL-2.0 &amp; BSD)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://aspell.net/")</onclick>
+                        </field>
+                        <field>
+                            <label>Libtranslate 0.99 (BSD)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://www.nongnu.org/libtranslate/")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <label>Tesseract OCR 3.04 (ASL-2.0)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/tesseract-ocr/tesseract")</onclick>
+                        </field>
+                        <field>
+                            <label>Poppler 0.26.5 (GPL-2.0, LGPL-2.0 &amp; MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://poppler.freedesktop.org/")</onclick>
+                        </field>
+                        <field>
+                            <label>wkhtmltopdf 0.12.4 (GPLv3+)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("http://wkhtmltopdf.org/")</onclick>
+                        </field>
+                        <field>
+                            <label>xlsxio 0.2.29 (MIT)</label>
+                            <type>link</type>
+                            <class>tbody</class>
+                            <onclick>openwin("https://github.com/brechtsanders/xlsxio/")</onclick>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <class>helperbuttons</class>
+                        <field>
+                            <label lang="true">vxinfo</label>
+                            <type>label</type>
+                            <class>left bold</class>
+                            <colspan>3</colspan>
+                        </field>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">buttonreturn</value>
+                            <onclick>goback()</onclick>
+                            <icon eval="true">ICON("back")</icon>
+                            <class>nowrap right</class>
+                        </field>
+                    </row>
+                </fieldset>
+                <temp global="directory" eval="true">$directory="lib/licenses/"</temp>
+                <temp global="extension" eval="true">$extension=".txt"</temp>
+                <temp global="directory,extension,files" eval="true">$files=glob_protected($directory."*".$extension)</temp>
+                <temp global="directory,extension,files" eval="true">$files=str_replace(array($directory,$extension),"",$files)</temp>
+                <fieldset ifeval="!ismobile()" global="files,row" foreach="files" as="row">
+                    <title global="row" eval="true">LANG("license").$row</title>
+                    <icon eval="true">ICON("about")</icon>
+                    <row>
+                        <field>
+                            <label global="row" eval="true">LANG("licensetitle").$row</label>
+                            <type>label</type>
+                            <class>left bold</class>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name global="row" eval="true">encode_bad_chars($row)</name>
+                            <type>textarea</type>
+                            <value global="directory,extension,row" eval="true">file_get_contents($directory.$row.$extension)</value>
+                            <width>800px</width>
+                            <height>240px</height>
+                            <readonly>true</readonly>
+                            <class3>ascii</class3>
+                        </field>
+                    </row>
+                </fieldset>
+                <fieldset ifeval="!ismobile()">
+                    <title lang="true">game</title>
+                    <icon eval="true">ICON("about")</icon>
+                    <row>
+                        <field>
+                            <label lang="true">gametitle</label>
+                            <type>label</type>
+                            <class>left bold</class>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>game</name>
+                            <type>iframe</type>
+                            <value eval="true">"?action=game&amp;r=".getDefault("info/revision")</value>
+                            <width>800px</width>
+                            <height>240px</height>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+        </javascript>
+    </form>
 </root>

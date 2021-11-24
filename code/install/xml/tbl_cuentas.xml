@@ -24,38 +24,38 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<id>1</id>
-		<nombre>A</nombre>
-		<descripcion>Cuenta para la contabilidad A</descripcion>
-		<logo_left>118</logo_left>
-		<logo_top>15</logo_top>
-		<logo_width>72</logo_width>
-		<logo_height>15</logo_height>
-		<logo_file>../img/deflogo.png</logo_file>
-		<color_line>#666666</color_line>
-		<color_text1>#ce141d</color_text1>
-		<color_text2>#666666</color_text2>
-		<factura_iva_bool>1</factura_iva_bool>
-		<factura_iva_value>21</factura_iva_value>
-		<factura_irpf_bool>0</factura_irpf_bool>
-		<factura_irpf_value>19</factura_irpf_value>
-	</row>
-	<row>
-		<id>2</id>
-		<nombre>B</nombre>
-		<descripcion>Cuenta para la contabilidad B</descripcion>
-		<logo_left>118</logo_left>
-		<logo_top>15</logo_top>
-		<logo_width>72</logo_width>
-		<logo_height>15</logo_height>
-		<logo_file>../img/deflogo.png</logo_file>
-		<color_line>#666666</color_line>
-		<color_text1>#ce141d</color_text1>
-		<color_text2>#666666</color_text2>
-		<factura_iva_bool>0</factura_iva_bool>
-		<factura_iva_value>0</factura_iva_value>
-		<factura_irpf_bool>0</factura_irpf_bool>
-		<factura_irpf_value>0</factura_irpf_value>
-	</row>
+    <row>
+        <id>1</id>
+        <nombre>A</nombre>
+        <descripcion>Cuenta para la contabilidad A</descripcion>
+        <logo_left>118</logo_left>
+        <logo_top>15</logo_top>
+        <logo_width>72</logo_width>
+        <logo_height>15</logo_height>
+        <logo_file>../img/deflogo.png</logo_file>
+        <color_line>#666666</color_line>
+        <color_text1>#ce141d</color_text1>
+        <color_text2>#666666</color_text2>
+        <factura_iva_bool>1</factura_iva_bool>
+        <factura_iva_value>21</factura_iva_value>
+        <factura_irpf_bool>0</factura_irpf_bool>
+        <factura_irpf_value>19</factura_irpf_value>
+    </row>
+    <row>
+        <id>2</id>
+        <nombre>B</nombre>
+        <descripcion>Cuenta para la contabilidad B</descripcion>
+        <logo_left>118</logo_left>
+        <logo_top>15</logo_top>
+        <logo_width>72</logo_width>
+        <logo_height>15</logo_height>
+        <logo_file>../img/deflogo.png</logo_file>
+        <color_line>#666666</color_line>
+        <color_text1>#ce141d</color_text1>
+        <color_text2>#666666</color_text2>
+        <factura_iva_bool>0</factura_iva_bool>
+        <factura_iva_value>0</factura_iva_value>
+        <factura_irpf_bool>0</factura_irpf_bool>
+        <factura_irpf_value>0</factura_irpf_value>
+    </row>
 </root>

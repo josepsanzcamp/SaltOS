@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<template><![CDATA[
+    <template><![CDATA[
 <!DOCTYPE html>
 <!--
  ____        _ _    ___  ____
@@ -59,104 +59,104 @@ __CSS__
 __JS__
 </body>
 </html>
-	]]></template>
-	<metas>
-		<meta>charset="utf-8"</meta>
-		<meta>http-equiv="X-UA-Compatible" content="IE=edge"</meta>
-		<meta>name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"</meta>
-		<meta eval="true">"name='copyright' content='".get_name_version_revision(true)."'"</meta>
-		<meta eval="true">"name='msapplication-TileColor' content='".getDefault("info/color")."'"</meta>
-		<meta eval="true">"name='msapplication-TileImage' content='".getDefault("info/favicon")."'"</meta>
-		<meta eval="true">"name='theme-color' content='".getDefault("info/color")."'"</meta>
-		<icon eval="true">getDefault("info/favicon")</icon>
-		<title eval="true">get_name_version_revision()</title>
-	</metas>
-	<css>
-		<include>lib/bootstrap/css/bootstrap.min.css</include>
-		<!--<include>lib/bootswatch/css/cosmo.min.css</include>-->
-		<include>lib/pdfjs/pdf_viewer.min.css</include>
-		<include>lib/codemirror/codemirror.min.css</include>
-		<include>lib/fontawesome/css/fontawesome.min.css</include>
-		<include>lib/fontawesome/css/solid.min.css</include>
-		<include>lib/handsontable/handsontable.full.min.css</include>
-		<include>css/bootstrap.css</include>
+    ]]></template>
+    <metas>
+        <meta>charset="utf-8"</meta>
+        <meta>http-equiv="X-UA-Compatible" content="IE=edge"</meta>
+        <meta>name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"</meta>
+        <meta eval="true">"name='copyright' content='".get_name_version_revision(true)."'"</meta>
+        <meta eval="true">"name='msapplication-TileColor' content='".getDefault("info/color")."'"</meta>
+        <meta eval="true">"name='msapplication-TileImage' content='".getDefault("info/favicon")."'"</meta>
+        <meta eval="true">"name='theme-color' content='".getDefault("info/color")."'"</meta>
+        <icon eval="true">getDefault("info/favicon")</icon>
+        <title eval="true">get_name_version_revision()</title>
+    </metas>
+    <css>
+        <include>lib/bootstrap/css/bootstrap.min.css</include>
+        <!--<include>lib/bootswatch/css/cosmo.min.css</include>-->
+        <include>lib/pdfjs/pdf_viewer.min.css</include>
+        <include>lib/codemirror/codemirror.min.css</include>
+        <include>lib/fontawesome/css/fontawesome.min.css</include>
+        <include>lib/fontawesome/css/solid.min.css</include>
+        <include>lib/handsontable/handsontable.full.min.css</include>
+        <include>css/bootstrap.css</include>
 <!--
-		<include>lib/datepicker/css/bootstrap-datepicker3.min.css</include>
-		<include>lib/checkbox/awesome-bootstrap-checkbox.min.css</include>
-		<include>lib/combobox/css/bootstrap-combobox.min.css</include>
-		<include>lib/tokenfield/bootstrap-tokenfield.min.css</include>
-		<include>lib/tokenfield/tokenfield-typeahead.min.css</include>
-		<include>lib/codemirror/codemirror.min.css</include>
-		<include>lib/fileupload/css/jquery.fileupload.min.css</include>
-		<include>lib/fileupload/css/jquery.fileupload-ui.min.css</include>
-		<include>lib/jstree/themes/default/style.min.css</include>
-		<include>lib/nvd3/nv.d3.min.css</include>
-		<include>lib/dagred3/dagre-d3.css</include>
-		<include>lib/imagegallery/css/blueimp-gallery.min.css</include>
-		<include>lib/imagegallery/css/bootstrap-image-gallery.min.css</include>
-		<include>lib/calendar/fullcalendar.min.css</include>
-		<include>lib/scheduler/scheduler.min.css</include>
-		<include>lib/handsontable/handsontable.full.min.css</include>
-		<include>lib/pdfjs/pdf_viewer.min.css</include>
-		<include>lib/openlayers/ol.min.css</include>
-		<include>lib/colorpalette/bootstrap-colorpalette.min.css</include>
-		<include>lib/tabdrop/tabdrop.min.css</include>
-		<include>lib/clockpicker/bootstrap-clockpicker.min.css</include>
+        <include>lib/datepicker/css/bootstrap-datepicker3.min.css</include>
+        <include>lib/checkbox/awesome-bootstrap-checkbox.min.css</include>
+        <include>lib/combobox/css/bootstrap-combobox.min.css</include>
+        <include>lib/tokenfield/bootstrap-tokenfield.min.css</include>
+        <include>lib/tokenfield/tokenfield-typeahead.min.css</include>
+        <include>lib/codemirror/codemirror.min.css</include>
+        <include>lib/fileupload/css/jquery.fileupload.min.css</include>
+        <include>lib/fileupload/css/jquery.fileupload-ui.min.css</include>
+        <include>lib/jstree/themes/default/style.min.css</include>
+        <include>lib/nvd3/nv.d3.min.css</include>
+        <include>lib/dagred3/dagre-d3.css</include>
+        <include>lib/imagegallery/css/blueimp-gallery.min.css</include>
+        <include>lib/imagegallery/css/bootstrap-image-gallery.min.css</include>
+        <include>lib/calendar/fullcalendar.min.css</include>
+        <include>lib/scheduler/scheduler.min.css</include>
+        <include>lib/handsontable/handsontable.full.min.css</include>
+        <include>lib/pdfjs/pdf_viewer.min.css</include>
+        <include>lib/openlayers/ol.min.css</include>
+        <include>lib/colorpalette/bootstrap-colorpalette.min.css</include>
+        <include>lib/tabdrop/tabdrop.min.css</include>
+        <include>lib/clockpicker/bootstrap-clockpicker.min.css</include>
 -->
-	</css>
-	<js>
-		<include>lib/locutus/php.min.js</include>
-		<include>lib/jquery/jquery.min.js</include>
-		<include>lib/jquery/jquery.cookie.min.js</include>
-		<include>lib/jquery/jquery.form.min.js</include>
-		<include>lib/bootstrap/js/bootstrap.bundle.min.js</include>
-		<include>lib/jquery/jquery.autogrow-textarea.min.js</include>
-		<include>lib/bootbox/bootbox.min.js</include>
-		<include>lib/jquery/jquery.favicon.min.js</include>
-		<inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
-		<include>lib/ckeditor/ckeditor.js</include>
-		<include>lib/ckeditor/adapters/jquery.js</include>
-		<include>lib/pdfjs/pdf.min.js</include>
-		<include>lib/pdfjs/pdf_viewer.min.js</include>
-		<include>lib/codemirror/codemirror.min.js</include>
-		<include>lib/codemirror/codemirror.mode.min.js</include>
-		<include>lib/handsontable/handsontable.full.min.js</include>
-		<include>js/bootstrap.js</include>
+    </css>
+    <js>
+        <include>lib/locutus/php.min.js</include>
+        <include>lib/jquery/jquery.min.js</include>
+        <include>lib/jquery/jquery.cookie.min.js</include>
+        <include>lib/jquery/jquery.form.min.js</include>
+        <include>lib/bootstrap/js/bootstrap.bundle.min.js</include>
+        <include>lib/jquery/jquery.autogrow-textarea.min.js</include>
+        <include>lib/bootbox/bootbox.min.js</include>
+        <include>lib/jquery/jquery.favicon.min.js</include>
+        <inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
+        <include>lib/ckeditor/ckeditor.js</include>
+        <include>lib/ckeditor/adapters/jquery.js</include>
+        <include>lib/pdfjs/pdf.min.js</include>
+        <include>lib/pdfjs/pdf_viewer.min.js</include>
+        <include>lib/codemirror/codemirror.min.js</include>
+        <include>lib/codemirror/codemirror.mode.min.js</include>
+        <include>lib/handsontable/handsontable.full.min.js</include>
+        <include>js/bootstrap.js</include>
 <!--
-		<include>lib/masonry/masonry.pkgd.min.js</include>
-		<include>lib/datepicker/js/bootstrap-datepicker.min.js</include>
-		<include>lib/datepicker/locales/bootstrap-datepicker.es.min.js</include>
-		<include>lib/inputmask/jquery.inputmask.bundle.min.js</include>
-		<include>lib/showpassword/bootstrap-show-password.min.js</include>
-		<include>lib/combobox/js/bootstrap-combobox.min.js</include>
-		<include>lib/tokenfield/bootstrap-tokenfield.min.js</include>
-		<include>lib/tokenfield/typeahead.jquery.min.js</include>
-		<include>lib/grab-bag/jquery.autogrow-textarea.min.js</include>
-		<include>lib/codemirror/codemirror.min.js</include>
-		<include>lib/codemirror/codemirror.mode.min.js</include>
-		<include>lib/notify/bootstrap-notify.min.js</include>
-		<include>lib/fileupload/js/jquery.ui.widget.min.js</include>
-		<include>lib/fileupload/js/jquery.fileupload.min.js</include>
-		<include>lib/fileupload/js/jquery.fileupload-ui.min.js</include>
-		<include>lib/fileupload/js/jquery.fileupload-process.min.js</include>
-		<include>lib/jstree/jstree.min.js</include>
-		<include>lib/d3js/d3.min.js</include>
-		<include>lib/nvd3/nv.d3.min.js</include>
-		<include>lib/dagred3/dagre-d3.min.js</include>
-		<include>lib/imagegallery/js/jquery.blueimp-gallery.min.js</include>
-		<include>lib/imagegallery/js/bootstrap-image-gallery.min.js</include>
-		<include>lib/calendar/moment.min.js</include>
-		<include>lib/calendar/fullcalendar.min.js</include>
-		<include>lib/calendar/fullcalendar.locale-all.min.js</include>
-		<include>lib/scheduler/scheduler.min.js</include>
-		<include>lib/handsontable/handsontable.full.min.js</include>
-		<include>lib/pdfjs/pdf.min.js</include>
-		<include>lib/pdfjs/pdf_viewer.min.js</include>
-		<include>lib/openlayers/ol.min.js</include>
-		<include>lib/pushjs/push.min.js</include>
-		<include>lib/colorpalette/bootstrap-colorpalette.min.js</include>
-		<include>lib/tabdrop/bootstrap-tabdrop.min.js</include>
-		<include>lib/clockpicker/bootstrap-clockpicker.min.js</include>
+        <include>lib/masonry/masonry.pkgd.min.js</include>
+        <include>lib/datepicker/js/bootstrap-datepicker.min.js</include>
+        <include>lib/datepicker/locales/bootstrap-datepicker.es.min.js</include>
+        <include>lib/inputmask/jquery.inputmask.bundle.min.js</include>
+        <include>lib/showpassword/bootstrap-show-password.min.js</include>
+        <include>lib/combobox/js/bootstrap-combobox.min.js</include>
+        <include>lib/tokenfield/bootstrap-tokenfield.min.js</include>
+        <include>lib/tokenfield/typeahead.jquery.min.js</include>
+        <include>lib/grab-bag/jquery.autogrow-textarea.min.js</include>
+        <include>lib/codemirror/codemirror.min.js</include>
+        <include>lib/codemirror/codemirror.mode.min.js</include>
+        <include>lib/notify/bootstrap-notify.min.js</include>
+        <include>lib/fileupload/js/jquery.ui.widget.min.js</include>
+        <include>lib/fileupload/js/jquery.fileupload.min.js</include>
+        <include>lib/fileupload/js/jquery.fileupload-ui.min.js</include>
+        <include>lib/fileupload/js/jquery.fileupload-process.min.js</include>
+        <include>lib/jstree/jstree.min.js</include>
+        <include>lib/d3js/d3.min.js</include>
+        <include>lib/nvd3/nv.d3.min.js</include>
+        <include>lib/dagred3/dagre-d3.min.js</include>
+        <include>lib/imagegallery/js/jquery.blueimp-gallery.min.js</include>
+        <include>lib/imagegallery/js/bootstrap-image-gallery.min.js</include>
+        <include>lib/calendar/moment.min.js</include>
+        <include>lib/calendar/fullcalendar.min.js</include>
+        <include>lib/calendar/fullcalendar.locale-all.min.js</include>
+        <include>lib/scheduler/scheduler.min.js</include>
+        <include>lib/handsontable/handsontable.full.min.js</include>
+        <include>lib/pdfjs/pdf.min.js</include>
+        <include>lib/pdfjs/pdf_viewer.min.js</include>
+        <include>lib/openlayers/ol.min.js</include>
+        <include>lib/pushjs/push.min.js</include>
+        <include>lib/colorpalette/bootstrap-colorpalette.min.js</include>
+        <include>lib/tabdrop/bootstrap-tabdrop.min.js</include>
+        <include>lib/clockpicker/bootstrap-clockpicker.min.js</include>
 -->
-	</js>
+    </js>
 </root>

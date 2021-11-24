@@ -24,58 +24,58 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<rows>
-		<row>
-			<label lang="true">sinmes</label>
-			<value></value>
-		</row>
-		<row>
-			<label lang="true">enero</label>
-			<value>1</value>
-		</row>
-		<row>
-			<label lang="true">febrero</label>
-			<value>2</value>
-		</row>
-		<row>
-			<label lang="true">marzo</label>
-			<value>3</value>
-		</row>
-		<row>
-			<label lang="true">abril</label>
-			<value>4</value>
-		</row>
-		<row>
-			<label lang="true">mayo</label>
-			<value>5</value>
-		</row>
-		<row>
-			<label lang="true">junio</label>
-			<value>6</value>
-		</row>
-		<row>
-			<label lang="true">julio</label>
-			<value>7</value>
-		</row>
-		<row>
-			<label lang="true">agosto</label>
-			<value>8</value>
-		</row>
-		<row>
-			<label lang="true">setiembre</label>
-			<value>9</value>
-		</row>
-		<row>
-			<label lang="true">octubre</label>
-			<value>10</value>
-		</row>
-		<row>
-			<label lang="true">noviembre</label>
-			<value>11</value>
-		</row>
-		<row>
-			<label lang="true">diciembre</label>
-			<value>12</value>
-		</row>
-	</rows>
+    <rows>
+        <row>
+            <label lang="true">sinmes</label>
+            <value></value>
+        </row>
+        <row>
+            <label lang="true">enero</label>
+            <value>1</value>
+        </row>
+        <row>
+            <label lang="true">febrero</label>
+            <value>2</value>
+        </row>
+        <row>
+            <label lang="true">marzo</label>
+            <value>3</value>
+        </row>
+        <row>
+            <label lang="true">abril</label>
+            <value>4</value>
+        </row>
+        <row>
+            <label lang="true">mayo</label>
+            <value>5</value>
+        </row>
+        <row>
+            <label lang="true">junio</label>
+            <value>6</value>
+        </row>
+        <row>
+            <label lang="true">julio</label>
+            <value>7</value>
+        </row>
+        <row>
+            <label lang="true">agosto</label>
+            <value>8</value>
+        </row>
+        <row>
+            <label lang="true">setiembre</label>
+            <value>9</value>
+        </row>
+        <row>
+            <label lang="true">octubre</label>
+            <value>10</value>
+        </row>
+        <row>
+            <label lang="true">noviembre</label>
+            <value>11</value>
+        </row>
+        <row>
+            <label lang="true">diciembre</label>
+            <value>12</value>
+        </row>
+    </rows>
 </root>

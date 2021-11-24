@@ -24,292 +24,292 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>cliente</name>
-				<label lang="true">cliente</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>cliente2</order>
-			</field>
-			<field>
-				<name>dia</name>
-				<label lang="true">dia</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>meses</name>
-				<label lang="true">meses</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>base</name>
-				<label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>total</name>
-				<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>cuenta</name>
-				<label lang="true">cuenta</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>conceptos</name>
-				<label lang="true">numc</label>
-				<tip lang="true">numctip</tip>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>productos</name>
-				<label lang="true">nump</label>
-				<tip lang="true">numptip</tip>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>vencimientos</name>
-				<label lang="true">numv</label>
-				<tip lang="true">numvtip</tip>
-				<sort>false</sort>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true" />
-			<function eval="true">"liquidar1() { var id=getIds(); if(!id) return; dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("msgliquidar")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','liquidar'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
-		</javascript>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>id_cliente</name>
-						<label lang="true">cliente</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_periodicas")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
-						<colspan>4</colspan>
-					</field>
-					<field>
-						<name>id_cuenta</name>
-						<label lang="true">cuenta</label>
-						<type>select</type>
-						<width>90px</width>
-						<query eval="true">make_extra_query_with_perms("cuentas","tbl_cuentas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincuenta")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todaslascuentas")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_cuenta" eval="true">$id_cuenta=getParam("id_cuenta")</value>
-						<colspan>1</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>dia1</name>
-						<label lang="true">diaini</label>
-						<type>select</type>
-						<width>75px</width>
-						<rows include="xml/common/dias.xml" replace="true" />
-						<value global="dia1" eval="true">$dia1=getParam("dia1")</value>
-					</field>
-					<field>
-						<name>dia2</name>
-						<label lang="true">fechafin</label>
-						<type>select</type>
-						<width>75px</width>
-						<rows include="xml/common/dias.xml" replace="true" />
-						<value global="dia2" eval="true">$dia2=getParam("dia2")</value>
-					</field>
-					<field>
-						<type>separator</type>
-						<width>75px</width>
-					</field>
-					<field>
-						<name>meses</name>
-						<label lang="true">mes</label>
-						<type>select</type>
-						<width>90px</width>
-						<rows include="xml/common/meses.xml" replace="true"/>
-						<value global="meses" eval="true">$meses=getParam("meses")</value>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>filtro</name>
-						<label lang="true">otroscampos</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>4</colspan>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_cliente'=>'','id_cuenta'=>'','dia1'=>'','dia2'=>'','meses'=>'','filtro'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field>
-					<type>button</type>
-					<class>nowrap</class>
-					<value lang="true">liquidar</value>
-					<tip lang="true">liquidar</tip>
-					<onclick>liquidar1()</onclick>
-					<width>1px</width>
-					<icon eval="true">ICON("save")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,filtro,id_cuenta,dia1,dia2,meses" eval="true">"
-		SELECT
-			CONCAT('link:openapp(\'periodicas\',',-id,'):',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) id2,id,
-			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
-				CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',cliente) END cliente,
-			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
-			dia,
-			CONCAT(
-			CASE SUBSTR(meses,1,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("enero"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,2,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("febrero"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,3,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("marzo"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,4,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("abril"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,5,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("mayo"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,6,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("junio"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,7,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("julio"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,8,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("agosto"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,9,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("setiembre"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,10,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("octubre"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,11,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("noviembre"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,12,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("diciembre"),0,3,"UTF-8")." ' ELSE '' END
-			) meses,
-			base,ROUND(base+iva2-irpf2,2) total,
-			CASE id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE cuenta END cuenta,
-			conceptos,productos,
-			(SELECT COUNT(*) FROM tbl_periodicas_v v WHERE v.id_periodica=d.id) vencimientos,
-			id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',cliente) action_title,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
-		FROM (
-			SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2 FROM
-				(SELECT
-					a.*,
-					ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,
-					SUM(CASE b.id_producto WHEN '0' THEN '1' ELSE '0' END) conceptos,
-					SUM(CASE b.id_producto WHEN '0' THEN '0' ELSE '1' END) productos,
-					e.id_usuario id_usuario,d.id_grupo id_grupo,j.nombre cuenta,IFNULL(l.nombre,'') cliente
-				FROM tbl_periodicas a
-					LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id
-					LEFT JOIN tbl_clientes l ON a.id_cliente=l.id
-					LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica
-					LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-					LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-				GROUP BY a.id) c
-		) d
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND (SUBSTR(meses,".intval($meses).",1)='1' OR ''='$meses') AND (dia>='$dia1' OR ''='$dia1') AND ('$dia2'>=dia OR ''='$dia2') AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
-					<resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_periodicas a LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
-					<concepts_old>
-						<concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto='0' AND id_periodica=".abs($id)." ORDER BY id ASC"</concepts_old>
-					</concepts_old>
-					<products_old>
-						<products_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto!='0' AND id_periodica=".abs($id)." ORDER BY id ASC"</products_old>
-					</products_old>
-					<vencimientos_old>
-						<vencimientos_old global="id" eval="true">"SELECT * FROM tbl_periodicas_v WHERE id_periodica=".abs($id)</vencimientos_old>
-					</vencimientos_old>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
-					SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id='".substr(getParam("id"),7)."'":"
-					SELECT '0' id,'0' id_cliente,CASE (SELECT COUNT(*) FROM tbl_epigrafes) WHEN 1 THEN (SELECT id FROM tbl_epigrafes) ELSE '0' END id_epigrafe,CASE (SELECT COUNT(*) FROM tbl_formaspago) WHEN 1 THEN (SELECT id FROM tbl_formaspago) ELSE '0' END id_formapago,'' num,'".current_date()."' fecha,CASE (SELECT COUNT(*) FROM tbl_cuentas) WHEN 1 THEN (SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) FROM tbl_cuentas) ELSE '0' END id_cuenta,'1' dia,'0' enero,'0' febrero,'0' marzo,'0' abril,'0' mayo,'0' junio,'0' julio,'0' agosto,'0' setiembre,'0' octubre,'0' noviembre,'0' diciembre"</default>
-					<resumen eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
-					SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_periodicas a LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica WHERE a.id='".substr(getParam("id"),7)."' GROUP BY a.id) c) d":"
-					SELECT '0' id,'0.00' base,'0' iva,'0.00' iva2,'0' irpf,'0.00' irpf2,'0.00' total"</resumen>
-					<concepts_new>
-						<concepts_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>cliente</name>
+                <label lang="true">cliente</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>cliente2</order>
+            </field>
+            <field>
+                <name>dia</name>
+                <label lang="true">dia</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>meses</name>
+                <label lang="true">meses</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>base</name>
+                <label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>total</name>
+                <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>cuenta</name>
+                <label lang="true">cuenta</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>conceptos</name>
+                <label lang="true">numc</label>
+                <tip lang="true">numctip</tip>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>productos</name>
+                <label lang="true">nump</label>
+                <tip lang="true">numptip</tip>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>vencimientos</name>
+                <label lang="true">numv</label>
+                <tip lang="true">numvtip</tip>
+                <sort>false</sort>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true" />
+            <function eval="true">"liquidar1() { var id=getIds(); if(!id) return; dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("msgliquidar")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','liquidar'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+        </javascript>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>id_cliente</name>
+                        <label lang="true">cliente</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_periodicas")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
+                        <colspan>4</colspan>
+                    </field>
+                    <field>
+                        <name>id_cuenta</name>
+                        <label lang="true">cuenta</label>
+                        <type>select</type>
+                        <width>90px</width>
+                        <query eval="true">make_extra_query_with_perms("cuentas","tbl_cuentas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincuenta")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todaslascuentas")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_cuenta" eval="true">$id_cuenta=getParam("id_cuenta")</value>
+                        <colspan>1</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>dia1</name>
+                        <label lang="true">diaini</label>
+                        <type>select</type>
+                        <width>75px</width>
+                        <rows include="xml/common/dias.xml" replace="true" />
+                        <value global="dia1" eval="true">$dia1=getParam("dia1")</value>
+                    </field>
+                    <field>
+                        <name>dia2</name>
+                        <label lang="true">fechafin</label>
+                        <type>select</type>
+                        <width>75px</width>
+                        <rows include="xml/common/dias.xml" replace="true" />
+                        <value global="dia2" eval="true">$dia2=getParam("dia2")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                        <width>75px</width>
+                    </field>
+                    <field>
+                        <name>meses</name>
+                        <label lang="true">mes</label>
+                        <type>select</type>
+                        <width>90px</width>
+                        <rows include="xml/common/meses.xml" replace="true"/>
+                        <value global="meses" eval="true">$meses=getParam("meses")</value>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">otroscampos</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                        <colspan>4</colspan>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('id_cliente'=>'','id_cuenta'=>'','dia1'=>'','dia2'=>'','meses'=>'','filtro'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field>
+                    <type>button</type>
+                    <class>nowrap</class>
+                    <value lang="true">liquidar</value>
+                    <tip lang="true">liquidar</tip>
+                    <onclick>liquidar1()</onclick>
+                    <width>1px</width>
+                    <icon eval="true">ICON("save")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,id_cliente,filtro,id_cuenta,dia1,dia2,meses" eval="true">"
+        SELECT
+            CONCAT('link:openapp(\'periodicas\',',-id,'):',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) id2,id,
+            CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
+                CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',cliente) END cliente,
+            CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
+            dia,
+            CONCAT(
+            CASE SUBSTR(meses,1,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("enero"),0,3,"UTF-8")." ' ELSE '' END,
+            CASE SUBSTR(meses,2,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("febrero"),0,3,"UTF-8")." ' ELSE '' END,
+            CASE SUBSTR(meses,3,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("marzo"),0,3,"UTF-8")." ' ELSE '' END,
+            CASE SUBSTR(meses,4,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("abril"),0,3,"UTF-8")." ' ELSE '' END,
+            CASE SUBSTR(meses,5,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("mayo"),0,3,"UTF-8")." ' ELSE '' END,
+            CASE SUBSTR(meses,6,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("junio"),0,3,"UTF-8")." ' ELSE '' END,
+            CASE SUBSTR(meses,7,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("julio"),0,3,"UTF-8")." ' ELSE '' END,
+            CASE SUBSTR(meses,8,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("agosto"),0,3,"UTF-8")." ' ELSE '' END,
+            CASE SUBSTR(meses,9,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("setiembre"),0,3,"UTF-8")." ' ELSE '' END,
+            CASE SUBSTR(meses,10,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("octubre"),0,3,"UTF-8")." ' ELSE '' END,
+            CASE SUBSTR(meses,11,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("noviembre"),0,3,"UTF-8")." ' ELSE '' END,
+            CASE SUBSTR(meses,12,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("diciembre"),0,3,"UTF-8")." ' ELSE '' END
+            ) meses,
+            base,ROUND(base+iva2-irpf2,2) total,
+            CASE id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE cuenta END cuenta,
+            conceptos,productos,
+            (SELECT COUNT(*) FROM tbl_periodicas_v v WHERE v.id_periodica=d.id) vencimientos,
+            id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',cliente) action_title,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+            CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+            CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
+            CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+        FROM (
+            SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2 FROM
+                (SELECT
+                    a.*,
+                    ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,
+                    SUM(CASE b.id_producto WHEN '0' THEN '1' ELSE '0' END) conceptos,
+                    SUM(CASE b.id_producto WHEN '0' THEN '0' ELSE '1' END) productos,
+                    e.id_usuario id_usuario,d.id_grupo id_grupo,j.nombre cuenta,IFNULL(l.nombre,'') cliente
+                FROM tbl_periodicas a
+                    LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id
+                    LEFT JOIN tbl_clientes l ON a.id_cliente=l.id
+                    LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica
+                    LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+                    LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+                GROUP BY a.id) c
+        ) d
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND (SUBSTR(meses,".intval($meses).",1)='1' OR ''='$meses') AND (dia>='$dia1' OR ''='$dia1') AND ('$dia2'>=dia OR ''='$dia2') AND ".check_sql($page,"list")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <default global="id" eval="true">"SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
+                    <resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_periodicas a LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
+                    <concepts_old>
+                        <concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto='0' AND id_periodica=".abs($id)." ORDER BY id ASC"</concepts_old>
+                    </concepts_old>
+                    <products_old>
+                        <products_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto!='0' AND id_periodica=".abs($id)." ORDER BY id ASC"</products_old>
+                    </products_old>
+                    <vencimientos_old>
+                        <vencimientos_old global="id" eval="true">"SELECT * FROM tbl_periodicas_v WHERE id_periodica=".abs($id)</vencimientos_old>
+                    </vencimientos_old>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+                    SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id='".substr(getParam("id"),7)."'":"
+                    SELECT '0' id,'0' id_cliente,CASE (SELECT COUNT(*) FROM tbl_epigrafes) WHEN 1 THEN (SELECT id FROM tbl_epigrafes) ELSE '0' END id_epigrafe,CASE (SELECT COUNT(*) FROM tbl_formaspago) WHEN 1 THEN (SELECT id FROM tbl_formaspago) ELSE '0' END id_formapago,'' num,'".current_date()."' fecha,CASE (SELECT COUNT(*) FROM tbl_cuentas) WHEN 1 THEN (SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) FROM tbl_cuentas) ELSE '0' END id_cuenta,'1' dia,'0' enero,'0' febrero,'0' marzo,'0' abril,'0' mayo,'0' junio,'0' julio,'0' agosto,'0' setiembre,'0' octubre,'0' noviembre,'0' diciembre"</default>
+                    <resumen eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+                    SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_periodicas a LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica WHERE a.id='".substr(getParam("id"),7)."' GROUP BY a.id) c) d":"
+                    SELECT '0' id,'0.00' base,'0' iva,'0.00' iva2,'0' irpf,'0.00' irpf2,'0.00' total"</resumen>
+                    <concepts_new>
+                        <concepts_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
 SELECT id,concepto,unidades,descuento,precio,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto='0' AND id_periodica='".substr(getParam("id"),7)."' UNION
 SELECT 'a' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'b' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
@@ -326,10 +326,10 @@ SELECT 'g' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' 
 SELECT 'h' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'i' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'j' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2
-						"</concepts_new>
-					</concepts_new>
-					<products_new>
-						<products_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+                        "</concepts_new>
+                    </concepts_new>
+                    <products_new>
+                        <products_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
 SELECT id,id_producto,concepto,unidades,descuento,precio,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto!='0' AND id_periodica='".substr(getParam("id"),7)."' UNION
 SELECT 'a' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'b' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
@@ -346,10 +346,10 @@ SELECT 'g' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00
 SELECT 'h' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'i' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'j' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2
-						"</products_new>
-					</products_new>
-					<vencimientos_new>
-						<vencimientos_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+                        "</products_new>
+                    </products_new>
+                    <vencimientos_new>
+                        <vencimientos_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
 SELECT id,'".current_date()."' fecha,percent,importe FROM tbl_periodicas_v WHERE id_periodica='".substr(getParam("id"),7)."' UNION
 SELECT 'a' id,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'b' id,'' fecha,'0.00' percent,'0.00' importe UNION
@@ -366,22 +366,22 @@ SELECT 'g' id,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'h' id,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'i' id,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'j' id,'' fecha,'0.00' percent,'0.00' importe
-						"</vencimientos_new>
-					</vencimientos_new>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
-					<resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_periodicas a LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
-					<concepts_old>
-						<concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto='0' AND id_periodica=".abs($id)." ORDER BY id ASC"</concepts_old>
-					</concepts_old>
-					<concepts_new>
-						<concepts_new global="id" eval="true">"
+                        "</vencimientos_new>
+                    </vencimientos_new>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <default global="id" eval="true">"SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
+                    <resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_periodicas a LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
+                    <concepts_old>
+                        <concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto='0' AND id_periodica=".abs($id)." ORDER BY id ASC"</concepts_old>
+                    </concepts_old>
+                    <concepts_new>
+                        <concepts_new global="id" eval="true">"
 SELECT 'a' id,'$id' id_periodica,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'b' id,'$id' id_periodica,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'c' id,'$id' id_periodica,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
@@ -392,13 +392,13 @@ SELECT 'g' id,'$id' id_periodica,'' concepto,'0.00' unidades,'0.00' descuento,'0
 SELECT 'h' id,'$id' id_periodica,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'i' id,'$id' id_periodica,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'j' id,'$id' id_periodica,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2
-						"</concepts_new>
-					</concepts_new>
-					<products_old>
-						<products_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto!='0' AND id_periodica=".abs($id)." ORDER BY id ASC"</products_old>
-					</products_old>
-					<products_new>
-						<products_new global="id" eval="true">"
+                        "</concepts_new>
+                    </concepts_new>
+                    <products_old>
+                        <products_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto!='0' AND id_periodica=".abs($id)." ORDER BY id ASC"</products_old>
+                    </products_old>
+                    <products_new>
+                        <products_new global="id" eval="true">"
 SELECT 'a' id,'$id' id_periodica,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'b' id,'$id' id_periodica,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'c' id,'$id' id_periodica,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
@@ -409,13 +409,13 @@ SELECT 'g' id,'$id' id_periodica,'0' id_producto,'' concepto,'0.00' unidades,'0.
 SELECT 'h' id,'$id' id_periodica,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'i' id,'$id' id_periodica,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'j' id,'$id' id_periodica,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2
-						"</products_new>
-					</products_new>
-					<vencimientos_old>
-						<vencimientos_old global="id" eval="true">"SELECT * FROM tbl_periodicas_v WHERE id_periodica=".abs($id)</vencimientos_old>
-					</vencimientos_old>
-					<vencimientos_new>
-						<vencimientos_new global="id" eval="true">"
+                        "</products_new>
+                    </products_new>
+                    <vencimientos_old>
+                        <vencimientos_old global="id" eval="true">"SELECT * FROM tbl_periodicas_v WHERE id_periodica=".abs($id)</vencimientos_old>
+                    </vencimientos_old>
+                    <vencimientos_new>
+                        <vencimientos_new global="id" eval="true">"
 SELECT 'a' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'b' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'c' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe UNION
@@ -426,1055 +426,1055 @@ SELECT 'g' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'h' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'i' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
-						"</vencimientos_new>
-					</vencimientos_new>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_cuenta</name>
-							<label lang="true">cuenta</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sincuenta")."' label UNION SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) value,nombre label FROM tbl_cuentas ORDER BY label"</query>
-							<focus>true</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_iva_irpf(true)</onchange>
-							<required>true</required>
-						</field>
-						<field>
-							<name>id_epigrafe</name>
-							<label lang="true">epigrafe</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id value,CONCAT('(',codigo,') ',nombre) label FROM tbl_epigrafes ORDER BY label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>3</colspan>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_formapago</name>
-							<label lang="true">formapago</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("formaspago","tbl_formaspago","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinformapago")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>40%</width>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>40%</width>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_cliente</name>
-							<label lang="true">cliente</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<focus>true</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-				</fieldset>
-				<fieldset>
-					<width>700px</width>
-					<row>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>5%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>5%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>5%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>5%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>dia</name>
-							<label lang="true">diaemision</label>
-							<type>select</type>
-							<width>75px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<rows include="xml/common/dias.xml" replace="true" />
-						</field>
-						<field>
-							<name>enero</name>
-							<type>checkbox</type>
-							<label lang="true">enero</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>abril</name>
-							<type>checkbox</type>
-							<label lang="true">abril</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>julio</name>
-							<type>checkbox</type>
-							<label lang="true">julio</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>octubre</name>
-							<type>checkbox</type>
-							<label lang="true">octubre</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-							<colspan>2</colspan>
-						</field>
-						<field>
-							<name>febrero</name>
-							<type>checkbox</type>
-							<label lang="true">febrero</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>mayo</name>
-							<type>checkbox</type>
-							<label lang="true">mayo</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>agosto</name>
-							<type>checkbox</type>
-							<label lang="true">agosto</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>noviembre</name>
-							<type>checkbox</type>
-							<label lang="true">noviembre</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-							<colspan>2</colspan>
-						</field>
-						<field>
-							<name>marzo</name>
-							<type>checkbox</type>
-							<label lang="true">marzo</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>junio</name>
-							<type>checkbox</type>
-							<label lang="true">junio</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>setiembre</name>
-							<type>checkbox</type>
-							<label lang="true">setiembre</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>diciembre</name>
-							<type>checkbox</type>
-							<label lang="true">diciembre</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<resumen>
-				<fieldset>
-					<buttons>true</buttons>
-					<width>700px</width>
-					<row>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<type>separator</type>
-						</field>
-						<field>
-							<type>separator</type>
-						</field>
-						<field>
-							<name>iva</name>
-							<label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-						</field>
-						<field>
-							<name>irpf</name>
-							<label eval="true">CONFIG("accounting_irpf_name")." (%)"</label>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-						</field>
-						<field>
-							<type>separator</type>
-						</field>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>base</name>
-							<label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-						</field>
-						<field>
-							<name>iva2</name>
-							<label eval="true">CONFIG("accounting_iva_name")." (".CONFIG("accounting_currency").")"</label>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-						</field>
-						<field>
-							<name>irpf2</name>
-							<label eval="true">CONFIG("accounting_irpf_name")." (".CONFIG("accounting_currency").")"</label>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-						</field>
-						<field>
-							<name>total</name>
-							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-						</field>
-					</row>
-				</fieldset>
-			</resumen>
-			<concepts_old>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">concepts_old</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">concepto</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">unid</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("dto")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<type>separator</type>
-							<colspan>100</colspan>
-							<class>thead</class>
-						</field>
-					</head>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_periodica</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>concepto</name>
-							<type>textarea</type>
-							<width>400px</width>
-							<height>50px</height>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>unidades</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>precio</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>descuento</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>total2</name>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-							<class>tbody</class>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<name>delete</name>
-							<type>checkbox</type>
-							<label lang="true">delete</label>
-							<value>1</value>
-							<width>1px</width>
-							<width2>1px</width2>
-							<onchange>update_totales_factura()</onchange>
-							<icon eval="true">ICON("delete")</icon>
-							<class>tbody</class>
-							<class2>tbody</class2>
-						</field>
-					</row>
-				</fieldset>
-			</concepts_old>
-			<concepts_new>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">concepts_new</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">concepto</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">unid</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("dto")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-					</head>
-					<row>
-						<class>none</class>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_periodica</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>concepto</name>
-							<type>textarea</type>
-							<width>400px</width>
-							<height>50px</height>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>unidades</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>precio</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>descuento</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>total2</name>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-							<class>tbody</class>
-						</field>
-					</row>
-					<tail>
-						<field>
-							<type>separator</type>
-						</field>
-					</tail>
-					<tail>
-						<class>helperbuttons</class>
-						<field>
-							<type>button</type>
-							<value lang="true">addconcept</value>
-							<class>left</class>
-							<class2>init_additem</class2>
-							<onclick>additem(this)</onclick>
-							<icon eval="true">ICON("add")</icon>
-						</field>
-					</tail>
-				</fieldset>
-			</concepts_new>
-			<products_old>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">products_old</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">concepto</label>
-							<class>center bold thead</class>
-							<width>400px</width>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">unid</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("dto")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<type>separator</type>
-							<colspan>100</colspan>
-							<class>thead</class>
-						</field>
-					</head>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_periodica</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_producto</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>concepto</name>
-							<type>text</type>
-							<width>400px</width>
-							<class>tbody</class>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>productos</querycomplete>
-							<oncomplete>
-								$("#"+prefix+"id_producto").val(ui.item.id);
-								$("#"+prefix+"precio").val(ui.item.precio);
-								$("#"+prefix+"descuento").val(ui.item.descuento);
-								update_totales_factura();
-							</oncomplete>
-						</field>
-						<field>
-							<name>unidades</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>precio</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>descuento</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>total2</name>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-							<class>tbody</class>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<name>delete</name>
-							<type>checkbox</type>
-							<label lang="true">delete</label>
-							<value>1</value>
-							<width>1px</width>
-							<width2>1px</width2>
-							<onchange>update_totales_factura()</onchange>
-							<icon eval="true">ICON("delete")</icon>
-							<class>tbody</class>
-							<class2>tbody</class2>
-						</field>
-					</row>
-				</fieldset>
-			</products_old>
-			<products_new>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">products_new</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">productos</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">unid</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("dto")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-					</head>
-					<row>
-						<class>none</class>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_periodica</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_producto</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>concepto</name>
-							<type>text</type>
-							<width>400px</width>
-							<class>tbody</class>
-							<autocomplete>true</autocomplete>
-							<querycomplete>productos</querycomplete>
-							<oncomplete>
-								$("#"+prefix+"id_producto").val(ui.item.id);
-								$("#"+prefix+"precio").val(ui.item.precio);
-								$("#"+prefix+"descuento").val(ui.item.descuento);
-								update_totales_factura();
-							</oncomplete>
-						</field>
-						<field>
-							<name>unidades</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>precio</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>descuento</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>total2</name>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-							<class>tbody</class>
-						</field>
-					</row>
-					<tail>
-						<field>
-							<type>separator</type>
-						</field>
-					</tail>
-					<tail>
-						<class>helperbuttons</class>
-						<field>
-							<type>button</type>
-							<value lang="true">addproduct</value>
-							<class>left</class>
-							<class2>init_additem</class2>
-							<onclick>additem(this)</onclick>
-							<icon eval="true">ICON("add")</icon>
-						</field>
-					</tail>
-				</fieldset>
-			</products_new>
-			<vencimientos_old>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">vencimientos_old</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">fechavencimiento</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("percent")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<type>separator</type>
-							<class>thead</class>
-						</field>
-					</head>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_periodica</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>fecha</name>
-							<type>date</type>
-							<width>150px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-							<icon eval="true">ICON("calendar")</icon>
-						</field>
-						<field>
-							<name>percent</name>
-							<type>float</type>
-							<width>100px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_vencimientos(this)</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>importe</name>
-							<type>float</type>
-							<width>100px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_vencimientos(this)</onchange>
-							<class>tbody</class>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<name>delete</name>
-							<type>checkbox</type>
-							<label lang="true">delete</label>
-							<value>1</value>
-							<width>1px</width>
-							<width2>1px</width2>
-							<onchange>update_vencimientos(this)</onchange>
-							<icon eval="true">ICON("delete")</icon>
-							<class>tbody</class>
-							<class2>tbody</class2>
-						</field>
-					</row>
-				</fieldset>
-			</vencimientos_old>
-			<vencimientos_new>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">vencimientos_new</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">fechavencimiento</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("percent")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-					</head>
-					<row>
-						<class>none</class>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_periodica</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>fecha</name>
-							<type>date</type>
-							<width>150px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-							<icon eval="true">ICON("calendar")</icon>
-						</field>
-						<field>
-							<name>percent</name>
-							<type>float</type>
-							<width>100px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_vencimientos(this)</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>importe</name>
-							<type>float</type>
-							<width>100px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_vencimientos(this)</onchange>
-							<class>tbody</class>
-						</field>
-					</row>
-					<tail>
-						<field>
-							<type>separator</type>
-						</field>
-					</tail>
-					<tail>
-						<class>helperbuttons</class>
-						<field>
-							<type>button</type>
-							<value lang="true">addvencimiento</value>
-							<class>left</class>
-							<class2>init_additem</class2>
-							<onclick>additem(this)</onclick>
-							<icon eval="true">ICON("add")</icon>
-						</field>
-					</tail>
-				</fieldset>
-			</vencimientos_new>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<cache>
-				<include>js/facturas.js</include>
-				<include>js/updatevencimientos.js</include>
-			</cache>
-		</javascript>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">setParam("meses",intval(getParam("enero")).intval(getParam("febrero")).intval(getParam("marzo")).intval(getParam("abril")).intval(getParam("mayo")).intval(getParam("junio")).intval(getParam("julio")).intval(getParam("agosto")).intval(getParam("setiembre")).intval(getParam("octubre")).intval(getParam("noviembre")).intval(getParam("diciembre")))</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query match="resumen" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="resumen" prefix="true" eval="true">make_update_query("tbl_periodicas",array(
-			"iva"=>floatval(getParam("iva")),
-			"irpf"=>floatval(getParam("irpf"))
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query match="concepts_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?make_insert_query("tbl_periodicas_c",array(
-			"id_periodica"=>getParam("id"),
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>floatval(getParam("descuento")),
-			"precio"=>floatval(getParam("precio"))
-		)):""</query>
-		<query match="products_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_periodicas_c",array(
-			"id_periodica"=>getParam("id"),
-			"id_producto"=>intval(getParam("id_producto")),
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>floatval(getParam("descuento")),
-			"precio"=>floatval(getParam("precio"))
-		)):""</query>
-		<query match="vencimientos_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_periodicas_v",array(
-			"id_periodica"=>getParam("id"),
-			"fecha"=>dateval(getParam("fecha")),
-			"percent"=>getParam("percent"),
-			"importe"=>getParam("importe")
-		)):""</query>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">setParam("meses",intval(getParam("enero")).intval(getParam("febrero")).intval(getParam("marzo")).intval(getParam("abril")).intval(getParam("mayo")).intval(getParam("junio")).intval(getParam("julio")).intval(getParam("agosto")).intval(getParam("setiembre")).intval(getParam("octubre")).intval(getParam("noviembre")).intval(getParam("diciembre")))</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+                        "</vencimientos_new>
+                    </vencimientos_new>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_cuenta</name>
+                            <label lang="true">cuenta</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sincuenta")."' label UNION SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) value,nombre label FROM tbl_cuentas ORDER BY label"</query>
+                            <focus>true</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_iva_irpf(true)</onchange>
+                            <required>true</required>
+                        </field>
+                        <field>
+                            <name>id_epigrafe</name>
+                            <label lang="true">epigrafe</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id value,CONCAT('(',codigo,') ',nombre) label FROM tbl_epigrafes ORDER BY label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>3</colspan>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_formapago</name>
+                            <label lang="true">formapago</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("formaspago","tbl_formaspago","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinformapago")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>40%</width>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>40%</width>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_cliente</name>
+                            <label lang="true">cliente</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <focus>true</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                </fieldset>
+                <fieldset>
+                    <width>700px</width>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>5%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>5%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>5%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>5%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>dia</name>
+                            <label lang="true">diaemision</label>
+                            <type>select</type>
+                            <width>75px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <rows include="xml/common/dias.xml" replace="true" />
+                        </field>
+                        <field>
+                            <name>enero</name>
+                            <type>checkbox</type>
+                            <label lang="true">enero</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>abril</name>
+                            <type>checkbox</type>
+                            <label lang="true">abril</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>julio</name>
+                            <type>checkbox</type>
+                            <label lang="true">julio</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>octubre</name>
+                            <type>checkbox</type>
+                            <label lang="true">octubre</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <colspan>2</colspan>
+                        </field>
+                        <field>
+                            <name>febrero</name>
+                            <type>checkbox</type>
+                            <label lang="true">febrero</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>mayo</name>
+                            <type>checkbox</type>
+                            <label lang="true">mayo</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>agosto</name>
+                            <type>checkbox</type>
+                            <label lang="true">agosto</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>noviembre</name>
+                            <type>checkbox</type>
+                            <label lang="true">noviembre</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <colspan>2</colspan>
+                        </field>
+                        <field>
+                            <name>marzo</name>
+                            <type>checkbox</type>
+                            <label lang="true">marzo</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>junio</name>
+                            <type>checkbox</type>
+                            <label lang="true">junio</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>setiembre</name>
+                            <type>checkbox</type>
+                            <label lang="true">setiembre</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>diciembre</name>
+                            <type>checkbox</type>
+                            <label lang="true">diciembre</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <resumen>
+                <fieldset>
+                    <buttons>true</buttons>
+                    <width>700px</width>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                        <field>
+                            <name>iva</name>
+                            <label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                        </field>
+                        <field>
+                            <name>irpf</name>
+                            <label eval="true">CONFIG("accounting_irpf_name")." (%)"</label>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>base</name>
+                            <label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                        </field>
+                        <field>
+                            <name>iva2</name>
+                            <label eval="true">CONFIG("accounting_iva_name")." (".CONFIG("accounting_currency").")"</label>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                        </field>
+                        <field>
+                            <name>irpf2</name>
+                            <label eval="true">CONFIG("accounting_irpf_name")." (".CONFIG("accounting_currency").")"</label>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                        </field>
+                        <field>
+                            <name>total</name>
+                            <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                        </field>
+                    </row>
+                </fieldset>
+            </resumen>
+            <concepts_old>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">concepts_old</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">concepto</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">unid</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("dto")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <type>separator</type>
+                            <colspan>100</colspan>
+                            <class>thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_periodica</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>concepto</name>
+                            <type>textarea</type>
+                            <width>400px</width>
+                            <height>50px</height>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>unidades</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>precio</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>descuento</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>total2</name>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                            <class>tbody</class>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <name>delete</name>
+                            <type>checkbox</type>
+                            <label lang="true">delete</label>
+                            <value>1</value>
+                            <width>1px</width>
+                            <width2>1px</width2>
+                            <onchange>update_totales_factura()</onchange>
+                            <icon eval="true">ICON("delete")</icon>
+                            <class>tbody</class>
+                            <class2>tbody</class2>
+                        </field>
+                    </row>
+                </fieldset>
+            </concepts_old>
+            <concepts_new>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">concepts_new</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">concepto</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">unid</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("dto")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <class>none</class>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_periodica</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>concepto</name>
+                            <type>textarea</type>
+                            <width>400px</width>
+                            <height>50px</height>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>unidades</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>precio</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>descuento</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>total2</name>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                            <class>tbody</class>
+                        </field>
+                    </row>
+                    <tail>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </tail>
+                    <tail>
+                        <class>helperbuttons</class>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">addconcept</value>
+                            <class>left</class>
+                            <class2>init_additem</class2>
+                            <onclick>additem(this)</onclick>
+                            <icon eval="true">ICON("add")</icon>
+                        </field>
+                    </tail>
+                </fieldset>
+            </concepts_new>
+            <products_old>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">products_old</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">concepto</label>
+                            <class>center bold thead</class>
+                            <width>400px</width>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">unid</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("dto")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <type>separator</type>
+                            <colspan>100</colspan>
+                            <class>thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_periodica</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_producto</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>concepto</name>
+                            <type>text</type>
+                            <width>400px</width>
+                            <class>tbody</class>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>productos</querycomplete>
+                            <oncomplete>
+                                $("#"+prefix+"id_producto").val(ui.item.id);
+                                $("#"+prefix+"precio").val(ui.item.precio);
+                                $("#"+prefix+"descuento").val(ui.item.descuento);
+                                update_totales_factura();
+                            </oncomplete>
+                        </field>
+                        <field>
+                            <name>unidades</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>precio</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>descuento</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>total2</name>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                            <class>tbody</class>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <name>delete</name>
+                            <type>checkbox</type>
+                            <label lang="true">delete</label>
+                            <value>1</value>
+                            <width>1px</width>
+                            <width2>1px</width2>
+                            <onchange>update_totales_factura()</onchange>
+                            <icon eval="true">ICON("delete")</icon>
+                            <class>tbody</class>
+                            <class2>tbody</class2>
+                        </field>
+                    </row>
+                </fieldset>
+            </products_old>
+            <products_new>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">products_new</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">productos</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">unid</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("dto")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <class>none</class>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_periodica</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_producto</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>concepto</name>
+                            <type>text</type>
+                            <width>400px</width>
+                            <class>tbody</class>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>productos</querycomplete>
+                            <oncomplete>
+                                $("#"+prefix+"id_producto").val(ui.item.id);
+                                $("#"+prefix+"precio").val(ui.item.precio);
+                                $("#"+prefix+"descuento").val(ui.item.descuento);
+                                update_totales_factura();
+                            </oncomplete>
+                        </field>
+                        <field>
+                            <name>unidades</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>precio</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>descuento</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>total2</name>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                            <class>tbody</class>
+                        </field>
+                    </row>
+                    <tail>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </tail>
+                    <tail>
+                        <class>helperbuttons</class>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">addproduct</value>
+                            <class>left</class>
+                            <class2>init_additem</class2>
+                            <onclick>additem(this)</onclick>
+                            <icon eval="true">ICON("add")</icon>
+                        </field>
+                    </tail>
+                </fieldset>
+            </products_new>
+            <vencimientos_old>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">vencimientos_old</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">fechavencimiento</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("percent")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <type>separator</type>
+                            <class>thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_periodica</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>fecha</name>
+                            <type>date</type>
+                            <width>150px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                            <icon eval="true">ICON("calendar")</icon>
+                        </field>
+                        <field>
+                            <name>percent</name>
+                            <type>float</type>
+                            <width>100px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_vencimientos(this)</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>importe</name>
+                            <type>float</type>
+                            <width>100px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_vencimientos(this)</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <name>delete</name>
+                            <type>checkbox</type>
+                            <label lang="true">delete</label>
+                            <value>1</value>
+                            <width>1px</width>
+                            <width2>1px</width2>
+                            <onchange>update_vencimientos(this)</onchange>
+                            <icon eval="true">ICON("delete")</icon>
+                            <class>tbody</class>
+                            <class2>tbody</class2>
+                        </field>
+                    </row>
+                </fieldset>
+            </vencimientos_old>
+            <vencimientos_new>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">vencimientos_new</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">fechavencimiento</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("percent")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <class>none</class>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_periodica</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>fecha</name>
+                            <type>date</type>
+                            <width>150px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                            <icon eval="true">ICON("calendar")</icon>
+                        </field>
+                        <field>
+                            <name>percent</name>
+                            <type>float</type>
+                            <width>100px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_vencimientos(this)</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>importe</name>
+                            <type>float</type>
+                            <width>100px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_vencimientos(this)</onchange>
+                            <class>tbody</class>
+                        </field>
+                    </row>
+                    <tail>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </tail>
+                    <tail>
+                        <class>helperbuttons</class>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">addvencimiento</value>
+                            <class>left</class>
+                            <class2>init_additem</class2>
+                            <onclick>additem(this)</onclick>
+                            <icon eval="true">ICON("add")</icon>
+                        </field>
+                    </tail>
+                </fieldset>
+            </vencimientos_new>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+            <cache>
+                <include>js/facturas.js</include>
+                <include>js/updatevencimientos.js</include>
+            </cache>
+        </javascript>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query match="default" prefix="true" eval="true">setParam("meses",intval(getParam("enero")).intval(getParam("febrero")).intval(getParam("marzo")).intval(getParam("abril")).intval(getParam("mayo")).intval(getParam("junio")).intval(getParam("julio")).intval(getParam("agosto")).intval(getParam("setiembre")).intval(getParam("octubre")).intval(getParam("noviembre")).intval(getParam("diciembre")))</query>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query match="resumen" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+        <query match="resumen" prefix="true" eval="true">make_update_query("tbl_periodicas",array(
+            "iva"=>floatval(getParam("iva")),
+            "irpf"=>floatval(getParam("irpf"))
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query match="concepts_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+        <query match="concepts_new" prefix="true" eval="true">getParam("concepto")?make_insert_query("tbl_periodicas_c",array(
+            "id_periodica"=>getParam("id"),
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>floatval(getParam("descuento")),
+            "precio"=>floatval(getParam("precio"))
+        )):""</query>
+        <query match="products_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+        <query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_periodicas_c",array(
+            "id_periodica"=>getParam("id"),
+            "id_producto"=>intval(getParam("id_producto")),
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>floatval(getParam("descuento")),
+            "precio"=>floatval(getParam("precio"))
+        )):""</query>
+        <query match="vencimientos_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+        <query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_periodicas_v",array(
+            "id_periodica"=>getParam("id"),
+            "fecha"=>dateval(getParam("fecha")),
+            "percent"=>getParam("percent"),
+            "importe"=>getParam("importe")
+        )):""</query>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" eval="true">setParam("meses",intval(getParam("enero")).intval(getParam("febrero")).intval(getParam("marzo")).intval(getParam("abril")).intval(getParam("mayo")).intval(getParam("junio")).intval(getParam("julio")).intval(getParam("agosto")).intval(getParam("setiembre")).intval(getParam("octubre")).intval(getParam("noviembre")).intval(getParam("diciembre")))</query>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query match="resumen" prefix="true" eval="true">make_update_query("tbl_periodicas",array(
-			"iva"=>floatval(getParam("iva")),
-			"irpf"=>floatval(getParam("irpf"))
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query match="concepts_old" prefix="true" eval="true">make_update_query("tbl_periodicas_c",array(
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>getParam("descuento"),
-			"precio"=>floatval(getParam("precio"))
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query match="concepts_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_periodicas_c WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
-		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?make_insert_query("tbl_periodicas_c",array(
-			"id_periodica"=>intval(getParam("id_periodica")),
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>floatval(getParam("descuento")),
-			"precio"=>floatval(getParam("precio"))
-		)):""</query>
-		<query match="products_old" prefix="true" eval="true">make_update_query("tbl_periodicas_c",array(
-			"id_producto"=>intval(getParam("id_producto")),
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>getParam("descuento"),
-			"precio"=>floatval(getParam("precio"))
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_periodicas_c WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_periodicas_c",array(
-			"id_periodica"=>intval(getParam("id_periodica")),
-			"id_producto"=>intval(getParam("id_producto")),
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>floatval(getParam("descuento")),
-			"precio"=>floatval(getParam("precio"))
-		)):""</query>
-		<query match="vencimientos_old" prefix="true" eval="true">make_update_query("tbl_periodicas_v",array(
-			"fecha"=>dateval(getParam("fecha")),
-			"percent"=>getParam("percent"),
-			"importe"=>getParam("importe")
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_periodicas_v WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
-		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_periodicas_v",array(
-			"id_periodica"=>intval(getParam("id_periodica")),
-			"fecha"=>dateval(getParam("fecha")),
-			"percent"=>getParam("percent"),
-			"importe"=>getParam("importe")
-		)):""</query>
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query eval="true">"DELETE FROM tbl_periodicas_c WHERE ".make_where_query(array("id_periodica"=>abs(intval(getParam("id")))))</query>
-		<query eval="true">"DELETE FROM tbl_periodicas_v WHERE ".make_where_query(array("id_periodica"=>abs(intval(getParam("id")))))</query>
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
+        <query match="resumen" prefix="true" eval="true">make_update_query("tbl_periodicas",array(
+            "iva"=>floatval(getParam("iva")),
+            "irpf"=>floatval(getParam("irpf"))
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query match="concepts_old" prefix="true" eval="true">make_update_query("tbl_periodicas_c",array(
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>getParam("descuento"),
+            "precio"=>floatval(getParam("precio"))
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query match="concepts_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_periodicas_c WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
+        <query match="concepts_new" prefix="true" eval="true">getParam("concepto")?make_insert_query("tbl_periodicas_c",array(
+            "id_periodica"=>intval(getParam("id_periodica")),
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>floatval(getParam("descuento")),
+            "precio"=>floatval(getParam("precio"))
+        )):""</query>
+        <query match="products_old" prefix="true" eval="true">make_update_query("tbl_periodicas_c",array(
+            "id_producto"=>intval(getParam("id_producto")),
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>getParam("descuento"),
+            "precio"=>floatval(getParam("precio"))
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_periodicas_c WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
+        <query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_periodicas_c",array(
+            "id_periodica"=>intval(getParam("id_periodica")),
+            "id_producto"=>intval(getParam("id_producto")),
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>floatval(getParam("descuento")),
+            "precio"=>floatval(getParam("precio"))
+        )):""</query>
+        <query match="vencimientos_old" prefix="true" eval="true">make_update_query("tbl_periodicas_v",array(
+            "fecha"=>dateval(getParam("fecha")),
+            "percent"=>getParam("percent"),
+            "importe"=>getParam("importe")
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_periodicas_v WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
+        <query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_periodicas_v",array(
+            "id_periodica"=>intval(getParam("id_periodica")),
+            "fecha"=>dateval(getParam("fecha")),
+            "percent"=>getParam("percent"),
+            "importe"=>getParam("importe")
+        )):""</query>
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query eval="true">"DELETE FROM tbl_periodicas_c WHERE ".make_where_query(array("id_periodica"=>abs(intval(getParam("id")))))</query>
+        <query eval="true">"DELETE FROM tbl_periodicas_v WHERE ".make_where_query(array("id_periodica"=>abs(intval(getParam("id")))))</query>
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
 </root>

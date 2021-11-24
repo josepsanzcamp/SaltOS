@@ -24,16 +24,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<name>timezone</name>
-	<label lang="true">timezone</label>
-	<type>select</type>
-	<width>120px</width>
-	<temp global="rows" eval="true">$rows=timezone_identifiers_list()</temp>
-	<rows>
-		<row global="rows,row" foreach="rows" as="row">
-			<label global="row" eval="true">$row</label>
-			<value global="row" eval="true">$row</value>
-		</row>
-	</rows>
-	<value eval="true">getDefault("ini_set/date.timezone")</value>
+    <name>timezone</name>
+    <label lang="true">timezone</label>
+    <type>select</type>
+    <width>120px</width>
+    <temp global="rows" eval="true">$rows=timezone_identifiers_list()</temp>
+    <rows>
+        <row global="rows,row" foreach="rows" as="row">
+            <label global="row" eval="true">$row</label>
+            <value global="row" eval="true">$row</value>
+        </row>
+    </rows>
+    <value eval="true">getDefault("ini_set/date.timezone")</value>
 </root>

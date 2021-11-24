@@ -24,78 +24,78 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<dir>ltr</dir>
-	<default>common</default>
-	<common>
-		<title>Programa d'instal·lació de SaltOS</title>
-		<yes>Si</yes>
-		<no>No</no>
-		<language>Selecció del idioma, diseny i icones</language>
-		<welcome_message>Benvingut al programa d'instal·lació de SaltOS</welcome_message>
-		<lang_message>Seleccioneu l'idioma</lang_message>
-		<style_message>Seleccioneu el diseny</style_message>
-		<begin_message>Premi "Següent" per instal·lar SaltOS 5 senzills passos</begin_message>
-		<back>Anterior</back>
-		<next>Següent</next>
-		<test>Comprovar</test>
-		<install>Instal·lar SaltOS</install>
-		<saltos>Iniciar SaltOS</saltos>
-		<is_writable>Comprovació de permisos d'escriptura</is_writable>
-		<is_executable>Comprovació de programes externs</is_executable>
-		<directory>Directori</directory>
-		<file>Fitxer</file>
-		<executable>Executable</executable>
-		<database_link>Connexió a la base de dades</database_link>
-		<select_dbtype>Seleccioni el SGBD</select_dbtype>
-		<select_prefered> (recomanat)</select_prefered>
-		<selected_dbtype>SGBD seleccionat</selected_dbtype>
-		<dbfile>Fitxer base de dades</dbfile>
-		<dbtest>Ha funcionat la connexió de prova</dbtest>
-		<dbvoid>La base de dades està buida</dbvoid>
-		<dbhost>Servidor BBDD</dbhost>
-		<dbport>Port</dbport>
-		<dbuser>Usuari</dbuser>
-		<dbpass>Clau</dbpass>
-		<dbname>Nom base de dades</dbname>
-		<admin_account>Dades d'accés al compte d'administrador</admin_account>
-		<user>Usuari</user>
-		<pass>Clau</pass>
-		<email>Correu electrònic</email>
-		<optional>Opcional</optional>
-		<server_config>Configuració del servidor</server_config>
-		<timezone>Zona horària</timezone>
-		<hostname>Servidor web</hostname>
-		<pathname>Camí del servidor</pathname>
-		<automatic>Automatic</automatic>
-		<forcessl>Forçar SSL (https)</forcessl>
-		<porthttp>Port http</porthttp>
-		<porthttps>Port https</porthttps>
-		<initial_data>Carrega de dades inicials</initial_data>
-		<exampledata>Importar dades d'exemple</exampledata>
-		<undefined>Sense definir</undefined>
-		<install_input>Resum i confirmació de la instal·lació</install_input>
-		<install_output>Resultat de la instal·lació</install_output>
-		<config>Desa la configuració d'accés a la base de dades</config>
-		<dbschema>Crear taules a la base de dades</dbschema>
-		<dbstatic>Importar dades internes</dbstatic>
-		<streetdata>Importar dades del carrer</streetdata>
-		<defaultdata>Importar dades genèriques</defaultdata>
-		<permissiondata>Crear permisos per al grup administrador que</permissiondata>
-		<finish>Fi de la instal·lació</finish>
-		<gotohome>Tornar a carregar</gotohome>
-		<notifybug>Notificar error</notifybug>
-		<step>Pas</step>
-		<lang>Idioma</lang>
-		<style>Diseny</style>
-		<env_vars>Variables d'entorn</env_vars>
-		<env_path>PATH</env_path>
-		<env_lang>LANG</env_lang>
-		<applications>Aplicacions</applications>
-		<select_layer>Seleccioni el perfil</select_layer>
-		<selected_layer>Perfil seleccionat</selected_layer>
-		<layer_all>Totes les aplicacions</layer_all>
-		<layer_personal>Aplicacions d'us personal</layer_personal>
-		<select_apps>Seleccioni les aplicacions</select_apps>
-		<selected_apps>Aplicacions seleccionades</selected_apps>
-	</common>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <title>Programa d'instal·lació de SaltOS</title>
+        <yes>Si</yes>
+        <no>No</no>
+        <language>Selecció del idioma, diseny i icones</language>
+        <welcome_message>Benvingut al programa d'instal·lació de SaltOS</welcome_message>
+        <lang_message>Seleccioneu l'idioma</lang_message>
+        <style_message>Seleccioneu el diseny</style_message>
+        <begin_message>Premi "Següent" per instal·lar SaltOS 5 senzills passos</begin_message>
+        <back>Anterior</back>
+        <next>Següent</next>
+        <test>Comprovar</test>
+        <install>Instal·lar SaltOS</install>
+        <saltos>Iniciar SaltOS</saltos>
+        <is_writable>Comprovació de permisos d'escriptura</is_writable>
+        <is_executable>Comprovació de programes externs</is_executable>
+        <directory>Directori</directory>
+        <file>Fitxer</file>
+        <executable>Executable</executable>
+        <database_link>Connexió a la base de dades</database_link>
+        <select_dbtype>Seleccioni el SGBD</select_dbtype>
+        <select_prefered> (recomanat)</select_prefered>
+        <selected_dbtype>SGBD seleccionat</selected_dbtype>
+        <dbfile>Fitxer base de dades</dbfile>
+        <dbtest>Ha funcionat la connexió de prova</dbtest>
+        <dbvoid>La base de dades està buida</dbvoid>
+        <dbhost>Servidor BBDD</dbhost>
+        <dbport>Port</dbport>
+        <dbuser>Usuari</dbuser>
+        <dbpass>Clau</dbpass>
+        <dbname>Nom base de dades</dbname>
+        <admin_account>Dades d'accés al compte d'administrador</admin_account>
+        <user>Usuari</user>
+        <pass>Clau</pass>
+        <email>Correu electrònic</email>
+        <optional>Opcional</optional>
+        <server_config>Configuració del servidor</server_config>
+        <timezone>Zona horària</timezone>
+        <hostname>Servidor web</hostname>
+        <pathname>Camí del servidor</pathname>
+        <automatic>Automatic</automatic>
+        <forcessl>Forçar SSL (https)</forcessl>
+        <porthttp>Port http</porthttp>
+        <porthttps>Port https</porthttps>
+        <initial_data>Carrega de dades inicials</initial_data>
+        <exampledata>Importar dades d'exemple</exampledata>
+        <undefined>Sense definir</undefined>
+        <install_input>Resum i confirmació de la instal·lació</install_input>
+        <install_output>Resultat de la instal·lació</install_output>
+        <config>Desa la configuració d'accés a la base de dades</config>
+        <dbschema>Crear taules a la base de dades</dbschema>
+        <dbstatic>Importar dades internes</dbstatic>
+        <streetdata>Importar dades del carrer</streetdata>
+        <defaultdata>Importar dades genèriques</defaultdata>
+        <permissiondata>Crear permisos per al grup administrador que</permissiondata>
+        <finish>Fi de la instal·lació</finish>
+        <gotohome>Tornar a carregar</gotohome>
+        <notifybug>Notificar error</notifybug>
+        <step>Pas</step>
+        <lang>Idioma</lang>
+        <style>Diseny</style>
+        <env_vars>Variables d'entorn</env_vars>
+        <env_path>PATH</env_path>
+        <env_lang>LANG</env_lang>
+        <applications>Aplicacions</applications>
+        <select_layer>Seleccioni el perfil</select_layer>
+        <selected_layer>Perfil seleccionat</selected_layer>
+        <layer_all>Totes les aplicacions</layer_all>
+        <layer_personal>Aplicacions d'us personal</layer_personal>
+        <select_apps>Seleccioni les aplicacions</select_apps>
+        <selected_apps>Aplicacions seleccionades</selected_apps>
+    </common>
 </root>

@@ -24,78 +24,78 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<dir>rtl</dir>
-	<default>common</default>
-	<common>
-		<title>اعداد برنامج SaltOS</title>
-		<yes>نعم</yes>
-		<no>لا</no>
-		<language>اختيار اللغة ,المظهر والايقونات</language>
-		<welcome_message>مرحبا بك في اعداد برنامج  SaltOS </welcome_message>
-		<lang_message>إختر اللغة</lang_message>
-		<style_message>إختر المظهر</style_message>
-		<begin_message>اضغط علي "التالي" لاعداد SaltOS فقط في 5 خطوات سهلة</begin_message>
-		<back>السابق</back>
-		<next>التالي</next>
-		<test>تحقق</test>
-		<install>تثبيت SaltOS</install>
-		<saltos>تشغيل SaltOS</saltos>
-		<is_writable>التحقق من إذن الكتابة</is_writable>
-		<is_executable>التحقق من البرامج الخارجية</is_executable>
-		<directory> دليل </directory>
-		<file>ملف</file>
-		<executable>تنفيذي</executable>
-		<database_link>الاتصال بقاعدة البيانات</database_link>
-		<select_dbtype>اختر ال DBMS</select_dbtype>
-		<select_prefered> (مفضل)</select_prefered>
-		<selected_dbtype>DBMS المختار</selected_dbtype>
-		<dbfile>ملف قاعدة البيانات</dbfile>
-		<dbtest>تشيل اختبار الاتصال</dbtest>
-		<dbvoid>The database is empty</dbvoid>
-		<dbhost>المضيف</dbhost>
-		<dbport>الميناء</dbport>
-		<dbuser>المستخدم</dbuser>
-		<dbpass>كلمة المرور</dbpass>
-		<dbname>إسم قاعدة البيانات</dbname>
-		<admin_account>بيانات الوصول لحساب المدير</admin_account>
-		<user>المستخدم</user>
-		<pass>كلمة المرور</pass>
-		<email>بريد</email>
-		<optional>اختياري</optional>
-		<server_config>Server configuration</server_config>
-		<timezone> المنطقة الزمني</timezone>
-		<hostname>Web server</hostname>
-		<pathname>Server path</pathname>
-		<automatic>Automatic</automatic>
-		<forcessl>اجبار استخدام SSL (https)</forcessl>
-		<porthttp>Http port</porthttp>
-		<porthttps>Https port</porthttps>
-		<initial_data>Initial import data</initial_data>
-		<exampledata>استيراد عينة بيانات</exampledata>
-		<undefined>غير معرف</undefined>
-		<install_input>ملخص وتأكيد التثبيت</install_input>
-		<install_output>ناتج التثبيت</install_output>
-		<config>حفظ الاعدادات للوصول لقاعدة البيانات</config>
-		<dbschema>انشاء الجداول في قاعدة البيانات</dbschema>
-		<dbstatic>استيراد البيانات الداخلية</dbstatic>
-		<streetdata>استيراد بيانات الشارع</streetdata>
-		<defaultdata>استيراد بيانات عامة</defaultdata>
-		<permissiondata>انشاء صلاحيات مدير للمجموعة</permissiondata>
-		<finish>اكتمل التثبيت</finish>
-		<gotohome>اعادة تحميل الصفحة</gotohome>
-		<notifybug>التبليغ عن مشكلة</notifybug>
-		<step>الخطوة</step>
-		<lang>اللغة</lang>
-		<style>المظهر</style>
-		<env_vars>متغيرات بيئة النظام</env_vars>
-		<env_path>المسار</env_path>
-		<env_lang>الغة</env_lang>
-		<applications>Applications</applications>
-		<select_layer>Select the layer</select_layer>
-		<selected_layer>Layer selected</selected_layer>
-		<layer_all>All applications</layer_all>
-		<layer_personal>Personal applications</layer_personal>
-		<select_apps>Select the applications</select_apps>
-		<selected_apps>Applications selected</selected_apps>
-	</common>
+    <dir>rtl</dir>
+    <default>common</default>
+    <common>
+        <title>اعداد برنامج SaltOS</title>
+        <yes>نعم</yes>
+        <no>لا</no>
+        <language>اختيار اللغة ,المظهر والايقونات</language>
+        <welcome_message>مرحبا بك في اعداد برنامج  SaltOS </welcome_message>
+        <lang_message>إختر اللغة</lang_message>
+        <style_message>إختر المظهر</style_message>
+        <begin_message>اضغط علي "التالي" لاعداد SaltOS فقط في 5 خطوات سهلة</begin_message>
+        <back>السابق</back>
+        <next>التالي</next>
+        <test>تحقق</test>
+        <install>تثبيت SaltOS</install>
+        <saltos>تشغيل SaltOS</saltos>
+        <is_writable>التحقق من إذن الكتابة</is_writable>
+        <is_executable>التحقق من البرامج الخارجية</is_executable>
+        <directory> دليل </directory>
+        <file>ملف</file>
+        <executable>تنفيذي</executable>
+        <database_link>الاتصال بقاعدة البيانات</database_link>
+        <select_dbtype>اختر ال DBMS</select_dbtype>
+        <select_prefered> (مفضل)</select_prefered>
+        <selected_dbtype>DBMS المختار</selected_dbtype>
+        <dbfile>ملف قاعدة البيانات</dbfile>
+        <dbtest>تشيل اختبار الاتصال</dbtest>
+        <dbvoid>The database is empty</dbvoid>
+        <dbhost>المضيف</dbhost>
+        <dbport>الميناء</dbport>
+        <dbuser>المستخدم</dbuser>
+        <dbpass>كلمة المرور</dbpass>
+        <dbname>إسم قاعدة البيانات</dbname>
+        <admin_account>بيانات الوصول لحساب المدير</admin_account>
+        <user>المستخدم</user>
+        <pass>كلمة المرور</pass>
+        <email>بريد</email>
+        <optional>اختياري</optional>
+        <server_config>Server configuration</server_config>
+        <timezone> المنطقة الزمني</timezone>
+        <hostname>Web server</hostname>
+        <pathname>Server path</pathname>
+        <automatic>Automatic</automatic>
+        <forcessl>اجبار استخدام SSL (https)</forcessl>
+        <porthttp>Http port</porthttp>
+        <porthttps>Https port</porthttps>
+        <initial_data>Initial import data</initial_data>
+        <exampledata>استيراد عينة بيانات</exampledata>
+        <undefined>غير معرف</undefined>
+        <install_input>ملخص وتأكيد التثبيت</install_input>
+        <install_output>ناتج التثبيت</install_output>
+        <config>حفظ الاعدادات للوصول لقاعدة البيانات</config>
+        <dbschema>انشاء الجداول في قاعدة البيانات</dbschema>
+        <dbstatic>استيراد البيانات الداخلية</dbstatic>
+        <streetdata>استيراد بيانات الشارع</streetdata>
+        <defaultdata>استيراد بيانات عامة</defaultdata>
+        <permissiondata>انشاء صلاحيات مدير للمجموعة</permissiondata>
+        <finish>اكتمل التثبيت</finish>
+        <gotohome>اعادة تحميل الصفحة</gotohome>
+        <notifybug>التبليغ عن مشكلة</notifybug>
+        <step>الخطوة</step>
+        <lang>اللغة</lang>
+        <style>المظهر</style>
+        <env_vars>متغيرات بيئة النظام</env_vars>
+        <env_path>المسار</env_path>
+        <env_lang>الغة</env_lang>
+        <applications>Applications</applications>
+        <select_layer>Select the layer</select_layer>
+        <selected_layer>Layer selected</selected_layer>
+        <layer_all>All applications</layer_all>
+        <layer_personal>Personal applications</layer_personal>
+        <select_apps>Select the applications</select_apps>
+        <selected_apps>Applications selected</selected_apps>
+    </common>
 </root>

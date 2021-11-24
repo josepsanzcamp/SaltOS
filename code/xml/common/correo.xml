@@ -24,276 +24,276 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<field>
-			<name>id</name>
-			<type>hidden</type>
-		</field>
-		<field>
-			<name>id_empleado</name>
-			<type>hidden</type>
-		</field>
-		<field>
-			<name>email_name</name>
-			<label lang="true">nombre</label>
-			<type>text</type>
-			<width>240px</width>
-			<colspan>3</colspan>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-		<field>
-			<name>email_privated</name>
-			<label lang="true">emailprivated</label>
-			<type>checkbox</type>
-			<value>1</value>
-			<colspan>3</colspan>
-			<colspan2>2</colspan2>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-	</row>
-	<row>
-		<field>
-			<name>email_from</name>
-			<label lang="true">email</label>
-			<type>text</type>
-			<width>240px</width>
-			<colspan>3</colspan>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-		<field>
-			<name>email_default</name>
-			<label lang="true">emaildefault</label>
-			<type>checkbox</type>
-			<value>1</value>
-			<colspan>3</colspan>
-			<colspan2>2</colspan2>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-	</row>
-	<row>
-		<field>
-			<type>separator</type>
-		</field>
-	</row>
-	<row>
-		<field>
-			<type>iframe</type>
-			<name>email_signature</name>
-			<label lang="true">emailsignatureold</label>
-			<width>600px</width>
-			<height>120px</height>
-			<colspan>10</colspan>
-		</field>
-	</row>
-	<row>
-		<field global="id" ifeval="$id>=0">
-			<type>file</type>
-			<name>email_signature_new</name>
-			<label lang="true">emailsignaturenew</label>
-			<colspan>10</colspan>
-			<width>600px</width>
-			<size>60</size>
-			<class3>ui-state-default ui-corner-all</class3>
-		</field>
-	</row>
-	<row>
-		<field>
-			<type>separator</type>
-		</field>
-	</row>
-	<row>
-		<field>
-			<name>pop3_host</name>
-			<label lang="true">pop3host</label>
-			<type>text</type>
-			<width>240px</width>
-			<colspan>3</colspan>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-		<field>
-			<name>smtp_host</name>
-			<label lang="true">smtphost</label>
-			<type>text</type>
-			<width>240px</width>
-			<colspan>3</colspan>
-			<colspan2>2</colspan2>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-	</row>
-	<row>
-		<field>
-			<name>pop3_port</name>
-			<label lang="true">port</label>
-			<type>text</type>
-			<width>60px</width>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-		<field>
-			<type>label</type>
-			<label>(110, 995)</label>
-		</field>
-		<field>
-			<type>separator</type>
-			<width>1px</width>
-		</field>
-		<field>
-			<name>smtp_port</name>
-			<label lang="true">port</label>
-			<type>text</type>
-			<width>60px</width>
-			<colspan2>2</colspan2>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-		<field>
-			<type>label</type>
-			<label>(25, 465, 587)</label>
-			<colspan>2</colspan>
-		</field>
-	</row>
-	<row>
-		<field>
-			<name>pop3_extra</name>
-			<label lang="true">extra</label>
-			<type>select</type>
-			<width>60px</width>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-			<rows>
-				<row>
-					<label></label>
-					<value></value>
-				</row>
-				<row>
-					<label>TLS</label>
-					<value>tls</value>
-				</row>
-			</rows>
-		</field>
-		<field>
-			<type>label</type>
-			<label>(TLS)</label>
-		</field>
-		<field>
-			<type>separator</type>
-		</field>
-		<field>
-			<name>smtp_extra</name>
-			<label lang="true">extra</label>
-			<type>select</type>
-			<width>60px</width>
-			<colspan2>2</colspan2>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-			<rows>
-				<row>
-					<label></label>
-					<value></value>
-				</row>
-				<row>
-					<label>SSL</label>
-					<value>ssl</value>
-				</row>
-				<row>
-					<label>TLS</label>
-					<value>tls</value>
-				</row>
-			</rows>
-		</field>
-		<field>
-			<type>label</type>
-			<label>(SSL/TLS)</label>
-			<colspan>2</colspan>
-		</field>
-	</row>
-	<row>
-		<field>
-			<name>pop3_user</name>
-			<label lang="true">username</label>
-			<type>text</type>
-			<width>240px</width>
-			<colspan>3</colspan>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-		<field>
-			<name>smtp_user</name>
-			<label lang="true">username</label>
-			<type>text</type>
-			<width>240px</width>
-			<colspan>3</colspan>
-			<colspan2>2</colspan2>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-	</row>
-	<row>
-		<field>
-			<name>pop3_pass</name>
-			<label lang="true">password</label>
-			<type>password</type>
-			<width>120px</width>
-			<colspan>3</colspan>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-		<field>
-			<name>smtp_pass</name>
-			<label lang="true">password</label>
-			<type>password</type>
-			<width>120px</width>
-			<colspan>3</colspan>
-			<colspan2>2</colspan2>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-	</row>
-	<row>
-		<field>
-			<type>separator</type>
-		</field>
-	</row>
-	<row>
-		<field>
-			<name>pop3_delete</name>
-			<label lang="true">pop3delete</label>
-			<type>checkbox</type>
-			<value>1</value>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-			<colspan>5</colspan>
-		</field>
-		<field>
-			<name>pop3_days</name>
-			<type>text</type>
-			<width>60px</width>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-		<field>
-			<type>label</type>
-			<label lang="true">pop3days</label>
-		</field>
-	</row>
-	<row>
-		<field>
-			<name>email_crt</name>
-			<label lang="true">defaultcrt</label>
-			<type>checkbox</type>
-			<value>1</value>
-			<colspan>10</colspan>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-	</row>
-	<row>
-		<field>
-			<name>email_addmetocc</name>
-			<label lang="true">addmetocc</label>
-			<type>checkbox</type>
-			<value>1</value>
-			<colspan>10</colspan>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-	</row>
-	<row>
-		<field>
-			<name>email_disabled</name>
-			<label lang="true">emaildisabled</label>
-			<type>checkbox</type>
-			<value>1</value>
-			<colspan>10</colspan>
-			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-		</field>
-	</row>
+    <row>
+        <field>
+            <name>id</name>
+            <type>hidden</type>
+        </field>
+        <field>
+            <name>id_empleado</name>
+            <type>hidden</type>
+        </field>
+        <field>
+            <name>email_name</name>
+            <label lang="true">nombre</label>
+            <type>text</type>
+            <width>240px</width>
+            <colspan>3</colspan>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+        <field>
+            <name>email_privated</name>
+            <label lang="true">emailprivated</label>
+            <type>checkbox</type>
+            <value>1</value>
+            <colspan>3</colspan>
+            <colspan2>2</colspan2>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+    </row>
+    <row>
+        <field>
+            <name>email_from</name>
+            <label lang="true">email</label>
+            <type>text</type>
+            <width>240px</width>
+            <colspan>3</colspan>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+        <field>
+            <name>email_default</name>
+            <label lang="true">emaildefault</label>
+            <type>checkbox</type>
+            <value>1</value>
+            <colspan>3</colspan>
+            <colspan2>2</colspan2>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+    </row>
+    <row>
+        <field>
+            <type>separator</type>
+        </field>
+    </row>
+    <row>
+        <field>
+            <type>iframe</type>
+            <name>email_signature</name>
+            <label lang="true">emailsignatureold</label>
+            <width>600px</width>
+            <height>120px</height>
+            <colspan>10</colspan>
+        </field>
+    </row>
+    <row>
+        <field global="id" ifeval="$id>=0">
+            <type>file</type>
+            <name>email_signature_new</name>
+            <label lang="true">emailsignaturenew</label>
+            <colspan>10</colspan>
+            <width>600px</width>
+            <size>60</size>
+            <class3>ui-state-default ui-corner-all</class3>
+        </field>
+    </row>
+    <row>
+        <field>
+            <type>separator</type>
+        </field>
+    </row>
+    <row>
+        <field>
+            <name>pop3_host</name>
+            <label lang="true">pop3host</label>
+            <type>text</type>
+            <width>240px</width>
+            <colspan>3</colspan>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+        <field>
+            <name>smtp_host</name>
+            <label lang="true">smtphost</label>
+            <type>text</type>
+            <width>240px</width>
+            <colspan>3</colspan>
+            <colspan2>2</colspan2>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+    </row>
+    <row>
+        <field>
+            <name>pop3_port</name>
+            <label lang="true">port</label>
+            <type>text</type>
+            <width>60px</width>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+        <field>
+            <type>label</type>
+            <label>(110, 995)</label>
+        </field>
+        <field>
+            <type>separator</type>
+            <width>1px</width>
+        </field>
+        <field>
+            <name>smtp_port</name>
+            <label lang="true">port</label>
+            <type>text</type>
+            <width>60px</width>
+            <colspan2>2</colspan2>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+        <field>
+            <type>label</type>
+            <label>(25, 465, 587)</label>
+            <colspan>2</colspan>
+        </field>
+    </row>
+    <row>
+        <field>
+            <name>pop3_extra</name>
+            <label lang="true">extra</label>
+            <type>select</type>
+            <width>60px</width>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+            <rows>
+                <row>
+                    <label></label>
+                    <value></value>
+                </row>
+                <row>
+                    <label>TLS</label>
+                    <value>tls</value>
+                </row>
+            </rows>
+        </field>
+        <field>
+            <type>label</type>
+            <label>(TLS)</label>
+        </field>
+        <field>
+            <type>separator</type>
+        </field>
+        <field>
+            <name>smtp_extra</name>
+            <label lang="true">extra</label>
+            <type>select</type>
+            <width>60px</width>
+            <colspan2>2</colspan2>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+            <rows>
+                <row>
+                    <label></label>
+                    <value></value>
+                </row>
+                <row>
+                    <label>SSL</label>
+                    <value>ssl</value>
+                </row>
+                <row>
+                    <label>TLS</label>
+                    <value>tls</value>
+                </row>
+            </rows>
+        </field>
+        <field>
+            <type>label</type>
+            <label>(SSL/TLS)</label>
+            <colspan>2</colspan>
+        </field>
+    </row>
+    <row>
+        <field>
+            <name>pop3_user</name>
+            <label lang="true">username</label>
+            <type>text</type>
+            <width>240px</width>
+            <colspan>3</colspan>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+        <field>
+            <name>smtp_user</name>
+            <label lang="true">username</label>
+            <type>text</type>
+            <width>240px</width>
+            <colspan>3</colspan>
+            <colspan2>2</colspan2>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+    </row>
+    <row>
+        <field>
+            <name>pop3_pass</name>
+            <label lang="true">password</label>
+            <type>password</type>
+            <width>120px</width>
+            <colspan>3</colspan>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+        <field>
+            <name>smtp_pass</name>
+            <label lang="true">password</label>
+            <type>password</type>
+            <width>120px</width>
+            <colspan>3</colspan>
+            <colspan2>2</colspan2>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+    </row>
+    <row>
+        <field>
+            <type>separator</type>
+        </field>
+    </row>
+    <row>
+        <field>
+            <name>pop3_delete</name>
+            <label lang="true">pop3delete</label>
+            <type>checkbox</type>
+            <value>1</value>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+            <colspan>5</colspan>
+        </field>
+        <field>
+            <name>pop3_days</name>
+            <type>text</type>
+            <width>60px</width>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+        <field>
+            <type>label</type>
+            <label lang="true">pop3days</label>
+        </field>
+    </row>
+    <row>
+        <field>
+            <name>email_crt</name>
+            <label lang="true">defaultcrt</label>
+            <type>checkbox</type>
+            <value>1</value>
+            <colspan>10</colspan>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+    </row>
+    <row>
+        <field>
+            <name>email_addmetocc</name>
+            <label lang="true">addmetocc</label>
+            <type>checkbox</type>
+            <value>1</value>
+            <colspan>10</colspan>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+    </row>
+    <row>
+        <field>
+            <name>email_disabled</name>
+            <label lang="true">emaildisabled</label>
+            <type>checkbox</type>
+            <value>1</value>
+            <colspan>10</colspan>
+            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+        </field>
+    </row>
 </root>

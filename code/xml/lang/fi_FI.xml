@@ -24,1530 +24,1530 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<lang>fi_FI</lang>
-	<dir>ltr</dir>
-	<default>common</default>
-	<common>
-		<nopage>Valitse sovellus aloittaaksesi työskentelyn</nopage>
-		<nocheckuser>Väärä käyttäjänimi tai salasana</nocheckuser>
-		<nochecktime>Käyttäjä aukioloaikojen ulkopuolella</nochecktime>
-		<nocheckday>Käyttäjä poissa arkipäivästä</nocheckday>
-		<view>Näkymä</view>
-		<edit>Muokata</edit>
-		<copy>Kopio</copy>
-		<delete>Poistaa</delete>
-		<first>Ensimmäinen sivu</first>
-		<previous>Edellinen sivu</previous>
-		<next>Seuraava sivu</next>
-		<last>Viimeinen sivu</last>
-		<id>Turskaa.</id>
-		<codigo>Koodi</codigo>
-		<cif>C.I.F</cif>
-		<nombre>Nimi</nombre>
-		<apellidos>Sukunimet</apellidos>
-		<tel_fijo>Kiinteät</tel_fijo>
-		<tel_movil>Movil</tel_movil>
-		<telefono>Puhelin</telefono>
-		<fax>Faksi</fax>
-		<email>Sähköposti</email>
-		<web>Verkko</web>
-		<filter>Suodatusvaihtoehdot</filter>
-		<loadsavefilter>Lataa ja tallenna ennalta määritetyt suodattimet</loadsavefilter>
-		<filtro>Etsi kaikista</filtro>
-		<buscar>Etsi</buscar>
-		<buscartip>Hae valituilla suodattimilla</buscartip>
-		<limpiar>Asettaa uudelleen</limpiar>
-		<limpiartip>Puhdista suodatin ja näytä kaikki tiedot</limpiartip>
-		<username>Käyttäjä</username>
-		<datetime>Päivämäärä ja aika</datetime>
-		<direccion>Osoite</direccion>
-		<codpostal>Postinumero</codpostal>
-		<poblacion>Väestö</poblacion>
-		<provincia>Maakunta</provincia>
-		<pais>Maa</pais>
-		<comentarios>Kommentit</comentarios>
-		<descripcion>Kuvaus</descripcion>
-		<buttoncreate>Luoda</buttoncreate>
-		<buttoncreatereturnhere>Luo ja palaa tänne</buttoncreatereturnhere>
-		<buttonupdate>Päivitys</buttonupdate>
-		<buttonupdatereturnhere>Päivitä ja tule takaisin tänne</buttonupdatereturnhere>
-		<buttoncancel>Peruuttaa</buttoncancel>
-		<buttonreturn>Paluu</buttonreturn>
-		<date>Päiväys</date>
-		<incidencia>Esiintyvyys</incidencia>
-		<estado>Tila</estado>
-		<parte>Osa</parte>
-		<tarea>Tehtävä</tarea>
-		<tareas>Tehtävät</tareas>
-		<liquidado>Selvitystilaan</liquidado>
-		<base>Perusta</base>
-		<total>Kokonais-</total>
-		<cerrado>Suljettujen</cerrado>
-		<cobrado>Lunastaa</cobrado>
-		<empresa>Yhtiö</empresa>
-		<msgdelete>Haluatko poistaa tämän tietueen?</msgdelete>
-		<permdenied>Sinulla ei ole lupaa suorittaa tätä toimintoa</permdenied>
-		<sinnombre>Ei nimeä</sinnombre>
-		<deldenied>Sitä ei voi poistaa, koska sitä käytetään toisessa sovelluksessa</deldenied>
-		<yes>Kyllä</yes>
-		<no>Ei</no>
-		<cliente>Asiakas</cliente>
-		<posiblecli>Mahdollinen asiakas</posiblecli>
-		<password>Avain</password>
-		<numfac>N.Fac.</numfac>
-		<numc>NC</numc>
-		<numctip>Kommenttien lukumäärä</numctip>
-		<numf>NF</numf>
-		<numftip>Tiedostojen lukumäärä</numftip>
-		<numt>NT</numt>
-		<numttip>Tehtävien lukumäärä</numttip>
-		<numv>NV</numv>
-		<numvtip>Eräpäivien lukumäärä</numvtip>
-		<nums>NS</nums>
-		<numstip>Seurantojen lukumäärä</numstip>
-		<nump>NP</nump>
-		<numptip>Tuotteiden lukumäärä</numptip>
-		<fechaini>Syötä päivämäärä</fechaini>
-		<fechafin>ja</fechafin>
-		<commentdel>Poista tämä kommentti</commentdel>
-		<attachments>Liitetyt tiedostot</attachments>
-		<shortattachments>Liitetiedostoja</shortattachments>
-		<userdatetime>Käyttäjä, päivämäärä ja aika</userdatetime>
-		<fileandsize>Tiedosto ja koko</fileandsize>
-		<download>Download</download>
-		<activar>Aktivoida</activar>
-		<newcomment>Uusi kommentti</newcomment>
-		<newattachments>Uudet liitteet</newattachments>
-		<proyecto>Projekti</proyecto>
-		<documento>Asiakirja</documento>
-		<hora>Aika</hora>
-		<horas>Tuntia</horas>
-		<minutos>Minuuttia</minutos>
-		<precio>Hinta</precio>
-		<liq>Liq.</liq>
-		<aplicacion>Hakemus</aplicacion>
-		<rol>Rooli</rol>
-		<permiso>Lupa</permiso>
-		<pos>Pos.</pos>
-		<posicion>Asento</posicion>
-		<trimestre>Neljännes</trimestre>
-		<otroscampos>Muut kentät</otroscampos>
-		<excel>Kunnostautua</excel>
-		<exceltip>Lataa Excel-tiedosto nykyisillä tiedoilla</exceltip>
-		<pdf>Lataa PDF</pdf>
-		<pdftip>Lataa PDF-tiedosto nykyisillä tiedoilla</pdftip>
-		<epigrafe>Epigraph</epigrafe>
-		<campoauto>(*) Automaattinen kenttä</campoauto>
-		<cerr>Cerr.</cerr>
-		<cobr>Corte.</cobr>
-		<concepto>Käsite</concepto>
-		<unid>Kpl.</unid>
-		<unidades>Unids.</unidades>
-		<unidadestotal>Yksiköitä yhteensä</unidadestotal>
-		<prun>Pr./Un.</prun>
-		<dto>Dto.</dto>
-		<importe>Määrä</importe>
-		<percent>Prosenttimäärä</percent>
-		<todos>Kaikki]</todos>
-		<todoslosclientes>[Kaikki asiakkaat]</todoslosclientes>
-		<todoslosposiblescli>[Kaikki potentiaaliset asiakkaat]</todoslosposiblescli>
-		<todoslosusuarios>[Kaikki käyttäjät]</todoslosusuarios>
-		<todoslosgrupos>[Kaikki ryhmät]</todoslosgrupos>
-		<todoslosproveedores>[Kaikki palveluntarjoajat]</todoslosproveedores>
-		<mostrartodos>[Näytä kaikki]</mostrartodos>
-		<sinusuario>[Ei käyttäjää]</sinusuario>
-		<paginaspc>Sivu</paginaspc>
-		<regsfrom>kirjaa</regsfrom>
-		<spcdespc>Of</spcdespc>
-		<spcalspc>Että</spcalspc>
-		<regspage>Tietueita sivua kohden:</regspage>
-		<registerdata>Rekisteröintitiedot</registerdata>
-		<userinsert>Perustaja:</userinsert>
-		<userupdate>Muokannut</userupdate>
-		<allstates>[Kaikki valtiot]</allstates>
-		<allenabled>[Kaikki varat}</allenabled>
-		<alldisabled>[Kaikki ei-aktiiviset}</alldisabled>
-		<lastinsert>Tietue on luotu koodilla:</lastinsert>
-		<lastupdate>Rekisteriä on muokattu koodilla:</lastupdate>
-		<lastdelete>Tietue koodilla on poistettu:</lastdelete>
-		<proveedor>Toimittaja</proveedor>
-		<acta>Ennätys</acta>
-		<presupuesto>Talousarvio</presupuesto>
-		<newfichero>Uusi tiedosto</newfichero>
-		<fichero>Tiedosto</fichero>
-		<size>Koko</size>
-		<mime>Mime-tyyppi</mime>
-		<grupo>Ryhmä</grupo>
-		<ficheroactual>Nykyinen tiedosto</ficheroactual>
-		<language>Kieli</language>
-		<style>Suunnittelu</style>
-		<nodata>Ei tuloksia näytettäväksi</nodata>
-		<nosearch>Sinun on annettava termi voidaksesi tehdä haun</nosearch>
-		<prioridad>Prioriteetti</prioridad>
-		<sinproyecto>[Ilman liittyvää hanketta]</sinproyecto>
-		<sintarea>[Ei liittyvää tehtävää]</sintarea>
-		<todoslosproyectos>[Kaikki projektit]</todoslosproyectos>
-		<todaslastareas>[Kaikki tehtävät]</todaslastareas>
-		<todaslascuentas>Kaikki]</todaslascuentas>
-		<graficas>Kaaviot ja tilastot</graficas>
-		<mail>Lähetä PDF</mail>
-		<mailtip>Lähetä PDF sähköpostitilillesi</mailtip>
-		<view2>PDF-katseluohjelma</view2>
-		<view2tip>Tarkastele asiakirjaa sisäisessä SaltOS-katseluohjelmassa</view2tip>
-		<view2error>Virhe avattaessa PDF-katseluohjelmaa</view2error>
-		<view2hash>Jos ongelma jatkuu, ota yhteys tekniseen palveluun ilmoittamalla seuraava koodi:</view2hash>
-		<view2opening>Avaa visiiri, odota hetki ...</view2opening>
-		<msgnotuseremail>Sinulla ei ole määritettyä sähköpostiosoitetta</msgnotuseremail>
-		<msgnotsmtpemail>Lähtevän postin palvelinta ei ole määritetty</msgnotsmtpemail>
-		<sincliente>[Ilman liittyvää asiakasta]</sincliente>
-		<sinposiblecli>[Ilman mahdollista liitännäisasiakasta]</sinposiblecli>
-		<sinepigrafe>[Ilman otsikkoa]</sinepigrafe>
-		<sinprioridad>[Ei prioriteettia]</sinprioridad>
-		<sinestado>Stateless]</sinestado>
-		<dstart>Aloittamista</dstart>
-		<dstop>Pää</dstop>
-		<evento>Tapahtuma</evento>
-		<sincuenta>[Ilman tiliä]</sincuenta>
-		<cuenta>Tili</cuenta>
-		<sindia>[Ei päivää]</sindia>
-		<sinmes>[Ei kuukautta]</sinmes>
-		<mes>Kuukausi</mes>
-		<factura>Lasku</factura>
-		<albaran>Rahtikirja</albaran>
-		<msglogout>Haluatko poistua sovelluksesta?</msglogout>
-		<mostrarcomo>Näytä nimellä</mostrarcomo>
-		<nif>NIF</nif>
-		<vcard>VCard</vcard>
-		<cargo>Toimisto</cargo>
-		<empleado>Työntekijä</empleado>
-		<sinproveedor>[Ilman liitettyä palveluntarjoajaa]</sinproveedor>
-		<sinempleado>[Ei assosioitunutta työntekijää]</sinempleado>
-		<port>Portti</port>
-		<extra>Turvallisuus</extra>
-		<requiredfield>Pakollinen kenttä</requiredfield>
-		<sinpais>[Maata ei valittu]</sinpais>
-		<sinprovincia>[Ei maakuntaa valittu]</sinprovincia>
-		<sinpoblacion>[Ei väestöä valittu]</sinpoblacion>
-		<sincodpostal>[Ei valintaa]</sincodpostal>
-		<usedfilter>Suodatin aktivoitu</usedfilter>
-		<suma>Summa</suma>
-		<average>Keskimääräinen</average>
-		<posx>X-asema</posx>
-		<posy>Y-asema</posy>
-		<angle>Kulma</angle>
-		<withoutinfo>Ei tietoa edustaa</withoutinfo>
-		<sinproducto>[Ilman liittyvää tuotetta]</sinproducto>
-		<preview>Esikatselu</preview>
-		<sortasc>Lajittele nousevasti (A-Z)</sortasc>
-		<sortdesc>Järjestä laskevasti (Z-A)</sortdesc>
-		<confirm>Vahvistus</confirm>
-		<alert>Huomio</alert>
-		<error>Virhe</error>
-		<buttonaccept>Hyväksyä</buttonaccept>
-		<buttoncontinue>Jatkaa</buttoncontinue>
-		<enero>Tammikuu</enero>
-		<febrero>Helmikuu</febrero>
-		<marzo>Maaliskuu</marzo>
-		<abril>Huhtikuu</abril>
-		<mayo>Toukokuu</mayo>
-		<junio>Kesäkuu</junio>
-		<julio>Heinäkuu</julio>
-		<agosto>Elokuu</agosto>
-		<setiembre>Syyskuu</setiembre>
-		<octubre>Lokakuu</octubre>
-		<noviembre>Marraskuu</noviembre>
-		<diciembre>Joulukuu</diciembre>
-		<lunes>Maanantai</lunes>
-		<martes>Tiistai</martes>
-		<miercoles>Keskiviikko</miercoles>
-		<jueves>Torstai</jueves>
-		<viernes>Perjantai</viernes>
-		<sabado>Lauantai</sabado>
-		<domingo>Sunnuntai</domingo>
-		<sabadoydomingo>Lauantai ja sunnuntai</sabadoydomingo>
-		<sinpresupuesto>[Ei liittyvää budjettia]</sinpresupuesto>
-		<todoslospresupuestos>[Kaikki budjetit]</todoslospresupuestos>
-		<unknownerror>Yhteysvirhe on tapahtunut (tarkista, että verkon käyttö toimii oikein, ja jos ongelma jatkuu, ota yhteyttä sovelluksen järjestelmänvalvojaan)</unknownerror>
-		<qrcode>QR-koodi</qrcode>
-		<lugar>Paikka</lugar>
-		<loading>Ladataan tietoja, odota hetki ...</loading>
-		<sending>Lähetetään tietoja, odota hetki ...</sending>
-		<prod>Prod.</prod>
-		<addfile>Lisää tiedosto</addfile>
-		<addproduct>Lisää tuote</addproduct>
-		<addconcept>Lisää käsite</addconcept>
-		<addvencimiento>Lisää vanheneminen</addvencimiento>
-		<addtarea>Lisää tehtävä</addtarea>
-		<send>Lähetä</send>
-		<notas>Muistiinpanot</notas>
-		<sincampanya>[Ei liitetty kampanjaa]</sincampanya>
-		<campanya>Kampanja</campanya>
-		<todaslascampanyas>[Kaikki kampanjat]</todaslascampanyas>
-		<numpc>NPC</numpc>
-		<numpctip>Potentiaalisten asiakkaiden lukumäärä</numpctip>
-		<numcl>NCL</numcl>
-		<numcltip>Asiakkaiden lukumäärä</numcltip>
-		<numag>NAG</numag>
-		<numagtip>Esityslistalla olevien tapahtumien määrä</numagtip>
-		<numpr>NPR</numpr>
-		<numprtip>Budjettien lukumäärä</numprtip>
-		<numpy>NPY</numpy>
-		<numpytip>Hankkeiden lukumäärä</numpytip>
-		<tipoevento>Tapahtuman tyyppi</tipoevento>
-		<sintipoevento>[Ilman tapahtumatyyppiä]</sintipoevento>
-		<fileuploaderror>Tiedoston lähettämisessä tapahtui virhe:</fileuploaderror>
-		<postlimiterror>Lähetettäessä tietoja palvelimelle tapahtui virhe</postlimiterror>
-		<resumeneconomico>Taloudellinen yhteenveto</resumeneconomico>
-		<pdf2filter_title>PDF-vientisuodatin</pdf2filter_title>
-		<pdf2filter_message>Valitse tiedot, jotka haluat sisällyttää PDF-tiedostoon:</pdf2filter_message>
-		<view2filter_title>PDF-katselusuodatin</view2filter_title>
-		<view2filter_message>Valitse tiedot, jotka haluat nähdä PDF-tiedostossa:</view2filter_message>
-		<msgerrorsemaphore>Samanaikaisuusvirhe on tapahtunut, pääsy toimintaan peruutetaan</msgerrorsemaphore>
-		<msgnotcheckbox>Sinun on valittava tietue luettelosta käyttääksesi tätä vaihtoehtoa</msgnotcheckbox>
-		<gotohome>Lataa</gotohome>
-		<notifybug>Ilmoita virheestä</notifybug>
-		<actioncompress>Lataa valitut tiedostot</actioncompress>
-		<zipformat>ZIP-muoto</zipformat>
-		<tarformat>TAR</tarformat>
-		<gzipformat>GZIP</gzipformat>
-		<bzipformat>BZIP2</bzipformat>
-		<temporalfiles>Väliaikaiset tiedostot</temporalfiles>
-		<sessionexpire>Istunto päättyy vuonna</sessionexpire>
-		<sessionupdate>napsauta tätä estääksesi sen sulkemisen</sessionupdate>
-		<sessionupdated>Istunnon päivitys onnistui</sessionupdated>
-		<link>Linkki</link>
-		<importacion>Tuonti</importacion>
-		<todaslasimportaciones>[Kaikki tuonnit]</todaslasimportaciones>
-		<sinimportacion>[Ei liittyvää tuontia]</sinimportacion>
-		<textos_select>Valitse teksti ja paina Lisää</textos_select>
-		<textos_add>Lisätä</textos_add>
-		<selectall>Valitse kaikki</selectall>
-		<selectnone>Tyhjennä valinta</selectnone>
-		<addtofolder>Näytä tässä kansiossa</addtofolder>
-		<addtofolderok>Tämä sisältö on lisätty kansioon</addtofolderok>
-		<delfromfolderok>Tämän kansion sisältö on piilotettu</delfromfolderok>
-		<savedfilters>Tallennetut suodattimet</savedfilters>
-		<optionfilter>Valitse tallennettu suodatin</optionfilter>
-		<newfilter>Uuden suodattimen nimi</newfilter>
-		<loadfilter>Kuormitus</loadfilter>
-		<loadfiltertip>Lataa valittu suodatin napsauttamalla tätä</loadfiltertip>
-		<updatefilter>Päivitys</updatefilter>
-		<updatefiltertip>Päivitä valittu suodatin napsauttamalla tätä</updatefiltertip>
-		<deletefilter>Poistaa</deletefilter>
-		<deletefiltertip>Poista valittu suodatin napsauttamalla tätä</deletefiltertip>
-		<createfilter>Luoda</createfilter>
-		<createfiltertip>Luo uusi suodatin napsauttamalla tätä</createfiltertip>
-		<createfilterok>Uusi suodatin on luotu onnistuneesti</createfilterok>
-		<createfilterko>Suodattimen nimi on määritettävä</createfilterko>
-		<loadfilterok>Suodatin ladattu onnistuneesti</loadfilterok>
-		<loadfilterko>Sinun on valittava suodatin ladataksesi</loadfilterko>
-		<updatefilterok>Suodatin on päivitetty onnistuneesti</updatefilterok>
-		<updatefilterko>Sinun on valittava suodatin voidaksesi muokata sitä</updatefilterko>
-		<deletefilterok>Suodatin on poistettu</deletefilterok>
-		<deletefilterko>Sinun on valittava suodatin, jotta voit poistaa sen</deletefilterko>
-		<renamefilter>Rename</renamefilter>
-		<renamefiltertip>Nimeä nykyinen suodatin napsauttamalla tätä</renamefiltertip>
-		<renamefilterok>Nykyinen suodatin on nimetty uudelleen onnistuneesti</renamefilterok>
-		<renamefilterko1>Sinun on valittava suodatin nimetäksesi se uudelleen</renamefilterko1>
-		<renamefilterko2>Jäljellä on määritellä uudelleen nimeävän suodattimen uusi nimi</renamefilterko2>
-		<showmenu>Näytä valikko</showmenu>
-		<hidemenu>Piilota valikko</hidemenu>
-		<showtools>Näytä työkalut</showtools>
-		<hidetools>Piilota työkalut</hidetools>
-		<inbackground>Tämä toiminto on käynnissä taustalla, odota hetki</inbackground>
-		<sentfromsaltos>Posti lähetetty SaltOS-laitteistani</sentfromsaltos>
-		<foldersdata>Kansiot</foldersdata>
-		<loweradd>lisätä</loweradd>
-		<notify>Ilmoitukset</notify>
-		<help>Help</help>
-		<desktoptip>Ota integroidut työpöytäilmoitukset käyttöön</desktoptip>
-		<desktoptxt>Integroidut työpöytäilmoitukset käytössä</desktoptxt>
-		<selectallcheckbox>Valitse kaikki tietueet</selectallcheckbox>
-		<selectonecheckbox>Valitse tämä tietue</selectonecheckbox>
-		<formapago>Maksutapa</formapago>
-		<todaslasformasdepago>[Kaikki maksutavat]</todaslasformasdepago>
-		<sinformapago>[Ilman maksutapaa]</sinformapago>
-		<actions>Tämän tietueen toimenpiteet</actions>
-		<msgfilesindexed1>Tiedosto indeksoitu tietokantaan</msgfilesindexed1>
-		<msgfilesindexed2>Tiedostot, jotka on indeksoitu tietokantaan</msgfilesindexed2>
-		<msgregistersindexed1>Tietue indeksoitu tietokantaan</msgregistersindexed1>
-		<msgregistersindexed2>Tietueet indeksoidaan tietokantaan</msgregistersindexed2>
-		<msgregisterspurged1>Tietokannasta puhdistettu tietue</msgregisterspurged1>
-		<msgregisterspurged2>Tietokannasta tyhjennetyt tietueet</msgregisterspurged2>
-		<biglist>$ raja-tietueet</biglist>
-		<biglisttip>Huomio: $ limit-tietueita näytetään ja sovellus saattaa toimia hitaasti</biglisttip>
-		<activo>Aktiivinen</activo>
-		<activo_desc>Osoittaa aktiivinen tai olemassa oleva käyttäjä perinnöllä</activo_desc>
-		<print>Tulosta</print>
-	</common>
-	<login>
-		<logintitle>Pääsy sovellukseen</logintitle>
-		<remember>Muista tämän tietokoneen salasana</remember>
-		<enter>Kirjaudu sisään</enter>
-		<captcha1>Suojakoodi</captcha1>
-		<captcha2>Kirjoita koodi tähän</captcha2>
-		<captcha3>Lataa kuva uudelleen</captcha3>
-		<mobileaccess>Pääsy mobiililaitteelta</mobileaccess>
-	</login>
-	<menu>
-		<home>Aloittamista</home>
-		<clientes>Asiakkaat</clientes>
-		<contactos>Yhteystiedot</contactos>
-		<incidencias>Ilmaantuvuus</incidencias>
-		<proyectos>Hankkeet</proyectos>
-		<partes>Työosat</partes>
-		<documentos>Asiakirjat</documentos>
-		<facturas>Laskut</facturas>
-		<proveedores>Tarjoajat</proveedores>
-		<gastos>Kulut</gastos>
-		<epigrafes>Epigraphs</epigrafes>
-		<estados>Valtiot</estados>
-		<formaspago>Maksutavat</formaspago>
-		<roles>Roolit</roles>
-		<usuarios>Käyttäjät</usuarios>
-		<grupos>Ryhmät</grupos>
-		<prioridades>Prioriteetit</prioridades>
-		<agenda>Esityslista ja tapahtumat</agenda>
-		<actas>Kokouspöytäkirjat</actas>
-		<profile>Oma profiili</profile>
-		<maincfg>Kokoonpano</maincfg>
-		<about>Tietoja SaltOS: sta</about>
-		<support>Tekninen tuki</support>
-		<logout>Kirjaudu ulos</logout>
-		<seguimientos>Tehtävien seuranta</seguimientos>
-		<datacfg>Tietokanta</datacfg>
-		<correo>Sähköposti</correo>
-		<cuentas>Tilit</cuentas>
-		<periodicas>Määräaikaiset laskut</periodicas>
-		<empleados>Henkilöstö</empleados>
-		<productos>Tuottaa</productos>
-		<presupuestos>Budjetit</presupuestos>
-		<posiblescli>Mahdolliset asiakkaat</posiblescli>
-		<campanyas>Kaupalliset kampanjat</campanyas>
-		<tiposevento>Tapahtumatyypit</tiposevento>
-		<textos>Ennalta määritetyt tekstit</textos>
-		<ficheros>Liitetyt tiedostot</ficheros>
-		<feeds>RSS-syötteenlukija</feeds>
-		<favoritos>Suosikki</favoritos>
-		<ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-		<importaciones>Tuonti</importaciones>
-		<gestioncomercial>Kaupallinen</gestioncomercial>
-		<gestionproyectos>Hankkeet</gestionproyectos>
-		<gestioncontabilidad>Kirjanpito</gestioncontabilidad>
-		<gestiongeneral>Yleinen</gestiongeneral>
-		<gestionfiltros>Suodattimet</gestionfiltros>
-		<gestionadministracion>Antaminen</gestionadministracion>
-		<gestiontipos>Tyyppi</gestiontipos>
-		<gestionsistema>Järjestelmä</gestionsistema>
-		<folders>Kansiot</folders>
-		<buscador>Hakukone</buscador>
-		<errorlog>Virhelokit</errorlog>
-		<categorias>Luokat</categorias>
-		<desc_clientes>Hallitse yrityksen asiakkaita</desc_clientes>
-		<desc_contactos>Päästäksesi asiakkaan yhteystietoihin</desc_contactos>
-		<desc_incidencias>Hallitse täältä asiakkaidesi tapahtumia</desc_incidencias>
-		<desc_proyectos>Seuraa projektejasi tämän sovelluksen avulla</desc_proyectos>
-		<desc_partes>Rekisteröi kaikki tekemäsi työt aikataulukoilla</desc_partes>
-		<desc_facturas>Hallinnoi kaikkia laskuja (toimituslomakkeet, maksut jne.)</desc_facturas>
-		<desc_proveedores>Hallitse yrityksen toimittajia</desc_proveedores>
-		<desc_gastos>Hallitse kuluja ja tiedä onko ne selvitetty</desc_gastos>
-		<desc_documentos>Ryhmittele kaikki yrityksesi asiakirjat</desc_documentos>
-		<desc_agenda>Ota esityslistalle kaikki vierailut ja kokoukset</desc_agenda>
-		<desc_actas>Pidä kirjaa, kun pidät kokouksia parempaa hallintaa</desc_actas>
-		<desc_usuarios>Rekisteröi, peruuta tilaukset tai muokkaa käyttäjiä</desc_usuarios>
-		<desc_grupos>Luo käyttäjille työryhmiä</desc_grupos>
-		<desc_epigrafes>Määritä laskujen ja kulujen otsikot</desc_epigrafes>
-		<desc_formaspago>Määritä maksutavat kustannusten hallitsemiseksi</desc_formaspago>
-		<desc_estados>Määritä tapahtuman, projektin jne. mahdolliset tilat ...</desc_estados>
-		<desc_prioridades>Määritä kalenterimerkintöjen prioriteetit</desc_prioridades>
-		<desc_profile>Muuta käyttäjän asetuksia</desc_profile>
-		<desc_maincfg>Muuta yleisiä sovellusasetuksia</desc_maincfg>
-		<desc_seguimientos>Ohjaa projektitehtäviä seurannalla</desc_seguimientos>
-		<desc_datacfg>Tee varmuuskopioita ja palauta ne helposti</desc_datacfg>
-		<desc_correo>Lue ja lähetä sähköpostit täältä asiakkaillesi ja toimittajille</desc_correo>
-		<desc_cuentas>Määritä kirjanpidon pääkirjatilit</desc_cuentas>
-		<desc_periodicas>Aikatauluta toistuvat laskut eräpäivinä</desc_periodicas>
-		<desc_empleados>Rekisteröi, peruuta tai muuta työntekijöitä</desc_empleados>
-		<desc_posiblescli>Hallitse potentiaalisia asiakkaitasi, joita sinulla voi olla</desc_posiblescli>
-		<desc_presupuestos>Tee budjetit nopeasti ja helposti</desc_presupuestos>
-		<desc_productos>Määritä tuotteesi täällä voidaksesi myydä niitä</desc_productos>
-		<desc_about>Tunne tämän sovelluksen hyvitykset</desc_about>
-		<desc_logout>Napsauta tätä, kun haluat sulkea työistunnon</desc_logout>
-		<desc_home>Siirry sovelluksen päänäyttöön</desc_home>
-		<desc_support>Ota yhteys tekniseen tukeen</desc_support>
-		<desc_campanyas>Tee liiketoimintaa seurannan avulla</desc_campanyas>
-		<desc_tiposevento>Määritä tarvittavat tapahtumatyypit</desc_tiposevento>
-		<desc_textos>Luo ennalta määritettyjä tekstejä käytettäväksi muissa sovelluksissa</desc_textos>
-		<desc_ficheros>Käytä kaikkia sovelluksen tiedostoja</desc_ficheros>
-		<desc_feeds>Seuraa RSS- ja Atom-syötteitäsi tästä sovelluksesta</desc_feeds>
-		<desc_favoritos>Hallitse suosikkejasi täältä</desc_favoritos>
-		<desc_ivas>Hallinnoi verokantoja täältä</desc_ivas>
-		<desc_importaciones>Tuo tiedot tärkeimpiin sovelluksiin täältä</desc_importaciones>
-		<desc_buscador>Hakea koko tietokannasta</desc_buscador>
-		<desc_errorlog>SaltOS-virhelokin tarkasteleminen</desc_errorlog>
-		<desc_categorias>Näet tiettyjen sovellusten luokat</desc_categorias>
-		<quick_home>Aloittamista</quick_home>
-		<quick_correo>Posti</quick_correo>
-		<quick_agenda>Päiväkirja</quick_agenda>
-		<quick_profile>Profiilia</quick_profile>
-		<quick_support>Tuki</quick_support>
-		<quick_about>Noin</quick_about>
-		<quick_logout>Lähellä</quick_logout>
-		<quick_clientes>Asiakkaat</quick_clientes>
-		<quick_contactos>Yhteystiedot</quick_contactos>
-		<quick_incidencias>Ilmaantuvuus</quick_incidencias>
-		<quick_proyectos>Hankkeet</quick_proyectos>
-		<quick_partes>Osat</quick_partes>
-		<quick_documentos>Asiakirjat</quick_documentos>
-		<quick_facturas>Laskut</quick_facturas>
-		<quick_proveedores>Tarjoajat</quick_proveedores>
-		<quick_gastos>Kulut</quick_gastos>
-		<quick_epigrafes>Epigraphs</quick_epigrafes>
-		<quick_estados>Valtiot</quick_estados>
-		<quick_formaspago>F. maksu</quick_formaspago>
-		<quick_roles>Roolit</quick_roles>
-		<quick_usuarios>Käyttäjät</quick_usuarios>
-		<quick_grupos>Ryhmät</quick_grupos>
-		<quick_prioridades>Prioriteetit</quick_prioridades>
-		<quick_actas>Menettely</quick_actas>
-		<quick_maincfg>Kokoonpano</quick_maincfg>
-		<quick_seguimientos>Seurata</quick_seguimientos>
-		<quick_datacfg>BBDD</quick_datacfg>
-		<quick_cuentas>Tilit</quick_cuentas>
-		<quick_periodicas>Ajoittainen</quick_periodicas>
-		<quick_empleados>Henkilöstö</quick_empleados>
-		<quick_productos>Tuottaa</quick_productos>
-		<quick_presupuestos>Budjetit</quick_presupuestos>
-		<quick_posiblescli>P.clientes</quick_posiblescli>
-		<quick_campanyas>Kampanjat</quick_campanyas>
-		<quick_tiposevento>T. tapahtumia</quick_tiposevento>
-		<quick_textos>Tekstien</quick_textos>
-		<quick_ficheros>Tiedostojen</quick_ficheros>
-		<quick_feeds>RSS</quick_feeds>
-		<quick_favoritos>Suosikki</quick_favoritos>
-		<quick_importaciones>Tuonti</quick_importaciones>
-		<quick_buscador>Hakukone</quick_buscador>
-		<quick_errorlog>Virheitä</quick_errorlog>
-		<quick_categorias>Luokat</quick_categorias>
-		<translator>Kääntäjä</translator>
-		<translatortip>Tekstin käännösten tekeminen</translatortip>
-		<corrector>Korjauslukija</corrector>
-		<correctortip>Tekstin korjaamiseksi</correctortip>
-		<calculator>Laskin</calculator>
-		<calculatortip>Matemaattisten laskelmien tekeminen</calculatortip>
-		<menu>Valikko</menu>
-		<menutip>Sovellusvalikon näyttäminen ja piilottaminen</menutip>
-	</menu>
-	<clientes>
-		<list>Asiakasluettelo</list>
-		<create>Uusi asiakas</create>
-		<formview>Asiakkaan tiedot</formview>
-		<forminsert>Uuden asiakkaan rekisteröinti</forminsert>
-		<formupdate>Asiakkaan muutos</formupdate>
-		<defaultdata>Asiakastiedot</defaultdata>
-		<contactdata>Asiakasyhteydet</contactdata>
-		<projectopen>Aktiiviset projektit</projectopen>
-		<projectclose>Suljetut projektit</projectclose>
-		<incidentopen>Aktiiviset tapaukset</incidentopen>
-		<incidentclose>Suljetut tapaukset</incidentclose>
-		<partesopen>Ratkaisemattomat osat</partesopen>
-		<partesclose>Likvidoidut osat</partesclose>
-		<albaranes>Toimitusilmoitukset</albaranes>
-		<facturaopen>Kerättämättömät laskut</facturaopen>
-		<facturaclose>Laskut kerätty</facturaclose>
-		<gastosdata>Asiakkaaseen liittyvät kulut</gastosdata>
-		<documentdata>Asiakirjat</documentdata>
-		<agendadata>Asiakkaan tapahtumat</agendadata>
-		<actasdata>Asiakkaan minuutit</actasdata>
-		<actionliquidar>Määritä valitut osat</actionliquidar>
-		<msgliquidar>Haluatko selvittää valitut osat?</msgliquidar>
-		<plotseguimiento12meses>Asiakkaan viime vuoden laskutus</plotseguimiento12meses>
-		<cuentacorriente>Tili tarkistetaan</cuentacorriente>
-		<diapago>Palkkapäivä</diapago>
-		<cuentacontable>Kirjanpito-tili</cuentacontable>
-		<nombrecomercial>Nimi syö.</nombrecomercial>
-		<nombrefiscal>Verollinen nimi</nombrefiscal>
-		<tipocliente>Asiakastyyppi</tipocliente>
-		<clientefiscal>Syyttäjä</clientefiscal>
-		<clientejuridico>Oikeudellinen</clientejuridico>
-		<add>Lisää asiakas</add>
-		<presupuestosdata>Asiakasbudjetit</presupuestosdata>
-	</clientes>
-	<contactos>
-		<list>Yhteystietoluettelo</list>
-		<create>Uusi yhteyshenkilö</create>
-		<formview>Yhteystiedot</formview>
-		<forminsert>Uuden kontaktin rekisteröiminen</forminsert>
-		<formupdate>Yhteyden muutos</formupdate>
-		<defaultdata>Yhteystiedot</defaultdata>
-		<add>Lisää yhteyshenkilö</add>
-	</contactos>
-	<incidencias>
-		<list>Luettelo tapahtumista</list>
-		<create>Uusi esiintyvyys</create>
-		<formview>Tapahtuman yksityiskohta</formview>
-		<forminsert>Uuden tapauksen rekisteröinti</forminsert>
-		<formupdate>Ilmaantuvuuden muuttaminen</formupdate>
-		<defaultdata>Ilmaantuvuustiedot</defaultdata>
-		<usersdata>Käyttäjät</usersdata>
-		<implicados>Implicados</implicados>
-		<asignadoa>Määritetty</asignadoa>
-		<msgsendemail>Kaikille tapahtumassa mukana oleville on lähetetty sähköposti</msgsendemail>
-		<boolsendmail>Lähetä sähköpostia</boolsendmail>
-		<boolsendmailtip>Jos aktivoit tämän vaihtoehdon, kaikille osallistujille lähetetään sähköposti</boolsendmailtip>
-		<categoria>Luokka</categoria>
-		<sincategoria>[Ilman luokkaa]</sincategoria>
-		<allcategorias>[Kaikki luokat]</allcategorias>
-	</incidencias>
-	<proyectos>
-		<list>Luettelo hankkeista</list>
-		<create>Uusi projekti</create>
-		<formview>Projektin yksityiskohdat</formview>
-		<forminsert>Uuden projektin rekisteröinti</forminsert>
-		<formupdate>Hankkeen muuttaminen</formupdate>
-		<defaultdata>Projektitiedot</defaultdata>
-		<tareasproyecto>Projektitehtävät</tareasproyecto>
-		<desctareas>Tehtävien kuvaus</desctareas>
-		<horastotal>Tuntia yhteensä</horastotal>
-		<preciomedio>Keskimääräinen hinta</preciomedio>
-		<preciototal>Kokonaishinta</preciototal>
-		<plotseguimientotareas>Projektin poikkeama</plotseguimientotareas>
-		<legendseguimientotareas>Budjetoidut tunnit | Työtunnit</legendseguimientotareas>
-		<real>Real</real>
-		<diferencia>Ero</diferencia>
-		<partesopen>Ratkaisemattomat osat</partesopen>
-		<partesclose>Likvidoidut osat</partesclose>
-		<relatedseguimientos>Aiheeseen liittyvät seurannat</relatedseguimientos>
-		<relatedincidencias>Liittyvät tapaukset</relatedincidencias>
-		<actionliquidar>Määritä valitut osat</actionliquidar>
-		<msgliquidar>Haluatko selvittää valitut osat?</msgliquidar>
-		<agendadata>Aiheeseen liittyvät tapahtumat</agendadata>
-		<actasdata>Aiheeseen liittyvät säädökset</actasdata>
-		<contactdata>Asiakasyhteydet</contactdata>
-		<incidentopen>Aktiiviset tapaukset</incidentopen>
-		<incidentclose>Suljetut tapaukset</incidentclose>
-		<albaranes>Toimitusilmoitukset</albaranes>
-		<facturaopen>Kerättämättömät laskut</facturaopen>
-		<facturaclose>Laskut kerätty</facturaclose>
-		<gastosdata>Asiakkaaseen liittyvät kulut</gastosdata>
-		<documentdata>Asiakirjat</documentdata>
-		<plotseguimientoestados>Ryhmittelevät hankkeet valtion mukaan</plotseguimientoestados>
-		<productosproyecto>Projektin tuotteet</productosproyecto>
-		<descproductos>Tuotteiden kuvaus</descproductos>
-		<actionfacturar>Lasku</actionfacturar>
-		<msgfacturar>Haluatko laskuttaa projektin?</msgfacturar>
-		<errorfacturar>Tästä projektista on jo lasku</errorfacturar>
-		<okfacturar>Projekti on laskutettu oikein</okfacturar>
-		<addseguimientos>Jäljittämisestä</addseguimientos>
-		<addactas>Ennätys</addactas>
-		<addcontactos>Kosketus</addcontactos>
-		<addagenda>Tapahtuma</addagenda>
-		<resumentareasproductos>Yhteenveto tehtävistä ja tuotteista</resumentareasproductos>
-		<presupuestosdata>Hankkeen budjetit</presupuestosdata>
-	</proyectos>
-	<documentos>
-		<list>Luettelo asiakirjoista</list>
-		<create>Uusi asiakirja</create>
-		<formview>Asiakirjan yksityiskohdat</formview>
-		<forminsert>Uuden asiakirjan rekisteröiminen</forminsert>
-		<formupdate>Asiakirjan muokkaaminen</formupdate>
-		<defaultdata>Asiakirjan tiedot</defaultdata>
-	</documentos>
-	<partes>
-		<list>Osaluettelo</list>
-		<create>Uusi osa</create>
-		<formview>Osan yksityiskohdat</formview>
-		<forminsert>Uuden osan rekisteröinti</forminsert>
-		<formupdate>Osan muutos</formupdate>
-		<defaultdata>Osatiedot</defaultdata>
-		<horasfact>Laskutustunnit</horasfact>
-		<preciohora>Hinta / tunti</preciohora>
-		<liquidar>Likvidoida</liquidar>
-		<dateliq>Päivämäärä liq.</dateliq>
-		<msgliquidar>Haluatko selvittää valitut osat?</msgliquidar>
-		<msgerror>Sinun on valittava luettelossa osat, jotka haluat asettaa</msgerror>
-		<fechainiliq>Varattu päivämäärä</fechainiliq>
-		<plotseguimientotop10>10 asiakasta, joilla on enemmän osia viime vuodesta</plotseguimientotop10>
-		<plotseguimiento12meses>Laskutus osista viime vuodesta</plotseguimiento12meses>
-	</partes>
-	<usuarios>
-		<list>Käyttäjäluettelo</list>
-		<create>Uusi käyttäjä</create>
-		<formview>Käyttäjän tiedot</formview>
-		<forminsert>Uuden käyttäjän rekisteröinti</forminsert>
-		<formupdate>Käyttäjän muokkaaminen</formupdate>
-		<personaldata>Käyttäjätiedot</personaldata>
-		<entrada>Merkintä</entrada>
-		<salida>Ulostulo</salida>
-		<dias>Päivää</dias>
-		<logged>Kytketty</logged>
-		<password2>Toista näppäin</password2>
-		<errorpassword>Annetut näppäimet eivät täsmää</errorpassword>
-		<contacto>Kosketus</contacto>
-		<sincontacto>[Ei liittyvää yhteyttä]</sincontacto>
-		<permdata>Luvat hakemuksen perusteella</permdata>
-		<allow>Sallia</allow>
-		<deny>Jätteiden</deny>
-		<groupsdata>Käyttäjäryhmät</groupsdata>
-		<pop3host>POP3-palvelin</pop3host>
-		<pop3delete>Poista aiemmat palvelinviestit</pop3delete>
-		<pop3days>päivää</pop3days>
-		<smtphost>SMTP-palvelin</smtphost>
-		<emailprivated>Tämä tili on yksityinen (vain minulla on käyttöoikeus)</emailprivated>
-		<emaildefault>Oletustili (jota en käyttänyt eniten)</emaildefault>
-		<emaildisabled>Poista tämä sähköpostitili käytöstä</emaildisabled>
-		<emaildelete>Poista tämä sähköpostitili (tiedot menetetään ikuisesti)</emaildelete>
-		<emailsignatureold>Nykyinen allekirjoitus</emailsignatureold>
-		<emailsignaturenew>Uusi allekirjoitus</emailsignaturenew>
-		<correonew>Uusi posti</correonew>
-		<addmetocc>Lisää minut CC: ksi kaikkiin lähettämiin sähköposteihin</addmetocc>
-		<defaultcrt>Aktivoi oletuksena vastaanoton vahvistuspyyntö</defaultcrt>
-		<gcalendar>Google-kalenteri</gcalendar>
-		<prefgcalendar>Kalenterin synkronointi Google-kalenteripalvelun kanssa</prefgcalendar>
-		<prefgcalendar2>Tämän vaihtoehdon avulla voit käyttää SaltOS: n ja Google-kalenterin kalenteria pitämällä tiedot päivitettyinä automaattisesti ja huolehtimatta siitä, että sinun on kopioitava tietoja kalenterista toiseen</prefgcalendar2>
-		<emailgcalendar>Gmail-sähköpostitili</emailgcalendar>
-		<tokengcalendar>Käyttöoikeus</tokengcalendar>
-		<feedstitle>Määritä syötteet, jotka haluat lukea SaltOSista (RSS 1.0, RSS 2.0 ja Atom 1.0)</feedstitle>
-		<url>URL-</url>
-		<title>Otsikko</title>
-		<description>Kuvaus</description>
-		<image>Kuva</image>
-		<test>Yrittää</test>
-		<add>Lisätä</add>
-		<feedslist>Luettelo konfiguroiduista RSS-syötteistä</feedslist>
-		<feeds_old>Konfiguroidut syötteet</feeds_old>
-		<feeds_new>Uusi syöte</feeds_new>
-		<lowerdisabled>vammaiset</lowerdisabled>
-		<singrupo>[Ilman ryhmää]</singrupo>
-		<sinaplicacion>[Ilman hakemusta]</sinaplicacion>
-		<registro>Rekisteröinti</registro>
-		<sinregistro>[Ilman rekisteröintiä]</sinregistro>
-		<showdetalles>[Katso yksityiskohdat]</showdetalles>
-		<hidedetalles>[Piilota tiedot]</hidedetalles>
-		<appsregsdata>Rekisteröintiluvat</appsregsdata>
-	</usuarios>
-	<epigrafes>
-		<list>Luettelo otsakkeista</list>
-		<create>Uusi otsikko</create>
-		<formview>Yksityiskohta otsikosta</formview>
-		<forminsert>Uuden otsikon rekisteröinti</forminsert>
-		<formupdate>Otsikon muuttaminen</formupdate>
-		<defaultdata>Yksityiskohdat otsikosta</defaultdata>
-	</epigrafes>
-	<estados>
-		<list>Luettelo valtioista</list>
-		<create>Uusi osavaltio</create>
-		<formview>Valtion yksityiskohta</formview>
-		<forminsert>Uuden valtion rekisteröinti</forminsert>
-		<formupdate>Tilamuutos</formupdate>
-		<defaultdata>Valtion tiedot</defaultdata>
-		<activo>Aktiivinen</activo>
-	</estados>
-	<grupos>
-		<list>Ryhmäluettelo</list>
-		<create>Uusi ryhmä</create>
-		<formview>Ryhmän yksityiskohdat</formview>
-		<forminsert>Uuden ryhmän rekisteröinti</forminsert>
-		<formupdate>Ryhmän muokkaaminen</formupdate>
-		<defaultdata>Ryhmätiedot</defaultdata>
-		<permdata>Luvat hakemuksen perusteella</permdata>
-		<allow>Sallia</allow>
-		<deny>Jätteiden</deny>
-		<showdetalles>[Katso yksityiskohdat]</showdetalles>
-		<hidedetalles>[Piilota tiedot]</hidedetalles>
-	</grupos>
-	<formaspago>
-		<list>Luettelo maksutavoista</list>
-		<create>Uusi maksutapa</create>
-		<formview>Maksutavan yksityiskohdat</formview>
-		<forminsert>Uuden maksutavan rekisteröinti</forminsert>
-		<formupdate>Maksutavan muuttaminen</formupdate>
-		<defaultdata>Maksutavan tiedot</defaultdata>
-	</formaspago>
-	<gastos>
-		<list>Luettelo kustannuksista</list>
-		<create>Uusi kustannus</create>
-		<formview>Menojen yksityiskohdat</formview>
-		<forminsert>Uuden kustannuksen rekisteröinti</forminsert>
-		<formupdate>Kustannusten muuttaminen</formupdate>
-		<defaultdata>Kuluttavat tiedot</defaultdata>
-		<pagadopor>Kassanhoitaja</pagadopor>
-		<liquidar>Likvidoida</liquidar>
-		<dateliq>Päivämäärä liq.</dateliq>
-		<msgliquidar>Haluatko maksaa valitut kulut?</msgliquidar>
-		<msgerror>Sinun on valittava luettelosta kulut, jotka haluat maksaa</msgerror>
-		<trimestrereg>Leikata. merkintä</trimestrereg>
-		<fechainireg>Tulopäivä</fechainireg>
-		<trimestreliq>Leikata. selvitystilaan</trimestreliq>
-		<fechainiliq>Varattu päivämäärä</fechainiliq>
-		<totalliquidar>Maksatut kulut ovat yhteensä:</totalliquidar>
-		<plotseguimientotop10>Kymmenen toimittajaa, joiden liikevaihto on viime vuonna korkein</plotseguimientotop10>
-		<plotseguimiento12meses>Viime vuoden kulut</plotseguimiento12meses>
-		<sinpagador>[Ilman maksajaa]</sinpagador>
-		<vencimientos_old>Erääntyminen</vencimientos_old>
-		<vencimientos_new>Uudet maturiteetit</vencimientos_new>
-		<fechavencimiento>Viimeinen käyttöpäivämäärä</fechavencimiento>
-		<pagado>Maksettu</pagado>
-		<fechapagado>Maksupäivä</fechapagado>
-	</gastos>
-	<facturas>
-		<list>Luettelo laskuista</list>
-		<create>Uusi lasku</create>
-		<formview>Laskun yksityiskohdat</formview>
-		<forminsert>Uuden laskun rekisteröinti</forminsert>
-		<formupdate>Laskun muutos</formupdate>
-		<defaultdata>Laskutiedot</defaultdata>
-		<errorfac101>Vain viimeinen lasku voidaan avata</errorfac101>
-		<errorfac103>Suljettua laskua ei voi poistaa</errorfac103>
-		<numfacxxx>Laskun numero</numfacxxx>
-		<numalbxxx>Rahtikirjan numero</numalbxxx>
-		<fechaemision>Antopäivä</fechaemision>
-		<titular>Otsikko</titular>
-		<baseimponible>Verotettava perusta</baseimponible>
-		<totalapagar>Maksettava yhteensä</totalapagar>
-		<plotseguimientotop10>Kymmenen asiakasta, joilla on viime vuoden suurin liikevaihto</plotseguimientotop10>
-		<plotseguimiento12meses>Viime vuoden laskutus</plotseguimiento12meses>
-		<concepts_old>Käsitteet</concepts_old>
-		<concepts_new>Uudet käsitteet</concepts_new>
-		<products_old>Tuottaa</products_old>
-		<products_new>Uudet tuotteet</products_new>
-		<vencimientos_old>Erääntyminen</vencimientos_old>
-		<vencimientos_new>Uudet maturiteetit</vencimientos_new>
-		<fechavencimiento>Viimeinen käyttöpäivämäärä</fechavencimiento>
-		<fechacobrado>Keräyspäivä</fechacobrado>
-		<clientdata>Asiakastiedot</clientdata>
-		<vencimientosfactura>Tämän laskun eräpäivät</vencimientosfactura>
-		<vencimientosalbaran>Tämän toimitustodistuksen eräpäivät</vencimientosalbaran>
-		<vencimientoscobrado>Kerättyä kenttää on muokattu käyttämällä maturiteettitietoja</vencimientoscobrado>
-	</facturas>
-	<prioridades>
-		<list>Ensisijaisuusluettelo</list>
-		<create>Uusi prioriteetti</create>
-		<formview>Ensisijaiset yksityiskohdat</formview>
-		<forminsert>Uuden prioriteetin lisääminen</forminsert>
-		<formupdate>Prioriteettimuutos</formupdate>
-		<defaultdata>Prioriteettitiedot</defaultdata>
-	</prioridades>
-	<agenda>
-		<list>Luettelo tapahtumista</list>
-		<create>Uusi tapahtuma</create>
-		<formview>Tapahtuman yksityiskohta</formview>
-		<forminsert>Uuden tapahtuman rekisteröinti</forminsert>
-		<formupdate>Tapahtuman muokkaaminen</formupdate>
-		<defaultdata>Tapahtumatiedot</defaultdata>
-		<otrasfechas>Muut päivämäärät</otrasfechas>
-		<todoseventos>[Kaikki tapahtumat]</todoseventos>
-		<todoayer>Eiliset tapahtumat</todoayer>
-		<todohoy>Tämän päivän tapahtumat</todohoy>
-		<todomanana>Huomisen tapahtumat</todomanana>
-		<todosemana>Viikon tapahtumat</todosemana>
-		<todomes>Kuukauden tapahtumat</todomes>
-		<todoano>Vuoden tapahtumat</todoano>
-		<usersdata>Määritetyt käyttäjät</usersdata>
-		<asignadoa>Määritetty</asignadoa>
-		<notifydelay>Ilmoittaa</notifydelay>
-		<notifysign>tunti / s</notifysign>
-		<notifydstart>Aloitusilmoitus vastaanotettu</notifydstart>
-		<notifydstop>Lopullinen ilmoitus saatu</notifydstop>
-		<notifyantes>Ennen</notifyantes>
-		<notifydespues>Sitten</notifydespues>
-		<notifyprev>Tapahtumaa edeltävä ilmoitus</notifyprev>
-		<notifypost>Tapahtuman valmistunut ilmoitus</notifypost>
-		<notifyclear>Ilmoitukset</notifyclear>
-		<notifytip>Tyhjennä ilmoitukset</notifytip>
-		<notifyclearok>Käynnistetyt tapahtumat:</notifyclearok>
-		<notifyclearko>Ei odottavia tapahtumia uudelleenkäynnistystä varten</notifyclearko>
-		<calendar>Tapahtumakalenteri</calendar>
-		<prevmonth>Edellinen kuukausi</prevmonth>
-		<currentmonth>Nykyinen kuukausi</currentmonth>
-		<nextmonth>Ensi kuussa</nextmonth>
-		<today>Tänään</today>
-		<yesterday>Eilen</yesterday>
-		<tomorrow>Huomenna</tomorrow>
-		<continue>Jatkuu ...</continue>
-		<by>mennessä</by>
-		<calendarinfo>Näytetään tiedot tähän mennessä:</calendarinfo>
-		<add>Lisää tapahtuma</add>
-		<gcalendar>Google-kalenteri</gcalendar>
-		<gcalendartip>Synkronoi tapahtumat SaltOS: n ja Google-kalenterin välillä</gcalendartip>
-		<notgcalendaremail>Et ole määrittänyt Google-kalenteritiliäsi asetuksissa</notgcalendaremail>
-		<invalidgcalendartoken>Google-kalenteritilisi käyttöoikeustiedot ovat vääriä</invalidgcalendartoken>
-		<requestgcalendartoken>Napsauta tätä saadaksesi käyttöoikeustunnuksen</requestgcalendartoken>
-		<insertgcalendar>Google-kalenteriin luodut SaltOS-tapahtumat:</insertgcalendar>
-		<updategcalendar>SaltOS-tapahtumat päivitettiin Google-kalenterissa:</updategcalendar>
-		<insertsaltos>SaltOSissa luodut Google-kalenteritapahtumat:</insertsaltos>
-		<updatesaltos>Päivitetyt Google-kalenteritapahtumat SaltOS: ssa:</updatesaltos>
-		<notinsertupdate>Päivitettäviä tapahtumia ei ole</notinsertupdate>
-		<expand>Laajentaa</expand>
-		<expandtip>Laajenna näyttääksesi kalenteritapahtumien yksityiskohdat</expandtip>
-		<collapse>Sopimus</collapse>
-		<collapsetip>Pienennä piilottaaksesi kalenteritapahtumien yksityiskohdat</collapsetip>
-		<loadingsmall>Ladataan ...</loadingsmall>
-	</agenda>
-	<proveedores>
-		<list>Palveluntarjoajaluettelo</list>
-		<create>Uusi palveluntarjoaja</create>
-		<formview>Toimittajan yksityiskohdat</formview>
-		<forminsert>Uuden palveluntarjoajan rekisteröinti</forminsert>
-		<formupdate>Toimittajan muutos</formupdate>
-		<defaultdata>Toimittajan tiedot</defaultdata>
-		<plotseguimiento12meses>Palveluntarjoajan viime vuoden kulut</plotseguimiento12meses>
-		<cuentacorriente>Tili tarkistetaan</cuentacorriente>
-		<cuentacontable>Kirjanpito-tili</cuentacontable>
-		<diapago>Palkkapäivä</diapago>
-		<gastosdata>Palveluntarjoajiin liittyvät kulut</gastosdata>
-		<contactdata>Toimittajien yhteystiedot</contactdata>
-		<nombrecomercial>Kaupallinen nimi</nombrecomercial>
-		<nombrefiscal>Verollinen nimi</nombrefiscal>
-		<add>Lisää palveluntarjoaja</add>
-	</proveedores>
-	<actas>
-		<list>Minuutin luettelo</list>
-		<create>Uusi ennätys</create>
-		<formview>Pöytäkirjan yksityiskohta</formview>
-		<forminsert>Uuden tietueen rekisteröinti</forminsert>
-		<formupdate>Pöytäkirjan muuttaminen</formupdate>
-		<defaultdata>Minuutin tiedot</defaultdata>
-		<dstart>Aloittamista</dstart>
-		<dstop>Pää</dstop>
-		<asistentes>Osallistujat</asistentes>
-		<temas>Aiheista</temas>
-		<aceptados>Hyväksytyt</aceptados>
-		<cancelados>Peruttu</cancelados>
-		<pendientes>Korvakorut</pendientes>
-		<add>Lisää minuutteja</add>
-	</actas>
-	<profile>
-		<formupdate>Oma profiili</formupdate>
-		<oldpassword>Vanha avain</oldpassword>
-		<newpassword>Uusi salasana</newpassword>
-		<newpassword2>Toista näppäin</newpassword2>
-		<erroroldpassword>Vanha avain on väärin</erroroldpassword>
-		<errornewpassword>Annetut näppäimet eivät täsmää</errornewpassword>
-		<errornewpassword2>Uuden avaimen on oltava monimutkaisempi</errornewpassword2>
-		<prefgeneral>Yleiset asetukset</prefgeneral>
-		<cambioclave>Vaihda henkilökohtainen salasanasi</cambioclave>
-		<general>Yleinen</general>
-		<title_correo_old>Määritä POP3-sähköpostitili käyttäjällesi</title_correo_old>
-		<pop3host>POP3-palvelin</pop3host>
-		<pop3delete>Poista aiemmat palvelinviestit</pop3delete>
-		<pop3days>päivää</pop3days>
-		<smtphost>SMTP-palvelin</smtphost>
-		<emailprivated>Tämä tili on yksityinen (vain minulla on käyttöoikeus)</emailprivated>
-		<emaildefault>Oletustili (jota en käyttänyt eniten)</emaildefault>
-		<emaildisabled>Poista tämä sähköpostitili käytöstä</emaildisabled>
-		<emaildelete>Poista tämä sähköpostitili (tiedot menetetään ikuisesti)</emaildelete>
-		<emailsignatureold>Nykyinen allekirjoitus</emailsignatureold>
-		<emailsignaturenew>Uusi allekirjoitus</emailsignaturenew>
-		<correonew>Uusi posti</correonew>
-		<title_correo_new>Asenna käyttäjällesi uusi POP3-sähköpostitili</title_correo_new>
-		<gcalendar>Google-kalenteri</gcalendar>
-		<prefgcalendar>Kalenterin synkronointi Google-kalenteripalvelun kanssa</prefgcalendar>
-		<prefgcalendar2>Tämän vaihtoehdon avulla voit käyttää SaltOS: n ja Google-kalenterin kalenteria pitämällä tiedot päivitettyinä automaattisesti ja huolehtimatta siitä, että sinun on kopioitava tietoja kalenterista toiseen</prefgcalendar2>
-		<emailgcalendar>Gmail-sähköpostitili</emailgcalendar>
-		<tokengcalendar>Käyttöoikeus</tokengcalendar>
-		<addmetocc>Lisää minut CC: ksi kaikkiin lähettämiin sähköposteihin</addmetocc>
-		<defaultcrt>Aktivoi oletuksena vastaanoton vahvistuspyyntö</defaultcrt>
-		<feedstitle>Määritä syötteet, jotka haluat lukea SaltOSista (RSS 1.0, RSS 2.0 ja Atom 1.0)</feedstitle>
-		<url>URL-</url>
-		<title>Otsikko</title>
-		<description>Kuvaus</description>
-		<image>Kuva</image>
-		<test>Yrittää</test>
-		<add>Lisätä</add>
-		<feedslist>Luettelo konfiguroiduista RSS-syötteistä</feedslist>
-		<feeds_old>Konfiguroidut syötteet</feeds_old>
-		<feeds_new>Uusi syöte</feeds_new>
-		<lowerdisabled>vammaiset</lowerdisabled>
-		<quick>Pikavalikko</quick>
-		<prefquick>Määritä tässä ylävalikossa oleva pikavalikko</prefquick>
-		<sinaplicacion>[Ilman hakemusta]</sinaplicacion>
-		<quick_button_f1>Ensimmäinen painike (F1)</quick_button_f1>
-		<quick_button_f2>Toinen painike (F2)</quick_button_f2>
-		<quick_button_f3>Kolmas painike (F3)</quick_button_f3>
-		<quick_button_f4>Neljäs painike (F4)</quick_button_f4>
-		<quick_button_f5>Viides painike (F5)</quick_button_f5>
-		<quick_button_f6>Kuudes painike (F6)</quick_button_f6>
-		<quick_button_f7>Seitsemäs painike (F7)</quick_button_f7>
-		<quick_button_f8>Kahdeksas painike (F8)</quick_button_f8>
-		<quick_button_f9>Yhdeksäs painike (F9)</quick_button_f9>
-		<quick_button_f10>Kymmenes painike (F10)</quick_button_f10>
-		<quick_button_f11>Yhdestoista painike (F11)</quick_button_f11>
-		<quick_button_f12>Kahdestoista painike (F12)</quick_button_f12>
-		<folderstab>Käyttäjäkansiot</folderstab>
-		<folderspref>Asenna käyttäjälaatikot tähän ja jätä sitten haluamasi</folderspref>
-		<newfolder>Uusi käyttäjälaatikko</newfolder>
-		<withoutparent>[Ilman kansiota]</withoutparent>
-		<inparentfolder>ja roikkuu kansiosta</inparentfolder>
-		<namefolder>Kansion nimi</namefolder>
-		<parentfolder>Ripusta kansiosta</parentfolder>
-	</profile>
-	<maincfg>
-		<formupdate>Kokoonpano</formupdate>
-		<general>Yleinen</general>
-		<title_general>Määritä joitain yleisiä sovellusparametreja</title_general>
-		<applicationtitle>Sovelluksen otsikko</applicationtitle>
-		<plotlistsize>Listausten grafiikan koko</plotlistsize>
-		<plotformsize>Grafiikan koko lomakkeissa</plotformsize>
-		<small>Pieni</small>
-		<medium>Keskikokoinen</medium>
-		<big>Suuri</big>
-		<agendainterval>Etsi kalenteri-ilmoituksia jokaisesta</agendainterval>
-		<inboxinterval>Tarkista, onko uusia sähköposteja jokaisesta</inboxinterval>
-		<outboxinterval>Tarkista tulostelokero jokainen</outboxinterval>
-		<feedsinterval>Etsi uusia viestejä jokaisesta</feedsinterval>
-		<feedstimeout>Unohda poistetut syötteet</feedstimeout>
-		<sessioninterval>Tarkista uloskirjautumisilmoitus joka kerran</sessioninterval>
-		<sessionwarning>Varoitus uloskirjautumisesta ennen</sessionwarning>
-		<indexinginterval>Hakemisto uusia tiedostoja jokainen</indexinginterval>
-		<integrityinterval>Tarkista eheys jokaisesta</integrityinterval>
-		<purgeinterval>Puhdista tiedot jokainen</purgeinterval>
-		<emailsupport>Sähköposti teknistä tukea varten</emailsupport>
-		<segundos>sekuntia</segundos>
-		<dias>päivää</dias>
-		<title_logo>Määritä pdf-tiedostoissa käytettävä logo, sijainti, koko ja värit</title_logo>
-		<logo>Logo</logo>
-		<logoleft>Logon X sijainti</logoleft>
-		<logotop>JA</logotop>
-		<logowidth>Leveys</logowidth>
-		<logoheight>Korkea</logoheight>
-		<logofile>Nykyinen logotiedosto</logofile>
-		<logofilenew>Uusi tiedosto (vain JPEG)</logofilenew>
-		<colorline>Linjojen väri</colorline>
-		<colortext1>Arvopaperit</colortext1>
-		<colortext2>Tekstien</colortext2>
-		<title_correo>Määritä joitain yleisiä parametreja sähköpostien lähettämiseen SaltOSista</title_correo>
-		<cuentasupport>Lähtevän postin tuki</cuentasupport>
-		<cuentaincidencias>Lähteviä postitapahtumat</cuentaincidencias>
-		<water>Vesileimat</water>
-		<title_water>Määritä pdf-tiedostoissa käytettävät vesileimat</title_water>
-		<wateractas>Pöytäkirja: Teksti</wateractas>
-		<waterpartes>Osat: Teksti</waterpartes>
-		<waterfacturas>Laskut: Teksti</waterfacturas>
-		<wateralbaranes>Toimitusilmoitukset: Teksti</wateralbaranes>
-		<waterpresupuestos>Budjetit: Teksti</waterpresupuestos>
-		<waterclientes>Asiakkaat: Teksti</waterclientes>
-		<waterproyectos>Projektit: Teksti</waterproyectos>
-		<waterposiblescli>Mahdolliset asiakkaat: Teksti</waterposiblescli>
-		<watercorreo>Sähköposti: Teksti</watercorreo>
-		<waterfeeds>Syötteet: Teksti</waterfeeds>
-		<emailasync>Käytä asynkronista lähettämistä (nopeammin)</emailasync>
-		<accounting>Kirjanpito</accounting>
-		<title_accounting>Määritä globaalit tilitiedot täällä</title_accounting>
-		<accounting_currency>Valuutta</accounting_currency>
-		<accounting_iva_name>Veronimi (lisätty)</accounting_iva_name>
-		<accounting_irpf_name>Veronimi (vähennetty)</accounting_irpf_name>
-		<accounting_value>Oletusarvo (vain jos sitä käytetään)</accounting_value>
-		<applications_config>Sovellukset</applications_config>
-		<config_tabs>Asetukset-välilehdet</config_tabs>
-		<default_values>Oletusarvot</default_values>
-		<configuracion_presupuestos>Budjettien kokoonpano</configuracion_presupuestos>
-		<configuracion_agenda>Aikataulun konfigurointi</configuracion_agenda>
-		<configuracion_incidencias>Tapahtuma-asetukset</configuracion_incidencias>
-		<configuracion_facturas>Laskun määritys</configuracion_facturas>
-		<configuracion_gastos>Kustannusten kokoonpano</configuracion_gastos>
-		<show_tab_objetivos_presupuesto>Näytä kohteet</show_tab_objetivos_presupuesto>
-		<show_tab_condiciones_presupuesto>Näytä ehdot</show_tab_condiciones_presupuesto>
-		<show_tab_funcional_presupuesto>Näytä toiminnallinen ehdotus</show_tab_funcional_presupuesto>
-		<show_tab_tecnica_presupuesto>Näytä tekninen tarjous</show_tab_tecnica_presupuesto>
-		<show_tab_info_adicional_presupuesto>Näytä lisätiedot</show_tab_info_adicional_presupuesto>
-		<show_tab_tareas_presupuesto>Näytä tehtävät</show_tab_tareas_presupuesto>
-		<show_tab_productos_presupuesto>Näytä tuotteet</show_tab_productos_presupuesto>
-		<sin_configurar>[Ei asetettu]</sin_configurar>
-		<filtro_grupo_usuarios_incidencias>Näytä ryhmän käyttäjät käyttäjäluetteloissa</filtro_grupo_usuarios_incidencias>
-		<filtro_grupo_usuarios_implicados_incidencias>Ryhmä mukana</filtro_grupo_usuarios_implicados_incidencias>
-		<filtro_grupo_usuarios_asignados_incidencias>Määritetty ryhmä</filtro_grupo_usuarios_asignados_incidencias>
-	</maincfg>
-	<about>
-		<formupdate>Tietoja SaltOS: sta</formupdate>
-		<copyright>Tätä ohjelmistoa jaellaan GPL-3.0 -lisenssin ehtojen mukaisesti:</copyright>
-		<components>Tämä ohjelmisto käyttää seuraavia komponentteja:</components>
-		<server_base>Tukipalvelin:</server_base>
-		<php_plugins>PHP-laajennukset:</php_plugins>
-		<javascript_base>Javascript-pohja:</javascript_base>
-		<bootstrap_plugins>Bootstrap-laajennukset:</bootstrap_plugins>
-		<jquery_plugins>JQuery-laajennukset:</jquery_plugins>
-		<javascript_plugins>Javascript-laajennukset:</javascript_plugins>
-		<other_plugins>Muut laajennukset:</other_plugins>
-		<server_plugins>Palvelimen laajennukset:</server_plugins>
-		<vxinfo>Huomaa: (*) Jotkut projektit eivät määrittele käyttämänsä käyttöoikeuden tiettyä versiota</vxinfo>
-		<license>Lisenssi</license>
-		<game>Peli</game>
-		<licensetitle>Alla on lisenssin laillinen teksti</licensetitle>
-		<gametitle>Jos olet saavuttanut tämän näytön, ansaitset tauon. Voit pelata vähän !!!</gametitle>
-		<translators>Käännökset</translators>
-		<developers>Kehittäjät</developers>
-		<unavailable>Yhteystietoja ei ole saatavana. Ota yhteyttä kehittäjään saadaksesi kysymyksiä tai ehdotuksia.</unavailable>
-	</about>
-	<support>
-		<formupdate>Tekninen tuki</formupdate>
-		<contact>Tekninen tuki</contact>
-		<subject>Liiketoiminta</subject>
-		<msgsendemail>Tekniseen tukeen on lähetetty sähköposti</msgsendemail>
-		<msgnotemailsupport>Sähköpostiosoitetta ei ole määritetty tekniseen tukeen</msgnotemailsupport>
-		<msgnotsubject>Mitään asiaa ei ole annettu</msgnotsubject>
-		<msgnotcomments>Kommenttia ei ole annettu</msgnotcomments>
-	</support>
-	<home>
-		<formupdate>Aloittamista</formupdate>
-		<buscar2>Etsi kaikista SaltOS-sovelluksista</buscar2>
-		<buscar3>Etsi vain tiedostoista</buscar3>
-	</home>
-	<seguimientos>
-		<list>Seurantaluettelo</list>
-		<create>Uusi seuranta</create>
-		<formview>Seurannan yksityiskohta</formview>
-		<forminsert>Uuden seurannan rekisteröinti</forminsert>
-		<formupdate>Seurantamuutos</formupdate>
-		<defaultdata>Seurantatiedot</defaultdata>
-		<add>Lisää seuranta</add>
-	</seguimientos>
-	<datacfg>
-		<formupdate>Tietokannan toimet</formupdate>
-		<export>Vienti</export>
-		<title_export>Vie koko tietokanta SQL-muodossa</title_export>
-		<desc_export>Voit tallentaa varmuuskopion koko tietokannasta</desc_export>
-		<desc2_export>Suorita tämä toimenpide ajoittain ja säilytä tiedosto turvallisessa paikassa, kuten flash-muistissa, CD-levyllä tai muussa tämän tietokoneen ulkopuolella olevassa laitteessa.</desc2_export>
-		<import>Tuonti</import>
-		<title_import>Tuo koko tietokanta SQL-muodossa</title_import>
-		<desc_import>Voit tuoda kaikki tiedot varmuuskopiosta</desc_import>
-		<desc2_import>Valitse tuotava tiedosto painamalla [Selaa] -painiketta ja paina sitten [Tuo] - painiketta ladataksesi uudet tiedot varmuuskopiosta</desc2_import>
-		<desc3_import>Tärkeää: Tuonti poistaa nykyiset sovelluksessa olevat tiedot</desc3_import>
-		<filenotfound>Tuontitiedoston sisältöä ei voitu lukea</filenotfound>
-		<filefoundok>Varmuuskopio tuotiin onnistuneesti</filefoundok>
-		<fileimporterror>Tiedoston tuonnissa tapahtui virhe</fileimporterror>
-	</datacfg>
-	<correo>
-		<list>Postituslista</list>
-		<create>Lähetä uusi viesti</create>
-		<formview>Postin yksityiskohdat</formview>
-		<forminsert>Lähetä uusi sähköposti</forminsert>
-		<formupdate>Lähetä edelleen viesti</formupdate>
-		<defaultdata>Postitiedot</defaultdata>
-		<from>Of</from>
-		<to>Että</to>
-		<cc>CC</cc>
-		<bcc>BCC</bcc>
-		<subject>Liiketoiminta</subject>
-		<attachments>Liitetiedostoja</attachments>
-		<message>Viesti</message>
-		<recibir>Vastaanottaa</recibir>
-		<recibirtip>Napsauta tätä saadaksesi uusia sähköposteja</recibirtip>
-		<enviar>Lähetä</enviar>
-		<enviartip>Napsauta tätä, kun haluat lähettää sähköpostia sähköpostiviestistä</enviartip>
-		<msgnotpop3email>Sähköpostitiliä ei ole määritetty tai aktivoitu</msgnotpop3email>
-		<msgnotpop3host>POP3-palvelinta ei ole määritetty</msgnotpop3host>
-		<msgerrorpop3email>Seuraava virhe on tapahtunut:</msgerrorpop3email>
-		<msgnewokpop3email1>Uusi sähköposti vastaanotettu postilaatikkoon</msgnewokpop3email1>
-		<msgnewokpop3email2>Saapuneet-kansioon vastaanotetut uudet sähköpostit</msgnewokpop3email2>
-		<msggotoemail>mene postitse</msggotoemail>
-		<msgnewkopop3email>Uusia sähköposteja ei ole</msgnewkopop3email>
-		<msgconnrefusedpop3email>Palvelin hylkäsi yhteyden</msgconnrefusedpop3email>
-		<msgconnerrorpop3email>Palvelimeen ei voida muodostaa yhteyttä</msgconnerrorpop3email>
-		<msgopenerrorpop3email>Viestiä sisältävää tiedostoa ei löytynyt</msgopenerrorpop3email>
-		<msgpropietario>Vain sähköpostien omistaja voi käyttää näitä ominaisuuksia</msgpropietario>
-		<msgnotfound>Valittuja sähköposteja ei löytynyt, muokkaa suodatinta</msgnotfound>
-		<msgnumsileidos>Ne on merkitty luetuiksi:</msgnumsileidos>
-		<msgnumsiwait>Ne on merkitty odottaviksi:</msgnumsiwait>
-		<msgnumsispam>Ne on merkitty roskapostiksi:</msgnumsispam>
-		<msgnumnoleidos>Ne on merkitty lukemattomiksi:</msgnumnoleidos>
-		<msgnumnowait>Ne on merkitty odottamattomiksi:</msgnumnowait>
-		<msgnumnospam>Ne on merkitty ei-roskapostiksi:</msgnumnospam>
-		<msgnumdelete>Seuraavat on poistettu:</msgnumdelete>
-		<statenew>Uusi</statenew>
-		<actionnew>Uusi</actionnew>
-		<stateread>Luettu</stateread>
-		<statereply>Vastasi</statereply>
-		<stateforward>Välitti</stateforward>
-		<statewait>Odotettaessa</statewait>
-		<statespam>ROSKAPOSTISTA</statespam>
-		<statesent>Lähettiläs</statesent>
-		<statenotsent>Ei lähetetty</statenotsent>
-		<stateerror>Virhe</stateerror>
-		<stateall>Kaikki</stateall>
-		<todaslascuentas>[Kaikki tilit]</todaslascuentas>
-		<buttonsend>Lähetä</buttonsend>
-		<buttonsendreturnhere>Lähetä ja palaa tänne</buttonsendreturnhere>
-		<onlynew>Aivan uusi</onlynew>
-		<onlywait>Vain odottaa</onlywait>
-		<hidespam>Piilota roskapostit</hidespam>
-		<withfiles>Liitteillä</withfiles>
-		<onlyspam>Vain roskapostia</onlyspam>
-		<withoutfiles>Ei liitteitä</withoutfiles>
-		<actionwait>Odotettaessa</actionwait>
-		<actionspam>ROSKAPOSTISTA</actionspam>
-		<actionreply>Vastaus</actionreply>
-		<actionreplyall>Vastaa kaikille</actionreplyall>
-		<actionforward>Eteenpäin</actionforward>
-		<messageid>Id-viesti</messageid>
-		<fulldata>Mail zoom</fulldata>
-		<sourcedata>Postilähde</sourcedata>
-		<leidos>Luettu</leidos>
-		<wait>Odotettaessa</wait>
-		<spam>ROSKAPOSTISTA</spam>
-		<borrar>Poistaa</borrar>
-		<borrartip>Poista kaikki valitut sähköpostit</borrartip>
-		<msgleidos>Haluatko merkitä kaikki valitut sähköpostit luetuiksi / lukemattomiksi?</msgleidos>
-		<msgwait>Haluatko merkitä kaikki valitut sähköpostiviestit odottavana / olematta odottavana?</msgwait>
-		<msgspam>Haluatko merkitä kaikki valitut sähköpostit roskapostiksi / ei roskapostiksi?</msgspam>
-		<msgdelete2>Haluatko poistaa kaikki valitut sähköpostit?</msgdelete2>
-		<msgnotsendfound>Lähetettäviä viestejä ei ole odotettavissa</msgnotsendfound>
-		<msgerrorsendmail>Seuraava virhe on tapahtunut:</msgerrorsendmail>
-		<msgtotalsendmail1>Sähköposti lähetetään lähtevistä</msgtotalsendmail1>
-		<msgtotalsendmail2>Sähköpostiviestit, jotka lähetetään lähtevistä</msgtotalsendmail2>
-		<stateinbox>Merkintä</stateinbox>
-		<stateoutbox>Ulostulo</stateoutbox>
-		<onlyinbox>Vain aloittelijoille</onlyinbox>
-		<onlyoutbox>Vain lähtevät</onlyoutbox>
-		<options>Vaihtoehtoja</options>
-		<optionstip>Näytä lisää listausvaihtoehtoja</optionstip>
-		<pdfoptions>PDF-asetukset</pdfoptions>
-		<sinsubject>(ei aihetta)</sinsubject>
-		<msgfromkosendmail>Vaadittavat määritykset Lähettäjä: ei löydy</msgfromkosendmail>
-		<msgsendoksendmail>Sähköpostin lähetys onnistui</msgsendoksendmail>
-		<replysubject>Re:</replysubject>
-		<replyallsubject>Re:</replyallsubject>
-		<forwardsubject>Fwd:</forwardsubject>
-		<embeddedmessage># datetime #, # fromname # kirjoitti:</embeddedmessage>
-		<actionreplytip>Vastaa viestin lähettäjälle</actionreplytip>
-		<actionreplyalltip>Vastaa kaikille tämän viestin käyttäjille</actionreplyalltip>
-		<actionforwardtip>Lähetä edelleen tämä sähköposti muille käyttäjille</actionforwardtip>
-		<noleidos>Lukematon</noleidos>
-		<nowait>Ei vireillä</nowait>
-		<nospam>Ei roskapostia</nospam>
-		<today>Tänään</today>
-		<yesterday>Eilen</yesterday>
-		<week>Viikko</week>
-		<month>Kuukausi</month>
-		<confirmreadingto>Pyydä vahvistus vastaanottamisesta</confirmreadingto>
-		<marcarcorreos>Merkitse nimellä</marcarcorreos>
-		<message0>Viestiä</message0>
-		<message1>Viesti</message1>
-		<message2>Viestiä</message2>
-		<campos>Campos</campos>
-		<allcampos>[Kaikki kentät]</allcampos>
-		<onlyemail>Vain suuntiin</onlyemail>
-		<onlysubject>Vain asiassa</onlysubject>
-		<onlybody>Vain viestissä</onlybody>
-		<filtrarcorreos>Suodata</filtrarcorreos>
-		<priority>Prioriteetti</priority>
-		<priorityhigh>Korkea</priorityhigh>
-		<prioritynormal>Normaali</prioritynormal>
-		<prioritylow>Pudota</prioritylow>
-		<sensitivity>Herkkyys</sensitivity>
-		<sensitivitynormal>Normaali</sensitivitynormal>
-		<sensitivitypersonal>Henkilöstö</sensitivitypersonal>
-		<sensitivityprivate>Yksityinen</sensitivityprivate>
-		<sensitivityconfidential>Luottamuksellinen</sensitivityconfidential>
-		<addincidencia>Luo esiintyvyys</addincidencia>
-		<addincidenciatip>Luo tapaus tästä sähköpostiviestistä</addincidenciatip>
-		<addincidenciamsg>Haluatko luoda tapauksen tästä sähköpostiviestistä?</addincidenciamsg>
-		<addincidenciaok>Tapahtuma on luotu koodilla:</addincidenciaok>
-		<notsupportdefined>Tukisähköpostitiliä ei ole määritelty</notsupportdefined>
-		<notsupportfound>Tämä sähköposti ei sisällä tukisähköpostitiliä</notsupportfound>
-		<incidenciaexists>Tämä tapaus on jo olemassa ja sillä on koodi:</incidenciaexists>
-		<interrorsendmail>Tätä sähköpostia ei lähetetty sisäisen virheen vuoksi</interrorsendmail>
-	</correo>
-	<cuentas>
-		<list>Tilien luettelo</list>
-		<create>Uusi tili</create>
-		<formview>Tilitiedot</formview>
-		<forminsert>Uuden tilin rekisteröinti</forminsert>
-		<formupdate>Tilin muutos</formupdate>
-		<defaultdata>Tilitiedot</defaultdata>
-		<logo>Logo</logo>
-		<title_logo>Määritä laskussa käytettävä logo, sijainti, koko ja värit</title_logo>
-		<logoleft>Logon X sijainti</logoleft>
-		<logotop>JA</logotop>
-		<logowidth>Leveys</logowidth>
-		<logoheight>Korkea</logoheight>
-		<logofile>Nykyinen logotiedosto</logofile>
-		<logofilenew>Uusi tiedosto (vain JPEG)</logofilenew>
-		<colorline>Linjojen väri</colorline>
-		<colortext1>Arvopaperit</colortext1>
-		<colortext2>Tekstien</colortext2>
-		<title_facturas>Määritä tietyt laskujen laskennassa käytettävät parametrit</title_facturas>
-		<facturabool>Käyttö</facturabool>
-		<facturavalue>Oletusarvo (vain jos sitä käytetään)</facturavalue>
-		<facturapie1>Ensimmäisen rivin jalka</facturapie1>
-		<facturapie2>Toisen rivin jalka</facturapie2>
-	</cuentas>
-	<periodicas>
-		<list>Luettelo määräaikaislaskuista</list>
-		<create>Uusi määräaikainen lasku</create>
-		<formview>Yksityiskohtainen kausittainen lasku</formview>
-		<forminsert>Uuden määräajan laskun rekisteröinti</forminsert>
-		<formupdate>Määräaikaisen laskun muuttaminen</formupdate>
-		<defaultdata>Määräaikaiset laskutiedot</defaultdata>
-		<concepts_old>Käsitteet</concepts_old>
-		<concepts_new>Uudet käsitteet</concepts_new>
-		<products_old>Tuottaa</products_old>
-		<products_new>Uudet tuotteet</products_new>
-		<vencimientos_old>Erääntyminen</vencimientos_old>
-		<vencimientos_new>Uudet maturiteetit</vencimientos_new>
-		<fechavencimiento>Viimeinen käyttöpäivämäärä</fechavencimiento>
-		<diaemision>Päiväyspäivä</diaemision>
-		<diaini>Päivän välillä</diaini>
-		<dia>Päivä</dia>
-		<meses>Kuukautta</meses>
-		<liquidar>Tuottaa</liquidar>
-		<totalliquidar>Luotujen laskujen kokonaismäärä:</totalliquidar>
-		<msgerror>Sinun on valittava luettelosta luodut laskut ja käytettävä kuukausi</msgerror>
-		<msgliquidar>Haluatko luoda valitut laskut?</msgliquidar>
-	</periodicas>
-	<empleados>
-		<list>Työntekijöiden luettelo</list>
-		<create>Uusi työntekijä</create>
-		<formview>Työntekijän tiedot</formview>
-		<forminsert>Uuden työntekijän rekisteröinti</forminsert>
-		<formupdate>Työntekijän muuttaminen</formupdate>
-		<defaultdata>Tietoa työntekijöistä</defaultdata>
-		<contactdata>Työntekijöiden yhteystiedot</contactdata>
-	</empleados>
-	<denied>
-		<title>Pääsy evätty</title>
-		<short>Sinulla ei ole oikeuksia suorittaa tätä toimintoa</short>
-		<large>Järjestelmä on estänyt sovelluksen käynnistymisen, koska käyttöoikeuden tämän sovelluksen osan suorittamiseen ei ole riittävästi oikeuksia. Jos epäilet virhettä, ota yhteyttä sovelluksen järjestelmänvalvojaan</large>
-	</denied>
-	<posiblescli>
-		<list>Luettelo mahdollisista asiakkaista</list>
-		<create>Uusi potentiaalinen asiakas</create>
-		<formview>Yksityiskohta mahdollisesta asiakkaasta</formview>
-		<forminsert>Uuden potentiaalisen asiakkaan rekisteröinti</forminsert>
-		<formupdate>Mahdollisen asiakkaan muokkaaminen</formupdate>
-		<defaultdata>Mahdollisen asiakkaan tiedot</defaultdata>
-		<crearcliente>Luo asiakas</crearcliente>
-		<clientcreatedok>Uusi asiakas on luotu onnistuneesti</clientcreatedok>
-		<msgcrear>Haluatko muuntaa potentiaalisen asiakkaan?</msgcrear>
-		<agendadata>Mahdollisten asiakkaiden tapahtumat</agendadata>
-		<actasdata>Mahdollisen asiakkaan pöytäkirja</actasdata>
-		<presupuestosdata>Mahdollisen asiakkaan budjetit</presupuestosdata>
-		<facturacion>Laskutus</facturacion>
-		<iaedesc>Kuvaus IAE</iaedesc>
-		<iaecod>Cod. IAE</iaecod>
-		<contacto>Yhteyshenkilö</contacto>
-		<changedenied>Et voi poistaa käytöstä potentiaalista asiakasta, jolla on minuutteja, esityslistaa ja / tai budjetteja</changedenied>
-	</posiblescli>
-	<productos>
-		<list>Tuotelistaus</list>
-		<create>Uusi tuote</create>
-		<formview>Tuotetiedot</formview>
-		<forminsert>Uuden tuotteen rekisteröinti</forminsert>
-		<formupdate>Tuotteen muuntaminen</formupdate>
-		<defaultdata>Tuotetiedot</defaultdata>
-		<ref>Ref.</ref>
-		<peso>Paino</peso>
-		<volumen>Tilavuus</volumen>
-		<dimensiones>Mitat</dimensiones>
-		<fotofile>Nykyinen valokuva</fotofile>
-		<fotofilenew>Uusi kuva</fotofilenew>
-		<siniva eval="true">"[Ilman ".CONFIG("accounting_iva_name")."]"</siniva>
-	</productos>
-	<presupuestos>
-		<list>Budjettiluettelo</list>
-		<create>Uusi tarjous</create>
-		<formview>Budjettitiedot</formview>
-		<forminsert>Uuden budjetin lisääminen</forminsert>
-		<formupdate>Budjetin muuttaminen</formupdate>
-		<defaultdata>Budjettitiedot</defaultdata>
-		<tareaspresupuesto>Budjettitehtävät</tareaspresupuesto>
-		<desctareas>Tehtävien kuvaus</desctareas>
-		<horastotal>Tuntia yhteensä</horastotal>
-		<preciomedio>Keskimääräinen hinta</preciomedio>
-		<preciototal>Kokonaishinta</preciototal>
-		<productospresupuesto>Budjettituotteet</productospresupuesto>
-		<descproductos>Tuotteiden kuvaus</descproductos>
-		<objetivos>Budjettitavoitteet</objetivos>
-		<funcional>Toiminnallinen ehdotus</funcional>
-		<tecnica>Tekninen ehdotus</tecnica>
-		<extras>Lisätietoja</extras>
-		<condiciones>Budjettiehdot</condiciones>
-		<valoracion>Taloudellinen arvostus</valoracion>
-		<crearproyecto>Luo projekti</crearproyecto>
-		<projectexists>Tämä budjetti liittyy jo projektiin</projectexists>
-		<clientnotexists>Sinun on oltava yhteydessä asiakkaaseen (jos olet yhteydessä potentiaaliseen asiakkaaseen, tee heistä ensin asiakas)</clientnotexists>
-		<projectcreatedok>Uusi projekti on luotu onnistuneesti</projectcreatedok>
-		<msgcrear>Haluatko luoda projektin tästä budjetista?</msgcrear>
-		<agendadata>Budjettitapahtumat</agendadata>
-		<actasdata>Budjetin minuutit</actasdata>
-		<plotseguimientoestados>Budjettien ryhmittely valtion mukaan</plotseguimientoestados>
-		<resumentareasproductos>Yhteenveto tehtävistä ja tuotteista</resumentareasproductos>
-		<objetivospdf>Tavoitteet</objetivospdf>
-		<funcionalpdf>Toiminnallinen</funcionalpdf>
-		<tecnicapdf>Tekniikka</tecnicapdf>
-		<extraspdf>Tiedotus</extraspdf>
-		<condicionespdf>Ehdot</condicionespdf>
-		<actionfacturar>Lasku</actionfacturar>
-		<msgfacturar>Haluatko laskuttaa projektin?</msgfacturar>
-		<errorfacturar>Tästä tarjouksesta on jo lasku</errorfacturar>
-		<okfacturar>Budjetti on laskutettu oikein</okfacturar>
-	</presupuestos>
-	<campanyas>
-		<list>Kampanjaluettelo</list>
-		<create>Uusi kampanja</create>
-		<formview>Kampanjan yksityiskohdat</formview>
-		<forminsert>Uuden kampanjan rekisteröinti</forminsert>
-		<formupdate>Kampanjan muokkaus</formupdate>
-		<defaultdata>Kampanjatiedot</defaultdata>
-		<agendadata>Kampanjatapahtumat</agendadata>
-		<presupuestosdata>Kampanjabudjetit</presupuestosdata>
-		<projectopen>Aktiiviset projektit</projectopen>
-		<projectclose>Suljetut projektit</projectclose>
-		<clientesdata>Asiakkaat rekrytoitiin</clientesdata>
-		<posiblesclidata>Mahdolliset asiakkaat</posiblesclidata>
-	</campanyas>
-	<tiposevento>
-		<list>Luettelo tapahtumatyypeistä</list>
-		<create>Uuden tyyppinen tapahtuma</create>
-		<formview>Tapahtuman tyyppi</formview>
-		<forminsert>Uuden tyyppisen tapahtuman rekisteröinti</forminsert>
-		<formupdate>Tapahtuman tyypin muuttaminen</formupdate>
-		<defaultdata>Tapahtumatyyppitiedot</defaultdata>
-	</tiposevento>
-	<textos>
-		<list>Luettelo ennalta määritellyistä teksteistä</list>
-		<publico>Julkinen</publico>
-		<publico_desc>Kaikki voivat käyttää tätä ennalta määritettyä tekstiä</publico_desc>
-		<create>Uusi ennalta määritetty teksti</create>
-		<formview>Ennalta määritelty teksti</formview>
-		<forminsert>Uuden ennalta määritetyn tekstin lisääminen</forminsert>
-		<formupdate>Ennalta määritetyn tekstin muuttaminen</formupdate>
-		<defaultdata>Ennalta määritetyt tekstitiedot</defaultdata>
-		<sinaplicacion>[Ilman hakemusta]</sinaplicacion>
-	</textos>
-	<ficheros>
-		<list>Luettelo liitteistä</list>
-		<todaslasaplicaciones>[Kaikki sovellukset]</todaslasaplicaciones>
-	</ficheros>
-	<feeds>
-		<list>Luettelo RSS-syötteistä</list>
-		<msgnewfeedsok1>Uusi viesti ladattu</msgnewfeedsok1>
-		<msgnewfeedsok2>Uudet ladatut viestit</msgnewfeedsok2>
-		<msgnewfeedsko>Uusia viestejä ei löytynyt</msgnewfeedsko>
-		<msgmodifiedfeedsok1>Päivitetty viesti</msgmodifiedfeedsok1>
-		<msgmodifiedfeedsok2>Päivitetyt viestit</msgmodifiedfeedsok2>
-		<msgnotfeeds>RSS-syötettä ei ole määritetty tai aktivoitu</msgnotfeeds>
-		<feed>RSS-syöte</feed>
-		<title>Otsikko</title>
-		<pubdate>Julkaisupäivä</pubdate>
-		<recibir>Vastaanottaa</recibir>
-		<recibirtip>Napsauta tätä saadaksesi uusia viestejä</recibirtip>
-		<todoslosfeeds>[Kaikki RSS-syötteet]</todoslosfeeds>
-		<defaultdata>Lähetä yksityiskohta</defaultdata>
-		<fulldata>Lähetä zoom</fulldata>
-		<actionwait>Odotettaessa</actionwait>
-		<statenew>Uusi</statenew>
-		<actionnew>Uusi</actionnew>
-		<statemodified>Muokattu</statemodified>
-		<statewait>Odotettaessa</statewait>
-		<stateread>Luettu</stateread>
-		<actionforward>Eteenpäin</actionforward>
-		<actionforwardtip>Lähetä edelleen tämä viesti sähköpostitse</actionforwardtip>
-		<formview>Lähetä yksityiskohta</formview>
-		<msggotofeeds>siirry RSS-syötteisiin</msggotofeeds>
-		<onlynew>Aivan uusi</onlynew>
-		<onlywait>Vain odottaa</onlywait>
-		<options>Vaihtoehtoja</options>
-		<optionstip>Näytä lisää listausvaihtoehtoja</optionstip>
-		<pdfoptions>PDF-asetukset</pdfoptions>
-		<stateall>Kaikki</stateall>
-		<today>Tänään</today>
-		<yesterday>Eilen</yesterday>
-		<week>Viikko</week>
-		<month>Kuukausi</month>
-		<marcarfeeds>Merkitse nimellä</marcarfeeds>
-		<leidos>Luettu</leidos>
-		<wait>Odotettaessa</wait>
-		<borrar>Poistaa</borrar>
-		<borrartip>Poista kaikki valitut viestit</borrartip>
-		<noleidos>Lukematon</noleidos>
-		<nowait>Ei vireillä</nowait>
-		<msgleidos>Haluatko merkitä kaikki valitut viestit luetuiksi / lukemattomiksi?</msgleidos>
-		<msgwait>Haluatko merkitä kaikki valitut viestit odottavana / ei odottavana?</msgwait>
-		<msgdelete2>Haluatko poistaa kaikki valitut viestit?</msgdelete2>
-		<msgpropietario>Vain viestien omistaja voi käyttää näitä ominaisuuksia</msgpropietario>
-		<msgnotfound>Valittuja viestejä ei löytynyt. muokkaa suodatinta</msgnotfound>
-		<msgnumsileidos>Ne on merkitty luetuiksi:</msgnumsileidos>
-		<msgnumsiwait>Ne on merkitty odottaviksi:</msgnumsiwait>
-		<msgnumnoleidos>Ne on merkitty lukemattomiksi:</msgnumnoleidos>
-		<msgnumnowait>Ne on merkitty odottamattomiksi:</msgnumnowait>
-		<msgnumdelete>Seuraavat on poistettu:</msgnumdelete>
-		<message0>Viestiä</message0>
-		<message1>Posti</message1>
-		<message2>Viestiä</message2>
-		<msgerrorfeed>Seuraavassa syötteessä on tapahtunut virhe:</msgerrorfeed>
-		<sintitle>Otsikkoa)</sintitle>
-		<post>RSS-viesti</post>
-		<filtrarfeeds>Suodata</filtrarfeeds>
-		<actioncool>Mielenkiintoinen</actioncool>
-		<statecool>Mielenkiintoinen</statecool>
-		<onlycool>Aivan mielenkiintoista</onlycool>
-		<cool>Mielenkiintoinen</cool>
-		<nocool>Ei mielenkiintoista</nocool>
-		<msgcool>Haluatko merkitä kaikki valitut viestit mielenkiintoisiksi / ei mielenkiintoisiksi?</msgcool>
-		<msgnumsicool>Ne on merkitty mielenkiintoisiksi:</msgnumsicool>
-		<msgnumnocool>Ne on merkitty mielenkiintoisiksi:</msgnumnocool>
-		<actionfavoritos>Lisää suosikkeihin</actionfavoritos>
-	</feeds>
-	<importaciones>
-		<list>Tuo tiedot</list>
-		<create>Uusi tuonti</create>
-		<formview>Tuo yksityiskohdat</formview>
-		<forminsert>Uuden tuonnin rekisteröinti</forminsert>
-		<formupdate>Tuo muutos</formupdate>
-		<defaultdata>Tuo tietoja</defaultdata>
-		<sinaplicacion>[Ilman hakemusta]</sinaplicacion>
-		<importdata>Tiedoston tiedot</importdata>
-	</importaciones>
-	<folders>
-		<notfound>Kansiota ei löytynyt</notfound>
-		<todaslasaplicaciones>[Kaikki sovellukset]</todaslasaplicaciones>
-		<deleteoffolder>Poista tästä kansiosta</deleteoffolder>
-		<defaultfolder>Henkilökohtainen kansio</defaultfolder>
-	</folders>
-	<translator>
-		<translator>Kääntäjä</translator>
-		<corrector>Korjauslukija</corrector>
-		<es>Espanjalainen</es>
-		<ca>Katalaani</ca>
-		<en>Englanti</en>
-		<pt>Portugali</pt>
-		<eu>Euskera</eu>
-		<gl>Galician</gl>
-		<fr>Ranskalainen</fr>
-		<ar>Arabialainen</ar>
-	</translator>
-	<buscador>
-		<list>Hakukone</list>
-		<todaslasaplicaciones>[Kaikki sovellukset]</todaslasaplicaciones>
-	</buscador>
-	<errorlog>
-		<formupdate>Virhelokit</formupdate>
-		<defaultdata>Tiedoston sisältö</defaultdata>
-	</errorlog>
-	<favoritos>
-		<list>Suosikkilista</list>
-		<create>Uusi suosikki</create>
-		<url>URL-</url>
-		<bookmarkexists>Url, jonka yrität tallentaa, on jo suosikki.</bookmarkexists>
-		<invalidurl>Url ei kelpaa, tarkista verkkoosoite:</invalidurl>
-		<bookmarkadded>Url-osoite on lisätty suosikkeihin</bookmarkadded>
-		<previews>Pikkukuvat</previews>
-	</favoritos>
-	<ivas>
-		<list eval="true">"Luettelointi ".CONFIG("accounting_iva_name")</list>
-		<create eval="true">"Uusi ".CONFIG("accounting_iva_name")</create>
-		<formview eval="true">"Yksityiskohta ".CONFIG("accounting_iva_name")</formview>
-		<forminsert eval="true">"Uusi rekisteröinti ".CONFIG("accounting_iva_name")</forminsert>
-		<formupdate eval="true">"Muokkaus ".CONFIG("accounting_iva_name")</formupdate>
-		<defaultdata eval="true">"Tiedot ".CONFIG("accounting_iva_name")</defaultdata>
-	</ivas>
-	<categorias>
-		<list>Luettelo luokista</list>
-		<create>Uusi luokka</create>
-		<formview>Luokan yksityiskohdat</formview>
-		<forminsert>Uuden luokan rekisteröinti</forminsert>
-		<formupdate>Luokan muuttaminen</formupdate>
-		<defaultdata>Luokkatiedot</defaultdata>
-	</categorias>
+    <lang>fi_FI</lang>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <nopage>Valitse sovellus aloittaaksesi työskentelyn</nopage>
+        <nocheckuser>Väärä käyttäjänimi tai salasana</nocheckuser>
+        <nochecktime>Käyttäjä aukioloaikojen ulkopuolella</nochecktime>
+        <nocheckday>Käyttäjä poissa arkipäivästä</nocheckday>
+        <view>Näkymä</view>
+        <edit>Muokata</edit>
+        <copy>Kopio</copy>
+        <delete>Poistaa</delete>
+        <first>Ensimmäinen sivu</first>
+        <previous>Edellinen sivu</previous>
+        <next>Seuraava sivu</next>
+        <last>Viimeinen sivu</last>
+        <id>Turskaa.</id>
+        <codigo>Koodi</codigo>
+        <cif>C.I.F</cif>
+        <nombre>Nimi</nombre>
+        <apellidos>Sukunimet</apellidos>
+        <tel_fijo>Kiinteät</tel_fijo>
+        <tel_movil>Movil</tel_movil>
+        <telefono>Puhelin</telefono>
+        <fax>Faksi</fax>
+        <email>Sähköposti</email>
+        <web>Verkko</web>
+        <filter>Suodatusvaihtoehdot</filter>
+        <loadsavefilter>Lataa ja tallenna ennalta määritetyt suodattimet</loadsavefilter>
+        <filtro>Etsi kaikista</filtro>
+        <buscar>Etsi</buscar>
+        <buscartip>Hae valituilla suodattimilla</buscartip>
+        <limpiar>Asettaa uudelleen</limpiar>
+        <limpiartip>Puhdista suodatin ja näytä kaikki tiedot</limpiartip>
+        <username>Käyttäjä</username>
+        <datetime>Päivämäärä ja aika</datetime>
+        <direccion>Osoite</direccion>
+        <codpostal>Postinumero</codpostal>
+        <poblacion>Väestö</poblacion>
+        <provincia>Maakunta</provincia>
+        <pais>Maa</pais>
+        <comentarios>Kommentit</comentarios>
+        <descripcion>Kuvaus</descripcion>
+        <buttoncreate>Luoda</buttoncreate>
+        <buttoncreatereturnhere>Luo ja palaa tänne</buttoncreatereturnhere>
+        <buttonupdate>Päivitys</buttonupdate>
+        <buttonupdatereturnhere>Päivitä ja tule takaisin tänne</buttonupdatereturnhere>
+        <buttoncancel>Peruuttaa</buttoncancel>
+        <buttonreturn>Paluu</buttonreturn>
+        <date>Päiväys</date>
+        <incidencia>Esiintyvyys</incidencia>
+        <estado>Tila</estado>
+        <parte>Osa</parte>
+        <tarea>Tehtävä</tarea>
+        <tareas>Tehtävät</tareas>
+        <liquidado>Selvitystilaan</liquidado>
+        <base>Perusta</base>
+        <total>Kokonais-</total>
+        <cerrado>Suljettujen</cerrado>
+        <cobrado>Lunastaa</cobrado>
+        <empresa>Yhtiö</empresa>
+        <msgdelete>Haluatko poistaa tämän tietueen?</msgdelete>
+        <permdenied>Sinulla ei ole lupaa suorittaa tätä toimintoa</permdenied>
+        <sinnombre>Ei nimeä</sinnombre>
+        <deldenied>Sitä ei voi poistaa, koska sitä käytetään toisessa sovelluksessa</deldenied>
+        <yes>Kyllä</yes>
+        <no>Ei</no>
+        <cliente>Asiakas</cliente>
+        <posiblecli>Mahdollinen asiakas</posiblecli>
+        <password>Avain</password>
+        <numfac>N.Fac.</numfac>
+        <numc>NC</numc>
+        <numctip>Kommenttien lukumäärä</numctip>
+        <numf>NF</numf>
+        <numftip>Tiedostojen lukumäärä</numftip>
+        <numt>NT</numt>
+        <numttip>Tehtävien lukumäärä</numttip>
+        <numv>NV</numv>
+        <numvtip>Eräpäivien lukumäärä</numvtip>
+        <nums>NS</nums>
+        <numstip>Seurantojen lukumäärä</numstip>
+        <nump>NP</nump>
+        <numptip>Tuotteiden lukumäärä</numptip>
+        <fechaini>Syötä päivämäärä</fechaini>
+        <fechafin>ja</fechafin>
+        <commentdel>Poista tämä kommentti</commentdel>
+        <attachments>Liitetyt tiedostot</attachments>
+        <shortattachments>Liitetiedostoja</shortattachments>
+        <userdatetime>Käyttäjä, päivämäärä ja aika</userdatetime>
+        <fileandsize>Tiedosto ja koko</fileandsize>
+        <download>Download</download>
+        <activar>Aktivoida</activar>
+        <newcomment>Uusi kommentti</newcomment>
+        <newattachments>Uudet liitteet</newattachments>
+        <proyecto>Projekti</proyecto>
+        <documento>Asiakirja</documento>
+        <hora>Aika</hora>
+        <horas>Tuntia</horas>
+        <minutos>Minuuttia</minutos>
+        <precio>Hinta</precio>
+        <liq>Liq.</liq>
+        <aplicacion>Hakemus</aplicacion>
+        <rol>Rooli</rol>
+        <permiso>Lupa</permiso>
+        <pos>Pos.</pos>
+        <posicion>Asento</posicion>
+        <trimestre>Neljännes</trimestre>
+        <otroscampos>Muut kentät</otroscampos>
+        <excel>Kunnostautua</excel>
+        <exceltip>Lataa Excel-tiedosto nykyisillä tiedoilla</exceltip>
+        <pdf>Lataa PDF</pdf>
+        <pdftip>Lataa PDF-tiedosto nykyisillä tiedoilla</pdftip>
+        <epigrafe>Epigraph</epigrafe>
+        <campoauto>(*) Automaattinen kenttä</campoauto>
+        <cerr>Cerr.</cerr>
+        <cobr>Corte.</cobr>
+        <concepto>Käsite</concepto>
+        <unid>Kpl.</unid>
+        <unidades>Unids.</unidades>
+        <unidadestotal>Yksiköitä yhteensä</unidadestotal>
+        <prun>Pr./Un.</prun>
+        <dto>Dto.</dto>
+        <importe>Määrä</importe>
+        <percent>Prosenttimäärä</percent>
+        <todos>Kaikki]</todos>
+        <todoslosclientes>[Kaikki asiakkaat]</todoslosclientes>
+        <todoslosposiblescli>[Kaikki potentiaaliset asiakkaat]</todoslosposiblescli>
+        <todoslosusuarios>[Kaikki käyttäjät]</todoslosusuarios>
+        <todoslosgrupos>[Kaikki ryhmät]</todoslosgrupos>
+        <todoslosproveedores>[Kaikki palveluntarjoajat]</todoslosproveedores>
+        <mostrartodos>[Näytä kaikki]</mostrartodos>
+        <sinusuario>[Ei käyttäjää]</sinusuario>
+        <paginaspc>Sivu</paginaspc>
+        <regsfrom>kirjaa</regsfrom>
+        <spcdespc>Of</spcdespc>
+        <spcalspc>Että</spcalspc>
+        <regspage>Tietueita sivua kohden:</regspage>
+        <registerdata>Rekisteröintitiedot</registerdata>
+        <userinsert>Perustaja:</userinsert>
+        <userupdate>Muokannut</userupdate>
+        <allstates>[Kaikki valtiot]</allstates>
+        <allenabled>[Kaikki varat}</allenabled>
+        <alldisabled>[Kaikki ei-aktiiviset}</alldisabled>
+        <lastinsert>Tietue on luotu koodilla:</lastinsert>
+        <lastupdate>Rekisteriä on muokattu koodilla:</lastupdate>
+        <lastdelete>Tietue koodilla on poistettu:</lastdelete>
+        <proveedor>Toimittaja</proveedor>
+        <acta>Ennätys</acta>
+        <presupuesto>Talousarvio</presupuesto>
+        <newfichero>Uusi tiedosto</newfichero>
+        <fichero>Tiedosto</fichero>
+        <size>Koko</size>
+        <mime>Mime-tyyppi</mime>
+        <grupo>Ryhmä</grupo>
+        <ficheroactual>Nykyinen tiedosto</ficheroactual>
+        <language>Kieli</language>
+        <style>Suunnittelu</style>
+        <nodata>Ei tuloksia näytettäväksi</nodata>
+        <nosearch>Sinun on annettava termi voidaksesi tehdä haun</nosearch>
+        <prioridad>Prioriteetti</prioridad>
+        <sinproyecto>[Ilman liittyvää hanketta]</sinproyecto>
+        <sintarea>[Ei liittyvää tehtävää]</sintarea>
+        <todoslosproyectos>[Kaikki projektit]</todoslosproyectos>
+        <todaslastareas>[Kaikki tehtävät]</todaslastareas>
+        <todaslascuentas>Kaikki]</todaslascuentas>
+        <graficas>Kaaviot ja tilastot</graficas>
+        <mail>Lähetä PDF</mail>
+        <mailtip>Lähetä PDF sähköpostitilillesi</mailtip>
+        <view2>PDF-katseluohjelma</view2>
+        <view2tip>Tarkastele asiakirjaa sisäisessä SaltOS-katseluohjelmassa</view2tip>
+        <view2error>Virhe avattaessa PDF-katseluohjelmaa</view2error>
+        <view2hash>Jos ongelma jatkuu, ota yhteys tekniseen palveluun ilmoittamalla seuraava koodi:</view2hash>
+        <view2opening>Avaa visiiri, odota hetki ...</view2opening>
+        <msgnotuseremail>Sinulla ei ole määritettyä sähköpostiosoitetta</msgnotuseremail>
+        <msgnotsmtpemail>Lähtevän postin palvelinta ei ole määritetty</msgnotsmtpemail>
+        <sincliente>[Ilman liittyvää asiakasta]</sincliente>
+        <sinposiblecli>[Ilman mahdollista liitännäisasiakasta]</sinposiblecli>
+        <sinepigrafe>[Ilman otsikkoa]</sinepigrafe>
+        <sinprioridad>[Ei prioriteettia]</sinprioridad>
+        <sinestado>Stateless]</sinestado>
+        <dstart>Aloittamista</dstart>
+        <dstop>Pää</dstop>
+        <evento>Tapahtuma</evento>
+        <sincuenta>[Ilman tiliä]</sincuenta>
+        <cuenta>Tili</cuenta>
+        <sindia>[Ei päivää]</sindia>
+        <sinmes>[Ei kuukautta]</sinmes>
+        <mes>Kuukausi</mes>
+        <factura>Lasku</factura>
+        <albaran>Rahtikirja</albaran>
+        <msglogout>Haluatko poistua sovelluksesta?</msglogout>
+        <mostrarcomo>Näytä nimellä</mostrarcomo>
+        <nif>NIF</nif>
+        <vcard>VCard</vcard>
+        <cargo>Toimisto</cargo>
+        <empleado>Työntekijä</empleado>
+        <sinproveedor>[Ilman liitettyä palveluntarjoajaa]</sinproveedor>
+        <sinempleado>[Ei assosioitunutta työntekijää]</sinempleado>
+        <port>Portti</port>
+        <extra>Turvallisuus</extra>
+        <requiredfield>Pakollinen kenttä</requiredfield>
+        <sinpais>[Maata ei valittu]</sinpais>
+        <sinprovincia>[Ei maakuntaa valittu]</sinprovincia>
+        <sinpoblacion>[Ei väestöä valittu]</sinpoblacion>
+        <sincodpostal>[Ei valintaa]</sincodpostal>
+        <usedfilter>Suodatin aktivoitu</usedfilter>
+        <suma>Summa</suma>
+        <average>Keskimääräinen</average>
+        <posx>X-asema</posx>
+        <posy>Y-asema</posy>
+        <angle>Kulma</angle>
+        <withoutinfo>Ei tietoa edustaa</withoutinfo>
+        <sinproducto>[Ilman liittyvää tuotetta]</sinproducto>
+        <preview>Esikatselu</preview>
+        <sortasc>Lajittele nousevasti (A-Z)</sortasc>
+        <sortdesc>Järjestä laskevasti (Z-A)</sortdesc>
+        <confirm>Vahvistus</confirm>
+        <alert>Huomio</alert>
+        <error>Virhe</error>
+        <buttonaccept>Hyväksyä</buttonaccept>
+        <buttoncontinue>Jatkaa</buttoncontinue>
+        <enero>Tammikuu</enero>
+        <febrero>Helmikuu</febrero>
+        <marzo>Maaliskuu</marzo>
+        <abril>Huhtikuu</abril>
+        <mayo>Toukokuu</mayo>
+        <junio>Kesäkuu</junio>
+        <julio>Heinäkuu</julio>
+        <agosto>Elokuu</agosto>
+        <setiembre>Syyskuu</setiembre>
+        <octubre>Lokakuu</octubre>
+        <noviembre>Marraskuu</noviembre>
+        <diciembre>Joulukuu</diciembre>
+        <lunes>Maanantai</lunes>
+        <martes>Tiistai</martes>
+        <miercoles>Keskiviikko</miercoles>
+        <jueves>Torstai</jueves>
+        <viernes>Perjantai</viernes>
+        <sabado>Lauantai</sabado>
+        <domingo>Sunnuntai</domingo>
+        <sabadoydomingo>Lauantai ja sunnuntai</sabadoydomingo>
+        <sinpresupuesto>[Ei liittyvää budjettia]</sinpresupuesto>
+        <todoslospresupuestos>[Kaikki budjetit]</todoslospresupuestos>
+        <unknownerror>Yhteysvirhe on tapahtunut (tarkista, että verkon käyttö toimii oikein, ja jos ongelma jatkuu, ota yhteyttä sovelluksen järjestelmänvalvojaan)</unknownerror>
+        <qrcode>QR-koodi</qrcode>
+        <lugar>Paikka</lugar>
+        <loading>Ladataan tietoja, odota hetki ...</loading>
+        <sending>Lähetetään tietoja, odota hetki ...</sending>
+        <prod>Prod.</prod>
+        <addfile>Lisää tiedosto</addfile>
+        <addproduct>Lisää tuote</addproduct>
+        <addconcept>Lisää käsite</addconcept>
+        <addvencimiento>Lisää vanheneminen</addvencimiento>
+        <addtarea>Lisää tehtävä</addtarea>
+        <send>Lähetä</send>
+        <notas>Muistiinpanot</notas>
+        <sincampanya>[Ei liitetty kampanjaa]</sincampanya>
+        <campanya>Kampanja</campanya>
+        <todaslascampanyas>[Kaikki kampanjat]</todaslascampanyas>
+        <numpc>NPC</numpc>
+        <numpctip>Potentiaalisten asiakkaiden lukumäärä</numpctip>
+        <numcl>NCL</numcl>
+        <numcltip>Asiakkaiden lukumäärä</numcltip>
+        <numag>NAG</numag>
+        <numagtip>Esityslistalla olevien tapahtumien määrä</numagtip>
+        <numpr>NPR</numpr>
+        <numprtip>Budjettien lukumäärä</numprtip>
+        <numpy>NPY</numpy>
+        <numpytip>Hankkeiden lukumäärä</numpytip>
+        <tipoevento>Tapahtuman tyyppi</tipoevento>
+        <sintipoevento>[Ilman tapahtumatyyppiä]</sintipoevento>
+        <fileuploaderror>Tiedoston lähettämisessä tapahtui virhe:</fileuploaderror>
+        <postlimiterror>Lähetettäessä tietoja palvelimelle tapahtui virhe</postlimiterror>
+        <resumeneconomico>Taloudellinen yhteenveto</resumeneconomico>
+        <pdf2filter_title>PDF-vientisuodatin</pdf2filter_title>
+        <pdf2filter_message>Valitse tiedot, jotka haluat sisällyttää PDF-tiedostoon:</pdf2filter_message>
+        <view2filter_title>PDF-katselusuodatin</view2filter_title>
+        <view2filter_message>Valitse tiedot, jotka haluat nähdä PDF-tiedostossa:</view2filter_message>
+        <msgerrorsemaphore>Samanaikaisuusvirhe on tapahtunut, pääsy toimintaan peruutetaan</msgerrorsemaphore>
+        <msgnotcheckbox>Sinun on valittava tietue luettelosta käyttääksesi tätä vaihtoehtoa</msgnotcheckbox>
+        <gotohome>Lataa</gotohome>
+        <notifybug>Ilmoita virheestä</notifybug>
+        <actioncompress>Lataa valitut tiedostot</actioncompress>
+        <zipformat>ZIP-muoto</zipformat>
+        <tarformat>TAR</tarformat>
+        <gzipformat>GZIP</gzipformat>
+        <bzipformat>BZIP2</bzipformat>
+        <temporalfiles>Väliaikaiset tiedostot</temporalfiles>
+        <sessionexpire>Istunto päättyy vuonna</sessionexpire>
+        <sessionupdate>napsauta tätä estääksesi sen sulkemisen</sessionupdate>
+        <sessionupdated>Istunnon päivitys onnistui</sessionupdated>
+        <link>Linkki</link>
+        <importacion>Tuonti</importacion>
+        <todaslasimportaciones>[Kaikki tuonnit]</todaslasimportaciones>
+        <sinimportacion>[Ei liittyvää tuontia]</sinimportacion>
+        <textos_select>Valitse teksti ja paina Lisää</textos_select>
+        <textos_add>Lisätä</textos_add>
+        <selectall>Valitse kaikki</selectall>
+        <selectnone>Tyhjennä valinta</selectnone>
+        <addtofolder>Näytä tässä kansiossa</addtofolder>
+        <addtofolderok>Tämä sisältö on lisätty kansioon</addtofolderok>
+        <delfromfolderok>Tämän kansion sisältö on piilotettu</delfromfolderok>
+        <savedfilters>Tallennetut suodattimet</savedfilters>
+        <optionfilter>Valitse tallennettu suodatin</optionfilter>
+        <newfilter>Uuden suodattimen nimi</newfilter>
+        <loadfilter>Kuormitus</loadfilter>
+        <loadfiltertip>Lataa valittu suodatin napsauttamalla tätä</loadfiltertip>
+        <updatefilter>Päivitys</updatefilter>
+        <updatefiltertip>Päivitä valittu suodatin napsauttamalla tätä</updatefiltertip>
+        <deletefilter>Poistaa</deletefilter>
+        <deletefiltertip>Poista valittu suodatin napsauttamalla tätä</deletefiltertip>
+        <createfilter>Luoda</createfilter>
+        <createfiltertip>Luo uusi suodatin napsauttamalla tätä</createfiltertip>
+        <createfilterok>Uusi suodatin on luotu onnistuneesti</createfilterok>
+        <createfilterko>Suodattimen nimi on määritettävä</createfilterko>
+        <loadfilterok>Suodatin ladattu onnistuneesti</loadfilterok>
+        <loadfilterko>Sinun on valittava suodatin ladataksesi</loadfilterko>
+        <updatefilterok>Suodatin on päivitetty onnistuneesti</updatefilterok>
+        <updatefilterko>Sinun on valittava suodatin voidaksesi muokata sitä</updatefilterko>
+        <deletefilterok>Suodatin on poistettu</deletefilterok>
+        <deletefilterko>Sinun on valittava suodatin, jotta voit poistaa sen</deletefilterko>
+        <renamefilter>Rename</renamefilter>
+        <renamefiltertip>Nimeä nykyinen suodatin napsauttamalla tätä</renamefiltertip>
+        <renamefilterok>Nykyinen suodatin on nimetty uudelleen onnistuneesti</renamefilterok>
+        <renamefilterko1>Sinun on valittava suodatin nimetäksesi se uudelleen</renamefilterko1>
+        <renamefilterko2>Jäljellä on määritellä uudelleen nimeävän suodattimen uusi nimi</renamefilterko2>
+        <showmenu>Näytä valikko</showmenu>
+        <hidemenu>Piilota valikko</hidemenu>
+        <showtools>Näytä työkalut</showtools>
+        <hidetools>Piilota työkalut</hidetools>
+        <inbackground>Tämä toiminto on käynnissä taustalla, odota hetki</inbackground>
+        <sentfromsaltos>Posti lähetetty SaltOS-laitteistani</sentfromsaltos>
+        <foldersdata>Kansiot</foldersdata>
+        <loweradd>lisätä</loweradd>
+        <notify>Ilmoitukset</notify>
+        <help>Help</help>
+        <desktoptip>Ota integroidut työpöytäilmoitukset käyttöön</desktoptip>
+        <desktoptxt>Integroidut työpöytäilmoitukset käytössä</desktoptxt>
+        <selectallcheckbox>Valitse kaikki tietueet</selectallcheckbox>
+        <selectonecheckbox>Valitse tämä tietue</selectonecheckbox>
+        <formapago>Maksutapa</formapago>
+        <todaslasformasdepago>[Kaikki maksutavat]</todaslasformasdepago>
+        <sinformapago>[Ilman maksutapaa]</sinformapago>
+        <actions>Tämän tietueen toimenpiteet</actions>
+        <msgfilesindexed1>Tiedosto indeksoitu tietokantaan</msgfilesindexed1>
+        <msgfilesindexed2>Tiedostot, jotka on indeksoitu tietokantaan</msgfilesindexed2>
+        <msgregistersindexed1>Tietue indeksoitu tietokantaan</msgregistersindexed1>
+        <msgregistersindexed2>Tietueet indeksoidaan tietokantaan</msgregistersindexed2>
+        <msgregisterspurged1>Tietokannasta puhdistettu tietue</msgregisterspurged1>
+        <msgregisterspurged2>Tietokannasta tyhjennetyt tietueet</msgregisterspurged2>
+        <biglist>$ raja-tietueet</biglist>
+        <biglisttip>Huomio: $ limit-tietueita näytetään ja sovellus saattaa toimia hitaasti</biglisttip>
+        <activo>Aktiivinen</activo>
+        <activo_desc>Osoittaa aktiivinen tai olemassa oleva käyttäjä perinnöllä</activo_desc>
+        <print>Tulosta</print>
+    </common>
+    <login>
+        <logintitle>Pääsy sovellukseen</logintitle>
+        <remember>Muista tämän tietokoneen salasana</remember>
+        <enter>Kirjaudu sisään</enter>
+        <captcha1>Suojakoodi</captcha1>
+        <captcha2>Kirjoita koodi tähän</captcha2>
+        <captcha3>Lataa kuva uudelleen</captcha3>
+        <mobileaccess>Pääsy mobiililaitteelta</mobileaccess>
+    </login>
+    <menu>
+        <home>Aloittamista</home>
+        <clientes>Asiakkaat</clientes>
+        <contactos>Yhteystiedot</contactos>
+        <incidencias>Ilmaantuvuus</incidencias>
+        <proyectos>Hankkeet</proyectos>
+        <partes>Työosat</partes>
+        <documentos>Asiakirjat</documentos>
+        <facturas>Laskut</facturas>
+        <proveedores>Tarjoajat</proveedores>
+        <gastos>Kulut</gastos>
+        <epigrafes>Epigraphs</epigrafes>
+        <estados>Valtiot</estados>
+        <formaspago>Maksutavat</formaspago>
+        <roles>Roolit</roles>
+        <usuarios>Käyttäjät</usuarios>
+        <grupos>Ryhmät</grupos>
+        <prioridades>Prioriteetit</prioridades>
+        <agenda>Esityslista ja tapahtumat</agenda>
+        <actas>Kokouspöytäkirjat</actas>
+        <profile>Oma profiili</profile>
+        <maincfg>Kokoonpano</maincfg>
+        <about>Tietoja SaltOS: sta</about>
+        <support>Tekninen tuki</support>
+        <logout>Kirjaudu ulos</logout>
+        <seguimientos>Tehtävien seuranta</seguimientos>
+        <datacfg>Tietokanta</datacfg>
+        <correo>Sähköposti</correo>
+        <cuentas>Tilit</cuentas>
+        <periodicas>Määräaikaiset laskut</periodicas>
+        <empleados>Henkilöstö</empleados>
+        <productos>Tuottaa</productos>
+        <presupuestos>Budjetit</presupuestos>
+        <posiblescli>Mahdolliset asiakkaat</posiblescli>
+        <campanyas>Kaupalliset kampanjat</campanyas>
+        <tiposevento>Tapahtumatyypit</tiposevento>
+        <textos>Ennalta määritetyt tekstit</textos>
+        <ficheros>Liitetyt tiedostot</ficheros>
+        <feeds>RSS-syötteenlukija</feeds>
+        <favoritos>Suosikki</favoritos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <importaciones>Tuonti</importaciones>
+        <gestioncomercial>Kaupallinen</gestioncomercial>
+        <gestionproyectos>Hankkeet</gestionproyectos>
+        <gestioncontabilidad>Kirjanpito</gestioncontabilidad>
+        <gestiongeneral>Yleinen</gestiongeneral>
+        <gestionfiltros>Suodattimet</gestionfiltros>
+        <gestionadministracion>Antaminen</gestionadministracion>
+        <gestiontipos>Tyyppi</gestiontipos>
+        <gestionsistema>Järjestelmä</gestionsistema>
+        <folders>Kansiot</folders>
+        <buscador>Hakukone</buscador>
+        <errorlog>Virhelokit</errorlog>
+        <categorias>Luokat</categorias>
+        <desc_clientes>Hallitse yrityksen asiakkaita</desc_clientes>
+        <desc_contactos>Päästäksesi asiakkaan yhteystietoihin</desc_contactos>
+        <desc_incidencias>Hallitse täältä asiakkaidesi tapahtumia</desc_incidencias>
+        <desc_proyectos>Seuraa projektejasi tämän sovelluksen avulla</desc_proyectos>
+        <desc_partes>Rekisteröi kaikki tekemäsi työt aikataulukoilla</desc_partes>
+        <desc_facturas>Hallinnoi kaikkia laskuja (toimituslomakkeet, maksut jne.)</desc_facturas>
+        <desc_proveedores>Hallitse yrityksen toimittajia</desc_proveedores>
+        <desc_gastos>Hallitse kuluja ja tiedä onko ne selvitetty</desc_gastos>
+        <desc_documentos>Ryhmittele kaikki yrityksesi asiakirjat</desc_documentos>
+        <desc_agenda>Ota esityslistalle kaikki vierailut ja kokoukset</desc_agenda>
+        <desc_actas>Pidä kirjaa, kun pidät kokouksia parempaa hallintaa</desc_actas>
+        <desc_usuarios>Rekisteröi, peruuta tilaukset tai muokkaa käyttäjiä</desc_usuarios>
+        <desc_grupos>Luo käyttäjille työryhmiä</desc_grupos>
+        <desc_epigrafes>Määritä laskujen ja kulujen otsikot</desc_epigrafes>
+        <desc_formaspago>Määritä maksutavat kustannusten hallitsemiseksi</desc_formaspago>
+        <desc_estados>Määritä tapahtuman, projektin jne. mahdolliset tilat ...</desc_estados>
+        <desc_prioridades>Määritä kalenterimerkintöjen prioriteetit</desc_prioridades>
+        <desc_profile>Muuta käyttäjän asetuksia</desc_profile>
+        <desc_maincfg>Muuta yleisiä sovellusasetuksia</desc_maincfg>
+        <desc_seguimientos>Ohjaa projektitehtäviä seurannalla</desc_seguimientos>
+        <desc_datacfg>Tee varmuuskopioita ja palauta ne helposti</desc_datacfg>
+        <desc_correo>Lue ja lähetä sähköpostit täältä asiakkaillesi ja toimittajille</desc_correo>
+        <desc_cuentas>Määritä kirjanpidon pääkirjatilit</desc_cuentas>
+        <desc_periodicas>Aikatauluta toistuvat laskut eräpäivinä</desc_periodicas>
+        <desc_empleados>Rekisteröi, peruuta tai muuta työntekijöitä</desc_empleados>
+        <desc_posiblescli>Hallitse potentiaalisia asiakkaitasi, joita sinulla voi olla</desc_posiblescli>
+        <desc_presupuestos>Tee budjetit nopeasti ja helposti</desc_presupuestos>
+        <desc_productos>Määritä tuotteesi täällä voidaksesi myydä niitä</desc_productos>
+        <desc_about>Tunne tämän sovelluksen hyvitykset</desc_about>
+        <desc_logout>Napsauta tätä, kun haluat sulkea työistunnon</desc_logout>
+        <desc_home>Siirry sovelluksen päänäyttöön</desc_home>
+        <desc_support>Ota yhteys tekniseen tukeen</desc_support>
+        <desc_campanyas>Tee liiketoimintaa seurannan avulla</desc_campanyas>
+        <desc_tiposevento>Määritä tarvittavat tapahtumatyypit</desc_tiposevento>
+        <desc_textos>Luo ennalta määritettyjä tekstejä käytettäväksi muissa sovelluksissa</desc_textos>
+        <desc_ficheros>Käytä kaikkia sovelluksen tiedostoja</desc_ficheros>
+        <desc_feeds>Seuraa RSS- ja Atom-syötteitäsi tästä sovelluksesta</desc_feeds>
+        <desc_favoritos>Hallitse suosikkejasi täältä</desc_favoritos>
+        <desc_ivas>Hallinnoi verokantoja täältä</desc_ivas>
+        <desc_importaciones>Tuo tiedot tärkeimpiin sovelluksiin täältä</desc_importaciones>
+        <desc_buscador>Hakea koko tietokannasta</desc_buscador>
+        <desc_errorlog>SaltOS-virhelokin tarkasteleminen</desc_errorlog>
+        <desc_categorias>Näet tiettyjen sovellusten luokat</desc_categorias>
+        <quick_home>Aloittamista</quick_home>
+        <quick_correo>Posti</quick_correo>
+        <quick_agenda>Päiväkirja</quick_agenda>
+        <quick_profile>Profiilia</quick_profile>
+        <quick_support>Tuki</quick_support>
+        <quick_about>Noin</quick_about>
+        <quick_logout>Lähellä</quick_logout>
+        <quick_clientes>Asiakkaat</quick_clientes>
+        <quick_contactos>Yhteystiedot</quick_contactos>
+        <quick_incidencias>Ilmaantuvuus</quick_incidencias>
+        <quick_proyectos>Hankkeet</quick_proyectos>
+        <quick_partes>Osat</quick_partes>
+        <quick_documentos>Asiakirjat</quick_documentos>
+        <quick_facturas>Laskut</quick_facturas>
+        <quick_proveedores>Tarjoajat</quick_proveedores>
+        <quick_gastos>Kulut</quick_gastos>
+        <quick_epigrafes>Epigraphs</quick_epigrafes>
+        <quick_estados>Valtiot</quick_estados>
+        <quick_formaspago>F. maksu</quick_formaspago>
+        <quick_roles>Roolit</quick_roles>
+        <quick_usuarios>Käyttäjät</quick_usuarios>
+        <quick_grupos>Ryhmät</quick_grupos>
+        <quick_prioridades>Prioriteetit</quick_prioridades>
+        <quick_actas>Menettely</quick_actas>
+        <quick_maincfg>Kokoonpano</quick_maincfg>
+        <quick_seguimientos>Seurata</quick_seguimientos>
+        <quick_datacfg>BBDD</quick_datacfg>
+        <quick_cuentas>Tilit</quick_cuentas>
+        <quick_periodicas>Ajoittainen</quick_periodicas>
+        <quick_empleados>Henkilöstö</quick_empleados>
+        <quick_productos>Tuottaa</quick_productos>
+        <quick_presupuestos>Budjetit</quick_presupuestos>
+        <quick_posiblescli>P.clientes</quick_posiblescli>
+        <quick_campanyas>Kampanjat</quick_campanyas>
+        <quick_tiposevento>T. tapahtumia</quick_tiposevento>
+        <quick_textos>Tekstien</quick_textos>
+        <quick_ficheros>Tiedostojen</quick_ficheros>
+        <quick_feeds>RSS</quick_feeds>
+        <quick_favoritos>Suosikki</quick_favoritos>
+        <quick_importaciones>Tuonti</quick_importaciones>
+        <quick_buscador>Hakukone</quick_buscador>
+        <quick_errorlog>Virheitä</quick_errorlog>
+        <quick_categorias>Luokat</quick_categorias>
+        <translator>Kääntäjä</translator>
+        <translatortip>Tekstin käännösten tekeminen</translatortip>
+        <corrector>Korjauslukija</corrector>
+        <correctortip>Tekstin korjaamiseksi</correctortip>
+        <calculator>Laskin</calculator>
+        <calculatortip>Matemaattisten laskelmien tekeminen</calculatortip>
+        <menu>Valikko</menu>
+        <menutip>Sovellusvalikon näyttäminen ja piilottaminen</menutip>
+    </menu>
+    <clientes>
+        <list>Asiakasluettelo</list>
+        <create>Uusi asiakas</create>
+        <formview>Asiakkaan tiedot</formview>
+        <forminsert>Uuden asiakkaan rekisteröinti</forminsert>
+        <formupdate>Asiakkaan muutos</formupdate>
+        <defaultdata>Asiakastiedot</defaultdata>
+        <contactdata>Asiakasyhteydet</contactdata>
+        <projectopen>Aktiiviset projektit</projectopen>
+        <projectclose>Suljetut projektit</projectclose>
+        <incidentopen>Aktiiviset tapaukset</incidentopen>
+        <incidentclose>Suljetut tapaukset</incidentclose>
+        <partesopen>Ratkaisemattomat osat</partesopen>
+        <partesclose>Likvidoidut osat</partesclose>
+        <albaranes>Toimitusilmoitukset</albaranes>
+        <facturaopen>Kerättämättömät laskut</facturaopen>
+        <facturaclose>Laskut kerätty</facturaclose>
+        <gastosdata>Asiakkaaseen liittyvät kulut</gastosdata>
+        <documentdata>Asiakirjat</documentdata>
+        <agendadata>Asiakkaan tapahtumat</agendadata>
+        <actasdata>Asiakkaan minuutit</actasdata>
+        <actionliquidar>Määritä valitut osat</actionliquidar>
+        <msgliquidar>Haluatko selvittää valitut osat?</msgliquidar>
+        <plotseguimiento12meses>Asiakkaan viime vuoden laskutus</plotseguimiento12meses>
+        <cuentacorriente>Tili tarkistetaan</cuentacorriente>
+        <diapago>Palkkapäivä</diapago>
+        <cuentacontable>Kirjanpito-tili</cuentacontable>
+        <nombrecomercial>Nimi syö.</nombrecomercial>
+        <nombrefiscal>Verollinen nimi</nombrefiscal>
+        <tipocliente>Asiakastyyppi</tipocliente>
+        <clientefiscal>Syyttäjä</clientefiscal>
+        <clientejuridico>Oikeudellinen</clientejuridico>
+        <add>Lisää asiakas</add>
+        <presupuestosdata>Asiakasbudjetit</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>Yhteystietoluettelo</list>
+        <create>Uusi yhteyshenkilö</create>
+        <formview>Yhteystiedot</formview>
+        <forminsert>Uuden kontaktin rekisteröiminen</forminsert>
+        <formupdate>Yhteyden muutos</formupdate>
+        <defaultdata>Yhteystiedot</defaultdata>
+        <add>Lisää yhteyshenkilö</add>
+    </contactos>
+    <incidencias>
+        <list>Luettelo tapahtumista</list>
+        <create>Uusi esiintyvyys</create>
+        <formview>Tapahtuman yksityiskohta</formview>
+        <forminsert>Uuden tapauksen rekisteröinti</forminsert>
+        <formupdate>Ilmaantuvuuden muuttaminen</formupdate>
+        <defaultdata>Ilmaantuvuustiedot</defaultdata>
+        <usersdata>Käyttäjät</usersdata>
+        <implicados>Implicados</implicados>
+        <asignadoa>Määritetty</asignadoa>
+        <msgsendemail>Kaikille tapahtumassa mukana oleville on lähetetty sähköposti</msgsendemail>
+        <boolsendmail>Lähetä sähköpostia</boolsendmail>
+        <boolsendmailtip>Jos aktivoit tämän vaihtoehdon, kaikille osallistujille lähetetään sähköposti</boolsendmailtip>
+        <categoria>Luokka</categoria>
+        <sincategoria>[Ilman luokkaa]</sincategoria>
+        <allcategorias>[Kaikki luokat]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>Luettelo hankkeista</list>
+        <create>Uusi projekti</create>
+        <formview>Projektin yksityiskohdat</formview>
+        <forminsert>Uuden projektin rekisteröinti</forminsert>
+        <formupdate>Hankkeen muuttaminen</formupdate>
+        <defaultdata>Projektitiedot</defaultdata>
+        <tareasproyecto>Projektitehtävät</tareasproyecto>
+        <desctareas>Tehtävien kuvaus</desctareas>
+        <horastotal>Tuntia yhteensä</horastotal>
+        <preciomedio>Keskimääräinen hinta</preciomedio>
+        <preciototal>Kokonaishinta</preciototal>
+        <plotseguimientotareas>Projektin poikkeama</plotseguimientotareas>
+        <legendseguimientotareas>Budjetoidut tunnit | Työtunnit</legendseguimientotareas>
+        <real>Real</real>
+        <diferencia>Ero</diferencia>
+        <partesopen>Ratkaisemattomat osat</partesopen>
+        <partesclose>Likvidoidut osat</partesclose>
+        <relatedseguimientos>Aiheeseen liittyvät seurannat</relatedseguimientos>
+        <relatedincidencias>Liittyvät tapaukset</relatedincidencias>
+        <actionliquidar>Määritä valitut osat</actionliquidar>
+        <msgliquidar>Haluatko selvittää valitut osat?</msgliquidar>
+        <agendadata>Aiheeseen liittyvät tapahtumat</agendadata>
+        <actasdata>Aiheeseen liittyvät säädökset</actasdata>
+        <contactdata>Asiakasyhteydet</contactdata>
+        <incidentopen>Aktiiviset tapaukset</incidentopen>
+        <incidentclose>Suljetut tapaukset</incidentclose>
+        <albaranes>Toimitusilmoitukset</albaranes>
+        <facturaopen>Kerättämättömät laskut</facturaopen>
+        <facturaclose>Laskut kerätty</facturaclose>
+        <gastosdata>Asiakkaaseen liittyvät kulut</gastosdata>
+        <documentdata>Asiakirjat</documentdata>
+        <plotseguimientoestados>Ryhmittelevät hankkeet valtion mukaan</plotseguimientoestados>
+        <productosproyecto>Projektin tuotteet</productosproyecto>
+        <descproductos>Tuotteiden kuvaus</descproductos>
+        <actionfacturar>Lasku</actionfacturar>
+        <msgfacturar>Haluatko laskuttaa projektin?</msgfacturar>
+        <errorfacturar>Tästä projektista on jo lasku</errorfacturar>
+        <okfacturar>Projekti on laskutettu oikein</okfacturar>
+        <addseguimientos>Jäljittämisestä</addseguimientos>
+        <addactas>Ennätys</addactas>
+        <addcontactos>Kosketus</addcontactos>
+        <addagenda>Tapahtuma</addagenda>
+        <resumentareasproductos>Yhteenveto tehtävistä ja tuotteista</resumentareasproductos>
+        <presupuestosdata>Hankkeen budjetit</presupuestosdata>
+    </proyectos>
+    <documentos>
+        <list>Luettelo asiakirjoista</list>
+        <create>Uusi asiakirja</create>
+        <formview>Asiakirjan yksityiskohdat</formview>
+        <forminsert>Uuden asiakirjan rekisteröiminen</forminsert>
+        <formupdate>Asiakirjan muokkaaminen</formupdate>
+        <defaultdata>Asiakirjan tiedot</defaultdata>
+    </documentos>
+    <partes>
+        <list>Osaluettelo</list>
+        <create>Uusi osa</create>
+        <formview>Osan yksityiskohdat</formview>
+        <forminsert>Uuden osan rekisteröinti</forminsert>
+        <formupdate>Osan muutos</formupdate>
+        <defaultdata>Osatiedot</defaultdata>
+        <horasfact>Laskutustunnit</horasfact>
+        <preciohora>Hinta / tunti</preciohora>
+        <liquidar>Likvidoida</liquidar>
+        <dateliq>Päivämäärä liq.</dateliq>
+        <msgliquidar>Haluatko selvittää valitut osat?</msgliquidar>
+        <msgerror>Sinun on valittava luettelossa osat, jotka haluat asettaa</msgerror>
+        <fechainiliq>Varattu päivämäärä</fechainiliq>
+        <plotseguimientotop10>10 asiakasta, joilla on enemmän osia viime vuodesta</plotseguimientotop10>
+        <plotseguimiento12meses>Laskutus osista viime vuodesta</plotseguimiento12meses>
+    </partes>
+    <usuarios>
+        <list>Käyttäjäluettelo</list>
+        <create>Uusi käyttäjä</create>
+        <formview>Käyttäjän tiedot</formview>
+        <forminsert>Uuden käyttäjän rekisteröinti</forminsert>
+        <formupdate>Käyttäjän muokkaaminen</formupdate>
+        <personaldata>Käyttäjätiedot</personaldata>
+        <entrada>Merkintä</entrada>
+        <salida>Ulostulo</salida>
+        <dias>Päivää</dias>
+        <logged>Kytketty</logged>
+        <password2>Toista näppäin</password2>
+        <errorpassword>Annetut näppäimet eivät täsmää</errorpassword>
+        <contacto>Kosketus</contacto>
+        <sincontacto>[Ei liittyvää yhteyttä]</sincontacto>
+        <permdata>Luvat hakemuksen perusteella</permdata>
+        <allow>Sallia</allow>
+        <deny>Jätteiden</deny>
+        <groupsdata>Käyttäjäryhmät</groupsdata>
+        <pop3host>POP3-palvelin</pop3host>
+        <pop3delete>Poista aiemmat palvelinviestit</pop3delete>
+        <pop3days>päivää</pop3days>
+        <smtphost>SMTP-palvelin</smtphost>
+        <emailprivated>Tämä tili on yksityinen (vain minulla on käyttöoikeus)</emailprivated>
+        <emaildefault>Oletustili (jota en käyttänyt eniten)</emaildefault>
+        <emaildisabled>Poista tämä sähköpostitili käytöstä</emaildisabled>
+        <emaildelete>Poista tämä sähköpostitili (tiedot menetetään ikuisesti)</emaildelete>
+        <emailsignatureold>Nykyinen allekirjoitus</emailsignatureold>
+        <emailsignaturenew>Uusi allekirjoitus</emailsignaturenew>
+        <correonew>Uusi posti</correonew>
+        <addmetocc>Lisää minut CC: ksi kaikkiin lähettämiin sähköposteihin</addmetocc>
+        <defaultcrt>Aktivoi oletuksena vastaanoton vahvistuspyyntö</defaultcrt>
+        <gcalendar>Google-kalenteri</gcalendar>
+        <prefgcalendar>Kalenterin synkronointi Google-kalenteripalvelun kanssa</prefgcalendar>
+        <prefgcalendar2>Tämän vaihtoehdon avulla voit käyttää SaltOS: n ja Google-kalenterin kalenteria pitämällä tiedot päivitettyinä automaattisesti ja huolehtimatta siitä, että sinun on kopioitava tietoja kalenterista toiseen</prefgcalendar2>
+        <emailgcalendar>Gmail-sähköpostitili</emailgcalendar>
+        <tokengcalendar>Käyttöoikeus</tokengcalendar>
+        <feedstitle>Määritä syötteet, jotka haluat lukea SaltOSista (RSS 1.0, RSS 2.0 ja Atom 1.0)</feedstitle>
+        <url>URL-</url>
+        <title>Otsikko</title>
+        <description>Kuvaus</description>
+        <image>Kuva</image>
+        <test>Yrittää</test>
+        <add>Lisätä</add>
+        <feedslist>Luettelo konfiguroiduista RSS-syötteistä</feedslist>
+        <feeds_old>Konfiguroidut syötteet</feeds_old>
+        <feeds_new>Uusi syöte</feeds_new>
+        <lowerdisabled>vammaiset</lowerdisabled>
+        <singrupo>[Ilman ryhmää]</singrupo>
+        <sinaplicacion>[Ilman hakemusta]</sinaplicacion>
+        <registro>Rekisteröinti</registro>
+        <sinregistro>[Ilman rekisteröintiä]</sinregistro>
+        <showdetalles>[Katso yksityiskohdat]</showdetalles>
+        <hidedetalles>[Piilota tiedot]</hidedetalles>
+        <appsregsdata>Rekisteröintiluvat</appsregsdata>
+    </usuarios>
+    <epigrafes>
+        <list>Luettelo otsakkeista</list>
+        <create>Uusi otsikko</create>
+        <formview>Yksityiskohta otsikosta</formview>
+        <forminsert>Uuden otsikon rekisteröinti</forminsert>
+        <formupdate>Otsikon muuttaminen</formupdate>
+        <defaultdata>Yksityiskohdat otsikosta</defaultdata>
+    </epigrafes>
+    <estados>
+        <list>Luettelo valtioista</list>
+        <create>Uusi osavaltio</create>
+        <formview>Valtion yksityiskohta</formview>
+        <forminsert>Uuden valtion rekisteröinti</forminsert>
+        <formupdate>Tilamuutos</formupdate>
+        <defaultdata>Valtion tiedot</defaultdata>
+        <activo>Aktiivinen</activo>
+    </estados>
+    <grupos>
+        <list>Ryhmäluettelo</list>
+        <create>Uusi ryhmä</create>
+        <formview>Ryhmän yksityiskohdat</formview>
+        <forminsert>Uuden ryhmän rekisteröinti</forminsert>
+        <formupdate>Ryhmän muokkaaminen</formupdate>
+        <defaultdata>Ryhmätiedot</defaultdata>
+        <permdata>Luvat hakemuksen perusteella</permdata>
+        <allow>Sallia</allow>
+        <deny>Jätteiden</deny>
+        <showdetalles>[Katso yksityiskohdat]</showdetalles>
+        <hidedetalles>[Piilota tiedot]</hidedetalles>
+    </grupos>
+    <formaspago>
+        <list>Luettelo maksutavoista</list>
+        <create>Uusi maksutapa</create>
+        <formview>Maksutavan yksityiskohdat</formview>
+        <forminsert>Uuden maksutavan rekisteröinti</forminsert>
+        <formupdate>Maksutavan muuttaminen</formupdate>
+        <defaultdata>Maksutavan tiedot</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>Luettelo kustannuksista</list>
+        <create>Uusi kustannus</create>
+        <formview>Menojen yksityiskohdat</formview>
+        <forminsert>Uuden kustannuksen rekisteröinti</forminsert>
+        <formupdate>Kustannusten muuttaminen</formupdate>
+        <defaultdata>Kuluttavat tiedot</defaultdata>
+        <pagadopor>Kassanhoitaja</pagadopor>
+        <liquidar>Likvidoida</liquidar>
+        <dateliq>Päivämäärä liq.</dateliq>
+        <msgliquidar>Haluatko maksaa valitut kulut?</msgliquidar>
+        <msgerror>Sinun on valittava luettelosta kulut, jotka haluat maksaa</msgerror>
+        <trimestrereg>Leikata. merkintä</trimestrereg>
+        <fechainireg>Tulopäivä</fechainireg>
+        <trimestreliq>Leikata. selvitystilaan</trimestreliq>
+        <fechainiliq>Varattu päivämäärä</fechainiliq>
+        <totalliquidar>Maksatut kulut ovat yhteensä:</totalliquidar>
+        <plotseguimientotop10>Kymmenen toimittajaa, joiden liikevaihto on viime vuonna korkein</plotseguimientotop10>
+        <plotseguimiento12meses>Viime vuoden kulut</plotseguimiento12meses>
+        <sinpagador>[Ilman maksajaa]</sinpagador>
+        <vencimientos_old>Erääntyminen</vencimientos_old>
+        <vencimientos_new>Uudet maturiteetit</vencimientos_new>
+        <fechavencimiento>Viimeinen käyttöpäivämäärä</fechavencimiento>
+        <pagado>Maksettu</pagado>
+        <fechapagado>Maksupäivä</fechapagado>
+    </gastos>
+    <facturas>
+        <list>Luettelo laskuista</list>
+        <create>Uusi lasku</create>
+        <formview>Laskun yksityiskohdat</formview>
+        <forminsert>Uuden laskun rekisteröinti</forminsert>
+        <formupdate>Laskun muutos</formupdate>
+        <defaultdata>Laskutiedot</defaultdata>
+        <errorfac101>Vain viimeinen lasku voidaan avata</errorfac101>
+        <errorfac103>Suljettua laskua ei voi poistaa</errorfac103>
+        <numfacxxx>Laskun numero</numfacxxx>
+        <numalbxxx>Rahtikirjan numero</numalbxxx>
+        <fechaemision>Antopäivä</fechaemision>
+        <titular>Otsikko</titular>
+        <baseimponible>Verotettava perusta</baseimponible>
+        <totalapagar>Maksettava yhteensä</totalapagar>
+        <plotseguimientotop10>Kymmenen asiakasta, joilla on viime vuoden suurin liikevaihto</plotseguimientotop10>
+        <plotseguimiento12meses>Viime vuoden laskutus</plotseguimiento12meses>
+        <concepts_old>Käsitteet</concepts_old>
+        <concepts_new>Uudet käsitteet</concepts_new>
+        <products_old>Tuottaa</products_old>
+        <products_new>Uudet tuotteet</products_new>
+        <vencimientos_old>Erääntyminen</vencimientos_old>
+        <vencimientos_new>Uudet maturiteetit</vencimientos_new>
+        <fechavencimiento>Viimeinen käyttöpäivämäärä</fechavencimiento>
+        <fechacobrado>Keräyspäivä</fechacobrado>
+        <clientdata>Asiakastiedot</clientdata>
+        <vencimientosfactura>Tämän laskun eräpäivät</vencimientosfactura>
+        <vencimientosalbaran>Tämän toimitustodistuksen eräpäivät</vencimientosalbaran>
+        <vencimientoscobrado>Kerättyä kenttää on muokattu käyttämällä maturiteettitietoja</vencimientoscobrado>
+    </facturas>
+    <prioridades>
+        <list>Ensisijaisuusluettelo</list>
+        <create>Uusi prioriteetti</create>
+        <formview>Ensisijaiset yksityiskohdat</formview>
+        <forminsert>Uuden prioriteetin lisääminen</forminsert>
+        <formupdate>Prioriteettimuutos</formupdate>
+        <defaultdata>Prioriteettitiedot</defaultdata>
+    </prioridades>
+    <agenda>
+        <list>Luettelo tapahtumista</list>
+        <create>Uusi tapahtuma</create>
+        <formview>Tapahtuman yksityiskohta</formview>
+        <forminsert>Uuden tapahtuman rekisteröinti</forminsert>
+        <formupdate>Tapahtuman muokkaaminen</formupdate>
+        <defaultdata>Tapahtumatiedot</defaultdata>
+        <otrasfechas>Muut päivämäärät</otrasfechas>
+        <todoseventos>[Kaikki tapahtumat]</todoseventos>
+        <todoayer>Eiliset tapahtumat</todoayer>
+        <todohoy>Tämän päivän tapahtumat</todohoy>
+        <todomanana>Huomisen tapahtumat</todomanana>
+        <todosemana>Viikon tapahtumat</todosemana>
+        <todomes>Kuukauden tapahtumat</todomes>
+        <todoano>Vuoden tapahtumat</todoano>
+        <usersdata>Määritetyt käyttäjät</usersdata>
+        <asignadoa>Määritetty</asignadoa>
+        <notifydelay>Ilmoittaa</notifydelay>
+        <notifysign>tunti / s</notifysign>
+        <notifydstart>Aloitusilmoitus vastaanotettu</notifydstart>
+        <notifydstop>Lopullinen ilmoitus saatu</notifydstop>
+        <notifyantes>Ennen</notifyantes>
+        <notifydespues>Sitten</notifydespues>
+        <notifyprev>Tapahtumaa edeltävä ilmoitus</notifyprev>
+        <notifypost>Tapahtuman valmistunut ilmoitus</notifypost>
+        <notifyclear>Ilmoitukset</notifyclear>
+        <notifytip>Tyhjennä ilmoitukset</notifytip>
+        <notifyclearok>Käynnistetyt tapahtumat:</notifyclearok>
+        <notifyclearko>Ei odottavia tapahtumia uudelleenkäynnistystä varten</notifyclearko>
+        <calendar>Tapahtumakalenteri</calendar>
+        <prevmonth>Edellinen kuukausi</prevmonth>
+        <currentmonth>Nykyinen kuukausi</currentmonth>
+        <nextmonth>Ensi kuussa</nextmonth>
+        <today>Tänään</today>
+        <yesterday>Eilen</yesterday>
+        <tomorrow>Huomenna</tomorrow>
+        <continue>Jatkuu ...</continue>
+        <by>mennessä</by>
+        <calendarinfo>Näytetään tiedot tähän mennessä:</calendarinfo>
+        <add>Lisää tapahtuma</add>
+        <gcalendar>Google-kalenteri</gcalendar>
+        <gcalendartip>Synkronoi tapahtumat SaltOS: n ja Google-kalenterin välillä</gcalendartip>
+        <notgcalendaremail>Et ole määrittänyt Google-kalenteritiliäsi asetuksissa</notgcalendaremail>
+        <invalidgcalendartoken>Google-kalenteritilisi käyttöoikeustiedot ovat vääriä</invalidgcalendartoken>
+        <requestgcalendartoken>Napsauta tätä saadaksesi käyttöoikeustunnuksen</requestgcalendartoken>
+        <insertgcalendar>Google-kalenteriin luodut SaltOS-tapahtumat:</insertgcalendar>
+        <updategcalendar>SaltOS-tapahtumat päivitettiin Google-kalenterissa:</updategcalendar>
+        <insertsaltos>SaltOSissa luodut Google-kalenteritapahtumat:</insertsaltos>
+        <updatesaltos>Päivitetyt Google-kalenteritapahtumat SaltOS: ssa:</updatesaltos>
+        <notinsertupdate>Päivitettäviä tapahtumia ei ole</notinsertupdate>
+        <expand>Laajentaa</expand>
+        <expandtip>Laajenna näyttääksesi kalenteritapahtumien yksityiskohdat</expandtip>
+        <collapse>Sopimus</collapse>
+        <collapsetip>Pienennä piilottaaksesi kalenteritapahtumien yksityiskohdat</collapsetip>
+        <loadingsmall>Ladataan ...</loadingsmall>
+    </agenda>
+    <proveedores>
+        <list>Palveluntarjoajaluettelo</list>
+        <create>Uusi palveluntarjoaja</create>
+        <formview>Toimittajan yksityiskohdat</formview>
+        <forminsert>Uuden palveluntarjoajan rekisteröinti</forminsert>
+        <formupdate>Toimittajan muutos</formupdate>
+        <defaultdata>Toimittajan tiedot</defaultdata>
+        <plotseguimiento12meses>Palveluntarjoajan viime vuoden kulut</plotseguimiento12meses>
+        <cuentacorriente>Tili tarkistetaan</cuentacorriente>
+        <cuentacontable>Kirjanpito-tili</cuentacontable>
+        <diapago>Palkkapäivä</diapago>
+        <gastosdata>Palveluntarjoajiin liittyvät kulut</gastosdata>
+        <contactdata>Toimittajien yhteystiedot</contactdata>
+        <nombrecomercial>Kaupallinen nimi</nombrecomercial>
+        <nombrefiscal>Verollinen nimi</nombrefiscal>
+        <add>Lisää palveluntarjoaja</add>
+    </proveedores>
+    <actas>
+        <list>Minuutin luettelo</list>
+        <create>Uusi ennätys</create>
+        <formview>Pöytäkirjan yksityiskohta</formview>
+        <forminsert>Uuden tietueen rekisteröinti</forminsert>
+        <formupdate>Pöytäkirjan muuttaminen</formupdate>
+        <defaultdata>Minuutin tiedot</defaultdata>
+        <dstart>Aloittamista</dstart>
+        <dstop>Pää</dstop>
+        <asistentes>Osallistujat</asistentes>
+        <temas>Aiheista</temas>
+        <aceptados>Hyväksytyt</aceptados>
+        <cancelados>Peruttu</cancelados>
+        <pendientes>Korvakorut</pendientes>
+        <add>Lisää minuutteja</add>
+    </actas>
+    <profile>
+        <formupdate>Oma profiili</formupdate>
+        <oldpassword>Vanha avain</oldpassword>
+        <newpassword>Uusi salasana</newpassword>
+        <newpassword2>Toista näppäin</newpassword2>
+        <erroroldpassword>Vanha avain on väärin</erroroldpassword>
+        <errornewpassword>Annetut näppäimet eivät täsmää</errornewpassword>
+        <errornewpassword2>Uuden avaimen on oltava monimutkaisempi</errornewpassword2>
+        <prefgeneral>Yleiset asetukset</prefgeneral>
+        <cambioclave>Vaihda henkilökohtainen salasanasi</cambioclave>
+        <general>Yleinen</general>
+        <title_correo_old>Määritä POP3-sähköpostitili käyttäjällesi</title_correo_old>
+        <pop3host>POP3-palvelin</pop3host>
+        <pop3delete>Poista aiemmat palvelinviestit</pop3delete>
+        <pop3days>päivää</pop3days>
+        <smtphost>SMTP-palvelin</smtphost>
+        <emailprivated>Tämä tili on yksityinen (vain minulla on käyttöoikeus)</emailprivated>
+        <emaildefault>Oletustili (jota en käyttänyt eniten)</emaildefault>
+        <emaildisabled>Poista tämä sähköpostitili käytöstä</emaildisabled>
+        <emaildelete>Poista tämä sähköpostitili (tiedot menetetään ikuisesti)</emaildelete>
+        <emailsignatureold>Nykyinen allekirjoitus</emailsignatureold>
+        <emailsignaturenew>Uusi allekirjoitus</emailsignaturenew>
+        <correonew>Uusi posti</correonew>
+        <title_correo_new>Asenna käyttäjällesi uusi POP3-sähköpostitili</title_correo_new>
+        <gcalendar>Google-kalenteri</gcalendar>
+        <prefgcalendar>Kalenterin synkronointi Google-kalenteripalvelun kanssa</prefgcalendar>
+        <prefgcalendar2>Tämän vaihtoehdon avulla voit käyttää SaltOS: n ja Google-kalenterin kalenteria pitämällä tiedot päivitettyinä automaattisesti ja huolehtimatta siitä, että sinun on kopioitava tietoja kalenterista toiseen</prefgcalendar2>
+        <emailgcalendar>Gmail-sähköpostitili</emailgcalendar>
+        <tokengcalendar>Käyttöoikeus</tokengcalendar>
+        <addmetocc>Lisää minut CC: ksi kaikkiin lähettämiin sähköposteihin</addmetocc>
+        <defaultcrt>Aktivoi oletuksena vastaanoton vahvistuspyyntö</defaultcrt>
+        <feedstitle>Määritä syötteet, jotka haluat lukea SaltOSista (RSS 1.0, RSS 2.0 ja Atom 1.0)</feedstitle>
+        <url>URL-</url>
+        <title>Otsikko</title>
+        <description>Kuvaus</description>
+        <image>Kuva</image>
+        <test>Yrittää</test>
+        <add>Lisätä</add>
+        <feedslist>Luettelo konfiguroiduista RSS-syötteistä</feedslist>
+        <feeds_old>Konfiguroidut syötteet</feeds_old>
+        <feeds_new>Uusi syöte</feeds_new>
+        <lowerdisabled>vammaiset</lowerdisabled>
+        <quick>Pikavalikko</quick>
+        <prefquick>Määritä tässä ylävalikossa oleva pikavalikko</prefquick>
+        <sinaplicacion>[Ilman hakemusta]</sinaplicacion>
+        <quick_button_f1>Ensimmäinen painike (F1)</quick_button_f1>
+        <quick_button_f2>Toinen painike (F2)</quick_button_f2>
+        <quick_button_f3>Kolmas painike (F3)</quick_button_f3>
+        <quick_button_f4>Neljäs painike (F4)</quick_button_f4>
+        <quick_button_f5>Viides painike (F5)</quick_button_f5>
+        <quick_button_f6>Kuudes painike (F6)</quick_button_f6>
+        <quick_button_f7>Seitsemäs painike (F7)</quick_button_f7>
+        <quick_button_f8>Kahdeksas painike (F8)</quick_button_f8>
+        <quick_button_f9>Yhdeksäs painike (F9)</quick_button_f9>
+        <quick_button_f10>Kymmenes painike (F10)</quick_button_f10>
+        <quick_button_f11>Yhdestoista painike (F11)</quick_button_f11>
+        <quick_button_f12>Kahdestoista painike (F12)</quick_button_f12>
+        <folderstab>Käyttäjäkansiot</folderstab>
+        <folderspref>Asenna käyttäjälaatikot tähän ja jätä sitten haluamasi</folderspref>
+        <newfolder>Uusi käyttäjälaatikko</newfolder>
+        <withoutparent>[Ilman kansiota]</withoutparent>
+        <inparentfolder>ja roikkuu kansiosta</inparentfolder>
+        <namefolder>Kansion nimi</namefolder>
+        <parentfolder>Ripusta kansiosta</parentfolder>
+    </profile>
+    <maincfg>
+        <formupdate>Kokoonpano</formupdate>
+        <general>Yleinen</general>
+        <title_general>Määritä joitain yleisiä sovellusparametreja</title_general>
+        <applicationtitle>Sovelluksen otsikko</applicationtitle>
+        <plotlistsize>Listausten grafiikan koko</plotlistsize>
+        <plotformsize>Grafiikan koko lomakkeissa</plotformsize>
+        <small>Pieni</small>
+        <medium>Keskikokoinen</medium>
+        <big>Suuri</big>
+        <agendainterval>Etsi kalenteri-ilmoituksia jokaisesta</agendainterval>
+        <inboxinterval>Tarkista, onko uusia sähköposteja jokaisesta</inboxinterval>
+        <outboxinterval>Tarkista tulostelokero jokainen</outboxinterval>
+        <feedsinterval>Etsi uusia viestejä jokaisesta</feedsinterval>
+        <feedstimeout>Unohda poistetut syötteet</feedstimeout>
+        <sessioninterval>Tarkista uloskirjautumisilmoitus joka kerran</sessioninterval>
+        <sessionwarning>Varoitus uloskirjautumisesta ennen</sessionwarning>
+        <indexinginterval>Hakemisto uusia tiedostoja jokainen</indexinginterval>
+        <integrityinterval>Tarkista eheys jokaisesta</integrityinterval>
+        <purgeinterval>Puhdista tiedot jokainen</purgeinterval>
+        <emailsupport>Sähköposti teknistä tukea varten</emailsupport>
+        <segundos>sekuntia</segundos>
+        <dias>päivää</dias>
+        <title_logo>Määritä pdf-tiedostoissa käytettävä logo, sijainti, koko ja värit</title_logo>
+        <logo>Logo</logo>
+        <logoleft>Logon X sijainti</logoleft>
+        <logotop>JA</logotop>
+        <logowidth>Leveys</logowidth>
+        <logoheight>Korkea</logoheight>
+        <logofile>Nykyinen logotiedosto</logofile>
+        <logofilenew>Uusi tiedosto (vain JPEG)</logofilenew>
+        <colorline>Linjojen väri</colorline>
+        <colortext1>Arvopaperit</colortext1>
+        <colortext2>Tekstien</colortext2>
+        <title_correo>Määritä joitain yleisiä parametreja sähköpostien lähettämiseen SaltOSista</title_correo>
+        <cuentasupport>Lähtevän postin tuki</cuentasupport>
+        <cuentaincidencias>Lähteviä postitapahtumat</cuentaincidencias>
+        <water>Vesileimat</water>
+        <title_water>Määritä pdf-tiedostoissa käytettävät vesileimat</title_water>
+        <wateractas>Pöytäkirja: Teksti</wateractas>
+        <waterpartes>Osat: Teksti</waterpartes>
+        <waterfacturas>Laskut: Teksti</waterfacturas>
+        <wateralbaranes>Toimitusilmoitukset: Teksti</wateralbaranes>
+        <waterpresupuestos>Budjetit: Teksti</waterpresupuestos>
+        <waterclientes>Asiakkaat: Teksti</waterclientes>
+        <waterproyectos>Projektit: Teksti</waterproyectos>
+        <waterposiblescli>Mahdolliset asiakkaat: Teksti</waterposiblescli>
+        <watercorreo>Sähköposti: Teksti</watercorreo>
+        <waterfeeds>Syötteet: Teksti</waterfeeds>
+        <emailasync>Käytä asynkronista lähettämistä (nopeammin)</emailasync>
+        <accounting>Kirjanpito</accounting>
+        <title_accounting>Määritä globaalit tilitiedot täällä</title_accounting>
+        <accounting_currency>Valuutta</accounting_currency>
+        <accounting_iva_name>Veronimi (lisätty)</accounting_iva_name>
+        <accounting_irpf_name>Veronimi (vähennetty)</accounting_irpf_name>
+        <accounting_value>Oletusarvo (vain jos sitä käytetään)</accounting_value>
+        <applications_config>Sovellukset</applications_config>
+        <config_tabs>Asetukset-välilehdet</config_tabs>
+        <default_values>Oletusarvot</default_values>
+        <configuracion_presupuestos>Budjettien kokoonpano</configuracion_presupuestos>
+        <configuracion_agenda>Aikataulun konfigurointi</configuracion_agenda>
+        <configuracion_incidencias>Tapahtuma-asetukset</configuracion_incidencias>
+        <configuracion_facturas>Laskun määritys</configuracion_facturas>
+        <configuracion_gastos>Kustannusten kokoonpano</configuracion_gastos>
+        <show_tab_objetivos_presupuesto>Näytä kohteet</show_tab_objetivos_presupuesto>
+        <show_tab_condiciones_presupuesto>Näytä ehdot</show_tab_condiciones_presupuesto>
+        <show_tab_funcional_presupuesto>Näytä toiminnallinen ehdotus</show_tab_funcional_presupuesto>
+        <show_tab_tecnica_presupuesto>Näytä tekninen tarjous</show_tab_tecnica_presupuesto>
+        <show_tab_info_adicional_presupuesto>Näytä lisätiedot</show_tab_info_adicional_presupuesto>
+        <show_tab_tareas_presupuesto>Näytä tehtävät</show_tab_tareas_presupuesto>
+        <show_tab_productos_presupuesto>Näytä tuotteet</show_tab_productos_presupuesto>
+        <sin_configurar>[Ei asetettu]</sin_configurar>
+        <filtro_grupo_usuarios_incidencias>Näytä ryhmän käyttäjät käyttäjäluetteloissa</filtro_grupo_usuarios_incidencias>
+        <filtro_grupo_usuarios_implicados_incidencias>Ryhmä mukana</filtro_grupo_usuarios_implicados_incidencias>
+        <filtro_grupo_usuarios_asignados_incidencias>Määritetty ryhmä</filtro_grupo_usuarios_asignados_incidencias>
+    </maincfg>
+    <about>
+        <formupdate>Tietoja SaltOS: sta</formupdate>
+        <copyright>Tätä ohjelmistoa jaellaan GPL-3.0 -lisenssin ehtojen mukaisesti:</copyright>
+        <components>Tämä ohjelmisto käyttää seuraavia komponentteja:</components>
+        <server_base>Tukipalvelin:</server_base>
+        <php_plugins>PHP-laajennukset:</php_plugins>
+        <javascript_base>Javascript-pohja:</javascript_base>
+        <bootstrap_plugins>Bootstrap-laajennukset:</bootstrap_plugins>
+        <jquery_plugins>JQuery-laajennukset:</jquery_plugins>
+        <javascript_plugins>Javascript-laajennukset:</javascript_plugins>
+        <other_plugins>Muut laajennukset:</other_plugins>
+        <server_plugins>Palvelimen laajennukset:</server_plugins>
+        <vxinfo>Huomaa: (*) Jotkut projektit eivät määrittele käyttämänsä käyttöoikeuden tiettyä versiota</vxinfo>
+        <license>Lisenssi</license>
+        <game>Peli</game>
+        <licensetitle>Alla on lisenssin laillinen teksti</licensetitle>
+        <gametitle>Jos olet saavuttanut tämän näytön, ansaitset tauon. Voit pelata vähän !!!</gametitle>
+        <translators>Käännökset</translators>
+        <developers>Kehittäjät</developers>
+        <unavailable>Yhteystietoja ei ole saatavana. Ota yhteyttä kehittäjään saadaksesi kysymyksiä tai ehdotuksia.</unavailable>
+    </about>
+    <support>
+        <formupdate>Tekninen tuki</formupdate>
+        <contact>Tekninen tuki</contact>
+        <subject>Liiketoiminta</subject>
+        <msgsendemail>Tekniseen tukeen on lähetetty sähköposti</msgsendemail>
+        <msgnotemailsupport>Sähköpostiosoitetta ei ole määritetty tekniseen tukeen</msgnotemailsupport>
+        <msgnotsubject>Mitään asiaa ei ole annettu</msgnotsubject>
+        <msgnotcomments>Kommenttia ei ole annettu</msgnotcomments>
+    </support>
+    <home>
+        <formupdate>Aloittamista</formupdate>
+        <buscar2>Etsi kaikista SaltOS-sovelluksista</buscar2>
+        <buscar3>Etsi vain tiedostoista</buscar3>
+    </home>
+    <seguimientos>
+        <list>Seurantaluettelo</list>
+        <create>Uusi seuranta</create>
+        <formview>Seurannan yksityiskohta</formview>
+        <forminsert>Uuden seurannan rekisteröinti</forminsert>
+        <formupdate>Seurantamuutos</formupdate>
+        <defaultdata>Seurantatiedot</defaultdata>
+        <add>Lisää seuranta</add>
+    </seguimientos>
+    <datacfg>
+        <formupdate>Tietokannan toimet</formupdate>
+        <export>Vienti</export>
+        <title_export>Vie koko tietokanta SQL-muodossa</title_export>
+        <desc_export>Voit tallentaa varmuuskopion koko tietokannasta</desc_export>
+        <desc2_export>Suorita tämä toimenpide ajoittain ja säilytä tiedosto turvallisessa paikassa, kuten flash-muistissa, CD-levyllä tai muussa tämän tietokoneen ulkopuolella olevassa laitteessa.</desc2_export>
+        <import>Tuonti</import>
+        <title_import>Tuo koko tietokanta SQL-muodossa</title_import>
+        <desc_import>Voit tuoda kaikki tiedot varmuuskopiosta</desc_import>
+        <desc2_import>Valitse tuotava tiedosto painamalla [Selaa] -painiketta ja paina sitten [Tuo] - painiketta ladataksesi uudet tiedot varmuuskopiosta</desc2_import>
+        <desc3_import>Tärkeää: Tuonti poistaa nykyiset sovelluksessa olevat tiedot</desc3_import>
+        <filenotfound>Tuontitiedoston sisältöä ei voitu lukea</filenotfound>
+        <filefoundok>Varmuuskopio tuotiin onnistuneesti</filefoundok>
+        <fileimporterror>Tiedoston tuonnissa tapahtui virhe</fileimporterror>
+    </datacfg>
+    <correo>
+        <list>Postituslista</list>
+        <create>Lähetä uusi viesti</create>
+        <formview>Postin yksityiskohdat</formview>
+        <forminsert>Lähetä uusi sähköposti</forminsert>
+        <formupdate>Lähetä edelleen viesti</formupdate>
+        <defaultdata>Postitiedot</defaultdata>
+        <from>Of</from>
+        <to>Että</to>
+        <cc>CC</cc>
+        <bcc>BCC</bcc>
+        <subject>Liiketoiminta</subject>
+        <attachments>Liitetiedostoja</attachments>
+        <message>Viesti</message>
+        <recibir>Vastaanottaa</recibir>
+        <recibirtip>Napsauta tätä saadaksesi uusia sähköposteja</recibirtip>
+        <enviar>Lähetä</enviar>
+        <enviartip>Napsauta tätä, kun haluat lähettää sähköpostia sähköpostiviestistä</enviartip>
+        <msgnotpop3email>Sähköpostitiliä ei ole määritetty tai aktivoitu</msgnotpop3email>
+        <msgnotpop3host>POP3-palvelinta ei ole määritetty</msgnotpop3host>
+        <msgerrorpop3email>Seuraava virhe on tapahtunut:</msgerrorpop3email>
+        <msgnewokpop3email1>Uusi sähköposti vastaanotettu postilaatikkoon</msgnewokpop3email1>
+        <msgnewokpop3email2>Saapuneet-kansioon vastaanotetut uudet sähköpostit</msgnewokpop3email2>
+        <msggotoemail>mene postitse</msggotoemail>
+        <msgnewkopop3email>Uusia sähköposteja ei ole</msgnewkopop3email>
+        <msgconnrefusedpop3email>Palvelin hylkäsi yhteyden</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>Palvelimeen ei voida muodostaa yhteyttä</msgconnerrorpop3email>
+        <msgopenerrorpop3email>Viestiä sisältävää tiedostoa ei löytynyt</msgopenerrorpop3email>
+        <msgpropietario>Vain sähköpostien omistaja voi käyttää näitä ominaisuuksia</msgpropietario>
+        <msgnotfound>Valittuja sähköposteja ei löytynyt, muokkaa suodatinta</msgnotfound>
+        <msgnumsileidos>Ne on merkitty luetuiksi:</msgnumsileidos>
+        <msgnumsiwait>Ne on merkitty odottaviksi:</msgnumsiwait>
+        <msgnumsispam>Ne on merkitty roskapostiksi:</msgnumsispam>
+        <msgnumnoleidos>Ne on merkitty lukemattomiksi:</msgnumnoleidos>
+        <msgnumnowait>Ne on merkitty odottamattomiksi:</msgnumnowait>
+        <msgnumnospam>Ne on merkitty ei-roskapostiksi:</msgnumnospam>
+        <msgnumdelete>Seuraavat on poistettu:</msgnumdelete>
+        <statenew>Uusi</statenew>
+        <actionnew>Uusi</actionnew>
+        <stateread>Luettu</stateread>
+        <statereply>Vastasi</statereply>
+        <stateforward>Välitti</stateforward>
+        <statewait>Odotettaessa</statewait>
+        <statespam>ROSKAPOSTISTA</statespam>
+        <statesent>Lähettiläs</statesent>
+        <statenotsent>Ei lähetetty</statenotsent>
+        <stateerror>Virhe</stateerror>
+        <stateall>Kaikki</stateall>
+        <todaslascuentas>[Kaikki tilit]</todaslascuentas>
+        <buttonsend>Lähetä</buttonsend>
+        <buttonsendreturnhere>Lähetä ja palaa tänne</buttonsendreturnhere>
+        <onlynew>Aivan uusi</onlynew>
+        <onlywait>Vain odottaa</onlywait>
+        <hidespam>Piilota roskapostit</hidespam>
+        <withfiles>Liitteillä</withfiles>
+        <onlyspam>Vain roskapostia</onlyspam>
+        <withoutfiles>Ei liitteitä</withoutfiles>
+        <actionwait>Odotettaessa</actionwait>
+        <actionspam>ROSKAPOSTISTA</actionspam>
+        <actionreply>Vastaus</actionreply>
+        <actionreplyall>Vastaa kaikille</actionreplyall>
+        <actionforward>Eteenpäin</actionforward>
+        <messageid>Id-viesti</messageid>
+        <fulldata>Mail zoom</fulldata>
+        <sourcedata>Postilähde</sourcedata>
+        <leidos>Luettu</leidos>
+        <wait>Odotettaessa</wait>
+        <spam>ROSKAPOSTISTA</spam>
+        <borrar>Poistaa</borrar>
+        <borrartip>Poista kaikki valitut sähköpostit</borrartip>
+        <msgleidos>Haluatko merkitä kaikki valitut sähköpostit luetuiksi / lukemattomiksi?</msgleidos>
+        <msgwait>Haluatko merkitä kaikki valitut sähköpostiviestit odottavana / olematta odottavana?</msgwait>
+        <msgspam>Haluatko merkitä kaikki valitut sähköpostit roskapostiksi / ei roskapostiksi?</msgspam>
+        <msgdelete2>Haluatko poistaa kaikki valitut sähköpostit?</msgdelete2>
+        <msgnotsendfound>Lähetettäviä viestejä ei ole odotettavissa</msgnotsendfound>
+        <msgerrorsendmail>Seuraava virhe on tapahtunut:</msgerrorsendmail>
+        <msgtotalsendmail1>Sähköposti lähetetään lähtevistä</msgtotalsendmail1>
+        <msgtotalsendmail2>Sähköpostiviestit, jotka lähetetään lähtevistä</msgtotalsendmail2>
+        <stateinbox>Merkintä</stateinbox>
+        <stateoutbox>Ulostulo</stateoutbox>
+        <onlyinbox>Vain aloittelijoille</onlyinbox>
+        <onlyoutbox>Vain lähtevät</onlyoutbox>
+        <options>Vaihtoehtoja</options>
+        <optionstip>Näytä lisää listausvaihtoehtoja</optionstip>
+        <pdfoptions>PDF-asetukset</pdfoptions>
+        <sinsubject>(ei aihetta)</sinsubject>
+        <msgfromkosendmail>Vaadittavat määritykset Lähettäjä: ei löydy</msgfromkosendmail>
+        <msgsendoksendmail>Sähköpostin lähetys onnistui</msgsendoksendmail>
+        <replysubject>Re:</replysubject>
+        <replyallsubject>Re:</replyallsubject>
+        <forwardsubject>Fwd:</forwardsubject>
+        <embeddedmessage># datetime #, # fromname # kirjoitti:</embeddedmessage>
+        <actionreplytip>Vastaa viestin lähettäjälle</actionreplytip>
+        <actionreplyalltip>Vastaa kaikille tämän viestin käyttäjille</actionreplyalltip>
+        <actionforwardtip>Lähetä edelleen tämä sähköposti muille käyttäjille</actionforwardtip>
+        <noleidos>Lukematon</noleidos>
+        <nowait>Ei vireillä</nowait>
+        <nospam>Ei roskapostia</nospam>
+        <today>Tänään</today>
+        <yesterday>Eilen</yesterday>
+        <week>Viikko</week>
+        <month>Kuukausi</month>
+        <confirmreadingto>Pyydä vahvistus vastaanottamisesta</confirmreadingto>
+        <marcarcorreos>Merkitse nimellä</marcarcorreos>
+        <message0>Viestiä</message0>
+        <message1>Viesti</message1>
+        <message2>Viestiä</message2>
+        <campos>Campos</campos>
+        <allcampos>[Kaikki kentät]</allcampos>
+        <onlyemail>Vain suuntiin</onlyemail>
+        <onlysubject>Vain asiassa</onlysubject>
+        <onlybody>Vain viestissä</onlybody>
+        <filtrarcorreos>Suodata</filtrarcorreos>
+        <priority>Prioriteetti</priority>
+        <priorityhigh>Korkea</priorityhigh>
+        <prioritynormal>Normaali</prioritynormal>
+        <prioritylow>Pudota</prioritylow>
+        <sensitivity>Herkkyys</sensitivity>
+        <sensitivitynormal>Normaali</sensitivitynormal>
+        <sensitivitypersonal>Henkilöstö</sensitivitypersonal>
+        <sensitivityprivate>Yksityinen</sensitivityprivate>
+        <sensitivityconfidential>Luottamuksellinen</sensitivityconfidential>
+        <addincidencia>Luo esiintyvyys</addincidencia>
+        <addincidenciatip>Luo tapaus tästä sähköpostiviestistä</addincidenciatip>
+        <addincidenciamsg>Haluatko luoda tapauksen tästä sähköpostiviestistä?</addincidenciamsg>
+        <addincidenciaok>Tapahtuma on luotu koodilla:</addincidenciaok>
+        <notsupportdefined>Tukisähköpostitiliä ei ole määritelty</notsupportdefined>
+        <notsupportfound>Tämä sähköposti ei sisällä tukisähköpostitiliä</notsupportfound>
+        <incidenciaexists>Tämä tapaus on jo olemassa ja sillä on koodi:</incidenciaexists>
+        <interrorsendmail>Tätä sähköpostia ei lähetetty sisäisen virheen vuoksi</interrorsendmail>
+    </correo>
+    <cuentas>
+        <list>Tilien luettelo</list>
+        <create>Uusi tili</create>
+        <formview>Tilitiedot</formview>
+        <forminsert>Uuden tilin rekisteröinti</forminsert>
+        <formupdate>Tilin muutos</formupdate>
+        <defaultdata>Tilitiedot</defaultdata>
+        <logo>Logo</logo>
+        <title_logo>Määritä laskussa käytettävä logo, sijainti, koko ja värit</title_logo>
+        <logoleft>Logon X sijainti</logoleft>
+        <logotop>JA</logotop>
+        <logowidth>Leveys</logowidth>
+        <logoheight>Korkea</logoheight>
+        <logofile>Nykyinen logotiedosto</logofile>
+        <logofilenew>Uusi tiedosto (vain JPEG)</logofilenew>
+        <colorline>Linjojen väri</colorline>
+        <colortext1>Arvopaperit</colortext1>
+        <colortext2>Tekstien</colortext2>
+        <title_facturas>Määritä tietyt laskujen laskennassa käytettävät parametrit</title_facturas>
+        <facturabool>Käyttö</facturabool>
+        <facturavalue>Oletusarvo (vain jos sitä käytetään)</facturavalue>
+        <facturapie1>Ensimmäisen rivin jalka</facturapie1>
+        <facturapie2>Toisen rivin jalka</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>Luettelo määräaikaislaskuista</list>
+        <create>Uusi määräaikainen lasku</create>
+        <formview>Yksityiskohtainen kausittainen lasku</formview>
+        <forminsert>Uuden määräajan laskun rekisteröinti</forminsert>
+        <formupdate>Määräaikaisen laskun muuttaminen</formupdate>
+        <defaultdata>Määräaikaiset laskutiedot</defaultdata>
+        <concepts_old>Käsitteet</concepts_old>
+        <concepts_new>Uudet käsitteet</concepts_new>
+        <products_old>Tuottaa</products_old>
+        <products_new>Uudet tuotteet</products_new>
+        <vencimientos_old>Erääntyminen</vencimientos_old>
+        <vencimientos_new>Uudet maturiteetit</vencimientos_new>
+        <fechavencimiento>Viimeinen käyttöpäivämäärä</fechavencimiento>
+        <diaemision>Päiväyspäivä</diaemision>
+        <diaini>Päivän välillä</diaini>
+        <dia>Päivä</dia>
+        <meses>Kuukautta</meses>
+        <liquidar>Tuottaa</liquidar>
+        <totalliquidar>Luotujen laskujen kokonaismäärä:</totalliquidar>
+        <msgerror>Sinun on valittava luettelosta luodut laskut ja käytettävä kuukausi</msgerror>
+        <msgliquidar>Haluatko luoda valitut laskut?</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>Työntekijöiden luettelo</list>
+        <create>Uusi työntekijä</create>
+        <formview>Työntekijän tiedot</formview>
+        <forminsert>Uuden työntekijän rekisteröinti</forminsert>
+        <formupdate>Työntekijän muuttaminen</formupdate>
+        <defaultdata>Tietoa työntekijöistä</defaultdata>
+        <contactdata>Työntekijöiden yhteystiedot</contactdata>
+    </empleados>
+    <denied>
+        <title>Pääsy evätty</title>
+        <short>Sinulla ei ole oikeuksia suorittaa tätä toimintoa</short>
+        <large>Järjestelmä on estänyt sovelluksen käynnistymisen, koska käyttöoikeuden tämän sovelluksen osan suorittamiseen ei ole riittävästi oikeuksia. Jos epäilet virhettä, ota yhteyttä sovelluksen järjestelmänvalvojaan</large>
+    </denied>
+    <posiblescli>
+        <list>Luettelo mahdollisista asiakkaista</list>
+        <create>Uusi potentiaalinen asiakas</create>
+        <formview>Yksityiskohta mahdollisesta asiakkaasta</formview>
+        <forminsert>Uuden potentiaalisen asiakkaan rekisteröinti</forminsert>
+        <formupdate>Mahdollisen asiakkaan muokkaaminen</formupdate>
+        <defaultdata>Mahdollisen asiakkaan tiedot</defaultdata>
+        <crearcliente>Luo asiakas</crearcliente>
+        <clientcreatedok>Uusi asiakas on luotu onnistuneesti</clientcreatedok>
+        <msgcrear>Haluatko muuntaa potentiaalisen asiakkaan?</msgcrear>
+        <agendadata>Mahdollisten asiakkaiden tapahtumat</agendadata>
+        <actasdata>Mahdollisen asiakkaan pöytäkirja</actasdata>
+        <presupuestosdata>Mahdollisen asiakkaan budjetit</presupuestosdata>
+        <facturacion>Laskutus</facturacion>
+        <iaedesc>Kuvaus IAE</iaedesc>
+        <iaecod>Cod. IAE</iaecod>
+        <contacto>Yhteyshenkilö</contacto>
+        <changedenied>Et voi poistaa käytöstä potentiaalista asiakasta, jolla on minuutteja, esityslistaa ja / tai budjetteja</changedenied>
+    </posiblescli>
+    <productos>
+        <list>Tuotelistaus</list>
+        <create>Uusi tuote</create>
+        <formview>Tuotetiedot</formview>
+        <forminsert>Uuden tuotteen rekisteröinti</forminsert>
+        <formupdate>Tuotteen muuntaminen</formupdate>
+        <defaultdata>Tuotetiedot</defaultdata>
+        <ref>Ref.</ref>
+        <peso>Paino</peso>
+        <volumen>Tilavuus</volumen>
+        <dimensiones>Mitat</dimensiones>
+        <fotofile>Nykyinen valokuva</fotofile>
+        <fotofilenew>Uusi kuva</fotofilenew>
+        <siniva eval="true">"[Ilman ".CONFIG("accounting_iva_name")."]"</siniva>
+    </productos>
+    <presupuestos>
+        <list>Budjettiluettelo</list>
+        <create>Uusi tarjous</create>
+        <formview>Budjettitiedot</formview>
+        <forminsert>Uuden budjetin lisääminen</forminsert>
+        <formupdate>Budjetin muuttaminen</formupdate>
+        <defaultdata>Budjettitiedot</defaultdata>
+        <tareaspresupuesto>Budjettitehtävät</tareaspresupuesto>
+        <desctareas>Tehtävien kuvaus</desctareas>
+        <horastotal>Tuntia yhteensä</horastotal>
+        <preciomedio>Keskimääräinen hinta</preciomedio>
+        <preciototal>Kokonaishinta</preciototal>
+        <productospresupuesto>Budjettituotteet</productospresupuesto>
+        <descproductos>Tuotteiden kuvaus</descproductos>
+        <objetivos>Budjettitavoitteet</objetivos>
+        <funcional>Toiminnallinen ehdotus</funcional>
+        <tecnica>Tekninen ehdotus</tecnica>
+        <extras>Lisätietoja</extras>
+        <condiciones>Budjettiehdot</condiciones>
+        <valoracion>Taloudellinen arvostus</valoracion>
+        <crearproyecto>Luo projekti</crearproyecto>
+        <projectexists>Tämä budjetti liittyy jo projektiin</projectexists>
+        <clientnotexists>Sinun on oltava yhteydessä asiakkaaseen (jos olet yhteydessä potentiaaliseen asiakkaaseen, tee heistä ensin asiakas)</clientnotexists>
+        <projectcreatedok>Uusi projekti on luotu onnistuneesti</projectcreatedok>
+        <msgcrear>Haluatko luoda projektin tästä budjetista?</msgcrear>
+        <agendadata>Budjettitapahtumat</agendadata>
+        <actasdata>Budjetin minuutit</actasdata>
+        <plotseguimientoestados>Budjettien ryhmittely valtion mukaan</plotseguimientoestados>
+        <resumentareasproductos>Yhteenveto tehtävistä ja tuotteista</resumentareasproductos>
+        <objetivospdf>Tavoitteet</objetivospdf>
+        <funcionalpdf>Toiminnallinen</funcionalpdf>
+        <tecnicapdf>Tekniikka</tecnicapdf>
+        <extraspdf>Tiedotus</extraspdf>
+        <condicionespdf>Ehdot</condicionespdf>
+        <actionfacturar>Lasku</actionfacturar>
+        <msgfacturar>Haluatko laskuttaa projektin?</msgfacturar>
+        <errorfacturar>Tästä tarjouksesta on jo lasku</errorfacturar>
+        <okfacturar>Budjetti on laskutettu oikein</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>Kampanjaluettelo</list>
+        <create>Uusi kampanja</create>
+        <formview>Kampanjan yksityiskohdat</formview>
+        <forminsert>Uuden kampanjan rekisteröinti</forminsert>
+        <formupdate>Kampanjan muokkaus</formupdate>
+        <defaultdata>Kampanjatiedot</defaultdata>
+        <agendadata>Kampanjatapahtumat</agendadata>
+        <presupuestosdata>Kampanjabudjetit</presupuestosdata>
+        <projectopen>Aktiiviset projektit</projectopen>
+        <projectclose>Suljetut projektit</projectclose>
+        <clientesdata>Asiakkaat rekrytoitiin</clientesdata>
+        <posiblesclidata>Mahdolliset asiakkaat</posiblesclidata>
+    </campanyas>
+    <tiposevento>
+        <list>Luettelo tapahtumatyypeistä</list>
+        <create>Uuden tyyppinen tapahtuma</create>
+        <formview>Tapahtuman tyyppi</formview>
+        <forminsert>Uuden tyyppisen tapahtuman rekisteröinti</forminsert>
+        <formupdate>Tapahtuman tyypin muuttaminen</formupdate>
+        <defaultdata>Tapahtumatyyppitiedot</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>Luettelo ennalta määritellyistä teksteistä</list>
+        <publico>Julkinen</publico>
+        <publico_desc>Kaikki voivat käyttää tätä ennalta määritettyä tekstiä</publico_desc>
+        <create>Uusi ennalta määritetty teksti</create>
+        <formview>Ennalta määritelty teksti</formview>
+        <forminsert>Uuden ennalta määritetyn tekstin lisääminen</forminsert>
+        <formupdate>Ennalta määritetyn tekstin muuttaminen</formupdate>
+        <defaultdata>Ennalta määritetyt tekstitiedot</defaultdata>
+        <sinaplicacion>[Ilman hakemusta]</sinaplicacion>
+    </textos>
+    <ficheros>
+        <list>Luettelo liitteistä</list>
+        <todaslasaplicaciones>[Kaikki sovellukset]</todaslasaplicaciones>
+    </ficheros>
+    <feeds>
+        <list>Luettelo RSS-syötteistä</list>
+        <msgnewfeedsok1>Uusi viesti ladattu</msgnewfeedsok1>
+        <msgnewfeedsok2>Uudet ladatut viestit</msgnewfeedsok2>
+        <msgnewfeedsko>Uusia viestejä ei löytynyt</msgnewfeedsko>
+        <msgmodifiedfeedsok1>Päivitetty viesti</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2>Päivitetyt viestit</msgmodifiedfeedsok2>
+        <msgnotfeeds>RSS-syötettä ei ole määritetty tai aktivoitu</msgnotfeeds>
+        <feed>RSS-syöte</feed>
+        <title>Otsikko</title>
+        <pubdate>Julkaisupäivä</pubdate>
+        <recibir>Vastaanottaa</recibir>
+        <recibirtip>Napsauta tätä saadaksesi uusia viestejä</recibirtip>
+        <todoslosfeeds>[Kaikki RSS-syötteet]</todoslosfeeds>
+        <defaultdata>Lähetä yksityiskohta</defaultdata>
+        <fulldata>Lähetä zoom</fulldata>
+        <actionwait>Odotettaessa</actionwait>
+        <statenew>Uusi</statenew>
+        <actionnew>Uusi</actionnew>
+        <statemodified>Muokattu</statemodified>
+        <statewait>Odotettaessa</statewait>
+        <stateread>Luettu</stateread>
+        <actionforward>Eteenpäin</actionforward>
+        <actionforwardtip>Lähetä edelleen tämä viesti sähköpostitse</actionforwardtip>
+        <formview>Lähetä yksityiskohta</formview>
+        <msggotofeeds>siirry RSS-syötteisiin</msggotofeeds>
+        <onlynew>Aivan uusi</onlynew>
+        <onlywait>Vain odottaa</onlywait>
+        <options>Vaihtoehtoja</options>
+        <optionstip>Näytä lisää listausvaihtoehtoja</optionstip>
+        <pdfoptions>PDF-asetukset</pdfoptions>
+        <stateall>Kaikki</stateall>
+        <today>Tänään</today>
+        <yesterday>Eilen</yesterday>
+        <week>Viikko</week>
+        <month>Kuukausi</month>
+        <marcarfeeds>Merkitse nimellä</marcarfeeds>
+        <leidos>Luettu</leidos>
+        <wait>Odotettaessa</wait>
+        <borrar>Poistaa</borrar>
+        <borrartip>Poista kaikki valitut viestit</borrartip>
+        <noleidos>Lukematon</noleidos>
+        <nowait>Ei vireillä</nowait>
+        <msgleidos>Haluatko merkitä kaikki valitut viestit luetuiksi / lukemattomiksi?</msgleidos>
+        <msgwait>Haluatko merkitä kaikki valitut viestit odottavana / ei odottavana?</msgwait>
+        <msgdelete2>Haluatko poistaa kaikki valitut viestit?</msgdelete2>
+        <msgpropietario>Vain viestien omistaja voi käyttää näitä ominaisuuksia</msgpropietario>
+        <msgnotfound>Valittuja viestejä ei löytynyt. muokkaa suodatinta</msgnotfound>
+        <msgnumsileidos>Ne on merkitty luetuiksi:</msgnumsileidos>
+        <msgnumsiwait>Ne on merkitty odottaviksi:</msgnumsiwait>
+        <msgnumnoleidos>Ne on merkitty lukemattomiksi:</msgnumnoleidos>
+        <msgnumnowait>Ne on merkitty odottamattomiksi:</msgnumnowait>
+        <msgnumdelete>Seuraavat on poistettu:</msgnumdelete>
+        <message0>Viestiä</message0>
+        <message1>Posti</message1>
+        <message2>Viestiä</message2>
+        <msgerrorfeed>Seuraavassa syötteessä on tapahtunut virhe:</msgerrorfeed>
+        <sintitle>Otsikkoa)</sintitle>
+        <post>RSS-viesti</post>
+        <filtrarfeeds>Suodata</filtrarfeeds>
+        <actioncool>Mielenkiintoinen</actioncool>
+        <statecool>Mielenkiintoinen</statecool>
+        <onlycool>Aivan mielenkiintoista</onlycool>
+        <cool>Mielenkiintoinen</cool>
+        <nocool>Ei mielenkiintoista</nocool>
+        <msgcool>Haluatko merkitä kaikki valitut viestit mielenkiintoisiksi / ei mielenkiintoisiksi?</msgcool>
+        <msgnumsicool>Ne on merkitty mielenkiintoisiksi:</msgnumsicool>
+        <msgnumnocool>Ne on merkitty mielenkiintoisiksi:</msgnumnocool>
+        <actionfavoritos>Lisää suosikkeihin</actionfavoritos>
+    </feeds>
+    <importaciones>
+        <list>Tuo tiedot</list>
+        <create>Uusi tuonti</create>
+        <formview>Tuo yksityiskohdat</formview>
+        <forminsert>Uuden tuonnin rekisteröinti</forminsert>
+        <formupdate>Tuo muutos</formupdate>
+        <defaultdata>Tuo tietoja</defaultdata>
+        <sinaplicacion>[Ilman hakemusta]</sinaplicacion>
+        <importdata>Tiedoston tiedot</importdata>
+    </importaciones>
+    <folders>
+        <notfound>Kansiota ei löytynyt</notfound>
+        <todaslasaplicaciones>[Kaikki sovellukset]</todaslasaplicaciones>
+        <deleteoffolder>Poista tästä kansiosta</deleteoffolder>
+        <defaultfolder>Henkilökohtainen kansio</defaultfolder>
+    </folders>
+    <translator>
+        <translator>Kääntäjä</translator>
+        <corrector>Korjauslukija</corrector>
+        <es>Espanjalainen</es>
+        <ca>Katalaani</ca>
+        <en>Englanti</en>
+        <pt>Portugali</pt>
+        <eu>Euskera</eu>
+        <gl>Galician</gl>
+        <fr>Ranskalainen</fr>
+        <ar>Arabialainen</ar>
+    </translator>
+    <buscador>
+        <list>Hakukone</list>
+        <todaslasaplicaciones>[Kaikki sovellukset]</todaslasaplicaciones>
+    </buscador>
+    <errorlog>
+        <formupdate>Virhelokit</formupdate>
+        <defaultdata>Tiedoston sisältö</defaultdata>
+    </errorlog>
+    <favoritos>
+        <list>Suosikkilista</list>
+        <create>Uusi suosikki</create>
+        <url>URL-</url>
+        <bookmarkexists>Url, jonka yrität tallentaa, on jo suosikki.</bookmarkexists>
+        <invalidurl>Url ei kelpaa, tarkista verkkoosoite:</invalidurl>
+        <bookmarkadded>Url-osoite on lisätty suosikkeihin</bookmarkadded>
+        <previews>Pikkukuvat</previews>
+    </favoritos>
+    <ivas>
+        <list eval="true">"Luettelointi ".CONFIG("accounting_iva_name")</list>
+        <create eval="true">"Uusi ".CONFIG("accounting_iva_name")</create>
+        <formview eval="true">"Yksityiskohta ".CONFIG("accounting_iva_name")</formview>
+        <forminsert eval="true">"Uusi rekisteröinti ".CONFIG("accounting_iva_name")</forminsert>
+        <formupdate eval="true">"Muokkaus ".CONFIG("accounting_iva_name")</formupdate>
+        <defaultdata eval="true">"Tiedot ".CONFIG("accounting_iva_name")</defaultdata>
+    </ivas>
+    <categorias>
+        <list>Luettelo luokista</list>
+        <create>Uusi luokka</create>
+        <formview>Luokan yksityiskohdat</formview>
+        <forminsert>Uuden luokan rekisteröinti</forminsert>
+        <formupdate>Luokan muuttaminen</formupdate>
+        <defaultdata>Luokkatiedot</defaultdata>
+    </categorias>
 </root>

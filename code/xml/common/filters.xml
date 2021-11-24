@@ -24,97 +24,97 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<fields ifeval="!ismobile()">
-		<width>100%</width>
-		<row>
-			<field>
-				<type>label</type>
-				<label lang="true">loadsavefilter</label>
-				<class>title center</class>
-			</field>
-		</row>
-	</fields>
-	<fields ifeval="!ismobile()">
-		<row>
-			<field>
-				<name>id_filter</name>
-				<label lang="true">savedfilters</label>
-				<type>select</type>
-				<width>240px</width>
-				<query global="page" eval="true">"SELECT '1' pos,'' value,'".LANG_ESCAPE("optionfilter")."' label UNION SELECT '2' pos,id value,nombre label FROM tbl_filters WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' ORDER BY pos ASC,label ASC"</query>
-				<value></value>
-				<class3>nofilter</class3>
-			</field>
-			<field>
-				<type>grid</type>
-				<class>helperbuttons</class>
-				<rows>
-					<row>
-						<field>
-							<type>button</type>
-							<value lang="true">loadfilter</value>
-							<tip lang="true">loadfiltertip</tip>
-							<onclick>load_filter()</onclick>
-							<icon eval="true">ICON("filter")</icon>
-							<class>nowrap</class>
-						</field>
-						<field>
-							<type>button</type>
-							<value lang="true">updatefilter</value>
-							<tip lang="true">updatefiltertip</tip>
-							<onclick>update_filter()</onclick>
-							<icon eval="true">ICON("save")</icon>
-							<class>nowrap</class>
-						</field>
-						<field>
-							<type>button</type>
-							<value lang="true">deletefilter</value>
-							<tip lang="true">deletefiltertip</tip>
-							<onclick>delete_filter()</onclick>
-							<icon eval="true">ICON("delete")</icon>
-							<class>nowrap</class>
-						</field>
-					</row>
-				</rows>
-			</field>
-		</row>
-		<row>
-			<field>
-				<name>newfilter</name>
-				<label lang="true">newfilter</label>
-				<type>text</type>
-				<width>240px</width>
-				<value></value>
-				<class3>nofilter</class3>
-			</field>
-			<field>
-				<type>grid</type>
-				<class>helperbuttons</class>
-				<rows>
-					<row>
-						<field>
-							<type>button</type>
-							<value lang="true">createfilter</value>
-							<tip lang="true">createfiltertip</tip>
-							<onclick>create_filter()</onclick>
-							<icon eval="true">ICON("save")</icon>
-							<class>nowrap</class>
-						</field>
-						<field>
-							<type>button</type>
-							<value lang="true">renamefilter</value>
-							<tip lang="true">renamefiltertip</tip>
-							<onclick>rename_filter()</onclick>
-							<icon eval="true">ICON("save")</icon>
-							<class>nowrap</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>100%</width>
-						</field>
-					</row>
-				</rows>
-			</field>
-		</row>
-	</fields>
+    <fields ifeval="!ismobile()">
+        <width>100%</width>
+        <row>
+            <field>
+                <type>label</type>
+                <label lang="true">loadsavefilter</label>
+                <class>title center</class>
+            </field>
+        </row>
+    </fields>
+    <fields ifeval="!ismobile()">
+        <row>
+            <field>
+                <name>id_filter</name>
+                <label lang="true">savedfilters</label>
+                <type>select</type>
+                <width>240px</width>
+                <query global="page" eval="true">"SELECT '1' pos,'' value,'".LANG_ESCAPE("optionfilter")."' label UNION SELECT '2' pos,id value,nombre label FROM tbl_filters WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' ORDER BY pos ASC,label ASC"</query>
+                <value></value>
+                <class3>nofilter</class3>
+            </field>
+            <field>
+                <type>grid</type>
+                <class>helperbuttons</class>
+                <rows>
+                    <row>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">loadfilter</value>
+                            <tip lang="true">loadfiltertip</tip>
+                            <onclick>load_filter()</onclick>
+                            <icon eval="true">ICON("filter")</icon>
+                            <class>nowrap</class>
+                        </field>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">updatefilter</value>
+                            <tip lang="true">updatefiltertip</tip>
+                            <onclick>update_filter()</onclick>
+                            <icon eval="true">ICON("save")</icon>
+                            <class>nowrap</class>
+                        </field>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">deletefilter</value>
+                            <tip lang="true">deletefiltertip</tip>
+                            <onclick>delete_filter()</onclick>
+                            <icon eval="true">ICON("delete")</icon>
+                            <class>nowrap</class>
+                        </field>
+                    </row>
+                </rows>
+            </field>
+        </row>
+        <row>
+            <field>
+                <name>newfilter</name>
+                <label lang="true">newfilter</label>
+                <type>text</type>
+                <width>240px</width>
+                <value></value>
+                <class3>nofilter</class3>
+            </field>
+            <field>
+                <type>grid</type>
+                <class>helperbuttons</class>
+                <rows>
+                    <row>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">createfilter</value>
+                            <tip lang="true">createfiltertip</tip>
+                            <onclick>create_filter()</onclick>
+                            <icon eval="true">ICON("save")</icon>
+                            <class>nowrap</class>
+                        </field>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">renamefilter</value>
+                            <tip lang="true">renamefiltertip</tip>
+                            <onclick>rename_filter()</onclick>
+                            <icon eval="true">ICON("save")</icon>
+                            <class>nowrap</class>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>100%</width>
+                        </field>
+                    </row>
+                </rows>
+            </field>
+        </row>
+    </fields>
 </root>

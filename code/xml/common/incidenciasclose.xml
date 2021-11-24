@@ -24,68 +24,68 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<incidenciasclose>
-		<fieldset ifeval="check_user('incidencias','menu')">
-			<width>700px</width>
-			<title lang="true">incidentclose</title>
-			<icon eval="true">ICON("form")</icon>
-			<head>
-				<field>
-					<type>label</type>
-					<label lang="true">username</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">date</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">incidencia</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">estado</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>separator</type>
-					<class>thead</class>
-					<colspan>100</colspan>
-				</field>
-			</head>
-			<row>
-				<field>
-					<type>label</type>
-					<name>usuario</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>datetime</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>incidencia</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>estado</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_view</name>
-					<type>link</type>
-					<label lang="true">view</label>
-					<width>1px</width>
-					<icon eval="true">ICON("view")</icon>
-					<class>tbody</class>
-				</field>
-			</row>
-		</fieldset>
-	</incidenciasclose>
+    <incidenciasclose>
+        <fieldset ifeval="check_user('incidencias','menu')">
+            <width>700px</width>
+            <title lang="true">incidentclose</title>
+            <icon eval="true">ICON("form")</icon>
+            <head>
+                <field>
+                    <type>label</type>
+                    <label lang="true">username</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">date</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">incidencia</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">estado</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <class>thead</class>
+                    <colspan>100</colspan>
+                </field>
+            </head>
+            <row>
+                <field>
+                    <type>label</type>
+                    <name>usuario</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>datetime</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>incidencia</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>estado</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_view</name>
+                    <type>link</type>
+                    <label lang="true">view</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("view")</icon>
+                    <class>tbody</class>
+                </field>
+            </row>
+        </fieldset>
+    </incidenciasclose>
 </root>

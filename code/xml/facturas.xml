@@ -24,402 +24,402 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>num</name>
-				<label lang="true">numfac</label>
-				<sort>true</sort>
-				<orderasc>num3</orderasc>
-				<orderdesc>num4</orderdesc>
-			</field>
-			<field>
-				<name>fecha</name>
-				<label lang="true">date</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">cliente</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>nombre2</order>
-			</field>
-			<field>
-				<name>proyecto</name>
-				<label lang="true">proyecto</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>proyecto2</order>
-			</field>
-			<field>
-				<name>base</name>
-				<label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
-				<sort>true</sort>
-				<math>
-					<func>sum()</func>
-					<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
-				</math>
-			</field>
-			<field>
-				<name>total</name>
-				<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-				<sort>true</sort>
-				<math>
-					<func>sum()</func>
-					<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
-				</math>
-			</field>
-			<field>
-				<name>cerrado</name>
-				<label lang="true">cerr</label>
-				<sort>false</sort>
-				<class>cerrado</class>
-			</field>
-			<field>
-				<name>cobrado</name>
-				<label lang="true">cobr</label>
-				<sort>false</sort>
-				<class>cobrado</class>
-			</field>
-			<field>
-				<name>cuenta</name>
-				<label lang="true">cuenta</label>
-				<sort>false</sort>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-			</cache>
-		</javascript>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>id_cliente</name>
-						<label lang="true">cliente</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_facturas")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
-						<colspan>4</colspan>
-						<onchange>update_proyectos()</onchange>
-					</field>
-					<field>
-						<name>trimestre</name>
-						<label lang="true">trimestre</label>
-						<type>select</type>
-						<width>90px</width>
-						<query eval="true">"SELECT DISTINCT YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0) value,CONCAT(YEAR(fecha),' (',TRUNCATE((MONTH(fecha)-1)/3,0)+1,')') label from tbl_facturas UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY value DESC"</query>
-						<value global="trimestre" eval="true">$trimestre=getParam("trimestre")</value>
-						<colspan>2</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_proyecto</name>
-						<label lang="true">proyecto</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
-						<colspan>4</colspan>
-					</field>
-					<field>
-						<name>cerrado</name>
-						<label lang="true">cerrado</label>
-						<type>select</type>
-						<width>90px</width>
-						<query eval="true">"SELECT '1' value,'".LANG_ESCAPE("yes")." (".mb_strtolower(LANG_ESCAPE("factura"),"UTF-8").")' label UNION SELECT '0' value,'".LANG_ESCAPE("no")." (".mb_strtolower(LANG_ESCAPE("albaran"),"UTF-8").")' label UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY label"</query>
-						<value global="cerrado" eval="true">$cerrado=getParam("cerrado")</value>
-						<colspan>2</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>fecha1</name>
-						<label lang="true">fechaini</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha1","le","fecha2")</onchange>
-					</field>
-					<field>
-						<name>fecha2</name>
-						<label lang="true">fechafin</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha2","ge","fecha1")</onchange>
-					</field>
-					<field>
-						<type>separator</type>
-						<width>10px</width>
-					</field>
-					<field>
-						<name>cobrado</name>
-						<label lang="true">cobrado</label>
-						<type>select</type>
-						<width>90px</width>
-						<query eval="true">"SELECT '1' value,'".LANG_ESCAPE("yes")."' label UNION SELECT '0' value,'".LANG_ESCAPE("no")."' label UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY label"</query>
-						<value global="cobrado" eval="true">$cobrado=getParam("cobrado")</value>
-						<colspan>2</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>filtro</name>
-						<label lang="true">otroscampos</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>4</colspan>
-					</field>
-					<field>
-						<name>id_cuenta</name>
-						<label lang="true">cuenta</label>
-						<type>select</type>
-						<width>90px</width>
-						<query eval="true">make_extra_query_with_perms("cuentas","tbl_cuentas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincuenta")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todaslascuentas")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_cuenta" eval="true">$id_cuenta=getParam("id_cuenta")</value>
-						<colspan>4</colspan>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<form>
-			<fields ifeval="!ismobile()">
-				<title lang="true">graficas</title>
-				<icon eval="true">ICON("plots")</icon>
-				<row>
-					<field>
-						<type>plot</type>
-						<width eval="true">CONFIG("plot_list_width")."px"</width>
-						<height eval="true">CONFIG("plot_list_height")."px"</height>
-						<vars>1</vars>
-						<graph>bars</graph>
-						<title lang="true">plotseguimiento12meses</title>
-						<query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) IS NULL THEN 0 ELSE ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_facturas) a LEFT JOIN tbl_facturas b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND cerrado='1' LEFT JOIN tbl_facturas_c c ON c.id_factura=b.id GROUP BY xx ORDER BY xx ASC</query>
-					</field>
-					<field>
-						<type>plot</type>
-						<width eval="true">CONFIG("plot_list_width")."px"</width>
-						<height eval="true">CONFIG("plot_list_height")."px"</height>
-						<vars>1</vars>
-						<graph>pie</graph>
-						<title lang="true">plotseguimiento12meses</title>
-						<query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) IS NULL THEN 0 ELSE ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_facturas) a LEFT JOIN tbl_facturas b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND cerrado='1' LEFT JOIN tbl_facturas_c c ON c.id_factura=b.id GROUP BY xx ORDER BY xx ASC</query>
-					</field>
-				</row>
-				<row>
-					<field>
-						<type>plot</type>
-						<width eval="true">CONFIG("plot_list_width")."px"</width>
-						<height eval="true">CONFIG("plot_list_height")."px"</height>
-						<vars>1</vars>
-						<graph>bars</graph>
-						<title lang="true">plotseguimientotop10</title>
-						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) y1 FROM tbl_facturas,tbl_facturas_c WHERE tbl_facturas.id=tbl_facturas_c.id_factura AND tbl_facturas.cerrado='1' AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
-					</field>
-					<field>
-						<type>plot</type>
-						<width eval="true">CONFIG("plot_list_width")."px"</width>
-						<height eval="true">CONFIG("plot_list_height")."px"</height>
-						<vars>1</vars>
-						<graph>pie</graph>
-						<title lang="true">plotseguimientotop10</title>
-						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) y1 FROM tbl_facturas,tbl_facturas_c WHERE tbl_facturas.id=tbl_facturas_c.id_factura AND tbl_facturas.cerrado='1' AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
-					</field>
-				</row>
-			</fields>
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_cliente'=>'','trimestre'=>'','id_proyecto'=>'','cerrado'=>'','fecha1'=>'','fecha2'=>'', 'cobrado'=>'','filtro'=>'','id_cuenta'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field ifeval="!ismobile()">
-					<type>button</type>
-					<value lang="true">excel</value>
-					<tip lang="true">exceltip</tip>
-					<onclick>excel()</onclick>
-					<icon eval="true">ICON("excel")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>button</type>
-					<value lang="true">pdf</value>
-					<tip lang="true">pdftip</tip>
-					<onclick>pdf()</onclick>
-					<icon eval="true">ICON("pdf")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field ifeval="!ismobile()">
-					<type>button</type>
-					<value lang="true">view2</value>
-					<tip lang="true">view2tip</tip>
-					<onclick>view4()</onclick>
-					<icon eval="true">ICON("viewpdf")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>button</type>
-					<value lang="true">mail</value>
-					<tip lang="true">mailtip</tip>
-					<onclick>mail()</onclick>
-					<icon eval="true">ICON("correo")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="cerrado,cobrado,page,id_cliente,fecha1,fecha2,trimestre,filtro,id_cuenta,id_proyecto" eval="true">"
-		SELECT
-			CONCAT('link:openapp(\'facturas\',',-id,'):',num2) num,id,
-			num3,num4,
-			fecha,
-			CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE
-				CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',nombre) END nombre,
-			CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE nombre END nombre2,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
-				CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',proyecto) END proyecto,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
-			base,iva2,irpf2,ROUND(base+iva2-irpf2,2) total,conceptos,
-			(SELECT COUNT(*) FROM tbl_facturas_v v WHERE v.id_factura=d.id) vencimientos,
-			(CASE cerrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cerrado,
-			(CASE cobrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cobrado,
-			CASE id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE cuenta END cuenta,
-			id action_id,CONCAT(num2,' - ',nombre) action_title,
-			CASE
-				WHEN cerrado=0 THEN 'style_opened'
-				WHEN cobrado=0 AND (SELECT COUNT(*) FROM tbl_facturas_v v WHERE v.cobrado=0 AND DATE('".current_date()."')>=v.fecha AND v.id_factura=d.id)!=0 THEN 'style_alarm'
-				WHEN cobrado=0 AND (SELECT COUNT(*) FROM tbl_facturas_v v WHERE v.id_factura=d.id)=0 THEN 'style_alarm'
-				WHEN cobrado=0 THEN 'style_closed'
-				WHEN cobrado=1 THEN ''
-			END action_style,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
-			CASE ".check_user("correo","create")." AND ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_mail,
-			CASE ".check_sql($page,"delete")." AND NOT cerrado WHEN 1 THEN 'true' ELSE 'false' END action_delete
-		FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2
-			FROM (SELECT
-					CASE num WHEN '' THEN CONCAT('".LANG_ESCAPE("albaran")." ',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('".LANG_ESCAPE("factura")." ',num) END num2,
-					CASE num WHEN '' THEN CONCAT('AA',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FA',SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num3,
-					CASE num WHEN '' THEN CONCAT('AZ',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FZ',SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num4,
-					a.*,
-					ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,
-					COUNT(b.id) conceptos,
-					e.id_usuario id_usuario,d.id_grupo id_grupo,j.nombre cuenta,p.nombre proyecto
-				FROM tbl_facturas a
-					LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id
-					LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura
-					LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-					LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-					LEFT JOIN tbl_proyectos p ON p.id=a.id_proyecto
-				GROUP BY a.id) c
-		) d
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$trimestre' OR '$trimestre'=YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)) AND (''='$cerrado' OR '$cerrado'=cerrado) AND (''='$cobrado' OR '$cobrado'=cobrado) AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,CASE a.cif WHEN '' THEN a.nombre ELSE CONCAT(a.nombre,' (',a.cif,')') END nombre_cliente,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
-					<resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
-					<concepts_old>
-						<concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto='0' AND id_factura=".abs($id)." ORDER BY id ASC"</concepts_old>
-					</concepts_old>
-					<products_old>
-						<products_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto!='0' AND id_factura=".abs($id)." ORDER BY id ASC"</products_old>
-					</products_old>
-					<vencimientos_old>
-						<vencimientos_old global="id" eval="true">"SELECT * FROM tbl_facturas_v WHERE id_factura=".abs($id)</vencimientos_old>
-					</vencimientos_old>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
-					SELECT *,a.nombre nombre,'0' cerrado,'0' cobrado,'".current_date()."' fecha,'".current_date()."' fecha2,'' num,a.id id,CASE id_formapago WHEN 0 THEN '".CONFIG('df_formaspago_facturas')."' ELSE id_formapago END id_formapago, CASE id_cuenta WHEN 0 THEN '".CONFIG('df_cuenta_facturas')."' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id='".substr(getParam("id"),7)."'":"
-					SELECT '0' id,'0' id_cliente,'0' id_proyecto,CASE (SELECT COUNT(*) FROM tbl_epigrafes) WHEN 1 THEN (SELECT id FROM tbl_epigrafes) ELSE '".CONFIG('df_epigfrafes_facturas')."' END id_epigrafe,CASE (SELECT COUNT(*) FROM tbl_formaspago) WHEN 1 THEN (SELECT id FROM tbl_formaspago) ELSE '".CONFIG('df_formaspago_facturas')."' END id_formapago,'' num,'".current_date()."' fecha,CASE (SELECT COUNT(*) FROM tbl_cuentas) WHEN 1 THEN (SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) FROM tbl_cuentas) ELSE '".CONFIG('df_cuenta_facturas')."' END id_cuenta"</default>
-					<resumen eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
-					SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".substr(getParam("id"),7)."' GROUP BY a.id) c) d":"
-					SELECT '0' id,'0.00' base,'0' iva,'0.00' iva2,'0' irpf,'0.00' irpf2,'0.00' total"</resumen>
-					<concepts_new>
-						<concepts_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>num</name>
+                <label lang="true">numfac</label>
+                <sort>true</sort>
+                <orderasc>num3</orderasc>
+                <orderdesc>num4</orderdesc>
+            </field>
+            <field>
+                <name>fecha</name>
+                <label lang="true">date</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">cliente</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>nombre2</order>
+            </field>
+            <field>
+                <name>proyecto</name>
+                <label lang="true">proyecto</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>proyecto2</order>
+            </field>
+            <field>
+                <name>base</name>
+                <label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
+                <sort>true</sort>
+                <math>
+                    <func>sum()</func>
+                    <label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
+                </math>
+            </field>
+            <field>
+                <name>total</name>
+                <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                <sort>true</sort>
+                <math>
+                    <func>sum()</func>
+                    <label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
+                </math>
+            </field>
+            <field>
+                <name>cerrado</name>
+                <label lang="true">cerr</label>
+                <sort>false</sort>
+                <class>cerrado</class>
+            </field>
+            <field>
+                <name>cobrado</name>
+                <label lang="true">cobr</label>
+                <sort>false</sort>
+                <class>cobrado</class>
+            </field>
+            <field>
+                <name>cuenta</name>
+                <label lang="true">cuenta</label>
+                <sort>false</sort>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+            </cache>
+        </javascript>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>id_cliente</name>
+                        <label lang="true">cliente</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_facturas")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
+                        <colspan>4</colspan>
+                        <onchange>update_proyectos()</onchange>
+                    </field>
+                    <field>
+                        <name>trimestre</name>
+                        <label lang="true">trimestre</label>
+                        <type>select</type>
+                        <width>90px</width>
+                        <query eval="true">"SELECT DISTINCT YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0) value,CONCAT(YEAR(fecha),' (',TRUNCATE((MONTH(fecha)-1)/3,0)+1,')') label from tbl_facturas UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY value DESC"</query>
+                        <value global="trimestre" eval="true">$trimestre=getParam("trimestre")</value>
+                        <colspan>2</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_proyecto</name>
+                        <label lang="true">proyecto</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                        <value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
+                        <colspan>4</colspan>
+                    </field>
+                    <field>
+                        <name>cerrado</name>
+                        <label lang="true">cerrado</label>
+                        <type>select</type>
+                        <width>90px</width>
+                        <query eval="true">"SELECT '1' value,'".LANG_ESCAPE("yes")." (".mb_strtolower(LANG_ESCAPE("factura"),"UTF-8").")' label UNION SELECT '0' value,'".LANG_ESCAPE("no")." (".mb_strtolower(LANG_ESCAPE("albaran"),"UTF-8").")' label UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY label"</query>
+                        <value global="cerrado" eval="true">$cerrado=getParam("cerrado")</value>
+                        <colspan>2</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>fecha1</name>
+                        <label lang="true">fechaini</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha1","le","fecha2")</onchange>
+                    </field>
+                    <field>
+                        <name>fecha2</name>
+                        <label lang="true">fechafin</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha2","ge","fecha1")</onchange>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                        <width>10px</width>
+                    </field>
+                    <field>
+                        <name>cobrado</name>
+                        <label lang="true">cobrado</label>
+                        <type>select</type>
+                        <width>90px</width>
+                        <query eval="true">"SELECT '1' value,'".LANG_ESCAPE("yes")."' label UNION SELECT '0' value,'".LANG_ESCAPE("no")."' label UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY label"</query>
+                        <value global="cobrado" eval="true">$cobrado=getParam("cobrado")</value>
+                        <colspan>2</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">otroscampos</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                        <colspan>4</colspan>
+                    </field>
+                    <field>
+                        <name>id_cuenta</name>
+                        <label lang="true">cuenta</label>
+                        <type>select</type>
+                        <width>90px</width>
+                        <query eval="true">make_extra_query_with_perms("cuentas","tbl_cuentas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincuenta")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todaslascuentas")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_cuenta" eval="true">$id_cuenta=getParam("id_cuenta")</value>
+                        <colspan>4</colspan>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <form>
+            <fields ifeval="!ismobile()">
+                <title lang="true">graficas</title>
+                <icon eval="true">ICON("plots")</icon>
+                <row>
+                    <field>
+                        <type>plot</type>
+                        <width eval="true">CONFIG("plot_list_width")."px"</width>
+                        <height eval="true">CONFIG("plot_list_height")."px"</height>
+                        <vars>1</vars>
+                        <graph>bars</graph>
+                        <title lang="true">plotseguimiento12meses</title>
+                        <query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) IS NULL THEN 0 ELSE ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_facturas) a LEFT JOIN tbl_facturas b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND cerrado='1' LEFT JOIN tbl_facturas_c c ON c.id_factura=b.id GROUP BY xx ORDER BY xx ASC</query>
+                    </field>
+                    <field>
+                        <type>plot</type>
+                        <width eval="true">CONFIG("plot_list_width")."px"</width>
+                        <height eval="true">CONFIG("plot_list_height")."px"</height>
+                        <vars>1</vars>
+                        <graph>pie</graph>
+                        <title lang="true">plotseguimiento12meses</title>
+                        <query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) IS NULL THEN 0 ELSE ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_facturas) a LEFT JOIN tbl_facturas b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND cerrado='1' LEFT JOIN tbl_facturas_c c ON c.id_factura=b.id GROUP BY xx ORDER BY xx ASC</query>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <type>plot</type>
+                        <width eval="true">CONFIG("plot_list_width")."px"</width>
+                        <height eval="true">CONFIG("plot_list_height")."px"</height>
+                        <vars>1</vars>
+                        <graph>bars</graph>
+                        <title lang="true">plotseguimientotop10</title>
+                        <query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) y1 FROM tbl_facturas,tbl_facturas_c WHERE tbl_facturas.id=tbl_facturas_c.id_factura AND tbl_facturas.cerrado='1' AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
+                    </field>
+                    <field>
+                        <type>plot</type>
+                        <width eval="true">CONFIG("plot_list_width")."px"</width>
+                        <height eval="true">CONFIG("plot_list_height")."px"</height>
+                        <vars>1</vars>
+                        <graph>pie</graph>
+                        <title lang="true">plotseguimientotop10</title>
+                        <query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) y1 FROM tbl_facturas,tbl_facturas_c WHERE tbl_facturas.id=tbl_facturas_c.id_factura AND tbl_facturas.cerrado='1' AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
+                    </field>
+                </row>
+            </fields>
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('id_cliente'=>'','trimestre'=>'','id_proyecto'=>'','cerrado'=>'','fecha1'=>'','fecha2'=>'', 'cobrado'=>'','filtro'=>'','id_cuenta'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">excel</value>
+                    <tip lang="true">exceltip</tip>
+                    <onclick>excel()</onclick>
+                    <icon eval="true">ICON("excel")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>button</type>
+                    <value lang="true">pdf</value>
+                    <tip lang="true">pdftip</tip>
+                    <onclick>pdf()</onclick>
+                    <icon eval="true">ICON("pdf")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">view2</value>
+                    <tip lang="true">view2tip</tip>
+                    <onclick>view4()</onclick>
+                    <icon eval="true">ICON("viewpdf")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>button</type>
+                    <value lang="true">mail</value>
+                    <tip lang="true">mailtip</tip>
+                    <onclick>mail()</onclick>
+                    <icon eval="true">ICON("correo")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="cerrado,cobrado,page,id_cliente,fecha1,fecha2,trimestre,filtro,id_cuenta,id_proyecto" eval="true">"
+        SELECT
+            CONCAT('link:openapp(\'facturas\',',-id,'):',num2) num,id,
+            num3,num4,
+            fecha,
+            CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE
+                CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',nombre) END nombre,
+            CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE nombre END nombre2,
+            CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
+                CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',proyecto) END proyecto,
+            CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
+            base,iva2,irpf2,ROUND(base+iva2-irpf2,2) total,conceptos,
+            (SELECT COUNT(*) FROM tbl_facturas_v v WHERE v.id_factura=d.id) vencimientos,
+            (CASE cerrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cerrado,
+            (CASE cobrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cobrado,
+            CASE id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE cuenta END cuenta,
+            id action_id,CONCAT(num2,' - ',nombre) action_title,
+            CASE
+                WHEN cerrado=0 THEN 'style_opened'
+                WHEN cobrado=0 AND (SELECT COUNT(*) FROM tbl_facturas_v v WHERE v.cobrado=0 AND DATE('".current_date()."')>=v.fecha AND v.id_factura=d.id)!=0 THEN 'style_alarm'
+                WHEN cobrado=0 AND (SELECT COUNT(*) FROM tbl_facturas_v v WHERE v.id_factura=d.id)=0 THEN 'style_alarm'
+                WHEN cobrado=0 THEN 'style_closed'
+                WHEN cobrado=1 THEN ''
+            END action_style,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+            CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+            CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
+            CASE ".check_user("correo","create")." AND ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_mail,
+            CASE ".check_sql($page,"delete")." AND NOT cerrado WHEN 1 THEN 'true' ELSE 'false' END action_delete
+        FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2
+            FROM (SELECT
+                    CASE num WHEN '' THEN CONCAT('".LANG_ESCAPE("albaran")." ',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('".LANG_ESCAPE("factura")." ',num) END num2,
+                    CASE num WHEN '' THEN CONCAT('AA',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FA',SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num3,
+                    CASE num WHEN '' THEN CONCAT('AZ',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FZ',SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num4,
+                    a.*,
+                    ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,
+                    COUNT(b.id) conceptos,
+                    e.id_usuario id_usuario,d.id_grupo id_grupo,j.nombre cuenta,p.nombre proyecto
+                FROM tbl_facturas a
+                    LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id
+                    LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura
+                    LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+                    LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+                    LEFT JOIN tbl_proyectos p ON p.id=a.id_proyecto
+                GROUP BY a.id) c
+        ) d
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$trimestre' OR '$trimestre'=YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)) AND (''='$cerrado' OR '$cerrado'=cerrado) AND (''='$cobrado' OR '$cobrado'=cobrado) AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND ".check_sql($page,"list")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <default global="id" eval="true">"SELECT *,CASE a.cif WHEN '' THEN a.nombre ELSE CONCAT(a.nombre,' (',a.cif,')') END nombre_cliente,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
+                    <resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
+                    <concepts_old>
+                        <concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto='0' AND id_factura=".abs($id)." ORDER BY id ASC"</concepts_old>
+                    </concepts_old>
+                    <products_old>
+                        <products_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto!='0' AND id_factura=".abs($id)." ORDER BY id ASC"</products_old>
+                    </products_old>
+                    <vencimientos_old>
+                        <vencimientos_old global="id" eval="true">"SELECT * FROM tbl_facturas_v WHERE id_factura=".abs($id)</vencimientos_old>
+                    </vencimientos_old>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+                    SELECT *,a.nombre nombre,'0' cerrado,'0' cobrado,'".current_date()."' fecha,'".current_date()."' fecha2,'' num,a.id id,CASE id_formapago WHEN 0 THEN '".CONFIG('df_formaspago_facturas')."' ELSE id_formapago END id_formapago, CASE id_cuenta WHEN 0 THEN '".CONFIG('df_cuenta_facturas')."' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id='".substr(getParam("id"),7)."'":"
+                    SELECT '0' id,'0' id_cliente,'0' id_proyecto,CASE (SELECT COUNT(*) FROM tbl_epigrafes) WHEN 1 THEN (SELECT id FROM tbl_epigrafes) ELSE '".CONFIG('df_epigfrafes_facturas')."' END id_epigrafe,CASE (SELECT COUNT(*) FROM tbl_formaspago) WHEN 1 THEN (SELECT id FROM tbl_formaspago) ELSE '".CONFIG('df_formaspago_facturas')."' END id_formapago,'' num,'".current_date()."' fecha,CASE (SELECT COUNT(*) FROM tbl_cuentas) WHEN 1 THEN (SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) FROM tbl_cuentas) ELSE '".CONFIG('df_cuenta_facturas')."' END id_cuenta"</default>
+                    <resumen eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+                    SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".substr(getParam("id"),7)."' GROUP BY a.id) c) d":"
+                    SELECT '0' id,'0.00' base,'0' iva,'0.00' iva2,'0' irpf,'0.00' irpf2,'0.00' total"</resumen>
+                    <concepts_new>
+                        <concepts_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
 SELECT id,concepto,unidades,descuento,precio,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto='0' AND id_factura='".substr(getParam("id"),7)."' UNION
 SELECT 'a' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'b' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
@@ -436,10 +436,10 @@ SELECT 'g' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' 
 SELECT 'h' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'i' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'j' id,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2
-						"</concepts_new>
-					</concepts_new>
-					<products_new>
-						<products_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+                        "</concepts_new>
+                    </concepts_new>
+                    <products_new>
+                        <products_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
 SELECT id,id_producto,concepto,unidades,descuento,precio,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto!='0' AND id_factura='".substr(getParam("id"),7)."' UNION
 SELECT 'a' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'b' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
@@ -456,10 +456,10 @@ SELECT 'g' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00
 SELECT 'h' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'i' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'j' id,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2
-						"</products_new>
-					</products_new>
-					<vencimientos_new>
-						<vencimientos_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+                        "</products_new>
+                    </products_new>
+                    <vencimientos_new>
+                        <vencimientos_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
 SELECT id,'".current_date()."' fecha,percent,importe FROM tbl_facturas_v WHERE id_factura='".substr(getParam("id"),7)."' UNION
 SELECT 'a' id,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'b' id,'' fecha,'0.00' percent,'0.00' importe UNION
@@ -476,22 +476,22 @@ SELECT 'g' id,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'h' id,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'i' id,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'j' id,'' fecha,'0.00' percent,'0.00' importe
-						"</vencimientos_new>
-					</vencimientos_new>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,CASE a.cif WHEN '' THEN a.nombre ELSE CONCAT(a.nombre,' (',a.cif,')') END nombre_cliente,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
-					<resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
-					<concepts_old>
-						<concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto='0' AND id_factura=".abs($id)." ORDER BY id ASC"</concepts_old>
-					</concepts_old>
-					<concepts_new>
-						<concepts_new global="id" eval="true">"
+                        "</vencimientos_new>
+                    </vencimientos_new>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <default global="id" eval="true">"SELECT *,CASE a.cif WHEN '' THEN a.nombre ELSE CONCAT(a.nombre,' (',a.cif,')') END nombre_cliente,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
+                    <resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
+                    <concepts_old>
+                        <concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto='0' AND id_factura=".abs($id)." ORDER BY id ASC"</concepts_old>
+                    </concepts_old>
+                    <concepts_new>
+                        <concepts_new global="id" eval="true">"
 SELECT 'a' id,'$id' id_factura,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'b' id,'$id' id_factura,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'c' id,'$id' id_factura,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
@@ -502,13 +502,13 @@ SELECT 'g' id,'$id' id_factura,'' concepto,'0.00' unidades,'0.00' descuento,'0.0
 SELECT 'h' id,'$id' id_factura,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'i' id,'$id' id_factura,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'j' id,'$id' id_factura,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2
-						"</concepts_new>
-					</concepts_new>
-					<products_old>
-						<products_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto!='0' AND id_factura=".abs($id)." ORDER BY id ASC"</products_old>
-					</products_old>
-					<products_new>
-						<products_new global="id" eval="true">"
+                        "</concepts_new>
+                    </concepts_new>
+                    <products_old>
+                        <products_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto!='0' AND id_factura=".abs($id)." ORDER BY id ASC"</products_old>
+                    </products_old>
+                    <products_new>
+                        <products_new global="id" eval="true">"
 SELECT 'a' id,'$id' id_factura,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'b' id,'$id' id_factura,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'c' id,'$id' id_factura,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
@@ -519,13 +519,13 @@ SELECT 'g' id,'$id' id_factura,'0' id_producto,'' concepto,'0.00' unidades,'0.00
 SELECT 'h' id,'$id' id_factura,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'i' id,'$id' id_factura,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 SELECT 'j' id,'$id' id_factura,'0' id_producto,'' concepto,'0.00' unidades,'0.00' descuento,'0.00' precio,'0.00' total2
-						"</products_new>
-					</products_new>
-					<vencimientos_old>
-						<vencimientos_old global="id" eval="true">"SELECT * FROM tbl_facturas_v WHERE id_factura=".abs($id)</vencimientos_old>
-					</vencimientos_old>
-					<vencimientos_new>
-						<vencimientos_new global="id" eval="true">"
+                        "</products_new>
+                    </products_new>
+                    <vencimientos_old>
+                        <vencimientos_old global="id" eval="true">"SELECT * FROM tbl_facturas_v WHERE id_factura=".abs($id)</vencimientos_old>
+                    </vencimientos_old>
+                    <vencimientos_new>
+                        <vencimientos_new global="id" eval="true">"
 SELECT 'a' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'b' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'c' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe UNION
@@ -536,1286 +536,1286 @@ SELECT 'g' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'h' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'i' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
-						"</vencimientos_new>
-					</vencimientos_new>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_cuenta</name>
-							<label lang="true">cuenta</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sincuenta")."' label UNION SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) value,nombre label FROM tbl_cuentas ORDER BY label"</query>
-							<focus>true</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_iva_irpf(true)</onchange>
-							<required>true</required>
-						</field>
-						<field>
-							<name>id_epigrafe</name>
-							<label lang="true">epigrafe</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id value,CONCAT('(',codigo,') ',nombre) label FROM tbl_epigrafes ORDER BY label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_formapago</name>
-							<label lang="true">formapago</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("formaspago","tbl_formaspago","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinformapago")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>40%</width>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>40%</width>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_cliente</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre_cliente</name>
-							<label lang="true">cliente</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>clientes</querycomplete>
-							<oncomplete>
-								$("#"+prefix+"id_cliente").val(ui.item.id);
-								update_proyectos();
-								update_datos();
-							</oncomplete>
-							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-						<field>
-							<name>id_proyecto</name>
-							<label lang="true">proyecto</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							</field>
-						<field>
-							<name>cif</name>
-							<label lang="true">cif</label>
-							<type>text</type>
-							<width>120px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>direccion</name>
-							<label lang="true">direccion</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre_pais</name>
-							<label lang="true">pais</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>paises</querycomplete>
-							<oncomplete>$("#"+prefix+"id_pais").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_pais</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre_provincia</name>
-							<label lang="true">provincia</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>provincias</querycomplete>
-							<filtercomplete>id_pais</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_provincia").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_provincia</name>
-							<type>hidden</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre_poblacion</name>
-							<label lang="true">poblacion</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>poblaciones</querycomplete>
-							<filtercomplete>id_provincia</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_poblacion").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_poblacion</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre_codpostal</name>
-							<label lang="true">codpostal</label>
-							<type>text</type>
-							<width>120px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>codpostales</querycomplete>
-							<filtercomplete>id_poblacion</filtercomplete>
-							<oncomplete>$("#"+prefix+"id_codpostal").val(ui.item.id);</oncomplete>
-						</field>
-						<field>
-							<name>id_codpostal</name>
-							<type>hidden</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>notas</name>
-							<label lang="true">notas</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>60px</height>
-							<colspan>3</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-				</fieldset>
-				<fieldset>
-					<width>700px</width>
-					<row>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>cerrado</name>
-							<type>checkbox</type>
-							<label lang="true">cerrado</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>fecha</name>
-							<label lang="true">fechaemision</label>
-							<type>date</type>
-							<width>90px</width>
-							<readonly>true</readonly>
-							<icon eval="true">ICON("calendar")</icon>
-						</field>
-						<field>
-							<name>num</name>
-							<label lang="true">numfac</label>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>cobrado</name>
-							<type>checkbox</type>
-							<label lang="true">cobrado</label>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>fecha2</name>
-							<label lang="true">fechacobrado</label>
-							<type>date</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<icon eval="true">ICON("calendar")</icon>
-							<colspan>3</colspan>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<resumen>
-				<fieldset>
-					<width>700px</width>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10%</width>
-							<height>0px</height>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>15%</width>
-							<height>0px</height>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<type>separator</type>
-						</field>
-						<field>
-							<type>separator</type>
-						</field>
-						<field>
-							<name>iva</name>
-							<label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-						</field>
-						<field>
-							<name>irpf</name>
-							<label eval="true">CONFIG("accounting_irpf_name")." (%)"</label>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-						</field>
-						<field>
-							<type>separator</type>
-						</field>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>base</name>
-							<label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-						</field>
-						<field>
-							<name>iva2</name>
-							<label eval="true">CONFIG("accounting_iva_name")." (".CONFIG("accounting_currency").")"</label>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-						</field>
-						<field>
-							<name>irpf2</name>
-							<label eval="true">CONFIG("accounting_irpf_name")." (".CONFIG("accounting_currency").")"</label>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-						</field>
-						<field>
-							<name>total</name>
-							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-						</field>
-					</row>
-				</fieldset>
-			</resumen>
-			<concepts_old>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">concepts_old</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">concepto</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">unid</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("dto")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<type>separator</type>
-							<colspan>100</colspan>
-							<class>thead</class>
-						</field>
-					</head>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_factura</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>concepto</name>
-							<type>textarea</type>
-							<width>400px</width>
-							<height>50px</height>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>unidades</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>precio</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>descuento</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>total2</name>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-							<class>tbody</class>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<name>delete</name>
-							<type>checkbox</type>
-							<label lang="true">delete</label>
-							<value>1</value>
-							<width>1px</width>
-							<width2>1px</width2>
-							<onchange>update_totales_factura()</onchange>
-							<icon eval="true">ICON("delete")</icon>
-							<class>tbody</class>
-							<class2>tbody</class2>
-						</field>
-					</row>
-				</fieldset>
-			</concepts_old>
-			<concepts_new>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">concepts_new</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">concepto</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">unid</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("dto")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-					</head>
-					<row>
-						<class>none</class>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_factura</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>concepto</name>
-							<type>textarea</type>
-							<width>400px</width>
-							<height>50px</height>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>unidades</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>precio</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>descuento</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>total2</name>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-							<class>tbody</class>
-						</field>
-					</row>
-					<tail>
-						<field>
-							<type>separator</type>
-						</field>
-					</tail>
-					<tail>
-						<class>helperbuttons</class>
-						<field>
-							<type>button</type>
-							<value lang="true">addconcept</value>
-							<class>left</class>
-							<class2>init_additem</class2>
-							<onclick>additem(this)</onclick>
-							<icon eval="true">ICON("add")</icon>
-						</field>
-					</tail>
-				</fieldset>
-			</concepts_new>
-			<products_old>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">products_old</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">concepto</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">unid</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("dto")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<type>separator</type>
-							<colspan>100</colspan>
-							<class>thead</class>
-						</field>
-					</head>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_factura</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_producto</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>concepto</name>
-							<type>text</type>
-							<width>400px</width>
-							<class>tbody</class>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<autocomplete>true</autocomplete>
-							<querycomplete>productos</querycomplete>
-							<oncomplete>
-								$("#"+prefix+"id_producto").val(ui.item.id);
-								$("#"+prefix+"precio").val(ui.item.precio);
-								$("#"+prefix+"descuento").val(ui.item.descuento);
-								update_totales_factura();
-							</oncomplete>
-						</field>
-						<field>
-							<name>unidades</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>precio</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>descuento</name>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>total2</name>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-							<class>tbody</class>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<name>delete</name>
-							<type>checkbox</type>
-							<label lang="true">delete</label>
-							<value>1</value>
-							<width>1px</width>
-							<width2>1px</width2>
-							<onchange>update_totales_factura()</onchange>
-							<icon eval="true">ICON("delete")</icon>
-							<class>tbody</class>
-							<class2>tbody</class2>
-						</field>
-					</row>
-				</fieldset>
-			</products_old>
-			<products_new>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">products_new</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">productos</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">unid</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("dto")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-					</head>
-					<row>
-						<class>none</class>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_factura</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_producto</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>concepto</name>
-							<type>text</type>
-							<width>400px</width>
-							<class>tbody</class>
-							<autocomplete>true</autocomplete>
-							<querycomplete>productos</querycomplete>
-							<oncomplete>
-								$("#"+prefix+"id_producto").val(ui.item.id);
-								$("#"+prefix+"precio").val(ui.item.precio);
-								$("#"+prefix+"descuento").val(ui.item.descuento);
-								update_totales_factura();
-							</oncomplete>
-						</field>
-						<field>
-							<name>unidades</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>precio</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>descuento</name>
-							<type>float</type>
-							<width>60px</width>
-							<onchange>update_totales_factura()</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>total2</name>
-							<type>text</type>
-							<width>60px</width>
-							<readonly>true</readonly>
-							<class>tbody</class>
-						</field>
-					</row>
-					<tail>
-						<field>
-							<type>separator</type>
-						</field>
-					</tail>
-					<tail>
-						<class>helperbuttons</class>
-						<field>
-							<type>button</type>
-							<value lang="true">addproduct</value>
-							<class>left</class>
-							<class2>init_additem</class2>
-							<onclick>additem(this)</onclick>
-							<icon eval="true">ICON("add")</icon>
-						</field>
-					</tail>
-				</fieldset>
-			</products_new>
-			<vencimientos_old>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">vencimientos_old</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">fechavencimiento</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("percent")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">cobrado</label>
-							<class>center bold thead</class>
-							<colspan>2</colspan>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">fechacobrado</label>
-							<class>center bold thead</class>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<type>separator</type>
-							<colspan>100</colspan>
-							<class>thead</class>
-						</field>
-					</head>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_factura</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>fecha</name>
-							<type>date</type>
-							<width>150px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-							<icon eval="true">ICON("calendar")</icon>
-						</field>
-						<field>
-							<name>percent</name>
-							<type>float</type>
-							<width>100px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_vencimientos(this)</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>importe</name>
-							<type>float</type>
-							<width>100px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_vencimientos(this)</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>cobrado</name>
-							<type>checkbox</type>
-							<label lang="true">cobrado</label>
-							<value>1</value>
-							<width>1px</width>
-							<width2>100px</width2>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-							<class2>tbody</class2>
-						</field>
-						<field>
-							<name>fecha2</name>
-							<type>date</type>
-							<width>150px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-							<icon eval="true">ICON("calendar")</icon>
-						</field>
-						<field global="id" ifeval="$id>=0">
-							<name>delete</name>
-							<type>checkbox</type>
-							<label lang="true">delete</label>
-							<value>1</value>
-							<width>1px</width>
-							<width2>1px</width2>
-							<onchange>update_vencimientos(this)</onchange>
-							<icon eval="true">ICON("delete")</icon>
-							<class>tbody</class>
-							<class2>tbody</class2>
-						</field>
-					</row>
-				</fieldset>
-			</vencimientos_old>
-			<vencimientos_new>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">vencimientos_new</title>
-					<icon eval="true">ICON("form")</icon>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">fechavencimiento</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("percent")." (%)"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
-							<class>center bold thead</class>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">cobrado</label>
-							<class>center bold thead</class>
-							<colspan>2</colspan>
-						</field>
-						<field>
-							<type>label</type>
-							<label lang="true">fechacobrado</label>
-							<class>center bold thead</class>
-						</field>
-					</head>
-					<row>
-						<class>none</class>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_factura</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>fecha</name>
-							<type>date</type>
-							<width>150px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-							<icon eval="true">ICON("calendar")</icon>
-						</field>
-						<field>
-							<name>percent</name>
-							<type>float</type>
-							<width>100px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_vencimientos(this)</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>importe</name>
-							<type>float</type>
-							<width>100px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_vencimientos(this)</onchange>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>cobrado</name>
-							<type>checkbox</type>
-							<value>1</value>
-							<width>1px</width>
-							<width2>100px</width2>
-							<label lang="true">cobrado</label>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-							<class2>tbody</class2>
-						</field>
-						<field>
-							<name>fecha2</name>
-							<type>date</type>
-							<width>150px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-							<icon eval="true">ICON("calendar")</icon>
-						</field>
-					</row>
-					<tail>
-						<field>
-							<type>separator</type>
-						</field>
-					</tail>
-					<tail>
-						<class>helperbuttons</class>
-						<field>
-							<type>button</type>
-							<value lang="true">addvencimiento</value>
-							<class>left</class>
-							<class2>init_additem</class2>
-							<onclick>additem(this)</onclick>
-							<icon eval="true">ICON("add")</icon>
-						</field>
-					</tail>
-				</fieldset>
-			</vencimientos_new>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-				<include>js/updatevencimientos.js</include>
-			</cache>
-		</javascript>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">make_insert_query("tbl_facturas",array(
-			"id_cliente"=>intval(getParam("id_cliente")),
-			"id_epigrafe"=>intval(getParam("id_epigrafe")),
-			"nombre"=>getParam("nombre"),
-			"direccion"=>getParam("direccion"),
-			"nombre_codpostal"=>getParam("nombre_codpostal"),
-			"nombre_poblacion"=>getParam("nombre_poblacion"),
-			"nombre_provincia"=>getParam("nombre_provincia"),
-			"nombre_pais"=>getParam("nombre_pais"),
-			"id_codpostal"=>intval(getParam("id_codpostal")),
-			"id_poblacion"=>intval(getParam("id_poblacion")),
-			"id_provincia"=>intval(getParam("id_provincia")),
-			"id_pais"=>intval(getParam("id_pais")),
-			"cif"=>getParam("cif"),
-			"fecha"=>dateval(getParam("fecha")),
-			"id_cuenta"=>intval(getParam("id_cuenta")),
-			"fecha2"=>dateval(getParam("fecha2")),
-			"id_proyecto"=>intval(getParam("id_proyecto")),
-			"notas"=>getParam("notas"),
-			"id_formapago"=>intval(getParam("id_formapago"))
-		))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query match="resumen" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="resumen" prefix="true" eval="true">make_update_query("tbl_facturas",array(
-			"iva"=>floatval(getParam("iva")),
-			"irpf"=>floatval(getParam("irpf"))
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query match="concepts_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?make_insert_query("tbl_facturas_c",array(
-			"id_factura"=>getParam("id"),
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>floatval(getParam("descuento")),
-			"precio"=>floatval(getParam("precio"))
-		)):""</query>
-		<query match="products_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_facturas_c",array(
-			"id_factura"=>getParam("id"),
-			"id_producto"=>intval(getParam("id_producto")),
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>floatval(getParam("descuento")),
-			"precio"=>floatval(getParam("precio"))
-		)):""</query>
-		<query match="vencimientos_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_facturas_v",array(
-			"id_factura"=>getParam("id"),
-			"fecha"=>dateval(getParam("fecha")),
-			"percent"=>floatval(getParam("percent")),
-			"importe"=>floatval(getParam("importe")),
-			"cobrado"=>intval(getParam("cobrado")),
-			"fecha2"=>dateval(getParam("fecha2"))
-		)):""</query>
-		<query match="default" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="default" prefix="true" eval="true">getParam("cerrado")?setParam("new_num_factura",execute_query("SELECT CONCAT(LPAD(IFNULL(MAX(num),0)+1,".intval(CONFIG("invoice_count_size")).",0),'/',(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."))) FROM tbl_facturas WHERE SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")=(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")) AND id_cuenta='".intval(getParam("id_cuenta"))."'")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("cerrado")?make_update_query("tbl_facturas",array(
-			"cerrado"=>1,
-			"num"=>getParam("new_num_factura"),
-			"fecha"=>current_date()
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		))):""</query>
-		<query match="default" prefix="true" eval="true">getParam("cobrado")?make_update_query("tbl_facturas",array(
-			"cobrado"=>1
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		))):""</query>
-		<query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(
-			"cobrado"=>execute_query("SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".intval(getParam("id"))."'")
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(
-			"id_cliente"=>intval(getParam("id_cliente")),
-			"id_epigrafe"=>intval(getParam("id_epigrafe")),
-			"nombre"=>getParam("nombre"),
-			"direccion"=>getParam("direccion"),
-			"nombre_codpostal"=>getParam("nombre_codpostal"),
-			"nombre_poblacion"=>getParam("nombre_poblacion"),
-			"nombre_provincia"=>getParam("nombre_provincia"),
-			"nombre_pais"=>getParam("nombre_pais"),
-			"id_codpostal"=>intval(getParam("id_codpostal")),
-			"id_poblacion"=>intval(getParam("id_poblacion")),
-			"id_provincia"=>intval(getParam("id_provincia")),
-			"id_pais"=>intval(getParam("id_pais")),
-			"cif"=>getParam("cif"),
-			"id_cuenta"=>intval(getParam("id_cuenta")),
-			"fecha2"=>dateval(getParam("fecha2")),
-			"id_proyecto"=>intval(getParam("id_proyecto")),
-			"notas"=>getParam("notas"),
-			"id_formapago"=>intval(getParam("id_formapago"))
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
+                        "</vencimientos_new>
+                    </vencimientos_new>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_cuenta</name>
+                            <label lang="true">cuenta</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sincuenta")."' label UNION SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) value,nombre label FROM tbl_cuentas ORDER BY label"</query>
+                            <focus>true</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_iva_irpf(true)</onchange>
+                            <required>true</required>
+                        </field>
+                        <field>
+                            <name>id_epigrafe</name>
+                            <label lang="true">epigrafe</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id value,CONCAT('(',codigo,') ',nombre) label FROM tbl_epigrafes ORDER BY label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_formapago</name>
+                            <label lang="true">formapago</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("formaspago","tbl_formaspago","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinformapago")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>40%</width>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>40%</width>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_cliente</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre_cliente</name>
+                            <label lang="true">cliente</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>clientes</querycomplete>
+                            <oncomplete>
+                                $("#"+prefix+"id_cliente").val(ui.item.id);
+                                update_proyectos();
+                                update_datos();
+                            </oncomplete>
+                            <link>openapp('clientes',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                        <field>
+                            <name>id_proyecto</name>
+                            <label lang="true">proyecto</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <link>openapp('proyectos',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre</name>
+                            <label lang="true">nombre</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            </field>
+                        <field>
+                            <name>cif</name>
+                            <label lang="true">cif</label>
+                            <type>text</type>
+                            <width>120px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>direccion</name>
+                            <label lang="true">direccion</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre_pais</name>
+                            <label lang="true">pais</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>paises</querycomplete>
+                            <oncomplete>$("#"+prefix+"id_pais").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_pais</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre_provincia</name>
+                            <label lang="true">provincia</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>provincias</querycomplete>
+                            <filtercomplete>id_pais</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_provincia").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_provincia</name>
+                            <type>hidden</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre_poblacion</name>
+                            <label lang="true">poblacion</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>poblaciones</querycomplete>
+                            <filtercomplete>id_provincia</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_poblacion").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_poblacion</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre_codpostal</name>
+                            <label lang="true">codpostal</label>
+                            <type>text</type>
+                            <width>120px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>codpostales</querycomplete>
+                            <filtercomplete>id_poblacion</filtercomplete>
+                            <oncomplete>$("#"+prefix+"id_codpostal").val(ui.item.id);</oncomplete>
+                        </field>
+                        <field>
+                            <name>id_codpostal</name>
+                            <type>hidden</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>notas</name>
+                            <label lang="true">notas</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>60px</height>
+                            <colspan>3</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                </fieldset>
+                <fieldset>
+                    <width>700px</width>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>cerrado</name>
+                            <type>checkbox</type>
+                            <label lang="true">cerrado</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>fecha</name>
+                            <label lang="true">fechaemision</label>
+                            <type>date</type>
+                            <width>90px</width>
+                            <readonly>true</readonly>
+                            <icon eval="true">ICON("calendar")</icon>
+                        </field>
+                        <field>
+                            <name>num</name>
+                            <label lang="true">numfac</label>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>cobrado</name>
+                            <type>checkbox</type>
+                            <label lang="true">cobrado</label>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>fecha2</name>
+                            <label lang="true">fechacobrado</label>
+                            <type>date</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <icon eval="true">ICON("calendar")</icon>
+                            <colspan>3</colspan>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <resumen>
+                <fieldset>
+                    <width>700px</width>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>10%</width>
+                            <height>0px</height>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>15%</width>
+                            <height>0px</height>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                        <field>
+                            <name>iva</name>
+                            <label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                        </field>
+                        <field>
+                            <name>irpf</name>
+                            <label eval="true">CONFIG("accounting_irpf_name")." (%)"</label>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>base</name>
+                            <label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                        </field>
+                        <field>
+                            <name>iva2</name>
+                            <label eval="true">CONFIG("accounting_iva_name")." (".CONFIG("accounting_currency").")"</label>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                        </field>
+                        <field>
+                            <name>irpf2</name>
+                            <label eval="true">CONFIG("accounting_irpf_name")." (".CONFIG("accounting_currency").")"</label>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                        </field>
+                        <field>
+                            <name>total</name>
+                            <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                        </field>
+                    </row>
+                </fieldset>
+            </resumen>
+            <concepts_old>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">concepts_old</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">concepto</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">unid</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("dto")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <type>separator</type>
+                            <colspan>100</colspan>
+                            <class>thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_factura</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>concepto</name>
+                            <type>textarea</type>
+                            <width>400px</width>
+                            <height>50px</height>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>unidades</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>precio</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>descuento</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>total2</name>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                            <class>tbody</class>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <name>delete</name>
+                            <type>checkbox</type>
+                            <label lang="true">delete</label>
+                            <value>1</value>
+                            <width>1px</width>
+                            <width2>1px</width2>
+                            <onchange>update_totales_factura()</onchange>
+                            <icon eval="true">ICON("delete")</icon>
+                            <class>tbody</class>
+                            <class2>tbody</class2>
+                        </field>
+                    </row>
+                </fieldset>
+            </concepts_old>
+            <concepts_new>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">concepts_new</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">concepto</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">unid</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("dto")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <class>none</class>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_factura</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>concepto</name>
+                            <type>textarea</type>
+                            <width>400px</width>
+                            <height>50px</height>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>unidades</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>precio</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>descuento</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>total2</name>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                            <class>tbody</class>
+                        </field>
+                    </row>
+                    <tail>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </tail>
+                    <tail>
+                        <class>helperbuttons</class>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">addconcept</value>
+                            <class>left</class>
+                            <class2>init_additem</class2>
+                            <onclick>additem(this)</onclick>
+                            <icon eval="true">ICON("add")</icon>
+                        </field>
+                    </tail>
+                </fieldset>
+            </concepts_new>
+            <products_old>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">products_old</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">concepto</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">unid</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("dto")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <type>separator</type>
+                            <colspan>100</colspan>
+                            <class>thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_factura</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_producto</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>concepto</name>
+                            <type>text</type>
+                            <width>400px</width>
+                            <class>tbody</class>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>productos</querycomplete>
+                            <oncomplete>
+                                $("#"+prefix+"id_producto").val(ui.item.id);
+                                $("#"+prefix+"precio").val(ui.item.precio);
+                                $("#"+prefix+"descuento").val(ui.item.descuento);
+                                update_totales_factura();
+                            </oncomplete>
+                        </field>
+                        <field>
+                            <name>unidades</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>precio</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>descuento</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>total2</name>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                            <class>tbody</class>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <name>delete</name>
+                            <type>checkbox</type>
+                            <label lang="true">delete</label>
+                            <value>1</value>
+                            <width>1px</width>
+                            <width2>1px</width2>
+                            <onchange>update_totales_factura()</onchange>
+                            <icon eval="true">ICON("delete")</icon>
+                            <class>tbody</class>
+                            <class2>tbody</class2>
+                        </field>
+                    </row>
+                </fieldset>
+            </products_old>
+            <products_new>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">products_new</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">productos</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">unid</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("dto")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <class>none</class>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_factura</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_producto</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>concepto</name>
+                            <type>text</type>
+                            <width>400px</width>
+                            <class>tbody</class>
+                            <autocomplete>true</autocomplete>
+                            <querycomplete>productos</querycomplete>
+                            <oncomplete>
+                                $("#"+prefix+"id_producto").val(ui.item.id);
+                                $("#"+prefix+"precio").val(ui.item.precio);
+                                $("#"+prefix+"descuento").val(ui.item.descuento);
+                                update_totales_factura();
+                            </oncomplete>
+                        </field>
+                        <field>
+                            <name>unidades</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>precio</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>descuento</name>
+                            <type>float</type>
+                            <width>60px</width>
+                            <onchange>update_totales_factura()</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>total2</name>
+                            <type>text</type>
+                            <width>60px</width>
+                            <readonly>true</readonly>
+                            <class>tbody</class>
+                        </field>
+                    </row>
+                    <tail>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </tail>
+                    <tail>
+                        <class>helperbuttons</class>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">addproduct</value>
+                            <class>left</class>
+                            <class2>init_additem</class2>
+                            <onclick>additem(this)</onclick>
+                            <icon eval="true">ICON("add")</icon>
+                        </field>
+                    </tail>
+                </fieldset>
+            </products_new>
+            <vencimientos_old>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">vencimientos_old</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">fechavencimiento</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("percent")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">cobrado</label>
+                            <class>center bold thead</class>
+                            <colspan>2</colspan>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">fechacobrado</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <type>separator</type>
+                            <colspan>100</colspan>
+                            <class>thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_factura</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>fecha</name>
+                            <type>date</type>
+                            <width>150px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                            <icon eval="true">ICON("calendar")</icon>
+                        </field>
+                        <field>
+                            <name>percent</name>
+                            <type>float</type>
+                            <width>100px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_vencimientos(this)</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>importe</name>
+                            <type>float</type>
+                            <width>100px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_vencimientos(this)</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>cobrado</name>
+                            <type>checkbox</type>
+                            <label lang="true">cobrado</label>
+                            <value>1</value>
+                            <width>1px</width>
+                            <width2>100px</width2>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                            <class2>tbody</class2>
+                        </field>
+                        <field>
+                            <name>fecha2</name>
+                            <type>date</type>
+                            <width>150px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                            <icon eval="true">ICON("calendar")</icon>
+                        </field>
+                        <field global="id" ifeval="$id>=0">
+                            <name>delete</name>
+                            <type>checkbox</type>
+                            <label lang="true">delete</label>
+                            <value>1</value>
+                            <width>1px</width>
+                            <width2>1px</width2>
+                            <onchange>update_vencimientos(this)</onchange>
+                            <icon eval="true">ICON("delete")</icon>
+                            <class>tbody</class>
+                            <class2>tbody</class2>
+                        </field>
+                    </row>
+                </fieldset>
+            </vencimientos_old>
+            <vencimientos_new>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">vencimientos_new</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <head>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">fechavencimiento</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("percent")." (%)"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
+                            <class>center bold thead</class>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">cobrado</label>
+                            <class>center bold thead</class>
+                            <colspan>2</colspan>
+                        </field>
+                        <field>
+                            <type>label</type>
+                            <label lang="true">fechacobrado</label>
+                            <class>center bold thead</class>
+                        </field>
+                    </head>
+                    <row>
+                        <class>none</class>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_factura</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>fecha</name>
+                            <type>date</type>
+                            <width>150px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                            <icon eval="true">ICON("calendar")</icon>
+                        </field>
+                        <field>
+                            <name>percent</name>
+                            <type>float</type>
+                            <width>100px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_vencimientos(this)</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>importe</name>
+                            <type>float</type>
+                            <width>100px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_vencimientos(this)</onchange>
+                            <class>tbody</class>
+                        </field>
+                        <field>
+                            <name>cobrado</name>
+                            <type>checkbox</type>
+                            <value>1</value>
+                            <width>1px</width>
+                            <width2>100px</width2>
+                            <label lang="true">cobrado</label>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                            <class2>tbody</class2>
+                        </field>
+                        <field>
+                            <name>fecha2</name>
+                            <type>date</type>
+                            <width>150px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                            <icon eval="true">ICON("calendar")</icon>
+                        </field>
+                    </row>
+                    <tail>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </tail>
+                    <tail>
+                        <class>helperbuttons</class>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">addvencimiento</value>
+                            <class>left</class>
+                            <class2>init_additem</class2>
+                            <onclick>additem(this)</onclick>
+                            <icon eval="true">ICON("add")</icon>
+                        </field>
+                    </tail>
+                </fieldset>
+            </vencimientos_new>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+                <include>js/updatevencimientos.js</include>
+            </cache>
+        </javascript>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query match="default" prefix="true" eval="true">make_insert_query("tbl_facturas",array(
+            "id_cliente"=>intval(getParam("id_cliente")),
+            "id_epigrafe"=>intval(getParam("id_epigrafe")),
+            "nombre"=>getParam("nombre"),
+            "direccion"=>getParam("direccion"),
+            "nombre_codpostal"=>getParam("nombre_codpostal"),
+            "nombre_poblacion"=>getParam("nombre_poblacion"),
+            "nombre_provincia"=>getParam("nombre_provincia"),
+            "nombre_pais"=>getParam("nombre_pais"),
+            "id_codpostal"=>intval(getParam("id_codpostal")),
+            "id_poblacion"=>intval(getParam("id_poblacion")),
+            "id_provincia"=>intval(getParam("id_provincia")),
+            "id_pais"=>intval(getParam("id_pais")),
+            "cif"=>getParam("cif"),
+            "fecha"=>dateval(getParam("fecha")),
+            "id_cuenta"=>intval(getParam("id_cuenta")),
+            "fecha2"=>dateval(getParam("fecha2")),
+            "id_proyecto"=>intval(getParam("id_proyecto")),
+            "notas"=>getParam("notas"),
+            "id_formapago"=>intval(getParam("id_formapago"))
+        ))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query match="resumen" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+        <query match="resumen" prefix="true" eval="true">make_update_query("tbl_facturas",array(
+            "iva"=>floatval(getParam("iva")),
+            "irpf"=>floatval(getParam("irpf"))
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query match="concepts_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+        <query match="concepts_new" prefix="true" eval="true">getParam("concepto")?make_insert_query("tbl_facturas_c",array(
+            "id_factura"=>getParam("id"),
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>floatval(getParam("descuento")),
+            "precio"=>floatval(getParam("precio"))
+        )):""</query>
+        <query match="products_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+        <query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_facturas_c",array(
+            "id_factura"=>getParam("id"),
+            "id_producto"=>intval(getParam("id_producto")),
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>floatval(getParam("descuento")),
+            "precio"=>floatval(getParam("precio"))
+        )):""</query>
+        <query match="vencimientos_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+        <query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_facturas_v",array(
+            "id_factura"=>getParam("id"),
+            "fecha"=>dateval(getParam("fecha")),
+            "percent"=>floatval(getParam("percent")),
+            "importe"=>floatval(getParam("importe")),
+            "cobrado"=>intval(getParam("cobrado")),
+            "fecha2"=>dateval(getParam("fecha2"))
+        )):""</query>
+        <query match="default" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+        <query match="default" prefix="true" eval="true">getParam("cerrado")?setParam("new_num_factura",execute_query("SELECT CONCAT(LPAD(IFNULL(MAX(num),0)+1,".intval(CONFIG("invoice_count_size")).",0),'/',(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."))) FROM tbl_facturas WHERE SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")=(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")) AND id_cuenta='".intval(getParam("id_cuenta"))."'")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("cerrado")?make_update_query("tbl_facturas",array(
+            "cerrado"=>1,
+            "num"=>getParam("new_num_factura"),
+            "fecha"=>current_date()
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        ))):""</query>
+        <query match="default" prefix="true" eval="true">getParam("cobrado")?make_update_query("tbl_facturas",array(
+            "cobrado"=>1
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        ))):""</query>
+        <query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(
+            "cobrado"=>execute_query("SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".intval(getParam("id"))."'")
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(
+            "id_cliente"=>intval(getParam("id_cliente")),
+            "id_epigrafe"=>intval(getParam("id_epigrafe")),
+            "nombre"=>getParam("nombre"),
+            "direccion"=>getParam("direccion"),
+            "nombre_codpostal"=>getParam("nombre_codpostal"),
+            "nombre_poblacion"=>getParam("nombre_poblacion"),
+            "nombre_provincia"=>getParam("nombre_provincia"),
+            "nombre_pais"=>getParam("nombre_pais"),
+            "id_codpostal"=>intval(getParam("id_codpostal")),
+            "id_poblacion"=>intval(getParam("id_poblacion")),
+            "id_provincia"=>intval(getParam("id_provincia")),
+            "id_pais"=>intval(getParam("id_pais")),
+            "cif"=>getParam("cif"),
+            "id_cuenta"=>intval(getParam("id_cuenta")),
+            "fecha2"=>dateval(getParam("fecha2")),
+            "id_proyecto"=>intval(getParam("id_proyecto")),
+            "notas"=>getParam("notas"),
+            "id_formapago"=>intval(getParam("id_formapago"))
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query match="resumen" prefix="true" eval="true">make_update_query("tbl_facturas",array(
-			"iva"=>floatval(getParam("iva")),
-			"irpf"=>floatval(getParam("irpf"))
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query match="concepts_old" prefix="true" eval="true">make_update_query("tbl_facturas_c",array(
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>getParam("descuento"),
-			"precio"=>floatval(getParam("precio"))
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query match="concepts_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_c WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
-		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?make_insert_query("tbl_facturas_c",array(
-			"id_factura"=>intval(getParam("id_factura")),
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>floatval(getParam("descuento")),
-			"precio"=>floatval(getParam("precio"))
-		)):""</query>
-		<query match="products_old" prefix="true" eval="true">make_update_query("tbl_facturas_c",array(
-			"id_producto"=>intval(getParam("id_producto")),
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>getParam("descuento"),
-			"precio"=>floatval(getParam("precio"))
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_c WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_facturas_c",array(
-			"id_factura"=>intval(getParam("id_factura")),
-			"id_producto"=>intval(getParam("id_producto")),
-			"concepto"=>getParam("concepto"),
-			"unidades"=>floatval(getParam("unidades")),
-			"descuento"=>floatval(getParam("descuento")),
-			"precio"=>floatval(getParam("precio"))
-		)):""</query>
-		<query match="vencimientos_old" prefix="true" eval="true">make_update_query("tbl_facturas_v",array(
-			"fecha"=>dateval(getParam("fecha")),
-			"percent"=>getParam("percent"),
-			"importe"=>floatval(getParam("importe")),
-			"cobrado"=>intval(getParam("cobrado")),
-			"fecha2"=>dateval(getParam("fecha2"))
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_v WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
-		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_facturas_v",array(
-			"id_factura"=>intval(getParam("id_factura")),
-			"fecha"=>dateval(getParam("fecha")),
-			"percent"=>floatval(getParam("percent")),
-			"importe"=>floatval(getParam("importe")),
-			"cobrado"=>intval(getParam("cobrado")),
-			"fecha2"=>dateval(getParam("fecha2"))
-		)):""</query>
-		<query match="default" prefix="true" eval="true">!getParam("cerrado")?setParam("old_num_factura",execute_query("SELECT CONCAT(SUBSTR(num,-".intval(CONFIG("invoice_count_size")).",".intval(CONFIG("invoice_count_size"))."),'/',SUBSTR(num,1,".intval(CONFIG("invoice_date_size")).")) FROM (SELECT MAX(CONCAT(SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size"))."))) num FROM tbl_facturas WHERE id_cuenta='".intval(getParam("id_cuenta"))."') a")):""</query>
-		<query match="default" prefix="true" eval="true">!getParam("cerrado")?"SELECT '".LANG_ESCAPE("errorfac101")."' action_error,'0' action_commit FROM tbl_facturas WHERE id='".intval(getParam("id"))."' AND cerrado='1' AND num!='".getParam("old_num_factura")."'":""</query>
-		<query match="default" prefix="true" eval="true">getParam("cerrado")?setParam("new_num_factura",execute_query("SELECT CONCAT(LPAD(IFNULL(MAX(num),0)+1,".intval(CONFIG("invoice_count_size")).",0),'/',(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."))) FROM tbl_facturas WHERE SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")=(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")) AND id_cuenta='".intval(getParam("id_cuenta"))."'")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("cerrado")?make_update_query("tbl_facturas",array(
-			"cerrado"=>1,
-			"num"=>getParam("new_num_factura"),
-			"fecha"=>current_date()
-		),make_where_query(array(
-			"id"=>intval(getParam("id")),
-			"cerrado"=>0
-		))):""</query>
-		<query match="default" prefix="true" eval="true">!getParam("cerrado")?make_update_query("tbl_facturas",array(
-			"cerrado"=>0,
-			"num"=>""
-		),make_where_query(array(
-			"id"=>intval(getParam("id")),
-			"cerrado"=>1
-		))):""</query>
-		<query match="default" prefix="true" eval="true">getParam("cobrado")?make_update_query("tbl_facturas",array(
-			"cobrado"=>1
-		),make_where_query(array(
-			"id"=>intval(getParam("id")),
-			"cobrado"=>0
-		))):""</query>
-		<query match="default" prefix="true" eval="true">!getParam("cobrado")?make_update_query("tbl_facturas",array(
-			"cobrado"=>0
-		),make_where_query(array(
-			"id"=>intval(getParam("id")),
-			"cobrado"=>1
-		))):""</query>
-		<query match="default" prefix="true" eval="true">!getParam("cerrado")?make_update_query("tbl_facturas",array(
-			"fecha"=>current_date()
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		))):""</query>
-		<query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(
-			"cobrado"=>execute_query("SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".intval(getParam("id"))."'")
-		),make_where_query(array(
-			"id"=>intval(getParam("id"))
-		)))</query>
-		<query match="default" prefix="true" eval="true">"SELECT '".LANG_ESCAPE("vencimientoscobrado")."' action_alert FROM tbl_facturas WHERE cobrado!='".intval(getParam("cobrado"))."' AND id='".intval(getParam("id"))."'"</query>
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query global="id" eval="true">"SELECT '".LANG_ESCAPE("errorfac103")."' action_error,'0' action_commit FROM tbl_facturas WHERE id=$id AND cerrado=1"</query>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="id" eval="true">"DELETE FROM tbl_facturas_c WHERE ".make_where_query(array("id_factura"=>intval($id)))</query>
-		<query global="id" eval="true">"DELETE FROM tbl_facturas_v WHERE ".make_where_query(array("id_factura"=>intval($id)))</query>
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
-	<excel>
-		<query require="php/listsim.php" global="page" eval="true">"SELECT
+        <query match="resumen" prefix="true" eval="true">make_update_query("tbl_facturas",array(
+            "iva"=>floatval(getParam("iva")),
+            "irpf"=>floatval(getParam("irpf"))
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query match="concepts_old" prefix="true" eval="true">make_update_query("tbl_facturas_c",array(
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>getParam("descuento"),
+            "precio"=>floatval(getParam("precio"))
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query match="concepts_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_c WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
+        <query match="concepts_new" prefix="true" eval="true">getParam("concepto")?make_insert_query("tbl_facturas_c",array(
+            "id_factura"=>intval(getParam("id_factura")),
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>floatval(getParam("descuento")),
+            "precio"=>floatval(getParam("precio"))
+        )):""</query>
+        <query match="products_old" prefix="true" eval="true">make_update_query("tbl_facturas_c",array(
+            "id_producto"=>intval(getParam("id_producto")),
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>getParam("descuento"),
+            "precio"=>floatval(getParam("precio"))
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_c WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
+        <query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_facturas_c",array(
+            "id_factura"=>intval(getParam("id_factura")),
+            "id_producto"=>intval(getParam("id_producto")),
+            "concepto"=>getParam("concepto"),
+            "unidades"=>floatval(getParam("unidades")),
+            "descuento"=>floatval(getParam("descuento")),
+            "precio"=>floatval(getParam("precio"))
+        )):""</query>
+        <query match="vencimientos_old" prefix="true" eval="true">make_update_query("tbl_facturas_v",array(
+            "fecha"=>dateval(getParam("fecha")),
+            "percent"=>getParam("percent"),
+            "importe"=>floatval(getParam("importe")),
+            "cobrado"=>intval(getParam("cobrado")),
+            "fecha2"=>dateval(getParam("fecha2"))
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_v WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
+        <query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_facturas_v",array(
+            "id_factura"=>intval(getParam("id_factura")),
+            "fecha"=>dateval(getParam("fecha")),
+            "percent"=>floatval(getParam("percent")),
+            "importe"=>floatval(getParam("importe")),
+            "cobrado"=>intval(getParam("cobrado")),
+            "fecha2"=>dateval(getParam("fecha2"))
+        )):""</query>
+        <query match="default" prefix="true" eval="true">!getParam("cerrado")?setParam("old_num_factura",execute_query("SELECT CONCAT(SUBSTR(num,-".intval(CONFIG("invoice_count_size")).",".intval(CONFIG("invoice_count_size"))."),'/',SUBSTR(num,1,".intval(CONFIG("invoice_date_size")).")) FROM (SELECT MAX(CONCAT(SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size"))."))) num FROM tbl_facturas WHERE id_cuenta='".intval(getParam("id_cuenta"))."') a")):""</query>
+        <query match="default" prefix="true" eval="true">!getParam("cerrado")?"SELECT '".LANG_ESCAPE("errorfac101")."' action_error,'0' action_commit FROM tbl_facturas WHERE id='".intval(getParam("id"))."' AND cerrado='1' AND num!='".getParam("old_num_factura")."'":""</query>
+        <query match="default" prefix="true" eval="true">getParam("cerrado")?setParam("new_num_factura",execute_query("SELECT CONCAT(LPAD(IFNULL(MAX(num),0)+1,".intval(CONFIG("invoice_count_size")).",0),'/',(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."))) FROM tbl_facturas WHERE SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")=(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")) AND id_cuenta='".intval(getParam("id_cuenta"))."'")):""</query>
+        <query match="default" prefix="true" eval="true">getParam("cerrado")?make_update_query("tbl_facturas",array(
+            "cerrado"=>1,
+            "num"=>getParam("new_num_factura"),
+            "fecha"=>current_date()
+        ),make_where_query(array(
+            "id"=>intval(getParam("id")),
+            "cerrado"=>0
+        ))):""</query>
+        <query match="default" prefix="true" eval="true">!getParam("cerrado")?make_update_query("tbl_facturas",array(
+            "cerrado"=>0,
+            "num"=>""
+        ),make_where_query(array(
+            "id"=>intval(getParam("id")),
+            "cerrado"=>1
+        ))):""</query>
+        <query match="default" prefix="true" eval="true">getParam("cobrado")?make_update_query("tbl_facturas",array(
+            "cobrado"=>1
+        ),make_where_query(array(
+            "id"=>intval(getParam("id")),
+            "cobrado"=>0
+        ))):""</query>
+        <query match="default" prefix="true" eval="true">!getParam("cobrado")?make_update_query("tbl_facturas",array(
+            "cobrado"=>0
+        ),make_where_query(array(
+            "id"=>intval(getParam("id")),
+            "cobrado"=>1
+        ))):""</query>
+        <query match="default" prefix="true" eval="true">!getParam("cerrado")?make_update_query("tbl_facturas",array(
+            "fecha"=>current_date()
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        ))):""</query>
+        <query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(
+            "cobrado"=>execute_query("SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".intval(getParam("id"))."'")
+        ),make_where_query(array(
+            "id"=>intval(getParam("id"))
+        )))</query>
+        <query match="default" prefix="true" eval="true">"SELECT '".LANG_ESCAPE("vencimientoscobrado")."' action_alert FROM tbl_facturas WHERE cobrado!='".intval(getParam("cobrado"))."' AND id='".intval(getParam("id"))."'"</query>
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query global="id" eval="true">"SELECT '".LANG_ESCAPE("errorfac103")."' action_error,'0' action_commit FROM tbl_facturas WHERE id=$id AND cerrado=1"</query>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query global="id" eval="true">"DELETE FROM tbl_facturas_c WHERE ".make_where_query(array("id_factura"=>intval($id)))</query>
+        <query global="id" eval="true">"DELETE FROM tbl_facturas_v WHERE ".make_where_query(array("id_factura"=>intval($id)))</query>
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
+    <excel>
+        <query require="php/listsim.php" global="page" eval="true">"SELECT
 CASE num WHEN '' THEN CONCAT('\'',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE num END '".LANG_ESCAPE("numfac")."',
 fecha '".LANG_ESCAPE("date")."',cif '".LANG_ESCAPE("cif")."',
 CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE nombre END '".LANG_ESCAPE("cliente")."',
@@ -1832,13 +1832,13 @@ CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sinclient
 CASE num WHEN '' THEN CONCAT('AA',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FA',SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num3,
 CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FZ',SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num4,
 c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2
-	FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base
-		FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura GROUP BY a.id) c) d WHERE id IN (".list_simulator($page).")"</query>
-	</excel>
-	<pdf>
-		<constructor>"P","mm","A4"</constructor>
-		<margins>90,30,87,30</margins>
-		<query>"SELECT *,
+    FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base
+        FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura GROUP BY a.id) c) d WHERE id IN (".list_simulator($page).")"</query>
+    </excel>
+    <pdf>
+        <constructor>"P","mm","A4"</constructor>
+        <margins>90,30,87,30</margins>
+        <query>"SELECT *,
 num,
 LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) num2,
 CASE num WHEN '' THEN CONCAT('AA',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FA',SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num3,
@@ -1853,191 +1853,191 @@ CASE id_formapago WHEN '0' THEN '".LANG_ESCAPE("sinformapago")."' ELSE (SELECT n
 CASE num WHEN '' THEN CONCAT('AA',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FA',SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num3,
 CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FZ',SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num4,
 c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.*,IFNULL(logo_left,'".CONFIG("logo_left")."') logo_left,IFNULL(logo_top,'".CONFIG("logo_top")."') logo_top,IFNULL(logo_width,'".CONFIG("logo_width")."') logo_width,IFNULL(logo_height,'".CONFIG("logo_height")."') logo_height,IFNULL(logo_file,'".CONFIG("logo_file")."') logo_file,IFNULL(color_line,'".CONFIG("color_line")."') color_line,IFNULL(color_text1,'".CONFIG("color_text1")."') color_text1,IFNULL(color_text2,'".CONFIG("color_text2")."') color_text2,IFNULL(factura_pie1,'') factura_pie1,IFNULL(factura_pie2,'') factura_pie2,IFNULL(factura_iva_bool,1) factura_iva_bool,IFNULL(factura_irpf_bool,1) factura_irpf_bool,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,e.id_usuario id_usuario FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id LEFT JOIN tbl_formaspago f ON a.id_formapago=f.id LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id AND e.first=1 GROUP BY a.id) c) d WHERE ROUND(id) IN (".check_ids(getParam("id")).")"</query>
-		<foreach>
-			<!-- TEMPLATE -->
-			<header>
-				<!-- LOGO -->
-				<margins>0,0,0,0</margins>
-				<image>$row["logo_left"],$row["logo_top"],$row["logo_width"],$row["logo_height"],get_directory("dirs/filesdir").$row["logo_file"]</image>
-				<!-- PONER MARCA DE AGUA -->
-				<font>"normal","B",$row["cerrado"]?CONFIG("water_facturas_size"):CONFIG("water_albaranes_size"),"#eeeeee"</font>
-				<text>$row["cerrado"]?CONFIG("water_facturas_posx"):CONFIG("water_albaranes_posx"),
-					$row["cerrado"]?CONFIG("water_facturas_posy"):CONFIG("water_albaranes_posy"),
-					$row["cerrado"]?CONFIG("water_facturas_text"):CONFIG("water_albaranes_text"),
-					$row["cerrado"]?CONFIG("water_facturas_angle"):CONFIG("water_albaranes_angle")</text>
-				<!-- PONER CAJA FACTURA -->
-				<color>$row["color_line"],"#000000"</color>
-				<eval>!$row["cerrado"]</eval>
-					<rect>130,45,50,20,"D",0.15,1</rect>
-					<font>"normal","B",8,$row["color_text1"]</font>
-					<text>131,46,LANG("albaran")</text>
-					<line>130,51,180,51</line>
-					<font>"normal","",8,$row["color_text2"]</font>
-					<text>131,52,LANG("numalbxxx").": ".$row["num2"]</text>
-					<text>131,56,LANG("fechaemision").": ".$row["fecha"]</text>
-					<text>131,60,LANG("formapago").": ".$row["formapago"]</text>
-				<eval>$row["cerrado"]</eval>
-					<rect>130,45,50,24,"D",0.15,1</rect>
-					<font>"normal","B",8,$row["color_text1"]</font>
-					<text>131,46,LANG("factura")</text>
-					<line>130,51,180,51</line>
-					<font>"normal","",8,$row["color_text2"]</font>
-					<text>131,56,LANG("numfacxxx").": ".$row["num"]</text>
-					<text>131,52,LANG("numalbxxx").": ".$row["num2"]</text>
-					<text>131,60,LANG("fechaemision").": ".$row["fecha"]</text>
-					<text>131,64,LANG("formapago").": ".$row["formapago"]</text>
-				<eval>true</eval>
-				<!-- PONER CAJA CLIENTE -->
-				<rect>30,45,90,36,"D",0.15,1</rect>
-				<font>"normal","B",8,$row["color_text1"]</font>
-				<text>31,46,LANG("clientdata")</text>
-				<line>30,51,120,51</line>
-				<font>"normal","",8,$row["color_text2"]</font>
-				<text>31,52,LANG("titular").": ".$row["nombre"]</text>
-				<text>31,56,LANG("cif").": ".$row["cif"]</text>
-				<text>31,60,LANG("direccion").": ".$row["direccion"]</text>
-				<text>31,64,LANG("pais").": ".$row["nombre_pais"]</text>
-				<text>31,68,LANG("provincia").": ".$row["nombre_provincia"]</text>
-				<text>31,72,LANG("poblacion").": ".$row["nombre_poblacion"]</text>
-				<text>31,76,LANG("codpostal").": ".$row["nombre_codpostal"]</text>
-				<!-- PONER CAJA CONCEPTOS -->
-				<rect>30,90,150,120,"D",0.15,1</rect>
-				<font>"normal","B",8,$row["color_text1"]</font>
-				<textarea>30,91,90,4,"C",LANG("concepto")</textarea>
-				<textarea>120,91,15,4,"C",LANG("unid")</textarea>
-				<textarea>135,91,15,4,"C",LANG("prun")</textarea>
-				<textarea>150,91,15,4,"C",LANG("dto")</textarea>
-				<textarea>165,91,15,4,"C",LANG("total")</textarea>
-				<line>30,96,180,96</line>
-				<line>120,90,120,210</line>
-				<line>135,90,135,210</line>
-				<line>150,90,150,210</line>
-				<line>165,90,165,210</line>
-				<margins>97,30,87,30</margins>
-				<setxy>30,97</setxy>
-			</header>
-			<footer>
-				<margins>0,0,0,0</margins>
-				<!-- PONER PIE DE PAGINA -->
-				<font>"normal","",6,$row["color_text2"]</font>
-				<textarea>30,270,150,4,"C",$row["factura_pie1"]</textarea>
-				<textarea>30,273,150,4,"C",$row["factura_pie2"]</textarea>
-				<pageno>30,279,150,4,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
-				<margins>97,30,87,30</margins>
-			</footer>
-			<!-- BEGIN -->
-			<newpage></newpage>
-			<!-- PONER LOS CONCEPTOS -->
-			<query>"SELECT *,'".$row["color_line"]."' color_line,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total FROM tbl_facturas_c WHERE ".$row["filtro"]." ORDER BY id ASC"</query>
-			<font>"normal","",8,$row["color_text2"]</font>
-			<setxy>30,97</setxy>
-			<foreach>
-				<getxy>"x","y"</getxy>
-				<checky>4</checky>
-				<getxy>"x","y"</getxy>
-				<textarea>120,$row["y"],15,4,"R",$row["unidades"]</textarea>
-				<textarea>135,$row["y"],15,4,"R",$row["precio"]</textarea>
-				<textarea>150,$row["y"],15,4,"R",$row["descuento"]</textarea>
-				<textarea>165,$row["y"],15,4,"R",$row["total"]</textarea>
-				<textarea>30,$row["y"],90,4,"L",$row["concepto"]</textarea>
-				<getxy>"x","y"</getxy>
-				<color>$row["color_line"],"#000000"</color>
-				<line>30,$row["y"]+1,180,$row["y"]+1,0.15</line>
-				<setxy>30,$row["y"]+2</setxy>
-			</foreach>
-			<margins>0,0,0,0</margins>
-			<color>$row["color_line"],"#000000"</color>
-			<!-- PONER CAJA FINAL IVA + IRPF -->
-			<eval>$row["factura_iva_bool"] AND $row["factura_irpf_bool"]</eval>
-				<rect>130,219,50,24,"D",0.15,1</rect>
-				<line>130,225,180,225</line>
-				<line>130,231,180,231</line>
-				<line>130,237,180,237</line>
-				<line>165,219,165,243</line>
-				<font>"normal","B",8,$row["color_text1"]</font>
-				<textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
-				<textarea>130,226,35,4,"R",CONFIG("accounting_iva_name")." (".$row["iva"]."%)"</textarea>
-				<textarea>130,232,35,4,"R",CONFIG("accounting_irpf_name")." (".$row["irpf"]."%)"</textarea>
-				<textarea>130,238,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
-				<font>"normal","",8,$row["color_text2"]</font>
-				<textarea>165,220,15,4,"R",$row["base"]</textarea>
-				<textarea>165,226,15,4,"R",$row["iva2"]</textarea>
-				<textarea>165,232,15,4,"R",$row["irpf2"]</textarea>
-				<textarea>165,238,15,4,"R",$row["total"]</textarea>
-			<!-- PONER CAJA FINAL IVA + NOT IRPF-->
-			<eval>$row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
-				<rect>130,219,50,18,"D",0.15,1</rect>
-				<line>130,225,180,225</line>
-				<line>130,231,180,231</line>
-				<line>165,219,165,237</line>
-				<font>"normal","B",8,$row["color_text1"]</font>
-				<textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
-				<textarea>130,226,35,4,"R",CONFIG("accounting_iva_name")." (".$row["iva"]."%)"</textarea>
-				<textarea>130,232,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
-				<font>"normal","",8,$row["color_text2"]</font>
-				<textarea>165,220,15,4,"R",$row["base"]</textarea>
-				<textarea>165,226,15,4,"R",$row["iva2"]</textarea>
-				<textarea>165,232,15,4,"R",$row["total"]</textarea>
-			<!-- PONER CAJA FINAL NOT IVA + IRPF-->
-			<eval>!$row["factura_iva_bool"] AND $row["factura_irpf_bool"]</eval>
-				<rect>130,219,50,18,"D",0.15,1</rect>
-				<line>130,225,180,225</line>
-				<line>130,231,180,231</line>
-				<line>165,219,165,237</line>
-				<font>"normal","B",8,$row["color_text1"]</font>
-				<textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
-				<textarea>130,226,35,4,"R",CONFIG("accounting_irpf_name")." (".$row["irpf"]."%)"</textarea>
-				<textarea>130,232,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
-				<font>"normal","",8,$row["color_text2"]</font>
-				<textarea>165,220,15,4,"R",$row["base"]</textarea>
-				<textarea>165,226,15,4,"R",$row["irpf2"]</textarea>
-				<textarea>165,232,15,4,"R",$row["total"]</textarea>
-			<!-- PONER CAJA FINAL NOT IVA + NOT IRPF-->
-			<eval>!$row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
-				<rect>130,219,50,12,"D",0.15,1</rect>
-				<line>130,225,180,225</line>
-				<line>165,219,165,231</line>
-				<font>"normal","B",8,$row["color_text1"]</font>
-				<textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
-				<textarea>130,226,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
-				<font>"normal","",8,$row["color_text2"]</font>
-				<textarea>165,220,15,4,"R",$row["base"]</textarea>
-				<textarea>165,226,15,4,"R",$row["total"]</textarea>
-			<!-- MONTAR CAJA DE NOTAS -->
-			<eval>$row["notas"]</eval>
-				<font>"normal","B",8,$row["color_text1"]</font>
-				<text>30,220,LANG("notas")</text>
-				<line>30,225,120,225</line>
-				<font>"normal","",8,$row["color_text2"]</font>
-				<textarea>30,226,90,4,"L",$row["notas"]</textarea>
-				<getxy>"x","y"</getxy>
-			<eval>$row["notas"] AND $row["factura_iva_bool"] AND $row["factura_irpf_bool"]</eval>
-				<rect>30,219,90,max($row["y"]-219+1,24),"D",0.15,1</rect>
-			<eval>$row["notas"] AND $row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
-				<rect>30,219,90,max($row["y"]-219+1,18),"D",0.15,1</rect>
-			<eval>$row["notas"] AND !$row["factura_iva_bool"] AND $row["factura_irpf_bool"]</eval>
-				<rect>30,219,90,max($row["y"]-219+1,18),"D",0.15,1</rect>
-			<eval>$row["notas"] AND !$row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
-				<rect>30,219,90,max($row["y"]-219+1,12),"D",0.15,1</rect>
-			<eval>true</eval>
-			<!-- ACTIVAR EVAL OTRA VEZ -->
-			<query>"SELECT *,(SELECT cerrado FROM tbl_facturas WHERE id=id_factura) cerrado FROM tbl_facturas_v WHERE ".$row["filtro"]." ORDER BY fecha DESC"</query>
-			<font>"normal","",6,$row["color_text2"]</font>
-			<setxy>30,264</setxy>
-			<foreach>
-				<getxy>"x","y"</getxy>
-				<textarea>30,$row["y"],150,4,"C",LANG($row["cerrado"]?"vencimientosfactura":"vencimientosalbaran").": ".$row["fecha"].", ".$row["percent"]."%".", ".$row["importe"].CONFIG("accounting_currency")</textarea>
-				<getxy>"x","y"</getxy>
-				<setxy>30,$row["y"]-1.5</setxy>
-			</foreach>
-		</foreach>
-		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT
-			CASE num WHEN '' THEN
-				CONCAT('".LANG_ESCAPE("albaran")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre)
-			ELSE
-				CONCAT('".LANG_ESCAPE("factura")."',' ',num,' ',nombre)
-			END subject
-		FROM tbl_facturas WHERE id IN (".check_ids(getParam("id")).")"):LANG("facturas"))).".pdf"</output>
-	</pdf>
+        <foreach>
+            <!-- TEMPLATE -->
+            <header>
+                <!-- LOGO -->
+                <margins>0,0,0,0</margins>
+                <image>$row["logo_left"],$row["logo_top"],$row["logo_width"],$row["logo_height"],get_directory("dirs/filesdir").$row["logo_file"]</image>
+                <!-- PONER MARCA DE AGUA -->
+                <font>"normal","B",$row["cerrado"]?CONFIG("water_facturas_size"):CONFIG("water_albaranes_size"),"#eeeeee"</font>
+                <text>$row["cerrado"]?CONFIG("water_facturas_posx"):CONFIG("water_albaranes_posx"),
+                    $row["cerrado"]?CONFIG("water_facturas_posy"):CONFIG("water_albaranes_posy"),
+                    $row["cerrado"]?CONFIG("water_facturas_text"):CONFIG("water_albaranes_text"),
+                    $row["cerrado"]?CONFIG("water_facturas_angle"):CONFIG("water_albaranes_angle")</text>
+                <!-- PONER CAJA FACTURA -->
+                <color>$row["color_line"],"#000000"</color>
+                <eval>!$row["cerrado"]</eval>
+                    <rect>130,45,50,20,"D",0.15,1</rect>
+                    <font>"normal","B",8,$row["color_text1"]</font>
+                    <text>131,46,LANG("albaran")</text>
+                    <line>130,51,180,51</line>
+                    <font>"normal","",8,$row["color_text2"]</font>
+                    <text>131,52,LANG("numalbxxx").": ".$row["num2"]</text>
+                    <text>131,56,LANG("fechaemision").": ".$row["fecha"]</text>
+                    <text>131,60,LANG("formapago").": ".$row["formapago"]</text>
+                <eval>$row["cerrado"]</eval>
+                    <rect>130,45,50,24,"D",0.15,1</rect>
+                    <font>"normal","B",8,$row["color_text1"]</font>
+                    <text>131,46,LANG("factura")</text>
+                    <line>130,51,180,51</line>
+                    <font>"normal","",8,$row["color_text2"]</font>
+                    <text>131,56,LANG("numfacxxx").": ".$row["num"]</text>
+                    <text>131,52,LANG("numalbxxx").": ".$row["num2"]</text>
+                    <text>131,60,LANG("fechaemision").": ".$row["fecha"]</text>
+                    <text>131,64,LANG("formapago").": ".$row["formapago"]</text>
+                <eval>true</eval>
+                <!-- PONER CAJA CLIENTE -->
+                <rect>30,45,90,36,"D",0.15,1</rect>
+                <font>"normal","B",8,$row["color_text1"]</font>
+                <text>31,46,LANG("clientdata")</text>
+                <line>30,51,120,51</line>
+                <font>"normal","",8,$row["color_text2"]</font>
+                <text>31,52,LANG("titular").": ".$row["nombre"]</text>
+                <text>31,56,LANG("cif").": ".$row["cif"]</text>
+                <text>31,60,LANG("direccion").": ".$row["direccion"]</text>
+                <text>31,64,LANG("pais").": ".$row["nombre_pais"]</text>
+                <text>31,68,LANG("provincia").": ".$row["nombre_provincia"]</text>
+                <text>31,72,LANG("poblacion").": ".$row["nombre_poblacion"]</text>
+                <text>31,76,LANG("codpostal").": ".$row["nombre_codpostal"]</text>
+                <!-- PONER CAJA CONCEPTOS -->
+                <rect>30,90,150,120,"D",0.15,1</rect>
+                <font>"normal","B",8,$row["color_text1"]</font>
+                <textarea>30,91,90,4,"C",LANG("concepto")</textarea>
+                <textarea>120,91,15,4,"C",LANG("unid")</textarea>
+                <textarea>135,91,15,4,"C",LANG("prun")</textarea>
+                <textarea>150,91,15,4,"C",LANG("dto")</textarea>
+                <textarea>165,91,15,4,"C",LANG("total")</textarea>
+                <line>30,96,180,96</line>
+                <line>120,90,120,210</line>
+                <line>135,90,135,210</line>
+                <line>150,90,150,210</line>
+                <line>165,90,165,210</line>
+                <margins>97,30,87,30</margins>
+                <setxy>30,97</setxy>
+            </header>
+            <footer>
+                <margins>0,0,0,0</margins>
+                <!-- PONER PIE DE PAGINA -->
+                <font>"normal","",6,$row["color_text2"]</font>
+                <textarea>30,270,150,4,"C",$row["factura_pie1"]</textarea>
+                <textarea>30,273,150,4,"C",$row["factura_pie2"]</textarea>
+                <pageno>30,279,150,4,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
+                <margins>97,30,87,30</margins>
+            </footer>
+            <!-- BEGIN -->
+            <newpage></newpage>
+            <!-- PONER LOS CONCEPTOS -->
+            <query>"SELECT *,'".$row["color_line"]."' color_line,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total FROM tbl_facturas_c WHERE ".$row["filtro"]." ORDER BY id ASC"</query>
+            <font>"normal","",8,$row["color_text2"]</font>
+            <setxy>30,97</setxy>
+            <foreach>
+                <getxy>"x","y"</getxy>
+                <checky>4</checky>
+                <getxy>"x","y"</getxy>
+                <textarea>120,$row["y"],15,4,"R",$row["unidades"]</textarea>
+                <textarea>135,$row["y"],15,4,"R",$row["precio"]</textarea>
+                <textarea>150,$row["y"],15,4,"R",$row["descuento"]</textarea>
+                <textarea>165,$row["y"],15,4,"R",$row["total"]</textarea>
+                <textarea>30,$row["y"],90,4,"L",$row["concepto"]</textarea>
+                <getxy>"x","y"</getxy>
+                <color>$row["color_line"],"#000000"</color>
+                <line>30,$row["y"]+1,180,$row["y"]+1,0.15</line>
+                <setxy>30,$row["y"]+2</setxy>
+            </foreach>
+            <margins>0,0,0,0</margins>
+            <color>$row["color_line"],"#000000"</color>
+            <!-- PONER CAJA FINAL IVA + IRPF -->
+            <eval>$row["factura_iva_bool"] AND $row["factura_irpf_bool"]</eval>
+                <rect>130,219,50,24,"D",0.15,1</rect>
+                <line>130,225,180,225</line>
+                <line>130,231,180,231</line>
+                <line>130,237,180,237</line>
+                <line>165,219,165,243</line>
+                <font>"normal","B",8,$row["color_text1"]</font>
+                <textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
+                <textarea>130,226,35,4,"R",CONFIG("accounting_iva_name")." (".$row["iva"]."%)"</textarea>
+                <textarea>130,232,35,4,"R",CONFIG("accounting_irpf_name")." (".$row["irpf"]."%)"</textarea>
+                <textarea>130,238,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
+                <font>"normal","",8,$row["color_text2"]</font>
+                <textarea>165,220,15,4,"R",$row["base"]</textarea>
+                <textarea>165,226,15,4,"R",$row["iva2"]</textarea>
+                <textarea>165,232,15,4,"R",$row["irpf2"]</textarea>
+                <textarea>165,238,15,4,"R",$row["total"]</textarea>
+            <!-- PONER CAJA FINAL IVA + NOT IRPF-->
+            <eval>$row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
+                <rect>130,219,50,18,"D",0.15,1</rect>
+                <line>130,225,180,225</line>
+                <line>130,231,180,231</line>
+                <line>165,219,165,237</line>
+                <font>"normal","B",8,$row["color_text1"]</font>
+                <textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
+                <textarea>130,226,35,4,"R",CONFIG("accounting_iva_name")." (".$row["iva"]."%)"</textarea>
+                <textarea>130,232,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
+                <font>"normal","",8,$row["color_text2"]</font>
+                <textarea>165,220,15,4,"R",$row["base"]</textarea>
+                <textarea>165,226,15,4,"R",$row["iva2"]</textarea>
+                <textarea>165,232,15,4,"R",$row["total"]</textarea>
+            <!-- PONER CAJA FINAL NOT IVA + IRPF-->
+            <eval>!$row["factura_iva_bool"] AND $row["factura_irpf_bool"]</eval>
+                <rect>130,219,50,18,"D",0.15,1</rect>
+                <line>130,225,180,225</line>
+                <line>130,231,180,231</line>
+                <line>165,219,165,237</line>
+                <font>"normal","B",8,$row["color_text1"]</font>
+                <textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
+                <textarea>130,226,35,4,"R",CONFIG("accounting_irpf_name")." (".$row["irpf"]."%)"</textarea>
+                <textarea>130,232,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
+                <font>"normal","",8,$row["color_text2"]</font>
+                <textarea>165,220,15,4,"R",$row["base"]</textarea>
+                <textarea>165,226,15,4,"R",$row["irpf2"]</textarea>
+                <textarea>165,232,15,4,"R",$row["total"]</textarea>
+            <!-- PONER CAJA FINAL NOT IVA + NOT IRPF-->
+            <eval>!$row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
+                <rect>130,219,50,12,"D",0.15,1</rect>
+                <line>130,225,180,225</line>
+                <line>165,219,165,231</line>
+                <font>"normal","B",8,$row["color_text1"]</font>
+                <textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
+                <textarea>130,226,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
+                <font>"normal","",8,$row["color_text2"]</font>
+                <textarea>165,220,15,4,"R",$row["base"]</textarea>
+                <textarea>165,226,15,4,"R",$row["total"]</textarea>
+            <!-- MONTAR CAJA DE NOTAS -->
+            <eval>$row["notas"]</eval>
+                <font>"normal","B",8,$row["color_text1"]</font>
+                <text>30,220,LANG("notas")</text>
+                <line>30,225,120,225</line>
+                <font>"normal","",8,$row["color_text2"]</font>
+                <textarea>30,226,90,4,"L",$row["notas"]</textarea>
+                <getxy>"x","y"</getxy>
+            <eval>$row["notas"] AND $row["factura_iva_bool"] AND $row["factura_irpf_bool"]</eval>
+                <rect>30,219,90,max($row["y"]-219+1,24),"D",0.15,1</rect>
+            <eval>$row["notas"] AND $row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
+                <rect>30,219,90,max($row["y"]-219+1,18),"D",0.15,1</rect>
+            <eval>$row["notas"] AND !$row["factura_iva_bool"] AND $row["factura_irpf_bool"]</eval>
+                <rect>30,219,90,max($row["y"]-219+1,18),"D",0.15,1</rect>
+            <eval>$row["notas"] AND !$row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
+                <rect>30,219,90,max($row["y"]-219+1,12),"D",0.15,1</rect>
+            <eval>true</eval>
+            <!-- ACTIVAR EVAL OTRA VEZ -->
+            <query>"SELECT *,(SELECT cerrado FROM tbl_facturas WHERE id=id_factura) cerrado FROM tbl_facturas_v WHERE ".$row["filtro"]." ORDER BY fecha DESC"</query>
+            <font>"normal","",6,$row["color_text2"]</font>
+            <setxy>30,264</setxy>
+            <foreach>
+                <getxy>"x","y"</getxy>
+                <textarea>30,$row["y"],150,4,"C",LANG($row["cerrado"]?"vencimientosfactura":"vencimientosalbaran").": ".$row["fecha"].", ".$row["percent"]."%".", ".$row["importe"].CONFIG("accounting_currency")</textarea>
+                <getxy>"x","y"</getxy>
+                <setxy>30,$row["y"]-1.5</setxy>
+            </foreach>
+        </foreach>
+        <output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
+        SELECT
+            CASE num WHEN '' THEN
+                CONCAT('".LANG_ESCAPE("albaran")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre)
+            ELSE
+                CONCAT('".LANG_ESCAPE("factura")."',' ',num,' ',nombre)
+            END subject
+        FROM tbl_facturas WHERE id IN (".check_ids(getParam("id")).")"):LANG("facturas"))).".pdf"</output>
+    </pdf>
 </root>

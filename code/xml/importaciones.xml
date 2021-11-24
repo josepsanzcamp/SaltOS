@@ -24,476 +24,476 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>aplicacion</name>
-				<label lang="true">aplicacion</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">nombre</label>
-				<sort>true</sort>
-				<order>nombre2</order>
-			</field>
-			<field>
-				<name>datetime</name>
-				<label lang="true">datetime</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>fichero</name>
-				<label lang="true">fichero</label>
-				<sort>true</sort>
-				<order>fichero2</order>
-			</field>
-			<field>
-				<name>fichero_size2</name>
-				<label lang="true">size</label>
-				<sort>true</sort>
-				<order>fichero_size</order>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true"/>
-			<function>download2(cid) { cid=explode("_",cid); download("cid="+cid[0]+"&amp;page="+cid[1]+"&amp;id="+cid[2]); }</function>
-		</javascript>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>2</colspan>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,filtro" eval="true">"
-		SELECT * FROM (
-			SELECT id,id2,
-				CONCAT('link:openapp(\'importaciones\',',-id,'):',nombre) nombre,
-				nombre nombre2,
-				datetime,
-				(SELECT nombre FROM tbl_aplicaciones WHERE id=id_aplicacion) aplicacion,
-				CONCAT('link:download2(\'',f_id,'_${page}_',b.id,'\'):',fichero) fichero,
-				fichero fichero2,
-				fichero_size,
-				CASE WHEN fichero_size&gt;=1073741824 THEN  CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
-					WHEN fichero_size&gt;=1048576 THEN  CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
-					WHEN fichero_size&gt;=1024 THEN  CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
-					ELSE  CONCAT(fichero_size,' bytes')
-				END fichero_size2,
-				id_usuario,id_grupo,
-				descripcion,
-				id action_id,
-				CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
-				CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-				CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-				CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
-			FROM (
-				SELECT a.*,
-					LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
-					e.id_usuario id_usuario,d.id_grupo id_grupo,f.id f_id,f.fichero,f.fichero_size,f.datetime
-				FROM tbl_importaciones a
-					LEFT JOIN tbl_ficheros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id
-					LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-					LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-			) b
-		) c
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="page,id" eval="true">"SELECT a.*,CONCAT('download2(\'${page}\',\'',a.id,'\',\'',b.id,'\')') fichero_link FROM ".page2table($page)." a LEFT JOIN tbl_ficheros b ON b.id_aplicacion='".page2id($page)."' AND b.id_registro=a.id WHERE a.id='".abs($id)."'"</default>
-					<importdata>SELECT '0' id</importdata>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default>SELECT '0' id</default>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default include="xml/common/qdefaultview.xml" replace="true" />
-					<importdata>SELECT '0' id</importdata>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens>
-			<hiddens include="xml/common/hiddensform.xml" replace="true"/>
-			<field>
-				<name>limit</name>
-				<type>hidden</type>
-				<temp global="limit" eval="true">$limit=intval(getParam("limit",getDefault("regspagerdef")))</temp>
-				<value global="limit" eval="true">$limit=in_array($limit,explode(",",getDefault("regspagerlist")))?$limit:intval(getDefault("regspagerdef"))</value>
-				<class>nofilter</class>
-			</field>
-			<field>
-				<name>offset</name>
-				<type>hidden</type>
-				<value global="offset" eval="true">$offset=max(intval(getParam("offset",0)),0)</value>
-				<class>nofilter</class>
-			</field>
-		</hiddens>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<focus global="id" eval="true">$id==0?"true":"false"</focus>
-							</field>
-						<field>
-							<name>id_aplicacion</name>
-							<label lang="true">aplicacion</label>
-							<type>select</type>
-							<width>120px</width>
-							<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE tabla!='' OR subtablas!=''")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>descripcion</name>
-							<label lang="true">descripcion</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>3</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row global="id" ifeval="$id==0">
-						<height>22px</height>
-						<field>
-							<name>fichero</name>
-							<type>file</type>
-							<label lang="true">fichero</label>
-							<colspan>3</colspan>
-							<width>600px</width>
-							<size>60</size>
-							<required>true</required>
-							<class3>ui-state-default ui-corner-all</class3>
-						</field>
-					</row>
-					<row global="id" ifeval="$id!=0">
-						<height>22px</height>
-						<field>
-							<name>fichero_link</name>
-							<type>link</type>
-							<label global="page,id" eval="true">execute_query("SELECT fichero FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."'")</label>
-							<label2 lang="true">fichero</label2>
-							<colspan>10</colspan>
-							<label2 lang="true">feed</label2>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<importdata>
-				<fieldset>
-					<title lang="true">importdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<width>100%</width>
-					<row>
-						<field>
-							<type>grid</type>
-							<rows>
-								<row>
-									<field>
-										<type>button</type>
-										<value lang="true">buttonreturn</value>
-										<tip lang="true">buttonreturn</tip>
-										<onclick>goback()</onclick>
-										<class>nowrap contextmenu</class>
-										<icon eval="true">ICON("back")</icon>
-									</field>
-									<field>
-										<type>separator</type>
-										<width>100%</width>
-									</field>
-									<field>
-										<name>buscar</name>
-										<label lang="true">buscar</label>
-										<type>text</type>
-										<width>240px</width>
-										<onkey>if(is_enterkey(event)) import_buscar();</onkey>
-										<focus>true</focus>
-														<class3>shortcut_ctrl_f</class3>
-									</field>
-									<field>
-										<type>button</type>
-										<value lang="true">buscar</value>
-										<tip lang="true">buscartip</tip>
-										<onclick>import_buscar()</onclick>
-										<icon eval="true">ICON("search")</icon>
-										<class>nowrap</class>
-									</field>
-									<field>
-										<type>button</type>
-										<value lang="true">limpiar</value>
-										<tip lang="true">limpiartip</tip>
-										<onclick>import_limpiar()</onclick>
-										<icon eval="true">ICON("reset")</icon>
-										<class>nowrap contextmenu</class>
-									</field>
-								</row>
-							</rows>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-							<class>importdata</class>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>grid</type>
-							<rows>
-								<row>
-									<field>
-										<type>separator</type>
-										<width>10%</width>
-									</field>
-									<field>
-										<type>separator</type>
-										<width>50%</width>
-									</field>
-									<field>
-										<type>label</type>
-										<label eval="true">LANG("paginaspc")."1".LANG("spcdespc")."1"." (".LANG("regsfrom")." "."0".LANG("spcalspc")."0".LANG("spcdespc")."0".")."</label>
-										<class>nowrap</class>
-										<class2>infopager</class2>
-									</field>
-									<field>
-										<type>select</type>
-										<name>selectlimit</name>
-										<label lang="true">regspage</label>
-										<rows>
-											<temp global="rows" eval="true">$rows=explode(',',getDefault('regspagerlist'))</temp>
-											<row global="rows,row" foreach="rows" as="row">
-												<label global="row" eval="true">$row</label>
-												<value global="row" eval="true">$row</value>
-											</row>
-										</rows>
-										<value global="limit" eval="true">$limit</value>
-										<onchange>import_limit1(this.value)</onchange>
-									</field>
-									<field>
-										<type>separator</type>
-										<width>50%</width>
-									</field>
-									<field>
-										<name>firstpager</name>
-										<type>button</type>
-										<tip lang="true">first</tip>
-										<label lang="true">first</label>
-										<onclick>if(!is_disabled(this)) import_first()</onclick>
-										<icon eval="true">ICON("first")</icon>
-										<class>nowrap contextmenu</class>
-										<class2>ui-state-disabled shortcut_ctrl_home</class2>
-									</field>
-									<field>
-										<name>previouspager</name>
-										<type>button</type>
-										<tip lang="true">previous</tip>
-										<label lang="true">previous</label>
-										<onclick>if(!is_disabled(this)) import_previous()</onclick>
-										<icon eval="true">ICON("previous")</icon>
-										<class>nowrap contextmenu</class>
-										<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
-									</field>
-									<field>
-										<type>select</type>
-										<name>selectpager</name>
-										<rows>
-											<row>
-												<label global="offset,limit" eval="true">intval($offset/max($limit,1))+1</label>
-												<value></value>
-											</row>
-										</rows>
-										<onchange>import_page1(this.value)</onchange>
-									</field>
-									<field>
-										<name>nextpager</name>
-										<type>button</type>
-										<tip lang="true">next</tip>
-										<label lang="true">next</label>
-										<onclick>if(!is_disabled(this)) import_next()</onclick>
-										<icon eval="true">ICON("next")</icon>
-										<class>nowrap contextmenu</class>
-										<class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
-									</field>
-									<field>
-										<name>lastpager</name>
-										<type>button</type>
-										<tip lang="true">last</tip>
-										<label lang="true">last</label>
-										<onclick>if(!is_disabled(this)) import_last()</onclick>
-										<icon eval="true">ICON("last")</icon>
-										<class>nowrap contextmenu</class>
-										<class2>ui-state-disabled shortcut_ctrl_end</class2>
-									</field>
-								</row>
-							</rows>
-						</field>
-					</row>
-				</fieldset>
-			</importdata>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<javascript include="xml/common/jsform.xml"/>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query match="default" prefix="true" global="page" eval="true">make_insert_query("tbl_ficheros",array(
-			"id_aplicacion"=>page2id($page),
-			"id_registro"=>execute_query("SELECT MAX(id) FROM ".page2table($page)),
-			"id_usuario"=>current_user(),
-			"datetime"=>current_datetime(),
-			"fichero"=>getParam("fichero"),
-			"fichero_file"=>getParam("fichero_file"),
-			"fichero_size"=>intval(getParam("fichero_size")),
-			"fichero_type"=>getParam("fichero_type")
-		))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>aplicacion</name>
+                <label lang="true">aplicacion</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">nombre</label>
+                <sort>true</sort>
+                <order>nombre2</order>
+            </field>
+            <field>
+                <name>datetime</name>
+                <label lang="true">datetime</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>fichero</name>
+                <label lang="true">fichero</label>
+                <sort>true</sort>
+                <order>fichero2</order>
+            </field>
+            <field>
+                <name>fichero_size2</name>
+                <label lang="true">size</label>
+                <sort>true</sort>
+                <order>fichero_size</order>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true"/>
+            <function>download2(cid) { cid=explode("_",cid); download("cid="+cid[0]+"&amp;page="+cid[1]+"&amp;id="+cid[2]); }</function>
+        </javascript>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                        <colspan>2</colspan>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,filtro" eval="true">"
+        SELECT * FROM (
+            SELECT id,id2,
+                CONCAT('link:openapp(\'importaciones\',',-id,'):',nombre) nombre,
+                nombre nombre2,
+                datetime,
+                (SELECT nombre FROM tbl_aplicaciones WHERE id=id_aplicacion) aplicacion,
+                CONCAT('link:download2(\'',f_id,'_${page}_',b.id,'\'):',fichero) fichero,
+                fichero fichero2,
+                fichero_size,
+                CASE WHEN fichero_size&gt;=1073741824 THEN  CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
+                    WHEN fichero_size&gt;=1048576 THEN  CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
+                    WHEN fichero_size&gt;=1024 THEN  CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
+                    ELSE  CONCAT(fichero_size,' bytes')
+                END fichero_size2,
+                id_usuario,id_grupo,
+                descripcion,
+                id action_id,
+                CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
+                CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+                CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+                CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+            FROM (
+                SELECT a.*,
+                    LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
+                    e.id_usuario id_usuario,d.id_grupo id_grupo,f.id f_id,f.fichero,f.fichero_size,f.datetime
+                FROM tbl_importaciones a
+                    LEFT JOIN tbl_ficheros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id
+                    LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+                    LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+            ) b
+        ) c
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND ".check_sql($page,"list")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <default global="page,id" eval="true">"SELECT a.*,CONCAT('download2(\'${page}\',\'',a.id,'\',\'',b.id,'\')') fichero_link FROM ".page2table($page)." a LEFT JOIN tbl_ficheros b ON b.id_aplicacion='".page2id($page)."' AND b.id_registro=a.id WHERE a.id='".abs($id)."'"</default>
+                    <importdata>SELECT '0' id</importdata>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default>SELECT '0' id</default>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <default include="xml/common/qdefaultview.xml" replace="true" />
+                    <importdata>SELECT '0' id</importdata>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens>
+            <hiddens include="xml/common/hiddensform.xml" replace="true"/>
+            <field>
+                <name>limit</name>
+                <type>hidden</type>
+                <temp global="limit" eval="true">$limit=intval(getParam("limit",getDefault("regspagerdef")))</temp>
+                <value global="limit" eval="true">$limit=in_array($limit,explode(",",getDefault("regspagerlist")))?$limit:intval(getDefault("regspagerdef"))</value>
+                <class>nofilter</class>
+            </field>
+            <field>
+                <name>offset</name>
+                <type>hidden</type>
+                <value global="offset" eval="true">$offset=max(intval(getParam("offset",0)),0)</value>
+                <class>nofilter</class>
+            </field>
+        </hiddens>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre</name>
+                            <label lang="true">nombre</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <focus global="id" eval="true">$id==0?"true":"false"</focus>
+                            </field>
+                        <field>
+                            <name>id_aplicacion</name>
+                            <label lang="true">aplicacion</label>
+                            <type>select</type>
+                            <width>120px</width>
+                            <query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE tabla!='' OR subtablas!=''")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>descripcion</name>
+                            <label lang="true">descripcion</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>3</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row global="id" ifeval="$id==0">
+                        <height>22px</height>
+                        <field>
+                            <name>fichero</name>
+                            <type>file</type>
+                            <label lang="true">fichero</label>
+                            <colspan>3</colspan>
+                            <width>600px</width>
+                            <size>60</size>
+                            <required>true</required>
+                            <class3>ui-state-default ui-corner-all</class3>
+                        </field>
+                    </row>
+                    <row global="id" ifeval="$id!=0">
+                        <height>22px</height>
+                        <field>
+                            <name>fichero_link</name>
+                            <type>link</type>
+                            <label global="page,id" eval="true">execute_query("SELECT fichero FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."'")</label>
+                            <label2 lang="true">fichero</label2>
+                            <colspan>10</colspan>
+                            <label2 lang="true">feed</label2>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <importdata>
+                <fieldset>
+                    <title lang="true">importdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <width>100%</width>
+                    <row>
+                        <field>
+                            <type>grid</type>
+                            <rows>
+                                <row>
+                                    <field>
+                                        <type>button</type>
+                                        <value lang="true">buttonreturn</value>
+                                        <tip lang="true">buttonreturn</tip>
+                                        <onclick>goback()</onclick>
+                                        <class>nowrap contextmenu</class>
+                                        <icon eval="true">ICON("back")</icon>
+                                    </field>
+                                    <field>
+                                        <type>separator</type>
+                                        <width>100%</width>
+                                    </field>
+                                    <field>
+                                        <name>buscar</name>
+                                        <label lang="true">buscar</label>
+                                        <type>text</type>
+                                        <width>240px</width>
+                                        <onkey>if(is_enterkey(event)) import_buscar();</onkey>
+                                        <focus>true</focus>
+                                                        <class3>shortcut_ctrl_f</class3>
+                                    </field>
+                                    <field>
+                                        <type>button</type>
+                                        <value lang="true">buscar</value>
+                                        <tip lang="true">buscartip</tip>
+                                        <onclick>import_buscar()</onclick>
+                                        <icon eval="true">ICON("search")</icon>
+                                        <class>nowrap</class>
+                                    </field>
+                                    <field>
+                                        <type>button</type>
+                                        <value lang="true">limpiar</value>
+                                        <tip lang="true">limpiartip</tip>
+                                        <onclick>import_limpiar()</onclick>
+                                        <icon eval="true">ICON("reset")</icon>
+                                        <class>nowrap contextmenu</class>
+                                    </field>
+                                </row>
+                            </rows>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <class>importdata</class>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>grid</type>
+                            <rows>
+                                <row>
+                                    <field>
+                                        <type>separator</type>
+                                        <width>10%</width>
+                                    </field>
+                                    <field>
+                                        <type>separator</type>
+                                        <width>50%</width>
+                                    </field>
+                                    <field>
+                                        <type>label</type>
+                                        <label eval="true">LANG("paginaspc")."1".LANG("spcdespc")."1"." (".LANG("regsfrom")." "."0".LANG("spcalspc")."0".LANG("spcdespc")."0".")."</label>
+                                        <class>nowrap</class>
+                                        <class2>infopager</class2>
+                                    </field>
+                                    <field>
+                                        <type>select</type>
+                                        <name>selectlimit</name>
+                                        <label lang="true">regspage</label>
+                                        <rows>
+                                            <temp global="rows" eval="true">$rows=explode(',',getDefault('regspagerlist'))</temp>
+                                            <row global="rows,row" foreach="rows" as="row">
+                                                <label global="row" eval="true">$row</label>
+                                                <value global="row" eval="true">$row</value>
+                                            </row>
+                                        </rows>
+                                        <value global="limit" eval="true">$limit</value>
+                                        <onchange>import_limit1(this.value)</onchange>
+                                    </field>
+                                    <field>
+                                        <type>separator</type>
+                                        <width>50%</width>
+                                    </field>
+                                    <field>
+                                        <name>firstpager</name>
+                                        <type>button</type>
+                                        <tip lang="true">first</tip>
+                                        <label lang="true">first</label>
+                                        <onclick>if(!is_disabled(this)) import_first()</onclick>
+                                        <icon eval="true">ICON("first")</icon>
+                                        <class>nowrap contextmenu</class>
+                                        <class2>ui-state-disabled shortcut_ctrl_home</class2>
+                                    </field>
+                                    <field>
+                                        <name>previouspager</name>
+                                        <type>button</type>
+                                        <tip lang="true">previous</tip>
+                                        <label lang="true">previous</label>
+                                        <onclick>if(!is_disabled(this)) import_previous()</onclick>
+                                        <icon eval="true">ICON("previous")</icon>
+                                        <class>nowrap contextmenu</class>
+                                        <class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
+                                    </field>
+                                    <field>
+                                        <type>select</type>
+                                        <name>selectpager</name>
+                                        <rows>
+                                            <row>
+                                                <label global="offset,limit" eval="true">intval($offset/max($limit,1))+1</label>
+                                                <value></value>
+                                            </row>
+                                        </rows>
+                                        <onchange>import_page1(this.value)</onchange>
+                                    </field>
+                                    <field>
+                                        <name>nextpager</name>
+                                        <type>button</type>
+                                        <tip lang="true">next</tip>
+                                        <label lang="true">next</label>
+                                        <onclick>if(!is_disabled(this)) import_next()</onclick>
+                                        <icon eval="true">ICON("next")</icon>
+                                        <class>nowrap contextmenu</class>
+                                        <class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
+                                    </field>
+                                    <field>
+                                        <name>lastpager</name>
+                                        <type>button</type>
+                                        <tip lang="true">last</tip>
+                                        <label lang="true">last</label>
+                                        <onclick>if(!is_disabled(this)) import_last()</onclick>
+                                        <icon eval="true">ICON("last")</icon>
+                                        <class>nowrap contextmenu</class>
+                                        <class2>ui-state-disabled shortcut_ctrl_end</class2>
+                                    </field>
+                                </row>
+                            </rows>
+                        </field>
+                    </row>
+                </fieldset>
+            </importdata>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <javascript include="xml/common/jsform.xml"/>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query include="xml/common/autonombre.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+        <query match="default" prefix="true" global="page" eval="true">make_insert_query("tbl_ficheros",array(
+            "id_aplicacion"=>page2id($page),
+            "id_registro"=>execute_query("SELECT MAX(id) FROM ".page2table($page)),
+            "id_usuario"=>current_user(),
+            "datetime"=>current_datetime(),
+            "fichero"=>getParam("fichero"),
+            "fichero_file"=>getParam("fichero_file"),
+            "fichero_size"=>intval(getParam("fichero_size")),
+            "fichero_type"=>getParam("fichero_type")
+        ))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qdeletefiles.xml" replace="true" />
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query include="xml/common/qdeletefiles.xml" replace="true" />
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
 </root>

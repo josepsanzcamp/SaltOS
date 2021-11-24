@@ -24,84 +24,84 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<posiblescli>
-		<fieldset ifeval="check_user('posiblescli','menu')">
-			<width>700px</width>
-			<title lang="true">posiblesclidata</title>
-			<icon eval="true">ICON("form")</icon>
-			<head>
-				<field>
-					<type>label</type>
-					<label lang="true">nombre</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">tel_fijo</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">tel_movil</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">email</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>separator</type>
-					<class>thead</class>
-					<colspan>100</colspan>
-				</field>
-			</head>
-			<row>
-				<field>
-					<type>label</type>
-					<name>nombre</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>tel_fijo</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>tel_movil</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>email</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_view</name>
-					<type>link</type>
-					<label lang="true">view</label>
-					<width>1px</width>
-					<icon eval="true">ICON("view")</icon>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_vcard</name>
-					<type>link</type>
-					<label lang="true">vcard</label>
-					<width>1px</width>
-					<icon eval="true">ICON("vcard")</icon>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_qrcode</name>
-					<type>link</type>
-					<label lang="true">qrcode</label>
-					<width>1px</width>
-					<icon eval="true">ICON("qrcode")</icon>
-					<class>tbody</class>
-				</field>
-			</row>
-		</fieldset>
-	</posiblescli>
+    <posiblescli>
+        <fieldset ifeval="check_user('posiblescli','menu')">
+            <width>700px</width>
+            <title lang="true">posiblesclidata</title>
+            <icon eval="true">ICON("form")</icon>
+            <head>
+                <field>
+                    <type>label</type>
+                    <label lang="true">nombre</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">tel_fijo</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">tel_movil</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">email</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <class>thead</class>
+                    <colspan>100</colspan>
+                </field>
+            </head>
+            <row>
+                <field>
+                    <type>label</type>
+                    <name>nombre</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>tel_fijo</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>tel_movil</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>email</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_view</name>
+                    <type>link</type>
+                    <label lang="true">view</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("view")</icon>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_vcard</name>
+                    <type>link</type>
+                    <label lang="true">vcard</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("vcard")</icon>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_qrcode</name>
+                    <type>link</type>
+                    <label lang="true">qrcode</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("qrcode")</icon>
+                    <class>tbody</class>
+                </field>
+            </row>
+        </fieldset>
+    </posiblescli>
 </root>

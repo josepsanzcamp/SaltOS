@@ -24,288 +24,288 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>usuario</name>
-				<label lang="true">username</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>dstart</name>
-				<label lang="true">dstart</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>dstop</name>
-				<label lang="true">dstop</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>cliente</name>
-				<label lang="true">cliente</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>cliente2</order>
-			</field>
-			<field>
-				<name>proyecto</name>
-				<label lang="true">proyecto</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>proyecto2</order>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">nombre</label>
-				<sort>true</sort>
-				<order>nombre2</order>
-			</field>
-			<field>
-				<name>lugar</name>
-				<label lang="true">lugar</label>
-				<sort>true</sort>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-				<include>js/updatepresupuestos.js</include>
-			</cache>
-		</javascript>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>id_usuario</name>
-						<label lang="true">username</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
-					</field>
-					<field>
-						<type>separator</type>
-						<width>10px</width>
-					</field>
-					<field>
-						<name>fecha1</name>
-						<label lang="true">fechaini</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha1","le","fecha2")</onchange>
-					</field>
-					<field>
-						<name>fecha2</name>
-						<label lang="true">fechafin</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
-						<class2>right</class2>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha2","ge","fecha1")</onchange>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_posiblecli</name>
-						<label lang="true">posiblecli</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id_posiblecli FROM tbl_actas")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosposiblescli")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_posiblecli" eval="true">$id_posiblecli=getParam("id_posiblecli")</value>
-						<onchange>update_proyectos();update_presupuestos()</onchange>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>id_campanya</name>
-						<label lang="true">campanya</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_cliente</name>
-						<label lang="true">cliente</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_actas")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
-						<onchange>update_proyectos();update_presupuestos()</onchange>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>id_proyecto</name>
-						<label lang="true">proyecto</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>id_presupuesto</name>
-						<label lang="true">presupuesto</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslospresupuestos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
-						<value global="id_presupuesto" eval="true">$id_presupuesto=getParam("id_presupuesto")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_proyecto'=>'','id_cliente'=>'','id_posiblecli'=>'','id_campanya'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field ifeval="!ismobile()">
-					<type>button</type>
-					<value lang="true">pdf</value>
-					<tip lang="true">pdftip</tip>
-					<onclick>pdf()</onclick>
-					<icon eval="true">ICON("pdf")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field ifeval="!ismobile()">
-					<type>button</type>
-					<value lang="true">view2</value>
-					<tip lang="true">view2tip</tip>
-					<onclick>view4()</onclick>
-					<icon eval="true">ICON("viewpdf")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>button</type>
-					<value lang="true">mail</value>
-					<tip lang="true">mailtip</tip>
-					<onclick>mail()</onclick>
-					<icon eval="true">ICON("correo")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,id_proyecto,id_presupuesto,id_usuario,fecha1,fecha2,filtro,id_posiblecli,id_campanya" eval="true">"SELECT * FROM (
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>usuario</name>
+                <label lang="true">username</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>dstart</name>
+                <label lang="true">dstart</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>dstop</name>
+                <label lang="true">dstop</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>cliente</name>
+                <label lang="true">cliente</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>cliente2</order>
+            </field>
+            <field>
+                <name>proyecto</name>
+                <label lang="true">proyecto</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>proyecto2</order>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">nombre</label>
+                <sort>true</sort>
+                <order>nombre2</order>
+            </field>
+            <field>
+                <name>lugar</name>
+                <label lang="true">lugar</label>
+                <sort>true</sort>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+                <include>js/updatepresupuestos.js</include>
+            </cache>
+        </javascript>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>id_usuario</name>
+                        <label lang="true">username</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                        <width>10px</width>
+                    </field>
+                    <field>
+                        <name>fecha1</name>
+                        <label lang="true">fechaini</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha1","le","fecha2")</onchange>
+                    </field>
+                    <field>
+                        <name>fecha2</name>
+                        <label lang="true">fechafin</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
+                        <class2>right</class2>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha2","ge","fecha1")</onchange>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_posiblecli</name>
+                        <label lang="true">posiblecli</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id_posiblecli FROM tbl_actas")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosposiblescli")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_posiblecli" eval="true">$id_posiblecli=getParam("id_posiblecli")</value>
+                        <onchange>update_proyectos();update_presupuestos()</onchange>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>id_campanya</name>
+                        <label lang="true">campanya</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_cliente</name>
+                        <label lang="true">cliente</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_actas")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
+                        <onchange>update_proyectos();update_presupuestos()</onchange>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>id_proyecto</name>
+                        <label lang="true">proyecto</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                        <value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>id_presupuesto</name>
+                        <label lang="true">presupuesto</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslospresupuestos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
+                        <value global="id_presupuesto" eval="true">$id_presupuesto=getParam("id_presupuesto")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_proyecto'=>'','id_cliente'=>'','id_posiblecli'=>'','id_campanya'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">pdf</value>
+                    <tip lang="true">pdftip</tip>
+                    <onclick>pdf()</onclick>
+                    <icon eval="true">ICON("pdf")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">view2</value>
+                    <tip lang="true">view2tip</tip>
+                    <onclick>view4()</onclick>
+                    <icon eval="true">ICON("viewpdf")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>button</type>
+                    <value lang="true">mail</value>
+                    <tip lang="true">mailtip</tip>
+                    <onclick>mail()</onclick>
+                    <icon eval="true">ICON("correo")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,id_cliente,id_proyecto,id_presupuesto,id_usuario,fecha1,fecha2,filtro,id_posiblecli,id_campanya" eval="true">"SELECT * FROM (
 SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
-	".make_extra_query_with_login("b.")." usuario,
-	a.dstart dstart,a.dstop dstop,
-	CASE
-		WHEN a.id_cliente!='0' THEN CONCAT('link:openapp(\'clientes\',',-a.id_cliente,'):',c1_nombre)
-		WHEN a.id_posiblecli!='0' THEN CONCAT('link:openapp(\'posiblescli\',',-a.id_posiblecli,'):',c2_nombre)
-		ELSE '".LANG_ESCAPE("sincliente")."'
-	END cliente,
-	CASE
-		WHEN a.id_cliente!='0' THEN c1_nombre
-		WHEN a.id_posiblecli!='0' THEN c2_nombre
-		ELSE '".LANG_ESCAPE("sincliente")."'
-	END cliente2,
-	CASE id_proyecto
-		WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."'
-		ELSE CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',p_nombre)
-	END proyecto,
-	CONCAT('link:openapp(\'actas\',',-a.id,'):',a.nombre) nombre,
-	CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
-	a.nombre nombre2,a.lugar lugar,a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
-	CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-	CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-	CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
-	CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
-	CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
-	CASE ".check_user("correo","create")." AND ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_mail,
-		CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
-	id_usuario,pendientes,cancelados,aceptados,temas,asistentes,b.id_grupo id_grupo,a.id_cliente id_cliente,a.id_proyecto id_proyecto,
-	a.id_posiblecli id_posiblecli,a.id_presupuesto id_presupuesto,a.id_campanya id_campanya
+    ".make_extra_query_with_login("b.")." usuario,
+    a.dstart dstart,a.dstop dstop,
+    CASE
+        WHEN a.id_cliente!='0' THEN CONCAT('link:openapp(\'clientes\',',-a.id_cliente,'):',c1_nombre)
+        WHEN a.id_posiblecli!='0' THEN CONCAT('link:openapp(\'posiblescli\',',-a.id_posiblecli,'):',c2_nombre)
+        ELSE '".LANG_ESCAPE("sincliente")."'
+    END cliente,
+    CASE
+        WHEN a.id_cliente!='0' THEN c1_nombre
+        WHEN a.id_posiblecli!='0' THEN c2_nombre
+        ELSE '".LANG_ESCAPE("sincliente")."'
+    END cliente2,
+    CASE id_proyecto
+        WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."'
+        ELSE CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',p_nombre)
+    END proyecto,
+    CONCAT('link:openapp(\'actas\',',-a.id,'):',a.nombre) nombre,
+    CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
+    a.nombre nombre2,a.lugar lugar,a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
+    CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+    CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+    CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
+    CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
+    CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
+    CASE ".check_user("correo","create")." AND ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_mail,
+        CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+    id_usuario,pendientes,cancelados,aceptados,temas,asistentes,b.id_grupo id_grupo,a.id_cliente id_cliente,a.id_proyecto id_proyecto,
+    a.id_posiblecli id_posiblecli,a.id_presupuesto id_presupuesto,a.id_campanya id_campanya
 FROM (
-	SELECT a2.*,c1.nombre c1_nombre,c2.nombre c2_nombre,p.nombre p_nombre FROM tbl_actas a2
-	LEFT JOIN tbl_clientes c1 ON c1.id=a2.id_cliente
-	LEFT JOIN tbl_posiblescli c2 ON c2.id=a2.id_posiblecli
-	LEFT JOIN tbl_proyectos p ON a2.id_proyecto=p.id
+    SELECT a2.*,c1.nombre c1_nombre,c2.nombre c2_nombre,p.nombre p_nombre FROM tbl_actas a2
+    LEFT JOIN tbl_clientes c1 ON c1.id=a2.id_cliente
+    LEFT JOIN tbl_posiblescli c2 ON c2.id=a2.id_posiblecli
+    LEFT JOIN tbl_proyectos p ON a2.id_proyecto=p.id
 ) a
 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
@@ -313,587 +313,587 @@ LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 WHERE 1=1
 AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_presupuesto?"(id_presupuesto='$id_presupuesto')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop FROM tbl_actas WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_posiblecli"))."' id_posiblecli,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_campanya"))."' id_campanya"</default>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_campanya</name>
-							<label lang="true">campanya</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>openapp('campanyas',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_posiblecli</name>
-							<label lang="true">posiblecli</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>openapp('posiblescli',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-							<onchange>$("select[name$=id_cliente]").val(0);update_proyectos();update_presupuestos()</onchange>
-						</field>
-						<field>
-							<name>id_presupuesto</name>
-							<label lang="true">presupuesto</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>openapp('presupuestos',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_cliente</name>
-							<label lang="true">cliente</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
-							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-						<field>
-							<name>id_proyecto</name>
-							<label lang="true">proyecto</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>dstart</name>
-							<label lang="true">dstart</label>
-							<type>datetime</type>
-							<width>150px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<icon eval="true">ICON("calendar")</icon>
-							<icon2 eval="true">ICON("clock")</icon2>
-							<onchange>check_datetime("dstart","le","dstop")</onchange>
-						</field>
-						<field>
-							<name>dstop</name>
-							<label lang="true">dstop</label>
-							<type>datetime</type>
-							<width>150px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<icon eval="true">ICON("calendar")</icon>
-							<icon2 eval="true">ICON("clock")</icon2>
-							<onchange>check_datetime("dstop","ge","dstart")</onchange>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							</field>
-					</row>
-					<row>
-						<field>
-							<name>lugar</name>
-							<label lang="true">lugar</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
-					</row>
-					<row>
-						<field>
-							<name>asistentes</name>
-							<label lang="true">asistentes</label>
-							<type>textarea</type>
-							<width>240px</width>
-							<height>60px</height>
-							<colspan>4</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>temas</name>
-							<label lang="true">temas</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>4</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row global="id" ifeval="$id>=0">
-						<field ifeval="!ismobile()">
-							<name>textos_temas</name>
-							<label lang="true">textos</label>
-							<type>select</type>
-							<width>240px</width>
-							<query include="xml/common/qtextos.xml" replace="true"/>
-							<value></value>
-						</field>
-						<field>
-							<type>button</type>
-							<value lang="true">textos_add</value>
-							<icon eval="true">ICON("add")</icon>
-							<onclick>add_textos_textarea('textos_temas','temas')</onclick>
-						</field>
-					</row>
-				</fieldset>
-				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(aceptados) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
-					<title lang="true">aceptados</title>
-					<icon eval="true">ICON("form")</icon>
-					<row>
-						<field>
-							<name>aceptados</name>
-							<label lang="true">aceptados</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>240px</height>
-							<colspan>4</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row global="id" ifeval="$id>=0">
-						<field ifeval="!ismobile()">
-							<name>textos_aceptados</name>
-							<label lang="true">textos</label>
-							<type>select</type>
-							<width>240px</width>
-							<query include="xml/common/qtextos.xml" replace="true"/>
-							<value></value>
-						</field>
-						<field>
-							<type>button</type>
-							<value lang="true">textos_add</value>
-							<icon eval="true">ICON("add")</icon>
-							<onclick>add_textos_textarea('textos_aceptados','aceptados')</onclick>
-						</field>
-					</row>
-				</fieldset>
-				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(cancelados) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
-					<title lang="true">cancelados</title>
-					<icon eval="true">ICON("form")</icon>
-					<row>
-						<field>
-							<name>cancelados</name>
-							<label lang="true">cancelados</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>240px</height>
-							<colspan>4</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row global="id" ifeval="$id>=0">
-						<field ifeval="!ismobile()">
-							<name>textos_cancelados</name>
-							<label lang="true">textos</label>
-							<type>select</type>
-							<width>240px</width>
-							<query include="xml/common/qtextos.xml" replace="true"/>
-							<value></value>
-						</field>
-						<field>
-							<type>button</type>
-							<value lang="true">textos_add</value>
-							<icon eval="true">ICON("add")</icon>
-							<onclick>add_textos_textarea('textos_cancelados','cancelados')</onclick>
-						</field>
-					</row>
-				</fieldset>
-				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(pendientes) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
-					<title lang="true">pendientes</title>
-					<icon eval="true">ICON("form")</icon>
-					<row>
-						<field>
-							<name>pendientes</name>
-							<label lang="true">pendientes</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>240px</height>
-							<colspan>4</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row global="id" ifeval="$id>=0">
-						<field ifeval="!ismobile()">
-							<name>textos_pendientes</name>
-							<label lang="true">textos</label>
-							<type>select</type>
-							<width>240px</width>
-							<query include="xml/common/qtextos.xml" replace="true"/>
-							<value></value>
-						</field>
-						<field>
-							<type>button</type>
-							<value lang="true">textos_add</value>
-							<icon eval="true">ICON("add")</icon>
-							<onclick>add_textos_textarea('textos_pendientes','pendientes')</onclick>
-						</field>
-					</row>
-				</fieldset>
-				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(comentarios) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
-					<title lang="true">comentarios</title>
-					<icon eval="true">ICON("form")</icon>
-					<row>
-						<field>
-							<name>comentarios</name>
-							<label lang="true">comentarios</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>240px</height>
-							<colspan>4</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row global="id" ifeval="$id>=0">
-						<field ifeval="!ismobile()">
-							<name>textos_comentarios</name>
-							<label lang="true">textos</label>
-							<type>select</type>
-							<width>240px</width>
-							<query include="xml/common/qtextos.xml" replace="true"/>
-							<value></value>
-						</field>
-						<field>
-							<type>button</type>
-							<value lang="true">textos_add</value>
-							<icon eval="true">ICON("add")</icon>
-							<onclick>add_textos_textarea('textos_comentarios','comentarios')</onclick>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-				<include>js/updatepresupuestos.js</include>
-				<include>js/addtextos.js</include>
-			</cache>
-		</javascript>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <query include="xml/common/qdefaultview.xml" replace="true" />
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop FROM tbl_actas WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_posiblecli"))."' id_posiblecli,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_campanya"))."' id_campanya"</default>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <query include="xml/common/qdefaultview.xml" replace="true" />
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_campanya</name>
+                            <label lang="true">campanya</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <link>openapp('campanyas',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_posiblecli</name>
+                            <label lang="true">posiblecli</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <link>openapp('posiblescli',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                            <onchange>$("select[name$=id_cliente]").val(0);update_proyectos();update_presupuestos()</onchange>
+                        </field>
+                        <field>
+                            <name>id_presupuesto</name>
+                            <label lang="true">presupuesto</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <link>openapp('presupuestos',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_cliente</name>
+                            <label lang="true">cliente</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
+                            <link>openapp('clientes',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                        <field>
+                            <name>id_proyecto</name>
+                            <label lang="true">proyecto</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <link>openapp('proyectos',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>dstart</name>
+                            <label lang="true">dstart</label>
+                            <type>datetime</type>
+                            <width>150px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <icon eval="true">ICON("calendar")</icon>
+                            <icon2 eval="true">ICON("clock")</icon2>
+                            <onchange>check_datetime("dstart","le","dstop")</onchange>
+                        </field>
+                        <field>
+                            <name>dstop</name>
+                            <label lang="true">dstop</label>
+                            <type>datetime</type>
+                            <width>150px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <icon eval="true">ICON("calendar")</icon>
+                            <icon2 eval="true">ICON("clock")</icon2>
+                            <onchange>check_datetime("dstop","ge","dstart")</onchange>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre</name>
+                            <label lang="true">nombre</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>lugar</name>
+                            <label lang="true">lugar</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>asistentes</name>
+                            <label lang="true">asistentes</label>
+                            <type>textarea</type>
+                            <width>240px</width>
+                            <height>60px</height>
+                            <colspan>4</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>temas</name>
+                            <label lang="true">temas</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>4</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row global="id" ifeval="$id>=0">
+                        <field ifeval="!ismobile()">
+                            <name>textos_temas</name>
+                            <label lang="true">textos</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query include="xml/common/qtextos.xml" replace="true"/>
+                            <value></value>
+                        </field>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">textos_add</value>
+                            <icon eval="true">ICON("add")</icon>
+                            <onclick>add_textos_textarea('textos_temas','temas')</onclick>
+                        </field>
+                    </row>
+                </fieldset>
+                <fieldset global="id" ifeval="execute_query('SELECT LENGTH(aceptados) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
+                    <title lang="true">aceptados</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <row>
+                        <field>
+                            <name>aceptados</name>
+                            <label lang="true">aceptados</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>240px</height>
+                            <colspan>4</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row global="id" ifeval="$id>=0">
+                        <field ifeval="!ismobile()">
+                            <name>textos_aceptados</name>
+                            <label lang="true">textos</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query include="xml/common/qtextos.xml" replace="true"/>
+                            <value></value>
+                        </field>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">textos_add</value>
+                            <icon eval="true">ICON("add")</icon>
+                            <onclick>add_textos_textarea('textos_aceptados','aceptados')</onclick>
+                        </field>
+                    </row>
+                </fieldset>
+                <fieldset global="id" ifeval="execute_query('SELECT LENGTH(cancelados) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
+                    <title lang="true">cancelados</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <row>
+                        <field>
+                            <name>cancelados</name>
+                            <label lang="true">cancelados</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>240px</height>
+                            <colspan>4</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row global="id" ifeval="$id>=0">
+                        <field ifeval="!ismobile()">
+                            <name>textos_cancelados</name>
+                            <label lang="true">textos</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query include="xml/common/qtextos.xml" replace="true"/>
+                            <value></value>
+                        </field>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">textos_add</value>
+                            <icon eval="true">ICON("add")</icon>
+                            <onclick>add_textos_textarea('textos_cancelados','cancelados')</onclick>
+                        </field>
+                    </row>
+                </fieldset>
+                <fieldset global="id" ifeval="execute_query('SELECT LENGTH(pendientes) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
+                    <title lang="true">pendientes</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <row>
+                        <field>
+                            <name>pendientes</name>
+                            <label lang="true">pendientes</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>240px</height>
+                            <colspan>4</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row global="id" ifeval="$id>=0">
+                        <field ifeval="!ismobile()">
+                            <name>textos_pendientes</name>
+                            <label lang="true">textos</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query include="xml/common/qtextos.xml" replace="true"/>
+                            <value></value>
+                        </field>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">textos_add</value>
+                            <icon eval="true">ICON("add")</icon>
+                            <onclick>add_textos_textarea('textos_pendientes','pendientes')</onclick>
+                        </field>
+                    </row>
+                </fieldset>
+                <fieldset global="id" ifeval="execute_query('SELECT LENGTH(comentarios) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
+                    <title lang="true">comentarios</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <row>
+                        <field>
+                            <name>comentarios</name>
+                            <label lang="true">comentarios</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>240px</height>
+                            <colspan>4</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row global="id" ifeval="$id>=0">
+                        <field ifeval="!ismobile()">
+                            <name>textos_comentarios</name>
+                            <label lang="true">textos</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query include="xml/common/qtextos.xml" replace="true"/>
+                            <value></value>
+                        </field>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">textos_add</value>
+                            <icon eval="true">ICON("add")</icon>
+                            <onclick>add_textos_textarea('textos_comentarios','comentarios')</onclick>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+                <include>js/updatepresupuestos.js</include>
+                <include>js/addtextos.js</include>
+            </cache>
+        </javascript>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query include="xml/common/autonombre.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
-	<pdf>
-		<constructor>"P","mm","A4"</constructor>
-		<margins>50,30,30,30</margins>
-		<query>"SELECT * FROM (
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
+    <pdf>
+        <constructor>"P","mm","A4"</constructor>
+        <margins>50,30,30,30</margins>
+        <query>"SELECT * FROM (
 SELECT
-	CASE
-		WHEN a.id_cliente!='0' THEN c1.nombre
-		WHEN a.id_posiblecli!='0' THEN c2.nombre
-		ELSE '".LANG_ESCAPE("sincliente")."'
-	END cliente,
-	CASE
-		WHEN a.id_cliente!='0' THEN c1.nombre
-		WHEN a.id_posiblecli!='0' THEN c2.nombre
-		ELSE '".LANG_ESCAPE("sincliente")."'
-	END cliente2,
-	CASE
-		WHEN a.id_cliente!='0' THEN c1.cif
-		WHEN a.id_posiblecli!='0' THEN c2.cif
-		ELSE ''
-	END cif,
-	CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END proyecto,
-	CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END proyecto2,
-	a.nombre nombre2,
-	LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
-	".make_extra_query_with_login("b.")." usuario,
-	dstart,dstop,a.nombre nombre,lugar,asistentes,temas,aceptados,cancelados,pendientes,a.comentarios comentarios,id_usuario,a.id_proyecto id_proyecto,a.id_cliente id_cliente,a.id_posiblecli id_posiblecli,a.id_presupuesto id_presupuesto,a.id_campanya id_campanya
+    CASE
+        WHEN a.id_cliente!='0' THEN c1.nombre
+        WHEN a.id_posiblecli!='0' THEN c2.nombre
+        ELSE '".LANG_ESCAPE("sincliente")."'
+    END cliente,
+    CASE
+        WHEN a.id_cliente!='0' THEN c1.nombre
+        WHEN a.id_posiblecli!='0' THEN c2.nombre
+        ELSE '".LANG_ESCAPE("sincliente")."'
+    END cliente2,
+    CASE
+        WHEN a.id_cliente!='0' THEN c1.cif
+        WHEN a.id_posiblecli!='0' THEN c2.cif
+        ELSE ''
+    END cif,
+    CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END proyecto,
+    CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END proyecto2,
+    a.nombre nombre2,
+    LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
+    ".make_extra_query_with_login("b.")." usuario,
+    dstart,dstop,a.nombre nombre,lugar,asistentes,temas,aceptados,cancelados,pendientes,a.comentarios comentarios,id_usuario,a.id_proyecto id_proyecto,a.id_cliente id_cliente,a.id_posiblecli id_posiblecli,a.id_presupuesto id_presupuesto,a.id_campanya id_campanya
 FROM tbl_actas a
 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id AND e.first=1
 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 LEFT JOIN tbl_clientes c1 ON c1.id=a.id_cliente
 LEFT JOIN tbl_posiblescli c2 ON c2.id=a.id_posiblecli
 LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_ids(getParam("id")).")"</query>
-		<foreach>
-			<!-- TEMPLATE -->
-			<header>
-				<!-- LOGO -->
-				<margins>0,0,0,0</margins>
-				<image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
-				<!-- PONER MARCA DE AGUA -->
-				<font>"normal","B",CONFIG("water_actas_size"),"#eeeeee"</font>
-				<text>CONFIG("water_actas_posx"),CONFIG("water_actas_posy"),CONFIG("water_actas_text"),CONFIG("water_actas_angle")</text>
-				<margins>50,30,30,30</margins>
-				<setxy>30,50</setxy>
-			</header>
-			<footer>
-				<margins>0,0,0,0</margins>
-				<!-- PONER PIE DE PAGINA -->
-				<font>"normal","",6,CONFIG("color_text2")</font>
-				<pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
-				<margins>50,30,30,30</margins>
-			</footer>
-			<!-- BEGIN -->
-			<newpage></newpage>
-			<color>CONFIG("color_line"),"#000000"</color>
-			<!-- VOLCAR DATOS -->
-			<setxy>30,50</setxy>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("acta")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],75,4,"L",$row["id"]</textarea>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>105,$row["y"],25,4,"R",LANG("userinsert")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>130,$row["y"],75,4,"L",$row["usuario"]</textarea>
-			<eval>$row["id_cliente"]</eval>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<line>30,$row["y"],180,$row["y"]</line>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<font>"normal","B",8,CONFIG("color_text1")</font>
-				<textarea>30,$row["y"],25,4,"R",LANG("cliente")</textarea>
-				<font>"normal","",8,CONFIG("color_text2")</font>
-				<textarea>55,$row["y"],75,4,"L",$row["cliente"]</textarea>
-				<font>"normal","B",8,CONFIG("color_text1")</font>
-				<textarea>105,$row["y"],25,4,"R",LANG("cif")</textarea>
-				<font>"normal","",8,CONFIG("color_text2")</font>
-				<textarea>130,$row["y"],75,4,"L",$row["cif"]</textarea>
-			<eval>$row["id_proyecto"]</eval>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<line>30,$row["y"],180,$row["y"]</line>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<font>"normal","B",8,CONFIG("color_text1")</font>
-				<textarea>30,$row["y"],25,4,"R",LANG("proyecto")</textarea>
-				<font>"normal","",8,CONFIG("color_text2")</font>
-				<textarea>55,$row["y"],100,4,"L",$row["proyecto"]</textarea>
-			<eval>true</eval>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<line>30,$row["y"],180,$row["y"]</line>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("dstart")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],50,4,"L",$row["dstart"]</textarea>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>105,$row["y"],25,4,"R",LANG("dstop")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>130,$row["y"],50,4,"L",$row["dstop"]</textarea>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<line>30,$row["y"],180,$row["y"]</line>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("nombre")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],100,4,"L",$row["nombre"]</textarea>
-			<eval>$row["lugar"]</eval>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<line>30,$row["y"],180,$row["y"]</line>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<font>"normal","B",8,CONFIG("color_text1")</font>
-				<textarea>30,$row["y"],25,4,"R",LANG("lugar")</textarea>
-				<font>"normal","",8,CONFIG("color_text2")</font>
-				<textarea>55,$row["y"],100,4,"L",$row["lugar"]</textarea>
-			<eval>true</eval>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<line>30,$row["y"],180,$row["y"]</line>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<checky>4</checky>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("asistentes")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],100,4,"L",$row["asistentes"]</textarea>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<line>30,$row["y"],180,$row["y"]</line>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<checky>4</checky>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("temas")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],125,4,"L",trim($row["temas"])</textarea>
-			<eval>$row["aceptados"]</eval>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<line>30,$row["y"],180,$row["y"]</line>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<checky>4</checky>
-				<getxy>"x","y"</getxy>
-				<font>"normal","B",8,CONFIG("color_text1")</font>
-				<textarea>30,$row["y"],25,4,"R",LANG("aceptados")</textarea>
-				<font>"normal","",8,CONFIG("color_text2")</font>
-				<textarea>55,$row["y"],125,4,"L",trim($row["aceptados"])</textarea>
-			<eval>$row["cancelados"]</eval>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<line>30,$row["y"],180,$row["y"]</line>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<checky>4</checky>
-				<getxy>"x","y"</getxy>
-				<font>"normal","B",8,CONFIG("color_text1")</font>
-				<textarea>30,$row["y"],25,4,"R",LANG("cancelados")</textarea>
-				<font>"normal","",8,CONFIG("color_text2")</font>
-				<textarea>55,$row["y"],125,4,"L",trim($row["cancelados"])</textarea>
-			<eval>$row["pendientes"]</eval>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<line>30,$row["y"],180,$row["y"]</line>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<checky>4</checky>
-				<getxy>"x","y"</getxy>
-				<font>"normal","B",8,CONFIG("color_text1")</font>
-				<textarea>30,$row["y"],25,4,"R",LANG("pendientes")</textarea>
-				<font>"normal","",8,CONFIG("color_text2")</font>
-				<textarea>55,$row["y"],125,4,"L",trim($row["pendientes"])</textarea>
-			<eval>$row["comentarios"]</eval>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<line>30,$row["y"],180,$row["y"]</line>
-				<getxy>"x","y"</getxy>
-				<setxy>$row["x"],$row["y"]+2</setxy>
-				<getxy>"x","y"</getxy>
-				<checky>4</checky>
-				<getxy>"x","y"</getxy>
-				<font>"normal","B",8,CONFIG("color_text1")</font>
-				<textarea>30,$row["y"],25,4,"R",LANG("comentarios")</textarea>
-				<font>"normal","",8,CONFIG("color_text2")</font>
-				<textarea>55,$row["y"],125,4,"L",trim($row["comentarios"])</textarea>
-			<eval>true</eval>
-		</foreach>
-		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG_ESCAPE("acta")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
-		FROM tbl_actas WHERE id IN (".check_ids(getParam("id")).")"):LANG("actas"))).".pdf"</output>
-	</pdf>
+        <foreach>
+            <!-- TEMPLATE -->
+            <header>
+                <!-- LOGO -->
+                <margins>0,0,0,0</margins>
+                <image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
+                <!-- PONER MARCA DE AGUA -->
+                <font>"normal","B",CONFIG("water_actas_size"),"#eeeeee"</font>
+                <text>CONFIG("water_actas_posx"),CONFIG("water_actas_posy"),CONFIG("water_actas_text"),CONFIG("water_actas_angle")</text>
+                <margins>50,30,30,30</margins>
+                <setxy>30,50</setxy>
+            </header>
+            <footer>
+                <margins>0,0,0,0</margins>
+                <!-- PONER PIE DE PAGINA -->
+                <font>"normal","",6,CONFIG("color_text2")</font>
+                <pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
+                <margins>50,30,30,30</margins>
+            </footer>
+            <!-- BEGIN -->
+            <newpage></newpage>
+            <color>CONFIG("color_line"),"#000000"</color>
+            <!-- VOLCAR DATOS -->
+            <setxy>30,50</setxy>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("acta")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],75,4,"L",$row["id"]</textarea>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>105,$row["y"],25,4,"R",LANG("userinsert")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>130,$row["y"],75,4,"L",$row["usuario"]</textarea>
+            <eval>$row["id_cliente"]</eval>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <line>30,$row["y"],180,$row["y"]</line>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <font>"normal","B",8,CONFIG("color_text1")</font>
+                <textarea>30,$row["y"],25,4,"R",LANG("cliente")</textarea>
+                <font>"normal","",8,CONFIG("color_text2")</font>
+                <textarea>55,$row["y"],75,4,"L",$row["cliente"]</textarea>
+                <font>"normal","B",8,CONFIG("color_text1")</font>
+                <textarea>105,$row["y"],25,4,"R",LANG("cif")</textarea>
+                <font>"normal","",8,CONFIG("color_text2")</font>
+                <textarea>130,$row["y"],75,4,"L",$row["cif"]</textarea>
+            <eval>$row["id_proyecto"]</eval>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <line>30,$row["y"],180,$row["y"]</line>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <font>"normal","B",8,CONFIG("color_text1")</font>
+                <textarea>30,$row["y"],25,4,"R",LANG("proyecto")</textarea>
+                <font>"normal","",8,CONFIG("color_text2")</font>
+                <textarea>55,$row["y"],100,4,"L",$row["proyecto"]</textarea>
+            <eval>true</eval>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <line>30,$row["y"],180,$row["y"]</line>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("dstart")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],50,4,"L",$row["dstart"]</textarea>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>105,$row["y"],25,4,"R",LANG("dstop")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>130,$row["y"],50,4,"L",$row["dstop"]</textarea>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <line>30,$row["y"],180,$row["y"]</line>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("nombre")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],100,4,"L",$row["nombre"]</textarea>
+            <eval>$row["lugar"]</eval>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <line>30,$row["y"],180,$row["y"]</line>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <font>"normal","B",8,CONFIG("color_text1")</font>
+                <textarea>30,$row["y"],25,4,"R",LANG("lugar")</textarea>
+                <font>"normal","",8,CONFIG("color_text2")</font>
+                <textarea>55,$row["y"],100,4,"L",$row["lugar"]</textarea>
+            <eval>true</eval>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <line>30,$row["y"],180,$row["y"]</line>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <checky>4</checky>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("asistentes")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],100,4,"L",$row["asistentes"]</textarea>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <line>30,$row["y"],180,$row["y"]</line>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <checky>4</checky>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("temas")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],125,4,"L",trim($row["temas"])</textarea>
+            <eval>$row["aceptados"]</eval>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <line>30,$row["y"],180,$row["y"]</line>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <checky>4</checky>
+                <getxy>"x","y"</getxy>
+                <font>"normal","B",8,CONFIG("color_text1")</font>
+                <textarea>30,$row["y"],25,4,"R",LANG("aceptados")</textarea>
+                <font>"normal","",8,CONFIG("color_text2")</font>
+                <textarea>55,$row["y"],125,4,"L",trim($row["aceptados"])</textarea>
+            <eval>$row["cancelados"]</eval>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <line>30,$row["y"],180,$row["y"]</line>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <checky>4</checky>
+                <getxy>"x","y"</getxy>
+                <font>"normal","B",8,CONFIG("color_text1")</font>
+                <textarea>30,$row["y"],25,4,"R",LANG("cancelados")</textarea>
+                <font>"normal","",8,CONFIG("color_text2")</font>
+                <textarea>55,$row["y"],125,4,"L",trim($row["cancelados"])</textarea>
+            <eval>$row["pendientes"]</eval>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <line>30,$row["y"],180,$row["y"]</line>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <checky>4</checky>
+                <getxy>"x","y"</getxy>
+                <font>"normal","B",8,CONFIG("color_text1")</font>
+                <textarea>30,$row["y"],25,4,"R",LANG("pendientes")</textarea>
+                <font>"normal","",8,CONFIG("color_text2")</font>
+                <textarea>55,$row["y"],125,4,"L",trim($row["pendientes"])</textarea>
+            <eval>$row["comentarios"]</eval>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <line>30,$row["y"],180,$row["y"]</line>
+                <getxy>"x","y"</getxy>
+                <setxy>$row["x"],$row["y"]+2</setxy>
+                <getxy>"x","y"</getxy>
+                <checky>4</checky>
+                <getxy>"x","y"</getxy>
+                <font>"normal","B",8,CONFIG("color_text1")</font>
+                <textarea>30,$row["y"],25,4,"R",LANG("comentarios")</textarea>
+                <font>"normal","",8,CONFIG("color_text2")</font>
+                <textarea>55,$row["y"],125,4,"L",trim($row["comentarios"])</textarea>
+            <eval>true</eval>
+        </foreach>
+        <output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
+        SELECT CONCAT('".LANG_ESCAPE("acta")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
+        FROM tbl_actas WHERE id IN (".check_ids(getParam("id")).")"):LANG("actas"))).".pdf"</output>
+    </pdf>
 </root>

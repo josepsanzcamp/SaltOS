@@ -24,16 +24,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<files_old global="page,id" eval="true">"SELECT a.*,
+    <files_old global="page,id" eval="true">"SELECT a.*,
 ".make_extra_query_with_login("d.")." usuario,
 c.nombre grupo,
 a.datetime,
 CONCAT('download2(\'$page\',\'".abs($id)."\',\'',a.id,'\')') download,
 CONCAT('viewpdf2(\'$page\',\'".abs($id)."\',\'',a.id,'\')') viewpdf,
 CASE WHEN fichero_size&gt;=1073741824 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
-	WHEN fichero_size&gt;=1048576 THEN CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
-	WHEN fichero_size&gt;=1024 THEN CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
-	ELSE CONCAT(fichero_size,' bytes')
+    WHEN fichero_size&gt;=1048576 THEN CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
+    WHEN fichero_size&gt;=1024 THEN CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
+    ELSE CONCAT(fichero_size,' bytes')
 END fichero_size
 FROM tbl_ficheros a
 LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id

@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<id>1</id>
-		<id_usuario>1</id_usuario>
-		<page>feeds</page>
-	</row>
+    <row>
+        <id>1</id>
+        <id_usuario>1</id_usuario>
+        <page>feeds</page>
+    </row>
 </root>

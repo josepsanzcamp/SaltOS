@@ -24,70 +24,70 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<menu include="xml/common/jsmenu.xml" replace="true"/>
-	<!-- FOR GENERAL PURPOSES -->
-	<function>setParam(name,value) { $("form[id=list] *[name="+name+"]").val(value); }</function>
-	<function>setCheck(name,value) { $("form[id=list] *[name="+name+"]").prop("checked",value); }</function>
-	<function>getParam(name) { return $("form[id=list] *[name="+name+"]").val(); }</function>
-	<function>submit1(callback) { submitcontent($("form[id=list]"),callback); }</function>
-	<!-- FOR GENERAL ACTIONS -->
-	<function>sort(field) { setParam("action","list"); setParam("offset",0); setParam("order",field); submit1(); }</function>
-	<function>create() { setParam("action","form"); setParam("id","0"); submit1(); }</function>
-	<function>view(id) { setParam("action","form"); setParam("id",-id); submit1(); }</function>
-	<function>edit(id) { setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>copy(id) { setParam("action","form"); setParam("id","0_copy_"+id); submit1(); }</function>
-	<function eval="true">"delete1(id) { dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','delete'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
-	<function>buscar() { setParam("action","list"); setParam("offset","0"); submit1(); }</function>
-	<function>pdf() { var id=getIds(); if(!id) return; openurl("?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
-	<function>mail() { var id=getIds(); if(!id) return; addcontent("cancel"); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
-	<function>excel() { openurl("?page="+getParam("page")+"&amp;action=excel"); }</function>
-	<function>limpiar() { addcontent("cancel"); setParam("action","limpiar"); submit1(); }</function>
-	<function>pdf2(id) { openurl("?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
-	<function>mail2(id) { addcontent("cancel"); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
-	<function>vcard(id) { openurl("?page="+getParam("page")+"&amp;action=vcard&amp;id="+id); }</function>
-	<function>mailto(mail) { setParam("page","correo"); setParam("action","form"); setParam("id","0_mailto_"+mail); submit1(); }</function>
-	<function>download(data) { openurl("?action=download&amp;"+data); }</function>
-	<function eval="true">"getIds() { var ids=[]; $('input.slave[type=checkbox]:checked').each(function() { ids.push(get_class_id(this)); }); if(ids.length==0) alerta('".LANG_ESCAPE("msgnotcheckbox")."'); return implode(',',ids); }"</function>
-	<!-- FOR FORM ACCESS -->
-	<function>openapp(page,id) { setParam("page",page); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<!-- FOR PAGERLIST MODULE -->
-	<function>first() { page1($("#selectpager").prop("selectedIndex",0).val()); }</function>
-	<function>previous() { page1($("#selectpager").prop("selectedIndex",$("#selectpager").prop("selectedIndex")-1).val()); }</function>
-	<function>next() { page1($("#selectpager").prop("selectedIndex",$("#selectpager").prop("selectedIndex")+1).val()); }</function>
-	<function>last() { page1($("#selectpager").prop("selectedIndex",$("#selectpager").prop("options").length-1).val()); }</function>
-	<function>page1(num) { setParam("action","list"); setParam("offset",(intval(num)-1)*intval(getParam("limit"))); submit1(); }</function>
-	<function>limit1(num) { setParam("action","list"); setParam("limit",intval(num)); submit1(); }</function>
-	<!-- FOR QRCODE MODULE -->
-	<function eval="true">"lang_qrcode() { return '".LANG_ESCAPE("qrcode")."'; }"</function>
-	<function eval="true">"lang_telefono() { return '".LANG_ESCAPE("telefono")."'; }"</function>
-	<function>qrcode(id) { qrcode2(getParam("page"),id); }</function>
-	<!-- FOR VIEWPDF MODULE -->
-	<function>view2(id) { viewpdf("page="+getParam("page")+"&amp;id="+abs(id)); }</function>
-	<function>view4() { var id=getIds(); if(!id) return; viewpdf("page="+getParam("page")+"&amp;id="+id); }</function>
-	<function eval="true">"lang_view2() { return '".LANG_ESCAPE("view2")."'; }"</function>
-	<function eval="true">"lang_view2error() { return '".LANG_ESCAPE("view2error")."'; }"</function>
-	<function eval="true">"lang_view2hash() { return '".LANG_ESCAPE("view2hash")."'; }"</function>
-	<function eval="true">"lang_view2opening() { return '".LANG_ESCAPE("view2opening")."'; }"</function>
-	<function eval="true">"current_revision() { return '".getDefault("info/revision","SVN")."'; }"</function>
-	<!-- FOR FILTER MODULE -->
-	<function eval="true">"lang_createfilterok() { return '".LANG_ESCAPE("createfilterok")."'; }"</function>
-	<function eval="true">"lang_createfilterko() { return '".LANG_ESCAPE("createfilterko")."'; }"</function>
-	<function eval="true">"lang_loadfilterko() { return '".LANG_ESCAPE("loadfilterko")."'; }"</function>
-	<function eval="true">"lang_loadfilterok() { return '".LANG_ESCAPE("loadfilterok")."'; }"</function>
-	<function eval="true">"lang_updatefilterko() { return '".LANG_ESCAPE("updatefilterko")."'; }"</function>
-	<function eval="true">"lang_updatefilterok() { return '".LANG_ESCAPE("updatefilterok")."'; }"</function>
-	<function eval="true">"lang_deletefilterko() { return '".LANG_ESCAPE("deletefilterko")."'; }"</function>
-	<function eval="true">"lang_deletefilterok() { return '".LANG_ESCAPE("deletefilterok")."'; }"</function>
-	<function eval="true">"lang_renamefilterok() { return '".LANG_ESCAPE("renamefilterok")."'; }"</function>
-	<function eval="true">"lang_renamefilterko1() { return '".LANG_ESCAPE("renamefilterko1")."'; }"</function>
-	<function eval="true">"lang_renamefilterko2() { return '".LANG_ESCAPE("renamefilterko2")."'; }"</function>
-	<!-- USING CACHE -->
-	<cache>
-		<include>js/qrcode.js</include>
-		<include>js/viewpdf.js</include>
-		<include>js/filters.js</include>
-		<include>js/pagerlist.js</include>
-		<include>js/numbers.js</include>
-		<include>js/favoritos.js</include>
-	</cache>
+    <menu include="xml/common/jsmenu.xml" replace="true"/>
+    <!-- FOR GENERAL PURPOSES -->
+    <function>setParam(name,value) { $("form[id=list] *[name="+name+"]").val(value); }</function>
+    <function>setCheck(name,value) { $("form[id=list] *[name="+name+"]").prop("checked",value); }</function>
+    <function>getParam(name) { return $("form[id=list] *[name="+name+"]").val(); }</function>
+    <function>submit1(callback) { submitcontent($("form[id=list]"),callback); }</function>
+    <!-- FOR GENERAL ACTIONS -->
+    <function>sort(field) { setParam("action","list"); setParam("offset",0); setParam("order",field); submit1(); }</function>
+    <function>create() { setParam("action","form"); setParam("id","0"); submit1(); }</function>
+    <function>view(id) { setParam("action","form"); setParam("id",-id); submit1(); }</function>
+    <function>edit(id) { setParam("action","form"); setParam("id",id); submit1(); }</function>
+    <function>copy(id) { setParam("action","form"); setParam("id","0_copy_"+id); submit1(); }</function>
+    <function eval="true">"delete1(id) { dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','delete'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+    <function>buscar() { setParam("action","list"); setParam("offset","0"); submit1(); }</function>
+    <function>pdf() { var id=getIds(); if(!id) return; openurl("?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
+    <function>mail() { var id=getIds(); if(!id) return; addcontent("cancel"); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
+    <function>excel() { openurl("?page="+getParam("page")+"&amp;action=excel"); }</function>
+    <function>limpiar() { addcontent("cancel"); setParam("action","limpiar"); submit1(); }</function>
+    <function>pdf2(id) { openurl("?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
+    <function>mail2(id) { addcontent("cancel"); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
+    <function>vcard(id) { openurl("?page="+getParam("page")+"&amp;action=vcard&amp;id="+id); }</function>
+    <function>mailto(mail) { setParam("page","correo"); setParam("action","form"); setParam("id","0_mailto_"+mail); submit1(); }</function>
+    <function>download(data) { openurl("?action=download&amp;"+data); }</function>
+    <function eval="true">"getIds() { var ids=[]; $('input.slave[type=checkbox]:checked').each(function() { ids.push(get_class_id(this)); }); if(ids.length==0) alerta('".LANG_ESCAPE("msgnotcheckbox")."'); return implode(',',ids); }"</function>
+    <!-- FOR FORM ACCESS -->
+    <function>openapp(page,id) { setParam("page",page); setParam("action","form"); setParam("id",id); submit1(); }</function>
+    <!-- FOR PAGERLIST MODULE -->
+    <function>first() { page1($("#selectpager").prop("selectedIndex",0).val()); }</function>
+    <function>previous() { page1($("#selectpager").prop("selectedIndex",$("#selectpager").prop("selectedIndex")-1).val()); }</function>
+    <function>next() { page1($("#selectpager").prop("selectedIndex",$("#selectpager").prop("selectedIndex")+1).val()); }</function>
+    <function>last() { page1($("#selectpager").prop("selectedIndex",$("#selectpager").prop("options").length-1).val()); }</function>
+    <function>page1(num) { setParam("action","list"); setParam("offset",(intval(num)-1)*intval(getParam("limit"))); submit1(); }</function>
+    <function>limit1(num) { setParam("action","list"); setParam("limit",intval(num)); submit1(); }</function>
+    <!-- FOR QRCODE MODULE -->
+    <function eval="true">"lang_qrcode() { return '".LANG_ESCAPE("qrcode")."'; }"</function>
+    <function eval="true">"lang_telefono() { return '".LANG_ESCAPE("telefono")."'; }"</function>
+    <function>qrcode(id) { qrcode2(getParam("page"),id); }</function>
+    <!-- FOR VIEWPDF MODULE -->
+    <function>view2(id) { viewpdf("page="+getParam("page")+"&amp;id="+abs(id)); }</function>
+    <function>view4() { var id=getIds(); if(!id) return; viewpdf("page="+getParam("page")+"&amp;id="+id); }</function>
+    <function eval="true">"lang_view2() { return '".LANG_ESCAPE("view2")."'; }"</function>
+    <function eval="true">"lang_view2error() { return '".LANG_ESCAPE("view2error")."'; }"</function>
+    <function eval="true">"lang_view2hash() { return '".LANG_ESCAPE("view2hash")."'; }"</function>
+    <function eval="true">"lang_view2opening() { return '".LANG_ESCAPE("view2opening")."'; }"</function>
+    <function eval="true">"current_revision() { return '".getDefault("info/revision","SVN")."'; }"</function>
+    <!-- FOR FILTER MODULE -->
+    <function eval="true">"lang_createfilterok() { return '".LANG_ESCAPE("createfilterok")."'; }"</function>
+    <function eval="true">"lang_createfilterko() { return '".LANG_ESCAPE("createfilterko")."'; }"</function>
+    <function eval="true">"lang_loadfilterko() { return '".LANG_ESCAPE("loadfilterko")."'; }"</function>
+    <function eval="true">"lang_loadfilterok() { return '".LANG_ESCAPE("loadfilterok")."'; }"</function>
+    <function eval="true">"lang_updatefilterko() { return '".LANG_ESCAPE("updatefilterko")."'; }"</function>
+    <function eval="true">"lang_updatefilterok() { return '".LANG_ESCAPE("updatefilterok")."'; }"</function>
+    <function eval="true">"lang_deletefilterko() { return '".LANG_ESCAPE("deletefilterko")."'; }"</function>
+    <function eval="true">"lang_deletefilterok() { return '".LANG_ESCAPE("deletefilterok")."'; }"</function>
+    <function eval="true">"lang_renamefilterok() { return '".LANG_ESCAPE("renamefilterok")."'; }"</function>
+    <function eval="true">"lang_renamefilterko1() { return '".LANG_ESCAPE("renamefilterko1")."'; }"</function>
+    <function eval="true">"lang_renamefilterko2() { return '".LANG_ESCAPE("renamefilterko2")."'; }"</function>
+    <!-- USING CACHE -->
+    <cache>
+        <include>js/qrcode.js</include>
+        <include>js/viewpdf.js</include>
+        <include>js/filters.js</include>
+        <include>js/pagerlist.js</include>
+        <include>js/numbers.js</include>
+        <include>js/favoritos.js</include>
+    </cache>
 </root>

@@ -24,11 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<control global="id,page" eval="true">"
-	SELECT '0' id,a.id_usuario id_usuario,e.id_grupo id_grupo,a.datetime datetime,".make_extra_query_with_login("e.")." nombre,e.login usuario,f.nombre grupo
-	FROM tbl_registros a
-	LEFT JOIN tbl_usuarios e ON a.id_usuario=e.id
-	LEFT JOIN tbl_grupos f ON e.id_grupo=f.id
-	WHERE a.id_aplicacion='".page2id($page)."' AND a.id_registro=".abs($id)."
-	ORDER BY datetime ASC"</control>
+    <control global="id,page" eval="true">"
+    SELECT '0' id,a.id_usuario id_usuario,e.id_grupo id_grupo,a.datetime datetime,".make_extra_query_with_login("e.")." nombre,e.login usuario,f.nombre grupo
+    FROM tbl_registros a
+    LEFT JOIN tbl_usuarios e ON a.id_usuario=e.id
+    LEFT JOIN tbl_grupos f ON e.id_grupo=f.id
+    WHERE a.id_aplicacion='".page2id($page)."' AND a.id_registro=".abs($id)."
+    ORDER BY datetime ASC"</control>
 </root>

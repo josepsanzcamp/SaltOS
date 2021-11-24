@@ -24,78 +24,78 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<fieldset>
-		<width>700px</width>
-		<title lang="true">comentarios</title>
-		<icon eval="true">ICON("form")</icon>
-		<popup>true</popup>
-		<row>
-			<field>
-				<name>id</name>
-				<type>hidden</type>
-			</field>
-			<field>
-				<name>id_registro</name>
-				<type>hidden</type>
-			</field>
-			<field>
-				<label lang="true">username</label>
-				<type>label</type>
-				<class>thead</class>
-			</field>
-			<field>
-				<type>label</type>
-				<class>tbody</class>
-				<name>usuario</name>
-			</field>
-			<field>
-				<label lang="true">grupo</label>
-				<type>label</type>
-				<class>thead</class>
-			</field>
-			<field>
-				<name>grupo</name>
-				<type>label</type>
-				<class>tbody</class>
-			</field>
-			<field>
-				<label lang="true">datetime</label>
-				<type>label</type>
-				<class>thead</class>
-			</field>
-			<field>
-				<name>datetime</name>
-				<type>label</type>
-				<class>tbody</class>
-			</field>
-			<field global="id" ifeval="$id>=0">
-				<type>checkbox</type>
-				<label lang="true">commentdel</label>
-				<name>comentario_del</name>
-				<value>1</value>
-				<width>1px</width>
-				<width2>1px</width2>
-				<icon eval="true">ICON("delete")</icon>
-				<class>tbody</class>
-				<class2>tbody</class2>
-			</field>
-		</row>
-		<row>
-			<field>
-				<label lang="true">comentarios</label>
-				<type>label</type>
-				<class>thead</class>
-			</field>
-			<field>
-				<name>comentarios</name>
-				<type>textarea</type>
-				<width>600px</width>
-				<height>120px</height>
-				<colspan>7</colspan>
-				<class>tbody</class>
-				<readonly>true</readonly>
-				<class2>thead</class2>
-			</field>
-		</row>
-	</fieldset>
+    <fieldset>
+        <width>700px</width>
+        <title lang="true">comentarios</title>
+        <icon eval="true">ICON("form")</icon>
+        <popup>true</popup>
+        <row>
+            <field>
+                <name>id</name>
+                <type>hidden</type>
+            </field>
+            <field>
+                <name>id_registro</name>
+                <type>hidden</type>
+            </field>
+            <field>
+                <label lang="true">username</label>
+                <type>label</type>
+                <class>thead</class>
+            </field>
+            <field>
+                <type>label</type>
+                <class>tbody</class>
+                <name>usuario</name>
+            </field>
+            <field>
+                <label lang="true">grupo</label>
+                <type>label</type>
+                <class>thead</class>
+            </field>
+            <field>
+                <name>grupo</name>
+                <type>label</type>
+                <class>tbody</class>
+            </field>
+            <field>
+                <label lang="true">datetime</label>
+                <type>label</type>
+                <class>thead</class>
+            </field>
+            <field>
+                <name>datetime</name>
+                <type>label</type>
+                <class>tbody</class>
+            </field>
+            <field global="id" ifeval="$id>=0">
+                <type>checkbox</type>
+                <label lang="true">commentdel</label>
+                <name>comentario_del</name>
+                <value>1</value>
+                <width>1px</width>
+                <width2>1px</width2>
+                <icon eval="true">ICON("delete")</icon>
+                <class>tbody</class>
+                <class2>tbody</class2>
+            </field>
+        </row>
+        <row>
+            <field>
+                <label lang="true">comentarios</label>
+                <type>label</type>
+                <class>thead</class>
+            </field>
+            <field>
+                <name>comentarios</name>
+                <type>textarea</type>
+                <width>600px</width>
+                <height>120px</height>
+                <colspan>7</colspan>
+                <class>tbody</class>
+                <readonly>true</readonly>
+                <class2>thead</class2>
+            </field>
+        </row>
+    </fieldset>
 </root>

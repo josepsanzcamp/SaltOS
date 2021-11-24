@@ -24,159 +24,159 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<default>
-		<action global="action" eval="true">($action=="list")?$action="form":$action</action>
-		<id global="id" eval="true">$id=current_user()</id>
-	</default>
-	<form>
-		<views>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<export>SELECT '0' id</export>
-					<import>SELECT '0' id</import>
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<export>
-				<fieldset global="temp" ifeval="(check_user('datacfg',($temp='export')))">
-					<width>600px</width>
-					<title lang="true">export</title>
-					<icon eval="true">ICON("form")</icon>
-					<row>
-						<field>
-							<type>label</type>
-							<label global="temp" eval="true">LANG("title_$temp")</label>
-							<class>center bold</class>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>label</type>
-							<label global="temp" eval="true">LANG("desc_$temp")</label>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>label</type>
-							<label global="temp" eval="true">LANG("desc2_$temp")</label>
-							<class>siwrap</class>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>button</type>
-							<value global="temp" eval="true">LANG($temp)</value>
-							<onclick global="temp" eval="true">"openurl('?page=datacfg&amp;action=$temp');"</onclick>
-							<class>right</class>
-							<icon eval="true">ICON("accept")</icon>
-						</field>
-					</row>
-				</fieldset>
-			</export>
-			<import>
-				<fieldset global="temp" ifeval="(check_user('datacfg',($temp='import')))">
-					<width>600px</width>
-					<title lang="true">import</title>
-					<icon eval="true">ICON("form")</icon>
-					<row>
-						<field>
-							<type>label</type>
-							<label global="temp" eval="true">LANG("title_$temp")</label>
-							<class>center bold</class>
-							<colspan>2</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>label</type>
-							<label global="temp" eval="true">LANG("desc_$temp")</label>
-							<colspan>2</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>label</type>
-							<label global="temp" eval="true">LANG("desc2_$temp")</label>
-							<colspan>2</colspan>
-							<class>siwrap</class>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>file</type>
-							<name>file</name>
-							<width>600px</width>
-							<size>60</size>
-							<class3>ui-state-default ui-corner-all</class3>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>label</type>
-							<label global="temp" eval="true">LANG("desc3_$temp")</label>
-							<class>bold left</class>
-							<colspan>2</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>button</type>
-							<value global="temp" eval="true">LANG($temp)</value>
-							<onclick global="temp" eval="true">"setParam('action','$temp');submit1();"</onclick>
-							<class>right nowrap</class>
-							<icon eval="true">ICON("accept")</icon>
-						</field>
-					</row>
-				</fieldset>
-			</import>
-		</fields>
-		<javascript include="xml/common/jsform.xml"/>
-	</form>
+    <default>
+        <action global="action" eval="true">($action=="list")?$action="form":$action</action>
+        <id global="id" eval="true">$id=current_user()</id>
+    </default>
+    <form>
+        <views>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <export>SELECT '0' id</export>
+                    <import>SELECT '0' id</import>
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <export>
+                <fieldset global="temp" ifeval="(check_user('datacfg',($temp='export')))">
+                    <width>600px</width>
+                    <title lang="true">export</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <row>
+                        <field>
+                            <type>label</type>
+                            <label global="temp" eval="true">LANG("title_$temp")</label>
+                            <class>center bold</class>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>label</type>
+                            <label global="temp" eval="true">LANG("desc_$temp")</label>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>label</type>
+                            <label global="temp" eval="true">LANG("desc2_$temp")</label>
+                            <class>siwrap</class>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>button</type>
+                            <value global="temp" eval="true">LANG($temp)</value>
+                            <onclick global="temp" eval="true">"openurl('?page=datacfg&amp;action=$temp');"</onclick>
+                            <class>right</class>
+                            <icon eval="true">ICON("accept")</icon>
+                        </field>
+                    </row>
+                </fieldset>
+            </export>
+            <import>
+                <fieldset global="temp" ifeval="(check_user('datacfg',($temp='import')))">
+                    <width>600px</width>
+                    <title lang="true">import</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <row>
+                        <field>
+                            <type>label</type>
+                            <label global="temp" eval="true">LANG("title_$temp")</label>
+                            <class>center bold</class>
+                            <colspan>2</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>label</type>
+                            <label global="temp" eval="true">LANG("desc_$temp")</label>
+                            <colspan>2</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>label</type>
+                            <label global="temp" eval="true">LANG("desc2_$temp")</label>
+                            <colspan>2</colspan>
+                            <class>siwrap</class>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>file</type>
+                            <name>file</name>
+                            <width>600px</width>
+                            <size>60</size>
+                            <class3>ui-state-default ui-corner-all</class3>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>label</type>
+                            <label global="temp" eval="true">LANG("desc3_$temp")</label>
+                            <class>bold left</class>
+                            <colspan>2</colspan>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>button</type>
+                            <value global="temp" eval="true">LANG($temp)</value>
+                            <onclick global="temp" eval="true">"setParam('action','$temp');submit1();"</onclick>
+                            <class>right nowrap</class>
+                            <icon eval="true">ICON("accept")</icon>
+                        </field>
+                    </row>
+                </fieldset>
+            </import>
+        </fields>
+        <javascript include="xml/common/jsform.xml"/>
+    </form>
 </root>

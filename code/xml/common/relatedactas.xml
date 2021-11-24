@@ -24,92 +24,92 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<actas>
-		<fieldset ifeval="check_user('actas','menu')">
-			<width>700px</width>
-			<title lang="true">actasdata</title>
-			<icon eval="true">ICON("form")</icon>
-			<head>
-				<field>
-					<type>label</type>
-					<label lang="true">id</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">dstart</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">dstop</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">nombre</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>separator</type>
-					<class>thead</class>
-					<colspan>100</colspan>
-				</field>
-			</head>
-			<row>
-				<field>
-					<type>label</type>
-					<name>id</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>dstart</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>dstop</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>nombre</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_view</name>
-					<type>link</type>
-					<label lang="true">view</label>
-					<width>1px</width>
-					<icon eval="true">ICON("view")</icon>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_pdf</name>
-					<type>link</type>
-					<label lang="true">pdf</label>
-					<width>1px</width>
-					<icon eval="true">ICON("pdf")</icon>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_view2</name>
-					<type>link</type>
-					<label lang="true">view2</label>
-					<width>1px</width>
-					<icon eval="true">ICON("viewpdf")</icon>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_mail</name>
-					<type>link</type>
-					<label lang="true">mail</label>
-					<width>1px</width>
-					<icon eval="true">ICON("correo")</icon>
-					<class>tbody</class>
-				</field>
-			</row>
-		</fieldset>
-	</actas>
+    <actas>
+        <fieldset ifeval="check_user('actas','menu')">
+            <width>700px</width>
+            <title lang="true">actasdata</title>
+            <icon eval="true">ICON("form")</icon>
+            <head>
+                <field>
+                    <type>label</type>
+                    <label lang="true">id</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">dstart</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">dstop</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">nombre</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <class>thead</class>
+                    <colspan>100</colspan>
+                </field>
+            </head>
+            <row>
+                <field>
+                    <type>label</type>
+                    <name>id</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>dstart</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>dstop</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>nombre</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_view</name>
+                    <type>link</type>
+                    <label lang="true">view</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("view")</icon>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_pdf</name>
+                    <type>link</type>
+                    <label lang="true">pdf</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("pdf")</icon>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_view2</name>
+                    <type>link</type>
+                    <label lang="true">view2</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("viewpdf")</icon>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_mail</name>
+                    <type>link</type>
+                    <label lang="true">mail</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("correo")</icon>
+                    <class>tbody</class>
+                </field>
+            </row>
+        </fieldset>
+    </actas>
 </root>

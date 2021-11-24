@@ -24,14 +24,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="page,id" match="folders" prefix="true" eval="true">"DELETE FROM tbl_folders_a WHERE ".make_where_query(array(
-		"id_folder"=>intval(getParam("id")),
-		"id_aplicacion"=>page2id($page),
-		"id_registro"=>intval($id)
-	))</query>
-	<query global="page,id" match="folders" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_folders_a",array(
-		"id_folder"=>intval(getParam("id")),
-		"id_aplicacion"=>page2id($page),
-		"id_registro"=>intval($id)
-	)):""</query>
+    <query global="page,id" match="folders" prefix="true" eval="true">"DELETE FROM tbl_folders_a WHERE ".make_where_query(array(
+        "id_folder"=>intval(getParam("id")),
+        "id_aplicacion"=>page2id($page),
+        "id_registro"=>intval($id)
+    ))</query>
+    <query global="page,id" match="folders" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_folders_a",array(
+        "id_folder"=>intval(getParam("id")),
+        "id_aplicacion"=>page2id($page),
+        "id_registro"=>intval($id)
+    )):""</query>
 </root>

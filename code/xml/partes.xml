@@ -24,772 +24,772 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>cliente</name>
-				<label lang="true">cliente</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>cliente2</order>
-			</field>
-			<field>
-				<name>proyecto</name>
-				<label lang="true">proyecto</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>proyecto2</order>
-			</field>
-			<field>
-				<name>tarea</name>
-				<label lang="true">tarea</label>
-				<sort>true</sort>
-				<order>tarea2</order>
-			</field>
-			<field>
-				<name>fecha</name>
-				<label lang="true">date</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>horas</name>
-				<label lang="true">horas</label>
-				<sort>true</sort>
-				<math>
-					<func>sum()</func>
-					<label lang="true">suma</label>
-				</math>
-			</field>
-			<field>
-				<name>precio</name>
-				<label eval="true">LANG("precio")." (".CONFIG("accounting_currency").")"</label>
-				<sort>true</sort>
-				<math>
-					<func>avg()</func>
-					<label eval="true">LANG("average")." (".CONFIG("accounting_currency").")"</label>
-				</math>
-			</field>
-			<field>
-				<name>total</name>
-				<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-				<sort>true</sort>
-				<math>
-					<func>sum()</func>
-					<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
-				</math>
-			</field>
-			<field>
-				<name>liquidado</name>
-				<label lang="true">liq</label>
-				<sort>false</sort>
-				<class>estado</class>
-			</field>
-			<field>
-				<name>fecha2</name>
-				<label lang="true">dateliq</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>comentarios</name>
-				<label lang="true">numc</label>
-				<tip lang="true">numctip</tip>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>ficheros</name>
-				<label lang="true">numf</label>
-				<tip lang="true">numftip</tip>
-				<sort>false</sort>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true" />
-			<cache>
-				<include>js/updateproyectos.js</include>
-			</cache>
-			<function eval="true">"liquidar1() { var id=getIds(); if(!id) return; dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("msgliquidar")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','liquidar'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
-		</javascript>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>id_usuario</name>
-						<label lang="true">username</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
-						<colspan>3</colspan>
-					</field>
-					<field>
-						<type>separator</type>
-						<width>10px</width>
-					</field>
-					<field>
-						<name>id_cliente</name>
-						<label lang="true">cliente</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_partes")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
-						<colspan>4</colspan>
-						<onchange>update_proyectos()</onchange>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>fecha1</name>
-						<label lang="true">fechaini</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha1","le","fecha2")</onchange>
-					</field>
-					<field>
-						<label lang="true">fechafin</label>
-						<name>fecha2</name>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
-						<class2>right</class2>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha2","ge","fecha1")</onchange>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>id_proyecto</name>
-						<label lang="true">proyecto</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
-						<colspan>4</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>fecha1liq</name>
-						<label lang="true">fechainiliq</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha1liq" eval="true">$fecha1liq=getParam("fecha1liq")?dateval(getParam("fecha1liq")):""</value>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha1liq","le","fecha2liq")</onchange>
-					</field>
-					<field>
-						<name>fecha2liq</name>
-						<label lang="true">fechafin</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha2liq" eval="true">$fecha2liq=getParam("fecha2liq")?dateval(getParam("fecha2liq")):""</value>
-						<class2>right</class2>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha2liq","ge","fecha1liq")</onchange>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>liquidado</name>
-						<label lang="true">liquidado</label>
-						<type>select</type>
-						<width>60px</width>
-						<query eval="true">"SELECT '1' value,'".LANG_ESCAPE("yes")."' label UNION SELECT '0' value,'".LANG_ESCAPE("no")."' label UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY label"</query>
-						<value global="liquidado" eval="true">$liquidado=getParam("liquidado")</value>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>4</colspan>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<form>
-			<fields ifeval="!ismobile()">
-				<title lang="true">graficas</title>
-				<icon eval="true">ICON("plots")</icon>
-				<row>
-					<field>
-						<type>plot</type>
-						<width eval="true">CONFIG("plot_list_width")."px"</width>
-						<height eval="true">CONFIG("plot_list_height")."px"</height>
-						<vars>1</vars>
-						<graph>bars</graph>
-						<title lang="true">plotseguimiento12meses</title>
-						<query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(total),2) IS NULL THEN 0 ELSE ROUND(SUM(total),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_partes) a LEFT JOIN tbl_partes ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) GROUP BY xx ORDER BY xx ASC</query>
-					</field>
-					<field>
-						<type>plot</type>
-						<width eval="true">CONFIG("plot_list_width")."px"</width>
-						<height eval="true">CONFIG("plot_list_height")."px"</height>
-						<vars>1</vars>
-						<graph>pie</graph>
-						<title lang="true">plotseguimiento12meses</title>
-						<query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(total),2) IS NULL THEN 0 ELSE ROUND(SUM(total),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_partes) a LEFT JOIN tbl_partes ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) GROUP BY xx ORDER BY xx ASC</query>
-					</field>
-				</row>
-				<row>
-					<field>
-						<type>plot</type>
-						<width eval="true">CONFIG("plot_list_width")."px"</width>
-						<height eval="true">CONFIG("plot_list_height")."px"</height>
-						<vars>1</vars>
-						<graph>bars</graph>
-						<title lang="true">plotseguimientotop10</title>
-						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,ROUND(SUM(total),2) y1 FROM tbl_partes LEFT JOIN tbl_clientes ON tbl_partes.id_cliente=tbl_clientes.id WHERE fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
-					</field>
-					<field>
-						<type>plot</type>
-						<width eval="true">CONFIG("plot_list_width")."px"</width>
-						<height eval="true">CONFIG("plot_list_height")."px"</height>
-						<vars>1</vars>
-						<graph>pie</graph>
-						<title lang="true">plotseguimientotop10</title>
-						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,ROUND(SUM(total),2) y1 FROM tbl_partes LEFT JOIN tbl_clientes ON tbl_partes.id_cliente=tbl_clientes.id WHERE fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
-					</field>
-				</row>
-			</fields>
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_cliente'=>'', 'id_proyecto'=>'','liquidado'=>'', 'fecha1liq'=>'','fecha2liq'=>'','filtro'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field ifeval="!ismobile()">
-					<type>button</type>
-					<value lang="true">excel</value>
-					<tip lang="true">exceltip</tip>
-					<onclick>excel()</onclick>
-					<icon eval="true">ICON("excel")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>button</type>
-					<value lang="true">pdf</value>
-					<tip lang="true">pdftip</tip>
-					<onclick>pdf()</onclick>
-					<icon eval="true">ICON("pdf")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field ifeval="!ismobile()">
-					<type>button</type>
-					<value lang="true">view2</value>
-					<tip lang="true">view2tip</tip>
-					<onclick>view4()</onclick>
-					<icon eval="true">ICON("viewpdf")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>button</type>
-					<value lang="true">mail</value>
-					<tip lang="true">mailtip</tip>
-					<onclick>mail()</onclick>
-					<icon eval="true">ICON("correo")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>button</type>
-					<class>nowrap</class>
-					<value lang="true">liquidar</value>
-					<tip lang="true">liquidar</tip>
-					<onclick>liquidar1()</onclick>
-					<width>1px</width>
-					<icon eval="true">ICON("save")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,liquidado,id_usuario,fecha1,fecha2,fecha1liq,fecha2liq,filtro,id_proyecto" eval="true">"
-		SELECT LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
-			usuario,
-			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
-				CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',cliente) END cliente,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
-				CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',proyecto) END proyecto,
-			CONCAT('link:openapp(\'partes\',',-id,'):',tarea) tarea,
-			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
-			tarea tarea2,fecha,horas,precio,total,
-			CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END liquidado,
-			fecha2,
-			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=d.id) comentarios,
-			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=d.id) ficheros,
-			id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',tarea) action_title,
-			CASE
-				WHEN liquidado=1 THEN ''
-				WHEN fecha2=fecha THEN ''
-				WHEN fecha2>'".current_datetime()."' THEN 'style_pending'
-				ELSE 'style_alarm'
-			END action_style,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
-			CASE ".check_user("correo","create")." AND ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_mail,
-			CASE ".check_sql($page,"delete")." AND NOT liquidado WHEN 1 THEN 'true' ELSE 'false' END action_delete
-		FROM (SELECT a.*,
-				".make_extra_query_with_login("b.")." usuario,
-				c.nombre cliente,e.datetime,e.id_usuario id_usuario,b.id_grupo id_grupo,p.nombre proyecto
-				FROM tbl_partes a
-				LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
-				LEFT JOIN tbl_clientes c ON a.id_cliente=c.id
-				LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id
-		) d
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($liquidado!=""?"(liquidado='$liquidado')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$fecha1liq' OR fecha2>=DATE('$fecha1liq')) AND (''='$fecha2liq' OR DATE('$fecha2liq')>=fecha2) AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml" />
-					<files_old include="xml/common/qfilesold.xml" />
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
-					SELECT *,'0' id,'".current_date()."' fecha,'0' liquidado,'".current_date()."' fecha2 FROM tbl_partes WHERE id='".substr(getParam("id"),7)."'":"
-					SELECT '0' id,'0' id_cliente,'0' id_proyecto,'".current_date()."' fecha,'0.00' horas,'0.00' precio,'0.00' total,'".current_date()."' fecha2"</default>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml" />
-					<files_old include="xml/common/qfilesold.xml" />
-					<comments_new include="xml/common/qcommentnew.xml" replace="true"/>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_cliente</name>
-							<label lang="true">cliente</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>3</colspan>
-							<onchange>update_proyectos()</onchange>
-							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_proyecto</name>
-							<label lang="true">proyecto</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>3</colspan>
-							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>tarea</name>
-							<label lang="true">tarea</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>3</colspan>
-							<required>true</required>
-							</field>
-						<field>
-							<name>fecha</name>
-							<label lang="true">date</label>
-							<type>date</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<icon eval="true">ICON("calendar")</icon>
-							<onchange>$("input[name$='fecha2']").val($(this).val())</onchange>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>comentarios</name>
-							<label lang="true">comentarios</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>7</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>horas</name>
-							<label lang="true">horasfact</label>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_parte()</onchange>
-							<required>true</required>
-						</field>
-						<field>
-							<name>precio</name>
-							<label eval="true">LANG("preciohora")." (".CONFIG("accounting_currency").")"</label>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_parte()</onchange>
-							<required>true</required>
-						</field>
-						<field>
-							<name>total</name>
-							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
-							<type>float</type>
-							<width>60px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_totales_parte()</onchange>
-							<required>true</required>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>60px</width>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-							<colspan>2</colspan>
-						</field>
-						<field>
-							<name>liquidado</name>
-							<label lang="true">liquidado</label>
-							<type>checkbox</type>
-							<value>1</value>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<name>fecha2</name>
-							<label lang="true">dateliq</label>
-							<type>date</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<icon eval="true">ICON("calendar")</icon>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<comments_old include="xml/common/commentsold.xml"/>
-			<files_old include="xml/common/filesold.xml" />
-			<comments_new include="xml/common/commentnew.xml"/>
-			<files_new include="xml/common/filesnew.xml"/>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-			</cache>
-		</javascript>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query include="xml/common/autotarea.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query include="xml/common/qfilesinsert.xml" replace="true"/>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>cliente</name>
+                <label lang="true">cliente</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>cliente2</order>
+            </field>
+            <field>
+                <name>proyecto</name>
+                <label lang="true">proyecto</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>proyecto2</order>
+            </field>
+            <field>
+                <name>tarea</name>
+                <label lang="true">tarea</label>
+                <sort>true</sort>
+                <order>tarea2</order>
+            </field>
+            <field>
+                <name>fecha</name>
+                <label lang="true">date</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>horas</name>
+                <label lang="true">horas</label>
+                <sort>true</sort>
+                <math>
+                    <func>sum()</func>
+                    <label lang="true">suma</label>
+                </math>
+            </field>
+            <field>
+                <name>precio</name>
+                <label eval="true">LANG("precio")." (".CONFIG("accounting_currency").")"</label>
+                <sort>true</sort>
+                <math>
+                    <func>avg()</func>
+                    <label eval="true">LANG("average")." (".CONFIG("accounting_currency").")"</label>
+                </math>
+            </field>
+            <field>
+                <name>total</name>
+                <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                <sort>true</sort>
+                <math>
+                    <func>sum()</func>
+                    <label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
+                </math>
+            </field>
+            <field>
+                <name>liquidado</name>
+                <label lang="true">liq</label>
+                <sort>false</sort>
+                <class>estado</class>
+            </field>
+            <field>
+                <name>fecha2</name>
+                <label lang="true">dateliq</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>comentarios</name>
+                <label lang="true">numc</label>
+                <tip lang="true">numctip</tip>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>ficheros</name>
+                <label lang="true">numf</label>
+                <tip lang="true">numftip</tip>
+                <sort>false</sort>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true" />
+            <cache>
+                <include>js/updateproyectos.js</include>
+            </cache>
+            <function eval="true">"liquidar1() { var id=getIds(); if(!id) return; dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("msgliquidar")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','liquidar'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+        </javascript>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>id_usuario</name>
+                        <label lang="true">username</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
+                        <colspan>3</colspan>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                        <width>10px</width>
+                    </field>
+                    <field>
+                        <name>id_cliente</name>
+                        <label lang="true">cliente</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_partes")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
+                        <colspan>4</colspan>
+                        <onchange>update_proyectos()</onchange>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>fecha1</name>
+                        <label lang="true">fechaini</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha1","le","fecha2")</onchange>
+                    </field>
+                    <field>
+                        <label lang="true">fechafin</label>
+                        <name>fecha2</name>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
+                        <class2>right</class2>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha2","ge","fecha1")</onchange>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>id_proyecto</name>
+                        <label lang="true">proyecto</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                        <value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
+                        <colspan>4</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>fecha1liq</name>
+                        <label lang="true">fechainiliq</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha1liq" eval="true">$fecha1liq=getParam("fecha1liq")?dateval(getParam("fecha1liq")):""</value>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha1liq","le","fecha2liq")</onchange>
+                    </field>
+                    <field>
+                        <name>fecha2liq</name>
+                        <label lang="true">fechafin</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha2liq" eval="true">$fecha2liq=getParam("fecha2liq")?dateval(getParam("fecha2liq")):""</value>
+                        <class2>right</class2>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha2liq","ge","fecha1liq")</onchange>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>liquidado</name>
+                        <label lang="true">liquidado</label>
+                        <type>select</type>
+                        <width>60px</width>
+                        <query eval="true">"SELECT '1' value,'".LANG_ESCAPE("yes")."' label UNION SELECT '0' value,'".LANG_ESCAPE("no")."' label UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY label"</query>
+                        <value global="liquidado" eval="true">$liquidado=getParam("liquidado")</value>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                        <colspan>4</colspan>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <form>
+            <fields ifeval="!ismobile()">
+                <title lang="true">graficas</title>
+                <icon eval="true">ICON("plots")</icon>
+                <row>
+                    <field>
+                        <type>plot</type>
+                        <width eval="true">CONFIG("plot_list_width")."px"</width>
+                        <height eval="true">CONFIG("plot_list_height")."px"</height>
+                        <vars>1</vars>
+                        <graph>bars</graph>
+                        <title lang="true">plotseguimiento12meses</title>
+                        <query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(total),2) IS NULL THEN 0 ELSE ROUND(SUM(total),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_partes) a LEFT JOIN tbl_partes ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) GROUP BY xx ORDER BY xx ASC</query>
+                    </field>
+                    <field>
+                        <type>plot</type>
+                        <width eval="true">CONFIG("plot_list_width")."px"</width>
+                        <height eval="true">CONFIG("plot_list_height")."px"</height>
+                        <vars>1</vars>
+                        <graph>pie</graph>
+                        <title lang="true">plotseguimiento12meses</title>
+                        <query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(total),2) IS NULL THEN 0 ELSE ROUND(SUM(total),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_partes UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_partes) a LEFT JOIN tbl_partes ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) GROUP BY xx ORDER BY xx ASC</query>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <type>plot</type>
+                        <width eval="true">CONFIG("plot_list_width")."px"</width>
+                        <height eval="true">CONFIG("plot_list_height")."px"</height>
+                        <vars>1</vars>
+                        <graph>bars</graph>
+                        <title lang="true">plotseguimientotop10</title>
+                        <query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,ROUND(SUM(total),2) y1 FROM tbl_partes LEFT JOIN tbl_clientes ON tbl_partes.id_cliente=tbl_clientes.id WHERE fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
+                    </field>
+                    <field>
+                        <type>plot</type>
+                        <width eval="true">CONFIG("plot_list_width")."px"</width>
+                        <height eval="true">CONFIG("plot_list_height")."px"</height>
+                        <vars>1</vars>
+                        <graph>pie</graph>
+                        <title lang="true">plotseguimientotop10</title>
+                        <query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,ROUND(SUM(total),2) y1 FROM tbl_partes LEFT JOIN tbl_clientes ON tbl_partes.id_cliente=tbl_clientes.id WHERE fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
+                    </field>
+                </row>
+            </fields>
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_cliente'=>'', 'id_proyecto'=>'','liquidado'=>'', 'fecha1liq'=>'','fecha2liq'=>'','filtro'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">excel</value>
+                    <tip lang="true">exceltip</tip>
+                    <onclick>excel()</onclick>
+                    <icon eval="true">ICON("excel")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>button</type>
+                    <value lang="true">pdf</value>
+                    <tip lang="true">pdftip</tip>
+                    <onclick>pdf()</onclick>
+                    <icon eval="true">ICON("pdf")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">view2</value>
+                    <tip lang="true">view2tip</tip>
+                    <onclick>view4()</onclick>
+                    <icon eval="true">ICON("viewpdf")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>button</type>
+                    <value lang="true">mail</value>
+                    <tip lang="true">mailtip</tip>
+                    <onclick>mail()</onclick>
+                    <icon eval="true">ICON("correo")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>button</type>
+                    <class>nowrap</class>
+                    <value lang="true">liquidar</value>
+                    <tip lang="true">liquidar</tip>
+                    <onclick>liquidar1()</onclick>
+                    <width>1px</width>
+                    <icon eval="true">ICON("save")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,id_cliente,liquidado,id_usuario,fecha1,fecha2,fecha1liq,fecha2liq,filtro,id_proyecto" eval="true">"
+        SELECT LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
+            usuario,
+            CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
+                CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',cliente) END cliente,
+            CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
+                CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',proyecto) END proyecto,
+            CONCAT('link:openapp(\'partes\',',-id,'):',tarea) tarea,
+            CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
+            CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
+            tarea tarea2,fecha,horas,precio,total,
+            CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END liquidado,
+            fecha2,
+            (SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=d.id) comentarios,
+            (SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=d.id) ficheros,
+            id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',tarea) action_title,
+            CASE
+                WHEN liquidado=1 THEN ''
+                WHEN fecha2=fecha THEN ''
+                WHEN fecha2>'".current_datetime()."' THEN 'style_pending'
+                ELSE 'style_alarm'
+            END action_style,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+            CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+            CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
+            CASE ".check_user("correo","create")." AND ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_mail,
+            CASE ".check_sql($page,"delete")." AND NOT liquidado WHEN 1 THEN 'true' ELSE 'false' END action_delete
+        FROM (SELECT a.*,
+                ".make_extra_query_with_login("b.")." usuario,
+                c.nombre cliente,e.datetime,e.id_usuario id_usuario,b.id_grupo id_grupo,p.nombre proyecto
+                FROM tbl_partes a
+                LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+                LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+                LEFT JOIN tbl_clientes c ON a.id_cliente=c.id
+                LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id
+        ) d
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($liquidado!=""?"(liquidado='$liquidado')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$fecha1liq' OR fecha2>=DATE('$fecha1liq')) AND (''='$fecha2liq' OR DATE('$fecha2liq')>=fecha2) AND ".check_sql($page,"list")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <query include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml" />
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+                    SELECT *,'0' id,'".current_date()."' fecha,'0' liquidado,'".current_date()."' fecha2 FROM tbl_partes WHERE id='".substr(getParam("id"),7)."'":"
+                    SELECT '0' id,'0' id_cliente,'0' id_proyecto,'".current_date()."' fecha,'0.00' horas,'0.00' precio,'0.00' total,'".current_date()."' fecha2"</default>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <query include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml" />
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <comments_new include="xml/common/qcommentnew.xml" replace="true"/>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_cliente</name>
+                            <label lang="true">cliente</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>3</colspan>
+                            <onchange>update_proyectos()</onchange>
+                            <link>openapp('clientes',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_proyecto</name>
+                            <label lang="true">proyecto</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>3</colspan>
+                            <link>openapp('proyectos',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>tarea</name>
+                            <label lang="true">tarea</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <colspan>3</colspan>
+                            <required>true</required>
+                            </field>
+                        <field>
+                            <name>fecha</name>
+                            <label lang="true">date</label>
+                            <type>date</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <icon eval="true">ICON("calendar")</icon>
+                            <onchange>$("input[name$='fecha2']").val($(this).val())</onchange>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>comentarios</name>
+                            <label lang="true">comentarios</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>7</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>horas</name>
+                            <label lang="true">horasfact</label>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_parte()</onchange>
+                            <required>true</required>
+                        </field>
+                        <field>
+                            <name>precio</name>
+                            <label eval="true">LANG("preciohora")." (".CONFIG("accounting_currency").")"</label>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_parte()</onchange>
+                            <required>true</required>
+                        </field>
+                        <field>
+                            <name>total</name>
+                            <label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+                            <type>float</type>
+                            <width>60px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_totales_parte()</onchange>
+                            <required>true</required>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>60px</width>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <colspan>2</colspan>
+                        </field>
+                        <field>
+                            <name>liquidado</name>
+                            <label lang="true">liquidado</label>
+                            <type>checkbox</type>
+                            <value>1</value>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                        <field>
+                            <name>fecha2</name>
+                            <label lang="true">dateliq</label>
+                            <type>date</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <icon eval="true">ICON("calendar")</icon>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <comments_old include="xml/common/commentsold.xml"/>
+            <files_old include="xml/common/filesold.xml" />
+            <comments_new include="xml/common/commentnew.xml"/>
+            <files_new include="xml/common/filesnew.xml"/>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+            </cache>
+        </javascript>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query include="xml/common/autotarea.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query include="xml/common/qfilesinsert.xml" replace="true"/>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query include="xml/common/qfilesdelete.xml" replace="true" />
-		<query include="xml/common/qfilesupdate.xml" replace="true"/>
-		<query include="xml/common/qcommentsdelete.xml" replace="true" />
-		<query include="xml/common/qcommentsinsert.xml" replace="true" />
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qdeletecomments.xml" replace="true" />
-		<query include="xml/common/qdeletefiles.xml" replace="true" />
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
-	<pdf>
-		<constructor>"P","mm","A4"</constructor>
-		<margins>50,30,30,30</margins>
-		<query>"SELECT CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,tarea tarea2,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,usuario,CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente,CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto,cif,tarea,fecha,comentarios,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado,fecha2 FROM (SELECT a.*,
-		".make_extra_query_with_login("b.")." usuario,
-		c.nombre cliente,p.nombre proyecto,c.cif cif,e.datetime,e.id_usuario id_usuario FROM tbl_partes a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_clientes c ON a.id_cliente=c.id LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) d WHERE ROUND(id) IN (".check_ids(getParam("id")).")"</query>
-		<foreach>
-			<!-- TEMPLATE -->
-			<header>
-				<!-- LOGO -->
-				<margins>0,0,0,0</margins>
-				<image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
-				<!-- PONER MARCA DE AGUA -->
-				<font>"normal","B",CONFIG("water_partes_size"),"#eeeeee"</font>
-				<text>CONFIG("water_partes_posx"),CONFIG("water_partes_posy"),CONFIG("water_partes_text"),CONFIG("water_partes_angle")</text>
-				<margins>50,30,30,30</margins>
-				<setxy>30,50</setxy>
-			</header>
-			<footer>
-				<margins>0,0,0,0</margins>
-				<!-- PONER PIE DE PAGINA -->
-				<font>"normal","",6,CONFIG("color_text2")</font>
-				<pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
-				<margins>50,30,30,30</margins>
-			</footer>
-			<!-- BEGIN -->
-			<newpage></newpage>
-			<color>CONFIG("color_line"),"#000000"</color>
-			<!-- VOLCAR DATOS -->
-			<setxy>30,50</setxy>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("parte")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],75,4,"L",$row["id"]</textarea>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>105,$row["y"],25,4,"R",LANG("userinsert")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>130,$row["y"],75,4,"L",$row["usuario"]</textarea>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<line>30,$row["y"],180,$row["y"]</line>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("cliente")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],75,4,"L",$row["cliente"]</textarea>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>105,$row["y"],25,4,"R",LANG("cif")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>130,$row["y"],75,4,"L",$row["cif"]</textarea>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<line>30,$row["y"],180,$row["y"]</line>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("proyecto")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],100,4,"L",$row["proyecto"]</textarea>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<line>30,$row["y"],180,$row["y"]</line>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("tarea")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],75,4,"L",$row["tarea"]</textarea>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<line>30,$row["y"],180,$row["y"]</line>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<checky>4</checky>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("comentarios")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],125,4,"L",trim($row["comentarios"])</textarea>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<line>30,$row["y"],180,$row["y"]</line>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<checky>4</checky>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("horas")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],25,4,"L",$row["horas"]." hora/s"</textarea>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>80,$row["y"],25,4,"R",LANG("preciohora")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>105,$row["y"],25,4,"L",$row["precio"].CONFIG("accounting_currency")</textarea>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>130,$row["y"],25,4,"R",LANG("total")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>155,$row["y"],25,4,"L",$row["total"].CONFIG("accounting_currency")</textarea>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<line>30,$row["y"],180,$row["y"]</line>
-			<getxy>"x","y"</getxy>
-			<setxy>$row["x"],$row["y"]+2</setxy>
-			<getxy>"x","y"</getxy>
-			<checky>4</checky>
-			<getxy>"x","y"</getxy>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>30,$row["y"],25,4,"R",LANG("date")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],25,4,"L",$row["fecha"]</textarea>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>80,$row["y"],25,4,"R",LANG("liquidado")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>105,$row["y"],25,4,"L",$row["liquidado"]</textarea>
-			<font>"normal","B",8,CONFIG("color_text1")</font>
-			<textarea>130,$row["y"],25,4,"R",LANG("dateliq")</textarea>
-			<font>"normal","",8,CONFIG("color_text2")</font>
-			<textarea>155,$row["y"],25,4,"L",$row["fecha2"]</textarea>
-		</foreach>
-		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG_ESCAPE("parte")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',tarea) subject
-		FROM tbl_partes WHERE id IN (".check_ids(getParam("id")).")"):LANG("partes"))).".pdf"</output>
-	</pdf>
-	<excel>
-		<query require="php/listsim.php" global="page" eval="true">"
-		SELECT
-			CONCAT('\'',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) '".LANG_ESCAPE("codigo")."',
-			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE c.nombre END '".LANG_ESCAPE("cliente")."',
-			CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END '".LANG_ESCAPE("proyecto")."',
-			tarea '".LANG_ESCAPE("tarea")."',
-			fecha '".LANG_ESCAPE("date")."',
-			horas '".LANG_ESCAPE("horas")."',
-			precio '".LANG_ESCAPE("precio")."',
-			total '".LANG_ESCAPE("total")."',
-			CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END '".LANG_ESCAPE("liquidado")."',
-			fecha2 '".LANG_ESCAPE("dateliq")."'
-		FROM tbl_partes a
-		LEFT JOIN tbl_clientes c ON a.id_cliente=c.id
-		LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id
-		WHERE a.id IN (".list_simulator($page).")"</query>
-	</excel>
+        <query include="xml/common/qfilesdelete.xml" replace="true" />
+        <query include="xml/common/qfilesupdate.xml" replace="true"/>
+        <query include="xml/common/qcommentsdelete.xml" replace="true" />
+        <query include="xml/common/qcommentsinsert.xml" replace="true" />
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query include="xml/common/qdeletecomments.xml" replace="true" />
+        <query include="xml/common/qdeletefiles.xml" replace="true" />
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
+    <pdf>
+        <constructor>"P","mm","A4"</constructor>
+        <margins>50,30,30,30</margins>
+        <query>"SELECT CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,tarea tarea2,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,usuario,CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente,CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto,cif,tarea,fecha,comentarios,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado,fecha2 FROM (SELECT a.*,
+        ".make_extra_query_with_login("b.")." usuario,
+        c.nombre cliente,p.nombre proyecto,c.cif cif,e.datetime,e.id_usuario id_usuario FROM tbl_partes a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_clientes c ON a.id_cliente=c.id LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) d WHERE ROUND(id) IN (".check_ids(getParam("id")).")"</query>
+        <foreach>
+            <!-- TEMPLATE -->
+            <header>
+                <!-- LOGO -->
+                <margins>0,0,0,0</margins>
+                <image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
+                <!-- PONER MARCA DE AGUA -->
+                <font>"normal","B",CONFIG("water_partes_size"),"#eeeeee"</font>
+                <text>CONFIG("water_partes_posx"),CONFIG("water_partes_posy"),CONFIG("water_partes_text"),CONFIG("water_partes_angle")</text>
+                <margins>50,30,30,30</margins>
+                <setxy>30,50</setxy>
+            </header>
+            <footer>
+                <margins>0,0,0,0</margins>
+                <!-- PONER PIE DE PAGINA -->
+                <font>"normal","",6,CONFIG("color_text2")</font>
+                <pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
+                <margins>50,30,30,30</margins>
+            </footer>
+            <!-- BEGIN -->
+            <newpage></newpage>
+            <color>CONFIG("color_line"),"#000000"</color>
+            <!-- VOLCAR DATOS -->
+            <setxy>30,50</setxy>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("parte")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],75,4,"L",$row["id"]</textarea>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>105,$row["y"],25,4,"R",LANG("userinsert")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>130,$row["y"],75,4,"L",$row["usuario"]</textarea>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <line>30,$row["y"],180,$row["y"]</line>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("cliente")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],75,4,"L",$row["cliente"]</textarea>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>105,$row["y"],25,4,"R",LANG("cif")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>130,$row["y"],75,4,"L",$row["cif"]</textarea>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <line>30,$row["y"],180,$row["y"]</line>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("proyecto")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],100,4,"L",$row["proyecto"]</textarea>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <line>30,$row["y"],180,$row["y"]</line>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("tarea")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],75,4,"L",$row["tarea"]</textarea>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <line>30,$row["y"],180,$row["y"]</line>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <checky>4</checky>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("comentarios")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],125,4,"L",trim($row["comentarios"])</textarea>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <line>30,$row["y"],180,$row["y"]</line>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <checky>4</checky>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("horas")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],25,4,"L",$row["horas"]." hora/s"</textarea>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>80,$row["y"],25,4,"R",LANG("preciohora")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>105,$row["y"],25,4,"L",$row["precio"].CONFIG("accounting_currency")</textarea>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>130,$row["y"],25,4,"R",LANG("total")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>155,$row["y"],25,4,"L",$row["total"].CONFIG("accounting_currency")</textarea>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <line>30,$row["y"],180,$row["y"]</line>
+            <getxy>"x","y"</getxy>
+            <setxy>$row["x"],$row["y"]+2</setxy>
+            <getxy>"x","y"</getxy>
+            <checky>4</checky>
+            <getxy>"x","y"</getxy>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>30,$row["y"],25,4,"R",LANG("date")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>55,$row["y"],25,4,"L",$row["fecha"]</textarea>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>80,$row["y"],25,4,"R",LANG("liquidado")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>105,$row["y"],25,4,"L",$row["liquidado"]</textarea>
+            <font>"normal","B",8,CONFIG("color_text1")</font>
+            <textarea>130,$row["y"],25,4,"R",LANG("dateliq")</textarea>
+            <font>"normal","",8,CONFIG("color_text2")</font>
+            <textarea>155,$row["y"],25,4,"L",$row["fecha2"]</textarea>
+        </foreach>
+        <output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
+        SELECT CONCAT('".LANG_ESCAPE("parte")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',tarea) subject
+        FROM tbl_partes WHERE id IN (".check_ids(getParam("id")).")"):LANG("partes"))).".pdf"</output>
+    </pdf>
+    <excel>
+        <query require="php/listsim.php" global="page" eval="true">"
+        SELECT
+            CONCAT('\'',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) '".LANG_ESCAPE("codigo")."',
+            CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE c.nombre END '".LANG_ESCAPE("cliente")."',
+            CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END '".LANG_ESCAPE("proyecto")."',
+            tarea '".LANG_ESCAPE("tarea")."',
+            fecha '".LANG_ESCAPE("date")."',
+            horas '".LANG_ESCAPE("horas")."',
+            precio '".LANG_ESCAPE("precio")."',
+            total '".LANG_ESCAPE("total")."',
+            CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END '".LANG_ESCAPE("liquidado")."',
+            fecha2 '".LANG_ESCAPE("dateliq")."'
+        FROM tbl_partes a
+        LEFT JOIN tbl_clientes c ON a.id_cliente=c.id
+        LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id
+        WHERE a.id IN (".list_simulator($page).")"</query>
+    </excel>
 </root>

@@ -24,16 +24,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<id>1</id>
-		<url>http://www.saltos.org</url>
-		<nombre>Inicio - The SaltOS project</nombre>
-		<descripcion>El proyecto SaltOS, http://www.saltos.org</descripcion>
-	</row>
-	<row>
-		<id>2</id>
-		<url>http://www.josepsanz.net</url>
-		<nombre>Página personal de Josep Sanz Campderrós</nombre>
-		<descripcion>Página personal de Josep Sanz Campderrós</descripcion>
-	</row>
+    <row>
+        <id>1</id>
+        <url>http://www.saltos.org</url>
+        <nombre>Inicio - The SaltOS project</nombre>
+        <descripcion>El proyecto SaltOS, http://www.saltos.org</descripcion>
+    </row>
+    <row>
+        <id>2</id>
+        <url>http://www.josepsanz.net</url>
+        <nombre>Página personal de Josep Sanz Campderrós</nombre>
+        <descripcion>Página personal de Josep Sanz Campderrós</descripcion>
+    </row>
 </root>

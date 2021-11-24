@@ -24,97 +24,97 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<default>
-		<action global="action" eval="true">($action=="list")?$action="form":$action</action>
-		<id global="id" eval="true">$id=current_user()</id>
-	</default>
-	<form>
-		<views>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<default>SELECT '0' id</default>
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<fields>
-			<default>
-				<temp global="files" eval="true">$files=glob_protected("files/*.log")</temp>
-				<fieldset global="files,row" foreach="files" as="row">
-					<buttons>true</buttons>
-					<title global="row" eval="true">basename($row)</title>
-					<icon eval="true">ICON("form")</icon>
-					<width>100%</width>
-					<row>
-						<field>
-							<label global="row" eval="true">LANG("defaultdata").basename($row)</label>
-							<type>label</type>
-							<class>left bold</class>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name global="row" eval="true">time()."_".str_replace(array("/","."),"_",$row)</name>
-							<type>textarea</type>
-							<value global="row" eval="true">implode("\n",array_slice(file($row,FILE_IGNORE_NEW_LINES),-200))</value>
-							<width>calc(100% - 14px)</width>
-							<height>240px</height>
-							<readonly>true</readonly>
-							<class3>ascii</class3>
-						</field>
-					</row>
-				</fieldset>
-				<fieldset global="files" ifeval="!count($files)">
-					<buttons>true</buttons>
-					<title lang="true">formupdate</title>
-					<icon eval="true">ICON("form")</icon>
-					<width>100%</width>
-					<row>
-						<field>
-							<label lang="true">nodata</label>
-							<type>label</type>
-							<class>left bold</class>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>void</name>
-							<type>textarea</type>
-							<value></value>
-							<width>calc(100% - 14px)</width>
-							<height>240px</height>
-							<readonly>true</readonly>
-							<class3>ascii</class3>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-		</fields>
-		<buttons>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">buttonreturn</value>
-					<onclick>goback()</onclick>
-					<class>right contextmenu</class>
-					<icon eval="true">ICON("back")</icon>
-				</field>
-			</row>
-		</buttons>
-		<javascript include="xml/common/jsform.xml"/>
-	</form>
+    <default>
+        <action global="action" eval="true">($action=="list")?$action="form":$action</action>
+        <id global="id" eval="true">$id=current_user()</id>
+    </default>
+    <form>
+        <views>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <default>SELECT '0' id</default>
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <fields>
+            <default>
+                <temp global="files" eval="true">$files=glob_protected("files/*.log")</temp>
+                <fieldset global="files,row" foreach="files" as="row">
+                    <buttons>true</buttons>
+                    <title global="row" eval="true">basename($row)</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <width>100%</width>
+                    <row>
+                        <field>
+                            <label global="row" eval="true">LANG("defaultdata").basename($row)</label>
+                            <type>label</type>
+                            <class>left bold</class>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name global="row" eval="true">time()."_".str_replace(array("/","."),"_",$row)</name>
+                            <type>textarea</type>
+                            <value global="row" eval="true">implode("\n",array_slice(file($row,FILE_IGNORE_NEW_LINES),-200))</value>
+                            <width>calc(100% - 14px)</width>
+                            <height>240px</height>
+                            <readonly>true</readonly>
+                            <class3>ascii</class3>
+                        </field>
+                    </row>
+                </fieldset>
+                <fieldset global="files" ifeval="!count($files)">
+                    <buttons>true</buttons>
+                    <title lang="true">formupdate</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <width>100%</width>
+                    <row>
+                        <field>
+                            <label lang="true">nodata</label>
+                            <type>label</type>
+                            <class>left bold</class>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>void</name>
+                            <type>textarea</type>
+                            <value></value>
+                            <width>calc(100% - 14px)</width>
+                            <height>240px</height>
+                            <readonly>true</readonly>
+                            <class3>ascii</class3>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+        </fields>
+        <buttons>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">buttonreturn</value>
+                    <onclick>goback()</onclick>
+                    <class>right contextmenu</class>
+                    <icon eval="true">ICON("back")</icon>
+                </field>
+            </row>
+        </buttons>
+        <javascript include="xml/common/jsform.xml"/>
+    </form>
 </root>

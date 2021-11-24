@@ -24,78 +24,78 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<dir>ltr</dir>
-	<default>common</default>
-	<common>
-		<title>SaltOS setup program</title>
-		<yes>Yes</yes>
-		<no>No</no>
-		<language>Language, style and icons selection</language>
-		<welcome_message>Welcome to the SaltOS setup program</welcome_message>
-		<lang_message>Select the language</lang_message>
-		<style_message>Select the style</style_message>
-		<begin_message>Press "Next" to begin the SaltOS setup with only 5 easy steps</begin_message>
-		<back>Back</back>
-		<next>Next</next>
-		<test>Check</test>
-		<install>Install SaltOS</install>
-		<saltos>Launch SaltOS</saltos>
-		<is_writable>Checking write permission</is_writable>
-		<is_executable>Checking external programs</is_executable>
-		<directory>Directory</directory>
-		<file>File</file>
-		<executable>Executable</executable>
-		<database_link>Connecting to the database</database_link>
-		<select_dbtype>Select the DBMS</select_dbtype>
-		<select_prefered> (recomended)</select_prefered>
-		<selected_dbtype>Selected DBMS</selected_dbtype>
-		<dbfile>Database file</dbfile>
-		<dbtest>We can connect to the database</dbtest>
-		<dbvoid>The database is empty</dbvoid>
-		<dbhost>Host</dbhost>
-		<dbport>Port</dbport>
-		<dbuser>User</dbuser>
-		<dbpass>Password</dbpass>
-		<dbname>Database Name</dbname>
-		<admin_account>Data access the administrator account</admin_account>
-		<user>User</user>
-		<pass>Password</pass>
-		<email>Email</email>
-		<optional>Optional</optional>
-		<server_config>Server configuration</server_config>
-		<timezone>Time zone</timezone>
-		<hostname>Web server</hostname>
-		<pathname>Server path</pathname>
-		<automatic>Automatic</automatic>
-		<forcessl>Force SSL (https)</forcessl>
-		<porthttp>Http port</porthttp>
-		<porthttps>Https port</porthttps>
-		<initial_data>Initial import data</initial_data>
-		<exampledata>Import sample data</exampledata>
-		<undefined>Undefined</undefined>
-		<install_input>Summary and confirmation of installation</install_input>
-		<install_output>Result of the installation</install_output>
-		<config>Save settings to access the database</config>
-		<dbschema>Create tables in the database</dbschema>
-		<dbstatic>Import internal data</dbstatic>
-		<streetdata>Import street data</streetdata>
-		<defaultdata>Import generic data</defaultdata>
-		<permissiondata>Create administer permissions for the group</permissiondata>
-		<finish>Installation Complete</finish>
-		<gotohome>Reload page</gotohome>
-		<notifybug>Report bug</notifybug>
-		<step>Step</step>
-		<lang>Language</lang>
-		<style>Style</style>
-		<env_vars>Environment variables</env_vars>
-		<env_path>PATH</env_path>
-		<env_lang>LANG</env_lang>
-		<applications>Applications</applications>
-		<select_layer>Select the layer</select_layer>
-		<selected_layer>Layer selected</selected_layer>
-		<layer_all>All applications</layer_all>
-		<layer_personal>Personal applications</layer_personal>
-		<select_apps>Select the applications</select_apps>
-		<selected_apps>Applications selected</selected_apps>
-	</common>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <title>SaltOS setup program</title>
+        <yes>Yes</yes>
+        <no>No</no>
+        <language>Language, style and icons selection</language>
+        <welcome_message>Welcome to the SaltOS setup program</welcome_message>
+        <lang_message>Select the language</lang_message>
+        <style_message>Select the style</style_message>
+        <begin_message>Press "Next" to begin the SaltOS setup with only 5 easy steps</begin_message>
+        <back>Back</back>
+        <next>Next</next>
+        <test>Check</test>
+        <install>Install SaltOS</install>
+        <saltos>Launch SaltOS</saltos>
+        <is_writable>Checking write permission</is_writable>
+        <is_executable>Checking external programs</is_executable>
+        <directory>Directory</directory>
+        <file>File</file>
+        <executable>Executable</executable>
+        <database_link>Connecting to the database</database_link>
+        <select_dbtype>Select the DBMS</select_dbtype>
+        <select_prefered> (recomended)</select_prefered>
+        <selected_dbtype>Selected DBMS</selected_dbtype>
+        <dbfile>Database file</dbfile>
+        <dbtest>We can connect to the database</dbtest>
+        <dbvoid>The database is empty</dbvoid>
+        <dbhost>Host</dbhost>
+        <dbport>Port</dbport>
+        <dbuser>User</dbuser>
+        <dbpass>Password</dbpass>
+        <dbname>Database Name</dbname>
+        <admin_account>Data access the administrator account</admin_account>
+        <user>User</user>
+        <pass>Password</pass>
+        <email>Email</email>
+        <optional>Optional</optional>
+        <server_config>Server configuration</server_config>
+        <timezone>Time zone</timezone>
+        <hostname>Web server</hostname>
+        <pathname>Server path</pathname>
+        <automatic>Automatic</automatic>
+        <forcessl>Force SSL (https)</forcessl>
+        <porthttp>Http port</porthttp>
+        <porthttps>Https port</porthttps>
+        <initial_data>Initial import data</initial_data>
+        <exampledata>Import sample data</exampledata>
+        <undefined>Undefined</undefined>
+        <install_input>Summary and confirmation of installation</install_input>
+        <install_output>Result of the installation</install_output>
+        <config>Save settings to access the database</config>
+        <dbschema>Create tables in the database</dbschema>
+        <dbstatic>Import internal data</dbstatic>
+        <streetdata>Import street data</streetdata>
+        <defaultdata>Import generic data</defaultdata>
+        <permissiondata>Create administer permissions for the group</permissiondata>
+        <finish>Installation Complete</finish>
+        <gotohome>Reload page</gotohome>
+        <notifybug>Report bug</notifybug>
+        <step>Step</step>
+        <lang>Language</lang>
+        <style>Style</style>
+        <env_vars>Environment variables</env_vars>
+        <env_path>PATH</env_path>
+        <env_lang>LANG</env_lang>
+        <applications>Applications</applications>
+        <select_layer>Select the layer</select_layer>
+        <selected_layer>Layer selected</selected_layer>
+        <layer_all>All applications</layer_all>
+        <layer_personal>Personal applications</layer_personal>
+        <select_apps>Select the applications</select_apps>
+        <selected_apps>Applications selected</selected_apps>
+    </common>
 </root>

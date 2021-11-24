@@ -24,45 +24,45 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<fieldset ifeval="!ismobile()">
-		<width>700px</width>
-		<title lang="true">foldersdata</title>
-		<icon eval="true">ICON("files")</icon>
-		<popup>true</popup>
-		<head>
-			<field>
-				<type>label</type>
-				<label lang="true">foldersdata</label>
-				<class>thead</class>
-			</field>
-			<field>
-				<type>separator</type>
-				<class>thead</class>
-				<colspan>100</colspan>
-			</field>
-		</head>
-		<row>
-			<field>
-				<type>hidden</type>
-				<name>id</name>
-			</field>
-			<field>
-				<type>label</type>
-				<name>name</name>
-				<class>tbody</class>
-			</field>
-			<field>
-				<type>checkbox</type>
-				<name>activado</name>
-				<label lang="true">loweradd</label>
-				<tip lang="true">addtofolder</tip>
-				<value>1</value>
-				<width>1px</width>
-				<width2>1px</width2>
-				<class>tbody</class>
-				<class2>tbody</class2>
-				<onchange global="id" eval="true">$id>=0?"":"swapregfolder(this)"</onchange>
-			</field>
-		</row>
-	</fieldset>
+    <fieldset ifeval="!ismobile()">
+        <width>700px</width>
+        <title lang="true">foldersdata</title>
+        <icon eval="true">ICON("files")</icon>
+        <popup>true</popup>
+        <head>
+            <field>
+                <type>label</type>
+                <label lang="true">foldersdata</label>
+                <class>thead</class>
+            </field>
+            <field>
+                <type>separator</type>
+                <class>thead</class>
+                <colspan>100</colspan>
+            </field>
+        </head>
+        <row>
+            <field>
+                <type>hidden</type>
+                <name>id</name>
+            </field>
+            <field>
+                <type>label</type>
+                <name>name</name>
+                <class>tbody</class>
+            </field>
+            <field>
+                <type>checkbox</type>
+                <name>activado</name>
+                <label lang="true">loweradd</label>
+                <tip lang="true">addtofolder</tip>
+                <value>1</value>
+                <width>1px</width>
+                <width2>1px</width2>
+                <class>tbody</class>
+                <class2>tbody</class2>
+                <onchange global="id" eval="true">$id>=0?"":"swapregfolder(this)"</onchange>
+            </field>
+        </row>
+    </fieldset>
 </root>

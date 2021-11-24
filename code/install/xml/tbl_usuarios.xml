@@ -24,16 +24,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<id>1</id>
-		<id_grupo>1</id_grupo>
-		<id_registro>1</id_registro>
-		<id_aplicacion>31</id_aplicacion>
-		<activo>1</activo>
-		<login eval="true">getParam("user","admin")</login>
-		<password eval="true">hash_password(getParam("pass","admin"))</password>
-		<hora_ini>00:00:00</hora_ini>
-		<hora_fin>24:00:00</hora_fin>
-		<dias_sem>1111111</dias_sem>
-	</row>
+    <row>
+        <id>1</id>
+        <id_grupo>1</id_grupo>
+        <id_registro>1</id_registro>
+        <id_aplicacion>31</id_aplicacion>
+        <activo>1</activo>
+        <login eval="true">getParam("user","admin")</login>
+        <password eval="true">hash_password(getParam("pass","admin"))</password>
+        <hora_ini>00:00:00</hora_ini>
+        <hora_fin>24:00:00</hora_fin>
+        <dias_sem>1111111</dias_sem>
+    </row>
 </root>

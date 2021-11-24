@@ -24,54 +24,54 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<fieldset ifeval="!ismobile()">
-		<width>700px</width>
-		<title lang="true">registerdata</title>
-		<icon eval="true">ICON("files")</icon>
-		<popup>true</popup>
-		<head>
-			<field>
-				<type>label</type>
-				<label lang="true">nombre</label>
-				<class>thead</class>
-			</field>
-			<field>
-				<type>label</type>
-				<label lang="true">username</label>
-				<class>thead</class>
-			</field>
-			<field>
-				<type>label</type>
-				<label lang="true">grupo</label>
-				<class>thead</class>
-			</field>
-			<field>
-				<type>label</type>
-				<label lang="true">datetime</label>
-				<class>thead</class>
-			</field>
-		</head>
-		<row>
-			<field>
-				<name>nombre</name>
-				<type>label</type>
-				<class>tbody</class>
-			</field>
-			<field>
-				<name>usuario</name>
-				<type>label</type>
-				<class>tbody</class>
-			</field>
-			<field>
-				<name>grupo</name>
-				<type>label</type>
-				<class>tbody</class>
-			</field>
-			<field>
-				<name>datetime</name>
-				<type>label</type>
-				<class>tbody</class>
-			</field>
-		</row>
-	</fieldset>
+    <fieldset ifeval="!ismobile()">
+        <width>700px</width>
+        <title lang="true">registerdata</title>
+        <icon eval="true">ICON("files")</icon>
+        <popup>true</popup>
+        <head>
+            <field>
+                <type>label</type>
+                <label lang="true">nombre</label>
+                <class>thead</class>
+            </field>
+            <field>
+                <type>label</type>
+                <label lang="true">username</label>
+                <class>thead</class>
+            </field>
+            <field>
+                <type>label</type>
+                <label lang="true">grupo</label>
+                <class>thead</class>
+            </field>
+            <field>
+                <type>label</type>
+                <label lang="true">datetime</label>
+                <class>thead</class>
+            </field>
+        </head>
+        <row>
+            <field>
+                <name>nombre</name>
+                <type>label</type>
+                <class>tbody</class>
+            </field>
+            <field>
+                <name>usuario</name>
+                <type>label</type>
+                <class>tbody</class>
+            </field>
+            <field>
+                <name>grupo</name>
+                <type>label</type>
+                <class>tbody</class>
+            </field>
+            <field>
+                <name>datetime</name>
+                <type>label</type>
+                <class>tbody</class>
+            </field>
+        </row>
+    </fieldset>
 </root>

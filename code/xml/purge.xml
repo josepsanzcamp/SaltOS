@@ -24,33 +24,33 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<apps>
+    <apps>
 <!--
-		<row>
-			<id_aplicacion></id_aplicacion>
-			<id_usuario></id_usuario>
-			<id_cuenta></id_cuenta>
-			<id_feed></id_feed>
-			<days></days>
-		</row>
+        <row>
+            <id_aplicacion></id_aplicacion>
+            <id_usuario></id_usuario>
+            <id_cuenta></id_cuenta>
+            <id_feed></id_feed>
+            <days></days>
+        </row>
 -->
-	</apps>
-	<tables>
+    </apps>
+    <tables>
 <!--
-		<row>
-			<table></table>
-			<field></field>
-			<days></days>
-		</row>
+        <row>
+            <table></table>
+            <field></field>
+            <days></days>
+        </row>
 -->
-	</tables>
-	<files>
+    </tables>
+    <files>
 <!--
-		<row>
-			<glob></glob>
-			<action>delete|truncate</action>
-			<days></days>
-		</row>
+        <row>
+            <glob></glob>
+            <action>delete|truncate</action>
+            <days></days>
+        </row>
 -->
-	</files>
+    </files>
 </root>

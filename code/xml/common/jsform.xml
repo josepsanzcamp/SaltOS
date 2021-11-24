@@ -24,74 +24,74 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<menu include="xml/common/jsmenu.xml" replace="true"/>
-	<!-- FOR GENERAL PURPOSES -->
-	<function>setParam(name,value) { $("form[id=form] *[name="+name+"]").val(value); }</function>
-	<function>setCheck(name,value) { $("form[id=form] *[name="+name+"]").prop("checked",value); }</function>
-	<function>getParam(name) { return $("form[id=form] *[name="+name+"]").val(); }</function>
-	<function>submit1(callback) { submitcontent($("form[id=form]"),callback); }</function>
-	<!-- FOR GENERAL ACTIONS -->
-	<function>insert(returnhere) { setParam("returnhere",returnhere); setParam("action","insert"); submit1(); }</function>
-	<function>update(returnhere) { setParam("returnhere",returnhere); setParam("action","update"); submit1(); }</function>
-	<function>cancel() { history.back(); }</function>
-	<function>goback() { history.back(); }</function>
-	<function>pdf() { openurl("?page="+getParam("page")+"&amp;action=pdf&amp;id="+getParam("id")); }</function>
-	<function>mail() { addcontent("cancel"); setParam("action","sendpdf"); submit1(); }</function>
-	<function>download(data) { openurl("?action=download&amp;"+data); }</function>
-	<function>download2(page,id,cid) { download("page="+page+"&amp;id="+id+"&amp;cid="+cid); }</function>
-	<function>viewpdf2(page,id,cid) { viewpdf("page="+page+"&amp;id="+id+"&amp;cid="+cid); }</function>
-	<function>edit() { setParam("action","form"); setParam("id",intval(getParam("id"))*-1); submit1(); }</function>
-	<function>mailto(mail) { setParam("page","correo"); setParam("action","form"); setParam("id","0_mailto_"+mail); submit1(); }</function>
-	<function eval="true">"getIds() { var ids=[]; $('input.slave[type=checkbox]:checked').each(function() { ids.push(get_class_id(this)); }); if(ids.length==0) alerta('".LANG_ESCAPE("msgnotcheckbox")."'); return implode(',',ids); }"</function>
-	<inline>$(function() { $('input.slave[type=checkbox]').each(function() { var id=$(this).attr("id"); id=str_replace("files_old_","",id); id=str_replace("_zip","",id); $(this).addClass("id_"+id); }); })</inline>
-	<function>compress(format) { var cid=getIds(); if(!cid) return; openurl("?page="+getParam("page")+"&amp;action=compress&amp;format="+format+"&amp;id="+getParam("id")+"&amp;cid="+cid); }</function>
-	<function eval="true">"delete1() { dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','delete'); setParam('id',intval(getParam('id'))*-1); setParam('returnback',1); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
-	<!-- FOR FORM ACCESS -->
-	<function>openapp(page,id) { setParam("page",page); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<!-- FOR QUICKFORM MODULE -->
-	<function>first() { page1($("#selectquick").prop("selectedIndex",0).val()); }</function>
-	<function>previous() { page1($("#selectquick").prop("selectedIndex",$("#selectquick").prop("selectedIndex")-1).val()); }</function>
-	<function>next() { page1($("#selectquick").prop("selectedIndex",$("#selectquick").prop("selectedIndex")+1).val()); }</function>
-	<function>last() { page1($("#selectquick").prop("selectedIndex",$("#selectquick").prop("options").length-1).val()); }</function>
-	<function>page1(id) { var temp=explode("_",id); if(temp.length==3) { setParam("page",temp[1]); id=temp[2]; } addcontent("update"); setParam("action","form"); setParam("id",-id); submit1(); }</function>
-	<!-- FOR PDF MODULE -->
-	<function>pdf2(page,id) { openurl("?page="+page+"&amp;action=pdf&amp;id="+id); }</function>
-	<function>pdfacta(id) { pdf2("actas",id) }</function>
-	<function>pdfparte(id) { pdf2("partes",id); }</function>
-	<function>pdffactura(id) { pdf2("facturas",id); }</function>
-	<function>pdfpresupuesto(id) { pdf2("presupuestos",id); }</function>
-	<!-- FOR VCARD MODULE -->
-	<function>vcard2(page,id) { openurl("?page="+page+"&amp;action=vcard&amp;id="+abs(id)); }</function>
-	<function>vcardcontactos(id) { vcard2('contactos',id); }</function>
-	<function>vcardclientes(id) { vcard2('clientes',id); }</function>
-	<!-- FOR QRCODE MODULE -->
-	<function eval="true">"lang_qrcode() { return '".LANG_ESCAPE("qrcode")."'; }"</function>
-	<function eval="true">"lang_telefono() { return '".LANG_ESCAPE("telefono")."'; }"</function>
-	<function>qrcodecontactos(id) { qrcode2("contactos",id); }</function>
-	<function>qrcodeclientes(id) { qrcode2("clientes",id); }</function>
-	<!-- FOR VIEWPDF MODULE -->
-	<function eval="true">"lang_view2() { return '".LANG_ESCAPE("view2")."'; }"</function>
-	<function eval="true">"lang_view2error() { return '".LANG_ESCAPE("view2error")."'; }"</function>
-	<function eval="true">"lang_view2hash() { return '".LANG_ESCAPE("view2hash")."'; }"</function>
-	<function eval="true">"lang_view2opening() { return '".LANG_ESCAPE("view2opening")."'; }"</function>
-	<function>view2(id) { viewpdf("page="+getParam("page")+"&amp;id="+abs(id)); }</function>
-	<function>viewacta(id) { viewpdf('page=actas&amp;id='+id); }</function>
-	<function>viewfactura(id) { viewpdf('page=facturas&amp;id='+id); }</function>
-	<function>viewparte(id) { viewpdf('page=partes&amp;id='+id); }</function>
-	<function>viewpresupuesto(id) { viewpdf('page=presupuestos&amp;id='+id); }</function>
-	<function eval="true">"current_revision() { return '".getDefault("info/revision","SVN")."'; }"</function>
-	<!-- FOR MAIL MODULE -->
-	<function>mail2(page,id) { addcontent("cancel"); setParam("page",page); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
-	<function>mailacta(id) { mail2("actas",id); }</function>
-	<function>mailparte(id) { mail2("partes",id); }</function>
-	<function>mailfactura(id) { mail2("facturas",id); }</function>
-	<function>mailpresupuesto(id) { mail2("presupuestos",id); }</function>
-	<!-- USING CACHE -->
-	<cache>
-		<include>js/qrcode.js</include>
-		<include>js/viewpdf.js</include>
-		<include>js/additem.js</include>
-		<include>js/quickform.js</include>
-		<include>js/numbers.js</include>
-	</cache>
+    <menu include="xml/common/jsmenu.xml" replace="true"/>
+    <!-- FOR GENERAL PURPOSES -->
+    <function>setParam(name,value) { $("form[id=form] *[name="+name+"]").val(value); }</function>
+    <function>setCheck(name,value) { $("form[id=form] *[name="+name+"]").prop("checked",value); }</function>
+    <function>getParam(name) { return $("form[id=form] *[name="+name+"]").val(); }</function>
+    <function>submit1(callback) { submitcontent($("form[id=form]"),callback); }</function>
+    <!-- FOR GENERAL ACTIONS -->
+    <function>insert(returnhere) { setParam("returnhere",returnhere); setParam("action","insert"); submit1(); }</function>
+    <function>update(returnhere) { setParam("returnhere",returnhere); setParam("action","update"); submit1(); }</function>
+    <function>cancel() { history.back(); }</function>
+    <function>goback() { history.back(); }</function>
+    <function>pdf() { openurl("?page="+getParam("page")+"&amp;action=pdf&amp;id="+getParam("id")); }</function>
+    <function>mail() { addcontent("cancel"); setParam("action","sendpdf"); submit1(); }</function>
+    <function>download(data) { openurl("?action=download&amp;"+data); }</function>
+    <function>download2(page,id,cid) { download("page="+page+"&amp;id="+id+"&amp;cid="+cid); }</function>
+    <function>viewpdf2(page,id,cid) { viewpdf("page="+page+"&amp;id="+id+"&amp;cid="+cid); }</function>
+    <function>edit() { setParam("action","form"); setParam("id",intval(getParam("id"))*-1); submit1(); }</function>
+    <function>mailto(mail) { setParam("page","correo"); setParam("action","form"); setParam("id","0_mailto_"+mail); submit1(); }</function>
+    <function eval="true">"getIds() { var ids=[]; $('input.slave[type=checkbox]:checked').each(function() { ids.push(get_class_id(this)); }); if(ids.length==0) alerta('".LANG_ESCAPE("msgnotcheckbox")."'); return implode(',',ids); }"</function>
+    <inline>$(function() { $('input.slave[type=checkbox]').each(function() { var id=$(this).attr("id"); id=str_replace("files_old_","",id); id=str_replace("_zip","",id); $(this).addClass("id_"+id); }); })</inline>
+    <function>compress(format) { var cid=getIds(); if(!cid) return; openurl("?page="+getParam("page")+"&amp;action=compress&amp;format="+format+"&amp;id="+getParam("id")+"&amp;cid="+cid); }</function>
+    <function eval="true">"delete1() { dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','delete'); setParam('id',intval(getParam('id'))*-1); setParam('returnback',1); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+    <!-- FOR FORM ACCESS -->
+    <function>openapp(page,id) { setParam("page",page); setParam("action","form"); setParam("id",id); submit1(); }</function>
+    <!-- FOR QUICKFORM MODULE -->
+    <function>first() { page1($("#selectquick").prop("selectedIndex",0).val()); }</function>
+    <function>previous() { page1($("#selectquick").prop("selectedIndex",$("#selectquick").prop("selectedIndex")-1).val()); }</function>
+    <function>next() { page1($("#selectquick").prop("selectedIndex",$("#selectquick").prop("selectedIndex")+1).val()); }</function>
+    <function>last() { page1($("#selectquick").prop("selectedIndex",$("#selectquick").prop("options").length-1).val()); }</function>
+    <function>page1(id) { var temp=explode("_",id); if(temp.length==3) { setParam("page",temp[1]); id=temp[2]; } addcontent("update"); setParam("action","form"); setParam("id",-id); submit1(); }</function>
+    <!-- FOR PDF MODULE -->
+    <function>pdf2(page,id) { openurl("?page="+page+"&amp;action=pdf&amp;id="+id); }</function>
+    <function>pdfacta(id) { pdf2("actas",id) }</function>
+    <function>pdfparte(id) { pdf2("partes",id); }</function>
+    <function>pdffactura(id) { pdf2("facturas",id); }</function>
+    <function>pdfpresupuesto(id) { pdf2("presupuestos",id); }</function>
+    <!-- FOR VCARD MODULE -->
+    <function>vcard2(page,id) { openurl("?page="+page+"&amp;action=vcard&amp;id="+abs(id)); }</function>
+    <function>vcardcontactos(id) { vcard2('contactos',id); }</function>
+    <function>vcardclientes(id) { vcard2('clientes',id); }</function>
+    <!-- FOR QRCODE MODULE -->
+    <function eval="true">"lang_qrcode() { return '".LANG_ESCAPE("qrcode")."'; }"</function>
+    <function eval="true">"lang_telefono() { return '".LANG_ESCAPE("telefono")."'; }"</function>
+    <function>qrcodecontactos(id) { qrcode2("contactos",id); }</function>
+    <function>qrcodeclientes(id) { qrcode2("clientes",id); }</function>
+    <!-- FOR VIEWPDF MODULE -->
+    <function eval="true">"lang_view2() { return '".LANG_ESCAPE("view2")."'; }"</function>
+    <function eval="true">"lang_view2error() { return '".LANG_ESCAPE("view2error")."'; }"</function>
+    <function eval="true">"lang_view2hash() { return '".LANG_ESCAPE("view2hash")."'; }"</function>
+    <function eval="true">"lang_view2opening() { return '".LANG_ESCAPE("view2opening")."'; }"</function>
+    <function>view2(id) { viewpdf("page="+getParam("page")+"&amp;id="+abs(id)); }</function>
+    <function>viewacta(id) { viewpdf('page=actas&amp;id='+id); }</function>
+    <function>viewfactura(id) { viewpdf('page=facturas&amp;id='+id); }</function>
+    <function>viewparte(id) { viewpdf('page=partes&amp;id='+id); }</function>
+    <function>viewpresupuesto(id) { viewpdf('page=presupuestos&amp;id='+id); }</function>
+    <function eval="true">"current_revision() { return '".getDefault("info/revision","SVN")."'; }"</function>
+    <!-- FOR MAIL MODULE -->
+    <function>mail2(page,id) { addcontent("cancel"); setParam("page",page); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
+    <function>mailacta(id) { mail2("actas",id); }</function>
+    <function>mailparte(id) { mail2("partes",id); }</function>
+    <function>mailfactura(id) { mail2("facturas",id); }</function>
+    <function>mailpresupuesto(id) { mail2("presupuestos",id); }</function>
+    <!-- USING CACHE -->
+    <cache>
+        <include>js/qrcode.js</include>
+        <include>js/viewpdf.js</include>
+        <include>js/additem.js</include>
+        <include>js/quickform.js</include>
+        <include>js/numbers.js</include>
+    </cache>
 </root>

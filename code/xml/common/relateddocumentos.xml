@@ -24,69 +24,69 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<documentos>
-		<fieldset ifeval="check_user('documentos','menu')">
-			<width>700px</width>
-			<title lang="true">documentdata</title>
-			<icon eval="true">ICON("form")</icon>
-			<head>
-				<field>
-					<type>label</type>
-					<label lang="true">username</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">date</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">nombre</label>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>label</type>
-					<label lang="true">numf</label>
-					<tip lang="true">numftip</tip>
-					<class>thead</class>
-				</field>
-				<field>
-					<type>separator</type>
-					<class>thead</class>
-					<colspan>100</colspan>
-				</field>
-			</head>
-			<row>
-				<field>
-					<type>label</type>
-					<name>usuario</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>datetime</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>nombre</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<type>label</type>
-					<name>ficheros</name>
-					<class>tbody</class>
-				</field>
-				<field>
-					<name>link_view</name>
-					<type>link</type>
-					<label lang="true">view</label>
-					<width>1px</width>
-					<icon eval="true">ICON("view")</icon>
-					<class>tbody</class>
-				</field>
-			</row>
-		</fieldset>
-	</documentos>
+    <documentos>
+        <fieldset ifeval="check_user('documentos','menu')">
+            <width>700px</width>
+            <title lang="true">documentdata</title>
+            <icon eval="true">ICON("form")</icon>
+            <head>
+                <field>
+                    <type>label</type>
+                    <label lang="true">username</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">date</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">nombre</label>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <label lang="true">numf</label>
+                    <tip lang="true">numftip</tip>
+                    <class>thead</class>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <class>thead</class>
+                    <colspan>100</colspan>
+                </field>
+            </head>
+            <row>
+                <field>
+                    <type>label</type>
+                    <name>usuario</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>datetime</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>nombre</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <type>label</type>
+                    <name>ficheros</name>
+                    <class>tbody</class>
+                </field>
+                <field>
+                    <name>link_view</name>
+                    <type>link</type>
+                    <label lang="true">view</label>
+                    <width>1px</width>
+                    <icon eval="true">ICON("view")</icon>
+                    <class>tbody</class>
+                </field>
+            </row>
+        </fieldset>
+    </documentos>
 </root>

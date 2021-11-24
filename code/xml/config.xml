@@ -24,398 +24,398 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<info>
-		<name>SaltOS</name>
-		<version>3.7</version>
-		<revision config="true">application_revision</revision>
-		<copyright>Copyright (C) 2007-2021 by Josep Sanz Campderrós</copyright>
-		<title config="true">application_title</title>
-		<favicon>img/favicon.png</favicon>
-		<icon eval="true">ICON("about")</icon>
-		<time eval="true">time()</time>
-	</info>
-	<db>
-		<type>pdo_sqlite</type>
-		<host>localhost</host><!-- for MySQL -->
-		<port>3306</port><!-- for MySQL -->
-		<user>saltos</user><!-- for MySQL -->
-		<pass>saltos</pass><!-- for MySQL -->
-		<name>saltos</name><!-- for MySQL -->
-		<file eval="true">getcwd()."/files/saltos.db"</file><!-- for SQLite -->
-		<datatypes>
-			<int>TINYINT,SMALLINT,MEDIUMINT,INT,BIGINT,INTEGER</int>
-			<string>TINYTEXT,TEXT,MEDIUMTEXT,LONGTEXT,VARCHAR</string>
-			<float>DECIMAL,NUMERIC,FLOAT,REAL,DOUBLE</float>
-			<date>DATE</date>
-			<time>TIME</time>
-			<datetime>DATETIME</datetime>
-		</datatypes>
-		<datasizes>
-			<TINYTEXT>255</TINYTEXT>
-			<TEXT>65535</TEXT>
-			<MEDIUMTEXT>16777215</MEDIUMTEXT>
-			<LONGTEXT>4294967295</LONGTEXT>
-		</datasizes>
-		<dbschema>true</dbschema>
-		<dbstatic>true</dbstatic>
-		<semaphoretimeout>10000000</semaphoretimeout><!-- in microseconds, only for SQLite -->
-		<dbfields>
-			<dbfield>id_aplicacion</dbfield>
-			<dbfield>id_registro</dbfield>
-			<dbfield>id_permiso</dbfield>
-		</dbfields>
-	</db>
-	<sess>
-		<save_path>saltos</save_path>
-		<timeout>3600</timeout><!-- in seconds, 3600 is 1 hour -->
-		<probability>1</probability>
-		<divisor>100</divisor>
-	</sess>
-	<server>
-		<hostname></hostname>
-		<pathname></pathname>
-		<forcessl>false</forcessl>
-		<porthttp>80</porthttp>
-		<porthttps>443</porthttps>
-		<dirindex>index.php</dirindex>
-		<percentstop>90</percentstop><!-- long actions stop when reached the 90% of max_execution_time -->
-		<maxmemorylimit>1G</maxmemorylimit><!-- to be used in some actions that requires more memory -->
-		<maxexecutiontime>3600</maxexecutiontime><!-- to be used in some actions that requires more time -->
-	</server>
-	<default>
-		<page>home</page>
-		<action>list</action>
-		<id>0</id>
-		<lang>es_ES</lang>
-		<engine>default</engine>
-		<style eval="true">ismobile()?"google/blue/light":"google/multi/light"</style>
-		<stylepre eval="true">ismobile()?"lib/themes/":"lib/themes/"</stylepre>
-		<stylepost eval="true">ismobile()?"/jquery.mobile/jquery.mobile.min.css":"/jquery-ui/jquery-ui.min.css"</stylepost>
-		<jstreepre>lib/jstree/themes/</jstreepre>
-		<jstreepost>/style.min.css</jstreepost>
-		<forcelang eval="true">load_lang(getParam("lang"))?getParam("lang"):""</forcelang>
-		<forcestyle eval="true">load_style(getParam("style"))?getParam("style"):""</forcestyle>
-		<forcecss eval="true">ismobile()?"mobile":""</forcecss>
-		<forcejs eval="true">ismobile()?"mobile":""</forcejs>
-		<forcexsl eval="true">ismobile()?"mobile":""</forcexsl>
-		<regspagerlist>25,50,100,200,500,1000</regspagerlist>
-		<regspagerdef>50</regspagerdef>
-		<regspagermobile>10</regspagermobile>
-		<semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
-		<cachetimeout>10000000</cachetimeout><!-- in microseconds -->
-		<commandtimeout>60</commandtimeout><!-- in seconds, 60 is 1 minute -->
-		<commandexpires>3600</commandexpires><!-- in seconds, 3600 is 1 hour -->
-		<enablecalculator eval="true">!ismobile()</enablecalculator>
-		<enabletranslator eval="true">!ismobile()</enabletranslator>
-		<enableindexing>true</enableindexing>
-		<enableintegrity>true</enableintegrity>
-		<enablepurge>false</enablepurge>
-	</default>
-	<dirs>
-		<filesdir eval="true">getcwd()."/files"</filesdir>
-		<cachedir eval="true">getcwd()."/cache"</cachedir>
-		<inboxdir eval="true">getcwd()."/inbox"</inboxdir>
-		<outboxdir eval="true">getcwd()."/outbox"</outboxdir>
-	</dirs>
-	<cache>
-		<cachegcenabled>true</cachegcenabled>
-		<cachegctimeout>86400</cachegctimeout><!-- in seconds, 86400 is 1 day -->
-		<cachegcprobability>1</cachegcprobability>
-		<cachegcdivisor>100</cachegcdivisor>
-		<usecsscache>true</usecsscache>
-		<usejscache>true</usejscache>
-		<useimginline>true</useimginline>
-	</cache>
-	<commands>
-		<soffice>soffice</soffice><!-- for unoconv module -->
-		<__soffice__>soffice --headless --convert-to __FORMAT__ --outdir __OUTDIR__ __INPUT__</__soffice__>
-		<__soffice_formats__>bib,doc,xml,docx,fodt,html,ltx,txt,odt,ott,pdb,pdf,psw,rtf,sdw,stw,sxw,uot,vor,wps,bmp,emf,eps,fodg,gif,jpg,met,odd,otg,pbm,pct,pgm,png,ppm,ras,std,svg,svm,swf,sxd,tiff,wmf,xhtml,xpm,fodp,odg,odp,otp,potm,pot,pptx,pps,ppt,pwp,sda,sdd,sti,sxi,uop,csv,dbf,dif,fods,ods,xlsx,ots,pxl,sdc,slk,stc,sxc,uos,xls,xlt</__soffice_formats__>
-		<pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
-		<__pdftotext__>pdftotext -nopgbrk -layout __INPUT__ __OUTPUT__</__pdftotext__>
-		<translate>translate</translate><!-- for translator module -->
-		<__translate__>translate -s imtranslator -f __FROM__ -t __TO__ __INPUT__</__translate__>
-		<__translate_langs__>translate -s imtranslator -l</__translate_langs__>
-		<aspell>aspell</aspell><!-- for translator module -->
-		<__aspell__>aspell -a --mode=none --sug-mode=ultra -l __LANG__ &lt; __INPUT__</__aspell__>
-		<__aspell_langs__>aspell dump dicts</__aspell_langs__>
-		<which>which</which><!-- for check commands -->
-		<__which__>which __INPUT__</__which__>
-		<pdftoppm>pdftoppm</pdftoppm><!-- for ocr module included in unoconv -->
-		<__pdftoppm__>pdftoppm -r 300 -l 1000 __INPUT__ __OUTPUT__</__pdftoppm__>
-		<convert>convert</convert><!-- for ocr module included in unoconv -->
-		<__convert__>convert __INPUT__ -quality 100 __OUTPUT__</__convert__>
-		<tesseract>tesseract</tesseract><!-- for ocr module included in unoconv -->
-		<__tesseract__>tesseract __INPUT__ __OUTPUT__ -psm 1 hocr</__tesseract__>
-		<timeout>timeout</timeout><!-- for ocr module -->
-		<__timeout__>timeout __TIMEOUT__ __COMMAND__</__timeout__>
-		<preview>wkhtmltoimage</preview><!-- for favoritos application -->
-		<__preview__>wkhtmltoimage --load-error-handling ignore --format __FORMAT__ --width __WIDTH__ --height __HEIGHT__ --javascript-delay __DELAY__ --custom-header "User-Agent" "__USER_AGENT__" --custom-header-propagation --quiet "__INPUT__" __OUTPUT__</__preview__>
-		<xserver>xvfb-run</xserver><!-- for favoritos application -->
-		<__xserver__>xvfb-run -a -s "-screen 0 __WIDTH__x__HEIGHT__x__COLORS__" __COMMAND__</__xserver__>
-		<xlsx2csv>xlsxio_xlsx2csv</xlsx2csv><!-- for import optimization -->
-		<__xlsx2csv__>cd __DIR__; xlsxio_xlsx2csv __INPUT__</__xlsx2csv__>
-		<svnversion>svnversion</svnversion>
-		<__svnversion__>cd __DIR__; svnversion</__svnversion__>
-		<gitversion>git</gitversion>
-		<__gitversion__>cd __DIR__; git rev-list HEAD --count</__gitversion__>
-	</commands>
-	<debug>
-		<actiondebug>false</actiondebug>
-		<langdebug>false</langdebug>
-		<cancelgetmail>false</cancelgetmail>
-		<cancelsendmail>false</cancelsendmail>
-		<cancelfeeds>false</cancelfeeds>
-		<getmaildebug>false</getmaildebug>
-		<getmailmsgid></getmailmsgid>
-		<logfile>saltos.log</logfile>
-		<errorfile>error.log</errorfile>
-		<warningfile>warning.log</warningfile>
-		<deprecatedfile>deprecated.log</deprecatedfile>
-		<phperrorfile>phperror.log</phperrorfile>
-		<xmlerrorfile>xmlerror.log</xmlerrorfile>
-		<dberrorfile>dberror.log</dberrorfile>
-		<jserrorfile>jserror.log</jserrorfile>
-		<phpwarningfile>phpwarning.log</phpwarningfile>
-		<xmlwarningfile>xmlwarning.log</xmlwarningfile>
-		<dbwarningfile>dbwarning.log</dbwarningfile>
-		<jswarningfile>jswarning.log</jswarningfile>
-		<maxfilesize>100M</maxfilesize>
-		<slowquerydebug>true</slowquerydebug>
-		<slowquerytime>5</slowquerytime><!-- in seconds -->
-	</debug>
-	<parser>
-		<preevals>
-			<preeval>preeval_insert_query</preeval>
-			<preeval>preeval_update_query</preeval>
-			<preeval>preeval_update_config</preeval>
-			<preeval>preeval_dependencies_query</preeval>
-		</preevals>
-	</parser>
-	<styles>
-		<cache ifeval="!ismobile()">
-			<include>lib/jquery/jquery.colorpicker.min.css</include>
-			<include>lib/jquery/jquery.timepicker.min.css</include>
-			<include>lib/jquery/jquery.jgrowl.min.css</include>
-			<include>lib/pdfjs/pdf_viewer.min.css</include>
-			<include>lib/codemirror/codemirror.min.css</include>
-			<include>lib/fontawesome/css/fontawesome.min.css</include>
-			<include>lib/fontawesome/css/solid.min.css</include>
-			<include>lib/handsontable/handsontable.full.min.css</include>
-			<include>lib/fileupload/jquery.fileupload.min.css</include>
-		</cache>
-	</styles>
-	<javascript>
-		<cache ifeval="!ismobile()">
-			<include>lib/locutus/php.min.js</include>
-			<include>lib/jquery/jquery.min.js</include>
-			<include>lib/jquery/jquery.cookie.min.js</include>
-			<include>lib/jquery/jquery.form.min.js</include>
-			<include>lib/jquery/jquery-ui.min.js</include>
-			<include>lib/jquery/jquery-ui.i18n.min.js</include>
-			<include>lib/jquery/jquery.autogrow-textarea.min.js</include>
-			<include>lib/jquery/jquery.blockUI.min.js</include>
-			<include>lib/jquery/jquery.jgrowl.min.js</include>
-			<include>lib/jquery/jquery.colorpicker.min.js</include>
-			<include>lib/jquery/jquery.timepicker.min.js</include>
-			<include>lib/jquery/jquery.favicon.min.js</include>
-			<include>lib/zlibjs/zlibjs.min.js</include>
-		</cache>
-		<inline ifeval="!ismobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
-		<cache ifeval="!ismobile()">
-			<include>lib/ckeditor/ckeditor.js</include>
-			<include>lib/ckeditor/adapters/jquery.js</include>
-			<include>lib/pdfjs/pdf.min.js</include>
-			<include>lib/pdfjs/pdf_viewer.min.js</include>
-			<include>lib/codemirror/codemirror.min.js</include>
-			<include>lib/codemirror/codemirror.mode.min.js</include>
-			<include>lib/handsontable/handsontable.full.min.js</include>
-			<include>lib/jstree/jstree.min.js</include>
-			<include>lib/fileupload/jquery.fileupload.min.js</include>
-		</cache>
-		<cache ifeval="ismobile()">
-			<include>lib/locutus/php.min.js</include>
-			<include>lib/jquery/jquery.min.js</include>
-			<include>lib/jquery/jquery-migrate.min.js</include><!-- REQUIRED ONLY BY JQUERY MOBILE -->
-			<include>lib/jquery/jquery.cookie.min.js</include>
-			<include>lib/jquery/jquery.form.min.js</include>
-			<include>lib/jquery/jquery.mobile.min.js</include>
-			<include>lib/jquery/jquery.autogrow-textarea.min.js</include>
-			<include>lib/zlibjs/zlibjs.min.js</include>
-		</cache>
-	</javascript>
-	<configs>
-		<application_title>Suite de Gestión Empresarial</application_title>
-		<application_revision>SVN</application_revision>
-		<plot_list_size>1</plot_list_size>
-		<plot_list_width>350</plot_list_width>
-		<plot_list_height>200</plot_list_height>
-		<plot_form_size>1</plot_form_size>
-		<plot_form_width>350</plot_form_width>
-		<plot_form_height>200</plot_form_height>
-		<agenda_interval>30</agenda_interval>
-		<inbox_interval>300</inbox_interval>
-		<outbox_interval>30</outbox_interval>
-		<feeds_interval>300</feeds_interval>
-		<feeds_timeout>7</feeds_timeout>
-		<session_interval>30</session_interval>
-		<session_warning>300</session_warning>
-		<indexing_interval>300</indexing_interval>
-		<integrity_interval>300</integrity_interval>
-		<purge_interval>300</purge_interval>
-		<water_actas_text>Confidencial</water_actas_text>
-		<water_actas_posx>40</water_actas_posx>
-		<water_actas_posy>220</water_actas_posy>
-		<water_actas_size>100</water_actas_size>
-		<water_actas_angle>60</water_actas_angle>
-		<water_partes_text>Confidencial</water_partes_text>
-		<water_partes_posx>40</water_partes_posx>
-		<water_partes_posy>220</water_partes_posy>
-		<water_partes_size>100</water_partes_size>
-		<water_partes_angle>60</water_partes_angle>
-		<water_facturas_text>Factura</water_facturas_text>
-		<water_facturas_posx>40</water_facturas_posx>
-		<water_facturas_posy>210</water_facturas_posy>
-		<water_facturas_size>130</water_facturas_size>
-		<water_facturas_angle>60</water_facturas_angle>
-		<water_albaranes_text>Albarán</water_albaranes_text>
-		<water_albaranes_posx>40</water_albaranes_posx>
-		<water_albaranes_posy>210</water_albaranes_posy>
-		<water_albaranes_size>130</water_albaranes_size>
-		<water_albaranes_angle>60</water_albaranes_angle>
-		<water_presupuestos_text>Presupuesto</water_presupuestos_text>
-		<water_presupuestos_posx>40</water_presupuestos_posx>
-		<water_presupuestos_posy>220</water_presupuestos_posy>
-		<water_presupuestos_size>100</water_presupuestos_size>
-		<water_presupuestos_angle>60</water_presupuestos_angle>
-		<water_clientes_text>Información</water_clientes_text>
-		<water_clientes_posx>40</water_clientes_posx>
-		<water_clientes_posy>220</water_clientes_posy>
-		<water_clientes_size>100</water_clientes_size>
-		<water_clientes_angle>60</water_clientes_angle>
-		<water_proyectos_text>Información</water_proyectos_text>
-		<water_proyectos_posx>40</water_proyectos_posx>
-		<water_proyectos_posy>220</water_proyectos_posy>
-		<water_proyectos_size>100</water_proyectos_size>
-		<water_proyectos_angle>60</water_proyectos_angle>
-		<water_posiblescli_text>Información</water_posiblescli_text>
-		<water_posiblescli_posx>40</water_posiblescli_posx>
-		<water_posiblescli_posy>220</water_posiblescli_posy>
-		<water_posiblescli_size>100</water_posiblescli_size>
-		<water_posiblescli_angle>60</water_posiblescli_angle>
-		<water_correo_text>Confidencial</water_correo_text>
-		<water_correo_posx>40</water_correo_posx>
-		<water_correo_posy>220</water_correo_posy>
-		<water_correo_size>100</water_correo_size>
-		<water_correo_angle>60</water_correo_angle>
-		<water_feeds_text>Información</water_feeds_text>
-		<water_feeds_posx>40</water_feeds_posx>
-		<water_feeds_posy>220</water_feeds_posy>
-		<water_feeds_size>100</water_feeds_size>
-		<water_feeds_angle>60</water_feeds_angle>
-		<logo_left>118</logo_left>
-		<logo_top>15</logo_top>
-		<logo_width>72</logo_width>
-		<logo_height>15</logo_height>
-		<logo_file>../img/deflogo.png</logo_file>
-		<color_line>#666666</color_line>
-		<color_text1>#ce141d</color_text1>
-		<color_text2>#666666</color_text2>
-		<email_host></email_host>
-		<email_port></email_port>
-		<email_extra></email_extra>
-		<email_user></email_user>
-		<email_pass></email_pass>
-		<email_name></email_name>
-		<email_from></email_from>
-		<email_async>1</email_async>
-		<email_support></email_support>
-		<quick_button_f1>home</quick_button_f1>
-		<quick_button_f2>correo</quick_button_f2>
-		<quick_button_f3>agenda</quick_button_f3>
-		<quick_button_f4>feeds</quick_button_f4>
-		<quick_button_f5>favoritos</quick_button_f5>
-		<quick_button_f6></quick_button_f6>
-		<quick_button_f7></quick_button_f7>
-		<quick_button_f8></quick_button_f8>
-		<quick_button_f9>profile</quick_button_f9>
-		<quick_button_f10>support</quick_button_f10>
-		<quick_button_f11>about</quick_button_f11>
-		<quick_button_f12>logout</quick_button_f12>
-		<accounting_currency>€</accounting_currency>
-		<accounting_iva_name>I.V.A.</accounting_iva_name>
-		<accounting_iva_value>21.00</accounting_iva_value>
-		<accounting_irpf_name>I.R.P.F.</accounting_irpf_name>
-		<accounting_irpf_value>19.00</accounting_irpf_value>
-		<zero_padding_digits>5</zero_padding_digits>
-		<invoice_count_size>3</invoice_count_size>
-		<invoice_date_size>2</invoice_date_size>
-		<tab_objetivos_presupuesto>2</tab_objetivos_presupuesto>
-		<tab_funcional_presupuesto>2</tab_funcional_presupuesto>
-		<tab_tecnica_presupuesto>2</tab_tecnica_presupuesto>
-		<tab_info_adicional_presupuesto>2</tab_info_adicional_presupuesto>
-		<tab_tareas_presupuesto>2</tab_tareas_presupuesto>
-		<tab_productos_presupuesto>2</tab_productos_presupuesto>
-		<tab_condiciones_presupuesto>2</tab_condiciones_presupuesto>
-		<df_estado_presupuestos>21</df_estado_presupuestos>
-		<df_estado_agenda>17</df_estado_agenda>
-		<df_tipo_evento_agenda>13</df_tipo_evento_agenda>
-		<df_estado_incidencias>8</df_estado_incidencias>
-		<df_prioridad_incidencias>3</df_prioridad_incidencias>
-		<df_cuenta_facturas>1</df_cuenta_facturas>
-		<df_formaspago_facturas>1</df_formaspago_facturas>
-		<df_epigfrafes_facturas>1</df_epigfrafes_facturas>
-		<df_cuenta_gastos>1</df_cuenta_gastos>
-		<df_formaspago_gastos>1</df_formaspago_gastos>
-		<df_epigfrafes_gastos>1</df_epigfrafes_gastos>
-	</configs>
-	<ini_set>
-		<session.bug_compat_42 ifeval="!isphp(5.4)">On</session.bug_compat_42>
-		<register_globals ifeval="!isphp(5.4)">Off</register_globals>
-		<memory_limit>128M</memory_limit>
-		<max_execution_time>600</max_execution_time><!-- in seconds, 600 are 10 minutes -->
-		<date.timezone>Europe/Madrid</date.timezone>
-		<default_charset>UTF-8</default_charset>
-		<gd.jpeg_ignore_warning ifeval="!ishhvm()">1</gd.jpeg_ignore_warning>
-		<mbstring.internal_encoding>UTF-8</mbstring.internal_encoding>
-		<mbstring.detect_order>UTF-7,ISO-8859-1,ISO-8859-2,ISO-8859-3,ISO-8859-4,ISO-8859-5,ISO-8859-6,ISO-8859-7,ISO-8859-8,ISO-8859-9,ISO-8859-10,ISO-8859-11,ISO-8859-12,ISO-8859-13,ISO-8859-14,ISO-8859-15,ISO-8859-16,Windows-1250,Windows-1251,Windows-1252,Windows-1253,Windows-1254,Windows-1255,Windows-1256,Windows-1257,Windows-1258,CP1256,CP1250,CP1252,CP437,CP737,CP850,CP852,CP855,CP857,CP858,CP860,CP861,CP862,CP863,CP865,CP866,CP869,CP37,CP930,CP1047</mbstring.detect_order>
-		<magic_quotes_gpc ifeval="!isphp(5.4)">Off</magic_quotes_gpc>
-	</ini_set>
-	<putenv>
-		<PATH>/bin:/usr/bin:/usr/local/bin</PATH>
-		<LANG>es_ES.UTF-8</LANG>
-		<HOME>/tmp/</HOME>
-	</putenv>
-	<captcha>
-		<id>captcha</id>
-		<width>90</width>
-		<height>45</height>
-		<letter>8</letter>
-		<number>16</number>
-		<angle>10</angle>
-		<color>5C8ED1</color>
-		<bgcolor>C8C8C8</bgcolor>
-		<fgcolor>B4B4B4</fgcolor>
-		<type>number</type><!-- captcha type can be number or math -->
-		<length>5</length>
-		<period>4</period>
-		<amplitude>8</amplitude>
-		<blur>true</blur>
-	</captcha>
-	<security>
-		<filterenabled>true</filterenabled><!-- enable security module -->
-		<maxretries>3</maxretries><!-- number of failed retries until displays captcha -->
-		<allowremember>true</allowremember><!-- enable or disable the remember feature -->
-		<cookietimeout>2592000</cookietimeout><!-- in seconds, 2592000 are 30 days -->
-		<minscore>50</minscore><!-- min password strength score -->
-		<allowbasicauth>true</allowbasicauth><!-- enable or disable the basic auth feature -->
-	</security>
-	<defines>
-		<htmlpage>body{margin:0px;padding:0px;}</htmlpage>
-		<htmlbox>background:#ffffff</htmlbox>
-		<htmltext>font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:16px;color:#333</htmltext>
-		<plaintext>font-family:monospace;font-size:11px;line-height:16px;color:#333</plaintext>
-		<separator>border:0px;height:1px;background:#ccc</separator>
-		<blockquote>border-left:#ccc 1px solid;margin:0px 0px 0px 0.8ex;padding-left:1ex</blockquote>
-		<signature>font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:16px;color:#ccc</signature>
-	</defines>
+    <info>
+        <name>SaltOS</name>
+        <version>3.7</version>
+        <revision config="true">application_revision</revision>
+        <copyright>Copyright (C) 2007-2021 by Josep Sanz Campderrós</copyright>
+        <title config="true">application_title</title>
+        <favicon>img/favicon.png</favicon>
+        <icon eval="true">ICON("about")</icon>
+        <time eval="true">time()</time>
+    </info>
+    <db>
+        <type>pdo_sqlite</type>
+        <host>localhost</host><!-- for MySQL -->
+        <port>3306</port><!-- for MySQL -->
+        <user>saltos</user><!-- for MySQL -->
+        <pass>saltos</pass><!-- for MySQL -->
+        <name>saltos</name><!-- for MySQL -->
+        <file eval="true">getcwd()."/files/saltos.db"</file><!-- for SQLite -->
+        <datatypes>
+            <int>TINYINT,SMALLINT,MEDIUMINT,INT,BIGINT,INTEGER</int>
+            <string>TINYTEXT,TEXT,MEDIUMTEXT,LONGTEXT,VARCHAR</string>
+            <float>DECIMAL,NUMERIC,FLOAT,REAL,DOUBLE</float>
+            <date>DATE</date>
+            <time>TIME</time>
+            <datetime>DATETIME</datetime>
+        </datatypes>
+        <datasizes>
+            <TINYTEXT>255</TINYTEXT>
+            <TEXT>65535</TEXT>
+            <MEDIUMTEXT>16777215</MEDIUMTEXT>
+            <LONGTEXT>4294967295</LONGTEXT>
+        </datasizes>
+        <dbschema>true</dbschema>
+        <dbstatic>true</dbstatic>
+        <semaphoretimeout>10000000</semaphoretimeout><!-- in microseconds, only for SQLite -->
+        <dbfields>
+            <dbfield>id_aplicacion</dbfield>
+            <dbfield>id_registro</dbfield>
+            <dbfield>id_permiso</dbfield>
+        </dbfields>
+    </db>
+    <sess>
+        <save_path>saltos</save_path>
+        <timeout>3600</timeout><!-- in seconds, 3600 is 1 hour -->
+        <probability>1</probability>
+        <divisor>100</divisor>
+    </sess>
+    <server>
+        <hostname></hostname>
+        <pathname></pathname>
+        <forcessl>false</forcessl>
+        <porthttp>80</porthttp>
+        <porthttps>443</porthttps>
+        <dirindex>index.php</dirindex>
+        <percentstop>90</percentstop><!-- long actions stop when reached the 90% of max_execution_time -->
+        <maxmemorylimit>1G</maxmemorylimit><!-- to be used in some actions that requires more memory -->
+        <maxexecutiontime>3600</maxexecutiontime><!-- to be used in some actions that requires more time -->
+    </server>
+    <default>
+        <page>home</page>
+        <action>list</action>
+        <id>0</id>
+        <lang>es_ES</lang>
+        <engine>default</engine>
+        <style eval="true">ismobile()?"google/blue/light":"google/multi/light"</style>
+        <stylepre eval="true">ismobile()?"lib/themes/":"lib/themes/"</stylepre>
+        <stylepost eval="true">ismobile()?"/jquery.mobile/jquery.mobile.min.css":"/jquery-ui/jquery-ui.min.css"</stylepost>
+        <jstreepre>lib/jstree/themes/</jstreepre>
+        <jstreepost>/style.min.css</jstreepost>
+        <forcelang eval="true">load_lang(getParam("lang"))?getParam("lang"):""</forcelang>
+        <forcestyle eval="true">load_style(getParam("style"))?getParam("style"):""</forcestyle>
+        <forcecss eval="true">ismobile()?"mobile":""</forcecss>
+        <forcejs eval="true">ismobile()?"mobile":""</forcejs>
+        <forcexsl eval="true">ismobile()?"mobile":""</forcexsl>
+        <regspagerlist>25,50,100,200,500,1000</regspagerlist>
+        <regspagerdef>50</regspagerdef>
+        <regspagermobile>10</regspagermobile>
+        <semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
+        <cachetimeout>10000000</cachetimeout><!-- in microseconds -->
+        <commandtimeout>60</commandtimeout><!-- in seconds, 60 is 1 minute -->
+        <commandexpires>3600</commandexpires><!-- in seconds, 3600 is 1 hour -->
+        <enablecalculator eval="true">!ismobile()</enablecalculator>
+        <enabletranslator eval="true">!ismobile()</enabletranslator>
+        <enableindexing>true</enableindexing>
+        <enableintegrity>true</enableintegrity>
+        <enablepurge>false</enablepurge>
+    </default>
+    <dirs>
+        <filesdir eval="true">getcwd()."/files"</filesdir>
+        <cachedir eval="true">getcwd()."/cache"</cachedir>
+        <inboxdir eval="true">getcwd()."/inbox"</inboxdir>
+        <outboxdir eval="true">getcwd()."/outbox"</outboxdir>
+    </dirs>
+    <cache>
+        <cachegcenabled>true</cachegcenabled>
+        <cachegctimeout>86400</cachegctimeout><!-- in seconds, 86400 is 1 day -->
+        <cachegcprobability>1</cachegcprobability>
+        <cachegcdivisor>100</cachegcdivisor>
+        <usecsscache>true</usecsscache>
+        <usejscache>true</usejscache>
+        <useimginline>true</useimginline>
+    </cache>
+    <commands>
+        <soffice>soffice</soffice><!-- for unoconv module -->
+        <__soffice__>soffice --headless --convert-to __FORMAT__ --outdir __OUTDIR__ __INPUT__</__soffice__>
+        <__soffice_formats__>bib,doc,xml,docx,fodt,html,ltx,txt,odt,ott,pdb,pdf,psw,rtf,sdw,stw,sxw,uot,vor,wps,bmp,emf,eps,fodg,gif,jpg,met,odd,otg,pbm,pct,pgm,png,ppm,ras,std,svg,svm,swf,sxd,tiff,wmf,xhtml,xpm,fodp,odg,odp,otp,potm,pot,pptx,pps,ppt,pwp,sda,sdd,sti,sxi,uop,csv,dbf,dif,fods,ods,xlsx,ots,pxl,sdc,slk,stc,sxc,uos,xls,xlt</__soffice_formats__>
+        <pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
+        <__pdftotext__>pdftotext -nopgbrk -layout __INPUT__ __OUTPUT__</__pdftotext__>
+        <translate>translate</translate><!-- for translator module -->
+        <__translate__>translate -s imtranslator -f __FROM__ -t __TO__ __INPUT__</__translate__>
+        <__translate_langs__>translate -s imtranslator -l</__translate_langs__>
+        <aspell>aspell</aspell><!-- for translator module -->
+        <__aspell__>aspell -a --mode=none --sug-mode=ultra -l __LANG__ &lt; __INPUT__</__aspell__>
+        <__aspell_langs__>aspell dump dicts</__aspell_langs__>
+        <which>which</which><!-- for check commands -->
+        <__which__>which __INPUT__</__which__>
+        <pdftoppm>pdftoppm</pdftoppm><!-- for ocr module included in unoconv -->
+        <__pdftoppm__>pdftoppm -r 300 -l 1000 __INPUT__ __OUTPUT__</__pdftoppm__>
+        <convert>convert</convert><!-- for ocr module included in unoconv -->
+        <__convert__>convert __INPUT__ -quality 100 __OUTPUT__</__convert__>
+        <tesseract>tesseract</tesseract><!-- for ocr module included in unoconv -->
+        <__tesseract__>tesseract __INPUT__ __OUTPUT__ -psm 1 hocr</__tesseract__>
+        <timeout>timeout</timeout><!-- for ocr module -->
+        <__timeout__>timeout __TIMEOUT__ __COMMAND__</__timeout__>
+        <preview>wkhtmltoimage</preview><!-- for favoritos application -->
+        <__preview__>wkhtmltoimage --load-error-handling ignore --format __FORMAT__ --width __WIDTH__ --height __HEIGHT__ --javascript-delay __DELAY__ --custom-header "User-Agent" "__USER_AGENT__" --custom-header-propagation --quiet "__INPUT__" __OUTPUT__</__preview__>
+        <xserver>xvfb-run</xserver><!-- for favoritos application -->
+        <__xserver__>xvfb-run -a -s "-screen 0 __WIDTH__x__HEIGHT__x__COLORS__" __COMMAND__</__xserver__>
+        <xlsx2csv>xlsxio_xlsx2csv</xlsx2csv><!-- for import optimization -->
+        <__xlsx2csv__>cd __DIR__; xlsxio_xlsx2csv __INPUT__</__xlsx2csv__>
+        <svnversion>svnversion</svnversion>
+        <__svnversion__>cd __DIR__; svnversion</__svnversion__>
+        <gitversion>git</gitversion>
+        <__gitversion__>cd __DIR__; git rev-list HEAD --count</__gitversion__>
+    </commands>
+    <debug>
+        <actiondebug>false</actiondebug>
+        <langdebug>false</langdebug>
+        <cancelgetmail>false</cancelgetmail>
+        <cancelsendmail>false</cancelsendmail>
+        <cancelfeeds>false</cancelfeeds>
+        <getmaildebug>false</getmaildebug>
+        <getmailmsgid></getmailmsgid>
+        <logfile>saltos.log</logfile>
+        <errorfile>error.log</errorfile>
+        <warningfile>warning.log</warningfile>
+        <deprecatedfile>deprecated.log</deprecatedfile>
+        <phperrorfile>phperror.log</phperrorfile>
+        <xmlerrorfile>xmlerror.log</xmlerrorfile>
+        <dberrorfile>dberror.log</dberrorfile>
+        <jserrorfile>jserror.log</jserrorfile>
+        <phpwarningfile>phpwarning.log</phpwarningfile>
+        <xmlwarningfile>xmlwarning.log</xmlwarningfile>
+        <dbwarningfile>dbwarning.log</dbwarningfile>
+        <jswarningfile>jswarning.log</jswarningfile>
+        <maxfilesize>100M</maxfilesize>
+        <slowquerydebug>true</slowquerydebug>
+        <slowquerytime>5</slowquerytime><!-- in seconds -->
+    </debug>
+    <parser>
+        <preevals>
+            <preeval>preeval_insert_query</preeval>
+            <preeval>preeval_update_query</preeval>
+            <preeval>preeval_update_config</preeval>
+            <preeval>preeval_dependencies_query</preeval>
+        </preevals>
+    </parser>
+    <styles>
+        <cache ifeval="!ismobile()">
+            <include>lib/jquery/jquery.colorpicker.min.css</include>
+            <include>lib/jquery/jquery.timepicker.min.css</include>
+            <include>lib/jquery/jquery.jgrowl.min.css</include>
+            <include>lib/pdfjs/pdf_viewer.min.css</include>
+            <include>lib/codemirror/codemirror.min.css</include>
+            <include>lib/fontawesome/css/fontawesome.min.css</include>
+            <include>lib/fontawesome/css/solid.min.css</include>
+            <include>lib/handsontable/handsontable.full.min.css</include>
+            <include>lib/fileupload/jquery.fileupload.min.css</include>
+        </cache>
+    </styles>
+    <javascript>
+        <cache ifeval="!ismobile()">
+            <include>lib/locutus/php.min.js</include>
+            <include>lib/jquery/jquery.min.js</include>
+            <include>lib/jquery/jquery.cookie.min.js</include>
+            <include>lib/jquery/jquery.form.min.js</include>
+            <include>lib/jquery/jquery-ui.min.js</include>
+            <include>lib/jquery/jquery-ui.i18n.min.js</include>
+            <include>lib/jquery/jquery.autogrow-textarea.min.js</include>
+            <include>lib/jquery/jquery.blockUI.min.js</include>
+            <include>lib/jquery/jquery.jgrowl.min.js</include>
+            <include>lib/jquery/jquery.colorpicker.min.js</include>
+            <include>lib/jquery/jquery.timepicker.min.js</include>
+            <include>lib/jquery/jquery.favicon.min.js</include>
+            <include>lib/zlibjs/zlibjs.min.js</include>
+        </cache>
+        <inline ifeval="!ismobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
+        <cache ifeval="!ismobile()">
+            <include>lib/ckeditor/ckeditor.js</include>
+            <include>lib/ckeditor/adapters/jquery.js</include>
+            <include>lib/pdfjs/pdf.min.js</include>
+            <include>lib/pdfjs/pdf_viewer.min.js</include>
+            <include>lib/codemirror/codemirror.min.js</include>
+            <include>lib/codemirror/codemirror.mode.min.js</include>
+            <include>lib/handsontable/handsontable.full.min.js</include>
+            <include>lib/jstree/jstree.min.js</include>
+            <include>lib/fileupload/jquery.fileupload.min.js</include>
+        </cache>
+        <cache ifeval="ismobile()">
+            <include>lib/locutus/php.min.js</include>
+            <include>lib/jquery/jquery.min.js</include>
+            <include>lib/jquery/jquery-migrate.min.js</include><!-- REQUIRED ONLY BY JQUERY MOBILE -->
+            <include>lib/jquery/jquery.cookie.min.js</include>
+            <include>lib/jquery/jquery.form.min.js</include>
+            <include>lib/jquery/jquery.mobile.min.js</include>
+            <include>lib/jquery/jquery.autogrow-textarea.min.js</include>
+            <include>lib/zlibjs/zlibjs.min.js</include>
+        </cache>
+    </javascript>
+    <configs>
+        <application_title>Suite de Gestión Empresarial</application_title>
+        <application_revision>SVN</application_revision>
+        <plot_list_size>1</plot_list_size>
+        <plot_list_width>350</plot_list_width>
+        <plot_list_height>200</plot_list_height>
+        <plot_form_size>1</plot_form_size>
+        <plot_form_width>350</plot_form_width>
+        <plot_form_height>200</plot_form_height>
+        <agenda_interval>30</agenda_interval>
+        <inbox_interval>300</inbox_interval>
+        <outbox_interval>30</outbox_interval>
+        <feeds_interval>300</feeds_interval>
+        <feeds_timeout>7</feeds_timeout>
+        <session_interval>30</session_interval>
+        <session_warning>300</session_warning>
+        <indexing_interval>300</indexing_interval>
+        <integrity_interval>300</integrity_interval>
+        <purge_interval>300</purge_interval>
+        <water_actas_text>Confidencial</water_actas_text>
+        <water_actas_posx>40</water_actas_posx>
+        <water_actas_posy>220</water_actas_posy>
+        <water_actas_size>100</water_actas_size>
+        <water_actas_angle>60</water_actas_angle>
+        <water_partes_text>Confidencial</water_partes_text>
+        <water_partes_posx>40</water_partes_posx>
+        <water_partes_posy>220</water_partes_posy>
+        <water_partes_size>100</water_partes_size>
+        <water_partes_angle>60</water_partes_angle>
+        <water_facturas_text>Factura</water_facturas_text>
+        <water_facturas_posx>40</water_facturas_posx>
+        <water_facturas_posy>210</water_facturas_posy>
+        <water_facturas_size>130</water_facturas_size>
+        <water_facturas_angle>60</water_facturas_angle>
+        <water_albaranes_text>Albarán</water_albaranes_text>
+        <water_albaranes_posx>40</water_albaranes_posx>
+        <water_albaranes_posy>210</water_albaranes_posy>
+        <water_albaranes_size>130</water_albaranes_size>
+        <water_albaranes_angle>60</water_albaranes_angle>
+        <water_presupuestos_text>Presupuesto</water_presupuestos_text>
+        <water_presupuestos_posx>40</water_presupuestos_posx>
+        <water_presupuestos_posy>220</water_presupuestos_posy>
+        <water_presupuestos_size>100</water_presupuestos_size>
+        <water_presupuestos_angle>60</water_presupuestos_angle>
+        <water_clientes_text>Información</water_clientes_text>
+        <water_clientes_posx>40</water_clientes_posx>
+        <water_clientes_posy>220</water_clientes_posy>
+        <water_clientes_size>100</water_clientes_size>
+        <water_clientes_angle>60</water_clientes_angle>
+        <water_proyectos_text>Información</water_proyectos_text>
+        <water_proyectos_posx>40</water_proyectos_posx>
+        <water_proyectos_posy>220</water_proyectos_posy>
+        <water_proyectos_size>100</water_proyectos_size>
+        <water_proyectos_angle>60</water_proyectos_angle>
+        <water_posiblescli_text>Información</water_posiblescli_text>
+        <water_posiblescli_posx>40</water_posiblescli_posx>
+        <water_posiblescli_posy>220</water_posiblescli_posy>
+        <water_posiblescli_size>100</water_posiblescli_size>
+        <water_posiblescli_angle>60</water_posiblescli_angle>
+        <water_correo_text>Confidencial</water_correo_text>
+        <water_correo_posx>40</water_correo_posx>
+        <water_correo_posy>220</water_correo_posy>
+        <water_correo_size>100</water_correo_size>
+        <water_correo_angle>60</water_correo_angle>
+        <water_feeds_text>Información</water_feeds_text>
+        <water_feeds_posx>40</water_feeds_posx>
+        <water_feeds_posy>220</water_feeds_posy>
+        <water_feeds_size>100</water_feeds_size>
+        <water_feeds_angle>60</water_feeds_angle>
+        <logo_left>118</logo_left>
+        <logo_top>15</logo_top>
+        <logo_width>72</logo_width>
+        <logo_height>15</logo_height>
+        <logo_file>../img/deflogo.png</logo_file>
+        <color_line>#666666</color_line>
+        <color_text1>#ce141d</color_text1>
+        <color_text2>#666666</color_text2>
+        <email_host></email_host>
+        <email_port></email_port>
+        <email_extra></email_extra>
+        <email_user></email_user>
+        <email_pass></email_pass>
+        <email_name></email_name>
+        <email_from></email_from>
+        <email_async>1</email_async>
+        <email_support></email_support>
+        <quick_button_f1>home</quick_button_f1>
+        <quick_button_f2>correo</quick_button_f2>
+        <quick_button_f3>agenda</quick_button_f3>
+        <quick_button_f4>feeds</quick_button_f4>
+        <quick_button_f5>favoritos</quick_button_f5>
+        <quick_button_f6></quick_button_f6>
+        <quick_button_f7></quick_button_f7>
+        <quick_button_f8></quick_button_f8>
+        <quick_button_f9>profile</quick_button_f9>
+        <quick_button_f10>support</quick_button_f10>
+        <quick_button_f11>about</quick_button_f11>
+        <quick_button_f12>logout</quick_button_f12>
+        <accounting_currency>€</accounting_currency>
+        <accounting_iva_name>I.V.A.</accounting_iva_name>
+        <accounting_iva_value>21.00</accounting_iva_value>
+        <accounting_irpf_name>I.R.P.F.</accounting_irpf_name>
+        <accounting_irpf_value>19.00</accounting_irpf_value>
+        <zero_padding_digits>5</zero_padding_digits>
+        <invoice_count_size>3</invoice_count_size>
+        <invoice_date_size>2</invoice_date_size>
+        <tab_objetivos_presupuesto>2</tab_objetivos_presupuesto>
+        <tab_funcional_presupuesto>2</tab_funcional_presupuesto>
+        <tab_tecnica_presupuesto>2</tab_tecnica_presupuesto>
+        <tab_info_adicional_presupuesto>2</tab_info_adicional_presupuesto>
+        <tab_tareas_presupuesto>2</tab_tareas_presupuesto>
+        <tab_productos_presupuesto>2</tab_productos_presupuesto>
+        <tab_condiciones_presupuesto>2</tab_condiciones_presupuesto>
+        <df_estado_presupuestos>21</df_estado_presupuestos>
+        <df_estado_agenda>17</df_estado_agenda>
+        <df_tipo_evento_agenda>13</df_tipo_evento_agenda>
+        <df_estado_incidencias>8</df_estado_incidencias>
+        <df_prioridad_incidencias>3</df_prioridad_incidencias>
+        <df_cuenta_facturas>1</df_cuenta_facturas>
+        <df_formaspago_facturas>1</df_formaspago_facturas>
+        <df_epigfrafes_facturas>1</df_epigfrafes_facturas>
+        <df_cuenta_gastos>1</df_cuenta_gastos>
+        <df_formaspago_gastos>1</df_formaspago_gastos>
+        <df_epigfrafes_gastos>1</df_epigfrafes_gastos>
+    </configs>
+    <ini_set>
+        <session.bug_compat_42 ifeval="!isphp(5.4)">On</session.bug_compat_42>
+        <register_globals ifeval="!isphp(5.4)">Off</register_globals>
+        <memory_limit>128M</memory_limit>
+        <max_execution_time>600</max_execution_time><!-- in seconds, 600 are 10 minutes -->
+        <date.timezone>Europe/Madrid</date.timezone>
+        <default_charset>UTF-8</default_charset>
+        <gd.jpeg_ignore_warning ifeval="!ishhvm()">1</gd.jpeg_ignore_warning>
+        <mbstring.internal_encoding>UTF-8</mbstring.internal_encoding>
+        <mbstring.detect_order>UTF-7,ISO-8859-1,ISO-8859-2,ISO-8859-3,ISO-8859-4,ISO-8859-5,ISO-8859-6,ISO-8859-7,ISO-8859-8,ISO-8859-9,ISO-8859-10,ISO-8859-11,ISO-8859-12,ISO-8859-13,ISO-8859-14,ISO-8859-15,ISO-8859-16,Windows-1250,Windows-1251,Windows-1252,Windows-1253,Windows-1254,Windows-1255,Windows-1256,Windows-1257,Windows-1258,CP1256,CP1250,CP1252,CP437,CP737,CP850,CP852,CP855,CP857,CP858,CP860,CP861,CP862,CP863,CP865,CP866,CP869,CP37,CP930,CP1047</mbstring.detect_order>
+        <magic_quotes_gpc ifeval="!isphp(5.4)">Off</magic_quotes_gpc>
+    </ini_set>
+    <putenv>
+        <PATH>/bin:/usr/bin:/usr/local/bin</PATH>
+        <LANG>es_ES.UTF-8</LANG>
+        <HOME>/tmp/</HOME>
+    </putenv>
+    <captcha>
+        <id>captcha</id>
+        <width>90</width>
+        <height>45</height>
+        <letter>8</letter>
+        <number>16</number>
+        <angle>10</angle>
+        <color>5C8ED1</color>
+        <bgcolor>C8C8C8</bgcolor>
+        <fgcolor>B4B4B4</fgcolor>
+        <type>number</type><!-- captcha type can be number or math -->
+        <length>5</length>
+        <period>4</period>
+        <amplitude>8</amplitude>
+        <blur>true</blur>
+    </captcha>
+    <security>
+        <filterenabled>true</filterenabled><!-- enable security module -->
+        <maxretries>3</maxretries><!-- number of failed retries until displays captcha -->
+        <allowremember>true</allowremember><!-- enable or disable the remember feature -->
+        <cookietimeout>2592000</cookietimeout><!-- in seconds, 2592000 are 30 days -->
+        <minscore>50</minscore><!-- min password strength score -->
+        <allowbasicauth>true</allowbasicauth><!-- enable or disable the basic auth feature -->
+    </security>
+    <defines>
+        <htmlpage>body{margin:0px;padding:0px;}</htmlpage>
+        <htmlbox>background:#ffffff</htmlbox>
+        <htmltext>font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:16px;color:#333</htmltext>
+        <plaintext>font-family:monospace;font-size:11px;line-height:16px;color:#333</plaintext>
+        <separator>border:0px;height:1px;background:#ccc</separator>
+        <blockquote>border-left:#ccc 1px solid;margin:0px 0px 0px 0.8ex;padding-left:1ex</blockquote>
+        <signature>font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:16px;color:#ccc</signature>
+    </defines>
 </root>

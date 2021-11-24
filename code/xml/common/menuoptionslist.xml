@@ -24,13 +24,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<option global="temp" ifeval="check_user($temp,'menu')">
-		<label global="temp" eval="true">LANG($temp)</label>
-		<onclick global="temp" eval="true">"opencontent('?page=$temp')"</onclick>
-		<icon global="temp" eval="true">ICON($temp)</icon>
-		<tip global="temp" eval="true">LANG("desc_$temp")</tip>
-		<class global="temp" eval="true">"nowrap".($temp=="correo"?" number number_correo":"").($temp=="agenda"?" number number_agenda":"").($temp=="feeds"?" number number_feeds":"")</class>
-		<selected global="page,temp" eval="true">$page==$temp?"true":"false"</selected>
-		<name global="temp" eval="true">$temp</name>
-	</option>
+    <option global="temp" ifeval="check_user($temp,'menu')">
+        <label global="temp" eval="true">LANG($temp)</label>
+        <onclick global="temp" eval="true">"opencontent('?page=$temp')"</onclick>
+        <icon global="temp" eval="true">ICON($temp)</icon>
+        <tip global="temp" eval="true">LANG("desc_$temp")</tip>
+        <class global="temp" eval="true">"nowrap".($temp=="correo"?" number number_correo":"").($temp=="agenda"?" number number_agenda":"").($temp=="feeds"?" number number_feeds":"")</class>
+        <selected global="page,temp" eval="true">$page==$temp?"true":"false"</selected>
+        <name global="temp" eval="true">$temp</name>
+    </option>
 </root>

@@ -24,145 +24,145 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<default>
-		<action global="action" eval="true">($action=="list")?$action="form":$action</action>
-		<id global="id" eval="true">$id=current_user()</id>
-	</default>
-	<form>
-		<title lang="true">logintitle</title>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<fields>
-			<title lang="true">logintitle</title>
-			<icon eval="true">ICON("form")</icon>
-			<row>
-				<field>
-					<type>separator</type>
-					<class>spacer</class>
-				</field>
-			</row>
-			<row>
-				<field>
-					<type>image</type>
-					<image>img/saltos2.png</image>
-					<width>200px</width>
-					<class>logo</class>
-				</field>
-			</row>
-		</fields>
-		<fields>
-			<row>
-				<field>
-					<name>action</name>
-					<type>hidden</type>
-					<value>login</value>
-				</field>
-				<field>
-					<name>querystring</name>
-					<type>hidden</type>
-					<value eval="true">str_replace("+","%20",getServer("QUERY_STRING"))</value>
-				</field>
-				<field>
-					<name>user</name>
-					<label lang="true">username</label>
-					<type>text</type>
-					<width>90px</width>
-					<focus>true</focus>
-					<required>true</required>
-				</field>
-			</row>
-			<row>
-				<field>
-					<name>pass</name>
-					<label lang="true">password</label>
-					<type>password</type>
-					<width>90px</width>
-					<onkey>if(is_enterkey(event)) if(check_required()) submit1()</onkey>
-					<required>true</required>
-				</field>
-			</row>
-			<row ifeval="!check_security('retries')">
-				<field>
-					<label lang="true">captcha1</label>
-					<type>image</type>
-					<width>90px</width>
-					<height>30px</height>
-					<image eval="true">"?action=captcha&amp;_=".time()</image>
-					<phpthumb>false</phpthumb>
-					<class>ui-state-default ui-corner-all image captcha</class>
-				</field>
-				<field>
-					<type>link</type>
-					<label lang="true">captcha3</label>
-					<onclick>update_captcha()</onclick>
-					<class>label</class>
-				</field>
-			</row>
-			<row ifeval="!check_security('retries')">
-				<field>
-					<name>captcha</name>
-					<label lang="true">captcha2</label>
-					<type>text</type>
-					<width>90px</width>
-					<onkey>if(is_enterkey(event)) if(check_required()) submit1()</onkey>
-					<required>true</required>
-				</field>
-			</row>
-			<row ifeval="!getDefault('forcelang')">
-				<field>
-					<field include="xml/common/langs.xml" replace="true" />
-				</field>
-				<actions path="field" append="true">
-					<colspan>2</colspan>
-				</actions>
-			</row>
-			<row ifeval="!getDefault('forcestyle')">
-				<field>
-					<field include="xml/common/styles2.xml" replace="true" />
-				</field>
-				<actions path="field" append="true">
-					<colspan>2</colspan>
-				</actions>
-			</row>
-		</fields>
-		<fields ifeval="eval_bool(getDefault('security/allowremember'))">
-			<row>
-				<field>
-					<label lang="true">remember</label>
-					<type>checkbox</type>
-					<name>remember</name>
-					<value>1</value>
-					<checked eval="true">getCookie2("remember")?"true":"false"</checked>
-				</field>
-			</row>
-		</fields>
-		<fields>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">enter</value>
-					<onclick>if(check_required()) submit1()</onclick>
-					<icon eval="true">ICON("accept")</icon>
-				</field>
-			</row>
-		</fields>
-		<fields ifeval="!ismobile()">
-			<row>
-				<field>
-					<label lang="true">mobileaccess</label>
-					<type>link</type>
-					<onclick eval="true">"qrcode2('".get_base()."');"</onclick>
-				</field>
-			</row>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<inline>$(function() { $(".spacer").animate({height:$(window).height()/4}); });</inline>
-			<inline>$(function() { $(".logo").on("click",function() { openwin("http://www.saltos.org"); }); });</inline>
-		</javascript>
-		<styles>
-			<inline>.logo { cursor:pointer; }</inline>
-		</styles>
-	</form>
+    <default>
+        <action global="action" eval="true">($action=="list")?$action="form":$action</action>
+        <id global="id" eval="true">$id=current_user()</id>
+    </default>
+    <form>
+        <title lang="true">logintitle</title>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <fields>
+            <title lang="true">logintitle</title>
+            <icon eval="true">ICON("form")</icon>
+            <row>
+                <field>
+                    <type>separator</type>
+                    <class>spacer</class>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <type>image</type>
+                    <image>img/saltos2.png</image>
+                    <width>200px</width>
+                    <class>logo</class>
+                </field>
+            </row>
+        </fields>
+        <fields>
+            <row>
+                <field>
+                    <name>action</name>
+                    <type>hidden</type>
+                    <value>login</value>
+                </field>
+                <field>
+                    <name>querystring</name>
+                    <type>hidden</type>
+                    <value eval="true">str_replace("+","%20",getServer("QUERY_STRING"))</value>
+                </field>
+                <field>
+                    <name>user</name>
+                    <label lang="true">username</label>
+                    <type>text</type>
+                    <width>90px</width>
+                    <focus>true</focus>
+                    <required>true</required>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <name>pass</name>
+                    <label lang="true">password</label>
+                    <type>password</type>
+                    <width>90px</width>
+                    <onkey>if(is_enterkey(event)) if(check_required()) submit1()</onkey>
+                    <required>true</required>
+                </field>
+            </row>
+            <row ifeval="!check_security('retries')">
+                <field>
+                    <label lang="true">captcha1</label>
+                    <type>image</type>
+                    <width>90px</width>
+                    <height>30px</height>
+                    <image eval="true">"?action=captcha&amp;_=".time()</image>
+                    <phpthumb>false</phpthumb>
+                    <class>ui-state-default ui-corner-all image captcha</class>
+                </field>
+                <field>
+                    <type>link</type>
+                    <label lang="true">captcha3</label>
+                    <onclick>update_captcha()</onclick>
+                    <class>label</class>
+                </field>
+            </row>
+            <row ifeval="!check_security('retries')">
+                <field>
+                    <name>captcha</name>
+                    <label lang="true">captcha2</label>
+                    <type>text</type>
+                    <width>90px</width>
+                    <onkey>if(is_enterkey(event)) if(check_required()) submit1()</onkey>
+                    <required>true</required>
+                </field>
+            </row>
+            <row ifeval="!getDefault('forcelang')">
+                <field>
+                    <field include="xml/common/langs.xml" replace="true" />
+                </field>
+                <actions path="field" append="true">
+                    <colspan>2</colspan>
+                </actions>
+            </row>
+            <row ifeval="!getDefault('forcestyle')">
+                <field>
+                    <field include="xml/common/styles2.xml" replace="true" />
+                </field>
+                <actions path="field" append="true">
+                    <colspan>2</colspan>
+                </actions>
+            </row>
+        </fields>
+        <fields ifeval="eval_bool(getDefault('security/allowremember'))">
+            <row>
+                <field>
+                    <label lang="true">remember</label>
+                    <type>checkbox</type>
+                    <name>remember</name>
+                    <value>1</value>
+                    <checked eval="true">getCookie2("remember")?"true":"false"</checked>
+                </field>
+            </row>
+        </fields>
+        <fields>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">enter</value>
+                    <onclick>if(check_required()) submit1()</onclick>
+                    <icon eval="true">ICON("accept")</icon>
+                </field>
+            </row>
+        </fields>
+        <fields ifeval="!ismobile()">
+            <row>
+                <field>
+                    <label lang="true">mobileaccess</label>
+                    <type>link</type>
+                    <onclick eval="true">"qrcode2('".get_base()."');"</onclick>
+                </field>
+            </row>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+            <inline>$(function() { $(".spacer").animate({height:$(window).height()/4}); });</inline>
+            <inline>$(function() { $(".logo").on("click",function() { openwin("http://www.saltos.org"); }); });</inline>
+        </javascript>
+        <styles>
+            <inline>.logo { cursor:pointer; }</inline>
+        </styles>
+    </form>
 </root>

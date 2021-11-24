@@ -24,22 +24,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<id>1</id>
-		<nombre>21%</nombre>
-		<descripcion>Tipo general: 21%. Es el tipo que se aplica por defecto cuando no resulta aplicable ninguno de los otros tipos.</descripcion>
-		<valor>21</valor>
-	</row>
-	<row>
-		<id>2</id>
-		<nombre>10%</nombre>
-		<descripcion>Tipo reducido: 10%. Aplicado básicamente a algunos productos alimenticios y a los productos sanitarios, transporte de viajeros, la mayoría de servicios de hostelería y la construcción de nuevas viviendas.</descripcion>
-		<valor>10</valor>
-	</row>
-	<row>
-		<id>3</id>
-		<nombre>4%</nombre>
-		<descripcion>Tipo superreducido: 4%.Se aplica a artículos de primera necesidad, como las verduras, la leche, el pan, la fruta, libros, periódicos (y análogos) y especialidades farmacéuticas.</descripcion>
-		<valor>4</valor>
-	</row>
+    <row>
+        <id>1</id>
+        <nombre>21%</nombre>
+        <descripcion>Tipo general: 21%. Es el tipo que se aplica por defecto cuando no resulta aplicable ninguno de los otros tipos.</descripcion>
+        <valor>21</valor>
+    </row>
+    <row>
+        <id>2</id>
+        <nombre>10%</nombre>
+        <descripcion>Tipo reducido: 10%. Aplicado básicamente a algunos productos alimenticios y a los productos sanitarios, transporte de viajeros, la mayoría de servicios de hostelería y la construcción de nuevas viviendas.</descripcion>
+        <valor>10</valor>
+    </row>
+    <row>
+        <id>3</id>
+        <nombre>4%</nombre>
+        <descripcion>Tipo superreducido: 4%.Se aplica a artículos de primera necesidad, como las verduras, la leche, el pan, la fruta, libros, periódicos (y análogos) y especialidades farmacéuticas.</descripcion>
+        <valor>4</valor>
+    </row>
 </root>

@@ -24,11 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<option global="rows,row,temp" ifeval="count($rows)>0 &amp;&amp; check_user($temp,'menu')" foreach="rows" as="row">
-		<label global="row" eval="true">$row["nombre"]</label>
-		<onclick global="temp,row" eval="true">"opencontent('?page=$temp&amp;".base64_decode($row["querystring"])."')"</onclick>
-		<icon eval="true">ICON("default")</icon>
-		<tip global="row" eval="true">$row["nombre"]</tip>
-		<class>nowrap depth_1</class>
-	</option>
+    <option global="rows,row,temp" ifeval="count($rows)>0 &amp;&amp; check_user($temp,'menu')" foreach="rows" as="row">
+        <label global="row" eval="true">$row["nombre"]</label>
+        <onclick global="temp,row" eval="true">"opencontent('?page=$temp&amp;".base64_decode($row["querystring"])."')"</onclick>
+        <icon eval="true">ICON("default")</icon>
+        <tip global="row" eval="true">$row["nombre"]</tip>
+        <class>nowrap depth_1</class>
+    </option>
 </root>

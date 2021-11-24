@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<id>1</id>
-		<codigo>default</codigo>
-		<nombre>Epígrafe por defecto</nombre>
-	</row>
+    <row>
+        <id>1</id>
+        <codigo>default</codigo>
+        <nombre>Epígrafe por defecto</nombre>
+    </row>
 </root>

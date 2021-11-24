@@ -24,19 +24,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<id>2</id>
-		<nombre>Alta</nombre>
-		<descripcion>Prioridad alta</descripcion>
-	</row>
-	<row>
-		<id>3</id>
-		<nombre>Normal</nombre>
-		<descripcion>Prioridad normal</descripcion>
-	</row>
-	<row>
-		<id>4</id>
-		<nombre>Baja</nombre>
-		<descripcion>Prioridad baja</descripcion>
-	</row>
+    <row>
+        <id>2</id>
+        <nombre>Alta</nombre>
+        <descripcion>Prioridad alta</descripcion>
+    </row>
+    <row>
+        <id>3</id>
+        <nombre>Normal</nombre>
+        <descripcion>Prioridad normal</descripcion>
+    </row>
+    <row>
+        <id>4</id>
+        <nombre>Baja</nombre>
+        <descripcion>Prioridad baja</descripcion>
+    </row>
 </root>

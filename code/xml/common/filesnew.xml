@@ -24,53 +24,53 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<fieldset ifeval="!ismobile()">
-		<title lang="true">newattachments</title>
-		<icon eval="true">ICON("files")</icon>
-		<popup>true</popup>
-		<class>tabla</class>
-		<width>700px</width>
-		<head>
-			<field>
-				<name>newattachments</name>
-				<type>label</type>
-				<label lang="true">newattachments</label>
-				<class>thead center</class>
-				<colspan>2</colspan>
-			</field>
-		</head>
-		<row>
-			<class>none</class>
-			<field>
-				<name>id</name>
-				<type>hidden</type>
-			</field>
-			<field>
-				<name>fichero</name>
-				<label lang="true">fichero</label>
-				<type>file</type>
-				<width>600px</width>
-				<width2>100px</width2>
-				<size>60</size>
-				<class>tbody</class>
-				<class2>thead</class2>
-			</field>
-		</row>
-		<tail>
-			<field>
-				<type>separator</type>
-			</field>
-		</tail>
-		<tail>
-			<class>helperbuttons</class>
-			<field>
-				<type>button</type>
-				<value lang="true">addfile</value>
-				<class>left</class>
-				<class2>init_additem</class2>
-				<onclick>additem(this)</onclick>
-				<icon eval="true">ICON("add")</icon>
-			</field>
-		</tail>
-	</fieldset>
+    <fieldset ifeval="!ismobile()">
+        <title lang="true">newattachments</title>
+        <icon eval="true">ICON("files")</icon>
+        <popup>true</popup>
+        <class>tabla</class>
+        <width>700px</width>
+        <head>
+            <field>
+                <name>newattachments</name>
+                <type>label</type>
+                <label lang="true">newattachments</label>
+                <class>thead center</class>
+                <colspan>2</colspan>
+            </field>
+        </head>
+        <row>
+            <class>none</class>
+            <field>
+                <name>id</name>
+                <type>hidden</type>
+            </field>
+            <field>
+                <name>fichero</name>
+                <label lang="true">fichero</label>
+                <type>file</type>
+                <width>600px</width>
+                <width2>100px</width2>
+                <size>60</size>
+                <class>tbody</class>
+                <class2>thead</class2>
+            </field>
+        </row>
+        <tail>
+            <field>
+                <type>separator</type>
+            </field>
+        </tail>
+        <tail>
+            <class>helperbuttons</class>
+            <field>
+                <type>button</type>
+                <value lang="true">addfile</value>
+                <class>left</class>
+                <class2>init_additem</class2>
+                <onclick>additem(this)</onclick>
+                <icon eval="true">ICON("add")</icon>
+            </field>
+        </tail>
+    </fieldset>
 </root>

@@ -24,209 +24,209 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true" />
-		<actions path="actions" append="true">
-			<download>
-				<label lang="true">download</label>
-				<onclick>download2('ID')</onclick>
-				<icon eval="true">ICON("save")</icon>
-			</download>
-			<viewpdf>
-				<label lang="true">view2</label>
-				<onclick>viewpdf2('ID')</onclick>
-				<icon eval="true">ICON("viewpdf")</icon>
-			</viewpdf>
-		</actions>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>aplicacion</name>
-				<label lang="true">aplicacion</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">nombre</label>
-				<sort>true</sort>
-				<size>40</size>
-			</field>
-			<field>
-				<name>usuario</name>
-				<label lang="true">username</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>datetime</name>
-				<label lang="true">datetime</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>fichero2</name>
-				<label lang="true">fichero</label>
-				<sort>true</sort>
-				<size>40</size>
-				<order>fichero</order>
-			</field>
-			<field>
-				<name>fichero_size2</name>
-				<label lang="true">size</label>
-				<sort>true</sort>
-				<order>fichero_size</order>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true"/>
-			<function>download2(cid) { cid=explode("_",cid); download("cid="+cid[0]+"&amp;page="+cid[1]+"&amp;id="+cid[2]); }</function>
-			<function>viewpdf2(cid) { cid=explode("_",cid); viewpdf("cid="+cid[0]+"&amp;page="+cid[1]+"&amp;id="+cid[2]); }</function>
-		</javascript>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>id_usuario</name>
-						<label lang="true">username</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1 AND id IN (SELECT DISTINCT id_usuario FROM tbl_ficheros WHERE id_usuario='".current_user()."')")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
-					</field>
-					<field>
-						<type>separator</type>
-						<width>10px</width>
-					</field>
-					<field>
-						<name>id_aplicacion</name>
-						<label lang="true">aplicacion</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT DISTINCT id_aplicacion FROM tbl_ficheros")." UNION SELECT '' value,'".LANG_ESCAPE("todaslasaplicaciones")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_aplicacion" eval="true">$id_aplicacion=getParam("id_aplicacion")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>fecha1</name>
-						<label lang="true">fechaini</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")</value>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>setParam("fecha3",""); check_date("fecha1","le","fecha2")</onchange>
-					</field>
-					<field>
-						<name>fecha2</name>
-						<label lang="true">fechafin</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")</value>
-						<class2>right</class2>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>setParam("fecha3",""); check_date("fecha2","ge","fecha1")</onchange>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_aplicacion'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_usuario,id_aplicacion,filtro,fecha1,fecha2" eval="true">"
-		SELECT a.id id,
-		LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
-		a.datetime,a.fichero,a.id_aplicacion,a.id_registro,d.id id_usuario,d.id_grupo id_grupo,
-		CONCAT('link:download2(\"',a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro,'\"):',a.fichero) fichero2,
-		CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
-		(SELECT  CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre)  FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
-		".make_extra_query_with_login("d.")." usuario,
-		c.id_cuenta id_cuenta,
-		".make_linktitle_query("a.")." nombre,
-		".make_actiontitle_query("a.")." action_title,
-		CASE WHEN fichero_size&gt;=1073741824 THEN  CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
-			WHEN fichero_size&gt;=1048576 THEN  CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
-			WHEN fichero_size&gt;=1024 THEN  CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
-			ELSE  CONCAT(fichero_size,' bytes')
-		END fichero_size2,
-		'true' action_download,
-		'true' action_viewpdf
-		FROM tbl_ficheros a
-		LEFT JOIN tbl_registros e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro AND e.first=1
-		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-		LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query4($filtro):"(1=1)")."
-		AND ".($id_aplicacion?"(a.id_aplicacion='$id_aplicacion')":"(1=1)")."
-		AND ".($id_usuario?"(a.id_usuario='$id_usuario')":"(1=1)")."
-		AND (id_cuenta IS NULL OR id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'))
-		AND ".($fecha1?"(DATE(a.datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
-		AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(a.datetime))":"(1=1)")."
-		AND ".check_sql2("list","e.id_aplicacion","e.id_usuario","d.id_grupo")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true" />
+        <actions path="actions" append="true">
+            <download>
+                <label lang="true">download</label>
+                <onclick>download2('ID')</onclick>
+                <icon eval="true">ICON("save")</icon>
+            </download>
+            <viewpdf>
+                <label lang="true">view2</label>
+                <onclick>viewpdf2('ID')</onclick>
+                <icon eval="true">ICON("viewpdf")</icon>
+            </viewpdf>
+        </actions>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>aplicacion</name>
+                <label lang="true">aplicacion</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">nombre</label>
+                <sort>true</sort>
+                <size>40</size>
+            </field>
+            <field>
+                <name>usuario</name>
+                <label lang="true">username</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>datetime</name>
+                <label lang="true">datetime</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>fichero2</name>
+                <label lang="true">fichero</label>
+                <sort>true</sort>
+                <size>40</size>
+                <order>fichero</order>
+            </field>
+            <field>
+                <name>fichero_size2</name>
+                <label lang="true">size</label>
+                <sort>true</sort>
+                <order>fichero_size</order>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true"/>
+            <function>download2(cid) { cid=explode("_",cid); download("cid="+cid[0]+"&amp;page="+cid[1]+"&amp;id="+cid[2]); }</function>
+            <function>viewpdf2(cid) { cid=explode("_",cid); viewpdf("cid="+cid[0]+"&amp;page="+cid[1]+"&amp;id="+cid[2]); }</function>
+        </javascript>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>id_usuario</name>
+                        <label lang="true">username</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1 AND id IN (SELECT DISTINCT id_usuario FROM tbl_ficheros WHERE id_usuario='".current_user()."')")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                        <width>10px</width>
+                    </field>
+                    <field>
+                        <name>id_aplicacion</name>
+                        <label lang="true">aplicacion</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT DISTINCT id_aplicacion FROM tbl_ficheros")." UNION SELECT '' value,'".LANG_ESCAPE("todaslasaplicaciones")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_aplicacion" eval="true">$id_aplicacion=getParam("id_aplicacion")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>fecha1</name>
+                        <label lang="true">fechaini</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha1" eval="true">$fecha1=getParam("fecha1")</value>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>setParam("fecha3",""); check_date("fecha1","le","fecha2")</onchange>
+                    </field>
+                    <field>
+                        <name>fecha2</name>
+                        <label lang="true">fechafin</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha2" eval="true">$fecha2=getParam("fecha2")</value>
+                        <class2>right</class2>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>setParam("fecha3",""); check_date("fecha2","ge","fecha1")</onchange>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_aplicacion'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,id_usuario,id_aplicacion,filtro,fecha1,fecha2" eval="true">"
+        SELECT a.id id,
+        LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
+        a.datetime,a.fichero,a.id_aplicacion,a.id_registro,d.id id_usuario,d.id_grupo id_grupo,
+        CONCAT('link:download2(\"',a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro,'\"):',a.fichero) fichero2,
+        CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
+        (SELECT  CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre)  FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
+        ".make_extra_query_with_login("d.")." usuario,
+        c.id_cuenta id_cuenta,
+        ".make_linktitle_query("a.")." nombre,
+        ".make_actiontitle_query("a.")." action_title,
+        CASE WHEN fichero_size&gt;=1073741824 THEN  CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
+            WHEN fichero_size&gt;=1048576 THEN  CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
+            WHEN fichero_size&gt;=1024 THEN  CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
+            ELSE  CONCAT(fichero_size,' bytes')
+        END fichero_size2,
+        'true' action_download,
+        'true' action_viewpdf
+        FROM tbl_ficheros a
+        LEFT JOIN tbl_registros e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro AND e.first=1
+        LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+        LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query4($filtro):"(1=1)")."
+        AND ".($id_aplicacion?"(a.id_aplicacion='$id_aplicacion')":"(1=1)")."
+        AND ".($id_usuario?"(a.id_usuario='$id_usuario')":"(1=1)")."
+        AND (id_cuenta IS NULL OR id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'))
+        AND ".($fecha1?"(DATE(a.datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
+        AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(a.datetime))":"(1=1)")."
+        AND ".check_sql2("list","e.id_aplicacion","e.id_usuario","d.id_grupo")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
 </root>

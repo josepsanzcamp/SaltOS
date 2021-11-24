@@ -24,109 +24,109 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<default>
-		<action global="action" eval="true">($action=="list")?$action="form":$action</action>
-		<id global="id" eval="true">$id=current_user()</id>
-	</default>
-	<form>
-		<views>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<default>SELECT '0' id</default>
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>get</method>
-		<hiddens>
-			<hiddens include="xml/common/hiddensform.xml" replace="true"/>
-			<field>
-				<name>filtro</name>
-				<type>hidden</type>
-			</field>
-		</hiddens>
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">formupdate</title>
-					<icon eval="true">ICON("home")</icon>
-					<row>
-						<field>
-							<type>separator</type>
-							<class>spacer</class>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>image</type>
-							<image>img/saltos2.png</image>
-							<width>200px</width>
-							<colspan>2</colspan>
-							<class>logo</class>
-							<class3>center</class3>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>text</type>
-							<name>buscar</name>
-							<width>480px</width>
-							<colspan>2</colspan>
-							<onchange>copy_value("filtro","default_0_buscar");</onchange>
-							<onkey>if(is_enterkey(event)) { copy_value("filtro","default_0_buscar");buscar2(); }</onkey>
-							<focus>true</focus>
-								<class3>shortcut_ctrl_f</class3>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>button</type>
-							<value lang="true">buscar2</value>
-							<class>right nowrap contextmenu</class>
-							<class2>shortcut_ctrl_g</class2>
-							<onclick>copy_value("filtro","default_0_buscar");buscar2()</onclick>
-							<icon eval="true">ICON("search")</icon>
-						</field>
-						<field>
-							<type>button</type>
-							<value lang="true">buscar3</value>
-							<class>nowrap contextmenu</class>
-							<class2>shortcut_ctrl_f</class2>
-							<onclick>copy_value("filtro","default_0_buscar");buscar3()</onclick>
-							<icon eval="true">ICON("search")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-							<class>spacer</class>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<function>buscar2() { setParam("page","buscador"); setParam("action","list"); submit1(); }</function>
-			<function>buscar3() { setParam("page","ficheros"); setParam("action","list"); submit1(); }</function>
-			<inline>$(function() { $(".spacer").animate({height:$(window).height()/4}); });</inline>
-			<inline>$(function() { $(".logo").on("click",function() { opencontent("?page=about"); }); });</inline>
-		</javascript>
-		<styles>
-			<inline>.logo { cursor:pointer; }</inline>
-		</styles>
-	</form>
+    <default>
+        <action global="action" eval="true">($action=="list")?$action="form":$action</action>
+        <id global="id" eval="true">$id=current_user()</id>
+    </default>
+    <form>
+        <views>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <default>SELECT '0' id</default>
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>get</method>
+        <hiddens>
+            <hiddens include="xml/common/hiddensform.xml" replace="true"/>
+            <field>
+                <name>filtro</name>
+                <type>hidden</type>
+            </field>
+        </hiddens>
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">formupdate</title>
+                    <icon eval="true">ICON("home")</icon>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <class>spacer</class>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>image</type>
+                            <image>img/saltos2.png</image>
+                            <width>200px</width>
+                            <colspan>2</colspan>
+                            <class>logo</class>
+                            <class3>center</class3>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>text</type>
+                            <name>buscar</name>
+                            <width>480px</width>
+                            <colspan>2</colspan>
+                            <onchange>copy_value("filtro","default_0_buscar");</onchange>
+                            <onkey>if(is_enterkey(event)) { copy_value("filtro","default_0_buscar");buscar2(); }</onkey>
+                            <focus>true</focus>
+                                <class3>shortcut_ctrl_f</class3>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">buscar2</value>
+                            <class>right nowrap contextmenu</class>
+                            <class2>shortcut_ctrl_g</class2>
+                            <onclick>copy_value("filtro","default_0_buscar");buscar2()</onclick>
+                            <icon eval="true">ICON("search")</icon>
+                        </field>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">buscar3</value>
+                            <class>nowrap contextmenu</class>
+                            <class2>shortcut_ctrl_f</class2>
+                            <onclick>copy_value("filtro","default_0_buscar");buscar3()</onclick>
+                            <icon eval="true">ICON("search")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                            <class>spacer</class>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+            <function>buscar2() { setParam("page","buscador"); setParam("action","list"); submit1(); }</function>
+            <function>buscar3() { setParam("page","ficheros"); setParam("action","list"); submit1(); }</function>
+            <inline>$(function() { $(".spacer").animate({height:$(window).height()/4}); });</inline>
+            <inline>$(function() { $(".logo").on("click",function() { opencontent("?page=about"); }); });</inline>
+        </javascript>
+        <styles>
+            <inline>.logo { cursor:pointer; }</inline>
+        </styles>
+    </form>
 </root>

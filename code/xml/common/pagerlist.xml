@@ -24,93 +24,93 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<field>
-			<type>separator</type>
-			<width>10%</width>
-		</field>
-		<field>
-			<type>separator</type>
-			<width>50%</width>
-		</field>
-		<field>
-			<type>label</type>
-			<label eval="true">LANG("paginaspc")."?".LANG("spcdespc")."?"." (".LANG("regsfrom")." "."?".LANG("spcalspc")."?".LANG("spcdespc")."?".")."</label>
-			<class>nowrap</class>
-			<class2>infopager</class2>
-		</field>
-		<field ifeval="!ismobile()">
-			<type>select</type>
-			<name>selectlimit</name>
-			<label lang="true">regspage</label>
-			<rows>
-				<temp global="rows" eval="true">$rows=explode(',',getDefault('regspagerlist'))</temp>
-				<row global="rows,row" foreach="rows" as="row">
-					<label global="row" eval="true">$row</label>
-					<value global="row" eval="true">$row</value>
-				</row>
-			</rows>
-			<value global="limit" eval="true">$limit</value>
-			<onchange>limit1(this.value)</onchange>
-			<dir>up</dir>
-			<class3>nofilter</class3>
-		</field>
-		<field>
-			<type>separator</type>
-			<width>50%</width>
-		</field>
-		<field ifeval="!ismobile()">
-			<name>firstpager</name>
-			<type>button</type>
-			<tip lang="true">first</tip>
-			<label lang="true">first</label>
-			<onclick>if(!is_disabled(this)) first()</onclick>
-			<icon eval="true">ICON("first")</icon>
-			<class>nowrap contextmenu</class>
-			<class2>ui-state-disabled shortcut_ctrl_home</class2>
-		</field>
-		<field ifeval="!ismobile()">
-			<name>previouspager</name>
-			<type>button</type>
-			<tip lang="true">previous</tip>
-			<label lang="true">previous</label>
-			<onclick>if(!is_disabled(this)) previous()</onclick>
-			<icon eval="true">ICON("previous")</icon>
-			<class>nowrap contextmenu</class>
-			<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
-		</field>
-		<field>
-			<type>select</type>
-			<name>selectpager</name>
-			<rows>
-				<row>
-					<label global="offset,limit" eval="true">intval($offset/max($limit,1))+1</label>
-					<value></value>
-				</row>
-			</rows>
-			<onchange>page1(this.value)</onchange>
-			<dir>up right</dir>
-			<class3>nofilter</class3>
-		</field>
-		<field ifeval="!ismobile()">
-			<name>nextpager</name>
-			<type>button</type>
-			<tip lang="true">next</tip>
-			<label lang="true">next</label>
-			<onclick>if(!is_disabled(this)) next()</onclick>
-			<icon eval="true">ICON("next")</icon>
-			<class>nowrap contextmenu</class>
-			<class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
-		</field>
-		<field ifeval="!ismobile()">
-			<name>lastpager</name>
-			<type>button</type>
-			<tip lang="true">last</tip>
-			<label lang="true">last</label>
-			<onclick>if(!is_disabled(this)) last()</onclick>
-			<icon eval="true">ICON("last")</icon>
-			<class>nowrap contextmenu</class>
-			<class2>ui-state-disabled shortcut_ctrl_end</class2>
-		</field>
-	</row>
+    <row>
+        <field>
+            <type>separator</type>
+            <width>10%</width>
+        </field>
+        <field>
+            <type>separator</type>
+            <width>50%</width>
+        </field>
+        <field>
+            <type>label</type>
+            <label eval="true">LANG("paginaspc")."?".LANG("spcdespc")."?"." (".LANG("regsfrom")." "."?".LANG("spcalspc")."?".LANG("spcdespc")."?".")."</label>
+            <class>nowrap</class>
+            <class2>infopager</class2>
+        </field>
+        <field ifeval="!ismobile()">
+            <type>select</type>
+            <name>selectlimit</name>
+            <label lang="true">regspage</label>
+            <rows>
+                <temp global="rows" eval="true">$rows=explode(',',getDefault('regspagerlist'))</temp>
+                <row global="rows,row" foreach="rows" as="row">
+                    <label global="row" eval="true">$row</label>
+                    <value global="row" eval="true">$row</value>
+                </row>
+            </rows>
+            <value global="limit" eval="true">$limit</value>
+            <onchange>limit1(this.value)</onchange>
+            <dir>up</dir>
+            <class3>nofilter</class3>
+        </field>
+        <field>
+            <type>separator</type>
+            <width>50%</width>
+        </field>
+        <field ifeval="!ismobile()">
+            <name>firstpager</name>
+            <type>button</type>
+            <tip lang="true">first</tip>
+            <label lang="true">first</label>
+            <onclick>if(!is_disabled(this)) first()</onclick>
+            <icon eval="true">ICON("first")</icon>
+            <class>nowrap contextmenu</class>
+            <class2>ui-state-disabled shortcut_ctrl_home</class2>
+        </field>
+        <field ifeval="!ismobile()">
+            <name>previouspager</name>
+            <type>button</type>
+            <tip lang="true">previous</tip>
+            <label lang="true">previous</label>
+            <onclick>if(!is_disabled(this)) previous()</onclick>
+            <icon eval="true">ICON("previous")</icon>
+            <class>nowrap contextmenu</class>
+            <class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
+        </field>
+        <field>
+            <type>select</type>
+            <name>selectpager</name>
+            <rows>
+                <row>
+                    <label global="offset,limit" eval="true">intval($offset/max($limit,1))+1</label>
+                    <value></value>
+                </row>
+            </rows>
+            <onchange>page1(this.value)</onchange>
+            <dir>up right</dir>
+            <class3>nofilter</class3>
+        </field>
+        <field ifeval="!ismobile()">
+            <name>nextpager</name>
+            <type>button</type>
+            <tip lang="true">next</tip>
+            <label lang="true">next</label>
+            <onclick>if(!is_disabled(this)) next()</onclick>
+            <icon eval="true">ICON("next")</icon>
+            <class>nowrap contextmenu</class>
+            <class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
+        </field>
+        <field ifeval="!ismobile()">
+            <name>lastpager</name>
+            <type>button</type>
+            <tip lang="true">last</tip>
+            <label lang="true">last</label>
+            <onclick>if(!is_disabled(this)) last()</onclick>
+            <icon eval="true">ICON("last")</icon>
+            <class>nowrap contextmenu</class>
+            <class2>ui-state-disabled shortcut_ctrl_end</class2>
+        </field>
+    </row>
 </root>

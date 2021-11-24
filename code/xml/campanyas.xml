@@ -24,515 +24,515 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>dstart</name>
-				<label lang="true">dstart</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>dstop</name>
-				<label lang="true">dstop</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">nombre</label>
-				<sort>true</sort>
-				<order>nombre2</order>
-			</field>
-			<field>
-				<name>estado</name>
-				<label lang="true">estado</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>posiblescli</name>
-				<label lang="true">numpc</label>
-				<tip lang="true">numpctip</tip>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>clientes</name>
-				<label lang="true">numcl</label>
-				<tip lang="true">numcltip</tip>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>agendas</name>
-				<label lang="true">numag</label>
-				<tip lang="true">numagtip</tip>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>presupuestos</name>
-				<label lang="true">numpr</label>
-				<tip lang="true">numprtip</tip>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>proyectos</name>
-				<label lang="true">numpy</label>
-				<tip lang="true">numpytip</tip>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>comentarios</name>
-				<label lang="true">numc</label>
-				<tip lang="true">numctip</tip>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>ficheros</name>
-				<label lang="true">numf</label>
-				<tip lang="true">numftip</tip>
-				<sort>false</sort>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true" />
-			<function eval="true">"lang_posiblescli() { return '".LANG_ESCAPE("posiblescli")."'; }"</function>
-			<function eval="true">"lang_clientes() { return '".LANG_ESCAPE("clientes")."'; }"</function>
-			<function eval="true">"lang_agenda() { return '".LANG_ESCAPE("agenda")."'; }"</function>
-			<function eval="true">"lang_presupuestos() { return '".LANG_ESCAPE("presupuestos")."'; }"</function>
-			<function eval="true">"lang_actas() { return '".LANG_ESCAPE("actas")."'; }"</function>
-			<function eval="true">"lang_selectall() { return '".LANG_ESCAPE("selectall")."'; }"</function>
-			<function eval="true">"lang_selectnone() { return '".LANG_ESCAPE("selectnone")."'; }"</function>
-			<function eval="true">"lang_pdf2filter_title() { return '".LANG_ESCAPE("pdf2filter_title")."'; }"</function>
-			<function eval="true">"lang_pdf2filter_message() { return '".LANG_ESCAPE("pdf2filter_message")."'; }"</function>
-			<function eval="true">"lang_buttoncontinue() { return '".LANG_ESCAPE("buttoncontinue")."'; }"</function>
-			<function eval="true">"lang_view2filter_title() { return '".LANG_ESCAPE("view2filter_title")."'; }"</function>
-			<function eval="true">"lang_view2filter_message() { return '".LANG_ESCAPE("view2filter_message")."'; }"</function>
-			<function>pdf2filter(id) { pdf2filter_campanyas(id); }</function>
-			<function>view2filter(id) { view2filter_campanyas(id); }</function>
-		</javascript>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>fecha1</name>
-						<label lang="true">fechaini</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha1","le","fecha2")</onchange>
-					</field>
-					<field>
-						<name>fecha2</name>
-						<label lang="true">fechafin</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
-						<class2>right</class2>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha2","ge","fecha1")</onchange>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_estado</name>
-						<label lang="true">estado</label>
-						<type>select</type>
-						<width>240px</width>
-						<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>3</colspan>
-					</field>
-					<field>
-						<name>posiblescli</name>
-						<type>hidden</type>
-						<value>0</value>
-					</field>
-					<field>
-						<name>clientes</name>
-						<type>hidden</type>
-						<value>0</value>
-					</field>
-					<field>
-						<name>agenda</name>
-						<type>hidden</type>
-						<value>0</value>
-					</field>
-					<field>
-						<name>presupuestos</name>
-						<type>hidden</type>
-						<value>0</value>
-					</field>
-					<field>
-						<name>actas</name>
-						<type>hidden</type>
-						<value>0</value>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','fecha1'=>'','fecha2'=>'','id_estado'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,filtro,fecha1,fecha2,id_estado" eval="true">"
-		SELECT
-			LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
-			CONCAT('link:openapp(\'campanyas\',',-id,'):',nombre) nombre,
-			nombre nombre2,
-			dstart,dstop,estado,
-			descripcion,
-			(SELECT COUNT(*) FROM tbl_posiblescli WHERE id_campanya=b.id) posiblescli,
-			(SELECT COUNT(*) FROM tbl_clientes WHERE id_campanya=b.id) clientes,
-			(SELECT COUNT(*) FROM tbl_agenda WHERE id_campanya=b.id) agendas,
-			(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_campanya=b.id) presupuestos,
-			(SELECT COUNT(*) FROM tbl_proyectos WHERE id_campanya=b.id) proyectos,
-			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) comentarios,
-			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) ficheros,
-			id action_id,
-			CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2filter,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2filter,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
-		FROM (
-			SELECT a.*,e.id_usuario id_usuario,d.id_grupo id_grupo,c.activo activo,
-				CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado
-			FROM tbl_campanyas a
-			LEFT JOIN tbl_estados c ON id_estado=c.id
-			LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-		) b
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".check_sql($page,"list")</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query include="xml/common/qpermview.xml" replace="true" />
-					<default include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml" />
-					<files_old include="xml/common/qfilesold.xml" />
-					<posiblescli>
-						<posiblescli global="id" eval="true">"
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>dstart</name>
+                <label lang="true">dstart</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>dstop</name>
+                <label lang="true">dstop</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">nombre</label>
+                <sort>true</sort>
+                <order>nombre2</order>
+            </field>
+            <field>
+                <name>estado</name>
+                <label lang="true">estado</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>posiblescli</name>
+                <label lang="true">numpc</label>
+                <tip lang="true">numpctip</tip>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>clientes</name>
+                <label lang="true">numcl</label>
+                <tip lang="true">numcltip</tip>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>agendas</name>
+                <label lang="true">numag</label>
+                <tip lang="true">numagtip</tip>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>presupuestos</name>
+                <label lang="true">numpr</label>
+                <tip lang="true">numprtip</tip>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>proyectos</name>
+                <label lang="true">numpy</label>
+                <tip lang="true">numpytip</tip>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>comentarios</name>
+                <label lang="true">numc</label>
+                <tip lang="true">numctip</tip>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>ficheros</name>
+                <label lang="true">numf</label>
+                <tip lang="true">numftip</tip>
+                <sort>false</sort>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true" />
+            <function eval="true">"lang_posiblescli() { return '".LANG_ESCAPE("posiblescli")."'; }"</function>
+            <function eval="true">"lang_clientes() { return '".LANG_ESCAPE("clientes")."'; }"</function>
+            <function eval="true">"lang_agenda() { return '".LANG_ESCAPE("agenda")."'; }"</function>
+            <function eval="true">"lang_presupuestos() { return '".LANG_ESCAPE("presupuestos")."'; }"</function>
+            <function eval="true">"lang_actas() { return '".LANG_ESCAPE("actas")."'; }"</function>
+            <function eval="true">"lang_selectall() { return '".LANG_ESCAPE("selectall")."'; }"</function>
+            <function eval="true">"lang_selectnone() { return '".LANG_ESCAPE("selectnone")."'; }"</function>
+            <function eval="true">"lang_pdf2filter_title() { return '".LANG_ESCAPE("pdf2filter_title")."'; }"</function>
+            <function eval="true">"lang_pdf2filter_message() { return '".LANG_ESCAPE("pdf2filter_message")."'; }"</function>
+            <function eval="true">"lang_buttoncontinue() { return '".LANG_ESCAPE("buttoncontinue")."'; }"</function>
+            <function eval="true">"lang_view2filter_title() { return '".LANG_ESCAPE("view2filter_title")."'; }"</function>
+            <function eval="true">"lang_view2filter_message() { return '".LANG_ESCAPE("view2filter_message")."'; }"</function>
+            <function>pdf2filter(id) { pdf2filter_campanyas(id); }</function>
+            <function>view2filter(id) { view2filter_campanyas(id); }</function>
+        </javascript>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>fecha1</name>
+                        <label lang="true">fechaini</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha1","le","fecha2")</onchange>
+                    </field>
+                    <field>
+                        <name>fecha2</name>
+                        <label lang="true">fechafin</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
+                        <class2>right</class2>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha2","ge","fecha1")</onchange>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_estado</name>
+                        <label lang="true">estado</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                        <colspan>3</colspan>
+                    </field>
+                    <field>
+                        <name>posiblescli</name>
+                        <type>hidden</type>
+                        <value>0</value>
+                    </field>
+                    <field>
+                        <name>clientes</name>
+                        <type>hidden</type>
+                        <value>0</value>
+                    </field>
+                    <field>
+                        <name>agenda</name>
+                        <type>hidden</type>
+                        <value>0</value>
+                    </field>
+                    <field>
+                        <name>presupuestos</name>
+                        <type>hidden</type>
+                        <value>0</value>
+                    </field>
+                    <field>
+                        <name>actas</name>
+                        <type>hidden</type>
+                        <value>0</value>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','fecha1'=>'','fecha2'=>'','id_estado'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,filtro,fecha1,fecha2,id_estado" eval="true">"
+        SELECT
+            LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
+            CONCAT('link:openapp(\'campanyas\',',-id,'):',nombre) nombre,
+            nombre nombre2,
+            dstart,dstop,estado,
+            descripcion,
+            (SELECT COUNT(*) FROM tbl_posiblescli WHERE id_campanya=b.id) posiblescli,
+            (SELECT COUNT(*) FROM tbl_clientes WHERE id_campanya=b.id) clientes,
+            (SELECT COUNT(*) FROM tbl_agenda WHERE id_campanya=b.id) agendas,
+            (SELECT COUNT(*) FROM tbl_presupuestos WHERE id_campanya=b.id) presupuestos,
+            (SELECT COUNT(*) FROM tbl_proyectos WHERE id_campanya=b.id) proyectos,
+            (SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) comentarios,
+            (SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) ficheros,
+            id action_id,
+            CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+            CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2filter,
+            CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2filter,
+            CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+        FROM (
+            SELECT a.*,e.id_usuario id_usuario,d.id_grupo id_grupo,c.activo activo,
+                CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado
+            FROM tbl_campanyas a
+            LEFT JOIN tbl_estados c ON id_estado=c.id
+            LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+            LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+        ) b
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".check_sql($page,"list")</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query include="xml/common/qpermview.xml" replace="true" />
+                    <default include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml" />
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <posiblescli>
+                        <posiblescli global="id" eval="true">"
 SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
-	 CONCAT('link:openapp(\'posiblescli\',',-a.id,'):',a.nombre)  nombre,
-	 CONCAT('tel:',tel_fijo)  tel_fijo,
-	 CONCAT('tel:',tel_movil)  tel_movil,
-	 CONCAT('mailto:',email)  email,
-	 CONCAT('posiblescli(',-a.id,')')  link_view,
-	 CONCAT('vcardposiblescli(',-a.id,')')  link_vcard,
-	 CONCAT('qrcodeposiblescli(',-a.id,')')  link_qrcode
+     CONCAT('link:openapp(\'posiblescli\',',-a.id,'):',a.nombre)  nombre,
+     CONCAT('tel:',tel_fijo)  tel_fijo,
+     CONCAT('tel:',tel_movil)  tel_movil,
+     CONCAT('mailto:',email)  email,
+     CONCAT('posiblescli(',-a.id,')')  link_view,
+     CONCAT('vcardposiblescli(',-a.id,')')  link_vcard,
+     CONCAT('qrcodeposiblescli(',-a.id,')')  link_qrcode
 FROM tbl_posiblescli a
-	LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("posiblescli")."' AND e.id_registro=a.id AND e.first=1
-	LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+    LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("posiblescli")."' AND e.id_registro=a.id AND e.first=1
+    LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 WHERE a.id_campanya='".abs($id)."' AND ".check_sql("posiblescli","view")." ORDER BY a.nombre ASC
-						"</posiblescli>
-					</posiblescli>
-					<clientes>
-						<clientes global="id" eval="true">"
+                        "</posiblescli>
+                    </posiblescli>
+                    <clientes>
+                        <clientes global="id" eval="true">"
 SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
-	 CONCAT('link:openapp(\'clientes\',',-a.id,'):',a.nombre)  nombre,
-	 CONCAT('tel:',tel_fijo) tel_fijo,
-	 CONCAT('tel:',tel_movil) tel_movil,
-	 CONCAT('mailto:',email) email,
-	 CONCAT('clientes(',-a.id,')')  link_view,
-	 CONCAT('vcardclientes(',-a.id,')')  link_vcard,
-	 CONCAT('qrcodeclientes(',-a.id,')')  link_qrcode
+     CONCAT('link:openapp(\'clientes\',',-a.id,'):',a.nombre)  nombre,
+     CONCAT('tel:',tel_fijo) tel_fijo,
+     CONCAT('tel:',tel_movil) tel_movil,
+     CONCAT('mailto:',email) email,
+     CONCAT('clientes(',-a.id,')')  link_view,
+     CONCAT('vcardclientes(',-a.id,')')  link_vcard,
+     CONCAT('qrcodeclientes(',-a.id,')')  link_qrcode
 FROM tbl_clientes a
-	LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a.id AND e.first=1
-	LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+    LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a.id AND e.first=1
+    LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view")." ORDER BY a.nombre ASC
-						"</clientes>
-					</clientes>
-					<agenda>
-						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'agenda\',',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_campanya=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
-					</agenda>
-					<presupuestos>
-						<presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'presupuestos\',',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.datetime DESC"</presupuestos>
-					</presupuestos>
-					<proyectosopen>
-						<proyectosopen global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'proyectos\',',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='1' AND (".check_sql("proyectos","view").") ORDER BY e.datetime DESC"</proyectosopen>
-					</proyectosopen>
-					<proyectosclose>
-						<proyectosclose global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'proyectos\',',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='0' AND (".check_sql("proyectos","view").") ORDER BY e.datetime DESC"</proyectosclose>
-					</proyectosclose>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">"SELECT '0' id,'0' id_estado,'".current_date()."' dstart,'".current_date()."' dstop"</default>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml" />
-					<files_old include="xml/common/qfilesold.xml" />
-					<comments_new include="xml/common/qcommentnew.xml" replace="true"/>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>nombre</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<required>true</required>
-							<colspan>3</colspan>
-							</field>
-						<field>
-							<name>id_estado</name>
-							<label lang="true">estado</label>
-							<type>select</type>
-							<width>240px</width>
-							<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<colspan>3</colspan>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>100px</width>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>dstart</name>
-							<label lang="true">dstart</label>
-							<type>date</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<colspan>3</colspan>
-							<icon eval="true">ICON("calendar")</icon>
-							<onchange>check_date("dstart","le","dstop")</onchange>
-						</field>
-						<field>
-							<name>dstop</name>
-							<label lang="true">dstop</label>
-							<type>date</type>
-							<width>90px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							<icon eval="true">ICON("calendar")</icon>
-							<onchange>check_date("dstop","ge","dstart")</onchange>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>descripcion</name>
-							<label lang="true">descripcion</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>8</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<posiblescli include="xml/common/relatedposiblescli.xml" replace="true" />
-			<clientes include="xml/common/relatedclientes.xml" replace="true" />
-			<agenda include="xml/common/relatedagenda.xml" replace="true" />
-			<presupuestos include="xml/common/relatedpresupuestos.xml" replace="true" />
-			<proyectosopen include="xml/common/proyectosopen.xml" replace="true" />
-			<proyectosclose include="xml/common/proyectosclose.xml" replace="true" />
-			<comments_old include="xml/common/commentsold.xml"/>
-			<files_old include="xml/common/filesold.xml" />
-			<comments_new include="xml/common/commentnew.xml"/>
-			<files_new include="xml/common/filesnew.xml"/>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<javascript include="xml/common/jsform.xml"/>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query include="xml/common/qfilesinsert.xml" replace="true"/>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+                        "</clientes>
+                    </clientes>
+                    <agenda>
+                        <agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'agenda\',',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_campanya=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
+                    </agenda>
+                    <presupuestos>
+                        <presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'presupuestos\',',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.datetime DESC"</presupuestos>
+                    </presupuestos>
+                    <proyectosopen>
+                        <proyectosopen global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'proyectos\',',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='1' AND (".check_sql("proyectos","view").") ORDER BY e.datetime DESC"</proyectosopen>
+                    </proyectosopen>
+                    <proyectosclose>
+                        <proyectosclose global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'proyectos\',',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='0' AND (".check_sql("proyectos","view").") ORDER BY e.datetime DESC"</proyectosclose>
+                    </proyectosclose>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default eval="true">"SELECT '0' id,'0' id_estado,'".current_date()."' dstart,'".current_date()."' dstop"</default>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query include="xml/common/qpermupdate.xml" replace="true" />
+                    <default include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml" />
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <comments_new include="xml/common/qcommentnew.xml" replace="true"/>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>nombre</name>
+                            <label lang="true">nombre</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <required>true</required>
+                            <colspan>3</colspan>
+                            </field>
+                        <field>
+                            <name>id_estado</name>
+                            <label lang="true">estado</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <colspan>3</colspan>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <width>100px</width>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>dstart</name>
+                            <label lang="true">dstart</label>
+                            <type>date</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <colspan>3</colspan>
+                            <icon eval="true">ICON("calendar")</icon>
+                            <onchange>check_date("dstart","le","dstop")</onchange>
+                        </field>
+                        <field>
+                            <name>dstop</name>
+                            <label lang="true">dstop</label>
+                            <type>date</type>
+                            <width>90px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                            <icon eval="true">ICON("calendar")</icon>
+                            <onchange>check_date("dstop","ge","dstart")</onchange>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>descripcion</name>
+                            <label lang="true">descripcion</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>8</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <posiblescli include="xml/common/relatedposiblescli.xml" replace="true" />
+            <clientes include="xml/common/relatedclientes.xml" replace="true" />
+            <agenda include="xml/common/relatedagenda.xml" replace="true" />
+            <presupuestos include="xml/common/relatedpresupuestos.xml" replace="true" />
+            <proyectosopen include="xml/common/proyectosopen.xml" replace="true" />
+            <proyectosclose include="xml/common/proyectosclose.xml" replace="true" />
+            <comments_old include="xml/common/commentsold.xml"/>
+            <files_old include="xml/common/filesold.xml" />
+            <comments_new include="xml/common/commentnew.xml"/>
+            <files_new include="xml/common/filesnew.xml"/>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <javascript include="xml/common/jsform.xml"/>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query include="xml/common/autonombre.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+        <query include="xml/common/qfilesinsert.xml" replace="true"/>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query include="xml/common/qpermupdate.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query include="xml/common/qfilesdelete.xml" replace="true" />
-		<query include="xml/common/qfilesupdate.xml" replace="true"/>
-		<query include="xml/common/qcommentsdelete.xml" replace="true" />
-		<query include="xml/common/qcommentsinsert.xml" replace="true" />
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qdeletecomments.xml" replace="true" />
-		<query include="xml/common/qdeletefiles.xml" replace="true" />
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
-	<pdf>
-		<constructor>"P","mm","A4"</constructor>
-		<margins>50,30,30,30</margins>
-		<query>"SELECT *,'".LANG_ESCAPE("defaultdata")."' title,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado,'".page2id("campanyas")."' id_aplicacion FROM tbl_campanyas WHERE id IN (".check_ids(getParam("id")).")"</query>
-		<!-- TEMPLATE -->
-		<header>
-			<!-- LOGO -->
-			<margins>0,0,0,0</margins>
-			<image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
-			<!-- PONER MARCA DE AGUA -->
-			<font>"normal","B",CONFIG("water_posiblescli_size"),"#eeeeee"</font>
-			<text>CONFIG("water_posiblescli_posx"),CONFIG("water_posiblescli_posy"),CONFIG("water_posiblescli_text"),CONFIG("water_posiblescli_angle")</text>
-			<margins>50,30,30,30</margins>
-			<setxy>30,50</setxy>
-		</header>
-		<footer>
-			<margins>0,0,0,0</margins>
-			<!-- PONER PIE DE PAGINA -->
-			<font>"normal","",6,CONFIG("color_text2")</font>
-			<pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
-			<margins>50,30,30,30</margins>
-		</footer>
-		<!-- BEGIN -->
-		<color>CONFIG("color_line"),"#000000"</color>
-		<!-- DATOS DE LA CAMPANYA -->
-		<relatedclientes include="xml/common/relatedcampanyaspdf.xml" replace="true" />
-		<foreach>
-			<!-- COMENTARIOS DE LA CAMPANYA -->
-			<commentspdf include="xml/common/commentspdf.xml" replace="true" />
-			<!-- POSIBLESCLI DE LA CAMPANYA -->
-			<query>"SELECT *,'".LANG_ESCAPE("posiblesclidata","campanyas")."' title,'".page2id("campanyas")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_posiblescli WHERE id_campanya='".$row["id"]."' AND '".getParam("posiblescli")."'='1' ORDER BY id ASC"</query>
-			<relatedposiblescli include="xml/common/relatedposiblesclipdf.xml" replace="true" />
-			<!-- CLIENTES DE LA CAMPANYA -->
-			<query>"SELECT *,'".LANG_ESCAPE("clientesdata","campanyas")."' title,'".page2id("campanyas")."' id_aplicacion,CASE id_tipo WHEN '1' THEN '".LANG_ESCAPE("clientejuridico")."' WHEN '2' THEN '".LANG_ESCAPE("clientefiscal")."' END tipocliente FROM tbl_clientes WHERE id_campanya='".$row["id"]."' AND '".getParam("clientes")."'='1' ORDER BY id ASC"</query>
-			<relatedclientes include="xml/common/relatedclientespdf.xml" replace="true" />
-			<!-- EVENTOS DE LA CAMPANYA -->
-			<query>"SELECT a.*,'".LANG_ESCAPE("agendadata","campanyas")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
-			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,ids_asignados)) asignadoa
-			FROM tbl_agenda a WHERE a.id_campanya='".$row["id"]."' AND '".getParam("agenda")."'='1' ORDER BY a.dstart ASC"</query>
-			<relatedagenda include="xml/common/relatedagendapdf.xml" replace="true" />
-			<!-- PRESUPUESTOS DE LA CAMPANYA -->
-			<query>"SELECT *,'".LANG_ESCAPE("presupuestosdata","campanyas")."' title,'".page2id("presupuestos")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_presupuestos WHERE id_campanya='".$row["id"]."' AND '".getParam("presupuestos")."'='1' ORDER BY id_posiblecli ASC,id ASC"</query>
-			<relatedpresupuestos include="xml/common/relatedpresupuestospdf.xml" replace="true" />
-			<!-- ACTAS DE LA CAMPANYA -->
-			<query>"SELECT *,'".LANG_ESCAPE("actasdata","campanyas")."' title,'".page2id("actas")."' id_aplicacion,(SELECT nombre FROM tbl_presupuestos WHERE id=id_presupuesto) presupuesto FROM tbl_actas WHERE id_campanya='".$row["id"]."' AND '".getParam("actas")."'='1' ORDER BY id ASC"</query>
-			<relatedactas include="xml/common/relatedactaspdf.xml" replace="true" />
-		</foreach>
-		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG_ESCAPE("campanya")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
-		FROM tbl_campanyas WHERE id IN (".check_ids(getParam("id")).")"):LANG_ESCAPE("campanyas"))).".pdf"</output>
-	</pdf>
+        <query include="xml/common/qfilesdelete.xml" replace="true" />
+        <query include="xml/common/qfilesupdate.xml" replace="true"/>
+        <query include="xml/common/qcommentsdelete.xml" replace="true" />
+        <query include="xml/common/qcommentsinsert.xml" replace="true" />
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query include="xml/common/qdeletecomments.xml" replace="true" />
+        <query include="xml/common/qdeletefiles.xml" replace="true" />
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
+    <pdf>
+        <constructor>"P","mm","A4"</constructor>
+        <margins>50,30,30,30</margins>
+        <query>"SELECT *,'".LANG_ESCAPE("defaultdata")."' title,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado,'".page2id("campanyas")."' id_aplicacion FROM tbl_campanyas WHERE id IN (".check_ids(getParam("id")).")"</query>
+        <!-- TEMPLATE -->
+        <header>
+            <!-- LOGO -->
+            <margins>0,0,0,0</margins>
+            <image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
+            <!-- PONER MARCA DE AGUA -->
+            <font>"normal","B",CONFIG("water_posiblescli_size"),"#eeeeee"</font>
+            <text>CONFIG("water_posiblescli_posx"),CONFIG("water_posiblescli_posy"),CONFIG("water_posiblescli_text"),CONFIG("water_posiblescli_angle")</text>
+            <margins>50,30,30,30</margins>
+            <setxy>30,50</setxy>
+        </header>
+        <footer>
+            <margins>0,0,0,0</margins>
+            <!-- PONER PIE DE PAGINA -->
+            <font>"normal","",6,CONFIG("color_text2")</font>
+            <pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
+            <margins>50,30,30,30</margins>
+        </footer>
+        <!-- BEGIN -->
+        <color>CONFIG("color_line"),"#000000"</color>
+        <!-- DATOS DE LA CAMPANYA -->
+        <relatedclientes include="xml/common/relatedcampanyaspdf.xml" replace="true" />
+        <foreach>
+            <!-- COMENTARIOS DE LA CAMPANYA -->
+            <commentspdf include="xml/common/commentspdf.xml" replace="true" />
+            <!-- POSIBLESCLI DE LA CAMPANYA -->
+            <query>"SELECT *,'".LANG_ESCAPE("posiblesclidata","campanyas")."' title,'".page2id("campanyas")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_posiblescli WHERE id_campanya='".$row["id"]."' AND '".getParam("posiblescli")."'='1' ORDER BY id ASC"</query>
+            <relatedposiblescli include="xml/common/relatedposiblesclipdf.xml" replace="true" />
+            <!-- CLIENTES DE LA CAMPANYA -->
+            <query>"SELECT *,'".LANG_ESCAPE("clientesdata","campanyas")."' title,'".page2id("campanyas")."' id_aplicacion,CASE id_tipo WHEN '1' THEN '".LANG_ESCAPE("clientejuridico")."' WHEN '2' THEN '".LANG_ESCAPE("clientefiscal")."' END tipocliente FROM tbl_clientes WHERE id_campanya='".$row["id"]."' AND '".getParam("clientes")."'='1' ORDER BY id ASC"</query>
+            <relatedclientes include="xml/common/relatedclientespdf.xml" replace="true" />
+            <!-- EVENTOS DE LA CAMPANYA -->
+            <query>"SELECT a.*,'".LANG_ESCAPE("agendadata","campanyas")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
+            (SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,ids_asignados)) asignadoa
+            FROM tbl_agenda a WHERE a.id_campanya='".$row["id"]."' AND '".getParam("agenda")."'='1' ORDER BY a.dstart ASC"</query>
+            <relatedagenda include="xml/common/relatedagendapdf.xml" replace="true" />
+            <!-- PRESUPUESTOS DE LA CAMPANYA -->
+            <query>"SELECT *,'".LANG_ESCAPE("presupuestosdata","campanyas")."' title,'".page2id("presupuestos")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_presupuestos WHERE id_campanya='".$row["id"]."' AND '".getParam("presupuestos")."'='1' ORDER BY id_posiblecli ASC,id ASC"</query>
+            <relatedpresupuestos include="xml/common/relatedpresupuestospdf.xml" replace="true" />
+            <!-- ACTAS DE LA CAMPANYA -->
+            <query>"SELECT *,'".LANG_ESCAPE("actasdata","campanyas")."' title,'".page2id("actas")."' id_aplicacion,(SELECT nombre FROM tbl_presupuestos WHERE id=id_presupuesto) presupuesto FROM tbl_actas WHERE id_campanya='".$row["id"]."' AND '".getParam("actas")."'='1' ORDER BY id ASC"</query>
+            <relatedactas include="xml/common/relatedactaspdf.xml" replace="true" />
+        </foreach>
+        <output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
+        SELECT CONCAT('".LANG_ESCAPE("campanya")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
+        FROM tbl_campanyas WHERE id IN (".check_ids(getParam("id")).")"):LANG_ESCAPE("campanyas"))).".pdf"</output>
+    </pdf>
 </root>

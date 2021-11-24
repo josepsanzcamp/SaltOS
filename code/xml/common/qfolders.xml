@@ -24,5 +24,5 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<folders global="page,id" eval="true">"SELECT id,CONCAT(REPEAT('- ',depth),name) name,(SELECT COUNT(*) FROM tbl_folders_a b WHERE a.id=b.id_folder AND id_aplicacion=".page2id($page)." AND id_registro=".abs($id).") activado FROM tbl_folders a WHERE id_usuario='".current_user()."' ORDER BY pos ASC;"</folders>
+    <folders global="page,id" eval="true">"SELECT id,CONCAT(REPEAT('- ',depth),name) name,(SELECT COUNT(*) FROM tbl_folders_a b WHERE a.id=b.id_folder AND id_aplicacion=".page2id($page)." AND id_registro=".abs($id).") activado FROM tbl_folders a WHERE id_usuario='".current_user()."' ORDER BY pos ASC;"</folders>
 </root>

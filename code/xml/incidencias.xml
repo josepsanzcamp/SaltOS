@@ -24,627 +24,627 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<list>
-		<title lang="true">list</title>
-		<icon eval="true">ICON("list")</icon>
-		<help>true</help>
-		<actions include="xml/common/actions.xml" replace="true"/>
-		<width>100%</width>
-		<fields>
-			<field>
-				<name>id2</name>
-				<label lang="true">id</label>
-				<sort>true</sort>
-				<order>id</order>
-			</field>
-			<field>
-				<name>usuario</name>
-				<label lang="true">username</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>datetime</name>
-				<label lang="true">datetime</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>cliente</name>
-				<label lang="true">cliente</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>cliente2</order>
-				<excel>cliente2</excel>
-			</field>
-			<field>
-				<name>proyecto</name>
-				<label lang="true">proyecto</label>
-				<sort>true</sort>
-				<size>20</size>
-				<order>proyecto2</order>
-				<excel>proyecto2</excel>
-			</field>
-			<field>
-				<name>categoria</name>
-				<label lang="true">categoria</label>
-				<sort>true</sort>
-				<size>20</size>
-			</field>
-			<field>
-				<name>nombre</name>
-				<label lang="true">incidencia</label>
-				<sort>true</sort>
-				<order>nombre2</order>
-				<excel>nombre2</excel>
-			</field>
-			<field>
-				<name>estado</name>
-				<label lang="true">estado</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>prioridad</name>
-				<label lang="true">prioridad</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>asignadoa</name>
-				<label lang="true">asignadoa</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>implicados</name>
-				<label lang="true">implicados</label>
-				<sort>true</sort>
-			</field>
-			<field>
-				<name>comentarios</name>
-				<label lang="true">numc</label>
-				<tip lang="true">numctip</tip>
-				<sort>false</sort>
-			</field>
-			<field>
-				<name>ficheros</name>
-				<label lang="true">numf</label>
-				<tip lang="true">numftip</tip>
-				<sort>false</sort>
-			</field>
-		</fields>
-		<javascript>
-			<javascript include="xml/common/jslist.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-			</cache>
-		</javascript>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<title lang="true">filter</title>
-				<icon eval="true">ICON("filter")</icon>
-				<buttons>true</buttons>
-				<popup>true</popup>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>id_usuario</name>
-						<label lang="true">username</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
-					</field>
-					<field>
-						<type>separator</type>
-						<width>10px</width>
-					</field>
-					<field>
-						<name>fecha1</name>
-						<label lang="true">fechaini</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")</value>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha1","le","fecha2")</onchange>
-					</field>
-					<field>
-						<name>fecha2</name>
-						<label lang="true">fechafin</label>
-						<type>date</type>
-						<width>90px</width>
-						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")</value>
-						<class2>right</class2>
-						<icon eval="true">ICON("calendar")</icon>
-						<onchange>check_date("fecha2","ge","fecha1")</onchange>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_cliente</name>
-						<label lang="true">cliente</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_incidencias")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
-						<onchange>update_proyectos()</onchange>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>id_proyecto</name>
-						<label lang="true">proyecto</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_asignado</name>
-						<label lang="true">asignadoa</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sinusuario")."' label,'-2' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_asignado" eval="true">$id_asignado=getParam("id_asignado")</value>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>id_implicado</name>
-						<label lang="true">implicados</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sinusuario")."' label,'-2' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_asignado" eval="true">$id_implicado=getParam("id_implicado")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_estado</name>
-						<label lang="true">estado</label>
-						<type>select</type>
-						<width>240px</width>
-						<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>id_prioridad</name>
-						<label lang="true">prioridad</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("prioridades","tbl_prioridades","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinprioridad")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_prioridad" eval="true">$id_prioridad=getParam("id_prioridad")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-				<row>
-					<field>
-						<name>id_categoria</name>
-						<label lang="true">categoria</label>
-						<type>select</type>
-						<width>240px</width>
-						<query global="page" eval="true">make_extra_query_with_perms("categorias","tbl_categorias","nombre","SELECT id FROM tbl_categorias WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sincategoria")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allcategorias")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-						<value global="id_categoria" eval="true">$id_categoria=getParam("id_categoria")</value>
-					</field>
-					<field>
-						<type>separator</type>
-					</field>
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>3</colspan>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
-		<quick>
-			<row>
-				<field>
-					<type>button</type>
-					<value lang="true">create</value>
-					<tip lang="true">create</tip>
-					<onclick>create()</onclick>
-					<icon eval="true">ICON("create")</icon>
-					<class>nowrap contextmenu</class>
-					<class2>shortcut_ctrl_insert</class2>
-					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
-				</field>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field global="limit" ifeval="$limit&gt;=200">
-					<type>label</type>
-					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
-					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_cliente'=>'','id_estado'=>'', 'id_categoria'=>'', 'id_proyecto'=>'','id_prioridad'=>'','filtro'=>'','id_asignado'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>filtro</name>
-					<class>shortcut_ctrl_f</class>
-					<onkey>if(is_enterkey(event)) buscar()</onkey>
-					<focus>true</focus>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>buscar</name>
-				</field>
-				<field ifeval="!ismobile()">
-					<type>button</type>
-					<value lang="true">excel</value>
-					<tip lang="true">exceltip</tip>
-					<onclick>excel()</onclick>
-					<icon eval="true">ICON("excel")</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-				<field>
-					<type>copy</type>
-					<name>limpiar</name>
-					<class>contextmenu</class>
-				</field>
-			</row>
-		</quick>
-		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,id_estado,id_categoria,id_usuario,fecha1,fecha2,filtro,id_prioridad,id_proyecto,id_asignado" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,estado,categoria,action_id,action_title,action_view,action_edit,action_delete,id_usuario,id_estado,id_categoria,id_cliente,id_proyecto,id_grupo,activo,prioridad,id_prioridad,asignadoa,implicados FROM (
-		SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
-			".make_extra_query_with_login("d.")." usuario,
-			e.datetime datetime,
-			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE CONCAT('link:openapp(\'clientes\',',-a.id_cliente,'):',b_nombre) END cliente,
-			CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE CONCAT('link:openapp(\'proyectos\',',-a.id_proyecto,'):',p_nombre) END proyecto,
-			CONCAT('link:openapp(\'incidencias\',',-a.id,'):',a.nombre) nombre,
-			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b_nombre END cliente2,
-			CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
-			a.nombre nombre2,
-			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
-			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,
-			CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,
-			CASE a.id_categoria WHEN '0' THEN '".LANG_ESCAPE("sincategoria")."' ELSE g_nombre END categoria,
-			a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
-			CASE ((".check_sql($page,"view").") OR FIND_IN_SET('".current_user()."',ids_asignados) OR FIND_IN_SET('".current_user()."',ids_implicados)) WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ((".check_sql($page,"edit").") OR FIND_IN_SET('".current_user()."',ids_asignados) OR FIND_IN_SET('".current_user()."',ids_implicados)) WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
-			e.id_usuario id_usuario,a.id_estado id_estado,a.id_categoria id_categoria,a.id_cliente id_cliente,id_proyecto,d.id_grupo id_grupo,c_activo activo,
-			CASE id_prioridad WHEN '0' THEN '".LANG_ESCAPE("sinprioridad")."' ELSE f_nombre END prioridad,
-			a.id_prioridad,a.ids_asignados,a.ids_implicados,
-			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,a.ids_asignados)) asignadoa,
-			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,a.ids_implicados)) implicados
-		FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre,f.nombre f_nombre,c.nombre c_nombre,c.activo c_activo,g.nombre g_nombre FROM tbl_incidencias a2
-		LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
-		LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto
-		LEFT JOIN tbl_prioridades f ON f.id=a2.id_prioridad
-		LEFT JOIN tbl_estados c ON a2.id_estado=c.id
-		LEFT JOIN tbl_categorias g ON a2.id_categoria=g.id
-		) a
-		LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
-		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-		) z
-		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")."
-		AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")."
-		AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0'))
-		AND (id_categoria='$id_categoria' OR ''='$id_categoria')
-		AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
-		AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")."
-		AND ".($fecha2?"(DATE('$fecha2')>=DATE(datetime))":"(1=1)")."
-		AND (id_prioridad='$id_prioridad' OR ''='$id_prioridad')
-		AND (FIND_IN_SET('".getParam("id_asignado")."',ids_asignados) OR ''='".getParam("id_asignado")."' OR ('0'='".getParam("id_asignado")."' AND ids_asignados=''))
-		AND (FIND_IN_SET('".getParam("id_implicado")."',ids_implicados) OR ''='".getParam("id_implicado")."' OR ('0'='".getParam("id_implicado")."' AND ids_implicados=''))
-		AND (".check_sql($page,"list")." OR FIND_IN_SET('".current_user()."',ids_asignados) OR FIND_IN_SET('".current_user()."',ids_implicados))"</query>
-		<order global="order" eval="true">$order</order>
-		<limit global="limit" eval="true">$limit</limit>
-		<offset global="offset" eval="true">$offset</offset>
-	</list>
-	<form>
-		<views>
-			<view>
-				<title lang="true">formview</title>
-				<query>
-					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)"</query>
-					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml" />
-					<files_old include="xml/common/qfilesold.xml" />
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</view>
-			<insert>
-				<title lang="true">forminsert</title>
-				<query>
-					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">"SELECT '0' id,'".CONFIG('df_estado_incidencias')."' id_estado,'".CONFIG('df_prioridad_incidencias')."' id_prioridad,'".current_user()."' ids_implicados,'".current_user()."' ids_asignados"</default>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</insert>
-			<update>
-				<title lang="true">formupdate</title>
-				<query>
-					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)"</query>
-					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<comments_old include="xml/common/qcommentsold.xml" />
-					<files_old include="xml/common/qfilesold.xml" />
-					<comments_new include="xml/common/qcommentnew.xml" replace="true"/>
-					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
-					<control include="xml/common/qcontrol.xml"/>
-					<folders include="xml/common/qfolders.xml" />
-				</query>
-			</update>
-		</views>
-		<name>form</name>
-		<action></action>
-		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
-		<help>true</help>
-		<fields>
-			<default>
-				<fieldset>
-					<title lang="true">defaultdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
-					<buttons>true</buttons>
-					<row>
-						<field>
-							<name>id</name>
-							<type>hidden</type>
-						</field>
-						<field>
-							<name>id_cliente</name>
-							<label lang="true">cliente</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_proyectos()</onchange>
-							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-						<field>
-							<name>id_proyecto</name>
-							<label lang="true">proyecto</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("view")</icon>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_prioridad</name>
-							<label lang="true">prioridad</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("prioridades","tbl_prioridades","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinprioridad")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-						<field>
-							<name>id_estado</name>
-							<label lang="true">estado</label>
-							<type>select</type>
-							<width>240px</width>
-							<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>id_categoria</name>
-							<label lang="true">categoria</label>
-							<type>select</type>
-							<width>240px</width>
-							<query global="page" eval="true">make_extra_query_with_perms("categorias","tbl_categorias","nombre","SELECT id FROM tbl_categorias WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sincategoria")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>descripcion</name>
-							<label lang="true">descripcion</label>
-							<type>textarea</type>
-							<width>600px</width>
-							<height>120px</height>
-							<colspan>6</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-						</field>
-					</row>
-					<row global="id" ifeval="$id>=0">
-						<field ifeval="!ismobile()">
-							<name>textos_descripcion</name>
-							<label lang="true">textos</label>
-							<type>select</type>
-							<width>240px</width>
-							<query include="xml/common/qtextos.xml" replace="true"/>
-							<value></value>
-						</field>
-						<field>
-							<type>button</type>
-							<value lang="true">textos_add</value>
-							<icon eval="true">ICON("add")</icon>
-							<onclick>add_textos_textarea('textos_descripcion','descripcion')</onclick>
-						</field>
-					</row>
-				</fieldset>
-				<fieldset>
-					<width>700px</width>
-					<title lang="true">usersdata</title>
-					<icon eval="true">ICON("form")</icon>
-					<popup>true</popup>
-					<class>tabla</class>
-					<row>
-						<field>
-							<name>ids_implicados</name>
-							<label lang="true">implicados</label>
-							<type>multiselect</type>
-							<width>600px</width>
-							<height>120px</height>
-							<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1
-								AND ".(CONFIG("filtro_grupo_usuarios_implicados_incidencias")!=""?"(
-									id_grupo=".CONFIG("filtro_grupo_usuarios_implicados_incidencias")."
-									OR
-									id IN (SELECT id_usuario FROM tbl_usuarios_g WHERE id_grupo=".CONFIG("filtro_grupo_usuarios_implicados_incidencias").")
-								)":"1=1"))." /*MYSQL HAVING label!='' */ ORDER BY label ASC,value ASC"</query>
-							<colspan>6</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-							<class2>thead</class2>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>ids_asignados</name>
-							<label lang="true">asignadoa</label>
-							<type>multiselect</type>
-							<width>600px</width>
-							<height>120px</height>
-							<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1
-								AND ".(CONFIG("filtro_grupo_usuarios_asignados_incidencias")!=""?"(
-									id_grupo=".CONFIG("filtro_grupo_usuarios_asignados_incidencias")."
-									OR
-									id IN (SELECT id_usuario FROM tbl_usuarios_g WHERE id_grupo=".CONFIG("filtro_grupo_usuarios_asignados_incidencias").")
-								)":"1=1"))." /*MYSQL HAVING label!='' */ ORDER BY label ASC,value ASC"</query>
-							<colspan>6</colspan>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<class>tbody</class>
-							<class2>thead</class2>
-						</field>
-					</row>
-				</fieldset>
-			</default>
-			<comments_old include="xml/common/commentsold.xml"/>
-			<files_old include="xml/common/filesold.xml" />
-			<comments_new include="xml/common/commentnew.xml"/>
-			<node path="comments_new/fieldset" append="true">
-				<row global="id" ifeval="$id>=0">
-					<field>
-						<type>separator</type>
-					</field>
-				</row>
-				<row global="id" ifeval="$id>=0">
-					<field ifeval="!ismobile()">
-						<name>textos_comentarios</name>
-						<label lang="true">textos</label>
-						<type>select</type>
-						<width>240px</width>
-						<query include="xml/common/qtextos.xml" replace="true"/>
-						<value></value>
-					</field>
-					<field>
-						<type>button</type>
-						<value lang="true">textos_add</value>
-						<icon eval="true">ICON("add")</icon>
-						<onclick>add_textos_textarea('comments_new_a_textos_comentarios','comments_new_a_comentarios')</onclick>
-						<class>left</class>
-					</field>
-				</row>
-			</node>
-			<files_new include="xml/common/filesnew.xml"/>
-			<control include="xml/common/control.xml" />
-			<folders include="xml/common/folders.xml" />
-		</fields>
-		<quick include="xml/common/quickform.xml" />
-		<buttons include="xml/common/buttonsform.xml" />
-		<node path="buttons/row" prepend="true">
-			<field global="id" ifeval="$id&gt;=0">
-				<name>boolsendmail</name>
-				<type>checkbox</type>
-				<label lang="true">boolsendmail</label>
-				<tip lang="true">boolsendmailtip</tip>
-				<value>1</value>
-			</field>
-		</node>
-		<node path="buttons/row/field[name=buttonupdate]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)")?"true":"false"</disabled>
-		</node>
-		<node path="buttons/row/field[name=buttonupdatereturnhere]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)")?"true":"false"</disabled>
-		</node>
-		<node path="buttons/row/field[name=edit]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)")?"true":"false"</disabled>
-		</node>
-		<javascript>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<cache>
-				<include>js/updateproyectos.js</include>
-				<include>js/addtextos.js</include>
-			</cache>
-		</javascript>
-	</form>
-	<insert>
-		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
+    <list>
+        <title lang="true">list</title>
+        <icon eval="true">ICON("list")</icon>
+        <help>true</help>
+        <actions include="xml/common/actions.xml" replace="true"/>
+        <width>100%</width>
+        <fields>
+            <field>
+                <name>id2</name>
+                <label lang="true">id</label>
+                <sort>true</sort>
+                <order>id</order>
+            </field>
+            <field>
+                <name>usuario</name>
+                <label lang="true">username</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>datetime</name>
+                <label lang="true">datetime</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>cliente</name>
+                <label lang="true">cliente</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>cliente2</order>
+                <excel>cliente2</excel>
+            </field>
+            <field>
+                <name>proyecto</name>
+                <label lang="true">proyecto</label>
+                <sort>true</sort>
+                <size>20</size>
+                <order>proyecto2</order>
+                <excel>proyecto2</excel>
+            </field>
+            <field>
+                <name>categoria</name>
+                <label lang="true">categoria</label>
+                <sort>true</sort>
+                <size>20</size>
+            </field>
+            <field>
+                <name>nombre</name>
+                <label lang="true">incidencia</label>
+                <sort>true</sort>
+                <order>nombre2</order>
+                <excel>nombre2</excel>
+            </field>
+            <field>
+                <name>estado</name>
+                <label lang="true">estado</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>prioridad</name>
+                <label lang="true">prioridad</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>asignadoa</name>
+                <label lang="true">asignadoa</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>implicados</name>
+                <label lang="true">implicados</label>
+                <sort>true</sort>
+            </field>
+            <field>
+                <name>comentarios</name>
+                <label lang="true">numc</label>
+                <tip lang="true">numctip</tip>
+                <sort>false</sort>
+            </field>
+            <field>
+                <name>ficheros</name>
+                <label lang="true">numf</label>
+                <tip lang="true">numftip</tip>
+                <sort>false</sort>
+            </field>
+        </fields>
+        <javascript>
+            <javascript include="xml/common/jslist.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+            </cache>
+        </javascript>
+        <form>
+            <name>list</name>
+            <action></action>
+            <method>get</method>
+            <fields>
+                <title lang="true">filter</title>
+                <icon eval="true">ICON("filter")</icon>
+                <buttons>true</buttons>
+                <popup>true</popup>
+                <row>
+                    <field include="xml/common/hiddenslist.xml" replace="true" />
+                    <field>
+                        <name>id_usuario</name>
+                        <label lang="true">username</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                        <width>10px</width>
+                    </field>
+                    <field>
+                        <name>fecha1</name>
+                        <label lang="true">fechaini</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha1" eval="true">$fecha1=getParam("fecha1")</value>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha1","le","fecha2")</onchange>
+                    </field>
+                    <field>
+                        <name>fecha2</name>
+                        <label lang="true">fechafin</label>
+                        <type>date</type>
+                        <width>90px</width>
+                        <value global="fecha2" eval="true">$fecha2=getParam("fecha2")</value>
+                        <class2>right</class2>
+                        <icon eval="true">ICON("calendar")</icon>
+                        <onchange>check_date("fecha2","ge","fecha1")</onchange>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_cliente</name>
+                        <label lang="true">cliente</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_incidencias")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
+                        <onchange>update_proyectos()</onchange>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>id_proyecto</name>
+                        <label lang="true">proyecto</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                        <value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_asignado</name>
+                        <label lang="true">asignadoa</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sinusuario")."' label,'-2' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_asignado" eval="true">$id_asignado=getParam("id_asignado")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>id_implicado</name>
+                        <label lang="true">implicados</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sinusuario")."' label,'-2' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_asignado" eval="true">$id_implicado=getParam("id_implicado")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_estado</name>
+                        <label lang="true">estado</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>id_prioridad</name>
+                        <label lang="true">prioridad</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query eval="true">make_extra_query_with_perms("prioridades","tbl_prioridades","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinprioridad")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_prioridad" eval="true">$id_prioridad=getParam("id_prioridad")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+                <row>
+                    <field>
+                        <name>id_categoria</name>
+                        <label lang="true">categoria</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query global="page" eval="true">make_extra_query_with_perms("categorias","tbl_categorias","nombre","SELECT id FROM tbl_categorias WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sincategoria")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allcategorias")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                        <value global="id_categoria" eval="true">$id_categoria=getParam("id_categoria")</value>
+                    </field>
+                    <field>
+                        <type>separator</type>
+                    </field>
+                    <field>
+                        <name>filtro</name>
+                        <label lang="true">filtro</label>
+                        <type>text</type>
+                        <width>240px</width>
+                        <value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+                        <colspan>3</colspan>
+                    </field>
+                </row>
+            </fields>
+            <fields include="xml/common/filters.xml" replace="true" />
+            <buttons include="xml/common/buttonslist.xml" />
+        </form>
+        <quick>
+            <row>
+                <field>
+                    <type>button</type>
+                    <value lang="true">create</value>
+                    <tip lang="true">create</tip>
+                    <onclick>create()</onclick>
+                    <icon eval="true">ICON("create")</icon>
+                    <class>nowrap contextmenu</class>
+                    <class2>shortcut_ctrl_insert</class2>
+                    <disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+                </field>
+                <field>
+                    <type>separator</type>
+                    <width>100%</width>
+                </field>
+                <field global="limit" ifeval="$limit&gt;=200">
+                    <type>label</type>
+                    <label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+                    <tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field ifeval="!ismobile() &amp;&amp; check_filter(array('id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_cliente'=>'','id_estado'=>'', 'id_categoria'=>'', 'id_proyecto'=>'','id_prioridad'=>'','filtro'=>'','id_asignado'=>''))">
+                    <type>label</type>
+                    <label lang="true">usedfilter</label>
+                    <class>nowrap</class>
+                    <class2>info</class2>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>filtro</name>
+                    <class>shortcut_ctrl_f</class>
+                    <onkey>if(is_enterkey(event)) buscar()</onkey>
+                    <focus>true</focus>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>buscar</name>
+                </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">excel</value>
+                    <tip lang="true">exceltip</tip>
+                    <onclick>excel()</onclick>
+                    <icon eval="true">ICON("excel")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
+                <field>
+                    <type>copy</type>
+                    <name>limpiar</name>
+                    <class>contextmenu</class>
+                </field>
+            </row>
+        </quick>
+        <pager include="xml/common/pagerlist.xml"/>
+        <query global="page,id_cliente,id_estado,id_categoria,id_usuario,fecha1,fecha2,filtro,id_prioridad,id_proyecto,id_asignado" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,estado,categoria,action_id,action_title,action_view,action_edit,action_delete,id_usuario,id_estado,id_categoria,id_cliente,id_proyecto,id_grupo,activo,prioridad,id_prioridad,asignadoa,implicados FROM (
+        SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
+            ".make_extra_query_with_login("d.")." usuario,
+            e.datetime datetime,
+            CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE CONCAT('link:openapp(\'clientes\',',-a.id_cliente,'):',b_nombre) END cliente,
+            CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE CONCAT('link:openapp(\'proyectos\',',-a.id_proyecto,'):',p_nombre) END proyecto,
+            CONCAT('link:openapp(\'incidencias\',',-a.id,'):',a.nombre) nombre,
+            CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b_nombre END cliente2,
+            CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
+            a.nombre nombre2,
+            (SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
+            (SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,
+            CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,
+            CASE a.id_categoria WHEN '0' THEN '".LANG_ESCAPE("sincategoria")."' ELSE g_nombre END categoria,
+            a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
+            CASE ((".check_sql($page,"view").") OR FIND_IN_SET('".current_user()."',ids_asignados) OR FIND_IN_SET('".current_user()."',ids_implicados)) WHEN 1 THEN 'true' ELSE 'false' END action_view,
+            CASE ((".check_sql($page,"edit").") OR FIND_IN_SET('".current_user()."',ids_asignados) OR FIND_IN_SET('".current_user()."',ids_implicados)) WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+            CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+            e.id_usuario id_usuario,a.id_estado id_estado,a.id_categoria id_categoria,a.id_cliente id_cliente,id_proyecto,d.id_grupo id_grupo,c_activo activo,
+            CASE id_prioridad WHEN '0' THEN '".LANG_ESCAPE("sinprioridad")."' ELSE f_nombre END prioridad,
+            a.id_prioridad,a.ids_asignados,a.ids_implicados,
+            (SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,a.ids_asignados)) asignadoa,
+            (SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,a.ids_implicados)) implicados
+        FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre,f.nombre f_nombre,c.nombre c_nombre,c.activo c_activo,g.nombre g_nombre FROM tbl_incidencias a2
+        LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
+        LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto
+        LEFT JOIN tbl_prioridades f ON f.id=a2.id_prioridad
+        LEFT JOIN tbl_estados c ON a2.id_estado=c.id
+        LEFT JOIN tbl_categorias g ON a2.id_categoria=g.id
+        ) a
+        LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+        LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+        ) z
+        WHERE 1=1
+        AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
+        AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")."
+        AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")."
+        AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0'))
+        AND (id_categoria='$id_categoria' OR ''='$id_categoria')
+        AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
+        AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")."
+        AND ".($fecha2?"(DATE('$fecha2')>=DATE(datetime))":"(1=1)")."
+        AND (id_prioridad='$id_prioridad' OR ''='$id_prioridad')
+        AND (FIND_IN_SET('".getParam("id_asignado")."',ids_asignados) OR ''='".getParam("id_asignado")."' OR ('0'='".getParam("id_asignado")."' AND ids_asignados=''))
+        AND (FIND_IN_SET('".getParam("id_implicado")."',ids_implicados) OR ''='".getParam("id_implicado")."' OR ('0'='".getParam("id_implicado")."' AND ids_implicados=''))
+        AND (".check_sql($page,"list")." OR FIND_IN_SET('".current_user()."',ids_asignados) OR FIND_IN_SET('".current_user()."',ids_implicados))"</query>
+        <order global="order" eval="true">$order</order>
+        <limit global="limit" eval="true">$limit</limit>
+        <offset global="offset" eval="true">$offset</offset>
+    </list>
+    <form>
+        <views>
+            <view>
+                <title lang="true">formview</title>
+                <query>
+                    <query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)"</query>
+                    <query include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml" />
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </view>
+            <insert>
+                <title lang="true">forminsert</title>
+                <query>
+                    <query include="xml/common/qpermcreate.xml" replace="true" />
+                    <default eval="true">"SELECT '0' id,'".CONFIG('df_estado_incidencias')."' id_estado,'".CONFIG('df_prioridad_incidencias')."' id_prioridad,'".current_user()."' ids_implicados,'".current_user()."' ids_asignados"</default>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </insert>
+            <update>
+                <title lang="true">formupdate</title>
+                <query>
+                    <query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)"</query>
+                    <query include="xml/common/qdefaultview.xml" replace="true" />
+                    <comments_old include="xml/common/qcommentsold.xml" />
+                    <files_old include="xml/common/qfilesold.xml" />
+                    <comments_new include="xml/common/qcommentnew.xml" replace="true"/>
+                    <files_new include="xml/common/qfilesnew.xml" replace="true"/>
+                    <control include="xml/common/qcontrol.xml"/>
+                    <folders include="xml/common/qfolders.xml" />
+                </query>
+            </update>
+        </views>
+        <name>form</name>
+        <action></action>
+        <method>post</method>
+        <hiddens include="xml/common/hiddensform.xml" />
+        <help>true</help>
+        <fields>
+            <default>
+                <fieldset>
+                    <title lang="true">defaultdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <quick global="id" eval="true">$id>=0?"false":"true"</quick>
+                    <buttons>true</buttons>
+                    <row>
+                        <field>
+                            <name>id</name>
+                            <type>hidden</type>
+                        </field>
+                        <field>
+                            <name>id_cliente</name>
+                            <label lang="true">cliente</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <focus global="id" eval="true">$id>=0?"true":"false"</focus>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <onchange>update_proyectos()</onchange>
+                            <link>openapp('clientes',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                        <field>
+                            <name>id_proyecto</name>
+                            <label lang="true">proyecto</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <link>openapp('proyectos',-abs(ID))</link>
+                            <icon eval="true">ICON("view")</icon>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_prioridad</name>
+                            <label lang="true">prioridad</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query eval="true">make_extra_query_with_perms("prioridades","tbl_prioridades","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinprioridad")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                        <field>
+                            <name>id_estado</name>
+                            <label lang="true">estado</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>id_categoria</name>
+                            <label lang="true">categoria</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query global="page" eval="true">make_extra_query_with_perms("categorias","tbl_categorias","nombre","SELECT id FROM tbl_categorias WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sincategoria")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>nombre</name>
+                            <label lang="true">nombre</label>
+                            <type>text</type>
+                            <width>240px</width>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>descripcion</name>
+                            <label lang="true">descripcion</label>
+                            <type>textarea</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <colspan>6</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <required>true</required>
+                        </field>
+                    </row>
+                    <row global="id" ifeval="$id>=0">
+                        <field ifeval="!ismobile()">
+                            <name>textos_descripcion</name>
+                            <label lang="true">textos</label>
+                            <type>select</type>
+                            <width>240px</width>
+                            <query include="xml/common/qtextos.xml" replace="true"/>
+                            <value></value>
+                        </field>
+                        <field>
+                            <type>button</type>
+                            <value lang="true">textos_add</value>
+                            <icon eval="true">ICON("add")</icon>
+                            <onclick>add_textos_textarea('textos_descripcion','descripcion')</onclick>
+                        </field>
+                    </row>
+                </fieldset>
+                <fieldset>
+                    <width>700px</width>
+                    <title lang="true">usersdata</title>
+                    <icon eval="true">ICON("form")</icon>
+                    <popup>true</popup>
+                    <class>tabla</class>
+                    <row>
+                        <field>
+                            <name>ids_implicados</name>
+                            <label lang="true">implicados</label>
+                            <type>multiselect</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1
+                                AND ".(CONFIG("filtro_grupo_usuarios_implicados_incidencias")!=""?"(
+                                    id_grupo=".CONFIG("filtro_grupo_usuarios_implicados_incidencias")."
+                                    OR
+                                    id IN (SELECT id_usuario FROM tbl_usuarios_g WHERE id_grupo=".CONFIG("filtro_grupo_usuarios_implicados_incidencias").")
+                                )":"1=1"))." /*MYSQL HAVING label!='' */ ORDER BY label ASC,value ASC"</query>
+                            <colspan>6</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                            <class2>thead</class2>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <type>separator</type>
+                        </field>
+                    </row>
+                    <row>
+                        <field>
+                            <name>ids_asignados</name>
+                            <label lang="true">asignadoa</label>
+                            <type>multiselect</type>
+                            <width>600px</width>
+                            <height>120px</height>
+                            <query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1
+                                AND ".(CONFIG("filtro_grupo_usuarios_asignados_incidencias")!=""?"(
+                                    id_grupo=".CONFIG("filtro_grupo_usuarios_asignados_incidencias")."
+                                    OR
+                                    id IN (SELECT id_usuario FROM tbl_usuarios_g WHERE id_grupo=".CONFIG("filtro_grupo_usuarios_asignados_incidencias").")
+                                )":"1=1"))." /*MYSQL HAVING label!='' */ ORDER BY label ASC,value ASC"</query>
+                            <colspan>6</colspan>
+                            <readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+                            <class>tbody</class>
+                            <class2>thead</class2>
+                        </field>
+                    </row>
+                </fieldset>
+            </default>
+            <comments_old include="xml/common/commentsold.xml"/>
+            <files_old include="xml/common/filesold.xml" />
+            <comments_new include="xml/common/commentnew.xml"/>
+            <node path="comments_new/fieldset" append="true">
+                <row global="id" ifeval="$id>=0">
+                    <field>
+                        <type>separator</type>
+                    </field>
+                </row>
+                <row global="id" ifeval="$id>=0">
+                    <field ifeval="!ismobile()">
+                        <name>textos_comentarios</name>
+                        <label lang="true">textos</label>
+                        <type>select</type>
+                        <width>240px</width>
+                        <query include="xml/common/qtextos.xml" replace="true"/>
+                        <value></value>
+                    </field>
+                    <field>
+                        <type>button</type>
+                        <value lang="true">textos_add</value>
+                        <icon eval="true">ICON("add")</icon>
+                        <onclick>add_textos_textarea('comments_new_a_textos_comentarios','comments_new_a_comentarios')</onclick>
+                        <class>left</class>
+                    </field>
+                </row>
+            </node>
+            <files_new include="xml/common/filesnew.xml"/>
+            <control include="xml/common/control.xml" />
+            <folders include="xml/common/folders.xml" />
+        </fields>
+        <quick include="xml/common/quickform.xml" />
+        <buttons include="xml/common/buttonsform.xml" />
+        <node path="buttons/row" prepend="true">
+            <field global="id" ifeval="$id&gt;=0">
+                <name>boolsendmail</name>
+                <type>checkbox</type>
+                <label lang="true">boolsendmail</label>
+                <tip lang="true">boolsendmailtip</tip>
+                <value>1</value>
+            </field>
+        </node>
+        <node path="buttons/row/field[name=buttonupdate]/disabled" replace="true">
+            <disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)")?"true":"false"</disabled>
+        </node>
+        <node path="buttons/row/field[name=buttonupdatereturnhere]/disabled" replace="true">
+            <disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)")?"true":"false"</disabled>
+        </node>
+        <node path="buttons/row/field[name=edit]/disabled" replace="true">
+            <disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)")?"true":"false"</disabled>
+        </node>
+        <javascript>
+            <javascript include="xml/common/jsform.xml" replace="true"/>
+            <cache>
+                <include>js/updateproyectos.js</include>
+                <include>js/addtextos.js</include>
+            </cache>
+        </javascript>
+    </form>
+    <insert>
+        <query include="xml/common/qpermcreate.xml" replace="true"/>
+        <query include="xml/common/autonombre.xml" replace="true"/>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query include="xml/common/qfilesinsert.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">getParam("boolsendmail")?"SELECT 'php/action/incidencias.php' action_include":""</query>
-		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
-	</insert>
-	<update>
-		<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)"</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
+        <query include="xml/common/qfilesinsert.xml" replace="true"/>
+        <query match="default" prefix="true" eval="true">getParam("boolsendmail")?"SELECT 'php/action/incidencias.php' action_include":""</query>
+        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
+    </insert>
+    <update>
+        <query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados) AND NOT FIND_IN_SET('".current_user()."',ids_implicados)"</query>
+        <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query include="xml/common/qfilesdelete.xml" replace="true" />
-		<query include="xml/common/qfilesupdate.xml" replace="true"/>
-		<query include="xml/common/qcommentsdelete.xml" replace="true" />
-		<query include="xml/common/qcommentsinsert.xml" replace="true" />
-		<query match="default" prefix="true" eval="true">getParam("boolsendmail")?"SELECT 'php/action/incidencias.php' action_include":""</query>
-		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
-	</update>
-	<delete>
-		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qdeletecomments.xml" replace="true" />
-		<query include="xml/common/qdeletefiles.xml" replace="true" />
-		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-	</delete>
-	<excel>
-		<query require="php/listsim.php" global="page" eval="true">list_simulator($page,"excel")</query>
-	</excel>
+        <query include="xml/common/qfilesdelete.xml" replace="true" />
+        <query include="xml/common/qfilesupdate.xml" replace="true"/>
+        <query include="xml/common/qcommentsdelete.xml" replace="true" />
+        <query include="xml/common/qcommentsinsert.xml" replace="true" />
+        <query match="default" prefix="true" eval="true">getParam("boolsendmail")?"SELECT 'php/action/incidencias.php' action_include":""</query>
+        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
+    </update>
+    <delete>
+        <query include="xml/common/qpermdelete.xml" replace="true"/>
+        <query include="xml/common/qdelete.xml" replace="true" />
+        <query include="xml/common/qdeletecomments.xml" replace="true" />
+        <query include="xml/common/qdeletefiles.xml" replace="true" />
+        <query include="xml/common/qcontroldelete.xml" replace="true"/>
+        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
+    </delete>
+    <excel>
+        <query require="php/listsim.php" global="page" eval="true">list_simulator($page,"excel")</query>
+    </excel>
 </root>

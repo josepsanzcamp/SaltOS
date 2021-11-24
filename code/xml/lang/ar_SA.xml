@@ -24,1530 +24,1530 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<lang>ar_SA</lang>
-	<dir>rtl</dir>
-	<default>common</default>
-	<common>
-		<nopage>اختر تطبيق لبدأ العمل</nopage>
-		<nocheckuser>اسم المستخدم او كلمة المرور غير صحيحة</nocheckuser>
-		<nochecktime>المستخدم خارج ساعات العمل</nochecktime>
-		<nocheckday>المستخدم خارج ايام العمل</nocheckday>
-		<view>عرض</view>
-		<edit>تعديل</edit>
-		<copy>نسخ</copy>
-		<delete>حذف</delete>
-		<first>الصفحة الاولى</first>
-		<previous>الصفحة السابقة</previous>
-		<next>الصفحة التالية</next>
-		<last>الصفحة الاخيرة</last>
-		<id>كود.</id>
-		<codigo>كود</codigo>
-		<cif>سي.</cif>
-		<nombre>الاسم</nombre>
-		<apellidos>اسم العائلة</apellidos>
-		<tel_fijo>الهاتف الثابت</tel_fijo>
-		<tel_movil>جوال</tel_movil>
-		<telefono>هاتف</telefono>
-		<fax>فاكس</fax>
-		<email>ايميل</email>
-		<web>ويب</web>
-		<filter>خيارات الترشيح</filter>
-		<loadsavefilter>تحميل وحفظ الفلاتر المحددة مسبقا</loadsavefilter>
-		<filtro>بحث الكل</filtro>
-		<buscar>بحث</buscar>
-		<buscartip>قم بالبحث عن طريق المرشحات المختارة</buscartip>
-		<limpiar>اعادة الضبط</limpiar>
-		<limpiartip>تنظيف المرشحات وعرض جميع البيانات</limpiartip>
-		<username>المستخدم</username>
-		<datetime>التاريخ والزمن</datetime>
-		<direccion>العنوان</direccion>
-		<codpostal>الرمز البريدي</codpostal>
-		<poblacion>المدينة</poblacion>
-		<provincia>الاقليم</provincia>
-		<pais>الدولة</pais>
-		<comentarios>التعليقات</comentarios>
-		<descripcion>الوصف</descripcion>
-		<buttoncreate>إنشاء</buttoncreate>
-		<buttoncreatereturnhere>إنشاء والرجوع هنا</buttoncreatereturnhere>
-		<buttonupdate>تحديث</buttonupdate>
-		<buttonupdatereturnhere>تحديث والرجوع هنا</buttonupdatereturnhere>
-		<buttoncancel>إلغاء</buttoncancel>
-		<buttonreturn>رجوع</buttonreturn>
-		<date>تاريخ</date>
-		<incidencia>خطأ</incidencia>
-		<estado>الحالة</estado>
-		<parte>جزء</parte>
-		<tarea>مهمة</tarea>
-		<tareas>مهام</tareas>
-		<liquidado>الصافي</liquidado>
-		<base>الاساسي</base>
-		<total>المجموع</total>
-		<cerrado>اغلق</cerrado>
-		<cobrado>الشحن</cobrado>
-		<empresa>الشركة</empresa>
-		<msgdelete>حذف هذا الحقل؟</msgdelete>
-		<permdenied>غير مصرح بالقيام بهذه العميلة</permdenied>
-		<sinnombre>لا اسم</sinnombre>
-		<deldenied>لا يمكن حذفه لانه مستخدم في تطبيق اخر</deldenied>
-		<yes>نعم</yes>
-		<no>لا</no>
-		<cliente>عميل</cliente>
-		<posiblecli>العميل المحتمل</posiblecli>
-		<password>كلمة السر</password>
-		<numfac>(إنفي)</numfac>
-		<numc>NC</numc>
-		<numctip>عدد التعليقات</numctip>
-		<numf>NF</numf>
-		<numftip>عدد الملفات</numftip>
-		<numt>NT</numt>
-		<numttip>عدد المهام</numttip>
-		<numv>نيفادا</numv>
-		<numvtip>رقم الاستحقاق</numvtip>
-		<nums>NS</nums>
-		<numstip>رقم المتابعة</numstip>
-		<nump>NP</nump>
-		<numptip>عدد المنتجات</numptip>
-		<fechaini>التاريخ بين</fechaini>
-		<fechafin>و</fechafin>
-		<commentdel>حذف هذا التعليق</commentdel>
-		<attachments>المرفقات</attachments>
-		<shortattachments>المرفقات</shortattachments>
-		<userdatetime>المستخدم , التاريخ والزمن</userdatetime>
-		<fileandsize>الملف والحجم</fileandsize>
-		<download>تنزيل</download>
-		<activar>المحتوى</activar>
-		<newcomment>تعليق جديد</newcomment>
-		<newattachments>مرفقات جديدة</newattachments>
-		<proyecto>مشروع</proyecto>
-		<documento>ورق</documento>
-		<hora>الزمن</hora>
-		<horas>ساعات</horas>
-		<minutos>دقائق</minutos>
-		<precio>السعر</precio>
-		<liq>(ليق)</liq>
-		<aplicacion>التطبيق</aplicacion>
-		<rol>الدور</rol>
-		<permiso>التصريح</permiso>
-		<pos>Pos.</pos>
-		<posicion>الموضع</posicion>
-		<trimestre>المدة</trimestre>
-		<otroscampos>مجالات اخرى</otroscampos>
-		<excel>اكسل</excel>
-		<exceltip>تحميل ملف إكسل مع البيانات الحالية</exceltip>
-		<pdf>تحميل PDF</pdf>
-		<pdftip>تحميل ملف PDF مع البيانات الحالية</pdftip>
-		<epigrafe>عنوان</epigrafe>
-		<campoauto>(*) حقل تلقائي</campoauto>
-		<cerr>Clos.</cerr>
-		<cobr>(كوب)</cobr>
-		<concepto>مفهوم</concepto>
-		<unid>وحدة.</unid>
-		<unidades>الوحدات</unidades>
-		<unidadestotal>مجموع الوحدات</unidadestotal>
-		<prun>Pr./Un.</prun>
-		<dto>قرص.</dto>
-		<importe>الكمية</importe>
-		<percent>المعدل</percent>
-		<todos>[الكل]</todos>
-		<todoslosclientes>[جميع العملاء]</todoslosclientes>
-		<todoslosposiblescli>[جميع العملاء المحتملين]</todoslosposiblescli>
-		<todoslosusuarios>[جميع المستخدمين]</todoslosusuarios>
-		<todoslosgrupos>[جميع المجموعات]</todoslosgrupos>
-		<todoslosproveedores>[جميع الموفرين]</todoslosproveedores>
-		<mostrartodos>[إظهار الكل]</mostrartodos>
-		<sinusuario>[لا يوجد مستخدم]</sinusuario>
-		<paginaspc>الصفحة </paginaspc>
-		<regsfrom>السجلات من </regsfrom>
-		<spcdespc> من </spcdespc>
-		<spcalspc> الي </spcalspc>
-		<regspage>السجلات علي الصفحة:</regspage>
-		<registerdata>سجل بيانات</registerdata>
-		<userinsert>انشئ عن طريق</userinsert>
-		<userupdate>عدل عن طريق</userupdate>
-		<allstates>[جميع الحالات]</allstates>
-		<allenabled>الكل مفعل</allenabled>
-		<alldisabled>الكل غير مفعل</alldisabled>
-		<lastinsert>لقد قمنا بانشاء سجل بالكود: </lastinsert>
-		<lastupdate>السجل تم تعديله بالكود: </lastupdate>
-		<lastdelete>لقد قمت بحذف السجل بالكود: </lastdelete>
-		<proveedor>المورد</proveedor>
-		<acta>ورقة</acta>
-		<presupuesto>ميزانية</presupuesto>
-		<newfichero>ملف جديد</newfichero>
-		<fichero>ملف</fichero>
-		<size>حجم</size>
-		<mime>نوع الملف</mime>
-		<grupo>مجموعة</grupo>
-		<ficheroactual>الملف الحالي</ficheroactual>
-		<language>اللغة</language>
-		<style>التصميم</style>
-		<nodata>لايوجد نتائج لعرضها</nodata>
-		<nosearch>يجب توفير مصطلح لإجراء بحث</nosearch>
-		<prioridad>الاولوية</prioridad>
-		<sinproyecto>[بدون مشروع مرتبط]</sinproyecto>
-		<sintarea>[لايوجد مهمة مرتبطة]</sintarea>
-		<todoslosproyectos>[جميع المشاريع]</todoslosproyectos>
-		<todaslastareas>[جميع المهام]</todaslastareas>
-		<todaslascuentas>[الكل]</todaslascuentas>
-		<graficas>الرسومات والإحصاءات</graficas>
-		<mail>ارسال PDF</mail>
-		<mailtip>ارسال ك PDF to لبريدك الالكتروني</mailtip>
-		<view2>عارض الPDF </view2>
-		<view2tip>عرض المستند عن طريق العارض الخاص ب SaltOS</view2tip>
-		<view2error>يوجد خطأ في فتح عارض الPDF</view2error>
-		<view2hash>إذا استمرت المشكلة، اتصل بممثل خدمة مع مده بالكود التالي: </view2hash>
-		<view2opening>يتم فتح المستكشف ,انتظر لحظة...</view2opening>
-		<msgnotuseremail>ليس لديك اي ايميل مضبوط</msgnotuseremail>
-		<msgnotsmtpemail>لم يضبط خادم البريد المرسل</msgnotsmtpemail>
-		<sincliente>[ليس هنالك عميل زو علاقة]</sincliente>
-		<sinposiblecli>[تعذر العميل المقترن]</sinposiblecli>
-		<sinepigrafe>[لا يوجد توضبح ذو علاقة]</sinepigrafe>
-		<sinprioridad>[لا توجد اولوية]</sinprioridad>
-		<sinestado>[لا توجد حالة]</sinestado>
-		<dstart>بدء</dstart>
-		<dstop>انهاء</dstop>
-		<evento>حدث</evento>
-		<sincuenta>[لا يوجد حساب]</sincuenta>
-		<cuenta>حساب</cuenta>
-		<sindia>[لا يوجد يوم]</sindia>
-		<sinmes>[لايوجد شهر]</sinmes>
-		<mes>شهر</mes>
-		<factura>فواتير</factura>
-		<albaran>بوليصة الشحن</albaran>
-		<msglogout>هل تريد الخروج من التطبيق</msglogout>
-		<mostrarcomo>اظهار ك</mostrarcomo>
-		<nif>إن..أي.إف.</nif>
-		<vcard>فيزا كارد</vcard>
-		<cargo>الموضع</cargo>
-		<empleado>الموظفين</empleado>
-		<sinproveedor>[بدون طرف ثالث مورد]</sinproveedor>
-		<sinempleado>[ليس هناك موظف مرتبط]</sinempleado>
-		<port>الميناء</port>
-		<extra>الامان</extra>
-		<requiredfield>حقل مطلوب</requiredfield>
-		<sinpais>[لم يتم اختيار دولة]</sinpais>
-		<sinprovincia>[لم يتم اختيار اقليم]</sinprovincia>
-		<sinpoblacion>[لم يتم اخيار مدينة]</sinpoblacion>
-		<sincodpostal>[لايوجد خيار]</sincodpostal>
-		<usedfilter>التصفية حسب</usedfilter>
-		<suma>المجموع</suma>
-		<average>المتوسط</average>
-		<posx>الموضع X</posx>
-		<posy>الموضع Y</posy>
-		<angle>الزاوية</angle>
-		<withoutinfo>العرض غير معروف </withoutinfo>
-		<sinproducto>[لايوجد منتج ذو علاقة]</sinproducto>
-		<preview>عرض</preview>
-		<sortasc>ترتيب تصاعدي (A-Z)</sortasc>
-		<sortdesc>ترتيب تنازلي (Z-A)</sortdesc>
-		<confirm>تأكيد</confirm>
-		<alert>تنبيه</alert>
-		<error>خطأ</error>
-		<buttonaccept>اوافق</buttonaccept>
-		<buttoncontinue>استمرار</buttoncontinue>
-		<enero>يناير</enero>
-		<febrero>فيراير</febrero>
-		<marzo>مارس</marzo>
-		<abril>ابريل</abril>
-		<mayo>مايو</mayo>
-		<junio>يونيو</junio>
-		<julio>يوليو</julio>
-		<agosto>اغسطس</agosto>
-		<setiembre>سبتمبر</setiembre>
-		<octubre>اكتوبر</octubre>
-		<noviembre>نوفمبر</noviembre>
-		<diciembre>ديسمبر</diciembre>
-		<lunes>الاثنين</lunes>
-		<martes>الثلاثاء</martes>
-		<miercoles>الاربعاء</miercoles>
-		<jueves>الخميس</jueves>
-		<viernes>الجمعة</viernes>
-		<sabado>السبت</sabado>
-		<domingo>الأحد</domingo>
-		<sabadoydomingo>السبت والأحد</sabadoydomingo>
-		<sinpresupuesto>[لايوجد فاتورة مرتبطة]</sinpresupuesto>
-		<todoslospresupuestos>[جميع الفواتير]</todoslospresupuestos>
-		<unknownerror>هناك خطأ في الاتصال (راجع اذا كان الوصول إلى الشبكة يعمل بشكل صحيح، وإذا استمرت المشكلة، اتصل بمسؤول التطبيق)</unknownerror>
-		<qrcode>رمز الاستجابة السريعة</qrcode>
-		<lugar>الموقع</lugar>
-		<loading>يتم تحميل البيانات ,الرجاء الانتظار...</loading>
-		<sending>يتم ارسال البيانات ,الرجاء الانتظار...</sending>
-		<prod>الحث</prod>
-		<addfile>اضافة ملف</addfile>
-		<addproduct>اضافة منتج</addproduct>
-		<addconcept>إضافة مفهوم</addconcept>
-		<addvencimiento>اضافة استحقاق</addvencimiento>
-		<addtarea>اضافة مهمة</addtarea>
-		<send>ارسال</send>
-		<notas>ملاحظات</notas>
-		<sincampanya>[لا شريك في الحملة]</sincampanya>
-		<campanya>الحملة</campanya>
-		<todaslascampanyas>[جميع الحملات]</todaslascampanyas>
-		<numpc>المجلس الوطني للصحاف</numpc>
-		<numpctip>عدد العملاء المحتملين</numpctip>
-		<numcl>نكل</numcl>
-		<numcltip>عدد العملاء</numcltip>
-		<numag>تذمر</numag>
-		<numagtip>عدد أحداث التقويم</numagtip>
-		<numpr>NPR</numpr>
-		<numprtip>رقم الميزانية</numprtip>
-		<numpy>NPY</numpy>
-		<numpytip>عدد المشاريع</numpytip>
-		<tipoevento>نوع الحدث</tipoevento>
-		<sintipoevento>[لايوجد نوع للاحداث]</sintipoevento>
-		<fileuploaderror>يوجد خطأ في ارسال الملف: </fileuploaderror>
-		<postlimiterror>يوجد خطأ في ارسال البيانات للخادم</postlimiterror>
-		<resumeneconomico>ملخص الاقتصاد</resumeneconomico>
-		<pdf2filter_title>مرشح تصدير الPDF</pdf2filter_title>
-		<pdf2filter_message>اختر البيانات التي تود اضافتها علي الؤش PDF:</pdf2filter_message>
-		<view2filter_title>مرشح عارض PDF</view2filter_title>
-		<view2filter_message>اختر البيانات التي تود عرضها علي PDF:</view2filter_message>
-		<msgerrorsemaphore> هناك خطأ متزامن قم بالغاء الوصول للاجراء </msgerrorsemaphore>
-		<msgnotcheckbox>يجب ان تختار سجل من القائمة  لاستخدام هذه الخاصية</msgnotcheckbox>
-		<gotohome>اعادة تحميل الصفحة</gotohome>
-		<notifybug>الابلاغ عن خطأ</notifybug>
-		<actioncompress>تنزيل الملفات المحددة</actioncompress>
-		<zipformat>صيغة ZIP</zipformat>
-		<tarformat>القطران</tarformat>
-		<gzipformat>GZIP</gzipformat>
-		<bzipformat>BZIP2</bzipformat>
-		<temporalfiles>الملفات المؤقتة</temporalfiles>
-		<sessionexpire>ستنتهي الجلسة خلال  </sessionexpire>
-		<sessionupdate>اضغط هنا لمنع الاغلاق</sessionupdate>
-		<sessionupdated>تم تحديث تسجيل الدخول بنجاح</sessionupdated>
-		<link>رابط</link>
-		<importacion>استيراد</importacion>
-		<todaslasimportaciones>[جميع الواردات]</todaslasimportaciones>
-		<sinimportacion>[لايوجد وارد ذو علاقة]</sinimportacion>
-		<textos_select>اختر نص واضغط علي اضافة</textos_select>
-		<textos_add>إضافة</textos_add>
-		<selectall>تحديد الكل</selectall>
-		<selectnone>حذف المحدد</selectnone>
-		<addtofolder>عرض علي هذا الدليل</addtofolder>
-		<addtofolderok>هذه المحتويات تمت اضافتها لهذا الدليل</addtofolderok>
-		<delfromfolderok>هذا المحتويات تم اخفائها من هذا الدليل</delfromfolderok>
-		<savedfilters>تم حفظ المرشحات</savedfilters>
-		<optionfilter>اختر مرشح محفوظ</optionfilter>
-		<newfilter>اكتب اسم المرشح الجديد</newfilter>
-		<loadfilter>تحميل</loadfilter>
-		<loadfiltertip>اضغط هنا لتحميل المرشح المحدد</loadfiltertip>
-		<updatefilter>تحديث</updatefilter>
-		<updatefiltertip>اضغط هنا لتحديث المرشح المحدد</updatefiltertip>
-		<deletefilter>مسح</deletefilter>
-		<deletefiltertip>اضغط هنا لحذ المرشح المحدد</deletefiltertip>
-		<createfilter>انشاء</createfilter>
-		<createfiltertip>اضغط هنا لانشاء مرشح جديد</createfiltertip>
-		<createfilterok>تم انشاء المرشح الجديد بنجاح</createfilterok>
-		<createfilterko>تحتاج لتعريف اسم المرشح </createfilterko>
-		<loadfilterok>تم تحميل المرشح بنجاح</loadfilterok>
-		<loadfilterko>يحب ان تختار مرشح للتحميل</loadfilterko>
-		<updatefilterok>تم تحديث المرشح بصورة صحيحة</updatefilterok>
-		<updatefilterko>يجب ان تختار مرشح للتعديل</updatefilterko>
-		<deletefilterok>تم ازالة المرشح</deletefilterok>
-		<deletefilterko>يجب ان تحدد مرشح للحذف</deletefilterko>
-		<renamefilter>اعادة تسمية</renamefilter>
-		<renamefiltertip>اضغط هنا لاعادة تسمية مرشح موجود</renamefiltertip>
-		<renamefilterok>لقد تم اعادة تسمية المرشح بنجاح</renamefilterok>
-		<renamefilterko1>يجب ان تحدد مرشح لاعادة تسميته</renamefilterko1>
-		<renamefilterko2>تحتاج الي اسم جديد حتي تتم اعادة تسمية المرشح</renamefilterko2>
-		<showmenu>اظهار القائمة</showmenu>
-		<hidemenu>اخفاء القائمة</hidemenu>
-		<showtools>اظهار الادوات</showtools>
-		<hidetools>اخفاء الادوات</hidetools>
-		<inbackground>هذا الحدث يتم اجرائه في الخلفية ,انتظر قليلا</inbackground>
-		<sentfromsaltos>لقد تم ارسال الاميل من SaltOS</sentfromsaltos>
-		<foldersdata>الادلة</foldersdata>
-		<loweradd>إضافة</loweradd>
-		<notify>التنبيهات</notify>
-		<help>مساعدة</help>
-		<desktoptip>تمكين الدمج مع اشعارات سطح المكتب</desktoptip>
-		<desktoptxt>تم تمكين دمج الاشعارات مع سطح المكتب</desktoptxt>
-		<selectallcheckbox>تحديد جميع السجلات</selectallcheckbox>
-		<selectonecheckbox>تحديد هذا السجل</selectonecheckbox>
-		<formapago>دفع</formapago>
-		<todaslasformasdepago>[جميع أشكال الدفع]</todaslasformasdepago>
-		<sinformapago>[لايوجد مدفوعات]</sinformapago>
-		<actions>خيارات هذا السجل</actions>
-		<msgfilesindexed1>ملف مفهرس إلى قاعدة البيانات</msgfilesindexed1>
-		<msgfilesindexed2>الملفات المفهرسة إلى قاعدة البيانات</msgfilesindexed2>
-		<msgregistersindexed1>التسجيل المفهرس إلى قاعدة البيانات</msgregistersindexed1>
-		<msgregistersindexed2>السجلات المفهرسة إلى قاعدة البيانات</msgregistersindexed2>
-		<msgregisterspurged1>تسجيل تطهيرها إلى قاعدة البيانات</msgregisterspurged1>
-		<msgregisterspurged2>السجلات التي تم تطهيرها إلى قاعدة البيانات</msgregisterspurged2>
-		<biglist>سجلات $limit</biglist>
-		<biglisttip>تحذير: يرجى ملاحظة أن تظهر السجلات $limit والتطبيق قد تعمل ببطء</biglisttip>
-		<activo>تنشيط</activo>
-		<activo_desc>للاشارة الي المستخدم النشط ,او الموجود عن طريق الميراث</activo_desc>
-		<print>طباعه</print>
-	</common>
-	<login>
-		<logintitle>الوصول للتطبيق</logintitle>
-		<remember>تذكر كلمة المرور علي هذا الجهاز</remember>
-		<enter>دخول</enter>
-		<captcha1>رمز الأمان</captcha1>
-		<captcha2>أدخل الرمز هنا</captcha2>
-		<captcha3>اعادة تحميل الصورة</captcha3>
-		<mobileaccess>الدخول عن طريق الجوال</mobileaccess>
-	</login>
-	<menu>
-		<home>الرئيسية</home>
-		<clientes>العملاء</clientes>
-		<contactos>جهات الاتصال</contactos>
-		<incidencias>الأحداث</incidencias>
-		<proyectos>المشاريع</proyectos>
-		<partes>فرق العمل</partes>
-		<documentos>المستندات</documentos>
-		<facturas>الفواتير</facturas>
-		<proveedores>الموفرين</proveedores>
-		<gastos>النفقات</gastos>
-		<epigrafes>البنود</epigrafes>
-		<estados>الحالة</estados>
-		<formaspago>السداد</formaspago>
-		<roles>الأدوار</roles>
-		<usuarios>المستخدمين</usuarios>
-		<grupos>المجموعات</grupos>
-		<prioridades>الأولويات</prioridades>
-		<agenda>التقويم والاحداث</agenda>
-		<actas>محضر الاجتماع</actas>
-		<profile>الملف الشخصي</profile>
-		<maincfg>الاعدادات</maincfg>
-		<about>عن SaltOS</about>
-		<support>الدعم</support>
-		<logout>اغلاق الجلسة</logout>
-		<seguimientos>متابعة مهمة</seguimientos>
-		<datacfg>قاعدة البيانات</datacfg>
-		<correo>البريد</correo>
-		<cuentas>الحسابات</cuentas>
-		<periodicas>دورة الفواتير</periodicas>
-		<empleados>الموظفين</empleados>
-		<productos>المنتجات</productos>
-		<presupuestos>الميزانيات</presupuestos>
-		<posiblescli>العملاء المحتملين</posiblescli>
-		<campanyas>الحملات التجارية</campanyas>
-		<tiposevento>انواع الاحداث</tiposevento>
-		<textos>نصوص محددة مسبقا</textos>
-		<ficheros>المرفقات</ficheros>
-		<feeds>RSS قارئ موجز</feeds>
-		<favoritos>المفضلات</favoritos>
-		<ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-		<importaciones>استيراد</importaciones>
-		<gestioncomercial>المبيعات</gestioncomercial>
-		<gestionproyectos>المشاريع</gestionproyectos>
-		<gestioncontabilidad>المحاسبة</gestioncontabilidad>
-		<gestiongeneral>عام</gestiongeneral>
-		<gestionfiltros>عوامل التصفيه</gestionfiltros>
-		<gestionadministracion>إدارة</gestionadministracion>
-		<gestiontipos>الانواع</gestiontipos>
-		<gestionsistema>النظام</gestionsistema>
-		<folders>الأدلة</folders>
-		<buscador>بحث</buscador>
-		<errorlog>سجلات الأخطاء</errorlog>
-		<categorias>فئات</categorias>
-		<desc_clientes>إدارة عملاء الشركة</desc_clientes>
-		<desc_contactos>للوصول إلى جهات اتصال العميل</desc_contactos>
-		<desc_incidencias>ادر من هنا التأثير بعملائها</desc_incidencias>
-		<desc_proyectos>تابع مشاريعك بهذا النظام</desc_proyectos>
-		<desc_partes>على اعلى مستوى سيتم انجاز العمل في جزء من الساعة</desc_partes>
-		<desc_facturas>التعامل مع جميع الفواتير (فواتير، واردات، الخ ...)</desc_facturas>
-		<desc_proveedores>قم بادارة موردي الشركة</desc_proveedores>
-		<desc_gastos>تحكم بالتكاليف واعرف ما اذا كان يتم تصفيتها</desc_gastos>
-		<desc_documentos>يرجى تجميع كافة الوثائق الخاصة بالشركة</desc_documentos>
-		<desc_agenda>ضع علي التقويم جميع الزيارات والاجتماعات</desc_agenda>
-		<desc_actas>الاحتفاظ بسجل في حينه يسهل من السيطرة علي الاجتماع</desc_actas>
-		<desc_usuarios>رفع ,خفض او تعديل المستخدمين</desc_usuarios>
-		<desc_grupos>انشاء مجموعات عمل للمستخدمين </desc_grupos>
-		<desc_epigrafes>حدد المدخلات للفواتير والنفقات</desc_epigrafes>
-		<desc_formaspago>قم بتعيين طرق الدفع لادارة المصاريف</desc_formaspago>
-		<desc_estados>حدد الحالات الممكنة لحدث, مشروع ..الخ</desc_estados>
-		<desc_prioridades>قم بتحديد اولويات لمدخلات التقويم</desc_prioridades>
-		<desc_profile>قم بتغيير تفضيلات المستخدم</desc_profile>
-		<desc_maincfg>قم بتغيير افضليات التطبيق بشكل كلي</desc_maincfg>
-		<desc_seguimientos>تحكم في مهام مشروع مع المتابعة</desc_seguimientos>
-		<desc_datacfg>قم بعملية النسخ الاحتياط والاستعادة بسهولة</desc_datacfg>
-		<desc_correo>قراءة وإرسال البريد من هنا للعملاء والموردين</desc_correo>
-		<desc_cuentas>تعريف المحاسبي لحسابات دفتر الأستاذ</desc_cuentas>
-		<desc_periodicas>جدولة انتهاء تواريخ دورة الفواتير</desc_periodicas>
-		<desc_empleados>الموظفين من الاعلى ,الاسفل او التعديل</desc_empleados>
-		<desc_posiblescli>السيطرة على الزبائن المحتملين يمكن أن تكون</desc_posiblescli>
-		<desc_presupuestos>إجراء الميزانيات بسرعة وسهولة</desc_presupuestos>
-		<desc_productos>قم هنا بتعريف المنتجات للبيع</desc_productos>
-		<desc_about>تلبية الاعتمادات من هذا التطبيق</desc_about>
-		<desc_logout>إضغط هنا اذا كنت تريد انهاء جلسة العمل</desc_logout>
-		<desc_home>الوصول لشاشة التطبيق الرئيسية</desc_home>
-		<desc_support>الاتصال بالدعم الفني</desc_support>
-		<desc_campanyas>انقر فوق الحملات الإعلانية مع المتابعة</desc_campanyas>
-		<desc_tiposevento>تحديد أنواع الأحداث التي تحتاجها</desc_tiposevento>
-		<desc_textos>إنشاء نصوص معرفة مسبقا للاستخدام في تطبيقات أخرى</desc_textos>
-		<desc_ficheros>الوصول إلى جميع ملفات التطبيق بالكامل</desc_ficheros>
-		<desc_feeds>تتبع خلاصات RSS و اتوم من هذا التطبيق</desc_feeds>
-		<desc_favoritos>إدارة المفضلة من هنا</desc_favoritos>
-		<desc_ivas>إدارة الضرائب من هنا</desc_ivas>
-		<desc_importaciones>استيراد البيانات للتطبيقات الرئيسية من هنا</desc_importaciones>
-		<desc_buscador>للبحث في جميع محتويات قاعدة البيانات</desc_buscador>
-		<desc_errorlog>لمشاهدة سجلات الخطأ في SaltOS</desc_errorlog>
-		<desc_categorias>للاطلاع على فئات تطبيقات محددة</desc_categorias>
-		<quick_home>الرئيسية</quick_home>
-		<quick_correo>البريد</quick_correo>
-		<quick_agenda>الاجندة</quick_agenda>
-		<quick_profile>صفحتي</quick_profile>
-		<quick_support>الدعم</quick_support>
-		<quick_about>عنا</quick_about>
-		<quick_logout>اغلاق</quick_logout>
-		<quick_clientes>العملاء</quick_clientes>
-		<quick_contactos>جهات الاتصال</quick_contactos>
-		<quick_incidencias>الأحداث</quick_incidencias>
-		<quick_proyectos>المشاريع</quick_proyectos>
-		<quick_partes>الأطراف</quick_partes>
-		<quick_documentos>المستندات</quick_documentos>
-		<quick_facturas>الفواتير</quick_facturas>
-		<quick_proveedores>الموفرين</quick_proveedores>
-		<quick_gastos>التكاليف</quick_gastos>
-		<quick_epigrafes>العناوين</quick_epigrafes>
-		<quick_estados>الحالات</quick_estados>
-		<quick_formaspago>الدفع</quick_formaspago>
-		<quick_roles>الادوار</quick_roles>
-		<quick_usuarios>المستخدمين</quick_usuarios>
-		<quick_grupos>المجموعات</quick_grupos>
-		<quick_prioridades>الأولويات</quick_prioridades>
-		<quick_actas>الأوراق</quick_actas>
-		<quick_maincfg>الاعدادات</quick_maincfg>
-		<quick_seguimientos>المتابعات</quick_seguimientos>
-		<quick_datacfg>قاعدة البيانات</quick_datacfg>
-		<quick_cuentas>الحسابات</quick_cuentas>
-		<quick_periodicas>الدورة</quick_periodicas>
-		<quick_empleados>الموظفين</quick_empleados>
-		<quick_productos>المنتجات</quick_productos>
-		<quick_presupuestos>الميزانيات</quick_presupuestos>
-		<quick_posiblescli>العملاء المحتملين</quick_posiblescli>
-		<quick_campanyas>الحملات</quick_campanyas>
-		<quick_tiposevento>انواع الاحداث</quick_tiposevento>
-		<quick_textos>النصوص</quick_textos>
-		<quick_ficheros>المرفقات</quick_ficheros>
-		<quick_feeds>تغذيات RSS </quick_feeds>
-		<quick_favoritos>المفضلات</quick_favoritos>
-		<quick_importaciones>الواردات</quick_importaciones>
-		<quick_buscador>بحث</quick_buscador>
-		<quick_errorlog>الاخطاء</quick_errorlog>
-		<quick_categorias>فئات</quick_categorias>
-		<translator>المترجم</translator>
-		<translatortip>للقيام بترجمات النص</translatortip>
-		<corrector>مدقق الإملائي</corrector>
-		<correctortip>لإجراء تصحيحات النص</correctortip>
-		<calculator>الحاسبة</calculator>
-		<calculatortip>للقيام بحسابات رياضية</calculatortip>
-		<menu>القائمة</menu>
-		<menutip>لاظهار واخفاء قائمة التطبيق</menutip>
-	</menu>
-	<clientes>
-		<list>قائمة العملاء</list>
-		<create>عميل جديد</create>
-		<formview>تفاصيل زبون</formview>
-		<forminsert>اضافة عميل جديد</forminsert>
-		<formupdate>تغير العميل</formupdate>
-		<defaultdata>بيانات الزبون</defaultdata>
-		<contactdata>جهات اتصال الزبون</contactdata>
-		<projectopen>المشاريع النشطة</projectopen>
-		<projectclose>المشاريع المغلقة</projectclose>
-		<incidentopen>الأحداث النشطة</incidentopen>
-		<incidentclose>الاحداث المغلقة</incidentclose>
-		<partesopen>الأجزاء غير المسددة</partesopen>
-		<partesclose>الاجزاء التي تمت تسويتها</partesclose>
-		<albaranes>بيانات الشحن</albaranes>
-		<facturaopen>الفواتير غير المحصلة</facturaopen>
-		<facturaclose>الفواتير الواجب دفعها</facturaclose>
-		<gastosdata>التكاليف المرتبطة بالعميل</gastosdata>
-		<documentdata>مستندات الزبائن</documentdata>
-		<agendadata>نشاطات العملاء</agendadata>
-		<actasdata>محاضر الزبائن</actasdata>
-		<actionliquidar>تسوية الأطراف المحددة</actionliquidar>
-		<msgliquidar>هل تريد مسح الاجزاء المحددة؟</msgliquidar>
-		<plotseguimiento12meses>تحقق من السنة الماضية للعميل</plotseguimiento12meses>
-		<cuentacorriente>الحساب الحالي</cuentacorriente>
-		<diapago>يوم الدفع</diapago>
-		<cuentacontable>حساب دفتر الاستاذ</cuentacontable>
-		<nombrecomercial>الاسم التجاري</nombrecomercial>
-		<nombrefiscal>الاسم الضريبي</nombrefiscal>
-		<tipocliente>نوع الزبون</tipocliente>
-		<clientefiscal>الضرائب</clientefiscal>
-		<clientejuridico>القانوني</clientejuridico>
-		<add>إضافة عميل</add>
-		<presupuestosdata>ميزانيات العملاء</presupuestosdata>
-	</clientes>
-	<contactos>
-		<list>قائمة جهات الاتصال</list>
-		<create>جهة اتصال جديدة</create>
-		<formview>تفاصيل جهة الاتصال</formview>
-		<forminsert>إضافة جهة اتصال جديدة</forminsert>
-		<formupdate>تعديل جهة اتصال</formupdate>
-		<defaultdata>تفاصيل جهة الاتصال</defaultdata>
-		<add>اضافة جهة اتصال</add>
-	</contactos>
-	<incidencias>
-		<list>قائمة التأثيرات</list>
-		<create>حدث جديد</create>
-		<formview>تفاصيل التأثير</formview>
-		<forminsert>اضافة تأثير جديد</forminsert>
-		<formupdate>تغيير الحدث</formupdate>
-		<defaultdata>البيانات في الحدث</defaultdata>
-		<usersdata>المستخدمين</usersdata>
-		<implicados>المعنيه</implicados>
-		<asignadoa>تعيين ل</asignadoa>
-		<msgsendemail>لقد تم ارسال بريد لكل المعنيين بالحدث</msgsendemail>
-		<boolsendmail>إرسال بريد إلكتروني</boolsendmail>
-		<boolsendmailtip>إذا قمت بتمكين هذا الخيار، سيتم إرسال بريد إلكتروني إلى جميع المستخدمين المشاركين في الخطأ</boolsendmailtip>
-		<categoria>الفئه</categoria>
-		<sincategoria>[بدون فئة]</sincategoria>
-		<allcategorias>[جميع الفئات]</allcategorias>
-	</incidencias>
-	<proyectos>
-		<list>قائمة المشاريع</list>
-		<create>مشروع جديد</create>
-		<formview>تفاصيل المشروع</formview>
-		<forminsert>إضافة مشروع جديد</forminsert>
-		<formupdate>تغيير مشروع</formupdate>
-		<defaultdata>بيانات المشروع</defaultdata>
-		<tareasproyecto>مهام المشروع</tareasproyecto>
-		<desctareas>وصف المهام</desctareas>
-		<horastotal>اجمالي الساعات</horastotal>
-		<preciomedio>المتوسط</preciomedio>
-		<preciototal>اجمالي السعر</preciototal>
-		<plotseguimientotareas>تحاويل المشروع</plotseguimientotareas>
-		<legendseguimientotareas>ساعات الميزانية | ساعات العمل</legendseguimientotareas>
-		<real>العقارات</real>
-		<diferencia>الفارق</diferencia>
-		<partesopen>الاجزاء غير المسددة</partesopen>
-		<partesclose>الاجزاء المسددة</partesclose>
-		<relatedseguimientos>المتابعات ذات الصلة</relatedseguimientos>
-		<relatedincidencias>القضايا ذات الصلة</relatedincidencias>
-		<actionliquidar>تسوية الاطراف المحددة</actionliquidar>
-		<msgliquidar>هل تريد مسح الاجزاء المحددة؟</msgliquidar>
-		<agendadata>الاحداث ذات الصلة</agendadata>
-		<actasdata>السجلات ذات الصلة</actasdata>
-		<contactdata>جهات اتصال الذبون</contactdata>
-		<incidentopen>حوادث نشطة</incidentopen>
-		<incidentclose>حوادث مغلقة</incidentclose>
-		<albaranes>بيانات الشحن</albaranes>
-		<facturaopen>فواتير غير محصلة</facturaopen>
-		<facturaclose>فواتير مستحقة</facturaclose>
-		<gastosdata>التكاليف المرتبطة بالزبون</gastosdata>
-		<documentdata>مستندات الزبون</documentdata>
-		<plotseguimientoestados>تجميع المشاريع بالولايات "او الدول"</plotseguimientoestados>
-		<productosproyecto>مخرجات المشروع</productosproyecto>
-		<descproductos>وصف المنتج</descproductos>
-		<actionfacturar>الفاتورة</actionfacturar>
-		<msgfacturar>هل تود التحقق من المشروع؟</msgfacturar>
-		<errorfacturar>هناك فاتورة بالفعل لهذا المشروع</errorfacturar>
-		<okfacturar>تم توصيف المشروع بشكل صحيح</okfacturar>
-		<addseguimientos>تحديث</addseguimientos>
-		<addactas>محاضر</addactas>
-		<addcontactos>جهات اتصال</addcontactos>
-		<addagenda>حدث</addagenda>
-		<resumentareasproductos>ملخ المهام والمنتجات</resumentareasproductos>
-		<presupuestosdata>ميزانيات المشروع</presupuestosdata>
-	</proyectos>
-	<documentos>
-		<list>قائمة المستندات</list>
-		<create>مستند جديد</create>
-		<formview>تفاصيل الالمستند</formview>
-		<forminsert>إضافة مستند جديد</forminsert>
-		<formupdate>تعديل المستند</formupdate>
-		<defaultdata>مستند</defaultdata>
-	</documentos>
-	<partes>
-		<list>قائمة الأجزاء</list>
-		<create>مدخل جديد</create>
-		<formview>تفاصيل مدخل</formview>
-		<forminsert>تفاصيل الجزء الجديد</forminsert>
-		<formupdate>تعديل مدخل</formupdate>
-		<defaultdata>بيانات مدخل</defaultdata>
-		<horasfact>سعات فعليه</horasfact>
-		<preciohora>السعر/ساعة</preciohora>
-		<liquidar>تسوية</liquidar>
-		<dateliq>تاريخ التسوية</dateliq>
-		<msgliquidar>هل تريد حذف الاجزاء المحددة؟</msgliquidar>
-		<msgerror>يجب ان تحدد اﻷجزاء التي تود تسويتها من القائمة</msgerror>
-		<fechainiliq>تاريخ التصفية</fechainiliq>
-		<plotseguimientotop10>10 عملاء مع أجزاء أكثر من العام الماضي</plotseguimientotop10>
-		<plotseguimiento12meses>الفواتير خلال العام الماضي</plotseguimiento12meses>
-	</partes>
-	<usuarios>
-		<list>قائمة المستخدمين</list>
-		<create>مستخدمين جدد</create>
-		<formview>تفاصيل المستخدم</formview>
-		<forminsert>إضافة مستخدم جديد</forminsert>
-		<formupdate>تعديل مستخدم</formupdate>
-		<personaldata>بيانات المستخدم</personaldata>
-		<entrada>مدخل</entrada>
-		<salida>مخرج</salida>
-		<dias>أيام</dias>
-		<logged>متصل</logged>
-		<password2>إعادة كلمة المرور</password2>
-		<errorpassword>كلمات المرور المدخلة غير متطابقة</errorpassword>
-		<contacto>جاهات الاتصال</contacto>
-		<sincontacto>[لايوجد جهة اتصال مرتبطة]</sincontacto>
-		<permdata>إذونات التطبيق</permdata>
-		<allow>سماح</allow>
-		<deny>رفض</deny>
-		<groupsdata>مجموعات المستخدم</groupsdata>
-		<pop3host>خادم POP3 </pop3host>
-		<pop3delete>حذف الرسائل علي الخادم الاخير</pop3delete>
-		<pop3days>أيام</pop3days>
-		<smtphost>خادم SMTP </smtphost>
-		<emailprivated>هذا الحساب خاص (فقط انا يمكنني الدخول)</emailprivated>
-		<emaildefault>حساب افتراضي (الاكثر استخداما)</emaildefault>
-		<emaildisabled>إيقاف هذا الحساب</emaildisabled>
-		<emaildelete>حذف هذا الحساب (يئدي الي فقدان التفاصيل دائما)</emaildelete>
-		<emailsignatureold>التوقيع الحالي</emailsignatureold>
-		<emailsignaturenew>توقيع جديد</emailsignaturenew>
-		<correonew>بريد جديد</correonew>
-		<addmetocc>اضف الي CC جميع الرسائل التي قمت بارسالها</addmetocc>
-		<defaultcrt>تشغيل تطبيق تاكيد الاستلام</defaultcrt>
-		<gcalendar>تقويم Google </gcalendar>
-		<prefgcalendar>خدمة مزامنة التقويم مع تقويم Google </prefgcalendar>
-		<prefgcalendar2>مع هذا الخيار، يمكنك استخدام التقويم من تقويم Google من SaltOS، والحفاظ على البيانات المحدثة تلقائيا دون الحاجة إلى القلق حول الحاجة إلى تكرار البيانات من التقويم إلى أخر</prefgcalendar2>
-		<emailgcalendar>حساب بريد gmail</emailgcalendar>
-		<tokengcalendar>رمز الوصول</tokengcalendar>
-		<feedstitle>قم بتهيئة التغذيات التي تود قرائتها من SaltOS ( RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
-		<url>URL</url>
-		<title>العنوان</title>
-		<description>الوصف</description>
-		<image>صورة</image>
-		<test>اختبار</test>
-		<add>إضافة</add>
-		<feedslist>قائمة مجموعة تغذية RSS</feedslist>
-		<feeds_old>التغذيات المكونة</feeds_old>
-		<feeds_new>تغذية جديدة</feeds_new>
-		<lowerdisabled>ايقاف</lowerdisabled>
-		<singrupo>[بدون مجموعة]</singrupo>
-		<sinaplicacion>[بدون تطبيق]</sinaplicacion>
-		<registro>السجل</registro>
-		<sinregistro>[بدون سجل]</sinregistro>
-		<showdetalles>[اظهار التفاصيل]</showdetalles>
-		<hidedetalles>[اخفاء التفاصيل]</hidedetalles>
-		<appsregsdata>اذونات السجل</appsregsdata>
-	</usuarios>
-	<epigrafes>
-		<list>قائمة المدخلات</list>
-		<create>بند جديد</create>
-		<formview>تفاصيل بند</formview>
-		<forminsert>إضافة بند جديد</forminsert>
-		<formupdate>تعديل البند</formupdate>
-		<defaultdata>مواعيد البند</defaultdata>
-	</epigrafes>
-	<estados>
-		<list>قائمة الحالات</list>
-		<create>حالة جديدة</create>
-		<formview>تفاصيل الحالة</formview>
-		<forminsert>تسجيل الحالة الجديدة</forminsert>
-		<formupdate>تغيير الحالة</formupdate>
-		<defaultdata>تواريخ الحالة</defaultdata>
-		<activo>منشطة</activo>
-	</estados>
-	<grupos>
-		<list>قائمة المجموعات</list>
-		<create>مجموعة جديدة</create>
-		<formview>تفاصل ال</formview>
-		<forminsert>إضافة مجموعة جديدة</forminsert>
-		<formupdate>تعديل المجموعة</formupdate>
-		<defaultdata>بيانات عن المجموعة</defaultdata>
-		<permdata>إذونات التطبيق</permdata>
-		<allow>سماح</allow>
-		<deny>رفض</deny>
-		<showdetalles>[عرض التفاصيل]</showdetalles>
-		<hidedetalles>[إخفاء التفاصيل]</hidedetalles>
-	</grupos>
-	<formaspago>
-		<list>قائمة طرق الدفع</list>
-		<create>طريقة دفع جديدة</create>
-		<formview>تفاصيل الدفع</formview>
-		<forminsert>تسجيل طريقة دفع جديدة</forminsert>
-		<formupdate>تعديل طريقة الدفع</formupdate>
-		<defaultdata>معلومات حول الدفع</defaultdata>
-	</formaspago>
-	<gastos>
-		<list>قائمة النفقات</list>
-		<create>نفقة جديدة</create>
-		<formview>تفاصيل النفقة</formview>
-		<forminsert>إضافة نفقة جديدة</forminsert>
-		<formupdate>تعديل نفقة</formupdate>
-		<defaultdata>بيانات نفقة</defaultdata>
-		<pagadopor>الدفع</pagadopor>
-		<liquidar>تسوية</liquidar>
-		<dateliq>تاريخ التسوية</dateliq>
-		<msgliquidar>هل تريد حذف النفقة المحددة؟</msgliquidar>
-		<msgerror>يجب تحديد تكاليف تسوية المطلوب في القائمة</msgerror>
-		<trimestrereg>تقليص المساهمة</trimestrereg>
-		<fechainireg>تاريخ الادخال</fechainireg>
-		<trimestreliq>تقصليص تسوية</trimestreliq>
-		<fechainiliq>تاريخ التصفية</fechainiliq>
-		<totalliquidar>مجموع  مصاريف التصفية </totalliquidar>
-		<plotseguimientotop10>10 موردين مع زيادة حجم التداول في العام السابق</plotseguimientotop10>
-		<plotseguimiento12meses>نفقات العام الماضي</plotseguimiento12meses>
-		<sinpagador>[بدون دفع]</sinpagador>
-		<vencimientos_old>الاستحقاق</vencimientos_old>
-		<vencimientos_new>إستحقاق جديد</vencimientos_new>
-		<fechavencimiento>تاريخ الاستحقاق</fechavencimiento>
-		<pagado>المدفوعة</pagado>
-		<fechapagado>تاريخ الدفع</fechapagado>
-	</gastos>
-	<facturas>
-		<list>قائمة الفواتير</list>
-		<create>فاتورة جديدة</create>
-		<formview>تفاصيل الفاتورة</formview>
-		<forminsert>إضافة فاتورة جديدة</forminsert>
-		<formupdate>تعديل الفاتورة</formupdate>
-		<defaultdata>بيانات من الفاتورة</defaultdata>
-		<errorfac101>يمكنك فقط فتح الفاتورة الاخيرة</errorfac101>
-		<errorfac103>لايمكنك حذف فاتورة تم إغلاقها</errorfac103>
-		<numfacxxx>رقم الفاتورة</numfacxxx>
-		<numalbxxx>ملاحظات التوصيل</numalbxxx>
-		<fechaemision>تاريخ البث</fechaemision>
-		<titular>البانر</titular>
-		<baseimponible>قاعدة الضريبة</baseimponible>
-		<totalapagar>المجموع الواجب دفعه</totalapagar>
-		<plotseguimientotop10>اكبر 10 عملاء ذو عائدات عالة في العام السابق</plotseguimientotop10>
-		<plotseguimiento12meses>تحقق من العام الماضي</plotseguimiento12meses>
-		<concepts_old>المفاهيم</concepts_old>
-		<concepts_new>مفاهيم جديدة</concepts_new>
-		<products_old>المنتجات</products_old>
-		<products_new>منتجات جديدة</products_new>
-		<vencimientos_old>استحقاقات</vencimientos_old>
-		<vencimientos_new>استحقاق جديد</vencimientos_new>
-		<fechavencimiento>تاريخ الاستحقاق</fechavencimiento>
-		<fechacobrado>تاريخ الدفع</fechacobrado>
-		<clientdata>بيانات الزبون</clientdata>
-		<vencimientosfactura>استحقاق هذه الفاتورة</vencimientosfactura>
-		<vencimientosalbaran>استحقاق امر التسليم هذا</vencimientosalbaran>
-		<vencimientoscobrado>هذا الحقل تم تغييره عن طريق استخدام بيانات من الاستحقاقات </vencimientoscobrado>
-	</facturas>
-	<prioridades>
-		<list>قائمة الأولويات</list>
-		<create>أولوية جديدة</create>
-		<formview>تفاصيل اﻷولوية</formview>
-		<forminsert>إضافة أولوية جديدة</forminsert>
-		<formupdate>تعديل الاولوية</formupdate>
-		<defaultdata>تواريخ اﻷولوية</defaultdata>
-	</prioridades>
-	<agenda>
-		<list>قائمة بالاحداث</list>
-		<create>حدث جديد</create>
-		<formview>تفاصيل الحدث</formview>
-		<forminsert>إضافة حدث جديد</forminsert>
-		<formupdate>التعديل علي الحدث</formupdate>
-		<defaultdata>معومات عن الحدث</defaultdata>
-		<otrasfechas>تواريخ اخرى</otrasfechas>
-		<todoseventos>[جميع الاحداث]</todoseventos>
-		<todoayer>احداث الامس</todoayer>
-		<todohoy>أحداث اليوم</todohoy>
-		<todomanana>أحداث الغد</todomanana>
-		<todosemana>أحداث الأسبوع</todosemana>
-		<todomes>الأحداث لهذا الشهر</todomes>
-		<todoano>أحداث هذه السنة</todoano>
-		<usersdata>مخصصات المستخدمين</usersdata>
-		<asignadoa>تعيين ل</asignadoa>
-		<notifydelay>تغرير</notifydelay>
-		<notifysign>الزمن / ث</notifysign>
-		<notifydstart>بدأ تلغي الاشعار</notifydstart>
-		<notifydstop>اخر تغرير مستلم</notifydstop>
-		<notifyantes>قبل</notifyantes>
-		<notifydespues>بعد</notifydespues>
-		<notifyprev>اشعار سابق للحدث</notifyprev>
-		<notifypost>إنتهاء اشعار الحدث</notifypost>
-		<notifyclear>اﻷشعارات</notifyclear>
-		<notifytip>امسح الاشعارات</notifytip>
-		<notifyclearok>استئناف الاحداث:</notifyclearok>
-		<notifyclearko>لاتوجد احداث معلقة ليتم استنافها</notifyclearko>
-		<calendar>تقويم الاحداث</calendar>
-		<prevmonth>الشهر السابق</prevmonth>
-		<currentmonth>الهر الحالي</currentmonth>
-		<nextmonth>الشهر التالي</nextmonth>
-		<today>اليوم</today>
-		<yesterday>امس</yesterday>
-		<tomorrow>غدا</tomorrow>
-		<continue>يتبع ..</continue>
-		<by>بواسطة </by>
-		<calendarinfo>اظهار المعلومات الي التاريخ:</calendarinfo>
-		<add>إضافة حدث</add>
-		<gcalendar>تقويم Google </gcalendar>
-		<gcalendartip>مزامنة التقويم بين تقويم Google و تقويم SaltOS</gcalendartip>
-		<notgcalendaremail>لم تقم بتهيئة حساب الافضليات لتقويم Google</notgcalendaremail>
-		<invalidgcalendartoken>البيانات الواصلة لحسابتقويم قوقل لديك غير صحيحة</invalidgcalendartoken>
-		<requestgcalendartoken>انقر هنا للحصول على رمز وصول</requestgcalendartoken>
-		<insertgcalendar>أحداث SaltOS المنشئة علي تقويم Google :</insertgcalendar>
-		<updategcalendar>أحداث SaltOS المحدثة علي تقويم Google :</updategcalendar>
-		<insertsaltos>أحداث تقويم Google التي تم إنشائها علي SaltOS:</insertsaltos>
-		<updatesaltos>أحداث تقويم Google التي تم تحديثها علي SaltOS:</updatesaltos>
-		<notinsertupdate>لا يوجد أحداث لليتم تحديثها</notinsertupdate>
-		<expand>توسيع</expand>
-		<expandtip>قم بالتوسيع لاظهارالتفاصل لجميع الاحداث علي التقويم</expandtip>
-		<collapse>تضييق</collapse>
-		<collapsetip>التضييق لاخفاء التفاصيل لجميع الأحداث علي التقويم</collapsetip>
-		<loadingsmall>جاري التحميل...</loadingsmall>
-	</agenda>
-	<proveedores>
-		<list>قائمة الموردين</list>
-		<create>مورد جديد</create>
-		<formview>تفاصيل الموفر</formview>
-		<forminsert>إضافة مورد جديد</forminsert>
-		<formupdate>تغير المورد</formupdate>
-		<defaultdata>تفاصيل الموفر</defaultdata>
-		<plotseguimiento12meses>نفقات الموفر العام الماضي</plotseguimiento12meses>
-		<cuentacorriente>الحساب الحالي</cuentacorriente>
-		<cuentacontable>حساب المحاسبة</cuentacontable>
-		<diapago>يوم الدفع</diapago>
-		<gastosdata>التكاليف المرتبطة بالموفر</gastosdata>
-		<contactdata>جهات اتصال الموفر</contactdata>
-		<nombrecomercial>الاسم التجاري</nombrecomercial>
-		<nombrefiscal>الاسم الضريبي</nombrefiscal>
-		<add>إضافة موفر</add>
-	</proveedores>
-	<actas>
-		<list>قائمة السجلات</list>
-		<create>تقرير جديد</create>
-		<formview>سجل مفصل</formview>
-		<forminsert>اضافة تقرير جديد</forminsert>
-		<formupdate>تغيير المحضر</formupdate>
-		<defaultdata>تفاصيل السجل</defaultdata>
-		<dstart>بدء</dstart>
-		<dstop>انهاء</dstop>
-		<asistentes>المعالجات</asistentes>
-		<temas>الثيمات</temas>
-		<aceptados>المقبولة</aceptados>
-		<cancelados>الملغاة</cancelados>
-		<pendientes>المؤجلة</pendientes>
-		<add>اضافة محضر</add>
-	</actas>
-	<profile>
-		<formupdate>صفحتي</formupdate>
-		<oldpassword>كلمة السر القديمة</oldpassword>
-		<newpassword>كلمة السر الجديدة</newpassword>
-		<newpassword2>اعادة كلمة السر</newpassword2>
-		<erroroldpassword>كلمة السر القديمة خاطئة</erroroldpassword>
-		<errornewpassword>كلمات السر غير متطابقة</errornewpassword>
-		<errornewpassword2>كلمة السر يجب ان تكون اكثر صعوبة</errornewpassword2>
-		<prefgeneral>التفضيلات العامة</prefgeneral>
-		<cambioclave>تغيير كلمة السر الشخصية</cambioclave>
-		<general>عام</general>
-		<title_correo_old>قم بتهيئة حساب البريد POP3 للمستخدم</title_correo_old>
-		<pop3host>خادم POP3 </pop3host>
-		<pop3delete>مسح الرسائل علي الخادم السابق</pop3delete>
-		<pop3days>الايام</pop3days>
-		<smtphost>خادم SMTP </smtphost>
-		<emailprivated>هذا الحساب خاص "انا فقط يمكنني الدخول"</emailprivated>
-		<emaildefault>حساب افتراضي (الأكثر استخدام)</emaildefault>
-		<emaildisabled>إيقاف هذا الحساب</emaildisabled>
-		<emaildelete>حذف هذا الحساب  (سيتم فقدان البيانات إلى الأبد)</emaildelete>
-		<emailsignatureold>التوقيع الحالي</emailsignatureold>
-		<emailsignaturenew>توقيع جديد</emailsignaturenew>
-		<correonew>ايميل جديد</correonew>
-		<title_correo_new>تهيئة حساب بريد POP3 جديد للمستخدم</title_correo_new>
-		<gcalendar>تقويم قوقل</gcalendar>
-		<prefgcalendar>مزامنة التقويم مع خدمة تقويم قوقل</prefgcalendar>
-		<prefgcalendar2>بهذا الخيار يمكنك استخدام التقويم من Google  و SaltOS لمعالجة التحديثات تلقائيا بدون الانزعاج بتكرار البيانات من تقويم لاخر </prefgcalendar2>
-		<emailgcalendar>حساب بريدي علي gmail </emailgcalendar>
-		<tokengcalendar>رمز الوصول</tokengcalendar>
-		<addmetocc>اضف الي الCC الخاص بي جميع رسائل البريد المرسلة</addmetocc>
-		<defaultcrt>افتح المعرف الخاص بالتطبيق الافتراضي</defaultcrt>
-		<feedstitle>اضبط التغذيات التي تود قرائتها من  SaltOS (RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
-		<url>URL</url>
-		<title>العنوان</title>
-		<description>الوصف</description>
-		<image>صورة</image>
-		<test>اختبار</test>
-		<add>اضافة</add>
-		<feedslist>قائمة من مجموعة تغذيات RSS</feedslist>
-		<feeds_old>التغزيات (الخلاصات) المضبوطة</feeds_old>
-		<feeds_new>تغذية جديدة</feeds_new>
-		<lowerdisabled>ايقاف</lowerdisabled>
-		<quick>قائمة سريعة</quick>
-		<prefquick>تعيين القائمة السريعة  الموجودة في الأعلى هنا</prefquick>
-		<sinaplicacion>[لايوجد تطبيق]</sinaplicacion>
-		<quick_button_f1>الزر الاول (F1)</quick_button_f1>
-		<quick_button_f2>الزر الثاني (F2)</quick_button_f2>
-		<quick_button_f3>الزر الثالث (F3)</quick_button_f3>
-		<quick_button_f4>الزر الرابع (F4)</quick_button_f4>
-		<quick_button_f5>الزر الخامس (F5)</quick_button_f5>
-		<quick_button_f6>الزر السادس (F6)</quick_button_f6>
-		<quick_button_f7>الزر السابع (F7)</quick_button_f7>
-		<quick_button_f8>الزر الثامن (F8)</quick_button_f8>
-		<quick_button_f9>الزر التاسع (F9)</quick_button_f9>
-		<quick_button_f10>الزر العاشر (F10)</quick_button_f10>
-		<quick_button_f11>الزر الحادي عشر (F11)</quick_button_f11>
-		<quick_button_f12>الزر الثاني عشر (F12)</quick_button_f12>
-		<folderstab>مجلدات المستخدم</folderstab>
-		<folderspref>قم بتهيئة مجلدات المستخدم هنا ثم اترك ما تريد</folderspref>
-		<newfolder>مجلد مستخدم جديد</newfolder>
-		<withoutparent>[بدون مجلد]</withoutparent>
-		<inparentfolder>ومعلقة في المجلد</inparentfolder>
-		<namefolder>اسم المجلد</namefolder>
-		<parentfolder>معلقة في المجلد</parentfolder>
-	</profile>
-	<maincfg>
-		<formupdate>الاعدادات</formupdate>
-		<general>عام</general>
-		<title_general>قم بتهيئة البرمترات العمة للتطبيقة</title_general>
-		<applicationtitle>عنوان التطبيق</applicationtitle>
-		<plotlistsize> حجم الرسومات على القوائم </plotlistsize>
-		<plotformsize> حجم الرسومات على النموذج</plotformsize>
-		<small>صغير</small>
-		<medium>متوسط</medium>
-		<big>كبير</big>
-		<agendainterval>ابحث في اشعارات التقويم كل </agendainterval>
-		<inboxinterval>تحقق من وجود بريد جديد كل</inboxinterval>
-		<outboxinterval>تحقق من حاوية الإخراج كل</outboxinterval>
-		<feedsinterval>مشاركات جديدة كل</feedsinterval>
-		<feedstimeout>نسيان التغذيات المحذوفة</feedstimeout>
-		<sessioninterval>تحقق من تسجيل الدخول كل</sessioninterval>
-		<sessionwarning>تحذيز الخروج قبل</sessionwarning>
-		<indexinginterval>فهرسة الملفات الجديدة كل</indexinginterval>
-		<integrityinterval>تحقق من النزاهة كل</integrityinterval>
-		<purgeinterval>تطهير البيانات كل</purgeinterval>
-		<emailsupport>بريد الدعم الفني</emailsupport>
-		<segundos>ثواني</segundos>
-		<dias>ايام</dias>
-		<title_logo>حدد الشعار ,الموضع , الحجم والالوان لتخدم علي الPDF's</title_logo>
-		<logo>الشعار</logo>
-		<logoleft>موضع الشعار X</logoleft>
-		<logotop>Y</logotop>
-		<logowidth>العرض</logowidth>
-		<logoheight>الارتفاع</logoheight>
-		<logofile>ملف الشعار الحالي</logofile>
-		<logofilenew>ملف جديد (JPEG فقط)</logofilenew>
-		<colorline>لون الخطوط</colorline>
-		<colortext1>العناوين</colortext1>
-		<colortext2>نص</colortext2>
-		<title_correo>تكوين بعض المعلمات العمومية حول إرسال البريد من SaltOS</title_correo>
-		<cuentasupport>البريد الإلكتروني للعلبة الصادرة للدعم</cuentasupport>
-		<cuentaincidencias>البريد الإلكتروني للعلبة الصادرة للمشكلات</cuentaincidencias>
-		<water>العلامات المائية</water>
-		<title_water>ضبط العلامات المائية المستخدمة علي ال pdf's</title_water>
-		<wateractas>المحاضر</wateractas>
-		<waterpartes>الأجزاء</waterpartes>
-		<waterfacturas>الفواتير</waterfacturas>
-		<wateralbaranes>ملاحظات التسليم</wateralbaranes>
-		<waterpresupuestos>الموازنة</waterpresupuestos>
-		<waterclientes>العملاء</waterclientes>
-		<waterproyectos>المشاريع</waterproyectos>
-		<waterposiblescli>الزبائن المحتملين</waterposiblescli>
-		<watercorreo>البريد</watercorreo>
-		<waterfeeds>Feeds: Texto</waterfeeds>
-		<emailasync>استخدام الارسال المتزامن (سريع)</emailasync>
-		<accounting>الحسابات</accounting>
-		<title_accounting>قم بتهيئة البيانات المحاسبية العامة</title_accounting>
-		<accounting_currency>العملة</accounting_currency>
-		<accounting_iva_name>اسم الضريبة (المضافة)</accounting_iva_name>
-		<accounting_irpf_name>اسم الضريبة (سيتم نقصها)</accounting_irpf_name>
-		<accounting_value>القيمة الافتراضية (فقط اذا تم استخدامها)</accounting_value>
-		<applications_config>التطبيقات</applications_config>
-		<config_tabs>إعداد علامات التبويب</config_tabs>
-		<default_values>القيم الافتراضية</default_values>
-		<configuracion_presupuestos>إعدادات الموازنة</configuracion_presupuestos>
-		<configuracion_agenda>جدولة الإعدادات</configuracion_agenda>
-		<configuracion_incidencias>إعدادات الحدث</configuracion_incidencias>
-		<configuracion_facturas>إعدادات الفاتورة</configuracion_facturas>
-		<configuracion_gastos>إعدادات الإنفاق</configuracion_gastos>
-		<show_tab_objetivos_presupuesto>إظهار الأهداف</show_tab_objetivos_presupuesto>
-		<show_tab_condiciones_presupuesto>إظهار الشروط</show_tab_condiciones_presupuesto>
-		<show_tab_funcional_presupuesto>إظهار اقتراح وظيفي</show_tab_funcional_presupuesto>
-		<show_tab_tecnica_presupuesto>إظهار الاقتراح الفني</show_tab_tecnica_presupuesto>
-		<show_tab_info_adicional_presupuesto>إظهار معلومات إضافية</show_tab_info_adicional_presupuesto>
-		<show_tab_tareas_presupuesto>إظهار المهام</show_tab_tareas_presupuesto>
-		<show_tab_productos_presupuesto>إظهار المنتجات</show_tab_productos_presupuesto>
-		<sin_configurar>[لم يتم تكوينه]</sin_configurar>
-		<filtro_grupo_usuarios_incidencias>إظهار مستخدمي مجموعة في قائمة المستخدمين</filtro_grupo_usuarios_incidencias>
-		<filtro_grupo_usuarios_implicados_incidencias>مجموعة من المعنيين</filtro_grupo_usuarios_implicados_incidencias>
-		<filtro_grupo_usuarios_asignados_incidencias>مجموعة المعينين</filtro_grupo_usuarios_asignados_incidencias>
-	</maincfg>
-	<about>
-		<formupdate>عن SaltOS</formupdate>
-		<copyright>هذا النظام تم توزيعة تحت الترخيص GPL-3.0:</copyright>
-		<components>هذا النظام يستخدم المكونات التالية:</components>
-		<server_base>خادم اساسي:</server_base>
-		<php_plugins>PHP اضافات:</php_plugins>
-		<javascript_base>Javascript اساسية:</javascript_base>
-		<bootstrap_plugins>الإضافات bootstrap:</bootstrap_plugins>
-		<jquery_plugins>JQuery اضافات:</jquery_plugins>
-		<javascript_plugins>Javascript اضافات:</javascript_plugins>
-		<other_plugins>إضافات اخرى:</other_plugins>
-		<server_plugins>اضافات الخادم:</server_plugins>
-		<vxinfo>ملحوظة: (*) بعض المشاريع لاتستخدم رخصة معينة</vxinfo>
-		<license>الرخصة </license>
-		<game>لعبة</game>
-		<licensetitle>أدناه النص القانوني للترخيص </licensetitle>
-		<gametitle>إذا كنت قد وصلت هذه الشاشة، فأنت تستحق استراحة. يمكنك ان تلعب قليلا!!!</gametitle>
-		<translators>الترجمات</translators>
-		<developers>المطورين</developers>
-		<unavailable>معلومات الاتصال غير متوفرة. اتصل بالمطور لأية استفسارات أو أسئلة اواقتراحات..</unavailable>
-	</about>
-	<support>
-		<formupdate>الدعم</formupdate>
-		<contact>الدعم</contact>
-		<subject>الموضوع</subject>
-		<msgsendemail> أرسلت رسالة إلكترونية للدعم</msgsendemail>
-		<msgnotemailsupport>لم يتم تحديد اي بريد للدعم الفني</msgnotemailsupport>
-		<msgnotsubject>لم يتم ادخال اي موضوع</msgnotsubject>
-		<msgnotcomments>لا احد قد قام باي تعليقات</msgnotcomments>
-	</support>
-	<home>
-		<formupdate>الرئيسية</formupdate>
-		<buscar2>البحث في SaltOS</buscar2>
-		<buscar3>البحث في الملفات</buscar3>
-	</home>
-	<seguimientos>
-		<list>قائمة المتابعة</list>
-		<create>متابعة جديدة</create>
-		<formview>تفاصيل متابعة</formview>
-		<forminsert>اضافة متابعة جديدة</forminsert>
-		<formupdate>تغيير متابعة</formupdate>
-		<defaultdata>مراقبة بيانات</defaultdata>
-		<add>اضافة قنوات</add>
-	</seguimientos>
-	<datacfg>
-		<formupdate>الاجرائات علي البيانات الاساسية</formupdate>
-		<export>تصدير</export>
-		<title_export>تصدير جيع قاعدة البيانات علي هيئة SQL</title_export>
-		<desc_export>تتيح لك عمل backup لقاعدة البيانات بالكامل</desc_export>
-		<desc2_export>قم بهذه العملية بشكل دوري  ,احفظ هذا الملف في مكان امن كذاكرة فلاش , قرص مضغوط او اي جهاز خارجي لهذا الحاسب</desc2_export>
-		<import>استيراد</import>
-		<title_import>استيراد جميع قاعدة البيانات علي هيئة SQL</title_import>
-		<desc_import>يمكن جلب جميع قاعدة البيانات من الbackup</desc_import>
-		<desc2_import>حدد الملف بالضغط علي [تصفح] ثم اضغط علي [استيراد] لجلب البيانات الجديدة من الbackup</desc2_import>
-		<desc3_import>مهم: الاستيراد يقوم بحذف البيانات الموجودة حاليا علي التطبيق</desc3_import>
-		<filenotfound>غير قادر علي قرائة محتويات الملف الراد استيراده</filenotfound>
-		<filefoundok>لقد تم جلب بيانات ال backup بنجاح</filefoundok>
-		<fileimporterror>خطأ عند محاولة استيراد الملف</fileimporterror>
-	</datacfg>
-	<correo>
-		<list>قائمة البريد</list>
-		<create>ارسال ايميل جديد</create>
-		<formview>تفاصيل الايميل</formview>
-		<forminsert>إرسال ايميل جديد</forminsert>
-		<formupdate>اعادة توجيه ايميل</formupdate>
-		<defaultdata>بيانات الايميل</defaultdata>
-		<from>من</from>
-		<to>الي</to>
-		<cc>CC</cc>
-		<bcc>مخفيه</bcc>
-		<subject>الموضوع</subject>
-		<attachments>المرفقات</attachments>
-		<message>الرسالة</message>
-		<recibir>استقبال</recibir>
-		<recibirtip>اضغط هنا لاستقبال رسائل جديدة</recibirtip>
-		<enviar>إرسال</enviar>
-		<enviartip>اضغط هنا لارسال رسائل من صندوق الصادر</enviartip>
-		<msgnotpop3email>لم يتم ضبط او تنشيط اي حساب بريدي</msgnotpop3email>
-		<msgnotpop3host>لم يتم تهيئة خادم POP3 </msgnotpop3host>
-		<msgerrorpop3email>لقد حدثت الخطأ التالي: </msgerrorpop3email>
-		<msgnewokpop3email1> لقد تم استقبال رسالة جديدة في صندوق الوارد</msgnewokpop3email1>
-		<msgnewokpop3email2> لقد تم استقبال رسالة جديدة في صندوق الوارد</msgnewokpop3email2>
-		<msggotoemail>الزهاب للبريد</msggotoemail>
-		<msgnewkopop3email>ليس هناك بريد جديد</msgnewkopop3email>
-		<msgconnrefusedpop3email>لقد تم رفض الاتصال من الخادم</msgconnrefusedpop3email>
-		<msgconnerrorpop3email>لايمكن الاتصال بالخادم</msgconnerrorpop3email>
-		<msgopenerrorpop3email>لم يتم ايجاد الملف المحتوي علي الرساله</msgopenerrorpop3email>
-		<msgpropietario>فقط مالك البريد يمكنه استخدام هذه المزايا</msgpropietario>
-		<msgnotfound>لا توجد رسائل محددة , قم بتغيير المرشح</msgnotfound>
-		<msgnumsileidos>تم تصنيفها كمقروئة: </msgnumsileidos>
-		<msgnumsiwait>تم تصنيفها كمؤجلة: </msgnumsiwait>
-		<msgnumsispam>تم تصنيفها ك SPAM: </msgnumsispam>
-		<msgnumnoleidos>تم تصنيفها كغير مقروئة: </msgnumnoleidos>
-		<msgnumnowait>لقد قمت بتصنيفها كمؤجلة: </msgnumnowait>
-		<msgnumnospam>لقد قمت بتصنيفها كغير مرغوبة: </msgnumnospam>
-		<msgnumdelete>تم حذفها: </msgnumdelete>
-		<statenew>جديد</statenew>
-		<actionnew>جديد</actionnew>
-		<stateread>غير مقروئة</stateread>
-		<statereply>تم الرد عليها</statereply>
-		<stateforward>معاد توجيهها</stateforward>
-		<statewait>مؤجلة</statewait>
-		<statespam>مرغوب فيهاغير </statespam>
-		<statesent>مرسلة</statesent>
-		<statenotsent>لم يتم ارسالة</statenotsent>
-		<stateerror>خطأ</stateerror>
-		<stateall>الكل</stateall>
-		<todaslascuentas>[جميع الحسابات]</todaslascuentas>
-		<buttonsend>ارسال</buttonsend>
-		<buttonsendreturnhere>قم بالارسال وعد الي هنا</buttonsendreturnhere>
-		<onlynew>فقط الجديدة</onlynew>
-		<onlywait>فقط المؤجلة</onlywait>
-		<hidespam>اخفاء الغير مرغوبة</hidespam>
-		<withfiles>مع مرفق</withfiles>
-		<onlyspam>فقط الغير مرغوبة</onlyspam>
-		<withoutfiles>بدون مرفق</withoutfiles>
-		<actionwait>تأجيل</actionwait>
-		<actionspam>غير مرغوبة</actionspam>
-		<actionreply>رد</actionreply>
-		<actionreplyall>رد علي الكل</actionreplyall>
-		<actionforward>اعادة توجيه</actionforward>
-		<messageid>رمز الرسالة</messageid>
-		<fulldata>تكبير </fulldata>
-		<sourcedata>مصدر الرسالة</sourcedata>
-		<leidos>قرائة</leidos>
-		<wait>تأجيل</wait>
-		<spam>غير مرغوبة</spam>
-		<borrar>مسح</borrar>
-		<borrartip>حذف جميع المحدد</borrartip>
-		<msgleidos>هل تريد تصنيف جميع الرسائل المحددة كمقروئة/غير مقروئة؟</msgleidos>
-		<msgwait>هل تريد تصنيف جميع الرسائل المحددة كمؤجلة/غير موجلة؟</msgwait>
-		<msgspam>هل تريد تصنيف جميع الرسائل المحددة كمرغوبة/غير مرغوب فيها؟</msgspam>
-		<msgdelete2>هل تريد حذف جميع الرسائل المحددة؟</msgdelete2>
-		<msgnotsendfound>لاتوجد رسائل مؤجلة لترسل</msgnotsendfound>
-		<msgerrorsendmail>يوجد الخطأ التالي: </msgerrorsendmail>
-		<msgtotalsendmail1> تم ارسال الرسالة من حاوية الصادر</msgtotalsendmail1>
-		<msgtotalsendmail2> تم ارسال الرسالة من حاوية الصادر</msgtotalsendmail2>
-		<stateinbox>الوارد</stateinbox>
-		<stateoutbox>الصادر</stateoutbox>
-		<onlyinbox>فقط الوارد</onlyinbox>
-		<onlyoutbox>فقط الصادر</onlyoutbox>
-		<options>خيارات</options>
-		<optionstip>عرض خيارات اضافية من القائمة</optionstip>
-		<pdfoptions>خيارات PDF</pdfoptions>
-		<sinsubject>(ليوجد عنوان)</sinsubject>
-		<msgfromkosendmail>الاعدادات لحقل المرسل غير موجودة</msgfromkosendmail>
-		<msgsendoksendmail>لقد تم ارسال الرسالة بنجاح</msgsendoksendmail>
-		<replysubject>رد: </replysubject>
-		<replyallsubject>رد: </replyallsubject>
-		<forwardsubject>إ.ت: </forwardsubject>
-		<embeddedmessage>لقد كتب #datetime#, #fromname# wrote:</embeddedmessage>
-		<actionreplytip>للرد علي مرسل الرسالة</actionreplytip>
-		<actionreplyalltip>للرد على جميع مستخدمي هذه الرسالة</actionreplyalltip>
-		<actionforwardtip>لاعادة توجيه هذه الرسالة للاخرين</actionforwardtip>
-		<noleidos>غير مقروئة</noleidos>
-		<nowait>لا يوجد رسائل مؤجلة</nowait>
-		<nospam>لا يوجد رسائل غير مرغوب فيها</nospam>
-		<today>اليوم</today>
-		<yesterday>بالامس</yesterday>
-		<week>اسبوع</week>
-		<month>شهر</month>
-		<confirmreadingto>طلب إقرار</confirmreadingto>
-		<marcarcorreos>تصنيف ك</marcarcorreos>
-		<message0> رسائل</message0>
-		<message1> رسالة</message1>
-		<message2> رسائل</message2>
-		<campos>الحقول</campos>
-		<allcampos>[جميع الحقول]</allcampos>
-		<onlyemail>فقط في عنوان البريد</onlyemail>
-		<onlysubject>فقط في الموضوع</onlysubject>
-		<onlybody>فقط في محتوى الرسالة</onlybody>
-		<filtrarcorreos>ترشيح ب</filtrarcorreos>
-		<priority>الاولوية</priority>
-		<priorityhigh>عالية</priorityhigh>
-		<prioritynormal>عادية</prioritynormal>
-		<prioritylow>منخفضة</prioritylow>
-		<sensitivity>الحساسيه</sensitivity>
-		<sensitivitynormal>عادية</sensitivitynormal>
-		<sensitivitypersonal>شخصي</sensitivitypersonal>
-		<sensitivityprivate>خاص</sensitivityprivate>
-		<sensitivityconfidential>سري</sensitivityconfidential>
-		<addincidencia>إضافة خطأ</addincidencia>
-		<addincidenciatip>إنشاء خطأ جديد باستخدام هذا البريد الإلكتروني كتقرير أولي</addincidenciatip>
-		<addincidenciamsg>هل تريد إنشاء خطأ جديد باستخدام هذا البريد الإلكتروني كتقرير أولي؟</addincidenciamsg>
-		<addincidenciaok>خطأ تم إنشاؤه باستخدام التعليمات البرمجية:</addincidenciaok>
-		<notsupportdefined>دعم حساب البريد الإلكتروني غير محدد في SaltOS</notsupportdefined>
-		<notsupportfound>لا يحتوي هذا البريد الإلكتروني على حساب البريد الإلكتروني للدعم</notsupportfound>
-		<incidenciaexists>تم العثور على الخطأ باستخدام الرمز:</incidenciaexists>
-		<interrorsendmail>لم يتم إرسال هذا البريد الإلكتروني بواسطة خطأ داخلي</interrorsendmail>
-	</correo>
-	<cuentas>
-		<list>قائمة الحسابات</list>
-		<create>حساب جديد</create>
-		<formview>تفاصيل الحساب</formview>
-		<forminsert>تسجيل حساب جديد</forminsert>
-		<formupdate>تغيير حساب</formupdate>
-		<defaultdata>معلومات حساب</defaultdata>
-		<logo>الشعار</logo>
-		<title_logo>حدد  اشعار, موضعه, حجمه والالوان ليتم استخدامها علي الفواتير</title_logo>
-		<logoleft>موضع الاشعار X</logoleft>
-		<logotop>Y</logotop>
-		<logowidth>العرض</logowidth>
-		<logoheight>الارتفاع</logoheight>
-		<logofile>ملف الاشعار الحالي</logofile>
-		<logofilenew>ملف جديد (JPEG فقط)</logofilenew>
-		<colorline>لون الخطوط</colorline>
-		<colortext1>العناوين</colortext1>
-		<colortext2>النص</colortext2>
-		<title_facturas>ضبط الماملات ليتم استخدامها علي الفواتير</title_facturas>
-		<facturabool>استخدم </facturabool>
-		<facturavalue>القيمة الافتراضية (اذا تم استخدامها)</facturavalue>
-		<facturapie1>زيل الفاتورة</facturapie1>
-		<facturapie2>خط السير الثاني</facturapie2>
-	</cuentas>
-	<periodicas>
-		<list>قائمة الفواتير العادية</list>
-		<create>دورة مستندية جديدة</create>
-		<formview>دورة فاتورة مفصلة</formview>
-		<forminsert>التسجيل لفاتورة منتظمة جديدة</forminsert>
-		<formupdate>تغير فاتورة منتظمة</formupdate>
-		<defaultdata>بيانات من فاتورة منتظمة</defaultdata>
-		<concepts_old>مفاهيم</concepts_old>
-		<concepts_new>مفاهيم جديدة</concepts_new>
-		<products_old>منتجات</products_old>
-		<products_new>منتجات جديدة</products_new>
-		<vencimientos_old>استحقاق</vencimientos_old>
-		<vencimientos_new>استحقاق جديد</vencimientos_new>
-		<fechavencimiento>تاريخ الاستحقاق</fechavencimiento>
-		<diaemision>يوم البث</diaemision>
-		<diaini>يوم ما</diaini>
-		<dia>يوم</dia>
-		<meses>أشهر</meses>
-		<liquidar>البناء</liquidar>
-		<totalliquidar>جمالي عدد الفواتير التي تم انشائها: </totalliquidar>
-		<msgerror>يجب تحديد الفواتير التي ترغب في إنشاء قائمة والشهر لاستخدامها</msgerror>
-		<msgliquidar>هل تريد إنشاء الفواتير المحددة ؟</msgliquidar>
-	</periodicas>
-	<empleados>
-		<list>قائمة الموظفين</list>
-		<create>موظف جديد</create>
-		<formview>تفاصيل الموظف</formview>
-		<forminsert>إضافة موظف جديد</forminsert>
-		<formupdate>تعديل الموظف</formupdate>
-		<defaultdata>معلومات عن الموظف</defaultdata>
-		<contactdata>جهات الاتصال بالموظف</contactdata>
-	</empleados>
-	<denied>
-		<title>تم رفض الوصول</title>
-		<short>غير مصرح بجراء هذه العملية</short>
-		<large>لقد تم اعاقة تنفيذ الاعملية ,ليس لديك صلاحية لتنفيذ هذا الجزء من البرنامج ,اذا كنت ترى ان هناك خطأ إتصل بمدير النظام</large>
-	</denied>
-	<posiblescli>
-		<list>قائمة العملاء المحتملين</list>
-		<create>عميل محتمل جديد</create>
-		<formview>تفاصيل العميل المحتمل</formview>
-		<forminsert>إضافة عميل محتمل جديد</forminsert>
-		<formupdate>تعديل عميل محتمل</formupdate>
-		<defaultdata>بيانات محتملة</defaultdata>
-		<crearcliente>إنشاء عميل</crearcliente>
-		<clientcreatedok>تم إنشاء العميل الجديد بنجاح</clientcreatedok>
-		<msgcrear>هل تود تغيير الاحتمالية علي العميل؟</msgcrear>
-		<agendadata>الأحداث المحتملة</agendadata>
-		<actasdata>مداولات العملاء المحتملين</actasdata>
-		<presupuestosdata>أسهم العملاء المحتملين</presupuestosdata>
-		<facturacion>الفواتير</facturacion>
-		<iaedesc>نظرة عامة علي IAE</iaedesc>
-		<iaecod>رمز IAE</iaecod>
-		<contacto>عدد افراد الاتصال</contacto>
-		<changedenied>لايمكن ايقاف عميل محتمل لديه محاضر , جدول اعمال و/أو ميزانيات</changedenied>
-	</posiblescli>
-	<productos>
-		<list>المتجر</list>
-		<create>منتج جديد</create>
-		<formview>تفاصيل المنتج</formview>
-		<forminsert>إضافة منتج جديد</forminsert>
-		<formupdate>تغيير في المنتج</formupdate>
-		<defaultdata>بيانات المنتج</defaultdata>
-		<ref>الرقم المرجعي.</ref>
-		<peso>الوزن</peso>
-		<volumen>حجم</volumen>
-		<dimensiones>ابعاد</dimensiones>
-		<fotofile>الصورة الحالية</fotofile>
-		<fotofilenew>صورة جديدة</fotofilenew>
-		<siniva eval="true">"[".CONFIG("accounting_iva_name")." دون]"</siniva>
-	</productos>
-	<presupuestos>
-		<list>قائمة بالميزانيات</list>
-		<create>ميزانية جديدة</create>
-		<formview>تفاصيل الميزانية</formview>
-		<forminsert>إضافة ميزانية جديدة</forminsert>
-		<formupdate>تغير الميزانية</formupdate>
-		<defaultdata>معلومات عن الميزانية</defaultdata>
-		<tareaspresupuesto>مهام الميزانية</tareaspresupuesto>
-		<desctareas>تفاصيل المهام</desctareas>
-		<horastotal>اجمالي الساعات</horastotal>
-		<preciomedio>المتوسط</preciomedio>
-		<preciototal>اجمالي السعر</preciototal>
-		<productospresupuesto>ميزانية المنتجات</productospresupuesto>
-		<descproductos>نظرة عامة على المنتج</descproductos>
-		<objetivos>الأهداف من الميزانية</objetivos>
-		<funcional>المقترح الوظيفي</funcional>
-		<tecnica>المقترح التقني</tecnica>
-		<extras>بيانات اضافية</extras>
-		<condiciones>شروط الميزانية</condiciones>
-		<valoracion>التقييم الاقتصادي</valoracion>
-		<crearproyecto>انشاء مشروع</crearproyecto>
-		<projectexists>هذه الموازنة وعلاقتها بالمشروع</projectexists>
-		<clientnotexists>يجب الاتصالع بالعميل (إذا كان ذو علاقة بعميل محتمل ,اجعل العميل )</clientnotexists>
-		<projectcreatedok>لقد تم انشاء مشروع جديد بنجاح</projectcreatedok>
-		<msgcrear>هل تريد انشاء مشروع جديد علي هذه الموازنة؟</msgcrear>
-		<agendadata>أحداث الموازنة</agendadata>
-		<actasdata>الوقائع علي الموازنة</actasdata>
-		<plotseguimientoestados>ارتباط الموازنات بالدولة</plotseguimientoestados>
-		<resumentareasproductos>ملخص المهام والمنتجات</resumentareasproductos>
-		<objetivospdf>الأهداف</objetivospdf>
-		<funcionalpdf>الوظيفي</funcionalpdf>
-		<tecnicapdf>التقني</tecnicapdf>
-		<extraspdf>معلومات</extraspdf>
-		<condicionespdf>الشروط</condicionespdf>
-		<actionfacturar>بيل</actionfacturar>
-		<msgfacturar>هل تريد التحقق من الميزانية؟</msgfacturar>
-		<errorfacturar>هناك بالفعل فاتورة من هذه الميزانية</errorfacturar>
-		<okfacturar>قام بفوترة الميزانية بشكل صحيح</okfacturar>
-	</presupuestos>
-	<campanyas>
-		<list>قائمة الحملات</list>
-		<create>حملة جديدة</create>
-		<formview>تفاصيل حملة</formview>
-		<forminsert>إضافة حملة جديدة</forminsert>
-		<formupdate>تغيير حملة</formupdate>
-		<defaultdata>تفاصيل الحملة</defaultdata>
-		<agendadata>أحداث العام</agendadata>
-		<presupuestosdata>اسعار العام</presupuestosdata>
-		<projectopen>نشاريع نشطة</projectopen>
-		<projectclose>مشاريع مغلقة</projectclose>
-		<clientesdata>عملاء مقيدون</clientesdata>
-		<posiblesclidata>عملاء محتملون</posiblesclidata>
-	</campanyas>
-	<tiposevento>
-		<list>قائمة بانواع الاحداث</list>
-		<create>نوع حدث جديد</create>
-		<formview>وصف لنوع الحدث</formview>
-		<forminsert>إضافة نوع حدث جديد</forminsert>
-		<formupdate>تغيير نوع حدث</formupdate>
-		<defaultdata>نوع بيانات الحدث</defaultdata>
-	</tiposevento>
-	<textos>
-		<list>قائمة بالنصوص المعرفة مسبقا</list>
-		<publico>الحكومة</publico>
-		<publico_desc>يمكن للجميع استخدام هذا النص المعد مسبقا</publico_desc>
-		<create>نص جديد معرف مسبقا</create>
-		<formview>تفصايل النص المعرف مسبقا</formview>
-		<forminsert>إضافة نص افتراضي جديد</forminsert>
-		<formupdate>تعديل النص الافتراضي</formupdate>
-		<defaultdata>بيانات النص الافتراضي</defaultdata>
-		<sinaplicacion>[بدون تطبيق]</sinaplicacion>
-	</textos>
-	<ficheros>
-		<list>قائمة المرفقات</list>
-		<todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>
-	</ficheros>
-	<feeds>
-		<list>قائمة تغذيات RSS</list>
-		<msgnewfeedsok1> المشاركة المنزلة حديثا</msgnewfeedsok1>
-		<msgnewfeedsok2> المشاركات المنزلة حديثا</msgnewfeedsok2>
-		<msgnewfeedsko>لم يتم ايجاد اي مشاركات جديدة</msgnewfeedsko>
-		<msgmodifiedfeedsok1> تاريخ المشاركة</msgmodifiedfeedsok1>
-		<msgmodifiedfeedsok2> المشاركات حتى الآن</msgmodifiedfeedsok2>
-		<msgnotfeeds>لم يتم تكوين او تمكين تغية RSS</msgnotfeeds>
-		<feed>تغذية RSS</feed>
-		<title>العنوان</title>
-		<pubdate>تاريخ النشر.</pubdate>
-		<recibir>استقبال</recibir>
-		<recibirtip>اضغط هنا لاستقبال المشاكات الجديدة</recibirtip>
-		<todoslosfeeds>[الكل]</todoslosfeeds>
-		<defaultdata>تفاصيل المشاركة</defaultdata>
-		<fulldata>التكبير في المشاركة</fulldata>
-		<actionwait>تاجيل</actionwait>
-		<statenew>جديد</statenew>
-		<actionnew>جديد</actionnew>
-		<statemodified>الاخير</statemodified>
-		<statewait>مؤجلة</statewait>
-		<stateread>قرائة</stateread>
-		<actionforward>اعادة توجيه</actionforward>
-		<actionforwardtip>لاعادة توجيه مشاركة الايميل</actionforwardtip>
-		<formview>تفاصيل المشاركة</formview>
-		<msggotofeeds>الذهاب الي تغذيات RSS</msggotofeeds>
-		<onlynew>الحديثة فقط</onlynew>
-		<onlywait>فقط المؤجلة</onlywait>
-		<options>خيارات</options>
-		<optionstip>اظهر المزيد من الخيارات من القائمة</optionstip>
-		<pdfoptions>خيارات PDF</pdfoptions>
-		<stateall>الكل</stateall>
-		<today>اليوم</today>
-		<yesterday>أمس</yesterday>
-		<week>اسبوع</week>
-		<month>شهر</month>
-		<marcarfeeds>تصنيف ك</marcarfeeds>
-		<leidos>مقروئة</leidos>
-		<wait>مؤجلة</wait>
-		<borrar>مسح</borrar>
-		<borrartip>حذف جميع المشاركات المحددة</borrartip>
-		<noleidos>غير مقروئة</noleidos>
-		<nowait>غير مؤجلة</nowait>
-		<msgleidos>هل تريد تصنيف كافة المشاركات كمقروئة/غير مقروئة؟</msgleidos>
-		<msgwait>هل تريد تصنيف كافة المشاركات كمؤجلة/غير مؤجلة؟</msgwait>
-		<msgdelete2>حذف جميع المشاركات المحددة؟</msgdelete2>
-		<msgpropietario>فقط مالك المشاركات يمكنه استخدام هذه المزايا</msgpropietario>
-		<msgnotfound>لم يتم ايجاد المشاركات المحددة ,قم بيتغير المرشح</msgnotfound>
-		<msgnumsileidos>لقد تم تصنيفها كمقروئة: </msgnumsileidos>
-		<msgnumsiwait>لقد تم تصنيفها كمؤجلة: </msgnumsiwait>
-		<msgnumnoleidos>لقد تم تصنيفها كغير مقروئة </msgnumnoleidos>
-		<msgnumnowait>لقد تم تصنيفها كمؤجلة: </msgnumnowait>
-		<msgnumdelete>تم حذف حذف: </msgnumdelete>
-		<message0> مشاركات</message0>
-		<message1> مشاركة</message1>
-		<message2> مشاركات</message2>
-		<msgerrorfeed>يوجد خطأ في هذه المشاركة : </msgerrorfeed>
-		<sintitle>(لايوجد عنوان)</sintitle>
-		<post>مشاركات RSS </post>
-		<filtrarfeeds>ترشيح بواسطة</filtrarfeeds>
-		<actioncool>رائع</actioncool>
-		<statecool>رائع</statecool>
-		<onlycool>الرائعة فقط</onlycool>
-		<cool>رائع</cool>
-		<nocool>غير رائع</nocool>
-		<msgcool>هل تريد تعليم  جميع المشاركاتب كرائعة/غير رائعة؟</msgcool>
-		<msgnumsicool>تم تعليمها كرائعة: </msgnumsicool>
-		<msgnumnocool>تم تعليمها كرائعة:  </msgnumnocool>
-		<actionfavoritos>إضافة إلى الإشارات المرجعية</actionfavoritos>
-	</feeds>
-	<importaciones>
-		<list>قائمة الاستيرادات</list>
-		<create>استيراد جديد</create>
-		<formview>تفصيل الاستيراد</formview>
-		<forminsert>اضافة استيراد جديد</forminsert>
-		<formupdate>تغير استيراد</formupdate>
-		<defaultdata>استيراد بيانات</defaultdata>
-		<sinaplicacion>[بدون تطبيق]</sinaplicacion>
-		<importdata>محتويات الملف</importdata>
-	</importaciones>
-	<folders>
-		<notfound>الدليل غير موجود</notfound>
-		<todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>
-		<deleteoffolder>حذف هذا الدليل</deleteoffolder>
-		<defaultfolder>الدليل الشخصي</defaultfolder>
-	</folders>
-	<translator>
-		<translator>المترجم</translator>
-		<corrector>مدقق الإملائي</corrector>
-		<es>الإسبانية</es>
-		<ca>الكتالانية</ca>
-		<en>الإنكليزية</en>
-		<pt>البرتغالية</pt>
-		<eu>أوسكرا</eu>
-		<gl>جاليجو</gl>
-		<fr>الفرنسية</fr>
-		<ar>العربية</ar>
-	</translator>
-	<buscador>
-		<list>بحث</list>
-		<todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>
-	</buscador>
-	<errorlog>
-		<formupdate>سجلات الأخطاء</formupdate>
-		<defaultdata>محتويات الملف </defaultdata>
-	</errorlog>
-	<favoritos>
-		<list>قائمة المفضلة</list>
-		<create>مفضلة جديدة</create>
-		<url>URL</url>
-		<bookmarkexists>عنوان URL الذي تحاول حفظه موجود مسبقا في قائمة المفضلة لديط.</bookmarkexists>
-		<invalidurl>عنوان URL غير صالح،الرجاء  التحقق من عنوان الويب: </invalidurl>
-		<bookmarkadded>تمت إضافة رابط بنجاح إلى الإشارات المرجعية</bookmarkadded>
-		<previews>معاينات</previews>
-	</favoritos>
-	<ivas>
-		<list eval="true">CONFIG("accounting_iva_name")." قائمة"</list>
-		<create eval="true">CONFIG("accounting_iva_name")."الجديد"</create>
-		<formview eval="true">CONFIG("accounting_iva_name")." تفاصيل"</formview>
-		<forminsert eval="true">CONFIG("accounting_iva_name")." إضافة جديد"</forminsert>
-		<formupdate eval="true">CONFIG("accounting_iva_name")." تغيير"</formupdate>
-		<defaultdata eval="true">CONFIG("accounting_iva_name")." بيانات"</defaultdata>
-	</ivas>
-	<categorias>
-		<list>قائمة الفئات</list>
-		<create>فئة جديدة</create>
-		<formview>تفاصيل الفئة</formview>
-		<forminsert>إضافة فئة جديدة</forminsert>
-		<formupdate>تعديل الفئة</formupdate>
-		<defaultdata>بيانات الفئة</defaultdata>
-	</categorias>
+    <lang>ar_SA</lang>
+    <dir>rtl</dir>
+    <default>common</default>
+    <common>
+        <nopage>اختر تطبيق لبدأ العمل</nopage>
+        <nocheckuser>اسم المستخدم او كلمة المرور غير صحيحة</nocheckuser>
+        <nochecktime>المستخدم خارج ساعات العمل</nochecktime>
+        <nocheckday>المستخدم خارج ايام العمل</nocheckday>
+        <view>عرض</view>
+        <edit>تعديل</edit>
+        <copy>نسخ</copy>
+        <delete>حذف</delete>
+        <first>الصفحة الاولى</first>
+        <previous>الصفحة السابقة</previous>
+        <next>الصفحة التالية</next>
+        <last>الصفحة الاخيرة</last>
+        <id>كود.</id>
+        <codigo>كود</codigo>
+        <cif>سي.</cif>
+        <nombre>الاسم</nombre>
+        <apellidos>اسم العائلة</apellidos>
+        <tel_fijo>الهاتف الثابت</tel_fijo>
+        <tel_movil>جوال</tel_movil>
+        <telefono>هاتف</telefono>
+        <fax>فاكس</fax>
+        <email>ايميل</email>
+        <web>ويب</web>
+        <filter>خيارات الترشيح</filter>
+        <loadsavefilter>تحميل وحفظ الفلاتر المحددة مسبقا</loadsavefilter>
+        <filtro>بحث الكل</filtro>
+        <buscar>بحث</buscar>
+        <buscartip>قم بالبحث عن طريق المرشحات المختارة</buscartip>
+        <limpiar>اعادة الضبط</limpiar>
+        <limpiartip>تنظيف المرشحات وعرض جميع البيانات</limpiartip>
+        <username>المستخدم</username>
+        <datetime>التاريخ والزمن</datetime>
+        <direccion>العنوان</direccion>
+        <codpostal>الرمز البريدي</codpostal>
+        <poblacion>المدينة</poblacion>
+        <provincia>الاقليم</provincia>
+        <pais>الدولة</pais>
+        <comentarios>التعليقات</comentarios>
+        <descripcion>الوصف</descripcion>
+        <buttoncreate>إنشاء</buttoncreate>
+        <buttoncreatereturnhere>إنشاء والرجوع هنا</buttoncreatereturnhere>
+        <buttonupdate>تحديث</buttonupdate>
+        <buttonupdatereturnhere>تحديث والرجوع هنا</buttonupdatereturnhere>
+        <buttoncancel>إلغاء</buttoncancel>
+        <buttonreturn>رجوع</buttonreturn>
+        <date>تاريخ</date>
+        <incidencia>خطأ</incidencia>
+        <estado>الحالة</estado>
+        <parte>جزء</parte>
+        <tarea>مهمة</tarea>
+        <tareas>مهام</tareas>
+        <liquidado>الصافي</liquidado>
+        <base>الاساسي</base>
+        <total>المجموع</total>
+        <cerrado>اغلق</cerrado>
+        <cobrado>الشحن</cobrado>
+        <empresa>الشركة</empresa>
+        <msgdelete>حذف هذا الحقل؟</msgdelete>
+        <permdenied>غير مصرح بالقيام بهذه العميلة</permdenied>
+        <sinnombre>لا اسم</sinnombre>
+        <deldenied>لا يمكن حذفه لانه مستخدم في تطبيق اخر</deldenied>
+        <yes>نعم</yes>
+        <no>لا</no>
+        <cliente>عميل</cliente>
+        <posiblecli>العميل المحتمل</posiblecli>
+        <password>كلمة السر</password>
+        <numfac>(إنفي)</numfac>
+        <numc>NC</numc>
+        <numctip>عدد التعليقات</numctip>
+        <numf>NF</numf>
+        <numftip>عدد الملفات</numftip>
+        <numt>NT</numt>
+        <numttip>عدد المهام</numttip>
+        <numv>نيفادا</numv>
+        <numvtip>رقم الاستحقاق</numvtip>
+        <nums>NS</nums>
+        <numstip>رقم المتابعة</numstip>
+        <nump>NP</nump>
+        <numptip>عدد المنتجات</numptip>
+        <fechaini>التاريخ بين</fechaini>
+        <fechafin>و</fechafin>
+        <commentdel>حذف هذا التعليق</commentdel>
+        <attachments>المرفقات</attachments>
+        <shortattachments>المرفقات</shortattachments>
+        <userdatetime>المستخدم , التاريخ والزمن</userdatetime>
+        <fileandsize>الملف والحجم</fileandsize>
+        <download>تنزيل</download>
+        <activar>المحتوى</activar>
+        <newcomment>تعليق جديد</newcomment>
+        <newattachments>مرفقات جديدة</newattachments>
+        <proyecto>مشروع</proyecto>
+        <documento>ورق</documento>
+        <hora>الزمن</hora>
+        <horas>ساعات</horas>
+        <minutos>دقائق</minutos>
+        <precio>السعر</precio>
+        <liq>(ليق)</liq>
+        <aplicacion>التطبيق</aplicacion>
+        <rol>الدور</rol>
+        <permiso>التصريح</permiso>
+        <pos>Pos.</pos>
+        <posicion>الموضع</posicion>
+        <trimestre>المدة</trimestre>
+        <otroscampos>مجالات اخرى</otroscampos>
+        <excel>اكسل</excel>
+        <exceltip>تحميل ملف إكسل مع البيانات الحالية</exceltip>
+        <pdf>تحميل PDF</pdf>
+        <pdftip>تحميل ملف PDF مع البيانات الحالية</pdftip>
+        <epigrafe>عنوان</epigrafe>
+        <campoauto>(*) حقل تلقائي</campoauto>
+        <cerr>Clos.</cerr>
+        <cobr>(كوب)</cobr>
+        <concepto>مفهوم</concepto>
+        <unid>وحدة.</unid>
+        <unidades>الوحدات</unidades>
+        <unidadestotal>مجموع الوحدات</unidadestotal>
+        <prun>Pr./Un.</prun>
+        <dto>قرص.</dto>
+        <importe>الكمية</importe>
+        <percent>المعدل</percent>
+        <todos>[الكل]</todos>
+        <todoslosclientes>[جميع العملاء]</todoslosclientes>
+        <todoslosposiblescli>[جميع العملاء المحتملين]</todoslosposiblescli>
+        <todoslosusuarios>[جميع المستخدمين]</todoslosusuarios>
+        <todoslosgrupos>[جميع المجموعات]</todoslosgrupos>
+        <todoslosproveedores>[جميع الموفرين]</todoslosproveedores>
+        <mostrartodos>[إظهار الكل]</mostrartodos>
+        <sinusuario>[لا يوجد مستخدم]</sinusuario>
+        <paginaspc>الصفحة </paginaspc>
+        <regsfrom>السجلات من </regsfrom>
+        <spcdespc> من </spcdespc>
+        <spcalspc> الي </spcalspc>
+        <regspage>السجلات علي الصفحة:</regspage>
+        <registerdata>سجل بيانات</registerdata>
+        <userinsert>انشئ عن طريق</userinsert>
+        <userupdate>عدل عن طريق</userupdate>
+        <allstates>[جميع الحالات]</allstates>
+        <allenabled>الكل مفعل</allenabled>
+        <alldisabled>الكل غير مفعل</alldisabled>
+        <lastinsert>لقد قمنا بانشاء سجل بالكود: </lastinsert>
+        <lastupdate>السجل تم تعديله بالكود: </lastupdate>
+        <lastdelete>لقد قمت بحذف السجل بالكود: </lastdelete>
+        <proveedor>المورد</proveedor>
+        <acta>ورقة</acta>
+        <presupuesto>ميزانية</presupuesto>
+        <newfichero>ملف جديد</newfichero>
+        <fichero>ملف</fichero>
+        <size>حجم</size>
+        <mime>نوع الملف</mime>
+        <grupo>مجموعة</grupo>
+        <ficheroactual>الملف الحالي</ficheroactual>
+        <language>اللغة</language>
+        <style>التصميم</style>
+        <nodata>لايوجد نتائج لعرضها</nodata>
+        <nosearch>يجب توفير مصطلح لإجراء بحث</nosearch>
+        <prioridad>الاولوية</prioridad>
+        <sinproyecto>[بدون مشروع مرتبط]</sinproyecto>
+        <sintarea>[لايوجد مهمة مرتبطة]</sintarea>
+        <todoslosproyectos>[جميع المشاريع]</todoslosproyectos>
+        <todaslastareas>[جميع المهام]</todaslastareas>
+        <todaslascuentas>[الكل]</todaslascuentas>
+        <graficas>الرسومات والإحصاءات</graficas>
+        <mail>ارسال PDF</mail>
+        <mailtip>ارسال ك PDF to لبريدك الالكتروني</mailtip>
+        <view2>عارض الPDF </view2>
+        <view2tip>عرض المستند عن طريق العارض الخاص ب SaltOS</view2tip>
+        <view2error>يوجد خطأ في فتح عارض الPDF</view2error>
+        <view2hash>إذا استمرت المشكلة، اتصل بممثل خدمة مع مده بالكود التالي: </view2hash>
+        <view2opening>يتم فتح المستكشف ,انتظر لحظة...</view2opening>
+        <msgnotuseremail>ليس لديك اي ايميل مضبوط</msgnotuseremail>
+        <msgnotsmtpemail>لم يضبط خادم البريد المرسل</msgnotsmtpemail>
+        <sincliente>[ليس هنالك عميل زو علاقة]</sincliente>
+        <sinposiblecli>[تعذر العميل المقترن]</sinposiblecli>
+        <sinepigrafe>[لا يوجد توضبح ذو علاقة]</sinepigrafe>
+        <sinprioridad>[لا توجد اولوية]</sinprioridad>
+        <sinestado>[لا توجد حالة]</sinestado>
+        <dstart>بدء</dstart>
+        <dstop>انهاء</dstop>
+        <evento>حدث</evento>
+        <sincuenta>[لا يوجد حساب]</sincuenta>
+        <cuenta>حساب</cuenta>
+        <sindia>[لا يوجد يوم]</sindia>
+        <sinmes>[لايوجد شهر]</sinmes>
+        <mes>شهر</mes>
+        <factura>فواتير</factura>
+        <albaran>بوليصة الشحن</albaran>
+        <msglogout>هل تريد الخروج من التطبيق</msglogout>
+        <mostrarcomo>اظهار ك</mostrarcomo>
+        <nif>إن..أي.إف.</nif>
+        <vcard>فيزا كارد</vcard>
+        <cargo>الموضع</cargo>
+        <empleado>الموظفين</empleado>
+        <sinproveedor>[بدون طرف ثالث مورد]</sinproveedor>
+        <sinempleado>[ليس هناك موظف مرتبط]</sinempleado>
+        <port>الميناء</port>
+        <extra>الامان</extra>
+        <requiredfield>حقل مطلوب</requiredfield>
+        <sinpais>[لم يتم اختيار دولة]</sinpais>
+        <sinprovincia>[لم يتم اختيار اقليم]</sinprovincia>
+        <sinpoblacion>[لم يتم اخيار مدينة]</sinpoblacion>
+        <sincodpostal>[لايوجد خيار]</sincodpostal>
+        <usedfilter>التصفية حسب</usedfilter>
+        <suma>المجموع</suma>
+        <average>المتوسط</average>
+        <posx>الموضع X</posx>
+        <posy>الموضع Y</posy>
+        <angle>الزاوية</angle>
+        <withoutinfo>العرض غير معروف </withoutinfo>
+        <sinproducto>[لايوجد منتج ذو علاقة]</sinproducto>
+        <preview>عرض</preview>
+        <sortasc>ترتيب تصاعدي (A-Z)</sortasc>
+        <sortdesc>ترتيب تنازلي (Z-A)</sortdesc>
+        <confirm>تأكيد</confirm>
+        <alert>تنبيه</alert>
+        <error>خطأ</error>
+        <buttonaccept>اوافق</buttonaccept>
+        <buttoncontinue>استمرار</buttoncontinue>
+        <enero>يناير</enero>
+        <febrero>فيراير</febrero>
+        <marzo>مارس</marzo>
+        <abril>ابريل</abril>
+        <mayo>مايو</mayo>
+        <junio>يونيو</junio>
+        <julio>يوليو</julio>
+        <agosto>اغسطس</agosto>
+        <setiembre>سبتمبر</setiembre>
+        <octubre>اكتوبر</octubre>
+        <noviembre>نوفمبر</noviembre>
+        <diciembre>ديسمبر</diciembre>
+        <lunes>الاثنين</lunes>
+        <martes>الثلاثاء</martes>
+        <miercoles>الاربعاء</miercoles>
+        <jueves>الخميس</jueves>
+        <viernes>الجمعة</viernes>
+        <sabado>السبت</sabado>
+        <domingo>الأحد</domingo>
+        <sabadoydomingo>السبت والأحد</sabadoydomingo>
+        <sinpresupuesto>[لايوجد فاتورة مرتبطة]</sinpresupuesto>
+        <todoslospresupuestos>[جميع الفواتير]</todoslospresupuestos>
+        <unknownerror>هناك خطأ في الاتصال (راجع اذا كان الوصول إلى الشبكة يعمل بشكل صحيح، وإذا استمرت المشكلة، اتصل بمسؤول التطبيق)</unknownerror>
+        <qrcode>رمز الاستجابة السريعة</qrcode>
+        <lugar>الموقع</lugar>
+        <loading>يتم تحميل البيانات ,الرجاء الانتظار...</loading>
+        <sending>يتم ارسال البيانات ,الرجاء الانتظار...</sending>
+        <prod>الحث</prod>
+        <addfile>اضافة ملف</addfile>
+        <addproduct>اضافة منتج</addproduct>
+        <addconcept>إضافة مفهوم</addconcept>
+        <addvencimiento>اضافة استحقاق</addvencimiento>
+        <addtarea>اضافة مهمة</addtarea>
+        <send>ارسال</send>
+        <notas>ملاحظات</notas>
+        <sincampanya>[لا شريك في الحملة]</sincampanya>
+        <campanya>الحملة</campanya>
+        <todaslascampanyas>[جميع الحملات]</todaslascampanyas>
+        <numpc>المجلس الوطني للصحاف</numpc>
+        <numpctip>عدد العملاء المحتملين</numpctip>
+        <numcl>نكل</numcl>
+        <numcltip>عدد العملاء</numcltip>
+        <numag>تذمر</numag>
+        <numagtip>عدد أحداث التقويم</numagtip>
+        <numpr>NPR</numpr>
+        <numprtip>رقم الميزانية</numprtip>
+        <numpy>NPY</numpy>
+        <numpytip>عدد المشاريع</numpytip>
+        <tipoevento>نوع الحدث</tipoevento>
+        <sintipoevento>[لايوجد نوع للاحداث]</sintipoevento>
+        <fileuploaderror>يوجد خطأ في ارسال الملف: </fileuploaderror>
+        <postlimiterror>يوجد خطأ في ارسال البيانات للخادم</postlimiterror>
+        <resumeneconomico>ملخص الاقتصاد</resumeneconomico>
+        <pdf2filter_title>مرشح تصدير الPDF</pdf2filter_title>
+        <pdf2filter_message>اختر البيانات التي تود اضافتها علي الؤش PDF:</pdf2filter_message>
+        <view2filter_title>مرشح عارض PDF</view2filter_title>
+        <view2filter_message>اختر البيانات التي تود عرضها علي PDF:</view2filter_message>
+        <msgerrorsemaphore> هناك خطأ متزامن قم بالغاء الوصول للاجراء </msgerrorsemaphore>
+        <msgnotcheckbox>يجب ان تختار سجل من القائمة  لاستخدام هذه الخاصية</msgnotcheckbox>
+        <gotohome>اعادة تحميل الصفحة</gotohome>
+        <notifybug>الابلاغ عن خطأ</notifybug>
+        <actioncompress>تنزيل الملفات المحددة</actioncompress>
+        <zipformat>صيغة ZIP</zipformat>
+        <tarformat>القطران</tarformat>
+        <gzipformat>GZIP</gzipformat>
+        <bzipformat>BZIP2</bzipformat>
+        <temporalfiles>الملفات المؤقتة</temporalfiles>
+        <sessionexpire>ستنتهي الجلسة خلال  </sessionexpire>
+        <sessionupdate>اضغط هنا لمنع الاغلاق</sessionupdate>
+        <sessionupdated>تم تحديث تسجيل الدخول بنجاح</sessionupdated>
+        <link>رابط</link>
+        <importacion>استيراد</importacion>
+        <todaslasimportaciones>[جميع الواردات]</todaslasimportaciones>
+        <sinimportacion>[لايوجد وارد ذو علاقة]</sinimportacion>
+        <textos_select>اختر نص واضغط علي اضافة</textos_select>
+        <textos_add>إضافة</textos_add>
+        <selectall>تحديد الكل</selectall>
+        <selectnone>حذف المحدد</selectnone>
+        <addtofolder>عرض علي هذا الدليل</addtofolder>
+        <addtofolderok>هذه المحتويات تمت اضافتها لهذا الدليل</addtofolderok>
+        <delfromfolderok>هذا المحتويات تم اخفائها من هذا الدليل</delfromfolderok>
+        <savedfilters>تم حفظ المرشحات</savedfilters>
+        <optionfilter>اختر مرشح محفوظ</optionfilter>
+        <newfilter>اكتب اسم المرشح الجديد</newfilter>
+        <loadfilter>تحميل</loadfilter>
+        <loadfiltertip>اضغط هنا لتحميل المرشح المحدد</loadfiltertip>
+        <updatefilter>تحديث</updatefilter>
+        <updatefiltertip>اضغط هنا لتحديث المرشح المحدد</updatefiltertip>
+        <deletefilter>مسح</deletefilter>
+        <deletefiltertip>اضغط هنا لحذ المرشح المحدد</deletefiltertip>
+        <createfilter>انشاء</createfilter>
+        <createfiltertip>اضغط هنا لانشاء مرشح جديد</createfiltertip>
+        <createfilterok>تم انشاء المرشح الجديد بنجاح</createfilterok>
+        <createfilterko>تحتاج لتعريف اسم المرشح </createfilterko>
+        <loadfilterok>تم تحميل المرشح بنجاح</loadfilterok>
+        <loadfilterko>يحب ان تختار مرشح للتحميل</loadfilterko>
+        <updatefilterok>تم تحديث المرشح بصورة صحيحة</updatefilterok>
+        <updatefilterko>يجب ان تختار مرشح للتعديل</updatefilterko>
+        <deletefilterok>تم ازالة المرشح</deletefilterok>
+        <deletefilterko>يجب ان تحدد مرشح للحذف</deletefilterko>
+        <renamefilter>اعادة تسمية</renamefilter>
+        <renamefiltertip>اضغط هنا لاعادة تسمية مرشح موجود</renamefiltertip>
+        <renamefilterok>لقد تم اعادة تسمية المرشح بنجاح</renamefilterok>
+        <renamefilterko1>يجب ان تحدد مرشح لاعادة تسميته</renamefilterko1>
+        <renamefilterko2>تحتاج الي اسم جديد حتي تتم اعادة تسمية المرشح</renamefilterko2>
+        <showmenu>اظهار القائمة</showmenu>
+        <hidemenu>اخفاء القائمة</hidemenu>
+        <showtools>اظهار الادوات</showtools>
+        <hidetools>اخفاء الادوات</hidetools>
+        <inbackground>هذا الحدث يتم اجرائه في الخلفية ,انتظر قليلا</inbackground>
+        <sentfromsaltos>لقد تم ارسال الاميل من SaltOS</sentfromsaltos>
+        <foldersdata>الادلة</foldersdata>
+        <loweradd>إضافة</loweradd>
+        <notify>التنبيهات</notify>
+        <help>مساعدة</help>
+        <desktoptip>تمكين الدمج مع اشعارات سطح المكتب</desktoptip>
+        <desktoptxt>تم تمكين دمج الاشعارات مع سطح المكتب</desktoptxt>
+        <selectallcheckbox>تحديد جميع السجلات</selectallcheckbox>
+        <selectonecheckbox>تحديد هذا السجل</selectonecheckbox>
+        <formapago>دفع</formapago>
+        <todaslasformasdepago>[جميع أشكال الدفع]</todaslasformasdepago>
+        <sinformapago>[لايوجد مدفوعات]</sinformapago>
+        <actions>خيارات هذا السجل</actions>
+        <msgfilesindexed1>ملف مفهرس إلى قاعدة البيانات</msgfilesindexed1>
+        <msgfilesindexed2>الملفات المفهرسة إلى قاعدة البيانات</msgfilesindexed2>
+        <msgregistersindexed1>التسجيل المفهرس إلى قاعدة البيانات</msgregistersindexed1>
+        <msgregistersindexed2>السجلات المفهرسة إلى قاعدة البيانات</msgregistersindexed2>
+        <msgregisterspurged1>تسجيل تطهيرها إلى قاعدة البيانات</msgregisterspurged1>
+        <msgregisterspurged2>السجلات التي تم تطهيرها إلى قاعدة البيانات</msgregisterspurged2>
+        <biglist>سجلات $limit</biglist>
+        <biglisttip>تحذير: يرجى ملاحظة أن تظهر السجلات $limit والتطبيق قد تعمل ببطء</biglisttip>
+        <activo>تنشيط</activo>
+        <activo_desc>للاشارة الي المستخدم النشط ,او الموجود عن طريق الميراث</activo_desc>
+        <print>طباعه</print>
+    </common>
+    <login>
+        <logintitle>الوصول للتطبيق</logintitle>
+        <remember>تذكر كلمة المرور علي هذا الجهاز</remember>
+        <enter>دخول</enter>
+        <captcha1>رمز الأمان</captcha1>
+        <captcha2>أدخل الرمز هنا</captcha2>
+        <captcha3>اعادة تحميل الصورة</captcha3>
+        <mobileaccess>الدخول عن طريق الجوال</mobileaccess>
+    </login>
+    <menu>
+        <home>الرئيسية</home>
+        <clientes>العملاء</clientes>
+        <contactos>جهات الاتصال</contactos>
+        <incidencias>الأحداث</incidencias>
+        <proyectos>المشاريع</proyectos>
+        <partes>فرق العمل</partes>
+        <documentos>المستندات</documentos>
+        <facturas>الفواتير</facturas>
+        <proveedores>الموفرين</proveedores>
+        <gastos>النفقات</gastos>
+        <epigrafes>البنود</epigrafes>
+        <estados>الحالة</estados>
+        <formaspago>السداد</formaspago>
+        <roles>الأدوار</roles>
+        <usuarios>المستخدمين</usuarios>
+        <grupos>المجموعات</grupos>
+        <prioridades>الأولويات</prioridades>
+        <agenda>التقويم والاحداث</agenda>
+        <actas>محضر الاجتماع</actas>
+        <profile>الملف الشخصي</profile>
+        <maincfg>الاعدادات</maincfg>
+        <about>عن SaltOS</about>
+        <support>الدعم</support>
+        <logout>اغلاق الجلسة</logout>
+        <seguimientos>متابعة مهمة</seguimientos>
+        <datacfg>قاعدة البيانات</datacfg>
+        <correo>البريد</correo>
+        <cuentas>الحسابات</cuentas>
+        <periodicas>دورة الفواتير</periodicas>
+        <empleados>الموظفين</empleados>
+        <productos>المنتجات</productos>
+        <presupuestos>الميزانيات</presupuestos>
+        <posiblescli>العملاء المحتملين</posiblescli>
+        <campanyas>الحملات التجارية</campanyas>
+        <tiposevento>انواع الاحداث</tiposevento>
+        <textos>نصوص محددة مسبقا</textos>
+        <ficheros>المرفقات</ficheros>
+        <feeds>RSS قارئ موجز</feeds>
+        <favoritos>المفضلات</favoritos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <importaciones>استيراد</importaciones>
+        <gestioncomercial>المبيعات</gestioncomercial>
+        <gestionproyectos>المشاريع</gestionproyectos>
+        <gestioncontabilidad>المحاسبة</gestioncontabilidad>
+        <gestiongeneral>عام</gestiongeneral>
+        <gestionfiltros>عوامل التصفيه</gestionfiltros>
+        <gestionadministracion>إدارة</gestionadministracion>
+        <gestiontipos>الانواع</gestiontipos>
+        <gestionsistema>النظام</gestionsistema>
+        <folders>الأدلة</folders>
+        <buscador>بحث</buscador>
+        <errorlog>سجلات الأخطاء</errorlog>
+        <categorias>فئات</categorias>
+        <desc_clientes>إدارة عملاء الشركة</desc_clientes>
+        <desc_contactos>للوصول إلى جهات اتصال العميل</desc_contactos>
+        <desc_incidencias>ادر من هنا التأثير بعملائها</desc_incidencias>
+        <desc_proyectos>تابع مشاريعك بهذا النظام</desc_proyectos>
+        <desc_partes>على اعلى مستوى سيتم انجاز العمل في جزء من الساعة</desc_partes>
+        <desc_facturas>التعامل مع جميع الفواتير (فواتير، واردات، الخ ...)</desc_facturas>
+        <desc_proveedores>قم بادارة موردي الشركة</desc_proveedores>
+        <desc_gastos>تحكم بالتكاليف واعرف ما اذا كان يتم تصفيتها</desc_gastos>
+        <desc_documentos>يرجى تجميع كافة الوثائق الخاصة بالشركة</desc_documentos>
+        <desc_agenda>ضع علي التقويم جميع الزيارات والاجتماعات</desc_agenda>
+        <desc_actas>الاحتفاظ بسجل في حينه يسهل من السيطرة علي الاجتماع</desc_actas>
+        <desc_usuarios>رفع ,خفض او تعديل المستخدمين</desc_usuarios>
+        <desc_grupos>انشاء مجموعات عمل للمستخدمين </desc_grupos>
+        <desc_epigrafes>حدد المدخلات للفواتير والنفقات</desc_epigrafes>
+        <desc_formaspago>قم بتعيين طرق الدفع لادارة المصاريف</desc_formaspago>
+        <desc_estados>حدد الحالات الممكنة لحدث, مشروع ..الخ</desc_estados>
+        <desc_prioridades>قم بتحديد اولويات لمدخلات التقويم</desc_prioridades>
+        <desc_profile>قم بتغيير تفضيلات المستخدم</desc_profile>
+        <desc_maincfg>قم بتغيير افضليات التطبيق بشكل كلي</desc_maincfg>
+        <desc_seguimientos>تحكم في مهام مشروع مع المتابعة</desc_seguimientos>
+        <desc_datacfg>قم بعملية النسخ الاحتياط والاستعادة بسهولة</desc_datacfg>
+        <desc_correo>قراءة وإرسال البريد من هنا للعملاء والموردين</desc_correo>
+        <desc_cuentas>تعريف المحاسبي لحسابات دفتر الأستاذ</desc_cuentas>
+        <desc_periodicas>جدولة انتهاء تواريخ دورة الفواتير</desc_periodicas>
+        <desc_empleados>الموظفين من الاعلى ,الاسفل او التعديل</desc_empleados>
+        <desc_posiblescli>السيطرة على الزبائن المحتملين يمكن أن تكون</desc_posiblescli>
+        <desc_presupuestos>إجراء الميزانيات بسرعة وسهولة</desc_presupuestos>
+        <desc_productos>قم هنا بتعريف المنتجات للبيع</desc_productos>
+        <desc_about>تلبية الاعتمادات من هذا التطبيق</desc_about>
+        <desc_logout>إضغط هنا اذا كنت تريد انهاء جلسة العمل</desc_logout>
+        <desc_home>الوصول لشاشة التطبيق الرئيسية</desc_home>
+        <desc_support>الاتصال بالدعم الفني</desc_support>
+        <desc_campanyas>انقر فوق الحملات الإعلانية مع المتابعة</desc_campanyas>
+        <desc_tiposevento>تحديد أنواع الأحداث التي تحتاجها</desc_tiposevento>
+        <desc_textos>إنشاء نصوص معرفة مسبقا للاستخدام في تطبيقات أخرى</desc_textos>
+        <desc_ficheros>الوصول إلى جميع ملفات التطبيق بالكامل</desc_ficheros>
+        <desc_feeds>تتبع خلاصات RSS و اتوم من هذا التطبيق</desc_feeds>
+        <desc_favoritos>إدارة المفضلة من هنا</desc_favoritos>
+        <desc_ivas>إدارة الضرائب من هنا</desc_ivas>
+        <desc_importaciones>استيراد البيانات للتطبيقات الرئيسية من هنا</desc_importaciones>
+        <desc_buscador>للبحث في جميع محتويات قاعدة البيانات</desc_buscador>
+        <desc_errorlog>لمشاهدة سجلات الخطأ في SaltOS</desc_errorlog>
+        <desc_categorias>للاطلاع على فئات تطبيقات محددة</desc_categorias>
+        <quick_home>الرئيسية</quick_home>
+        <quick_correo>البريد</quick_correo>
+        <quick_agenda>الاجندة</quick_agenda>
+        <quick_profile>صفحتي</quick_profile>
+        <quick_support>الدعم</quick_support>
+        <quick_about>عنا</quick_about>
+        <quick_logout>اغلاق</quick_logout>
+        <quick_clientes>العملاء</quick_clientes>
+        <quick_contactos>جهات الاتصال</quick_contactos>
+        <quick_incidencias>الأحداث</quick_incidencias>
+        <quick_proyectos>المشاريع</quick_proyectos>
+        <quick_partes>الأطراف</quick_partes>
+        <quick_documentos>المستندات</quick_documentos>
+        <quick_facturas>الفواتير</quick_facturas>
+        <quick_proveedores>الموفرين</quick_proveedores>
+        <quick_gastos>التكاليف</quick_gastos>
+        <quick_epigrafes>العناوين</quick_epigrafes>
+        <quick_estados>الحالات</quick_estados>
+        <quick_formaspago>الدفع</quick_formaspago>
+        <quick_roles>الادوار</quick_roles>
+        <quick_usuarios>المستخدمين</quick_usuarios>
+        <quick_grupos>المجموعات</quick_grupos>
+        <quick_prioridades>الأولويات</quick_prioridades>
+        <quick_actas>الأوراق</quick_actas>
+        <quick_maincfg>الاعدادات</quick_maincfg>
+        <quick_seguimientos>المتابعات</quick_seguimientos>
+        <quick_datacfg>قاعدة البيانات</quick_datacfg>
+        <quick_cuentas>الحسابات</quick_cuentas>
+        <quick_periodicas>الدورة</quick_periodicas>
+        <quick_empleados>الموظفين</quick_empleados>
+        <quick_productos>المنتجات</quick_productos>
+        <quick_presupuestos>الميزانيات</quick_presupuestos>
+        <quick_posiblescli>العملاء المحتملين</quick_posiblescli>
+        <quick_campanyas>الحملات</quick_campanyas>
+        <quick_tiposevento>انواع الاحداث</quick_tiposevento>
+        <quick_textos>النصوص</quick_textos>
+        <quick_ficheros>المرفقات</quick_ficheros>
+        <quick_feeds>تغذيات RSS </quick_feeds>
+        <quick_favoritos>المفضلات</quick_favoritos>
+        <quick_importaciones>الواردات</quick_importaciones>
+        <quick_buscador>بحث</quick_buscador>
+        <quick_errorlog>الاخطاء</quick_errorlog>
+        <quick_categorias>فئات</quick_categorias>
+        <translator>المترجم</translator>
+        <translatortip>للقيام بترجمات النص</translatortip>
+        <corrector>مدقق الإملائي</corrector>
+        <correctortip>لإجراء تصحيحات النص</correctortip>
+        <calculator>الحاسبة</calculator>
+        <calculatortip>للقيام بحسابات رياضية</calculatortip>
+        <menu>القائمة</menu>
+        <menutip>لاظهار واخفاء قائمة التطبيق</menutip>
+    </menu>
+    <clientes>
+        <list>قائمة العملاء</list>
+        <create>عميل جديد</create>
+        <formview>تفاصيل زبون</formview>
+        <forminsert>اضافة عميل جديد</forminsert>
+        <formupdate>تغير العميل</formupdate>
+        <defaultdata>بيانات الزبون</defaultdata>
+        <contactdata>جهات اتصال الزبون</contactdata>
+        <projectopen>المشاريع النشطة</projectopen>
+        <projectclose>المشاريع المغلقة</projectclose>
+        <incidentopen>الأحداث النشطة</incidentopen>
+        <incidentclose>الاحداث المغلقة</incidentclose>
+        <partesopen>الأجزاء غير المسددة</partesopen>
+        <partesclose>الاجزاء التي تمت تسويتها</partesclose>
+        <albaranes>بيانات الشحن</albaranes>
+        <facturaopen>الفواتير غير المحصلة</facturaopen>
+        <facturaclose>الفواتير الواجب دفعها</facturaclose>
+        <gastosdata>التكاليف المرتبطة بالعميل</gastosdata>
+        <documentdata>مستندات الزبائن</documentdata>
+        <agendadata>نشاطات العملاء</agendadata>
+        <actasdata>محاضر الزبائن</actasdata>
+        <actionliquidar>تسوية الأطراف المحددة</actionliquidar>
+        <msgliquidar>هل تريد مسح الاجزاء المحددة؟</msgliquidar>
+        <plotseguimiento12meses>تحقق من السنة الماضية للعميل</plotseguimiento12meses>
+        <cuentacorriente>الحساب الحالي</cuentacorriente>
+        <diapago>يوم الدفع</diapago>
+        <cuentacontable>حساب دفتر الاستاذ</cuentacontable>
+        <nombrecomercial>الاسم التجاري</nombrecomercial>
+        <nombrefiscal>الاسم الضريبي</nombrefiscal>
+        <tipocliente>نوع الزبون</tipocliente>
+        <clientefiscal>الضرائب</clientefiscal>
+        <clientejuridico>القانوني</clientejuridico>
+        <add>إضافة عميل</add>
+        <presupuestosdata>ميزانيات العملاء</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>قائمة جهات الاتصال</list>
+        <create>جهة اتصال جديدة</create>
+        <formview>تفاصيل جهة الاتصال</formview>
+        <forminsert>إضافة جهة اتصال جديدة</forminsert>
+        <formupdate>تعديل جهة اتصال</formupdate>
+        <defaultdata>تفاصيل جهة الاتصال</defaultdata>
+        <add>اضافة جهة اتصال</add>
+    </contactos>
+    <incidencias>
+        <list>قائمة التأثيرات</list>
+        <create>حدث جديد</create>
+        <formview>تفاصيل التأثير</formview>
+        <forminsert>اضافة تأثير جديد</forminsert>
+        <formupdate>تغيير الحدث</formupdate>
+        <defaultdata>البيانات في الحدث</defaultdata>
+        <usersdata>المستخدمين</usersdata>
+        <implicados>المعنيه</implicados>
+        <asignadoa>تعيين ل</asignadoa>
+        <msgsendemail>لقد تم ارسال بريد لكل المعنيين بالحدث</msgsendemail>
+        <boolsendmail>إرسال بريد إلكتروني</boolsendmail>
+        <boolsendmailtip>إذا قمت بتمكين هذا الخيار، سيتم إرسال بريد إلكتروني إلى جميع المستخدمين المشاركين في الخطأ</boolsendmailtip>
+        <categoria>الفئه</categoria>
+        <sincategoria>[بدون فئة]</sincategoria>
+        <allcategorias>[جميع الفئات]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>قائمة المشاريع</list>
+        <create>مشروع جديد</create>
+        <formview>تفاصيل المشروع</formview>
+        <forminsert>إضافة مشروع جديد</forminsert>
+        <formupdate>تغيير مشروع</formupdate>
+        <defaultdata>بيانات المشروع</defaultdata>
+        <tareasproyecto>مهام المشروع</tareasproyecto>
+        <desctareas>وصف المهام</desctareas>
+        <horastotal>اجمالي الساعات</horastotal>
+        <preciomedio>المتوسط</preciomedio>
+        <preciototal>اجمالي السعر</preciototal>
+        <plotseguimientotareas>تحاويل المشروع</plotseguimientotareas>
+        <legendseguimientotareas>ساعات الميزانية | ساعات العمل</legendseguimientotareas>
+        <real>العقارات</real>
+        <diferencia>الفارق</diferencia>
+        <partesopen>الاجزاء غير المسددة</partesopen>
+        <partesclose>الاجزاء المسددة</partesclose>
+        <relatedseguimientos>المتابعات ذات الصلة</relatedseguimientos>
+        <relatedincidencias>القضايا ذات الصلة</relatedincidencias>
+        <actionliquidar>تسوية الاطراف المحددة</actionliquidar>
+        <msgliquidar>هل تريد مسح الاجزاء المحددة؟</msgliquidar>
+        <agendadata>الاحداث ذات الصلة</agendadata>
+        <actasdata>السجلات ذات الصلة</actasdata>
+        <contactdata>جهات اتصال الذبون</contactdata>
+        <incidentopen>حوادث نشطة</incidentopen>
+        <incidentclose>حوادث مغلقة</incidentclose>
+        <albaranes>بيانات الشحن</albaranes>
+        <facturaopen>فواتير غير محصلة</facturaopen>
+        <facturaclose>فواتير مستحقة</facturaclose>
+        <gastosdata>التكاليف المرتبطة بالزبون</gastosdata>
+        <documentdata>مستندات الزبون</documentdata>
+        <plotseguimientoestados>تجميع المشاريع بالولايات "او الدول"</plotseguimientoestados>
+        <productosproyecto>مخرجات المشروع</productosproyecto>
+        <descproductos>وصف المنتج</descproductos>
+        <actionfacturar>الفاتورة</actionfacturar>
+        <msgfacturar>هل تود التحقق من المشروع؟</msgfacturar>
+        <errorfacturar>هناك فاتورة بالفعل لهذا المشروع</errorfacturar>
+        <okfacturar>تم توصيف المشروع بشكل صحيح</okfacturar>
+        <addseguimientos>تحديث</addseguimientos>
+        <addactas>محاضر</addactas>
+        <addcontactos>جهات اتصال</addcontactos>
+        <addagenda>حدث</addagenda>
+        <resumentareasproductos>ملخ المهام والمنتجات</resumentareasproductos>
+        <presupuestosdata>ميزانيات المشروع</presupuestosdata>
+    </proyectos>
+    <documentos>
+        <list>قائمة المستندات</list>
+        <create>مستند جديد</create>
+        <formview>تفاصيل الالمستند</formview>
+        <forminsert>إضافة مستند جديد</forminsert>
+        <formupdate>تعديل المستند</formupdate>
+        <defaultdata>مستند</defaultdata>
+    </documentos>
+    <partes>
+        <list>قائمة الأجزاء</list>
+        <create>مدخل جديد</create>
+        <formview>تفاصيل مدخل</formview>
+        <forminsert>تفاصيل الجزء الجديد</forminsert>
+        <formupdate>تعديل مدخل</formupdate>
+        <defaultdata>بيانات مدخل</defaultdata>
+        <horasfact>سعات فعليه</horasfact>
+        <preciohora>السعر/ساعة</preciohora>
+        <liquidar>تسوية</liquidar>
+        <dateliq>تاريخ التسوية</dateliq>
+        <msgliquidar>هل تريد حذف الاجزاء المحددة؟</msgliquidar>
+        <msgerror>يجب ان تحدد اﻷجزاء التي تود تسويتها من القائمة</msgerror>
+        <fechainiliq>تاريخ التصفية</fechainiliq>
+        <plotseguimientotop10>10 عملاء مع أجزاء أكثر من العام الماضي</plotseguimientotop10>
+        <plotseguimiento12meses>الفواتير خلال العام الماضي</plotseguimiento12meses>
+    </partes>
+    <usuarios>
+        <list>قائمة المستخدمين</list>
+        <create>مستخدمين جدد</create>
+        <formview>تفاصيل المستخدم</formview>
+        <forminsert>إضافة مستخدم جديد</forminsert>
+        <formupdate>تعديل مستخدم</formupdate>
+        <personaldata>بيانات المستخدم</personaldata>
+        <entrada>مدخل</entrada>
+        <salida>مخرج</salida>
+        <dias>أيام</dias>
+        <logged>متصل</logged>
+        <password2>إعادة كلمة المرور</password2>
+        <errorpassword>كلمات المرور المدخلة غير متطابقة</errorpassword>
+        <contacto>جاهات الاتصال</contacto>
+        <sincontacto>[لايوجد جهة اتصال مرتبطة]</sincontacto>
+        <permdata>إذونات التطبيق</permdata>
+        <allow>سماح</allow>
+        <deny>رفض</deny>
+        <groupsdata>مجموعات المستخدم</groupsdata>
+        <pop3host>خادم POP3 </pop3host>
+        <pop3delete>حذف الرسائل علي الخادم الاخير</pop3delete>
+        <pop3days>أيام</pop3days>
+        <smtphost>خادم SMTP </smtphost>
+        <emailprivated>هذا الحساب خاص (فقط انا يمكنني الدخول)</emailprivated>
+        <emaildefault>حساب افتراضي (الاكثر استخداما)</emaildefault>
+        <emaildisabled>إيقاف هذا الحساب</emaildisabled>
+        <emaildelete>حذف هذا الحساب (يئدي الي فقدان التفاصيل دائما)</emaildelete>
+        <emailsignatureold>التوقيع الحالي</emailsignatureold>
+        <emailsignaturenew>توقيع جديد</emailsignaturenew>
+        <correonew>بريد جديد</correonew>
+        <addmetocc>اضف الي CC جميع الرسائل التي قمت بارسالها</addmetocc>
+        <defaultcrt>تشغيل تطبيق تاكيد الاستلام</defaultcrt>
+        <gcalendar>تقويم Google </gcalendar>
+        <prefgcalendar>خدمة مزامنة التقويم مع تقويم Google </prefgcalendar>
+        <prefgcalendar2>مع هذا الخيار، يمكنك استخدام التقويم من تقويم Google من SaltOS، والحفاظ على البيانات المحدثة تلقائيا دون الحاجة إلى القلق حول الحاجة إلى تكرار البيانات من التقويم إلى أخر</prefgcalendar2>
+        <emailgcalendar>حساب بريد gmail</emailgcalendar>
+        <tokengcalendar>رمز الوصول</tokengcalendar>
+        <feedstitle>قم بتهيئة التغذيات التي تود قرائتها من SaltOS ( RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>العنوان</title>
+        <description>الوصف</description>
+        <image>صورة</image>
+        <test>اختبار</test>
+        <add>إضافة</add>
+        <feedslist>قائمة مجموعة تغذية RSS</feedslist>
+        <feeds_old>التغذيات المكونة</feeds_old>
+        <feeds_new>تغذية جديدة</feeds_new>
+        <lowerdisabled>ايقاف</lowerdisabled>
+        <singrupo>[بدون مجموعة]</singrupo>
+        <sinaplicacion>[بدون تطبيق]</sinaplicacion>
+        <registro>السجل</registro>
+        <sinregistro>[بدون سجل]</sinregistro>
+        <showdetalles>[اظهار التفاصيل]</showdetalles>
+        <hidedetalles>[اخفاء التفاصيل]</hidedetalles>
+        <appsregsdata>اذونات السجل</appsregsdata>
+    </usuarios>
+    <epigrafes>
+        <list>قائمة المدخلات</list>
+        <create>بند جديد</create>
+        <formview>تفاصيل بند</formview>
+        <forminsert>إضافة بند جديد</forminsert>
+        <formupdate>تعديل البند</formupdate>
+        <defaultdata>مواعيد البند</defaultdata>
+    </epigrafes>
+    <estados>
+        <list>قائمة الحالات</list>
+        <create>حالة جديدة</create>
+        <formview>تفاصيل الحالة</formview>
+        <forminsert>تسجيل الحالة الجديدة</forminsert>
+        <formupdate>تغيير الحالة</formupdate>
+        <defaultdata>تواريخ الحالة</defaultdata>
+        <activo>منشطة</activo>
+    </estados>
+    <grupos>
+        <list>قائمة المجموعات</list>
+        <create>مجموعة جديدة</create>
+        <formview>تفاصل ال</formview>
+        <forminsert>إضافة مجموعة جديدة</forminsert>
+        <formupdate>تعديل المجموعة</formupdate>
+        <defaultdata>بيانات عن المجموعة</defaultdata>
+        <permdata>إذونات التطبيق</permdata>
+        <allow>سماح</allow>
+        <deny>رفض</deny>
+        <showdetalles>[عرض التفاصيل]</showdetalles>
+        <hidedetalles>[إخفاء التفاصيل]</hidedetalles>
+    </grupos>
+    <formaspago>
+        <list>قائمة طرق الدفع</list>
+        <create>طريقة دفع جديدة</create>
+        <formview>تفاصيل الدفع</formview>
+        <forminsert>تسجيل طريقة دفع جديدة</forminsert>
+        <formupdate>تعديل طريقة الدفع</formupdate>
+        <defaultdata>معلومات حول الدفع</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>قائمة النفقات</list>
+        <create>نفقة جديدة</create>
+        <formview>تفاصيل النفقة</formview>
+        <forminsert>إضافة نفقة جديدة</forminsert>
+        <formupdate>تعديل نفقة</formupdate>
+        <defaultdata>بيانات نفقة</defaultdata>
+        <pagadopor>الدفع</pagadopor>
+        <liquidar>تسوية</liquidar>
+        <dateliq>تاريخ التسوية</dateliq>
+        <msgliquidar>هل تريد حذف النفقة المحددة؟</msgliquidar>
+        <msgerror>يجب تحديد تكاليف تسوية المطلوب في القائمة</msgerror>
+        <trimestrereg>تقليص المساهمة</trimestrereg>
+        <fechainireg>تاريخ الادخال</fechainireg>
+        <trimestreliq>تقصليص تسوية</trimestreliq>
+        <fechainiliq>تاريخ التصفية</fechainiliq>
+        <totalliquidar>مجموع  مصاريف التصفية </totalliquidar>
+        <plotseguimientotop10>10 موردين مع زيادة حجم التداول في العام السابق</plotseguimientotop10>
+        <plotseguimiento12meses>نفقات العام الماضي</plotseguimiento12meses>
+        <sinpagador>[بدون دفع]</sinpagador>
+        <vencimientos_old>الاستحقاق</vencimientos_old>
+        <vencimientos_new>إستحقاق جديد</vencimientos_new>
+        <fechavencimiento>تاريخ الاستحقاق</fechavencimiento>
+        <pagado>المدفوعة</pagado>
+        <fechapagado>تاريخ الدفع</fechapagado>
+    </gastos>
+    <facturas>
+        <list>قائمة الفواتير</list>
+        <create>فاتورة جديدة</create>
+        <formview>تفاصيل الفاتورة</formview>
+        <forminsert>إضافة فاتورة جديدة</forminsert>
+        <formupdate>تعديل الفاتورة</formupdate>
+        <defaultdata>بيانات من الفاتورة</defaultdata>
+        <errorfac101>يمكنك فقط فتح الفاتورة الاخيرة</errorfac101>
+        <errorfac103>لايمكنك حذف فاتورة تم إغلاقها</errorfac103>
+        <numfacxxx>رقم الفاتورة</numfacxxx>
+        <numalbxxx>ملاحظات التوصيل</numalbxxx>
+        <fechaemision>تاريخ البث</fechaemision>
+        <titular>البانر</titular>
+        <baseimponible>قاعدة الضريبة</baseimponible>
+        <totalapagar>المجموع الواجب دفعه</totalapagar>
+        <plotseguimientotop10>اكبر 10 عملاء ذو عائدات عالة في العام السابق</plotseguimientotop10>
+        <plotseguimiento12meses>تحقق من العام الماضي</plotseguimiento12meses>
+        <concepts_old>المفاهيم</concepts_old>
+        <concepts_new>مفاهيم جديدة</concepts_new>
+        <products_old>المنتجات</products_old>
+        <products_new>منتجات جديدة</products_new>
+        <vencimientos_old>استحقاقات</vencimientos_old>
+        <vencimientos_new>استحقاق جديد</vencimientos_new>
+        <fechavencimiento>تاريخ الاستحقاق</fechavencimiento>
+        <fechacobrado>تاريخ الدفع</fechacobrado>
+        <clientdata>بيانات الزبون</clientdata>
+        <vencimientosfactura>استحقاق هذه الفاتورة</vencimientosfactura>
+        <vencimientosalbaran>استحقاق امر التسليم هذا</vencimientosalbaran>
+        <vencimientoscobrado>هذا الحقل تم تغييره عن طريق استخدام بيانات من الاستحقاقات </vencimientoscobrado>
+    </facturas>
+    <prioridades>
+        <list>قائمة الأولويات</list>
+        <create>أولوية جديدة</create>
+        <formview>تفاصيل اﻷولوية</formview>
+        <forminsert>إضافة أولوية جديدة</forminsert>
+        <formupdate>تعديل الاولوية</formupdate>
+        <defaultdata>تواريخ اﻷولوية</defaultdata>
+    </prioridades>
+    <agenda>
+        <list>قائمة بالاحداث</list>
+        <create>حدث جديد</create>
+        <formview>تفاصيل الحدث</formview>
+        <forminsert>إضافة حدث جديد</forminsert>
+        <formupdate>التعديل علي الحدث</formupdate>
+        <defaultdata>معومات عن الحدث</defaultdata>
+        <otrasfechas>تواريخ اخرى</otrasfechas>
+        <todoseventos>[جميع الاحداث]</todoseventos>
+        <todoayer>احداث الامس</todoayer>
+        <todohoy>أحداث اليوم</todohoy>
+        <todomanana>أحداث الغد</todomanana>
+        <todosemana>أحداث الأسبوع</todosemana>
+        <todomes>الأحداث لهذا الشهر</todomes>
+        <todoano>أحداث هذه السنة</todoano>
+        <usersdata>مخصصات المستخدمين</usersdata>
+        <asignadoa>تعيين ل</asignadoa>
+        <notifydelay>تغرير</notifydelay>
+        <notifysign>الزمن / ث</notifysign>
+        <notifydstart>بدأ تلغي الاشعار</notifydstart>
+        <notifydstop>اخر تغرير مستلم</notifydstop>
+        <notifyantes>قبل</notifyantes>
+        <notifydespues>بعد</notifydespues>
+        <notifyprev>اشعار سابق للحدث</notifyprev>
+        <notifypost>إنتهاء اشعار الحدث</notifypost>
+        <notifyclear>اﻷشعارات</notifyclear>
+        <notifytip>امسح الاشعارات</notifytip>
+        <notifyclearok>استئناف الاحداث:</notifyclearok>
+        <notifyclearko>لاتوجد احداث معلقة ليتم استنافها</notifyclearko>
+        <calendar>تقويم الاحداث</calendar>
+        <prevmonth>الشهر السابق</prevmonth>
+        <currentmonth>الهر الحالي</currentmonth>
+        <nextmonth>الشهر التالي</nextmonth>
+        <today>اليوم</today>
+        <yesterday>امس</yesterday>
+        <tomorrow>غدا</tomorrow>
+        <continue>يتبع ..</continue>
+        <by>بواسطة </by>
+        <calendarinfo>اظهار المعلومات الي التاريخ:</calendarinfo>
+        <add>إضافة حدث</add>
+        <gcalendar>تقويم Google </gcalendar>
+        <gcalendartip>مزامنة التقويم بين تقويم Google و تقويم SaltOS</gcalendartip>
+        <notgcalendaremail>لم تقم بتهيئة حساب الافضليات لتقويم Google</notgcalendaremail>
+        <invalidgcalendartoken>البيانات الواصلة لحسابتقويم قوقل لديك غير صحيحة</invalidgcalendartoken>
+        <requestgcalendartoken>انقر هنا للحصول على رمز وصول</requestgcalendartoken>
+        <insertgcalendar>أحداث SaltOS المنشئة علي تقويم Google :</insertgcalendar>
+        <updategcalendar>أحداث SaltOS المحدثة علي تقويم Google :</updategcalendar>
+        <insertsaltos>أحداث تقويم Google التي تم إنشائها علي SaltOS:</insertsaltos>
+        <updatesaltos>أحداث تقويم Google التي تم تحديثها علي SaltOS:</updatesaltos>
+        <notinsertupdate>لا يوجد أحداث لليتم تحديثها</notinsertupdate>
+        <expand>توسيع</expand>
+        <expandtip>قم بالتوسيع لاظهارالتفاصل لجميع الاحداث علي التقويم</expandtip>
+        <collapse>تضييق</collapse>
+        <collapsetip>التضييق لاخفاء التفاصيل لجميع الأحداث علي التقويم</collapsetip>
+        <loadingsmall>جاري التحميل...</loadingsmall>
+    </agenda>
+    <proveedores>
+        <list>قائمة الموردين</list>
+        <create>مورد جديد</create>
+        <formview>تفاصيل الموفر</formview>
+        <forminsert>إضافة مورد جديد</forminsert>
+        <formupdate>تغير المورد</formupdate>
+        <defaultdata>تفاصيل الموفر</defaultdata>
+        <plotseguimiento12meses>نفقات الموفر العام الماضي</plotseguimiento12meses>
+        <cuentacorriente>الحساب الحالي</cuentacorriente>
+        <cuentacontable>حساب المحاسبة</cuentacontable>
+        <diapago>يوم الدفع</diapago>
+        <gastosdata>التكاليف المرتبطة بالموفر</gastosdata>
+        <contactdata>جهات اتصال الموفر</contactdata>
+        <nombrecomercial>الاسم التجاري</nombrecomercial>
+        <nombrefiscal>الاسم الضريبي</nombrefiscal>
+        <add>إضافة موفر</add>
+    </proveedores>
+    <actas>
+        <list>قائمة السجلات</list>
+        <create>تقرير جديد</create>
+        <formview>سجل مفصل</formview>
+        <forminsert>اضافة تقرير جديد</forminsert>
+        <formupdate>تغيير المحضر</formupdate>
+        <defaultdata>تفاصيل السجل</defaultdata>
+        <dstart>بدء</dstart>
+        <dstop>انهاء</dstop>
+        <asistentes>المعالجات</asistentes>
+        <temas>الثيمات</temas>
+        <aceptados>المقبولة</aceptados>
+        <cancelados>الملغاة</cancelados>
+        <pendientes>المؤجلة</pendientes>
+        <add>اضافة محضر</add>
+    </actas>
+    <profile>
+        <formupdate>صفحتي</formupdate>
+        <oldpassword>كلمة السر القديمة</oldpassword>
+        <newpassword>كلمة السر الجديدة</newpassword>
+        <newpassword2>اعادة كلمة السر</newpassword2>
+        <erroroldpassword>كلمة السر القديمة خاطئة</erroroldpassword>
+        <errornewpassword>كلمات السر غير متطابقة</errornewpassword>
+        <errornewpassword2>كلمة السر يجب ان تكون اكثر صعوبة</errornewpassword2>
+        <prefgeneral>التفضيلات العامة</prefgeneral>
+        <cambioclave>تغيير كلمة السر الشخصية</cambioclave>
+        <general>عام</general>
+        <title_correo_old>قم بتهيئة حساب البريد POP3 للمستخدم</title_correo_old>
+        <pop3host>خادم POP3 </pop3host>
+        <pop3delete>مسح الرسائل علي الخادم السابق</pop3delete>
+        <pop3days>الايام</pop3days>
+        <smtphost>خادم SMTP </smtphost>
+        <emailprivated>هذا الحساب خاص "انا فقط يمكنني الدخول"</emailprivated>
+        <emaildefault>حساب افتراضي (الأكثر استخدام)</emaildefault>
+        <emaildisabled>إيقاف هذا الحساب</emaildisabled>
+        <emaildelete>حذف هذا الحساب  (سيتم فقدان البيانات إلى الأبد)</emaildelete>
+        <emailsignatureold>التوقيع الحالي</emailsignatureold>
+        <emailsignaturenew>توقيع جديد</emailsignaturenew>
+        <correonew>ايميل جديد</correonew>
+        <title_correo_new>تهيئة حساب بريد POP3 جديد للمستخدم</title_correo_new>
+        <gcalendar>تقويم قوقل</gcalendar>
+        <prefgcalendar>مزامنة التقويم مع خدمة تقويم قوقل</prefgcalendar>
+        <prefgcalendar2>بهذا الخيار يمكنك استخدام التقويم من Google  و SaltOS لمعالجة التحديثات تلقائيا بدون الانزعاج بتكرار البيانات من تقويم لاخر </prefgcalendar2>
+        <emailgcalendar>حساب بريدي علي gmail </emailgcalendar>
+        <tokengcalendar>رمز الوصول</tokengcalendar>
+        <addmetocc>اضف الي الCC الخاص بي جميع رسائل البريد المرسلة</addmetocc>
+        <defaultcrt>افتح المعرف الخاص بالتطبيق الافتراضي</defaultcrt>
+        <feedstitle>اضبط التغذيات التي تود قرائتها من  SaltOS (RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>العنوان</title>
+        <description>الوصف</description>
+        <image>صورة</image>
+        <test>اختبار</test>
+        <add>اضافة</add>
+        <feedslist>قائمة من مجموعة تغذيات RSS</feedslist>
+        <feeds_old>التغزيات (الخلاصات) المضبوطة</feeds_old>
+        <feeds_new>تغذية جديدة</feeds_new>
+        <lowerdisabled>ايقاف</lowerdisabled>
+        <quick>قائمة سريعة</quick>
+        <prefquick>تعيين القائمة السريعة  الموجودة في الأعلى هنا</prefquick>
+        <sinaplicacion>[لايوجد تطبيق]</sinaplicacion>
+        <quick_button_f1>الزر الاول (F1)</quick_button_f1>
+        <quick_button_f2>الزر الثاني (F2)</quick_button_f2>
+        <quick_button_f3>الزر الثالث (F3)</quick_button_f3>
+        <quick_button_f4>الزر الرابع (F4)</quick_button_f4>
+        <quick_button_f5>الزر الخامس (F5)</quick_button_f5>
+        <quick_button_f6>الزر السادس (F6)</quick_button_f6>
+        <quick_button_f7>الزر السابع (F7)</quick_button_f7>
+        <quick_button_f8>الزر الثامن (F8)</quick_button_f8>
+        <quick_button_f9>الزر التاسع (F9)</quick_button_f9>
+        <quick_button_f10>الزر العاشر (F10)</quick_button_f10>
+        <quick_button_f11>الزر الحادي عشر (F11)</quick_button_f11>
+        <quick_button_f12>الزر الثاني عشر (F12)</quick_button_f12>
+        <folderstab>مجلدات المستخدم</folderstab>
+        <folderspref>قم بتهيئة مجلدات المستخدم هنا ثم اترك ما تريد</folderspref>
+        <newfolder>مجلد مستخدم جديد</newfolder>
+        <withoutparent>[بدون مجلد]</withoutparent>
+        <inparentfolder>ومعلقة في المجلد</inparentfolder>
+        <namefolder>اسم المجلد</namefolder>
+        <parentfolder>معلقة في المجلد</parentfolder>
+    </profile>
+    <maincfg>
+        <formupdate>الاعدادات</formupdate>
+        <general>عام</general>
+        <title_general>قم بتهيئة البرمترات العمة للتطبيقة</title_general>
+        <applicationtitle>عنوان التطبيق</applicationtitle>
+        <plotlistsize> حجم الرسومات على القوائم </plotlistsize>
+        <plotformsize> حجم الرسومات على النموذج</plotformsize>
+        <small>صغير</small>
+        <medium>متوسط</medium>
+        <big>كبير</big>
+        <agendainterval>ابحث في اشعارات التقويم كل </agendainterval>
+        <inboxinterval>تحقق من وجود بريد جديد كل</inboxinterval>
+        <outboxinterval>تحقق من حاوية الإخراج كل</outboxinterval>
+        <feedsinterval>مشاركات جديدة كل</feedsinterval>
+        <feedstimeout>نسيان التغذيات المحذوفة</feedstimeout>
+        <sessioninterval>تحقق من تسجيل الدخول كل</sessioninterval>
+        <sessionwarning>تحذيز الخروج قبل</sessionwarning>
+        <indexinginterval>فهرسة الملفات الجديدة كل</indexinginterval>
+        <integrityinterval>تحقق من النزاهة كل</integrityinterval>
+        <purgeinterval>تطهير البيانات كل</purgeinterval>
+        <emailsupport>بريد الدعم الفني</emailsupport>
+        <segundos>ثواني</segundos>
+        <dias>ايام</dias>
+        <title_logo>حدد الشعار ,الموضع , الحجم والالوان لتخدم علي الPDF's</title_logo>
+        <logo>الشعار</logo>
+        <logoleft>موضع الشعار X</logoleft>
+        <logotop>Y</logotop>
+        <logowidth>العرض</logowidth>
+        <logoheight>الارتفاع</logoheight>
+        <logofile>ملف الشعار الحالي</logofile>
+        <logofilenew>ملف جديد (JPEG فقط)</logofilenew>
+        <colorline>لون الخطوط</colorline>
+        <colortext1>العناوين</colortext1>
+        <colortext2>نص</colortext2>
+        <title_correo>تكوين بعض المعلمات العمومية حول إرسال البريد من SaltOS</title_correo>
+        <cuentasupport>البريد الإلكتروني للعلبة الصادرة للدعم</cuentasupport>
+        <cuentaincidencias>البريد الإلكتروني للعلبة الصادرة للمشكلات</cuentaincidencias>
+        <water>العلامات المائية</water>
+        <title_water>ضبط العلامات المائية المستخدمة علي ال pdf's</title_water>
+        <wateractas>المحاضر</wateractas>
+        <waterpartes>الأجزاء</waterpartes>
+        <waterfacturas>الفواتير</waterfacturas>
+        <wateralbaranes>ملاحظات التسليم</wateralbaranes>
+        <waterpresupuestos>الموازنة</waterpresupuestos>
+        <waterclientes>العملاء</waterclientes>
+        <waterproyectos>المشاريع</waterproyectos>
+        <waterposiblescli>الزبائن المحتملين</waterposiblescli>
+        <watercorreo>البريد</watercorreo>
+        <waterfeeds>Feeds: Texto</waterfeeds>
+        <emailasync>استخدام الارسال المتزامن (سريع)</emailasync>
+        <accounting>الحسابات</accounting>
+        <title_accounting>قم بتهيئة البيانات المحاسبية العامة</title_accounting>
+        <accounting_currency>العملة</accounting_currency>
+        <accounting_iva_name>اسم الضريبة (المضافة)</accounting_iva_name>
+        <accounting_irpf_name>اسم الضريبة (سيتم نقصها)</accounting_irpf_name>
+        <accounting_value>القيمة الافتراضية (فقط اذا تم استخدامها)</accounting_value>
+        <applications_config>التطبيقات</applications_config>
+        <config_tabs>إعداد علامات التبويب</config_tabs>
+        <default_values>القيم الافتراضية</default_values>
+        <configuracion_presupuestos>إعدادات الموازنة</configuracion_presupuestos>
+        <configuracion_agenda>جدولة الإعدادات</configuracion_agenda>
+        <configuracion_incidencias>إعدادات الحدث</configuracion_incidencias>
+        <configuracion_facturas>إعدادات الفاتورة</configuracion_facturas>
+        <configuracion_gastos>إعدادات الإنفاق</configuracion_gastos>
+        <show_tab_objetivos_presupuesto>إظهار الأهداف</show_tab_objetivos_presupuesto>
+        <show_tab_condiciones_presupuesto>إظهار الشروط</show_tab_condiciones_presupuesto>
+        <show_tab_funcional_presupuesto>إظهار اقتراح وظيفي</show_tab_funcional_presupuesto>
+        <show_tab_tecnica_presupuesto>إظهار الاقتراح الفني</show_tab_tecnica_presupuesto>
+        <show_tab_info_adicional_presupuesto>إظهار معلومات إضافية</show_tab_info_adicional_presupuesto>
+        <show_tab_tareas_presupuesto>إظهار المهام</show_tab_tareas_presupuesto>
+        <show_tab_productos_presupuesto>إظهار المنتجات</show_tab_productos_presupuesto>
+        <sin_configurar>[لم يتم تكوينه]</sin_configurar>
+        <filtro_grupo_usuarios_incidencias>إظهار مستخدمي مجموعة في قائمة المستخدمين</filtro_grupo_usuarios_incidencias>
+        <filtro_grupo_usuarios_implicados_incidencias>مجموعة من المعنيين</filtro_grupo_usuarios_implicados_incidencias>
+        <filtro_grupo_usuarios_asignados_incidencias>مجموعة المعينين</filtro_grupo_usuarios_asignados_incidencias>
+    </maincfg>
+    <about>
+        <formupdate>عن SaltOS</formupdate>
+        <copyright>هذا النظام تم توزيعة تحت الترخيص GPL-3.0:</copyright>
+        <components>هذا النظام يستخدم المكونات التالية:</components>
+        <server_base>خادم اساسي:</server_base>
+        <php_plugins>PHP اضافات:</php_plugins>
+        <javascript_base>Javascript اساسية:</javascript_base>
+        <bootstrap_plugins>الإضافات bootstrap:</bootstrap_plugins>
+        <jquery_plugins>JQuery اضافات:</jquery_plugins>
+        <javascript_plugins>Javascript اضافات:</javascript_plugins>
+        <other_plugins>إضافات اخرى:</other_plugins>
+        <server_plugins>اضافات الخادم:</server_plugins>
+        <vxinfo>ملحوظة: (*) بعض المشاريع لاتستخدم رخصة معينة</vxinfo>
+        <license>الرخصة </license>
+        <game>لعبة</game>
+        <licensetitle>أدناه النص القانوني للترخيص </licensetitle>
+        <gametitle>إذا كنت قد وصلت هذه الشاشة، فأنت تستحق استراحة. يمكنك ان تلعب قليلا!!!</gametitle>
+        <translators>الترجمات</translators>
+        <developers>المطورين</developers>
+        <unavailable>معلومات الاتصال غير متوفرة. اتصل بالمطور لأية استفسارات أو أسئلة اواقتراحات..</unavailable>
+    </about>
+    <support>
+        <formupdate>الدعم</formupdate>
+        <contact>الدعم</contact>
+        <subject>الموضوع</subject>
+        <msgsendemail> أرسلت رسالة إلكترونية للدعم</msgsendemail>
+        <msgnotemailsupport>لم يتم تحديد اي بريد للدعم الفني</msgnotemailsupport>
+        <msgnotsubject>لم يتم ادخال اي موضوع</msgnotsubject>
+        <msgnotcomments>لا احد قد قام باي تعليقات</msgnotcomments>
+    </support>
+    <home>
+        <formupdate>الرئيسية</formupdate>
+        <buscar2>البحث في SaltOS</buscar2>
+        <buscar3>البحث في الملفات</buscar3>
+    </home>
+    <seguimientos>
+        <list>قائمة المتابعة</list>
+        <create>متابعة جديدة</create>
+        <formview>تفاصيل متابعة</formview>
+        <forminsert>اضافة متابعة جديدة</forminsert>
+        <formupdate>تغيير متابعة</formupdate>
+        <defaultdata>مراقبة بيانات</defaultdata>
+        <add>اضافة قنوات</add>
+    </seguimientos>
+    <datacfg>
+        <formupdate>الاجرائات علي البيانات الاساسية</formupdate>
+        <export>تصدير</export>
+        <title_export>تصدير جيع قاعدة البيانات علي هيئة SQL</title_export>
+        <desc_export>تتيح لك عمل backup لقاعدة البيانات بالكامل</desc_export>
+        <desc2_export>قم بهذه العملية بشكل دوري  ,احفظ هذا الملف في مكان امن كذاكرة فلاش , قرص مضغوط او اي جهاز خارجي لهذا الحاسب</desc2_export>
+        <import>استيراد</import>
+        <title_import>استيراد جميع قاعدة البيانات علي هيئة SQL</title_import>
+        <desc_import>يمكن جلب جميع قاعدة البيانات من الbackup</desc_import>
+        <desc2_import>حدد الملف بالضغط علي [تصفح] ثم اضغط علي [استيراد] لجلب البيانات الجديدة من الbackup</desc2_import>
+        <desc3_import>مهم: الاستيراد يقوم بحذف البيانات الموجودة حاليا علي التطبيق</desc3_import>
+        <filenotfound>غير قادر علي قرائة محتويات الملف الراد استيراده</filenotfound>
+        <filefoundok>لقد تم جلب بيانات ال backup بنجاح</filefoundok>
+        <fileimporterror>خطأ عند محاولة استيراد الملف</fileimporterror>
+    </datacfg>
+    <correo>
+        <list>قائمة البريد</list>
+        <create>ارسال ايميل جديد</create>
+        <formview>تفاصيل الايميل</formview>
+        <forminsert>إرسال ايميل جديد</forminsert>
+        <formupdate>اعادة توجيه ايميل</formupdate>
+        <defaultdata>بيانات الايميل</defaultdata>
+        <from>من</from>
+        <to>الي</to>
+        <cc>CC</cc>
+        <bcc>مخفيه</bcc>
+        <subject>الموضوع</subject>
+        <attachments>المرفقات</attachments>
+        <message>الرسالة</message>
+        <recibir>استقبال</recibir>
+        <recibirtip>اضغط هنا لاستقبال رسائل جديدة</recibirtip>
+        <enviar>إرسال</enviar>
+        <enviartip>اضغط هنا لارسال رسائل من صندوق الصادر</enviartip>
+        <msgnotpop3email>لم يتم ضبط او تنشيط اي حساب بريدي</msgnotpop3email>
+        <msgnotpop3host>لم يتم تهيئة خادم POP3 </msgnotpop3host>
+        <msgerrorpop3email>لقد حدثت الخطأ التالي: </msgerrorpop3email>
+        <msgnewokpop3email1> لقد تم استقبال رسالة جديدة في صندوق الوارد</msgnewokpop3email1>
+        <msgnewokpop3email2> لقد تم استقبال رسالة جديدة في صندوق الوارد</msgnewokpop3email2>
+        <msggotoemail>الزهاب للبريد</msggotoemail>
+        <msgnewkopop3email>ليس هناك بريد جديد</msgnewkopop3email>
+        <msgconnrefusedpop3email>لقد تم رفض الاتصال من الخادم</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>لايمكن الاتصال بالخادم</msgconnerrorpop3email>
+        <msgopenerrorpop3email>لم يتم ايجاد الملف المحتوي علي الرساله</msgopenerrorpop3email>
+        <msgpropietario>فقط مالك البريد يمكنه استخدام هذه المزايا</msgpropietario>
+        <msgnotfound>لا توجد رسائل محددة , قم بتغيير المرشح</msgnotfound>
+        <msgnumsileidos>تم تصنيفها كمقروئة: </msgnumsileidos>
+        <msgnumsiwait>تم تصنيفها كمؤجلة: </msgnumsiwait>
+        <msgnumsispam>تم تصنيفها ك SPAM: </msgnumsispam>
+        <msgnumnoleidos>تم تصنيفها كغير مقروئة: </msgnumnoleidos>
+        <msgnumnowait>لقد قمت بتصنيفها كمؤجلة: </msgnumnowait>
+        <msgnumnospam>لقد قمت بتصنيفها كغير مرغوبة: </msgnumnospam>
+        <msgnumdelete>تم حذفها: </msgnumdelete>
+        <statenew>جديد</statenew>
+        <actionnew>جديد</actionnew>
+        <stateread>غير مقروئة</stateread>
+        <statereply>تم الرد عليها</statereply>
+        <stateforward>معاد توجيهها</stateforward>
+        <statewait>مؤجلة</statewait>
+        <statespam>مرغوب فيهاغير </statespam>
+        <statesent>مرسلة</statesent>
+        <statenotsent>لم يتم ارسالة</statenotsent>
+        <stateerror>خطأ</stateerror>
+        <stateall>الكل</stateall>
+        <todaslascuentas>[جميع الحسابات]</todaslascuentas>
+        <buttonsend>ارسال</buttonsend>
+        <buttonsendreturnhere>قم بالارسال وعد الي هنا</buttonsendreturnhere>
+        <onlynew>فقط الجديدة</onlynew>
+        <onlywait>فقط المؤجلة</onlywait>
+        <hidespam>اخفاء الغير مرغوبة</hidespam>
+        <withfiles>مع مرفق</withfiles>
+        <onlyspam>فقط الغير مرغوبة</onlyspam>
+        <withoutfiles>بدون مرفق</withoutfiles>
+        <actionwait>تأجيل</actionwait>
+        <actionspam>غير مرغوبة</actionspam>
+        <actionreply>رد</actionreply>
+        <actionreplyall>رد علي الكل</actionreplyall>
+        <actionforward>اعادة توجيه</actionforward>
+        <messageid>رمز الرسالة</messageid>
+        <fulldata>تكبير </fulldata>
+        <sourcedata>مصدر الرسالة</sourcedata>
+        <leidos>قرائة</leidos>
+        <wait>تأجيل</wait>
+        <spam>غير مرغوبة</spam>
+        <borrar>مسح</borrar>
+        <borrartip>حذف جميع المحدد</borrartip>
+        <msgleidos>هل تريد تصنيف جميع الرسائل المحددة كمقروئة/غير مقروئة؟</msgleidos>
+        <msgwait>هل تريد تصنيف جميع الرسائل المحددة كمؤجلة/غير موجلة؟</msgwait>
+        <msgspam>هل تريد تصنيف جميع الرسائل المحددة كمرغوبة/غير مرغوب فيها؟</msgspam>
+        <msgdelete2>هل تريد حذف جميع الرسائل المحددة؟</msgdelete2>
+        <msgnotsendfound>لاتوجد رسائل مؤجلة لترسل</msgnotsendfound>
+        <msgerrorsendmail>يوجد الخطأ التالي: </msgerrorsendmail>
+        <msgtotalsendmail1> تم ارسال الرسالة من حاوية الصادر</msgtotalsendmail1>
+        <msgtotalsendmail2> تم ارسال الرسالة من حاوية الصادر</msgtotalsendmail2>
+        <stateinbox>الوارد</stateinbox>
+        <stateoutbox>الصادر</stateoutbox>
+        <onlyinbox>فقط الوارد</onlyinbox>
+        <onlyoutbox>فقط الصادر</onlyoutbox>
+        <options>خيارات</options>
+        <optionstip>عرض خيارات اضافية من القائمة</optionstip>
+        <pdfoptions>خيارات PDF</pdfoptions>
+        <sinsubject>(ليوجد عنوان)</sinsubject>
+        <msgfromkosendmail>الاعدادات لحقل المرسل غير موجودة</msgfromkosendmail>
+        <msgsendoksendmail>لقد تم ارسال الرسالة بنجاح</msgsendoksendmail>
+        <replysubject>رد: </replysubject>
+        <replyallsubject>رد: </replyallsubject>
+        <forwardsubject>إ.ت: </forwardsubject>
+        <embeddedmessage>لقد كتب #datetime#, #fromname# wrote:</embeddedmessage>
+        <actionreplytip>للرد علي مرسل الرسالة</actionreplytip>
+        <actionreplyalltip>للرد على جميع مستخدمي هذه الرسالة</actionreplyalltip>
+        <actionforwardtip>لاعادة توجيه هذه الرسالة للاخرين</actionforwardtip>
+        <noleidos>غير مقروئة</noleidos>
+        <nowait>لا يوجد رسائل مؤجلة</nowait>
+        <nospam>لا يوجد رسائل غير مرغوب فيها</nospam>
+        <today>اليوم</today>
+        <yesterday>بالامس</yesterday>
+        <week>اسبوع</week>
+        <month>شهر</month>
+        <confirmreadingto>طلب إقرار</confirmreadingto>
+        <marcarcorreos>تصنيف ك</marcarcorreos>
+        <message0> رسائل</message0>
+        <message1> رسالة</message1>
+        <message2> رسائل</message2>
+        <campos>الحقول</campos>
+        <allcampos>[جميع الحقول]</allcampos>
+        <onlyemail>فقط في عنوان البريد</onlyemail>
+        <onlysubject>فقط في الموضوع</onlysubject>
+        <onlybody>فقط في محتوى الرسالة</onlybody>
+        <filtrarcorreos>ترشيح ب</filtrarcorreos>
+        <priority>الاولوية</priority>
+        <priorityhigh>عالية</priorityhigh>
+        <prioritynormal>عادية</prioritynormal>
+        <prioritylow>منخفضة</prioritylow>
+        <sensitivity>الحساسيه</sensitivity>
+        <sensitivitynormal>عادية</sensitivitynormal>
+        <sensitivitypersonal>شخصي</sensitivitypersonal>
+        <sensitivityprivate>خاص</sensitivityprivate>
+        <sensitivityconfidential>سري</sensitivityconfidential>
+        <addincidencia>إضافة خطأ</addincidencia>
+        <addincidenciatip>إنشاء خطأ جديد باستخدام هذا البريد الإلكتروني كتقرير أولي</addincidenciatip>
+        <addincidenciamsg>هل تريد إنشاء خطأ جديد باستخدام هذا البريد الإلكتروني كتقرير أولي؟</addincidenciamsg>
+        <addincidenciaok>خطأ تم إنشاؤه باستخدام التعليمات البرمجية:</addincidenciaok>
+        <notsupportdefined>دعم حساب البريد الإلكتروني غير محدد في SaltOS</notsupportdefined>
+        <notsupportfound>لا يحتوي هذا البريد الإلكتروني على حساب البريد الإلكتروني للدعم</notsupportfound>
+        <incidenciaexists>تم العثور على الخطأ باستخدام الرمز:</incidenciaexists>
+        <interrorsendmail>لم يتم إرسال هذا البريد الإلكتروني بواسطة خطأ داخلي</interrorsendmail>
+    </correo>
+    <cuentas>
+        <list>قائمة الحسابات</list>
+        <create>حساب جديد</create>
+        <formview>تفاصيل الحساب</formview>
+        <forminsert>تسجيل حساب جديد</forminsert>
+        <formupdate>تغيير حساب</formupdate>
+        <defaultdata>معلومات حساب</defaultdata>
+        <logo>الشعار</logo>
+        <title_logo>حدد  اشعار, موضعه, حجمه والالوان ليتم استخدامها علي الفواتير</title_logo>
+        <logoleft>موضع الاشعار X</logoleft>
+        <logotop>Y</logotop>
+        <logowidth>العرض</logowidth>
+        <logoheight>الارتفاع</logoheight>
+        <logofile>ملف الاشعار الحالي</logofile>
+        <logofilenew>ملف جديد (JPEG فقط)</logofilenew>
+        <colorline>لون الخطوط</colorline>
+        <colortext1>العناوين</colortext1>
+        <colortext2>النص</colortext2>
+        <title_facturas>ضبط الماملات ليتم استخدامها علي الفواتير</title_facturas>
+        <facturabool>استخدم </facturabool>
+        <facturavalue>القيمة الافتراضية (اذا تم استخدامها)</facturavalue>
+        <facturapie1>زيل الفاتورة</facturapie1>
+        <facturapie2>خط السير الثاني</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>قائمة الفواتير العادية</list>
+        <create>دورة مستندية جديدة</create>
+        <formview>دورة فاتورة مفصلة</formview>
+        <forminsert>التسجيل لفاتورة منتظمة جديدة</forminsert>
+        <formupdate>تغير فاتورة منتظمة</formupdate>
+        <defaultdata>بيانات من فاتورة منتظمة</defaultdata>
+        <concepts_old>مفاهيم</concepts_old>
+        <concepts_new>مفاهيم جديدة</concepts_new>
+        <products_old>منتجات</products_old>
+        <products_new>منتجات جديدة</products_new>
+        <vencimientos_old>استحقاق</vencimientos_old>
+        <vencimientos_new>استحقاق جديد</vencimientos_new>
+        <fechavencimiento>تاريخ الاستحقاق</fechavencimiento>
+        <diaemision>يوم البث</diaemision>
+        <diaini>يوم ما</diaini>
+        <dia>يوم</dia>
+        <meses>أشهر</meses>
+        <liquidar>البناء</liquidar>
+        <totalliquidar>جمالي عدد الفواتير التي تم انشائها: </totalliquidar>
+        <msgerror>يجب تحديد الفواتير التي ترغب في إنشاء قائمة والشهر لاستخدامها</msgerror>
+        <msgliquidar>هل تريد إنشاء الفواتير المحددة ؟</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>قائمة الموظفين</list>
+        <create>موظف جديد</create>
+        <formview>تفاصيل الموظف</formview>
+        <forminsert>إضافة موظف جديد</forminsert>
+        <formupdate>تعديل الموظف</formupdate>
+        <defaultdata>معلومات عن الموظف</defaultdata>
+        <contactdata>جهات الاتصال بالموظف</contactdata>
+    </empleados>
+    <denied>
+        <title>تم رفض الوصول</title>
+        <short>غير مصرح بجراء هذه العملية</short>
+        <large>لقد تم اعاقة تنفيذ الاعملية ,ليس لديك صلاحية لتنفيذ هذا الجزء من البرنامج ,اذا كنت ترى ان هناك خطأ إتصل بمدير النظام</large>
+    </denied>
+    <posiblescli>
+        <list>قائمة العملاء المحتملين</list>
+        <create>عميل محتمل جديد</create>
+        <formview>تفاصيل العميل المحتمل</formview>
+        <forminsert>إضافة عميل محتمل جديد</forminsert>
+        <formupdate>تعديل عميل محتمل</formupdate>
+        <defaultdata>بيانات محتملة</defaultdata>
+        <crearcliente>إنشاء عميل</crearcliente>
+        <clientcreatedok>تم إنشاء العميل الجديد بنجاح</clientcreatedok>
+        <msgcrear>هل تود تغيير الاحتمالية علي العميل؟</msgcrear>
+        <agendadata>الأحداث المحتملة</agendadata>
+        <actasdata>مداولات العملاء المحتملين</actasdata>
+        <presupuestosdata>أسهم العملاء المحتملين</presupuestosdata>
+        <facturacion>الفواتير</facturacion>
+        <iaedesc>نظرة عامة علي IAE</iaedesc>
+        <iaecod>رمز IAE</iaecod>
+        <contacto>عدد افراد الاتصال</contacto>
+        <changedenied>لايمكن ايقاف عميل محتمل لديه محاضر , جدول اعمال و/أو ميزانيات</changedenied>
+    </posiblescli>
+    <productos>
+        <list>المتجر</list>
+        <create>منتج جديد</create>
+        <formview>تفاصيل المنتج</formview>
+        <forminsert>إضافة منتج جديد</forminsert>
+        <formupdate>تغيير في المنتج</formupdate>
+        <defaultdata>بيانات المنتج</defaultdata>
+        <ref>الرقم المرجعي.</ref>
+        <peso>الوزن</peso>
+        <volumen>حجم</volumen>
+        <dimensiones>ابعاد</dimensiones>
+        <fotofile>الصورة الحالية</fotofile>
+        <fotofilenew>صورة جديدة</fotofilenew>
+        <siniva eval="true">"[".CONFIG("accounting_iva_name")." دون]"</siniva>
+    </productos>
+    <presupuestos>
+        <list>قائمة بالميزانيات</list>
+        <create>ميزانية جديدة</create>
+        <formview>تفاصيل الميزانية</formview>
+        <forminsert>إضافة ميزانية جديدة</forminsert>
+        <formupdate>تغير الميزانية</formupdate>
+        <defaultdata>معلومات عن الميزانية</defaultdata>
+        <tareaspresupuesto>مهام الميزانية</tareaspresupuesto>
+        <desctareas>تفاصيل المهام</desctareas>
+        <horastotal>اجمالي الساعات</horastotal>
+        <preciomedio>المتوسط</preciomedio>
+        <preciototal>اجمالي السعر</preciototal>
+        <productospresupuesto>ميزانية المنتجات</productospresupuesto>
+        <descproductos>نظرة عامة على المنتج</descproductos>
+        <objetivos>الأهداف من الميزانية</objetivos>
+        <funcional>المقترح الوظيفي</funcional>
+        <tecnica>المقترح التقني</tecnica>
+        <extras>بيانات اضافية</extras>
+        <condiciones>شروط الميزانية</condiciones>
+        <valoracion>التقييم الاقتصادي</valoracion>
+        <crearproyecto>انشاء مشروع</crearproyecto>
+        <projectexists>هذه الموازنة وعلاقتها بالمشروع</projectexists>
+        <clientnotexists>يجب الاتصالع بالعميل (إذا كان ذو علاقة بعميل محتمل ,اجعل العميل )</clientnotexists>
+        <projectcreatedok>لقد تم انشاء مشروع جديد بنجاح</projectcreatedok>
+        <msgcrear>هل تريد انشاء مشروع جديد علي هذه الموازنة؟</msgcrear>
+        <agendadata>أحداث الموازنة</agendadata>
+        <actasdata>الوقائع علي الموازنة</actasdata>
+        <plotseguimientoestados>ارتباط الموازنات بالدولة</plotseguimientoestados>
+        <resumentareasproductos>ملخص المهام والمنتجات</resumentareasproductos>
+        <objetivospdf>الأهداف</objetivospdf>
+        <funcionalpdf>الوظيفي</funcionalpdf>
+        <tecnicapdf>التقني</tecnicapdf>
+        <extraspdf>معلومات</extraspdf>
+        <condicionespdf>الشروط</condicionespdf>
+        <actionfacturar>بيل</actionfacturar>
+        <msgfacturar>هل تريد التحقق من الميزانية؟</msgfacturar>
+        <errorfacturar>هناك بالفعل فاتورة من هذه الميزانية</errorfacturar>
+        <okfacturar>قام بفوترة الميزانية بشكل صحيح</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>قائمة الحملات</list>
+        <create>حملة جديدة</create>
+        <formview>تفاصيل حملة</formview>
+        <forminsert>إضافة حملة جديدة</forminsert>
+        <formupdate>تغيير حملة</formupdate>
+        <defaultdata>تفاصيل الحملة</defaultdata>
+        <agendadata>أحداث العام</agendadata>
+        <presupuestosdata>اسعار العام</presupuestosdata>
+        <projectopen>نشاريع نشطة</projectopen>
+        <projectclose>مشاريع مغلقة</projectclose>
+        <clientesdata>عملاء مقيدون</clientesdata>
+        <posiblesclidata>عملاء محتملون</posiblesclidata>
+    </campanyas>
+    <tiposevento>
+        <list>قائمة بانواع الاحداث</list>
+        <create>نوع حدث جديد</create>
+        <formview>وصف لنوع الحدث</formview>
+        <forminsert>إضافة نوع حدث جديد</forminsert>
+        <formupdate>تغيير نوع حدث</formupdate>
+        <defaultdata>نوع بيانات الحدث</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>قائمة بالنصوص المعرفة مسبقا</list>
+        <publico>الحكومة</publico>
+        <publico_desc>يمكن للجميع استخدام هذا النص المعد مسبقا</publico_desc>
+        <create>نص جديد معرف مسبقا</create>
+        <formview>تفصايل النص المعرف مسبقا</formview>
+        <forminsert>إضافة نص افتراضي جديد</forminsert>
+        <formupdate>تعديل النص الافتراضي</formupdate>
+        <defaultdata>بيانات النص الافتراضي</defaultdata>
+        <sinaplicacion>[بدون تطبيق]</sinaplicacion>
+    </textos>
+    <ficheros>
+        <list>قائمة المرفقات</list>
+        <todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>
+    </ficheros>
+    <feeds>
+        <list>قائمة تغذيات RSS</list>
+        <msgnewfeedsok1> المشاركة المنزلة حديثا</msgnewfeedsok1>
+        <msgnewfeedsok2> المشاركات المنزلة حديثا</msgnewfeedsok2>
+        <msgnewfeedsko>لم يتم ايجاد اي مشاركات جديدة</msgnewfeedsko>
+        <msgmodifiedfeedsok1> تاريخ المشاركة</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2> المشاركات حتى الآن</msgmodifiedfeedsok2>
+        <msgnotfeeds>لم يتم تكوين او تمكين تغية RSS</msgnotfeeds>
+        <feed>تغذية RSS</feed>
+        <title>العنوان</title>
+        <pubdate>تاريخ النشر.</pubdate>
+        <recibir>استقبال</recibir>
+        <recibirtip>اضغط هنا لاستقبال المشاكات الجديدة</recibirtip>
+        <todoslosfeeds>[الكل]</todoslosfeeds>
+        <defaultdata>تفاصيل المشاركة</defaultdata>
+        <fulldata>التكبير في المشاركة</fulldata>
+        <actionwait>تاجيل</actionwait>
+        <statenew>جديد</statenew>
+        <actionnew>جديد</actionnew>
+        <statemodified>الاخير</statemodified>
+        <statewait>مؤجلة</statewait>
+        <stateread>قرائة</stateread>
+        <actionforward>اعادة توجيه</actionforward>
+        <actionforwardtip>لاعادة توجيه مشاركة الايميل</actionforwardtip>
+        <formview>تفاصيل المشاركة</formview>
+        <msggotofeeds>الذهاب الي تغذيات RSS</msggotofeeds>
+        <onlynew>الحديثة فقط</onlynew>
+        <onlywait>فقط المؤجلة</onlywait>
+        <options>خيارات</options>
+        <optionstip>اظهر المزيد من الخيارات من القائمة</optionstip>
+        <pdfoptions>خيارات PDF</pdfoptions>
+        <stateall>الكل</stateall>
+        <today>اليوم</today>
+        <yesterday>أمس</yesterday>
+        <week>اسبوع</week>
+        <month>شهر</month>
+        <marcarfeeds>تصنيف ك</marcarfeeds>
+        <leidos>مقروئة</leidos>
+        <wait>مؤجلة</wait>
+        <borrar>مسح</borrar>
+        <borrartip>حذف جميع المشاركات المحددة</borrartip>
+        <noleidos>غير مقروئة</noleidos>
+        <nowait>غير مؤجلة</nowait>
+        <msgleidos>هل تريد تصنيف كافة المشاركات كمقروئة/غير مقروئة؟</msgleidos>
+        <msgwait>هل تريد تصنيف كافة المشاركات كمؤجلة/غير مؤجلة؟</msgwait>
+        <msgdelete2>حذف جميع المشاركات المحددة؟</msgdelete2>
+        <msgpropietario>فقط مالك المشاركات يمكنه استخدام هذه المزايا</msgpropietario>
+        <msgnotfound>لم يتم ايجاد المشاركات المحددة ,قم بيتغير المرشح</msgnotfound>
+        <msgnumsileidos>لقد تم تصنيفها كمقروئة: </msgnumsileidos>
+        <msgnumsiwait>لقد تم تصنيفها كمؤجلة: </msgnumsiwait>
+        <msgnumnoleidos>لقد تم تصنيفها كغير مقروئة </msgnumnoleidos>
+        <msgnumnowait>لقد تم تصنيفها كمؤجلة: </msgnumnowait>
+        <msgnumdelete>تم حذف حذف: </msgnumdelete>
+        <message0> مشاركات</message0>
+        <message1> مشاركة</message1>
+        <message2> مشاركات</message2>
+        <msgerrorfeed>يوجد خطأ في هذه المشاركة : </msgerrorfeed>
+        <sintitle>(لايوجد عنوان)</sintitle>
+        <post>مشاركات RSS </post>
+        <filtrarfeeds>ترشيح بواسطة</filtrarfeeds>
+        <actioncool>رائع</actioncool>
+        <statecool>رائع</statecool>
+        <onlycool>الرائعة فقط</onlycool>
+        <cool>رائع</cool>
+        <nocool>غير رائع</nocool>
+        <msgcool>هل تريد تعليم  جميع المشاركاتب كرائعة/غير رائعة؟</msgcool>
+        <msgnumsicool>تم تعليمها كرائعة: </msgnumsicool>
+        <msgnumnocool>تم تعليمها كرائعة:  </msgnumnocool>
+        <actionfavoritos>إضافة إلى الإشارات المرجعية</actionfavoritos>
+    </feeds>
+    <importaciones>
+        <list>قائمة الاستيرادات</list>
+        <create>استيراد جديد</create>
+        <formview>تفصيل الاستيراد</formview>
+        <forminsert>اضافة استيراد جديد</forminsert>
+        <formupdate>تغير استيراد</formupdate>
+        <defaultdata>استيراد بيانات</defaultdata>
+        <sinaplicacion>[بدون تطبيق]</sinaplicacion>
+        <importdata>محتويات الملف</importdata>
+    </importaciones>
+    <folders>
+        <notfound>الدليل غير موجود</notfound>
+        <todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>
+        <deleteoffolder>حذف هذا الدليل</deleteoffolder>
+        <defaultfolder>الدليل الشخصي</defaultfolder>
+    </folders>
+    <translator>
+        <translator>المترجم</translator>
+        <corrector>مدقق الإملائي</corrector>
+        <es>الإسبانية</es>
+        <ca>الكتالانية</ca>
+        <en>الإنكليزية</en>
+        <pt>البرتغالية</pt>
+        <eu>أوسكرا</eu>
+        <gl>جاليجو</gl>
+        <fr>الفرنسية</fr>
+        <ar>العربية</ar>
+    </translator>
+    <buscador>
+        <list>بحث</list>
+        <todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>
+    </buscador>
+    <errorlog>
+        <formupdate>سجلات الأخطاء</formupdate>
+        <defaultdata>محتويات الملف </defaultdata>
+    </errorlog>
+    <favoritos>
+        <list>قائمة المفضلة</list>
+        <create>مفضلة جديدة</create>
+        <url>URL</url>
+        <bookmarkexists>عنوان URL الذي تحاول حفظه موجود مسبقا في قائمة المفضلة لديط.</bookmarkexists>
+        <invalidurl>عنوان URL غير صالح،الرجاء  التحقق من عنوان الويب: </invalidurl>
+        <bookmarkadded>تمت إضافة رابط بنجاح إلى الإشارات المرجعية</bookmarkadded>
+        <previews>معاينات</previews>
+    </favoritos>
+    <ivas>
+        <list eval="true">CONFIG("accounting_iva_name")." قائمة"</list>
+        <create eval="true">CONFIG("accounting_iva_name")."الجديد"</create>
+        <formview eval="true">CONFIG("accounting_iva_name")." تفاصيل"</formview>
+        <forminsert eval="true">CONFIG("accounting_iva_name")." إضافة جديد"</forminsert>
+        <formupdate eval="true">CONFIG("accounting_iva_name")." تغيير"</formupdate>
+        <defaultdata eval="true">CONFIG("accounting_iva_name")." بيانات"</defaultdata>
+    </ivas>
+    <categorias>
+        <list>قائمة الفئات</list>
+        <create>فئة جديدة</create>
+        <formview>تفاصيل الفئة</formview>
+        <forminsert>إضافة فئة جديدة</forminsert>
+        <formupdate>تعديل الفئة</formupdate>
+        <defaultdata>بيانات الفئة</defaultdata>
+    </categorias>
 </root>

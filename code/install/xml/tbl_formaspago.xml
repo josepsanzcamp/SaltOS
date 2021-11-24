@@ -24,34 +24,34 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<id>1</id>
-		<nombre>Efectivo</nombre>
-		<descripcion>Pago en efectivo</descripcion>
-	</row>
-	<row>
-		<id>2</id>
-		<nombre>Transferencia</nombre>
-		<descripcion>Transferencia bancaria</descripcion>
-	</row>
-	<row>
-		<id>3</id>
-		<nombre>Tarjeta personal</nombre>
-		<descripcion>Tarjeta de crédito personal</descripcion>
-	</row>
-	<row>
-		<id>5</id>
-		<nombre>Tarjeta de empresa</nombre>
-		<descripcion>Tarjeta de crédito de empresa</descripcion>
-	</row>
-	<row>
-		<id>6</id>
-		<nombre>Domiciliación bancaria</nombre>
-		<descripcion>Domiciliación bancaria</descripcion>
-	</row>
-	<row>
-		<id>7</id>
-		<nombre>Teletak</nombre>
-		<descripcion>Pago usando teletak</descripcion>
-	</row>
+    <row>
+        <id>1</id>
+        <nombre>Efectivo</nombre>
+        <descripcion>Pago en efectivo</descripcion>
+    </row>
+    <row>
+        <id>2</id>
+        <nombre>Transferencia</nombre>
+        <descripcion>Transferencia bancaria</descripcion>
+    </row>
+    <row>
+        <id>3</id>
+        <nombre>Tarjeta personal</nombre>
+        <descripcion>Tarjeta de crédito personal</descripcion>
+    </row>
+    <row>
+        <id>5</id>
+        <nombre>Tarjeta de empresa</nombre>
+        <descripcion>Tarjeta de crédito de empresa</descripcion>
+    </row>
+    <row>
+        <id>6</id>
+        <nombre>Domiciliación bancaria</nombre>
+        <descripcion>Domiciliación bancaria</descripcion>
+    </row>
+    <row>
+        <id>7</id>
+        <nombre>Teletak</nombre>
+        <descripcion>Pago usando teletak</descripcion>
+    </row>
 </root>

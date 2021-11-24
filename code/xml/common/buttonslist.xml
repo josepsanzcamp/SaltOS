@@ -24,28 +24,28 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row>
-		<field>
-			<type>separator</type>
-			<width>100%</width>
-		</field>
-		<field>
-			<name>buscar</name>
-			<type>button</type>
-			<value lang="true">buscar</value>
-			<tip lang="true">buscartip</tip>
-			<onclick>buscar()</onclick>
-			<icon eval="true">ICON("search")</icon>
-			<class>nowrap</class>
-		</field>
-		<field>
-			<name>limpiar</name>
-			<type>button</type>
-			<value lang="true">limpiar</value>
-			<tip lang="true">limpiartip</tip>
-			<onclick>limpiar()</onclick>
-			<icon eval="true">ICON("reset")</icon>
-			<class>nowrap</class>
-		</field>
-	</row>
+    <row>
+        <field>
+            <type>separator</type>
+            <width>100%</width>
+        </field>
+        <field>
+            <name>buscar</name>
+            <type>button</type>
+            <value lang="true">buscar</value>
+            <tip lang="true">buscartip</tip>
+            <onclick>buscar()</onclick>
+            <icon eval="true">ICON("search")</icon>
+            <class>nowrap</class>
+        </field>
+        <field>
+            <name>limpiar</name>
+            <type>button</type>
+            <value lang="true">limpiar</value>
+            <tip lang="true">limpiartip</tip>
+            <onclick>limpiar()</onclick>
+            <icon eval="true">ICON("reset")</icon>
+            <class>nowrap</class>
+        </field>
+    </row>
 </root>
