@@ -31,7 +31,7 @@ if (!check_user()) {
 
 $page = getParam("page");
 
-if (!check_user($page, "menu")) {
+if (!$page || !check_user($page, "menu")) {
     _action_denied();
 }
 
