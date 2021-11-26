@@ -304,7 +304,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/code-lts/WarnockPDF")</onclick>
                         </field>
                         <field>
-                            <label>PHPMailer 6.5.1 (LGPL-2.1)</label>
+                            <label>PHPMailer 6.5.3 (LGPL-2.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
