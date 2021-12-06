@@ -9,7 +9,7 @@
 
 SaltOS: Framework to develop Rich Internet Applications
 Copyright (C) 2007-2021 by Josep Sanz Campderrós
-More information in http://www.saltos.org or info@saltos.org
+More information in https://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 // phpcs:disable Generic.Files.LineLength
@@ -182,7 +182,7 @@ if (in_array($page, array("profile","usuarios"))) {
     $temp_key = "correo_new_0_email_signature_new";
     if ($correo_new && !getParam($temp_key)) {
         $outputdir = get_directory("dirs/filesdir");
-        $temp_data = str_replace("SaltOS", "<a href='http://www.saltos.org'>SaltOS</a>", LANG("sentfromsaltos"));
+        $temp_data = str_replace("SaltOS", "<a href='https://www.saltos.org'>SaltOS</a>", LANG("sentfromsaltos"));
         $temp_name = "email_signature.htm";
         $temp_file = time() . "_" . get_unique_id_md5() . "_" . encode_bad_chars_file($temp_name);
         $temp_size = strlen($temp_data);
