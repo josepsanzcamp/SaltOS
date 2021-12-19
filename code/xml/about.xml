@@ -240,7 +240,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://httpd.apache.org")</onclick>
                         </field>
                         <field>
-                            <label>PHP 5.2-8.0 (PHP-3.01)</label>
+                            <label>PHP 5.2-8.1 (PHP-3.01)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.php.net")</onclick>
@@ -260,7 +260,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>MariaDB 5.5-10.5 (GPL-2.0)</label>
+                            <label>MariaDB 5.5-10.6 (GPL-2.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://mariadb.org")</onclick>
@@ -272,7 +272,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/facebook/hhvm")</onclick>
                         </field>
                         <field>
-                            <label>Mroonga 4.06-11.04 (LGPL-2.1)</label>
+                            <label>Mroonga 4.06-11.10 (LGPL-2.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://mroonga.org/")</onclick>
