@@ -1764,7 +1764,7 @@ saltos.__get_filtered_field_helper=function(field,size) {
 };
 
 saltos.get_filtered_field=function(field,size,id) {
-    if(field=="") {
+    if(field.toString()=="") {
         field="-";
     } else if(substr(field,0,4)=="tel:") {
         var temp=explode(":",field,2);

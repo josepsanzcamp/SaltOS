@@ -1,0 +1,5 @@
+
+Fixed some php8.1 errors:
+- on line 2045
+- on line 7168
+- on line 7615

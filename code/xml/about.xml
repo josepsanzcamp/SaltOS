@@ -596,7 +596,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>Mozilla pdf.js v2.10.377 (ASL-2.0)</label>
+                            <label>Mozilla pdf.js v2.11.338 (ASL-2.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
@@ -622,7 +622,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>CodeMirror v5.64.0 (MIT)</label>
+                            <label>CodeMirror v5.65.0 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://codemirror.net/")</onclick>
