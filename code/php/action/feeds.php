@@ -295,16 +295,9 @@ if (getParam("id")) {
         );
         $buffer .= __HTML_PAGE_OPEN__;
         $buffer .= __HTML_BOX_OPEN__;
-        $buffer .= __HTML_TABLE_OPEN__;
         foreach ($lista as $key => $val) {
-            $buffer .= __HTML_ROW_OPEN__;
-            $buffer .= __HTML_RCELL_OPEN__;
             $buffer .= __HTML_TEXT_OPEN__;
-            $buffer .= $val["lang"] . ":";
-            $buffer .= __HTML_TEXT_CLOSE__;
-            $buffer .= __HTML_CELL_CLOSE__;
-            $buffer .= __HTML_CELL_OPEN__;
-            $buffer .= __HTML_TEXT_OPEN__;
+            $buffer .= $val["lang"] . ": ";
             if ($val["link"] != "") {
                 $buffer .= "<a onclick='parent.openwin(this.href);return false' href='" . addslashes($row[$val["link"]]) . "'>";
             }
@@ -313,10 +306,7 @@ if (getParam("id")) {
                 $buffer .= "</a>";
             }
             $buffer .= __HTML_TEXT_CLOSE__;
-            $buffer .= __HTML_CELL_CLOSE__;
-            $buffer .= __HTML_ROW_CLOSE__;
         }
-        $buffer .= __HTML_TABLE_CLOSE__;
         $buffer .= __HTML_BOX_CLOSE__;
         $buffer .= __HTML_SEPARATOR__;
         $buffer .= __HTML_TEXT_OPEN__;

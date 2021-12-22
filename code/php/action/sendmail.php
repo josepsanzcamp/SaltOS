@@ -687,35 +687,20 @@ if (getParam("page") == "correo") {
                     $result2["subject"] = LANG("sinsubject", "correo");
                 }
                 $oldbody .= __HTML_BOX_OPEN__;
-                $oldbody .= __HTML_TABLE_OPEN__;
                 foreach ($lista as $key2 => $val2) {
                     $result2[$key2] = str_replace(array("<",">"), array("&lt;","&gt;"), $result2[$key2]);
-                    $oldbody .= __HTML_ROW_OPEN__;
-                    $oldbody .= __HTML_RCELL_OPEN__;
                     $oldbody .= __HTML_TEXT_OPEN__;
-                    $oldbody .= $lista[$key2] . ":";
-                    $oldbody .= __HTML_TEXT_CLOSE__;
-                    $oldbody .= __HTML_CELL_CLOSE__;
-                    $oldbody .= __HTML_CELL_OPEN__;
-                    $oldbody .= __HTML_TEXT_OPEN__;
+                    $oldbody .= $lista[$key2] . ": ";
                     $oldbody .= "<b>" . $result2[$key2] . "</b>";
                     $oldbody .= __HTML_TEXT_CLOSE__;
-                    $oldbody .= __HTML_CELL_CLOSE__;
-                    $oldbody .= __HTML_ROW_CLOSE__;
                 }
                 $first = 1;
                 foreach ($result2["files"] as $file) {
                     $cname = $file["cname"];
                     $hsize = $file["hsize"];
                     if ($first) {
-                        $oldbody .= __HTML_ROW_OPEN__;
-                        $oldbody .= __HTML_RCELL_OPEN__;
                         $oldbody .= __HTML_TEXT_OPEN__;
-                        $oldbody .= LANG("attachments", "correo") . ":";
-                        $oldbody .= __HTML_TEXT_CLOSE__;
-                        $oldbody .= __HTML_CELL_CLOSE__;
-                        $oldbody .= __HTML_CELL_OPEN__;
-                        $oldbody .= __HTML_TEXT_OPEN__;
+                        $oldbody .= LANG("attachments", "correo") . ": ";
                     } else {
                         $oldbody .= " | ";
                     }
@@ -724,10 +709,7 @@ if (getParam("page") == "correo") {
                 }
                 if (!$first) {
                     $oldbody .= __HTML_TEXT_CLOSE__;
-                    $oldbody .= __HTML_CELL_CLOSE__;
-                    $oldbody .= __HTML_ROW_CLOSE__;
                 }
-                $oldbody .= __HTML_TABLE_CLOSE__;
                 $oldbody .= __HTML_BOX_CLOSE__;
                 $oldbody .= __HTML_SEPARATOR__;
             }
@@ -835,16 +817,9 @@ if (getParam("page") == "correo") {
                 "link" => array("lang" => LANG("link", "feeds"),"link" => "link"),
             );
             $oldbody .= __HTML_BOX_OPEN__;
-            $oldbody .= __HTML_TABLE_OPEN__;
             foreach ($lista as $key2 => $val2) {
-                $oldbody .= __HTML_ROW_OPEN__;
-                $oldbody .= __HTML_RCELL_OPEN__;
                 $oldbody .= __HTML_TEXT_OPEN__;
-                $oldbody .= $val2["lang"] . ":";
-                $oldbody .= __HTML_TEXT_CLOSE__;
-                $oldbody .= __HTML_CELL_CLOSE__;
-                $oldbody .= __HTML_CELL_OPEN__;
-                $oldbody .= __HTML_TEXT_OPEN__;
+                $oldbody .= $val2["lang"] . ": ";
                 if ($val2["link"] != "") {
                     $oldbody .= "<a href='" . $row2[$val2["link"]] . "'>";
                 }
@@ -853,10 +828,7 @@ if (getParam("page") == "correo") {
                     $oldbody .= "</a>";
                 }
                 $oldbody .= __HTML_TEXT_CLOSE__;
-                $oldbody .= __HTML_CELL_CLOSE__;
-                $oldbody .= __HTML_ROW_CLOSE__;
             }
-            $oldbody .= __HTML_TABLE_CLOSE__;
             $oldbody .= __HTML_BOX_CLOSE__;
             $oldbody .= __HTML_SEPARATOR__;
             $oldbody .= __HTML_TEXT_OPEN__;

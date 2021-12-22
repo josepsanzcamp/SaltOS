@@ -38,13 +38,6 @@ define("__HTML_PAGE_OPEN__", '<!DOCTYPE html><html><head><style type="text/css">
 define("__HTML_PAGE_CLOSE__", '</body></html>');
 define("__HTML_BOX_OPEN__", '<div style="' . getDefault("defines/htmlbox") . '">');
 define("__HTML_BOX_CLOSE__", '</div>');
-define("__HTML_TABLE_OPEN__", '<table>');
-define("__HTML_TABLE_CLOSE__", '</table>');
-define("__HTML_ROW_OPEN__", '<tr>');
-define("__HTML_ROW_CLOSE__", '</tr>');
-define("__HTML_CELL_OPEN__", '<td>');
-define("__HTML_RCELL_OPEN__", '<td align="right" nowrap="nowrap">');
-define("__HTML_CELL_CLOSE__", '</td>');
 define("__HTML_TEXT_OPEN__", '<div style="' . getDefault("defines/htmltext") . '">');
 define("__HTML_TEXT_CLOSE__", '</div>');
 define("__PLAIN_TEXT_OPEN__", '<div style="' . getDefault("defines/plaintext") . '">');

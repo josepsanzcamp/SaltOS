@@ -303,21 +303,12 @@ if (getParam("action") == "getmail") {
             }
             $buffer .= __HTML_PAGE_OPEN__;
             $buffer .= __HTML_BOX_OPEN__;
-            $buffer .= __HTML_TABLE_OPEN__;
             foreach ($lista as $key => $val) {
                 $result[$key] = str_replace(array("<",">"), array("&lt;","&gt;"), $result[$key]);
-                $buffer .= __HTML_ROW_OPEN__;
-                $buffer .= __HTML_RCELL_OPEN__;
                 $buffer .= __HTML_TEXT_OPEN__;
-                $buffer .= $lista[$key] . ":";
-                $buffer .= __HTML_TEXT_CLOSE__;
-                $buffer .= __HTML_CELL_CLOSE__;
-                $buffer .= __HTML_CELL_OPEN__;
-                $buffer .= __HTML_TEXT_OPEN__;
+                $buffer .= $lista[$key] . ": ";
                 $buffer .= "<b>" . $result[$key] . "</b>";
                 $buffer .= __HTML_TEXT_CLOSE__;
-                $buffer .= __HTML_CELL_CLOSE__;
-                $buffer .= __HTML_ROW_CLOSE__;
             }
             $first = 1;
             foreach ($result["files"] as $file) {
@@ -325,14 +316,8 @@ if (getParam("action") == "getmail") {
                 $chash = $file["chash"];
                 $hsize = $file["hsize"];
                 if ($first) {
-                    $buffer .= __HTML_ROW_OPEN__;
-                    $buffer .= __HTML_RCELL_OPEN__;
                     $buffer .= __HTML_TEXT_OPEN__;
-                    $buffer .= LANG("attachments", "correo") . ":";
-                    $buffer .= __HTML_TEXT_CLOSE__;
-                    $buffer .= __HTML_CELL_CLOSE__;
-                    $buffer .= __HTML_CELL_OPEN__;
-                    $buffer .= __HTML_TEXT_OPEN__;
+                    $buffer .= LANG("attachments", "correo") . ": ";
                 } else {
                     $buffer .= " | ";
                 }
@@ -342,10 +327,7 @@ if (getParam("action") == "getmail") {
             }
             if (!$first) {
                 $buffer .= __HTML_TEXT_CLOSE__;
-                $buffer .= __HTML_CELL_CLOSE__;
-                $buffer .= __HTML_ROW_CLOSE__;
             }
-            $buffer .= __HTML_TABLE_CLOSE__;
             $buffer .= __HTML_BOX_CLOSE__;
             $buffer .= __HTML_SEPARATOR__;
             $result = __getmail_getfullbody(__getmail_getnode("0", $decoded));
