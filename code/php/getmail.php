@@ -239,7 +239,7 @@ function __getmail_getfiles($array, $level = 0)
     if (__getmail_processfile($disp, $type)) {
         $temp = __getmail_getnode("Body", $array);
         if ($temp) {
-            $cid = __getmail_getnode("Headers/content-id:", $array);
+            $cid = __getmail_fixstring(__getmail_getnode("Headers/content-id:", $array));
             if (substr($cid, 0, 1) == "<") {
                 $cid = substr($cid, 1);
             }
@@ -247,11 +247,11 @@ function __getmail_getfiles($array, $level = 0)
                 $cid = substr($cid, 0, -1);
             }
             $cname = getutf8(__getmail_getnode("FileName", $array));
-            $location = __getmail_getnode("Headers/content-location:", $array);
+            $location = __getmail_fixstring(__getmail_getnode("Headers/content-location:", $array));
             if ($cid == "" && $cname == "" && $location != "") {
                 $cid = $location;
             }
-            $ctype = __getmail_getnode("Headers/content-type:", $array);
+            $ctype = __getmail_fixstring(__getmail_getnode("Headers/content-type:", $array));
             if (strpos($ctype, ";") !== false) {
                 $ctype = strtok($ctype, ";");
             }
@@ -406,7 +406,7 @@ function __getmail_getinfo($array)
         $result["priority"] = $priorities[$priority];
     }
     // GET THE SENSITIVITY IF EXISTS
-    $sensitivity = strtolower(__getmail_getnode("Headers/sensitivity:", $array));
+    $sensitivity = strtolower(__getmail_fixstring(__getmail_getnode("Headers/sensitivity:", $array)));
     $sensitivities = array("personal" => 1,"private" => 2,"company-confidential" => 3,"company confidential" => 3);
     if (isset($sensitivities[$sensitivity])) {
         $result["sensitivity"] = $sensitivities[$sensitivity];
@@ -428,6 +428,9 @@ function __getmail_fixstring($arg)
 {
     while (is_array($arg)) {
         $arg = array_shift($arg);
+    }
+    if (is_null($arg)) {
+        $arg = "";
     }
     return $arg;
 }
@@ -511,7 +514,7 @@ function __getmail_getfullbody($array)
     } else {
         $temp = __getmail_getnode("Body", $array);
         if ($temp) {
-            $cid = __getmail_getnode("Headers/content-id:", $array);
+            $cid = __getmail_fixstring(__getmail_getnode("Headers/content-id:", $array));
             if (substr($cid, 0, 1) == "<") {
                 $cid = substr($cid, 1);
             }
@@ -519,11 +522,11 @@ function __getmail_getfullbody($array)
                 $cid = substr($cid, 0, -1);
             }
             $cname = getutf8(__getmail_getnode("FileName", $array));
-            $location = __getmail_getnode("Headers/content-location:", $array);
+            $location = __getmail_fixstring(__getmail_getnode("Headers/content-location:", $array));
             if ($cid == "" && $cname == "" && $location != "") {
                 $cid = $location;
             }
-            $ctype = __getmail_getnode("Headers/content-type:", $array);
+            $ctype = __getmail_fixstring(__getmail_getnode("Headers/content-type:", $array));
             if (strpos($ctype, ";") !== false) {
                 $ctype = strtok($ctype, ";");
             }
@@ -595,7 +598,7 @@ function __getmail_getcid($array, $hash)
     } else {
         $temp = __getmail_getnode("Body", $array);
         if ($temp) {
-            $cid = __getmail_getnode("Headers/content-id:", $array);
+            $cid = __getmail_fixstring(__getmail_getnode("Headers/content-id:", $array));
             if (substr($cid, 0, 1) == "<") {
                 $cid = substr($cid, 1);
             }
@@ -603,11 +606,11 @@ function __getmail_getcid($array, $hash)
                 $cid = substr($cid, 0, -1);
             }
             $cname = getutf8(__getmail_getnode("FileName", $array));
-            $location = __getmail_getnode("Headers/content-location:", $array);
+            $location = __getmail_fixstring(__getmail_getnode("Headers/content-location:", $array));
             if ($cid == "" && $cname == "" && $location != "") {
                 $cid = $location;
             }
-            $ctype = __getmail_getnode("Headers/content-type:", $array);
+            $ctype = __getmail_fixstring(__getmail_getnode("Headers/content-type:", $array));
             if (strpos($ctype, ";") !== false) {
                 $ctype = strtok($ctype, ";");
             }
