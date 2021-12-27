@@ -780,6 +780,9 @@ function make_insert_query($table, $array)
     $list1 = array();
     $list2 = array();
     foreach ($array as $key => $val) {
+        if ($val === null) {
+            $val = "";
+        }
         $list1[] = $key;
         $list2[] = "'" . addslashes($val) . "'";
     }
@@ -793,6 +796,9 @@ function make_update_query($table, $array, $where)
 {
     $list1 = array();
     foreach ($array as $key => $val) {
+        if ($val === null) {
+            $val = "";
+        }
         $list1[] = $key . "='" . addslashes($val) . "'";
     }
     $list1 = implode(",", $list1);
@@ -804,6 +810,9 @@ function make_where_query($array)
 {
     $list1 = array();
     foreach ($array as $key => $val) {
+        if ($val === null) {
+            $val = "";
+        }
         $list1[] = $key . "='" . addslashes($val) . "'";
     }
     $query = "(" . implode(" AND ", $list1) . ")";

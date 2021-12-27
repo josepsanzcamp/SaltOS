@@ -29,6 +29,7 @@ function eval_iniset($array)
 {
     if (is_array($array)) {
         foreach ($array as $key => $val) {
+            $key = limpiar_key($key);
             $current = ini_get($key);
             $diff = 0;
             if (strtolower($val) == "on" || strtolower($val) == "off") {
@@ -66,6 +67,7 @@ function eval_putenv($array)
     }
     if (is_array($array)) {
         foreach ($array as $key => $val) {
+            $key = limpiar_key($key);
             $current = getenv($key);
             $diff = 0;
             if ($val != $current) {

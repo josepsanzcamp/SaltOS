@@ -612,6 +612,10 @@ class rfc822_addresses_class
 		{
 			if(!$this->ParseAtom($a, $local_part, 1))
 				return(0);
+			// BEGIN TO SOLVE THE PROBLEM WHEN LOCAL_PART IS NULL IN PHP8.1 BY SANZ
+			if(!IsSet($local_part))
+				return(1);
+			// END TO SOLVE THE PROBLEM WHEN LOCAL_PART IS NULL IN PHP8.1 BY SANZ
 			$local_part = trim($local_part);
 		}
 		if($a >= $l

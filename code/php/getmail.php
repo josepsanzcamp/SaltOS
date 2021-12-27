@@ -246,7 +246,7 @@ function __getmail_getfiles($array, $level = 0)
             if (substr($cid, -1, 1) == ">") {
                 $cid = substr($cid, 0, -1);
             }
-            $cname = getutf8(__getmail_getnode("FileName", $array));
+            $cname = getutf8(__getmail_fixstring(__getmail_getnode("FileName", $array)));
             $location = __getmail_fixstring(__getmail_getnode("Headers/content-location:", $array));
             if ($cid == "" && $cname == "" && $location != "") {
                 $cid = $location;
@@ -259,7 +259,7 @@ function __getmail_getfiles($array, $level = 0)
                 $cname = encode_bad_chars($ctype) . ".eml";
             }
             if ($cname != "") {
-                $csize = __getmail_getnode("BodyLength", $array);
+                $csize = __getmail_fixstring(__getmail_getnode("BodyLength", $array));
                 $hsize = __getmail_gethumansize($csize);
                 $chash = md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE AS MEMORY TRICK
                 $result[] = array(
@@ -352,8 +352,8 @@ function __getmail_getinfo($array)
         if ($addresses) {
             $temp = array();
             foreach ($addresses as $a) {
-                $name = getutf8(__getmail_getnode("name", $a));
-                $addr = getutf8(__getmail_getnode("address", $a));
+                $name = getutf8(__getmail_fixstring(__getmail_getnode("name", $a)));
+                $addr = getutf8(__getmail_fixstring(__getmail_getnode("address", $a)));
                 $result["emails"][] = array("id_tipo" => $key,"tipo" => $val,"nombre" => $name,"valor" => $addr);
                 $temp[] = ($name != "") ? $name . " <" . $addr . ">" : $addr;
             }
@@ -429,7 +429,7 @@ function __getmail_fixstring($arg)
     while (is_array($arg)) {
         $arg = array_shift($arg);
     }
-    if (is_null($arg)) {
+    if ($arg === null) {
         $arg = "";
     }
     return $arg;
@@ -521,7 +521,7 @@ function __getmail_getfullbody($array)
             if (substr($cid, -1, 1) == ">") {
                 $cid = substr($cid, 0, -1);
             }
-            $cname = getutf8(__getmail_getnode("FileName", $array));
+            $cname = getutf8(__getmail_fixstring(__getmail_getnode("FileName", $array)));
             $location = __getmail_fixstring(__getmail_getnode("Headers/content-location:", $array));
             if ($cid == "" && $cname == "" && $location != "") {
                 $cid = $location;
@@ -534,7 +534,7 @@ function __getmail_getfullbody($array)
                 $cname = encode_bad_chars($ctype) . ".eml";
             }
             if ($cid != "" || $cname != "") {
-                $csize = __getmail_getnode("BodyLength", $array);
+                $csize = __getmail_fixstring(__getmail_getnode("BodyLength", $array));
                 $hsize = __getmail_gethumansize($csize);
                 $chash = md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE AS MEMORY TRICK
                 $result[] = array(
@@ -605,7 +605,7 @@ function __getmail_getcid($array, $hash)
             if (substr($cid, -1, 1) == ">") {
                 $cid = substr($cid, 0, -1);
             }
-            $cname = getutf8(__getmail_getnode("FileName", $array));
+            $cname = getutf8(__getmail_fixstring(__getmail_getnode("FileName", $array)));
             $location = __getmail_fixstring(__getmail_getnode("Headers/content-location:", $array));
             if ($cid == "" && $cname == "" && $location != "") {
                 $cid = $location;
@@ -617,7 +617,7 @@ function __getmail_getcid($array, $hash)
             if ($cid == "" && $cname == "" && __getmail_processfile($disp, $type)) {
                 $cname = encode_bad_chars($ctype) . ".eml";
             }
-            $csize = __getmail_getnode("BodyLength", $array);
+            $csize = __getmail_fixstring(__getmail_getnode("BodyLength", $array));
             $chash = md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE AS MEMORY TRICK
             if ($chash == $hash) {
                 $hsize = __getmail_gethumansize($csize);

@@ -1,14 +1,16 @@
 Code downloaded from:
 - http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html
 
-Fixed a bug when the CR+NL at the end of a part is break by a chunk
--------------------------------------------------------------------
-// BEGIN TO SOLVE THE CHUNK PROBLEM WHEN BREAK A PART CR+NL BY SANZ
-if(!$end_of_data && substr($data,-1,1)=="\r") {
-	$data.=@fread($this->file,1);
-	if(GetType($data)!='string')
-		return($this->SetPHPError('could not read the message file', $php_errormsg));
-	$end_of_data = feof($this->file);
-}
-// END TO SOLVE THE CHUNK PROBLEM WHEN BREAK A PART CR+NL BY SANZ
+Fixed a bug in php8.0 in mime_parser.php:
+-----------------------------------------
+// BEGIN TO SOLVE THE PROBLEM WHEN HEX CONTAINS NON HEXADECIMAL CHARS BY SANZ
+$hex = strtolower(substr($value, $position+1, 2));
+$h = ctype_xdigit($hex) ? HexDec($hex) : -1;
+// END TO SOLVE THE PROBLEM WHEN HEX CONTAINS NON HEXADECIMAL CHARS BY SANZ
 
+Fixed a bug in php8.1 in rfc822_addresses.php:
+----------------------------------------------
+// BEGIN TO SOLVE THE PROBLEM WHEN LOCAL_PART IS NULL IN PHP8.1 BY SANZ
+if(!IsSet($local_part))
+	return(1);
+// END TO SOLVE THE PROBLEM WHEN LOCAL_PART IS NULL IN PHP8.1 BY SANZ
