@@ -773,12 +773,14 @@ function __gcalendar_feed($client)
                 "title" => $event->getSummary(),
                 "content" => $event->getDescription(),
                 "where" => $event->getLocation(),
-                "dstart" => __gcalendar_unformat($event->getStart()->getDateTime()),
-                "dstop" => __gcalendar_unformat($event->getEnd()->getDateTime())
+                "dstart" => $event->getStart()->getDateTime(),
+                "dstop" => $event->getEnd()->getDateTime()
             );
             foreach ($temp as $key => $val) {
-                $temp[$key] = str_replace("\r", "", trim($val));
+                $temp[$key] = str_replace("\r", "", trim(null2string($val)));
             }
+            $temp["dstart"] = __gcalendar_unformat($temp["dstart"]);
+            $temp["dstop"] = __gcalendar_unformat($temp["dstop"]);
             $temp["hash"] = md5(serialize(array(
                 $temp["title"],
                 $temp["content"],

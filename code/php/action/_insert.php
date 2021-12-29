@@ -67,6 +67,7 @@ if (!semaphore_acquire($semaphore)) {
 foreach ($config as $query) {
     $inline = eval_attr($query);
     foreach ($inline as $query) {
+        $query = null2string($query);
         $query = trim($query);
         if ($query == "") {
             continue;

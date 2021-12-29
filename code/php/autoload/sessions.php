@@ -41,6 +41,9 @@ function sess_read_handler($id)
     $sess_file = session_save_path() . "/" . $id;
     $query = "SELECT sess_data FROM tbl_sessions WHERE sess_file='${sess_file}'";
     $sess_data = execute_query($query);
+    if ($sess_data === null) {
+        $sess_data = "";
+    }
     if (is_array($sess_data)) {
         $query = "DELETE FROM tbl_sessions WHERE sess_file='${sess_file}'";
         db_query($query);

@@ -70,6 +70,7 @@ function __array2xml_write_nodes(&$array, $level = null)
             if (!__array2xml_check_node_name($key)) {
                 show_php_error(array("phperror" => "Invalid XML tag name '${key}' for the value '${val}'"));
             }
+            $val = null2string($val);
             $val = remove_bad_chars($val);
             if (strpos($val, "<") !== false || strpos($val, "&") !== false) {
                 $count = 1;

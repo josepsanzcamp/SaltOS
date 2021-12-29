@@ -429,9 +429,7 @@ function __getmail_fixstring($arg)
     while (is_array($arg)) {
         $arg = array_shift($arg);
     }
-    if ($arg === null) {
-        $arg = "";
-    }
+    $arg = null2string($arg);
     return $arg;
 }
 
