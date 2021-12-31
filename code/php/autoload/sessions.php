@@ -8,7 +8,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2021 by Josep Sanz Campderrós
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
 More information in https://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -46,8 +46,7 @@ function sess_read_handler($id)
         db_query($query);
         $sess_data = "";
     }
-    $sess_data = null2string($sess_data);
-    $sess_data = base64_decode($sess_data);
+    $sess_data = base64_decode(null2string($sess_data));
     $_CONFIG["sess"]["hash"] = md5($sess_data);
     return($sess_data);
 }

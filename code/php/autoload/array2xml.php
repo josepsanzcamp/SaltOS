@@ -8,7 +8,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2021 by Josep Sanz Campderrós
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
 More information in https://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -70,8 +70,7 @@ function __array2xml_write_nodes(&$array, $level = null)
             if (!__array2xml_check_node_name($key)) {
                 show_php_error(array("phperror" => "Invalid XML tag name '${key}' for the value '${val}'"));
             }
-            $val = null2string($val);
-            $val = remove_bad_chars($val);
+            $val = remove_bad_chars(null2string($val));
             if (strpos($val, "<") !== false || strpos($val, "&") !== false) {
                 $count = 1;
                 while ($count) {

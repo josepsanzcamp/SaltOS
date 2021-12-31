@@ -8,7 +8,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2021 by Josep Sanz Campderrós
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
 More information in https://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -780,11 +780,8 @@ function make_insert_query($table, $array)
     $list1 = array();
     $list2 = array();
     foreach ($array as $key => $val) {
-        if ($val === null) {
-            $val = "";
-        }
         $list1[] = $key;
-        $list2[] = "'" . addslashes($val) . "'";
+        $list2[] = "'" . addslashes(null2string($val)) . "'";
     }
     $list1 = implode(",", $list1);
     $list2 = implode(",", $list2);
@@ -796,10 +793,7 @@ function make_update_query($table, $array, $where)
 {
     $list1 = array();
     foreach ($array as $key => $val) {
-        if ($val === null) {
-            $val = "";
-        }
-        $list1[] = $key . "='" . addslashes($val) . "'";
+        $list1[] = $key . "='" . addslashes(null2string($val)) . "'";
     }
     $list1 = implode(",", $list1);
     $query = "UPDATE ${table} SET ${list1} WHERE ${where}";
@@ -810,10 +804,7 @@ function make_where_query($array)
 {
     $list1 = array();
     foreach ($array as $key => $val) {
-        if ($val === null) {
-            $val = "";
-        }
-        $list1[] = $key . "='" . addslashes($val) . "'";
+        $list1[] = $key . "='" . addslashes(null2string($val)) . "'";
     }
     $query = "(" . implode(" AND ", $list1) . ")";
     return $query;

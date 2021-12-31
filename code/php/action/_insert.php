@@ -8,7 +8,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2021 by Josep Sanz Campderrós
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
 More information in https://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -67,8 +67,7 @@ if (!semaphore_acquire($semaphore)) {
 foreach ($config as $query) {
     $inline = eval_attr($query);
     foreach ($inline as $query) {
-        $query = null2string($query);
-        $query = trim($query);
+        $query = trim(null2string($query));
         if ($query == "") {
             continue;
         }
