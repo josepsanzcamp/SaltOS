@@ -6307,7 +6307,7 @@ class WarnockPDF
         $chars = Fonts::UTF8StringToArray($s, $this->isunicode, $this->CurrentFont);
         // calculate maximum width for a single character on string
         $chrw = $this->GetArrStringWidth($chars, '', '', 0, true);
-        array_walk($chrw, array($this, 'getRawCharWidth'));
+        //~ array_walk($chrw, array($this, 'getRawCharWidth')); // COMMENTED BY SANZ
         $maxchwidth = max($chrw);
         // get array of chars
         $uchars = Fonts::UTF8ArrayToUniArray($chars, $this->isunicode);

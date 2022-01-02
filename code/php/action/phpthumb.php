@@ -95,8 +95,8 @@ if (!cache_exists($cache, $src)) {
     }
     // CALCULATE SIZE
     if ($width !== null && $height !== null && (imagesx($im) > $width || imagesy($im) > $height)) {
-        $width2 = imagesx($im) * $height / imagesy($im);
-        $height2 = imagesy($im) * $width / imagesx($im);
+        $width2 = intval(imagesx($im) * $height / imagesy($im));
+        $height2 = intval(imagesy($im) * $width / imagesx($im));
         if ($width2 > $width) {
             $height = $height2;
         }
@@ -104,9 +104,9 @@ if (!cache_exists($cache, $src)) {
             $width = $width2;
         }
     } elseif ($width === null && $height !== null && imagesy($im) > $height) {
-        $width = imagesx($im) * $height / imagesy($im);
+        $width = intval(imagesx($im) * $height / imagesy($im));
     } elseif ($width !== null && $height === null && imagesx($im) > $width) {
-        $height = imagesy($im) * $width / imagesx($im);
+        $height = intval(imagesy($im) * $width / imagesx($im));
     } else {
         $width = imagesx($im);
         $height = imagesy($im);

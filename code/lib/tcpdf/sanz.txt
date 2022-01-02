@@ -9,4 +9,6 @@ I removed for security reasons the follow directories:
 - scripts
 - examples
 
+Fixed some php8.1 errors:
+- on line 6310 of WarnockPDF.php, I have commented the array_walk($chrw, array($this, 'getRawCharWidth')) because it is not necessary, seems to be an error because the objective is achieved by the line 3909.
 

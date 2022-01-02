@@ -1403,7 +1403,7 @@ function __score_image($score, $width, $height, $size)
         if ($posx > $width) {
             break;
         }
-        $color = imagecolorallocate($im, 255, $i, 0);
+        $color = imagecolorallocate($im, 255, intval($i), 0);
         imageline($im, $posx, 0, $posx, $height, $color);
         $posx++;
     }
@@ -1411,7 +1411,7 @@ function __score_image($score, $width, $height, $size)
         if ($posx > $width) {
             break;
         }
-        $color = imagecolorallocate($im, $i, 255, 0);
+        $color = imagecolorallocate($im, intval($i), 255, 0);
         imageline($im, $posx, 0, $posx, $height, $color);
         $posx++;
     }
@@ -1420,7 +1420,7 @@ function __score_image($score, $width, $height, $size)
     $sx = $bbox[4] - $bbox[0];
     $sy = $bbox[5] - $bbox[1];
     $color = imagecolorallocate($im, 0, 0, 0);
-    imagettftext($im, $size, 0, $width / 2 - $sx / 2, $height / 2 - $sy / 2, $color, $font, $score . "%");
+    imagettftext($im, $size, 0, intval($width / 2 - $sx / 2), intval($height / 2 - $sy / 2), $color, $font, $score . "%");
     // CONTINUE
     ob_start();
     imagepng($im);

@@ -278,7 +278,7 @@ function __pdf_eval_pdftag($array, $row = array())
                         $pdf->Rotate(floatval($temp[3]), $temp[0], $temp[1]);
                     }
                     $pdf->SetXY($temp[0], $temp[1]);
-                    $pdf->Cell(0, 0, $temp[2]);
+                    $pdf->Cell(0, 0, null2string($temp[2]));
                     if (isset($temp[3])) {
                         $pdf->StopTransform();
                     }
@@ -304,7 +304,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!isset($temp[6])) {
                         $pdf->check_y($temp[3]);
                     }
-                    $pdf->MultiCell($temp[2], $temp[3], $temp[5], 0, $rtl[$dir][$temp[4]]);
+                    $pdf->MultiCell($temp[2], $temp[3], null2string($temp[5]), 0, $rtl[$dir][$temp[4]]);
                     if (isset($temp[6])) {
                         $pdf->StopTransform();
                     }
