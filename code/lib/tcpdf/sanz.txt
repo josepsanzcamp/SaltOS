@@ -5,3 +5,28 @@ I removed for security reasons the follow directories:
 - scripts
 - examples
 
+Fixed a php8.1 deprecation adding a intval calls when defines the $col variable:
+
+	/**
+	 * Return Reed-Solomon block code.
+	 * @return array rsblocks
+	 */
+	protected function getCode() {
+		if ($this->count < $this->dataLength) {
+			$row = $this->count % $this->blocks;
+			$col = intval($this->count / $this->blocks);
+			if ($col >= $this->rsblocks[0]['dataLength']) {
+				$row += $this->b1;
+			}
+			$ret = $this->rsblocks[$row]['data'][$col];
+		} elseif ($this->count < $this->dataLength + $this->eccLength) {
+			$row = ($this->count - $this->dataLength) % $this->blocks;
+			$col = intval(($this->count - $this->dataLength) / $this->blocks);
+			$ret = $this->rsblocks[$row]['ecc'][$col];
+		} else {
+			return 0;
+		}
+		$this->count++;
+		return $ret;
+	}
+
