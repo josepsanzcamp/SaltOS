@@ -926,7 +926,7 @@ function __import_col2name($n)
     }
     $r = '';
     for ($i = 1; $n >= 0 && $i < 10; $i++) {
-        $r = chr(0x41 + ($n % pow(26, $i) / pow(26, $i - 1))) . $r;
+        $r = chr(0x41 + (int)($n % pow(26, $i) / pow(26, $i - 1))) . $r;
         $n -= pow(26, $i);
     }
     return $r;
