@@ -438,7 +438,10 @@ function __import_xls2array($file, $sheet)
     if (!method_exists($objReader, "listWorksheetNames")) {
         return "Error: Sheets not found in the file";
     }
+    // libxml_use_internal_errors IS A TRICK TO PREVENT THE simplexml_load_string ERROR WHEN GETS BINARY DATA
+    libxml_use_internal_errors(true); // TRICK
     $sheets = $objReader->listWorksheetNames($file);
+    libxml_use_internal_errors(false); // TRICK
     if (is_numeric($sheet)) {
         if (!isset($sheets[$sheet])) {
             return "Error: Sheet number '${sheet}' not found";

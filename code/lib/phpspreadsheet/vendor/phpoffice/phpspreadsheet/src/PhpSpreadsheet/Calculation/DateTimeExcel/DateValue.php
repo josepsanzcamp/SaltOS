@@ -37,7 +37,7 @@ class DateValue
     {
         $dti = new DateTimeImmutable();
         $baseYear = SharedDateHelper::getExcelCalendar();
-        $dateValue = trim(Functions::flattenSingleValue($dateValue), '"');
+        $dateValue = trim(Functions::flattenSingleValue($dateValue ?? ''), '"');
         //    Strip any ordinals because they're allowed in Excel (English only)
         $dateValue = preg_replace('/(\d)(st|nd|rd|th)([ -\/])/Ui', '$1$3', $dateValue) ?? '';
         //    Convert separators (/ . or space) to hyphens (should also handle dot used for ordinals in some countries, e.g. Denmark, Germany)
@@ -92,13 +92,11 @@ class DateValue
 
     /**
      * Parse date.
-     *
-     * @return array|bool
      */
-    private static function setUpArray(string $dateValue, DateTimeImmutable $dti)
+    private static function setUpArray(string $dateValue, DateTimeImmutable $dti): array
     {
-        $PHPDateArray = date_parse($dateValue);
-        if (($PHPDateArray === false) || ($PHPDateArray['error_count'] > 0)) {
+        $PHPDateArray = Helpers::dateParse($dateValue);
+        if (!Helpers::dateParseSucceeded($PHPDateArray)) {
             // If original count was 1, we've already returned.
             // If it was 2, we added another.
             // Therefore, neither of the first 2 stroks below can fail.
@@ -106,9 +104,9 @@ class DateValue
             $testVal2 = strtok('- ');
             $testVal3 = strtok('- ') ?: $dti->format('Y');
             Helpers::adjustYear((string) $testVal1, (string) $testVal2, $testVal3);
-            $PHPDateArray = date_parse($testVal1 . '-' . $testVal2 . '-' . $testVal3);
-            if (($PHPDateArray === false) || ($PHPDateArray['error_count'] > 0)) {
-                $PHPDateArray = date_parse($testVal2 . '-' . $testVal1 . '-' . $testVal3);
+            $PHPDateArray = Helpers::dateParse($testVal1 . '-' . $testVal2 . '-' . $testVal3);
+            if (!Helpers::dateParseSucceeded($PHPDateArray)) {
+                $PHPDateArray = Helpers::dateParse($testVal2 . '-' . $testVal1 . '-' . $testVal3);
             }
         }
 
@@ -118,15 +116,13 @@ class DateValue
     /**
      * Final results.
      *
-     * @param array|bool $PHPDateArray
-     *
      * @return mixed Excel date/time serial value, PHP date/time serial value or PHP date/time object,
      *                        depending on the value of the ReturnDateType flag
      */
-    private static function finalResults($PHPDateArray, DateTimeImmutable $dti, int $baseYear)
+    private static function finalResults(array $PHPDateArray, DateTimeImmutable $dti, int $baseYear)
     {
         $retValue = Functions::Value();
-        if (is_array($PHPDateArray) && $PHPDateArray['error_count'] == 0) {
+        if (Helpers::dateParseSucceeded($PHPDateArray)) {
             // Execute function
             Helpers::replaceIfEmpty($PHPDateArray['year'], $dti->format('Y'));
             if ($PHPDateArray['year'] < $baseYear) {
