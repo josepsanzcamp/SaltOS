@@ -2042,7 +2042,7 @@ class PHPlot
             $ry = $qy + $r10 * $width_factor + $r11 * $font_height;
 
             // Finally, draw the text:
-            ImageTTFText($this->img, $font_size, $angle, intval($rx), intval($ry), $color, $font_file, $lines[$i]);
+            ImageTTFText($this->img, $font_size, $angle, (int)$rx, (int)$ry, $color, $font_file, $lines[$i]);
 
             // Step to position of next line.
             // This is a rotation of (x=0,y=height+line_spacing) by $angle:
@@ -7165,7 +7165,7 @@ class PHPlot
         }
 
         // Draw the bar
-        ImageFilledRectangle($this->img, intval($x1), intval($y1), intval($x2), intval($y2), $data_color);
+        ImageFilledRectangle($this->img, (int)$x1, (int)$y1, (int)$x2, (int)$y2, $data_color);
 
         // Draw a shade, if shading is on.
         if (isset($shade_color)) {
@@ -7612,8 +7612,8 @@ class PHPlot
                 // Don't try to draw a 0 degree slice - it would make a full circle.
                 if ($arc_start_angle > $arc_end_angle) {
                     // Draw the slice
-                    ImageFilledArc($this->img, intval($xpos), intval($ypos+$h), intval($pie_width), intval($pie_height),
-                                   intval($arc_end_angle), intval($arc_start_angle), $slicecol, IMG_ARC_PIE);
+                    ImageFilledArc($this->img, (int)$xpos, (int)($ypos+$h), (int)$pie_width, (int)$pie_height,
+                                   (int)$arc_end_angle, (int)$arc_start_angle, $slicecol, IMG_ARC_PIE);
 
                     // Processing to do only for the last (if shaded) or only (if unshaded) loop:
                     if ($h == 0) {
