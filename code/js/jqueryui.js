@@ -1901,7 +1901,7 @@ saltos.__get_filtered_field_helper=function(field,size) {
 };
 
 saltos.get_filtered_field=function(field,size,id) {
-    if(field.toString()=="") {
+    if(field==null || field.toString()=="") {
         field="-";
     } else if(substr(field,0,4)=="tel:") {
         var temp=explode(":",field,2);
@@ -3542,8 +3542,10 @@ saltos.form_field_plot=function(field) {
                 for(var key in attr1) {
                     if(isset(field[attr1[key]])) querystring+="&"+attr1[key]+"="+encodeURIComponent(field[attr1[key]]);
                 };
-                for(var key in field.rows.row) {
-                    querystring+="&"+attr2[key]+"="+encodeURIComponent(implode("|",array_column(field.rows,key)));
+                if(isset(field.rows)) {
+                    for(var key in field.rows.row) {
+                        querystring+="&"+attr2[key]+"="+encodeURIComponent(implode("|",array_column(field.rows,key)));
+                    }
                 }
                 $.ajax({
                     url:"index.php",

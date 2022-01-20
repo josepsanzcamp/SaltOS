@@ -7054,23 +7054,23 @@ class PHPlot
             break;
         case 'diamond':
             $arrpoints = array($x1, $y, $x, $y1, $x2, $y, $x, $y2);
-            ImageFilledPolygon($this->img, $arrpoints, 4, $color);
+            ImageFilledPolygon($this->img, $arrpoints, $color);
             break;
         case 'triangle':
             $arrpoints = array($x1, $y, $x2, $y, $x, $y2);
-            ImageFilledPolygon($this->img, $arrpoints, 3, $color);
+            ImageFilledPolygon($this->img, $arrpoints, $color);
             break;
         case 'trianglemid':
             $arrpoints = array($x1, $y1, $x2, $y1, $x, $y);
-            ImageFilledPolygon($this->img, $arrpoints, 3, $color);
+            ImageFilledPolygon($this->img, $arrpoints, $color);
             break;
         case 'yield':
             $arrpoints = array($x1, $y1, $x2, $y1, $x, $y2);
-            ImageFilledPolygon($this->img, $arrpoints, 3, $color);
+            ImageFilledPolygon($this->img, $arrpoints, $color);
             break;
         case 'delta':
             $arrpoints = array($x1, $y2, $x2, $y2, $x, $y1);
-            ImageFilledPolygon($this->img, $arrpoints, 3, $color);
+            ImageFilledPolygon($this->img, $arrpoints, $color);
             break;
         case 'star':
             ImageLine($this->img, $x1, $y, $x2, $y, $color);
@@ -7080,11 +7080,11 @@ class PHPlot
             break;
         case 'hourglass':
             $arrpoints = array($x1, $y1, $x2, $y1, $x1, $y2, $x2, $y2);
-            ImageFilledPolygon($this->img, $arrpoints, 4, $color);
+            ImageFilledPolygon($this->img, $arrpoints, $color);
             break;
         case 'bowtie':
             $arrpoints = array($x1, $y1, $x1, $y2, $x2, $y1, $x2, $y2);
-            ImageFilledPolygon($this->img, $arrpoints, 4, $color);
+            ImageFilledPolygon($this->img, $arrpoints, $color);
             break;
         case 'target':
             ImageFilledRectangle($this->img, $x1, $y1, $x, $y, $color);
@@ -7096,7 +7096,7 @@ class PHPlot
             break;
         case 'home': /* As in: "home plate" (baseball), also looks sort of like a house. */
             $arrpoints = array($x1, $y2, $x2, $y2, $x2, $y, $x, $y1, $x1, $y);
-            ImageFilledPolygon($this->img, $arrpoints, 5, $color);
+            ImageFilledPolygon($this->img, $arrpoints, $color);
             break;
         case 'up':
             ImagePolygon($this->img, array($x, $y1, $x2, $y2, $x1, $y2), 3, $color);
@@ -7178,7 +7178,7 @@ class PHPlot
             } else { // Suppress top shading (Note shade_top==FALSE && shade_side==FALSE is not allowed)
                 $pts = array($x2, $y2, $x2, $y1, $x2 + $shade, $y1 - $shade, $x2 + $shade, $y2 - $shade);
             }
-            ImageFilledPolygon($this->img, $pts, count($pts) / 2, $shade_color);
+            ImageFilledPolygon($this->img, $pts, $shade_color);
         }
 
         // Draw a border around the bar, if enabled.
@@ -7853,7 +7853,7 @@ class PHPlot
                 array_push($pts, $xd[$row], $yd[$row][$col]);
             }
             // Draw it:
-            ImageFilledPolygon($this->img, $pts, $n_rows * 2, $this->ndx_data_colors[$prev_col]);
+            ImageFilledPolygon($this->img, $pts, $this->ndx_data_colors[$prev_col]);
 
             $prev_col = $col;
         }
@@ -8148,7 +8148,7 @@ class PHPlot
             }
 
             // Draw the resulting polygon, which has (2 * (1 + 2*(n_rows-1))) points:
-            ImageFilledPolygon($this->img, $pts, 4 * $n_rows - 2, $this->ndx_data_colors[$prev_col]);
+            ImageFilledPolygon($this->img, $pts, $this->ndx_data_colors[$prev_col]);
             $prev_col = $col;
         }
 

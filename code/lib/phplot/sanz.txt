@@ -1,5 +1,5 @@
 
-Fixed some php8.1 errors:
-- on line 2045
-- on line 7168
-- on line 7615
+Fixed some php8.1 errors on line 2045, 7168 and 7615
+
+Removed the optional num_points parameter deprecated in php8.1:
+
