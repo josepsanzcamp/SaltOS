@@ -634,10 +634,11 @@ function __getmail_getcid($array, $hash)
             // FOR COMPATIBILITY WITH OLD SALTOS VERSIONS
             if (
                 in_array($hash, array(
-                md5(md5($temp) . md5($cid) . md5($cname) . md5($ctype) . md5($csize)),
-                md5(serialize(array($temp,$cid,$cname,$ctype,$csize))),
-                md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))),
-                md5(json_encode(array(md5($temp),$cid,$cname,$ctype,$csize))),
+                    md5(md5($temp) . md5($cid) . md5($cname) . md5($ctype) . md5($csize)),
+                    md5(serialize(array($temp,$cid,$cname,$ctype,$csize))),
+                    md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))),
+                    md5(serialize(array(md5($temp),null,$cname,$ctype,$csize))),
+                    md5(json_encode(array(md5($temp),$cid,$cname,$ctype,$csize))),
                 ))
             ) {
                 $hsize = __getmail_gethumansize($csize);
