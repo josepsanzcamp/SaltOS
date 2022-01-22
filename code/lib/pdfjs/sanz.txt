@@ -1,1 +1,11 @@
-https://cdnjs.com/libraries/pdf.js
+# https://cdnjs.com/libraries/pdf.js
+
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf_viewer.min.css
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf_viewer.min.js
+
+#wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js
+#wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js
+#wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf_viewer.min.css
+#wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf_viewer.min.js
