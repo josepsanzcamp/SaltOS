@@ -106,7 +106,7 @@ for ($i = 0; $i < $numlines; $i++) {
         $oneletter = $letters[rand(0, $maxletters - 1)];
         $oneangle = rand(-$angle, $angle);
         $bbox = imagettfbbox($letter, $oneangle, $font, $oneletter);
-        imagettftext($im, $letter, rand(-$angle, $angle), $posx, $posy, $fgcolor2, $font, $oneletter);
+        imagettftext($im, $letter, rand(-$angle, $angle), (int)$posx, (int)$posy, $fgcolor2, $font, $oneletter);
         $posx += $bbox[2] - $bbox[0] + $letter / 4;
     }
 }
@@ -148,7 +148,7 @@ $heightmiddle = $height / 2;
 $posx = $widthmiddle - $widthsum / 2;
 for ($i = 0; $i < strlen($code); $i++) {
     $posy = $heights[$i] / 2 + $heightmiddle;
-    imagettftext($im2, $number, $angles[$i], $posx, $posy, $color2, $font, $code[$i]);
+    imagettftext($im2, $number, $angles[$i], (int)$posx, (int)$posy, $color2, $font, $code[$i]);
     $posx += $widths[$i];
 }
 // COPY THE CODE TO BACKGROUND USING WAVE TRANSFORMATION
@@ -160,7 +160,7 @@ for ($i = 0; $i < $width; $i++) {
     for ($j = 0; $j < $height; $j++) {
         $b = sin((($j * $period) + $inib) * $rel) * $amplitude;
         if ($i + $b >= 0 && $i + $b < $width && $j + $a >= 0 && $j + $a < $height) {
-            imagecopymerge($im, $im2, $i, $j, $i + $b, $j + $a, 1, 1, 100);
+            imagecopymerge($im, $im2, $i, $j, (int)($i + $b), (int)($j + $a), 1, 1, 100);
         }
     }
 }

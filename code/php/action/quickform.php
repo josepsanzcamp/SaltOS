@@ -55,7 +55,7 @@ if (strpos($ids, "_") !== false) {
         $pos = strrpos(",${ids},", ",", $pos);
     }
 } else {
-    $pos = strpos(",${ids}, ", ",${id_abs},");
+    $pos = strpos(",${ids},", ",${id_abs},");
 }
 if ($pos !== false) {
     $index = substr_count($ids, ",", 0, $pos);
