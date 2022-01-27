@@ -557,7 +557,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>Locutus 2.0.15 (MIT)</label>
+                            <label>Locutus 2.0.16 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://locutus.io/php/")</onclick>
