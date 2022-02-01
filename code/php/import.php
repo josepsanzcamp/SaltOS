@@ -621,6 +621,11 @@ function __import_edi2array($file)
 function __import_json2array($file)
 {
     $array = json_decode(file_get_contents($file), true);
+    if (!is_array($array)) {
+        $code = json_last_error();
+        $msg = json_last_error_msg();
+        return "${msg} (${code})";
+    }
     return $array;
 }
 

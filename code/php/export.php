@@ -43,6 +43,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         - file: local filename used to store the results
         - ext: extension used for the filename if provided
         - wrap: boolean argument used only for edi indentation
+        - indent: boolean argument used only for json indentation
     Output:
         if file argument is specified, void string is returned
         if file argument is not specified, then they will returns all data
@@ -84,14 +85,13 @@ function export_file($args)
     if (!isset($args["wrap"])) {
         $args["wrap"] = false;
     }
+    if (!isset($args["indent"])) {
+        $args["indent"] = false;
+    }
     // CONTINUE
     switch ($args["type"]) {
         case "xml":
-            $buffer = __export_file_xml(
-                $args["data"],
-                $args["eol"],
-                $args["encoding"]
-            );
+            $buffer = __export_file_xml($args["data"], $args["eol"], $args["encoding"]);
             break;
         case "csv":
             $buffer = __export_file_csv(
@@ -104,24 +104,16 @@ function export_file($args)
             );
             break;
         case "xls":
-            $buffer = __export_file_excel(
-                $args["data"],
-                $args["title"],
-                "Xls"
-            );
+            $buffer = __export_file_excel($args["data"], $args["title"], "Xls");
             break;
         case "xlsx":
-            $buffer = __export_file_excel(
-                $args["data"],
-                $args["title"],
-                "Xlsx"
-            );
+            $buffer = __export_file_excel($args["data"], $args["title"], "Xlsx");
             break;
         case "edi":
-            $buffer = __export_file_edi(
-                $args["data"],
-                $args["wrap"]
-            );
+            $buffer = __export_file_edi($args["data"], $args["wrap"]);
+            break;
+        case "json":
+            $buffer = __export_file_json($args["data"], $args["indent"]);
             break;
         default:
             show_php_error(array("phperror" => "Unknown type '${args["type"]}' for file '${args["file"]}'"));
@@ -290,5 +282,26 @@ function __export_file_edi($matrix, $wrap = false)
     $encoder = new EDI\Encoder();
     $encoder->encode($matrix, $wrap);
     $buffer = $encoder->get();
+    return $buffer;
+}
+
+/*
+    Name:
+        __export_file_json
+    Abstract:
+        This function is intended to export data in json format
+    Input:
+        - matrix: the matrix to export
+        - indent: boolean argument to enable or disable the indent feature
+    Output:
+        They will returns all data
+*/
+function __export_file_json($matrix, $indent = false)
+{
+    $flags = 0;
+    if ($indent) {
+        $flags |=  JSON_PRETTY_PRINT;
+    }
+    $buffer = json_encode($matrix, $flags);
     return $buffer;
 }
