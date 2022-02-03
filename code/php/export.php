@@ -32,7 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         This function is intended to export data in the supported formats
     Input:
         Array
-        - type: can be xml, csv or excel
+        - type: can be xml, csv, xls, xlsx, edi or json
         - data: the matrix to export
         - sep: separator char used only by csv format
         - eol: enf of line char used by csv and xml format

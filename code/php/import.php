@@ -98,7 +98,7 @@ function __import_find_query($data, $pos)
         Array
         - data: contents used as data instead of file
         - file: local filename used to load the data
-        - type: can be xml, csv, xls, bytes or edi
+        - type: can be xml, csv, xls, bytes, edi or json
         - sep: separator char used only by csv format
         - sheet: sheet that must to be read
         - map: map used as dictionary for each field, pos and length
@@ -201,7 +201,7 @@ function import_file($args)
             $array = __import_json2array($args["file"]);
             break;
         default:
-            return "Unknown type '${args["type"]}' for file '${args["file"]}'";
+            return "Error: Unknown type '${args["type"]}' for file '${args["file"]}'";
     }
     if (!is_array($array)) {
         return $array;
@@ -624,7 +624,7 @@ function __import_json2array($file)
     if (!is_array($array)) {
         $code = json_last_error();
         $msg = json_last_error_msg();
-        return "${msg} (${code})";
+        return "Error: ${msg} (${code})";
     }
     return $array;
 }
@@ -800,6 +800,9 @@ function __import_array2tree($array, $nodes, $nohead, $noletter)
                         $temp[$key] = isset($line2[$key]) ? $line2[$key] : "";
                     }
                     $line2 = $temp;
+                }
+                if (count($head2) != count($line2)) {
+                    return "Error: Internal error (" . __FUNCTION__ . ")";
                 }
                 $line3 = array_combine($head2, $line2);
                 $hash = md5(serialize($line3));

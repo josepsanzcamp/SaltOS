@@ -474,7 +474,7 @@ function html2text($html)
 // RETURN THE UTF-8 CONVERTED STRING IF IT'S NEEDED
 function getutf8($str)
 {
-    if (!mb_check_encoding($str, "UTF-8")) {
+    if ($str != "" && !mb_check_encoding($str, "UTF-8")) {
         ob_start();
         $str = mb_convert_encoding($str, "UTF-8", mb_detect_order());
         ob_get_clean();
