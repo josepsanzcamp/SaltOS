@@ -54,19 +54,19 @@ function get_temp_file($ext = "")
 
 function cache_exists($cache, $file)
 {
-    if (!file_exists($cache)) {
+    if (!file_exists($cache) || !is_file($cache)) {
         return 0;
     }
     if (!is_array($file)) {
         $file = array($file);
     }
     foreach ($file as $f) {
-        if (!file_exists($f)) {
+        if (!file_exists($f) || !is_file($f)) {
             return 0;
         }
-        list($mtime1,$error1) = filemtime_protected($f);
-        list($mtime2,$error2) = filemtime_protected($cache);
-        if ($error1 || $error2 || $mtime1 >= $mtime2) {
+        $mtime1 = filemtime($f);
+        $mtime2 = filemtime($cache);
+        if ($mtime1 >= $mtime2) {
             return 0;
         }
     }
@@ -111,57 +111,12 @@ function semi_realpath($file)
     return $file;
 }
 
-function chmod_protected($file, $mode)
-{
-    capture_next_error();
-    ob_start();
-    chmod($file, $mode);
-    $error1 = ob_get_clean();
-    $error2 = get_clear_error();
-    return $error1 . $error2;
-}
-
-function unlink_protected($file)
-{
-    capture_next_error();
-    ob_start();
-    unlink($file);
-    $error1 = ob_get_clean();
-    $error2 = get_clear_error();
-    return $error1 . $error2;
-}
-
 function truncate_protected($file)
 {
-    capture_next_error();
-    ob_start();
     $fp = fopen($file, "w");
     if ($fp) {
         fclose($fp);
     }
-    $error1 = ob_get_clean();
-    $error2 = get_clear_error();
-    return $error1 . $error2;
-}
-
-function filemtime_protected($file)
-{
-    capture_next_error();
-    ob_start();
-    $mtime = filemtime($file);
-    $error1 = ob_get_clean();
-    $error2 = get_clear_error();
-    return array($mtime,$error1 . $error2);
-}
-
-function mkdir_protected($dir)
-{
-    capture_next_error();
-    ob_start();
-    mkdir($dir);
-    $error1 = ob_get_clean();
-    $error2 = get_clear_error();
-    return $error1 . $error2;
 }
 
 function url_get_contents($url)
@@ -303,15 +258,6 @@ function fix_file($file)
         $file = $file2;
     }
     return $file;
-}
-
-function readfile_protected($file)
-{
-    $fp = fopen($file, "rb");
-    while (!feof($fp)) {
-        echo fread($fp, 1048576);
-    }
-    fclose($fp);
 }
 
 function fsockopen_protected($hostname, $port, &$errno = 0, &$errstr = "", $timeout = null)

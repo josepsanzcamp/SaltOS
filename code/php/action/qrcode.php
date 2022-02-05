@@ -52,7 +52,7 @@ if (!file_exists($cache)) {
         action_denied();
     }
     file_put_contents($cache, $buffer);
-    chmod_protected($cache, 0666);
+    chmod($cache, 0666);
 }
 output_handler(array(
     "file" => $cache,

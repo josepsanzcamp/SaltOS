@@ -167,7 +167,7 @@ function __getmail_getmime($id)
         }
         $decoded = __getmail_mime_decode_protected(array("File" => "compress.zlib://" . $file));
         file_put_contents($cache, serialize($decoded));
-        chmod_protected($cache, 0666);
+        chmod($cache, 0666);
     } else {
         $decoded = unserialize(file_get_contents($cache));
     }

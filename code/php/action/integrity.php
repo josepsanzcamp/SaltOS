@@ -196,12 +196,12 @@ for ($i = $range["minim"]; $i < $range["maxim"]; $i += 100000) {
             $dir = dirname($row["fichero_file4"]);
             if (!file_exists($dir)) {
                 mkdir($dir);
-                chmod_protected($dir, 0777);
+                chmod($dir, 0777);
             }
             // MOVE FILE
             if (file_exists($row["fichero_file3"])) {
                 rename($row["fichero_file3"], $row["fichero_file4"]);
-                chmod_protected($row["fichero_file4"], 0666);
+                chmod($row["fichero_file4"], 0666);
             }
             // UPDATE DATABASE
             $query = make_update_query("tbl_ficheros", array(
@@ -248,12 +248,12 @@ foreach ($checks as $check) {
             $dir = dirname($row["fichero_file4"]);
             if (!file_exists($dir)) {
                 mkdir($dir);
-                chmod_protected($dir, 0777);
+                chmod($dir, 0777);
             }
             // MOVE FILE
             if (file_exists($row["fichero_file3"])) {
                 rename($row["fichero_file3"], $row["fichero_file4"]);
-                chmod_protected($row["fichero_file4"], 0666);
+                chmod($row["fichero_file4"], 0666);
             }
             // UPDATE DATABASE
             $query = make_update_query($check[0], array(

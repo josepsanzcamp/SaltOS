@@ -83,7 +83,7 @@ foreach ($config as $query) {
                         $delete = get_directory("dirs/filesdir") . $delete;
                     }
                     if (file_exists($delete) && is_file($delete)) {
-                        unlink_protected($delete);
+                        unlink($delete);
                     }
                 }
                 if (isset($row["action_error"])) {

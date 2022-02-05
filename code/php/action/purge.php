@@ -202,7 +202,7 @@ foreach ($rows as $row) {
                 $rows3 = execute_query_array($query);
                 foreach ($rows3 as $delete) {
                     if (file_exists($delete) && is_file($delete)) {
-                        unlink_protected($delete);
+                        unlink($delete);
                     }
                 }
             }
@@ -229,7 +229,7 @@ foreach ($rows as $row) {
                 $rows3 = execute_query_array($query);
                 foreach ($rows3 as $delete) {
                     if (file_exists($delete) && is_file($delete)) {
-                        unlink_protected($delete);
+                        unlink($delete);
                     }
                 }
             }
@@ -336,7 +336,7 @@ foreach ($rows as $row) {
         }
         if (file_exists($file) && is_file($file) && filemtime($file) < $datetime) {
             if ($row["action"] == "delete") {
-                unlink_protected($file);
+                unlink($file);
             }
             if ($row["action"] == "truncate" && filesize($file) > 0) {
                 truncate_protected($file);

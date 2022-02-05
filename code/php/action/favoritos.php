@@ -60,7 +60,7 @@ if (getParam("id") != "") {
         $preview = execute_query($query);
         if ($preview != "") {
             file_put_contents($cache, base64_decode($preview));
-            chmod_protected($cache, 0666);
+            chmod($cache, 0666);
         }
     }
     if (!file_exists($cache)) {
@@ -94,7 +94,7 @@ if (getParam("id") != "") {
             imagejpeg($im2, $cache);
             imagedestroy($im1);
             imagedestroy($im2);
-            chmod_protected($cache, 0666);
+            chmod($cache, 0666);
             // DATABASE
             $query = make_update_query("tbl_favoritos", array(
                 "preview" => base64_encode(file_get_contents($cache))

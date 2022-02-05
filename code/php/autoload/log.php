@@ -54,16 +54,14 @@ function addlog($msg, $file = "")
         while (file_exists($dir . $file . "." . $next)) {
             $next++;
         }
-        capture_next_error();
         rename($dir . $file, $dir . $file . "." . $next);
-        get_clear_error();
     }
     $msg = trim($msg);
     $msg = explode("\n", $msg);
     $msg = array_map("__addlog_helper", $msg);
     $msg = implode("\n", $msg) . "\n";
     file_put_contents($dir . $file, $msg, FILE_APPEND);
-    chmod_protected($dir . $file, 0666);
+    chmod($dir . $file, 0666);
 }
 
 function addtrace($array, $file)

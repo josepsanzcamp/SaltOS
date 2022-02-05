@@ -96,7 +96,7 @@ function array2xml($array, $usecache = true, $usexmlminify = true)
     $buffer = __array2xml_write_nodes($array, $usexmlminify ? null : 0);
     if ($usecache) {
         file_put_contents($cache, $buffer);
-        chmod_protected($cache, 0666);
+        chmod($cache, 0666);
     }
     return $buffer;
 }

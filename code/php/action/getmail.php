@@ -466,7 +466,7 @@ if (getParam("action") == "getmail") {
             $prefix = get_directory("dirs/inboxdir") . $id_cuenta;
             if (!file_exists($prefix)) {
                 mkdir($prefix);
-                chmod_protected($prefix, 0777);
+                chmod($prefix, 0777);
             }
             // DB code
             $query = "SELECT uidl FROM tbl_correo WHERE id_cuenta='${id_cuenta}'";
@@ -544,7 +544,7 @@ if (getParam("action") == "getmail") {
                             $fp = gzopen($file, "w");
                             gzwrite($fp, $message);
                             gzclose($fp);
-                            chmod_protected($file, 0666);
+                            chmod($file, 0666);
                             $message = ""; // TRICK TO RELEASE MEMORY
                         }
                     }

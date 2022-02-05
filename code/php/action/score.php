@@ -55,7 +55,7 @@ if (!file_exists($cache)) {
         require_once "php/libaction.php";
         $buffer = __score_image($score, $width, $height, $size);
         file_put_contents($cache, $buffer);
-        chmod_protected($cache, 0666);
+        chmod($cache, 0666);
     }
     if ($format == "json") {
         $score = password_strength($pass);
@@ -67,7 +67,7 @@ if (!file_exists($cache)) {
         $_RESULT = array("image" => $data,"score" => $score . "%","valid" => $valid);
         $buffer = json_encode($_RESULT);
         file_put_contents($cache, $buffer);
-        chmod_protected($cache, 0666);
+        chmod($cache, 0666);
     }
 }
 output_handler(array(

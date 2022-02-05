@@ -120,7 +120,7 @@ if ($page == "correo") {
                 $result = execute_query_array($query);
                 foreach ($result as $delete) {
                     if (file_exists($delete) && is_file($delete)) {
-                        unlink_protected($delete);
+                        unlink($delete);
                     }
                 }
                 // BORRAR FICHEROS .EML.GZ DEL OUTBOX
@@ -131,7 +131,7 @@ if ($page == "correo") {
                 $result = execute_query_array($query);
                 foreach ($result as $delete) {
                     if (file_exists($delete) && is_file($delete)) {
-                        unlink_protected($delete);
+                        unlink($delete);
                     }
                 }
                 // BORRAR FICHEROS .OBJ DEL OUTBOX
@@ -142,7 +142,7 @@ if ($page == "correo") {
                 $result = execute_query_array($query);
                 foreach ($result as $delete) {
                     if (file_exists($delete) && is_file($delete)) {
-                        unlink_protected($delete);
+                        unlink($delete);
                     }
                 }
                 // BORRAR CORREOS

@@ -323,7 +323,7 @@ if (!file_exists($cache)) {
         $buffer = json_encode($_RESULT);
     }
     file_put_contents($cache, $buffer);
-    chmod_protected($cache, 0666);
+    chmod($cache, 0666);
 }
 output_handler(array(
     "file" => $cache,

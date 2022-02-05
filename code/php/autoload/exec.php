@@ -31,9 +31,9 @@ function ob_passthru($cmd, $expires = 0)
 {
     if ($expires) {
         $cache = get_cache_file($cmd, ".out");
-        if (file_exists($cache)) {
-            list($mtime,$error) = filemtime_protected($cache);
-            if (!$error && time() - $expires < $mtime) {
+        if (file_exists($cache) && is_file($cache)) {
+            $mtime = filemtime($cache);
+            if (time() - $expires < $mtime) {
                 return file_get_contents($cache);
             }
         }
@@ -59,7 +59,7 @@ function ob_passthru($cmd, $expires = 0)
     }
     if ($expires) {
         file_put_contents($cache, $buffer);
-        chmod_protected($cache, 0666);
+        chmod($cache, 0666);
     }
     return $buffer;
 }

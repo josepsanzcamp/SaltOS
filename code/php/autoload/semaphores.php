@@ -68,20 +68,16 @@ function __semaphore_helper($fn, $name, $timeout)
         if (!$fds[$file]) {
             return false;
         }
-        chmod_protected($file, 0666);
+        chmod($file, 0666);
         init_random();
         for (;;) {
-            capture_next_error();
             $result = flock($fds[$file], LOCK_EX | LOCK_NB);
-            get_clear_error();
             if ($result) {
                 break;
             }
             $timeout -= __semaphore_usleep(rand(0, 1000));
             if ($timeout < 0) {
-                capture_next_error();
                 fclose($fds[$file]);
-                get_clear_error();
                 $fds[$file] = null;
                 return false;
             }
@@ -100,23 +96,15 @@ function __semaphore_helper($fn, $name, $timeout)
         if (!$fds[$file]) {
             return false;
         }
-        capture_next_error();
         flock($fds[$file], LOCK_UN);
-        get_clear_error();
-        capture_next_error();
         fclose($fds[$file]);
-        get_clear_error();
         $fds[$file] = null;
         return true;
     } elseif (stripos($fn, "shutdown") !== false) {
         foreach ($fds as $file => $fd) {
             if ($fds[$file]) {
-                capture_next_error();
                 flock($fds[$file], LOCK_UN);
-                get_clear_error();
-                capture_next_error();
                 fclose($fds[$file]);
-                get_clear_error();
                 $fds[$file] = null;
             }
         }
@@ -138,11 +126,9 @@ function __semaphore_usleep($usec)
         $read = null;
         $write = null;
         $except = array($socket);
-        capture_next_error();
         $time1 = microtime(true);
         socket_select($read, $write, $except, intval($usec / 1000000), intval($usec % 1000000));
         $time2 = microtime(true);
-        get_clear_error();
         return ($time2 - $time1) * 1000000;
     }
     $time1 = microtime(true);

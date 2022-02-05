@@ -40,10 +40,10 @@ function getParam($index, $default = "")
             $dir = dirname($file);
             if (!file_exists($dir)) {
                 mkdir($dir);
-                chmod_protected($dir, 0777);
+                chmod($dir, 0777);
             }
             move_uploaded_file($temp, $file);
-            chmod_protected($file, 0666);
+            chmod($file, 0666);
         }
     }
     return __getParam_helper($index, $default);
@@ -249,7 +249,7 @@ function xml2html($buffer, $xslfile, $usecache = true)
     }
     if ($usecache) {
         file_put_contents($cache, $buffer);
-        chmod_protected($cache, 0666);
+        chmod($cache, 0666);
     }
     return $buffer;
 }
@@ -399,7 +399,7 @@ function output_handler($array)
     }
     header("Connection: keep-alive, close");
     if ($file != "" && $data == "") {
-        readfile_protected($file);
+        readfile($file);
     } else {
         echo $data;
     }

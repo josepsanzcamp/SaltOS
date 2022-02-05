@@ -292,7 +292,7 @@ function __sendmail_messageid($id_cuenta, $from)
     $prefix = get_directory("dirs/outboxdir") . $id_cuenta;
     if (!file_exists($prefix)) {
         mkdir($prefix);
-        chmod_protected($prefix, 0777);
+        chmod($prefix, 0777);
     }
     $query = "SELECT MAX(id) FROM tbl_correo";
     $count = execute_query($query);
@@ -319,7 +319,7 @@ function __sendmail_emlsaver($message, $messageid)
     $fp = gzopen($file, "w");
     gzwrite($fp, $message);
     gzclose($fp);
-    chmod_protected($file, 0666);
+    chmod($file, 0666);
     return $file;
 }
 
@@ -328,5 +328,5 @@ function __sendmail_objsaver($mail, $messageid)
     $prefix = get_directory("dirs/outboxdir") . $messageid;
     $file = $prefix . ".obj";
     file_put_contents($file, serialize($mail));
-    chmod_protected($file, 0666);
+    chmod($file, 0666);
 }

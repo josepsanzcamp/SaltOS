@@ -54,7 +54,7 @@ if ($langs == "auto") {
         $langs = __translator_get_aspell_langs();
         $options = __translator_get_options($langs);
         file_put_contents($cache, $options);
-        chmod_protected($cache, 0666);
+        chmod($cache, 0666);
     }
     output_handler(array(
         "file" => $cache,
@@ -104,7 +104,7 @@ if (!file_exists($cache)) {
         $text = __translator($text, $langs);
     }
     file_put_contents($cache, $text);
-    chmod_protected($cache, 0666);
+    chmod($cache, 0666);
 }
 output_handler(array(
     "file" => $cache,

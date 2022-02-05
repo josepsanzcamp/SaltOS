@@ -53,13 +53,10 @@ class database_sqlite3
             show_php_error(array("phperror" => "File '" . $args["file"] . "' not writable"));
             return;
         }
-        capture_next_error();
-        $this->link = new SQLite3($args["file"]);
-        $error = get_clear_error();
-        if ($error) {
-            show_php_error(array(
-                "dberror" => "Error " . $this->link->lastErrorCode() . ": " . $this->link->lastErrorMsg()
-            ));
+        try {
+            $this->link = new SQLite3($args["file"]);
+        } catch (Exception $e) {
+            show_php_error(array("dberror" => $e->getMessage() . " (code " . $e->getCode() . ")"));
         }
         if ($this->link) {
             $this->link->busyTimeout(0);
@@ -130,34 +127,27 @@ class database_sqlite3
         if (semaphore_acquire(__FUNCTION__, $timeout)) {
             // DO QUERY
             while (1) {
-                capture_next_error();
-                $stmt = $this->link->query($query);
-                $error = get_clear_error();
-                if (!$error) {
+                try {
+                    $stmt = $this->link->query($query);
                     break;
-                }
-                if ($timeout <= 0) {
-                    show_php_error(array(
-                        "dberror" => "Error " . $this->link->lastErrorCode() . ": " . $this->link->lastErrorMsg(),
-                        "query" => $query
-                    ));
-                    break;
-                } elseif (stripos($error, "database is locked") !== false) {
-                    $timeout -= __semaphore_usleep(rand(0, 1000));
-                } elseif (stripos($error, "database schema has changed") !== false) {
-                    $timeout -= __semaphore_usleep(rand(0, 1000));
-                } else {
-                    show_php_error(array(
-                        "dberror" => "Error " . $this->link->lastErrorCode() . ": " . $this->link->lastErrorMsg(),
-                        "query" => $query
-                    ));
-                    break;
+                } catch (Exception $e) {
+                    if ($timeout <= 0) {
+                        show_php_error(array("dberror" => $e->getMessage(),"query" => $query));
+                        break;
+                    } elseif (stripos($e->getMessage(), "database is locked") !== false) {
+                        $timeout -= __semaphore_usleep(rand(0, 1000));
+                    } elseif (stripos($e->getMessage(), "database schema has changed") !== false) {
+                        $timeout -= __semaphore_usleep(rand(0, 1000));
+                    } else {
+                        show_php_error(array("dberror" => $e->getMessage(),"query" => $query));
+                        break;
+                    }
                 }
             }
             unset($query); // TRICK TO RELEASE MEMORY
             semaphore_release(__FUNCTION__);
             // DUMP RESULT TO MATRIX
-            if ($stmt && $stmt->numColumns()) {
+            if (isset($stmt) && $stmt && $stmt->numColumns()) {
                 if ($fetch == "auto") {
                     $fetch = $stmt->numColumns() > 1 ? "query" : "column";
                 }

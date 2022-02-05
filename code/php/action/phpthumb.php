@@ -152,7 +152,7 @@ if (!cache_exists($cache, $src)) {
             show_php_error(array("phperror" => "Unsupported output format: ${format_output}"));
     }
     imagedestroy($im2);
-    chmod_protected($cache, 0666);
+    chmod($cache, 0666);
 }
 output_handler(array(
     "file" => $cache,
