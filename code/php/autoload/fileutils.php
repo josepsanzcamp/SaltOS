@@ -57,6 +57,7 @@ function cache_exists($cache, $file)
     if (!file_exists($cache) || !is_file($cache)) {
         return 0;
     }
+    $mtime1 = filemtime($cache);
     if (!is_array($file)) {
         $file = array($file);
     }
@@ -64,9 +65,8 @@ function cache_exists($cache, $file)
         if (!file_exists($f) || !is_file($f)) {
             return 0;
         }
-        $mtime1 = filemtime($f);
-        $mtime2 = filemtime($cache);
-        if ($mtime1 >= $mtime2) {
+        $mtime2 = filemtime($f);
+        if ($mtime2 >= $mtime1) {
             return 0;
         }
     }
