@@ -47,11 +47,8 @@ function cache_gc()
     $files = array_merge($files1, $files2);
     $delta = time() - intval(getDefault("cache/cachegctimeout"));
     foreach ($files as $file) {
-        if (file_exists($file) && is_file($file)) {
-            $mtime = filemtime($file);
-            if ($delta > $mtime) {
-                unlink($file);
-            }
+        if (file_exists($file) && is_file($file) && filemtime($file) < $delta) {
+            unlink($file);
         }
     }
     semaphore_release(__FUNCTION__);

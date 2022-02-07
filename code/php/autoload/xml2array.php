@@ -503,7 +503,7 @@ function xml2array($file, $usecache = true)
         $depend[] = $file;
         $array["depend"] = array_unique($depend);
         if (file_exists($cache)) {
-            unlink($cache);
+            @unlink($cache);
         }
         file_put_contents($cache, serialize($array));
         chmod($cache, 0666);
