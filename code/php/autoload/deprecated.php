@@ -27,11 +27,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 function chmod_protected($file, $mode)
 {
+    // MARK AS DEPRECATED
     addtrace(array(
         "phperror" => "Deprecated function " . __FUNCTION__,
         "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
     ), getDefault("debug/deprecated", "deprecated.log"));
-
+    // ORIGINAL CODE
     capture_next_error();
     ob_start();
     chmod($file, $mode);
@@ -42,11 +43,12 @@ function chmod_protected($file, $mode)
 
 function unlink_protected($file)
 {
+    // MARK AS DEPRECATED
     addtrace(array(
         "phperror" => "Deprecated function " . __FUNCTION__,
         "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
     ), getDefault("debug/deprecated", "deprecated.log"));
-
+    // ORIGINAL CODE
     capture_next_error();
     ob_start();
     unlink($file);
@@ -57,11 +59,12 @@ function unlink_protected($file)
 
 function filemtime_protected($file)
 {
+    // MARK AS DEPRECATED
     addtrace(array(
         "phperror" => "Deprecated function " . __FUNCTION__,
         "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
     ), getDefault("debug/deprecated", "deprecated.log"));
-
+    // ORIGINAL CODE
     capture_next_error();
     ob_start();
     $mtime = filemtime($file);
@@ -72,11 +75,12 @@ function filemtime_protected($file)
 
 function mkdir_protected($dir)
 {
+    // MARK AS DEPRECATED
     addtrace(array(
         "phperror" => "Deprecated function " . __FUNCTION__,
         "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
     ), getDefault("debug/deprecated", "deprecated.log"));
-
+    // ORIGINAL CODE
     capture_next_error();
     ob_start();
     mkdir($dir);
@@ -87,11 +91,12 @@ function mkdir_protected($dir)
 
 function readfile_protected($file)
 {
+    // MARK AS DEPRECATED
     addtrace(array(
         "phperror" => "Deprecated function " . __FUNCTION__,
         "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
     ), getDefault("debug/deprecated", "deprecated.log"));
-
+    // ORIGINAL CODE
     $fp = fopen($file, "rb");
     while (!feof($fp)) {
         echo fread($fp, 1048576);

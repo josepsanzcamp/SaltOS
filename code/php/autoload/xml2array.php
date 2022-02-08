@@ -476,6 +476,9 @@ function xml2array($file, $usecache = true)
     if (!file_exists($file)) {
         xml_error("File not found: $file");
     }
+    if (!semaphore_acquire($file)) {
+        xml_error("Could not acquire the semaphore");
+    }
     if ($usecache) {
         if (detect_recursion(__FUNCTION__) == 1) {
             $depend = array();
@@ -486,6 +489,7 @@ function xml2array($file, $usecache = true)
             if (isset($array["depend"]) && isset($array["root"])) {
                 if (cache_exists($cache, $array["depend"])) {
                     $depend = array_merge($depend, $array["depend"]);
+                    semaphore_release($file);
                     return $array["root"];
                 }
             }
@@ -503,11 +507,12 @@ function xml2array($file, $usecache = true)
         $depend[] = $file;
         $array["depend"] = array_unique($depend);
         if (file_exists($cache)) {
-            @unlink($cache);
+            unlink($cache);
         }
         file_put_contents($cache, serialize($array));
         chmod($cache, 0666);
     }
+    semaphore_release($file);
     return $array["root"];
 }
 
