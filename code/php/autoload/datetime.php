@@ -25,24 +25,24 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+function current_date($offset = 0)
+{
+    return date("Y-m-d", time() + (int)$offset);
+}
+
+function current_time($offset = 0)
+{
+    return date("H:i:s", time() + (int)$offset);
+}
+
 function current_datetime($offset = 0)
 {
     return current_date($offset) . " " . current_time($offset);
 }
 
-function current_date($offset = 0)
-{
-    return date("Y-m-d", time() + $offset);
-}
-
-function current_time($offset = 0)
-{
-    return date("H:i:s", time() + $offset);
-}
-
 function current_decimals($offset = 0, $size = 4)
 {
-    $decimals = microtime(true) + $offset;
+    $decimals = microtime(true) + (int)$offset;
     $decimals -= intval($decimals);
     $decimals = substr($decimals, 2, $size);
     $decimals = str_pad($decimals, $size, "0");
