@@ -279,16 +279,6 @@ function __pretty_html_error_helper($action, $hiddens, $submit)
 
 function __error_handler($type, $message, $file, $line)
 {
-    // THIS PART IS INTENDED TO ALLOW THE @ OEPRATOR
-    if (error_reporting() != E_ALL) {
-        addtrace(array(
-            "phperror" => "${message} (code ${type})",
-            "details" => "Error on file " . basename($file) . ":" . $line,
-            "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
-        ), getDefault("debug/deprecated", "deprecated.log"));
-        return;
-    }
-    // NORMAL BEHAVIOUR
     show_php_error(array(
         "phperror" => "${message} (code ${type})",
         "details" => "Error on file " . basename($file) . ":" . $line,
