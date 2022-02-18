@@ -65,12 +65,12 @@
             'dev_requirement' => false,
         ),
         'phpoffice/phpspreadsheet' => array(
-            'pretty_version' => '1.21.0',
-            'version' => '1.21.0.0',
+            'pretty_version' => '1.22.0',
+            'version' => '1.22.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpoffice/phpspreadsheet',
             'aliases' => array(),
-            'reference' => '1a359d2ccbb89c05f5dffb32711a95f4afc67964',
+            'reference' => '3a9e29b4f386a08a151a33578e80ef1747037a48',
             'dev_requirement' => false,
         ),
         'psr/http-client' => array(
