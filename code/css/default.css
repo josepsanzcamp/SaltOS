@@ -97,16 +97,6 @@ form {
     margin-left:2px!important;
 }
 
-.ui-dialog .ui-dialog-buttonpane {
-    padding:0.3em 0.3em 0.2em 0.3em!important;
-}
-
-.ui-dialog {
-    padding:0!important;
-    border:0!important;
-    box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
-}
-
 /* CONTINUE */
 a.ui-state-default {
     padding:3px 5px;
@@ -342,9 +332,19 @@ img.image {
 }
 
 /* FOR DIALOG */
+.ui-dialog {
+    padding:0!important;
+    border:0!important;
+    box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+    padding:0.3em 0.3em 0.2em 0.3em!important;
+    margin-top:0!important;
+}
+
 #dialog {
     text-align:center;
-    margin-top:2px;
 }
 
 /* FOR QRCODE */
@@ -392,10 +392,8 @@ img[isplot=true] {
 
 /* FOR VIEWPDF */
 #viewerContainer {
-  overflow:auto;
   position:absolute;
   width:calc(100% - 1em);
-  height:calc(100% - 0.5em);
 }
 
 /* FOR HELP */
@@ -542,6 +540,12 @@ div.excel {
 
 /* FOR JSTREE */
 .jstree-hovered {
+    background:#fbec88!important;
+    color:#363636!important;
+}
+
+/* FOR CHECKBOXES */
+.checkbox-focused {
     background:#fbec88!important;
     color:#363636!important;
 }

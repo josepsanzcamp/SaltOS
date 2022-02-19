@@ -382,7 +382,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
                         </field>
                         <field>
-                            <label>RoundCubeMail 1.5-rc (GPL-3.0)</label>
+                            <label>RoundCubeMail 1.5.2 (GPL-3.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/roundcube/roundcubemail")</onclick>
