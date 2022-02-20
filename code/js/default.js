@@ -461,6 +461,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
         $(dialog2).dialog("option","buttons",buttons);
         $(dialog2).dialog("option","width","300px");
         $(dialog2).dialog("option","height","auto");
+        $(dialog2).dialog("option","minHeight","none");
         // TRICK TO HIDE TOOLTIPS
         $(dialog2).dialog("option","open",function(event,ui) {
             hide_tooltips();

@@ -682,6 +682,7 @@ saltos.dialog=function(title,message,buttons) {
     $(dialog2).dialog("option","buttons",buttons);
     $(dialog2).dialog("option","width","300px");
     $(dialog2).dialog("option","height","auto");
+    $(dialog2).dialog("option","minHeight","none");
     // TRICK TO HIDE TOOLTIPS
     $(dialog2).dialog("option","open",function(event,ui) {
         saltos.hide_tooltips();
