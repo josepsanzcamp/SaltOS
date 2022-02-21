@@ -489,10 +489,7 @@ function check_captcha($captcha = "")
 
 function action_denied()
 {
-    // TODO FIXED IN THE FUTURE
-    if (getDefault("engine") != "default") {
-        die();
-    }
+    _action_die();
     session_error(LANG("permdenied") . " (" . getParam("action") . ")");
     javascript_location_page("");
     die();

@@ -55,3 +55,10 @@ function _action_login()
     ));
     die();
 }
+
+function _action_die()
+{
+    if (getDefault("engine") != "default") {
+        die();
+    }
+}

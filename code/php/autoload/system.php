@@ -64,6 +64,7 @@ function check_postlimit()
         $post_max_size = normalize_value($post_max_size);
         if ($content_length > $post_max_size) {
             session_error(LANG("postlimiterror"));
+            _action_die();
         }
     }
 }
