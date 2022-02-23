@@ -43,12 +43,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <sort>true</sort>
                 <size>20</size>
                 <order>cliente2</order>
+                <excel>cliente2</excel>
             </field>
             <field>
                 <name>nombre</name>
                 <label lang="true">proyecto</label>
                 <sort>true</sort>
                 <order>nombre2</order>
+                <excel>nombre2</excel>
             </field>
             <field>
                 <name>total1</name>
@@ -331,6 +333,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <field>
                     <type>copy</type>
                     <name>buscar</name>
+                </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">excel</value>
+                    <tip lang="true">exceltip</tip>
+                    <onclick>excel()</onclick>
+                    <icon eval="true">ICON("excel")</icon>
+                    <class>nowrap contextmenu</class>
                 </field>
                 <field>
                     <type>copy</type>
@@ -1792,4 +1802,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
         SELECT CONCAT('".LANG_ESCAPE("proyecto")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
         FROM tbl_proyectos WHERE id IN (".check_ids(getParam("id")).")"):LANG("proyectos"))).".pdf"</output>
     </pdf>
+    <excel>
+        <query require="php/listsim.php" global="page" eval="true">list_simulator($page,"excel")</query>
+    </excel>
 </root>

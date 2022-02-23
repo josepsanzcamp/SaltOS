@@ -42,23 +42,27 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <label lang="true">username</label>
                 <sort>true</sort>
                 <order>login2</order>
+                <excel>login2</excel>
             </field>
             <field>
                 <name>grupo</name>
                 <label lang="true">grupo</label>
                 <sort>true</sort>
                 <order>grupo2</order>
+                <excel>grupo2</excel>
             </field>
             <field>
                 <name>nombre</name>
                 <label lang="true">nombre</label>
                 <sort>true</sort>
                 <order>nombre2</order>
+                <excel>nombre2</excel>
             </field>
             <field>
-                <name>email</name>
+                <name>email2</name>
                 <label lang="true">email</label>
                 <sort>true</sort>
+                <excel>email</excel>
             </field>
             <field>
                 <name>activo</name>
@@ -180,6 +184,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <type>copy</type>
                     <name>buscar</name>
                 </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">excel</value>
+                    <tip lang="true">exceltip</tip>
+                    <onclick>excel()</onclick>
+                    <icon eval="true">ICON("excel")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
                 <field>
                     <type>copy</type>
                     <name>limpiar</name>
@@ -193,7 +205,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         CONCAT('link:openapp(\'usuarios\',',-a.id,'):',a.login) login,a.login login2,
         CONCAT('link:openapp(\'grupos\',',-a.id_grupo,'):',b.nombre) grupo,b.nombre grupo2,
         CONCAT('link:openapp(\'',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'\',',-a.id_registro,'):',a_nombre) nombre,a_nombre nombre2,
-        CONCAT('mailto:',email) email,
+        CONCAT('mailto:',email) email2, email,
         CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END activo,
         hora_ini,hora_fin,
 CONCAT(
@@ -1067,4 +1079,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
         <query global="id" eval="true">"DELETE FROM tbl_lastpage WHERE ".make_where_query(array("id_usuario"=>intval($id)))</query>
         <query global="id" eval="true">"DELETE FROM tbl_quick WHERE ".make_where_query(array("id_usuario"=>intval($id)))</query>
     </delete>
+    <excel>
+        <query require="php/listsim.php" global="page" eval="true">list_simulator($page,"excel")</query>
+    </excel>
 </root>

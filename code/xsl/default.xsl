@@ -236,7 +236,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <td class="width1 tbody"><input type="checkbox" class="slave id_{id}" name="slave_{id}" id="slave_{id}" value="1" autocomplete="off"/></td>
     <xsl:variable name="style" select="action_style"/>
     <xsl:variable name="row" select="*"/>
-    <xsl:variable name="id" select="action_id"/>
     <xsl:for-each select="../../fields/field">
         <xsl:variable name="name" select="name"/>
         <xsl:variable name="size" select="size"/>
@@ -248,7 +247,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         <xsl:text>-</xsl:text>
                     </xsl:when>
                     <xsl:when test="substring(.,1,4)='tel:'">
-                        <a class="tellink draggable id_{$id}" href="javascript:void(0)" onclick="">
+                        <a class="tellink" href="javascript:void(0)" onclick="">
                             <xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
                                 <xsl:with-param name="find">'</xsl:with-param>
                                 <xsl:with-param name="replace"> </xsl:with-param>
@@ -261,7 +260,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         </a>
                     </xsl:when>
                     <xsl:when test="substring(.,1,7)='mailto:'">
-                        <a class="maillink draggable id_{$id}" href="javascript:void(0)" onclick="">
+                        <a class="maillink" href="javascript:void(0)" onclick="">
                             <xsl:attribute name="onclick">mailto('<xsl:call-template name="replace_string">
                                 <xsl:with-param name="find">'</xsl:with-param>
                                 <xsl:with-param name="replace"> </xsl:with-param>
@@ -274,7 +273,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         </a>
                     </xsl:when>
                     <xsl:when test="substring(.,1,5)='href:'">
-                        <a class="weblink draggable id_{$id}" href="javascript:void(0);" onclick="">
+                        <a class="weblink" href="javascript:void(0);" onclick="">
                             <xsl:attribute name="onclick">openwin('<xsl:call-template name="replace_string">
                                 <xsl:with-param name="find">'</xsl:with-param>
                                 <xsl:with-param name="replace"> </xsl:with-param>
@@ -287,7 +286,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         </a>
                     </xsl:when>
                     <xsl:when test="substring(.,1,5)='link:'">
-                        <a class="applink draggable id_{$id}" href="javascript:void(0)" onclick="">
+                        <a class="applink" href="javascript:void(0)" onclick="">
                             <xsl:attribute name="onclick"><xsl:call-template name="replace_string">
                                 <xsl:with-param name="find">%3A</xsl:with-param>
                                 <xsl:with-param name="replace">:</xsl:with-param>

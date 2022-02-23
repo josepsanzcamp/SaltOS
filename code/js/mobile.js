@@ -977,10 +977,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
         return get_class_key_val(obj,"id_");
     }
 
-    function get_class_fn(obj) {
-        return get_class_key_val(obj,"fn_");
-    }
-
     function get_class_hash(obj) {
         return get_class_key_val(obj,"hash_");
     }

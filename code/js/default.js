@@ -1103,11 +1103,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
         if($(header).attr("hash")!=$(header2).attr("hash")) {
             $(header).replaceWith(header2);
             make_tabs2(header2);
-            setTimeout(function() {
-                //~ console.time("updatecontent north fase 1");
-                make_draganddrop(header2);
-                //~ console.timeEnd("updatecontent north fase 1");
-            },100);
         }
         //~ console.timeEnd("updatecontent north fase 0");
         // CHECK FOR LOGIN AND LOGOUT
@@ -1125,11 +1120,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             make_resizable(menu2);
             make_menu(menu2);
             $(menu).replaceWith(menu2);
-            setTimeout(function() {
-                //~ console.time("updatecontent west fase 1");
-                make_draganddrop(menu2);
-                //~ console.timeEnd("updatecontent west fase 1");
-            },100);
         }
         //~ console.timeEnd("updatecontent west fase 0");
         // IF LOGOUT
@@ -1149,7 +1139,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             if(saltos_login || saltos_logout) make_notice();
             var html2=$("html");
             update_style(html,html2);
-            make_draganddrop(screen2);
             make_focus();
             //~ console.timeEnd("updatecontent center fase 1");
         },100);
@@ -1727,48 +1716,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
         return navigator.userAgent.indexOf("Chrome")!=-1;
     }
 
-    function make_draganddrop(obj) {
-        //~ console.time("make_draganddrop");
-        if(typeof(obj)=="undefined") var obj=$("body");
-        // PROGRAM DRAG AND DROP
-        $(".draggable",obj).draggable({
-            cursor:"",
-            cursorAt:{
-                top:0,
-                left:-10
-            },
-            appendTo:"body",
-            revert:"invalid",
-            delay:500,
-            helper:function(event) {
-                var row=$("<div class='ui-widget nowrap'></div>");
-                var text=[];
-                var padre=$(this).parent().parent();
-                $("td",padre).each(function() {
-                    var temp=$(this).text();
-                    if(temp!="") text.push(temp);
-                });
-                text=implode(" | ",text);
-                text=str_replace(["<",">"],["&lt;","&gt;"],text);
-                $(row).append(text);
-                $(row).addClass("ui-state-highlight");
-                $(row).addClass("ui-corner-all");
-                $(row).css("padding","3px 5px");
-                return row;
-            }
-        });
-        $(".droppable",obj).droppable({
-            tolerance:"pointer",
-            drop:function(event,ui) {
-                var id_draggable=get_class_id(ui.draggable);
-                var id_droppable=get_class_id(this);
-                var fn_droppable=get_class_fn(this);
-                eval(fn_droppable+"('"+id_draggable+"','"+id_droppable+"')");
-            }
-        });
-        //~ console.timeEnd("make_draganddrop");
-    }
-
     function get_class_key_val(obj,param) {
         var clases=explode(" ",$(obj).attr("class"));
         var total=clases.length;
@@ -1783,10 +1730,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
     function get_class_id(obj) {
         return get_class_key_val(obj,"id_");
-    }
-
-    function get_class_fn(obj) {
-        return get_class_key_val(obj,"fn_");
     }
 
     function get_class_hash(obj) {
@@ -2250,6 +2193,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
                                 });
                             }
                             make_tables_pos=pos;
+                        }).on("dblclick",function() {
+                            $(this).find(".actions1:first a").trigger("click");
                         });
                         $(slave,this).on("click",function() {
                             $(this).prop("checked",!$(this).prop("checked"));
@@ -2560,20 +2505,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             make_hovers();
             var header=$(".ui-layout-north");
             make_tabs2(header);
-            setTimeout(function() {
-                //~ console.time("document_ready fase 2 north");
-                make_draganddrop(header);
-                //~ console.timeEnd("document_ready fase 2 north");
-            },100);
             var menu=$(".ui-layout-west");
             if(saltos_islogin(menu)) sync_cookies("start");
             make_resizable(menu);
             make_menu(menu);
-            setTimeout(function() {
-                //~ console.time("document_ready fase 2 west");
-                make_draganddrop(menu);
-                //~ console.timeEnd("document_ready fase 2 west");
-            },100);
             var screen=$(".ui-layout-center");
             make_tabs(screen);
             make_tables(screen);
@@ -2582,7 +2517,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             make_ckeditors(screen);
             setTimeout(function() {
                 //~ console.time("document_ready fase 2 center");
-                make_draganddrop(screen);
                 make_focus();
                 //~ console.timeEnd("document_ready fase 2 center");
             },100);

@@ -77,10 +77,4 @@ if(typeof(__folders__)=="undefined" && typeof(parent.__folders__)=="undefined") 
         if(obj.checked) addregfolder(id,getParam("page"),getParam("id")); else delregfolder(id,getParam("page"),getParam("id"));
     }
 
-    function dropregfolder(id_registro,id_folder) {
-        var page=getParam("page");
-        if(in_array(page,["folders","ficheros"])) return;
-        addregfolder(id_folder,page,id_registro);
-    }
-
 }

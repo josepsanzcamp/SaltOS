@@ -57,21 +57,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <label lang="true">nombre</label>
                 <sort>true</sort>
                 <order>nombre2</order>
+                <excel>nombre2</excel>
             </field>
             <field>
-                <name>tel_fijo</name>
+                <name>tel_fijo2</name>
                 <label lang="true">tel_fijo</label>
                 <sort>true</sort>
+                <excel>tel_fijo</excel>
             </field>
             <field>
-                <name>tel_movil</name>
+                <name>tel_movil2</name>
                 <label lang="true">tel_movil</label>
                 <sort>true</sort>
+                <excel>tel_movil</excel>
             </field>
             <field>
-                <name>email</name>
+                <name>email2</name>
                 <label lang="true">email</label>
                 <sort>true</sort>
+                <excel>email</excel>
             </field>
             <field>
                 <name>comentarios</name>
@@ -241,6 +245,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <type>copy</type>
                     <name>buscar</name>
                 </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">excel</value>
+                    <tip lang="true">exceltip</tip>
+                    <onclick>excel()</onclick>
+                    <icon eval="true">ICON("excel")</icon>
+                    <class>nowrap contextmenu</class>
+                </field>
                 <field>
                     <type>copy</type>
                     <name>limpiar</name>
@@ -255,9 +267,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END activo,
              CONCAT('link:openapp(\'clientes\',',-id,'):',nombre)  nombre,
             nombre nombre2,
-             CONCAT('tel:',tel_fijo) tel_fijo,
-             CONCAT('tel:',tel_movil) tel_movil,
-             CONCAT('mailto:',email) email,
+             CONCAT('tel:',tel_fijo) tel_fijo2, tel_fijo,
+             CONCAT('tel:',tel_movil) tel_movil2, tel_movil,
+             CONCAT('mailto:',email) email2, email,
             nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,direccion,
             (SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=c.id) comentarios,
             (SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=c.id) ficheros,
@@ -868,4 +880,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
         SELECT CONCAT('".LANG_ESCAPE("cliente")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
         FROM tbl_clientes WHERE id IN (".check_ids(getParam("id")).")"):LANG("clientes"))).".pdf"</output>
     </pdf>
+    <excel>
+        <query require="php/listsim.php" global="page" eval="true">list_simulator($page,"excel")</query>
+    </excel>
 </root>

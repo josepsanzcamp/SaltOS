@@ -465,10 +465,6 @@ saltos.get_class_id=function(clase) {
     return saltos.get_class_key_val(clase,"id_");
 };
 
-saltos.get_class_fn=function(clase) {
-    return saltos.get_class_key_val(clase,"fn_");
-};
-
 saltos.get_class_hash=function(clase) {
     return saltos.get_class_key_val(clase,"hash_");
 };
@@ -901,11 +897,13 @@ saltos.make_hovers=function() {
             });
         }
         saltos.make_tables_pos=pos;
-    }).on("click",master,function(e) {
+    }).on("click",master,function() {
         var checkbox=$(this).prop("checked");
         $(slave).each(function() {
             if(checkbox!=$(this).prop("checked")) $(this).trigger("click");
         });
+    }).on("dblclick",tablas,function() {
+        $(this).parent().find(".actions1:first a").trigger("click");
     });
 };
 
@@ -1757,7 +1755,7 @@ saltos.make_table=function(option) {
             saltos.check_params(field,["name","size","class"]);
             var td=$(`<td class="tbody ${field.class} ${row.action_style}"></td>`);
             $("tbody tr:last",table).append(td);
-            field.value=saltos.get_filtered_field(row[field.name],field.size,row.action_id);
+            field.value=saltos.get_filtered_field(row[field.name],field.size);
             $(td).append(field.value);
         }
         if(count(option.actions)) {
@@ -1901,27 +1899,27 @@ saltos.__get_filtered_field_helper=function(field,size) {
     return span;
 };
 
-saltos.get_filtered_field=function(field,size,id) {
+saltos.get_filtered_field=function(field,size) {
     if(field==null || field.toString()=="") {
         field="-";
     } else if(substr(field,0,4)=="tel:") {
         var temp=explode(":",field,2);
-        field=$(`<a class="tellink draggable id_${id}" href="javascript:void(0)"></a>`)
+        field=$(`<a class="tellink" href="javascript:void(0)"></a>`)
         $(field).append(saltos.__get_filtered_field_helper(temp[1],size));
         $(field).on("click",function() { qrcode(temp[1]); });
     } else if(substr(field,0,7)=="mailto:") {
         var temp=explode(":",field,2);
-        field=$(`<a class="maillink draggable id_${id}" href="javascript:void(0)"></a>`)
+        field=$(`<a class="maillink" href="javascript:void(0)"></a>`)
         $(field).append(saltos.__get_filtered_field_helper(temp[1],size));
         $(field).on("click",function() { mailto(temp[1]); });
     } else if(substr(field,0,5)=="href:") {
         var temp=explode(":",field,2);
-        field=$(`<a class="weblink draggable id_${id}" href="javascript:void(0)"></a>`)
+        field=$(`<a class="weblink" href="javascript:void(0)"></a>`)
         $(field).append(saltos.__get_filtered_field_helper(temp[1],size));
         $(field).on("click",function() { openwin(temp[1]); });
     } else if(substr(field,0,5)=="link:") {
         var temp=explode(":",field,3);
-        field=$(`<a class="applink draggable id_${id}" href="javascript:void(0)"></a>`)
+        field=$(`<a class="applink" href="javascript:void(0)"></a>`)
         $(field).append(saltos.__get_filtered_field_helper(temp[2],size));
         $(field).on("click",function() { eval(temp[1]); });
     } else {
@@ -3459,7 +3457,7 @@ saltos.form_field_label=function(field) {
             style="width:${field.width};height:${field.height}" id="${field.name}"></td>
     `);
     if(field.value!="") {
-        $(td).append(saltos.get_filtered_field(field.value,"",""));
+        $(td).append(saltos.get_filtered_field(field.value,""));
     } else if(field.icon!="") {
         $(td).append(`<span class="${field.icon} ${field.class2}" title="${field.label}"></span>`);
     } else if(field.label!="") {
@@ -4359,10 +4357,6 @@ saltos.make_extras=function(obj) {
     console.log("call to unimplemented function make_extras");
 };
 
-saltos.make_draganddrop=function(obj) {
-    console.log("call to unimplemented function make_draganddrop");
-};
-
 saltos.make_ckeditors=function(obj) {
     console.log("call to unimplemented function make_ckeditors");
 };
@@ -4666,11 +4660,6 @@ function make_extras(obj) {
     return saltos.make_extras(obj);
 };
 
-function make_draganddrop(obj) {
-    //~ console.log("call to deprecated function make_draganddrop");
-    return saltos.make_draganddrop(obj);
-};
-
 function make_hovers() {
     //~ console.log("call to deprecated function make_hovers");
     return saltos.make_hovers();
@@ -4759,11 +4748,6 @@ function get_class_key_val(obj,param) {
 function get_class_id(obj) {
     //~ console.log("call to deprecated function get_class_id");
     return saltos.get_class_id($(obj).attr("class"));
-};
-
-function get_class_fn(obj) {
-    //~ console.log("call to deprecated function get_class_fn");
-    return saltos.get_class_fn($(obj).attr("class"));
 };
 
 function get_class_hash(obj) {

@@ -42,6 +42,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <label lang="true">nombre</label>
                 <sort>true</sort>
                 <order>nombre2</order>
+                <excel>nombre2</excel>
             </field>
             <field>
                 <name>descripcion</name>
@@ -113,6 +114,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <field>
                     <type>copy</type>
                     <name>buscar</name>
+                </field>
+                <field ifeval="!ismobile()">
+                    <type>button</type>
+                    <value lang="true">excel</value>
+                    <tip lang="true">exceltip</tip>
+                    <onclick>excel()</onclick>
+                    <icon eval="true">ICON("excel")</icon>
+                    <class>nowrap contextmenu</class>
                 </field>
                 <field>
                     <type>copy</type>
@@ -440,4 +449,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
         <query include="xml/common/qfoldersdelete.xml" replace="true"/>
     </delete>
+    <excel>
+        <query require="php/listsim.php" global="page" eval="true">list_simulator($page,"excel")</query>
+    </excel>
 </root>
