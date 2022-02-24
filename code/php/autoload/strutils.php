@@ -262,11 +262,8 @@ function ismobile($forcemobile = null)
     }
     if ($ismobile === null) {
         require "lib/mobiledetect/Mobile_Detect.php";
-        if (!isset($_SERVER["HTTP_ACCEPT"])) {
-            $_SERVER["HTTP_ACCEPT"] = "";
-        }
         if (!isset($_SERVER["HTTP_USER_AGENT"])) {
-            $_SERVER["HTTP_USER_AGENT"] = "";
+            $_SERVER["HTTP_USER_AGENT"] = "x";
         }
         $detect = new Mobile_Detect();
         $ismobile = $detect->isMobile();
