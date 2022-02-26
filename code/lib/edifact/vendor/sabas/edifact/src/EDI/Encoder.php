@@ -63,7 +63,7 @@ class Encoder
     /**
      * Encoder constructor.
      *
-     * @param null|array $array
+     * @param array|null $array
      * @param bool       $wrap
      */
     public function __construct($array = null, $wrap = true)
@@ -93,7 +93,7 @@ class Encoder
         $count = \count($array);
         $k = 0;
         foreach ($array as $row) {
-            $k++;
+            ++$k;
             if ($filterKeys) {
                 unset($row['segmentIdx']);
             }
@@ -119,6 +119,7 @@ class Encoder
         $str = '';
         $t = \count($row);
 
+        /** @noinspection AlterInForeachInspection */
         foreach ($row as $i => &$iValue) {
             if (\is_array($iValue)) {
                 if (
@@ -129,6 +130,7 @@ class Encoder
                     $iValue = \array_pop($iValue);
                 }
 
+                /** @noinspection NotOptimalIfConditionsInspection */
                 if (\is_array($iValue)) {
                     foreach ($iValue as &$temp) {
                         $temp = $this->escapeValue($temp);
@@ -147,34 +149,10 @@ class Encoder
             }
             $str .= $this->sepData;
         }
-        unset($iValue);
 
         $str .= $this->symbEnd;
 
         return $str;
-    }
-
-    /**
-     * @param string $str
-     *
-     * @return string
-     */
-    private function escapeValue(string &$str): string
-    {
-        $search = [
-            $this->symbRel,
-            $this->sepComp,
-            $this->sepData,
-            $this->symbEnd,
-        ];
-        $replace = [
-            $this->symbRel . $this->symbRel,
-            $this->symbRel . $this->sepComp,
-            $this->symbRel . $this->sepData,
-            $this->symbRel . $this->symbEnd,
-        ];
-
-        return \str_replace($search, $replace, $str);
     }
 
     /**
@@ -183,7 +161,7 @@ class Encoder
     public function get(): string
     {
         if ($this->UNAActive) {
-            $una = "UNA" . $this->sepComp .
+            $una = 'UNA' . $this->sepComp .
                    $this->sepData .
                    $this->sepDec .
                    $this->symbRel .
@@ -207,11 +185,7 @@ class Encoder
      */
     public function setUNA(string $chars, bool $user_call = true): bool
     {
-        if (
-            \is_string($chars)
-            &&
-            \strlen($chars) == 6
-        ) {
+        if (\strlen($chars) == 6) {
             $this->sepComp = $chars[0];
             $this->sepData = $chars[1];
             $this->sepDec = $chars[2];
@@ -247,5 +221,28 @@ class Encoder
     public function disableUNA()
     {
         $this->UNAActive = false;
+    }
+
+    /**
+     * @param int|string $str
+     *
+     * @return string
+     */
+    private function escapeValue(&$str): string
+    {
+        $search = [
+            $this->symbRel,
+            $this->sepComp,
+            $this->sepData,
+            $this->symbEnd,
+        ];
+        $replace = [
+            $this->symbRel . $this->symbRel,
+            $this->symbRel . $this->sepComp,
+            $this->symbRel . $this->sepData,
+            $this->symbRel . $this->symbEnd,
+        ];
+
+        return \str_replace($search, $replace, (string) $str);
     }
 }

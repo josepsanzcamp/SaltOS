@@ -10,14 +10,13 @@ namespace EDI;
  */
 class Reader
 {
-
     /**
      * @var array parsed EDI file
      */
     private $parsedfile;
 
     /**
-     * @var array
+     * @var array<int,string>
      */
     private $errors = [];
 
@@ -28,11 +27,15 @@ class Reader
      */
     public function __construct(string $url = null)
     {
-        $this->load($url);
+        if (isset($url)) {
+            $this->load($url);
+        }
     }
 
     /**
      * Get errors
+     *
+     * @return array<int,string>
      */
     public function errors(): array
     {
@@ -41,6 +44,8 @@ class Reader
 
     /**
      * reset errors
+     *
+     * @return void
      */
     public function resetErrors()
     {
@@ -97,7 +102,15 @@ class Reader
         }
 
         $r = $this->readUNHmessageNumber();
-        if (!$r && isset($this->errors[0]) && $this->errors[0] == 'Segment "UNH" is ambiguous') {
+        if (
+            !$r
+            &&
+            (
+                $this->errors !== []
+                &&
+                $this->errors[0] == 'Segment "UNH" is ambiguous'
+            )
+        ) {
             $this->errors = [];
             $this->errors[] = 'File has multiple messages';
 
@@ -112,7 +125,7 @@ class Reader
      *
      * @param string $ediMessage
      *
-     * @return array
+     * @return array<mixed>
      */
     public static function splitMultiMessage(string $ediMessage): array
     {
@@ -120,11 +133,12 @@ class Reader
         $splicedMessages = [];
         $message = [];
         $unb = false;
+        $segment = '';
 
         foreach (self::unwrap($ediMessage) as $segment) {
-
             if (\strpos($segment, 'UNB') === 0) {
                 $unb = $segment;
+
                 continue;
             }
 
@@ -133,6 +147,7 @@ class Reader
                     $message[] = $unb;
                 }
                 $message[] = $segment;
+
                 continue;
             }
 
@@ -140,6 +155,7 @@ class Reader
                 $message[] = $segment;
                 $splicedMessages[] = $message;
                 $message = [];
+
                 continue;
             }
 
@@ -156,40 +172,22 @@ class Reader
         }
 
         foreach ($splicedMessages as $k => &$message) {
-            $message = \implode(PHP_EOL, $splicedMessages[$k]);
+            $message = \implode(\PHP_EOL, $splicedMessages[$k]);
         }
 
         return $splicedMessages;
     }
 
     /**
-     * unwrap string splitting rows on terminator (if not escaped)
-     *
-     * @param string $string
-     *
-     * @return \Generator
-     */
-    private static function unwrap($string)
-    {
-        foreach (\preg_split("/(?<!\?)'/", $string) as &$line) {
-            $line = \preg_replace('#[\x00\r\n]#', '', $line);
-            $temp = $line . "'";
-            if ($temp != "'") {
-                yield $temp;
-            }
-        }
-    }
-
-    /**
      * read required value. if no found, registered error
      *
-     * @param string|array $filter segment filter by segment name and values
-     * @param int          $l1
-     * @param int|false    $l2
+     * @param array<mixed>|string $filter segment filter by segment name and values
+     * @param int                 $l1
+     * @param false|int           $l2
      *
-     * @return string
+     * @return string|null
      */
-    public function readEdiDataValueReq($filter, int $l1, $l2 = false): string
+    public function readEdiDataValueReq($filter, int $l1, $l2 = false)
     {
         return $this->readEdiDataValue($filter, $l1, $l2, true);
     }
@@ -197,15 +195,15 @@ class Reader
     /**
      * read data value from parsed EDI data
      *
-     * @param  array|string $filter   'AGR' - segment code
-     *                                or ['AGR',['1'=>'BB']], where AGR segment code and first element equal 'BB'
-     *                                or ['AGR',['1.0'=>'BB']], where AGR segment code and first element zero subelement
-     *                                equal 'BB'
-     * @param  int          $l1       first level item number (start by 1)
-     * @param  int|false    $l2       second level item number (start by 0)
-     * @param  bool         $required if required, but no exist, register error
+     * @param array<mixed>|string $filter   'AGR' - segment code
+     *                                      or ['AGR',['1'=>'BB']], where AGR segment code and first element equal 'BB'
+     *                                      or ['AGR',['1.0'=>'BB']], where AGR segment code and first element zero subelement
+     *                                      equal 'BB'
+     * @param int                 $l1       first level item number (start by 1)
+     * @param false|int           $l2       second level item number (start by 0)
+     * @param bool                $required if required, but no exist, register error
      *
-     * @return null|string
+     * @return string|null
      */
     public function readEdiDataValue($filter, int $l1, $l2 = false, bool $required = false)
     {
@@ -218,6 +216,7 @@ class Reader
             $filter_elements = false;
         }
 
+        // init
         $segment = false;
         $segment_count = 0;
 
@@ -227,7 +226,7 @@ class Reader
                 if ($filter_elements) {
                     $filter_ok = false;
                     foreach ($filter_elements as $el_id => $el_value) {
-                        $f_el_list = \explode('.', (string)$el_id);
+                        $f_el_list = \explode('.', (string) $el_id);
                         if (\count($f_el_list) === 1) {
                             if (
                                 isset($edi_row[$el_id])
@@ -235,9 +234,10 @@ class Reader
                                 $edi_row[$el_id] == $el_value
                             ) {
                                 $filter_ok = true;
+
                                 break;
                             }
-                        } else if (
+                        } elseif (
                             isset($edi_row[$f_el_list[0]])
                             &&
                             (
@@ -259,6 +259,7 @@ class Reader
                             )
                         ) {
                             $filter_ok = true;
+
                             break;
                         }
                     }
@@ -268,7 +269,7 @@ class Reader
                     }
                 }
                 $segment = $edi_row;
-                $segment_count++;
+                ++$segment_count;
             }
         }
 
@@ -283,7 +284,6 @@ class Reader
 
         // found more one segment - error
         if ($segment_count > 1) {
-
             $this->errors[] = 'Segment "' . $segment_name . '" is ambiguous';
 
             return null;
@@ -321,7 +321,7 @@ class Reader
      *
      * @param int $PeriodQualifier period qualifier (codelist/2005)
      *
-     * @return string YYYY-MM-DD HH:MM:SS
+     * @return string|null YYYY-MM-DD HH:MM:SS
      */
     public function readEdiSegmentDTM($PeriodQualifier)
     {
@@ -345,6 +345,8 @@ class Reader
 
     /**
      * @deprecated
+     *
+     * @return string|null
      */
     public function readUNBDateTimeOfPpreperation()
     {
@@ -353,6 +355,8 @@ class Reader
 
     /**
      * @deprecated
+     *
+     * @return string|null
      */
     public function readUNBDateTimeOfPreperation()
     {
@@ -362,7 +366,7 @@ class Reader
     /**
      * get message preparation time
      *
-     * @return null|string
+     * @return string|null
      */
     public function readUNBDateTimeOfPreparation()
     {
@@ -370,14 +374,18 @@ class Reader
         $date = $this->readEdiDataValue('UNB', 4, 0);
         if (!empty($date)) {
             $time = $this->readEdiDataValue('UNB', 4, 1);
-            $datetime = \preg_replace('#(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)#', '20$1-$2-$3 $4:$5:00', $date . $time);
+            if ($time !== null) {
+                $time = (string) \preg_replace('#(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)#', '20$1-$2-$3 $4:$5:00', $date . $time);
+            }
 
-            return $datetime;
+            return $time;
         }
 
         // common YYYYMMDDHHMM
         $datetime = $this->readEdiDataValue('UNB', 4);
-        $datetime = \preg_replace('#(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)#', '$1-$2-$3 $4:$5:00', $datetime);
+        if ($datetime !== null) {
+            $datetime = (string) \preg_replace('#(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)#', '$1-$2-$3 $4:$5:00', $datetime);
+        }
 
         return $datetime;
     }
@@ -387,9 +395,9 @@ class Reader
      *
      * @param mixed $transportStageQualifier
      *
-     * @return null|string
+     * @return string|null
      */
-    public function readTDTtransportIdentification($transportStageQualifier): string
+    public function readTDTtransportIdentification($transportStageQualifier)
     {
         $transportIdentification = $this->readEdiDataValue(['TDT', ['1' => $transportStageQualifier]], 8, 0);
         if (!empty($transportIdentification)) {
@@ -402,7 +410,7 @@ class Reader
     /**
      * read message type
      *
-     * @return null|string
+     * @return string|null
      */
     public function readUNHmessageType()
     {
@@ -412,7 +420,7 @@ class Reader
     /**
      * read message number
      *
-     * @return null|string
+     * @return string|null
      */
     public function readUNHmessageNumber()
     {
@@ -427,7 +435,7 @@ class Reader
      * @param string $end    last segment of group
      * @param string $after  segment after groups
      *
-     * @return false|array
+     * @return array<mixed>|false
      */
     public function readGroups(string $before, string $start, string $end, string $after)
     {
@@ -440,6 +448,7 @@ class Reader
             // search before group segment
             if ($position == 'before_search' && $edi_row[0] == $before) {
                 $position = 'before_is';
+
                 continue;
             }
 
@@ -455,18 +464,21 @@ class Reader
             if ($position == 'before_is' && $edi_row[0] == $start) {
                 $position = 'group_is';
                 $group[] = $edi_row;
+
                 continue;
             }
 
             // if after before segment no start segment, search again before segment
             if ($position == 'before_is') {
                 $position = 'before_search';
+
                 continue;
             }
 
             // get group element
             if ($position == 'group_is' && $edi_row[0] != $end) {
                 $group[] = $edi_row;
+
                 continue;
             }
 
@@ -476,6 +488,7 @@ class Reader
                 $group[] = $edi_row;
                 $groups[] = $group;
                 $group = [];
+
                 continue;
             }
 
@@ -483,6 +496,7 @@ class Reader
             if ($position == 'group_finish' && $edi_row[0] == $start) {
                 $group[] = $edi_row;
                 $position = 'group_is';
+
                 continue;
             }
 
@@ -504,10 +518,10 @@ class Reader
      * Get groups from message when last segment is unknown but you know the barrier
      * useful for invoices by default.
      *
-     * @param string $start   first segment start a new group
-     * @param array  $barrier barrier segment (NOT in group)
+     * @param string                  $start   first segment start a new group
+     * @param array<array-key,string> $barrier barrier segment (NOT in group)
      *
-     * @return array
+     * @return array<mixed>
      */
     public function groupsExtract(string $start = 'LIN', array $barrier = ['UNS']): array
     {
@@ -545,5 +559,28 @@ class Reader
         }
 
         return $groups;
+    }
+
+    /**
+     * unwrap string splitting rows on terminator (if not escaped)
+     *
+     * @param string $string
+     *
+     * @return \Generator<string>
+     */
+    private static function unwrap($string)
+    {
+        $array = \preg_split("/(?<!\?)'/", $string);
+        if ($array === false) {
+            return;
+        }
+
+        foreach ($array as &$line) {
+            $line = \preg_replace('#[\x00\r\n]#', '', $line);
+            $temp = $line . "'";
+            if ($temp !== "'") {
+                yield $temp;
+            }
+        }
     }
 }

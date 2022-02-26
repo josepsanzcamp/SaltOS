@@ -20,20 +20,22 @@ final class ArrayyMeta
     }
 
     /**
-     * @param string $obj
+     * @param string $className
      *
      * @return $this
+     *
+     * @phpstan-param class-string<\Arrayy\Arrayy<int|string,mixed>> $className
      */
-    public function getMetaObject(string $obj): self
+    public function getMetaObject(string $className): self
     {
         static $STATIC_CACHE = [];
 
-        $cacheKey = $obj;
+        $cacheKey = $className;
         if (!empty($STATIC_CACHE[$cacheKey])) {
             return $STATIC_CACHE[$cacheKey];
         }
 
-        $reflector = new \ReflectionClass($obj);
+        $reflector = new \ReflectionClass($className);
         $factory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
         $docComment = $reflector->getDocComment();
         if ($docComment) {
@@ -42,6 +44,19 @@ final class ArrayyMeta
             foreach ($docblock->getTagsByName('property') as $tag) {
                 $PropertyName = $tag->getVariableName();
                 $this->{$PropertyName} = $PropertyName;
+            }
+        }
+
+        /** @noinspection PhpAssignmentInConditionInspection */
+        while ($reflector = $reflector->getParentClass()) {
+            $docComment = $reflector->getDocComment();
+            if ($docComment) {
+                $docblock = $factory->create($docComment);
+                /** @var \phpDocumentor\Reflection\DocBlock\Tags\Property $tag */
+                foreach ($docblock->getTagsByName('property') as $tag) {
+                    $PropertyName = $tag->getVariableName();
+                    $this->{$PropertyName} = $PropertyName;
+                }
             }
         }
 

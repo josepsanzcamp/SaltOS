@@ -1,8 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Arrayy\Collection;
 
 use Arrayy\ArrayyIterator;
+use Arrayy\Type\TypeInterface;
+use Arrayy\TypeCheck\TypeCheckArray;
+use Arrayy\TypeCheck\TypeCheckInterface;
 
 /**
  * A collection represents a group of objects.
@@ -31,10 +36,12 @@ use Arrayy\ArrayyIterator;
  *
  * ``` php
  * namespace My;
- *
+ * /**
+ *  * @extends \Arrayy\Collection\AbstractCollection<array-key,FooInterface>
+ *  *\/
  * class FooCollection extends \Arrayy\Collection\AbstractCollection
  * {
- *     public function getType(): string
+ *     public function getType()
  *     {
  *         return FooInterface::class;
  *     }
@@ -58,51 +65,133 @@ use Arrayy\ArrayyIterator;
  * ```
  *
  * INFO: this collection thingy is inspired by https://github.com/ramsey/collection/
+ *
+ * @template TKey of array-key
+ * @template T
+ * @extends  AbstractCollection<TKey,T>
  */
 class Collection extends AbstractCollection
 {
     /**
-     * The type of elements stored in this collection.
-     *
-     * @var string
-     */
-    private $collectionTypeTmp;
-
-    /**
      * Constructs a collection object of the specified type, optionally with the
      * specified data.
      *
-     * @param string $type
-     * @param mixed  $data
-     *                                                              <p>
-     *                                                              The initial items to store in the collection.
-     *                                                              </p>
-     * @param bool   $checkForMissingPropertiesInConstructorAndType
+     * @param mixed              $data
+     *                                                         <p>
+     *                                                         The initial items to store in the
+     *                                                         collection.
+     *                                                         </p>
+     * @param string|null        $iteratorClass                optional <p>
+     *                                                         You can overwrite the
+     *                                                         ArrayyIterator, but mostly you
+     *                                                         don't need this option.
+     *                                                         </p>
+     * @param bool               $checkPropertiesInConstructor optional <p>
+     *                                                         You need to extend the
+     *                                                         "Arrayy"-class and you need to set
+     *                                                         the
+     *                                                         $checkPropertiesMismatchInConstructor
+     *                                                         class property to true, otherwise
+     *                                                         this option didn't not work
+     *                                                         anyway.
+     *                                                         </p>
+     * @param TypeInterface|null $type
+     *
+     * @phpstan-param array<array-key,T>|array<TKey,T>|\Arrayy\Arrayy<TKey,T> $data
+     * @phpstan-param class-string<\Arrayy\ArrayyIterator> $iteratorClass
      */
-    public function __construct(string $type, $data = [], $checkForMissingPropertiesInConstructorAndType = true)
-    {
-        $this->collectionTypeTmp = $type;
+    public function __construct(
+        $data = [],
+        string $iteratorClass = null,
+        bool $checkPropertiesInConstructor = null,
+        TypeInterface $type = null
+    ) {
+        // fallback
+        if ($iteratorClass === null) {
+            $iteratorClass = ArrayyIterator::class;
+        }
+        if ($checkPropertiesInConstructor === null) {
+            $checkPropertiesInConstructor = true;
+        }
 
-        parent::__construct($data, ArrayyIterator::class, $checkForMissingPropertiesInConstructorAndType);
+        if ($type !== null) {
+            /** @phpstan-ignore-next-line - we use the "TypeInterface" only as base */
+            $this->properties = $type;
+        }
+
+        parent::__construct(
+            $data,
+            $iteratorClass,
+            $checkPropertiesInConstructor
+        );
+    }
+
+    /**
+     * @param string|TypeCheckArray|TypeCheckInterface[] $type
+     * @param array<mixed>                               $data
+     * @param bool                                       $checkPropertiesInConstructorAndType
+     *
+     * @return static
+     *
+     * @template       TConstruct
+     * @phpstan-param  string|class-string|class-string<TConstruct>|TypeInterface|TypeCheckArray<array-key,TypeCheckInterface>|array<TypeCheckInterface> $type
+     * @phpstan-param  array<array-key,TConstruct> $data
+     * @phpstan-return static<array-key,TConstruct>
+     */
+    public static function construct(
+        $type,
+        $data = [],
+        bool $checkPropertiesInConstructorAndType = true
+    ): self {
+        $type = self::convertIntoTypeCheckArray($type);
+
+        return new static(
+            $data,
+            ArrayyIterator::class,
+            $checkPropertiesInConstructorAndType,
+            $type
+        );
+    }
+
+    /**
+     * Returns a new iterator, thus implementing the \Iterator interface.
+     *
+     * @return \Iterator
+     *                   <p>An iterator for the values in the array.</p>
+     *
+     * @phpstan-return \Iterator<T>
+     *
+     * @noinspection SenselessProxyMethodInspection
+     */
+    public function getIterator(): \Iterator
+    {
+        return parent::getIterator();
     }
 
     /**
      * The type (FQCN) associated with this collection.
      *
-     * @return string
+     * @return string|TypeCheckArray|TypeCheckInterface[]
+     *
+     * @phpstan-return string|class-string|class-string<T>|TypeInterface|TypeCheckArray<TKey,T>|TypeCheckArray<int|string,mixed>|array<TypeCheckInterface>|array<array-key,TypeCheckInterface>
      */
-    public function getType(): string
+    public function getType()
     {
-        return $this->collectionTypeTmp;
+        return $this->properties;
     }
 
     /**
      * Get a base Collection instance from this Collection.
      *
      * @return self
+     *
+     * @phpstan-return self<array-key,mixed>
      */
     public function toBase(): self
     {
-        return new self($this);
+        return self::construct(
+            $this->getType(),
+            $this->getArray()
+        );
     }
 }

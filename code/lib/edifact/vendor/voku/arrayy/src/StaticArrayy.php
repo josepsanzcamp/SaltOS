@@ -7,6 +7,8 @@ namespace Arrayy;
 /**
  * INFO: "Method Parameter Information" via PhpStorm |
  * https://www.jetbrains.com/phpstorm/help/viewing-method-parameter-information.html
+ *
+ * @deprecated please use e.g. "\Arrayy\create()"
  */
 class StaticArrayy
 {
@@ -68,7 +70,10 @@ class StaticArrayy
      * @param int|null $stop The stopping point
      * @param int      $step How many to increment of
      *
-     * @return Arrayy
+     * @return Arrayy<int,int>
+     *
+     * @psalm-suppress InvalidReturnStatement - why?
+     * @psalm-suppress InvalidReturnType - why?
      */
     public static function range(int $base, int $stop = null, int $step = 1): Arrayy
     {
@@ -85,10 +90,13 @@ class StaticArrayy
     /**
      * Fill an array with $times times some $data.
      *
-     * @param mixed $data
-     * @param int   $times
+     * @param float|int|string|null $data
+     * @param int                   $times
      *
-     * @return Arrayy
+     * @return Arrayy<int,float|int|string|null>
+     *
+     * @psalm-suppress InvalidReturnStatement - why?
+     * @psalm-suppress InvalidReturnType - why?
      */
     public static function repeat($data, int $times): Arrayy
     {

@@ -414,7 +414,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/googleapis/google-api-php-client")</onclick>
                         </field>
                         <field>
-                            <label>EDIFACT 0.4.1 (LGPL-3.0)</label>
+                            <label>EDIFACT 0.5.1 (LGPL-3.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/php-edifact/edifact")</onclick>
