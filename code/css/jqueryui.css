@@ -392,8 +392,10 @@ img[isplot=true] {
 
 /* FOR VIEWPDF */
 #viewerContainer {
-  position:absolute;
-  width:calc(100% - 1em);
+    overflow: auto;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 /* FOR HELP */

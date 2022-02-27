@@ -88,6 +88,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
                     // CONTINUE
                     var dialog2=$("#dialog");
                     $(dialog2).html("<div id='viewerContainer'><div id='viewer' class='pdfViewer'></div></div>");
+                    $(dialog2).css("padding","0"); // TO REMOVE THE PADDING
                     // PROGRAM RESIZE EVENT
                     $(dialog2).dialog("option","resizeStop",function(event,ui) {
                         setIntCookie("saltos_viewpdf_width",$(dialog2).dialog("option","width"));
@@ -100,9 +101,10 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
                         $(dialog2).dialog("option","close",function() {});
                         $("*",dialog2).each(function() { $(this).remove(); });
                         document.removeEventListener("pagesinit",fn1);
-                        document.removeEventListener("textlayerrendered",fn2);
+                        document.removeEventListener("annotationlayerrendered",fn2);
                         unmake_focus();
                         hide_tooltips();
+                        $(dialog2).css("padding",""); // TO RESTORE THE PADDING OF THE ORIGINAL OBJECT
                     });
                     // UPDATE SIZE AND POSITION
                     var width=getIntCookie("saltos_viewpdf_width");
@@ -115,18 +117,23 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
                     $(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
                     $(dialog2).dialog("open");
                     // PAINT ALL PAGES
-                    var container=document.getElementById("viewerContainer");
-                    var eventBus=new pdfjsViewer.EventBus();
-                    var pdfViewer=new pdfjsViewer.PDFViewer({
-                        container:container,
-                        eventBus:eventBus,
+                    var container = document.getElementById("viewerContainer");
+                    var eventBus = new pdfjsViewer.EventBus();
+                    var pdfLinkService = new pdfjsViewer.PDFLinkService({
+                      eventBus,
                     });
-                    var fn1=function() {
-                        pdfViewer.currentScaleValue="page-width";
+                    var pdfViewer=new pdfjsViewer.PDFViewer({
+                        container: container,
+                        eventBus: eventBus,
+                        linkService: pdfLinkService,
+                    });
+                    pdfLinkService.setViewer(pdfViewer);
+                    var fn1 = function() {
+                        pdfViewer.currentScaleValue = "page-width";
                         $("#viewerContainer").scrollTop(0);
                     };
-                    var fn2=function() {
-                        $("a",container).each(function() {
+                    var fn2 = function() {
+                        $("#viewerContainer div.annotationLayer:last a").each(function() {
                             if(substr($(this).attr("href"),0,15)=="http://viewpdf/") {
                                 if(typeof($(this).attr("onclick"))=="undefined") {
                                     $(this).attr("onclick","viewpdf('"+substr($(this).attr("href"),15)+"');return false");
@@ -141,9 +148,10 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
                             }
                         });
                     };
-                    eventBus.on("pagesinit",fn1);
-                    eventBus.on("textlayerrendered",fn2);
+                    eventBus.on("pagesinit", fn1);
+                    eventBus.on("annotationlayerrendered", fn2);
                     pdfViewer.setDocument(pdfDocument);
+                    pdfLinkService.setDocument(pdfDocument, null);
                 },function(message,exception) {
                     errorcontent(0,message);
                 });
