@@ -74,14 +74,15 @@ function fix_input_vars()
     if (intval(ini_get("max_input_vars")) > 0) {
         $temp = getParam("fix_input_vars");
         if ($temp != "") {
-            $temp = querystring2array(base64_decode($temp));
+            $temp2 = array();
+            parse_str_protected(base64_decode($temp), $temp2);
             if (isset($_GET["fix_input_vars"])) {
                 unset($_GET["fix_input_vars"]);
-                $_GET = array_merge($_GET, $temp);
+                $_GET = array_merge($_GET, $temp2);
             }
             if (isset($_POST["fix_input_vars"])) {
                 unset($_POST["fix_input_vars"]);
-                $_POST = array_merge($_POST, $temp);
+                $_POST = array_merge($_POST, $temp2);
             }
         }
     }

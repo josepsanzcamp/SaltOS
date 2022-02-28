@@ -460,7 +460,7 @@ function __unoconv_hocr2txt($hocr)
             break;
         }
     }
-    //~ echo "<pre>".sprintr(array($size,$width,$height),true)."</pre>";
+    //~ echo "<pre>".sprintr(array($size,$width,$height))."</pre>";
     if (!is_array($matrix)) {
         return "";
     }

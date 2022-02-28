@@ -74,7 +74,8 @@ function load_history($id_usuario, $id_aplicacion)
     $row = db_fetch_row($result);
     db_free($result);
     if ($numrows) {
-        $items = querystring2array(base64_decode($row["querystring"]));
+        $items = array();
+        parse_str(base64_decode($row["querystring"]), $items);
         if (isset($items[""])) {
             unset($items[""]);
         }

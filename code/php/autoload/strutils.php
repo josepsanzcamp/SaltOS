@@ -141,7 +141,7 @@ function prepare_words($cad, $pad = " ")
     return $cad;
 }
 
-function querystring2array($querystring)
+function parse_str_protected($querystring, &$result)
 {
     $items = explode("&", $querystring);
     $result = array();
@@ -156,17 +156,9 @@ function querystring2array($querystring)
     return $result;
 }
 
-function sprintr($array, $oneline = false)
+function sprintr($array)
 {
-    $buffer = print_r($array, true);
-    $buffer = explode("\n", $buffer);
-    foreach ($buffer as $key => $val) {
-        if (in_array(trim($val), array("(",")",""))) {
-            unset($buffer[$key]);
-        }
-    }
-    $buffer = implode($oneline ? "" : "\n", $buffer) . "\n";
-    return $buffer;
+    return print_r($array, true);
 }
 
 function sign($n)
