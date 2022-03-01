@@ -158,7 +158,15 @@ function parse_str_protected($querystring, &$result)
 
 function sprintr($array)
 {
-    return print_r($array, true);
+    $buffer = print_r($array, true);
+    $buffer = explode("\n", $buffer);
+    foreach ($buffer as $key => $val) {
+        if (in_array(trim($val), array("(",")",""))) {
+            unset($buffer[$key]);
+        }
+    }
+    $buffer = implode("\n", $buffer) . "\n";
+    return $buffer;
 }
 
 function sign($n)
