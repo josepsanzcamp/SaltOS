@@ -303,3 +303,10 @@ function realpath_protected($path)
     // PER EXEMPLE, PER LA SORTIDA D'UNA COMANDA
     return realpath(dirname($path)) . "/" . basename($path);
 }
+
+function chmod_protected($file, $mode)
+{
+    if (fileperms($file) & 0777 != $mode) {
+        chmod($file, $mode);
+    }
+}

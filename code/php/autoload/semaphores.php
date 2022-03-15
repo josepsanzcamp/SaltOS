@@ -68,7 +68,7 @@ function __semaphore_helper($fn, $name, $timeout)
         if (!$fds[$file]) {
             return false;
         }
-        chmod($file, 0666);
+        chmod_protected($file, 0666);
         init_random();
         for (;;) {
             $result = flock($fds[$file], LOCK_EX | LOCK_NB);

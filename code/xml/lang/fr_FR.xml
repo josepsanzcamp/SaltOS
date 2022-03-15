@@ -428,7 +428,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos>Textes prédéfinis</textos>
         <ficheros>Attachements</ficheros>
         <feeds>Flux RSS Reader</feeds>
-        <favoritos>Favoritos</favoritos>
+        <favoritos>Favoris</favoritos>
         <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
         <importaciones>Importer</importaciones>
         <gestioncomercial>Ventes</gestioncomercial>
@@ -480,7 +480,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_textos>Créer des textes prédéfinis pour une utilisation dans d'autres applications </desc_textos>
         <desc_ficheros>accès à tous les fichiers de l'application entière</desc_ficheros>
         <desc_feeds>Suivez vos flux RSS et Atom de cette application</desc_feeds>
-        <desc_favoritos>Gestione sus favoritos desde aquí</desc_favoritos>
+        <desc_favoritos>Gérez vos favoris à partir d'ici</desc_favoritos>
         <desc_ivas>Gérez les taxes d'ici</desc_ivas>
         <desc_importaciones>Importer des données pour les applications majeurs d'ici</desc_importaciones>
         <desc_buscador>Pour chercher dans tous les contenus de la base de données</desc_buscador>
@@ -524,7 +524,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_textos>Textes</quick_textos>
         <quick_ficheros>Attachements</quick_ficheros>
         <quick_feeds>RSS</quick_feeds>
-        <quick_favoritos>Favoritos</quick_favoritos>
+        <quick_favoritos>Favoris</quick_favoritos>
         <quick_importaciones>Importations</quick_importaciones>
         <quick_buscador>Recherche</quick_buscador>
         <quick_errorlog>Erreurs</quick_errorlog>
@@ -1526,13 +1526,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>Le contenu des fichiers </defaultdata>
     </errorlog>
     <favoritos>
-        <list>Listado de favoritos</list>
-        <create>Nuevo favorito</create>
+        <list>Liste de favoris</list>
+        <create>Nouveau favori</create>
         <url>URL</url>
-        <bookmarkexists>La url que inteta guardar ya existe como favorito.</bookmarkexists>
-        <invalidurl>La url no es válida, verifique la dirección web:</invalidurl>
+        <bookmarkexists>L'URL que vous essayez d'enregistrer existe déjà en tant que signet.</bookmarkexists>
+        <invalidurl>L'URL n'est pas valide, vérifiez l'adresse Web:</invalidurl>
         <bookmarkadded>L'url a bien été ajoutée aux favoris</bookmarkadded>
-        <previews>Show more     aperçus</previews>
+        <previews>Show more aperçus</previews>
     </favoritos>
     <ivas>
         <list eval="true">"Liste de".CONFIG("accounting_iva_name")</list>

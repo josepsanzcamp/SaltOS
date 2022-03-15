@@ -61,7 +61,7 @@ function addlog($msg, $file = "")
     $msg = array_map("__addlog_helper", $msg);
     $msg = implode("\n", $msg) . "\n";
     file_put_contents($dir . $file, $msg, FILE_APPEND);
-    chmod($dir . $file, 0666);
+    chmod_protected($dir . $file, 0666);
 }
 
 function addtrace($array, $file)

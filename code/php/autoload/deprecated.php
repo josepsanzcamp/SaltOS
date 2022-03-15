@@ -25,22 +25,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-function chmod_protected($file, $mode)
-{
-    // MARK AS DEPRECATED
-    addtrace(array(
-        "phperror" => "Deprecated function " . __FUNCTION__,
-        "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
-    ), getDefault("debug/deprecated", "deprecated.log"));
-    // ORIGINAL CODE
-    capture_next_error();
-    ob_start();
-    chmod($file, $mode);
-    $error1 = ob_get_clean();
-    $error2 = get_clear_error();
-    return $error1 . $error2;
-}
-
 function unlink_protected($file)
 {
     // MARK AS DEPRECATED

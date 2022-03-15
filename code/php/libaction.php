@@ -580,7 +580,7 @@ function __feeds_fetchmain($array)
     }
     $array = array("title" => $title,"link" => $link,"description" => $description,"image" => $image);
     foreach ($array as $key => $val) {
-        $array[$key] = trim($val);
+        $array[$key] = trim(null2string($val));
     }
     return $array;
 }
@@ -720,12 +720,12 @@ function __feeds_fetchitems($array)
             if (is_array($summary)) {
                 $summary = __array2xml_write_nodes($summary);
             }
-            $summary = trim(getutf8($summary));
+            $summary = trim(null2string(getutf8($summary)));
             $content = __feeds_getvalue(__feeds_getnode("content", $item));
             if (is_array($content)) {
                 $content = __array2xml_write_nodes($content);
             }
-            $content = trim(getutf8($content));
+            $content = trim(null2string(getutf8($content)));
             // FIX SOME ISSUES ABOUT SOME HTML WITH NO TEXT CONTENT
             $summary_plain = trim(strip_tags($summary));
             if (!$summary_plain) {
