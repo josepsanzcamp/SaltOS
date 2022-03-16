@@ -38,10 +38,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <value>ca_ES</value>
         </row>
         <row>
-            <label>Deutsch (Deutschland)</label>
-            <value>de_DE</value>
-        </row>
-        <row>
             <label>English (USA)</label>
             <value>en_US</value>
         </row>
@@ -58,7 +54,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <value>fr_FR</value>
         </row>
         <row>
-            <label>Italiano (Italia)</label>
+            <label>Finnish (Finland)</label>
+            <value>fi_FI</value>
+        </row>
+        <row>
+            <label>German (Germany)</label>
+            <value>de_DE</value>
+        </row>
+        <row>
+            <label>Italian (Italy)</label>
             <value>it_IT</value>
         </row>
         <row>
@@ -70,8 +74,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <value>nl_NL</value>
         </row>
         <row>
-            <label>Nynorsk (Noreg)</label>
-            <value>nn_NO</value>
+            <label>Norwegian (Norway)</label>
+            <value>no_NO</value>
         </row>
         <row>
             <label>Português (Brasil)</label>
@@ -82,11 +86,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <value>pt_PT</value>
         </row>
         <row>
-            <label>Suomi (Suomi)</label>
-            <value>fi_FI</value>
+            <label>Russian (Russia)</label>
+            <value>ru_RU</value>
         </row>
         <row>
-            <label>Svenska (Sverige)</label>
+            <label>Swedish (Sweden)</label>
             <value>sv_SE</value>
         </row>
     </rows>
