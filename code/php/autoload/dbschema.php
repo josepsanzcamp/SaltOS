@@ -210,6 +210,17 @@ function __db_static_integrity()
             "phperror" => "Found the following permissions without apps: " . implode(", ", $ids)
         ));
     }
+    $query = "SELECT id_aplicacion FROM tbl_aplicaciones_i
+        GROUP BY id_aplicacion,id_permiso HAVING COUNT(*)>1
+        UNION
+        SELECT id_aplicacion FROM tbl_aplicaciones_p
+        GROUP BY id_aplicacion,id_permiso HAVING COUNT(*)>1";
+    $ids = execute_query_array($query);
+    if (count($ids)) {
+        show_php_error(array(
+            "phperror" => "Found the following apps with repeated permissions: " . implode(", ", $ids)
+        ));
+    }
 }
 
 function __get_dbschema_with_indexing($dbschema, $dbstatic)
