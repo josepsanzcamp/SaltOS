@@ -262,6 +262,9 @@ function ismobile($forcemobile = null)
     }
     if ($ismobile === null) {
         require "lib/mobiledetect/Mobile_Detect.php";
+        if (!isset($_SERVER["HTTP_ACCEPT"])) {
+            $_SERVER["HTTP_ACCEPT"] = "x";
+        }
         if (!isset($_SERVER["HTTP_USER_AGENT"])) {
             $_SERVER["HTTP_USER_AGENT"] = "x";
         }
@@ -634,4 +637,13 @@ function null2string($cad)
         return "";
     }
     return $cad;
+}
+
+function get_part_from_string($input, $delim, $index)
+{
+    $temp = explode($delim, $input);
+    if (isset($temp[$index])) {
+        return $temp[$index];
+    }
+    return "";
 }
