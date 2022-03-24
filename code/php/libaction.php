@@ -270,7 +270,7 @@ function __excel_dump($matrix, $file, $title = "")
 {
     require_once "php/export.php";
     $buffer = export_file(array(
-        "type" => "xls",
+        "type" => "xlsx",
         "data" => $matrix,
         "title" => $title,
     ));
@@ -305,8 +305,11 @@ function __matrix2dump($matrix, $file, $title)
     if (substr($file, -4, 4) == ".xls") {
         $file = substr($file, 0, -4);
     }
+    if (substr($file, -5, 5) == ".xlsx") {
+        $file = substr($file, 0, -5);
+    }
     if (count($matrix) <= 10000) {
-        __excel_dump($matrix, $file . ".xls", $title);
+        __excel_dump($matrix, $file . ".xlsx", $title);
     } else {
         __csv_dump($matrix, $file . ".csv");
     }

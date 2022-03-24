@@ -153,11 +153,11 @@ if (getParam("url")) {
             $posatom = strpos($xml, "application/atom+xml");
             $posrss = strpos($xml, "application/rss+xml");
             if ($posatom) {
-                $posopen = strrpos(substr($xml, 0, $posatom), "<", 0);
+                $posopen = strrpos(substr($xml, 0, $posatom), "<");
                 $posclose = strpos($xml, ">", $posatom);
                 $tagfeed = substr($xml, $posopen, $posclose - $posopen + 1);
             } elseif ($posrss) {
-                $posopen = strrpos(substr($xml, 0, $posrss), "<", 0);
+                $posopen = strrpos(substr($xml, 0, $posrss), "<");
                 $posclose = strpos($xml, ">", $posrss);
                 $tagfeed = substr($xml, $posopen, $posclose - $posopen + 1);
             }

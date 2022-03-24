@@ -182,9 +182,8 @@ function __export_file_csv(
     $replace["to"] = __import_specialchars($replace["to"]);
     $buffer = array();
     foreach ($matrix as $key => $val) {
+        $val = str_replace($replace["from"], $replace["to"], $val);
         foreach ($val as $key2 => $val2) {
-            //~ $val2=str_replace($sep,$replace["to"],$val2);
-            $val2 = str_replace($replace["from"], $replace["to"], $val2);
             $val2 = trim($val2);
             if ($escape["mode"] == "auto") {
                 $has_sep = strpos($val2, $sep) !== false ? 1 : 0;

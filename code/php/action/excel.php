@@ -50,7 +50,7 @@ $query = $config["query"];
 max_memory_limit();
 $total = execute_query("SELECT COUNT(*) FROM ($query) __b__");
 if ($total <= 100000) {
-    __matrix2dump(__query2matrix($query), "${page}.xls", ucfirst($page));
+    __matrix2dump(__query2matrix($query), "${page}.xlsx", ucfirst($page));
 } else {
     __query2dump($query, "${page}.csv", ucfirst($page));
 }

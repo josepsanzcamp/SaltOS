@@ -52,7 +52,7 @@ $id_abs = abs($id);
 if (strpos($ids, "_") !== false) {
     $pos = strpos(",${ids},", "_${page}_${id_abs},");
     if ($pos !== false) {
-        $pos = strrpos(",${ids},", ",", $pos);
+        $pos = strrpos(",${ids},", ",", $pos - strlen($ids));
     }
 } else {
     $pos = strpos(",${ids},", ",${id_abs},");
