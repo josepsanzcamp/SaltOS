@@ -119,15 +119,10 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
                     // PAINT ALL PAGES
                     var container = document.getElementById("viewerContainer");
                     var eventBus = new pdfjsViewer.EventBus();
-                    var pdfLinkService = new pdfjsViewer.PDFLinkService({
-                      eventBus,
-                    });
                     var pdfViewer=new pdfjsViewer.PDFViewer({
                         container: container,
                         eventBus: eventBus,
-                        linkService: pdfLinkService,
                     });
-                    pdfLinkService.setViewer(pdfViewer);
                     var fn1 = function() {
                         pdfViewer.currentScaleValue = "page-width";
                         $("#viewerContainer").scrollTop(0);
@@ -151,7 +146,6 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
                     eventBus.on("pagesinit", fn1);
                     eventBus.on("annotationlayerrendered", fn2);
                     pdfViewer.setDocument(pdfDocument);
-                    pdfLinkService.setDocument(pdfDocument, null);
                 },function(message,exception) {
                     errorcontent(0,message);
                 });
