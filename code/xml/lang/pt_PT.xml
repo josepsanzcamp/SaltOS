@@ -53,7 +53,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <web>Web</web>
         <filter>Opções de filtro</filter>
         <loadsavefilter>Carregar e salvar filtros predefinidos</loadsavefilter>
-        <filtro>Procurar todo</filtro>
         <buscar>Procurar</buscar>
         <buscartip>Realiza a pesquiSócom os filtros selecionados</buscartip>
         <limpiar>Limpar</limpiar>

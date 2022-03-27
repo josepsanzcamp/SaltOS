@@ -52,7 +52,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <email>Courriel</email>
         <web>Web</web>
         <filter>Options filtre</filter>
-        <filtro>Rechercher Tous</filtro>
         <loadsavefilter>Charger et enregistrer des filtres prédéfinis</loadsavefilter>
         <buscar>Recherche</buscar>
         <buscartip>Faire la recherche avec les filtres sélectionnés</buscartip>

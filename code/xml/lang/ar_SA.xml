@@ -53,7 +53,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <web>ويب</web>
         <filter>خيارات الترشيح</filter>
         <loadsavefilter>تحميل وحفظ الفلاتر المحددة مسبقا</loadsavefilter>
-        <filtro>بحث الكل</filtro>
         <buscar>بحث</buscar>
         <buscartip>قم بالبحث عن طريق المرشحات المختارة</buscartip>
         <limpiar>اعادة الضبط</limpiar>

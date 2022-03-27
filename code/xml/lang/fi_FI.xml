@@ -53,7 +53,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <web>Verkko</web>
         <filter>Suodatusvaihtoehdot</filter>
         <loadsavefilter>Lataa ja tallenna ennalta määritetyt suodattimet</loadsavefilter>
-        <filtro>Etsi kaikista</filtro>
         <buscar>Etsi</buscar>
         <buscartip>Hae valituilla suodattimilla</buscartip>
         <limpiar>Asettaa uudelleen</limpiar>

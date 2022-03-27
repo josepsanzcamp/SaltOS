@@ -97,7 +97,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <field include="xml/common/hiddenslist.xml" replace="true" />
                     <field>
                         <name>filtro</name>
-                        <label lang="true">filtro</label>
+                        <label lang="true">buscar</label>
                         <type>text</type>
                         <width>240px</width>
                         <value global="filtro" eval="true">$filtro=getParam("filtro")</value>

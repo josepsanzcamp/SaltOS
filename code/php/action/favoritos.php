@@ -50,11 +50,10 @@ if (getParam("id") != "") {
     $width = 1366;
     $height = 768;
     $colors = 16;
-    $delay = 1000;
     $useragent = getServer("HTTP_USER_AGENT");
     $width2 = 350;
     $height2 = 200;
-    $cache = get_cache_file(array($url,$format,$width,$height,$colors,$delay,$useragent,$width2,$height2), $format);
+    $cache = get_cache_file(array($url,$format,$width,$height,$colors,$useragent,$width2,$height2), $format);
     if (!file_exists($cache)) {
         $query = "SELECT preview FROM tbl_favoritos WHERE id='" . intval(getParam("id")) . "'";
         $preview = execute_query($query);
@@ -68,24 +67,52 @@ if (getParam("id") != "") {
             die();
         }
         if (!file_exists($cache)) {
-            $preview = str_replace(
-                array("__FORMAT__","__WIDTH__","__HEIGHT__","__DELAY__","__USER_AGENT__","__INPUT__","__OUTPUT__"),
-                array($format,$width,$height,$delay,$useragent,$url,$cache),
-                getDefault("commands/__preview__")
-            );
-            $xserver = str_replace(
-                array("__WIDTH__","__HEIGHT__","__COLORS__","__COMMAND__"),
-                array($width,$height,$colors,$preview),
-                getDefault("commands/__xserver__")
-            );
-            ob_passthru($xserver);
-            semaphore_release(getParam("action"));
-            if (!file_exists($cache)) {
-                output_handler(array(
-                    "file" => "img/none.png",
-                    "cache" => true
-                ));
-                die();
+            // GET THE IMAGE WITH DIFFERENT DELAYS
+            foreach (array(1000,5000) as $delay) {
+                $preview = str_replace(
+                    array("__FORMAT__","__WIDTH__","__HEIGHT__","__DELAY__","__USER_AGENT__","__INPUT__","__OUTPUT__"),
+                    array($format,$width,$height,$delay,$useragent,$url,$cache),
+                    getDefault("commands/__preview__")
+                );
+                $xserver = str_replace(
+                    array("__WIDTH__","__HEIGHT__","__COLORS__","__COMMAND__"),
+                    array($width,$height,$colors,$preview),
+                    getDefault("commands/__xserver__")
+                );
+                ob_passthru($xserver);
+                semaphore_release(getParam("action"));
+                if (!file_exists($cache)) {
+                    output_handler(array(
+                        "file" => "img/none.png",
+                        "cache" => true
+                    ));
+                    die();
+                }
+                // COMPUTE THE HISTOGRAM
+                // http://bubble.ro/How_to_create_the_histogram_of_an_image_using_PHP.html
+                $im = imagecreatefromjpeg($cache);
+                $imgw = imagesx($im);
+                $imgh = imagesy($im);
+                $n = $imgw * $imgh;
+                $histo = array();
+                for ($i = 0; $i < $imgw; $i++) {
+                    for ($j = 0; $j < $imgh; $j++) {
+                        $rgb = ImageColorAt($im, $i, $j);
+                        $r = ($rgb >> 16) & 0xFF;
+                        $g = ($rgb >> 8) & 0xFF;
+                        $b = $rgb & 0xFF;
+                        $v = round(($r + $g + $b) / 3);
+                        if (!isset($histo[$v])) {
+                            $histo[$v] = 0;
+                        }
+                        $histo[$v] += $v / $n;
+                    }
+                }
+                imagedestroy($im);
+                // OK IF HISTOGRAM CONTAINS MORE THAN 1 COLOR
+                if (count($histo) > 1) {
+                    break;
+                }
             }
             // RESIZE
             $im1 = imagecreatefromjpeg($cache);

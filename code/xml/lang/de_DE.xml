@@ -53,7 +53,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <web>Homepage</web>
         <filter>Filter</filter>
         <loadsavefilter>Erstellen und Laden von vordefinierten Filtern</loadsavefilter>
-        <filtro>Suchtext</filtro>
         <buscar>Suche</buscar>
         <buscartip>Sucht mit dem gewählten Filter</buscartip>
         <limpiar>Reset</limpiar>

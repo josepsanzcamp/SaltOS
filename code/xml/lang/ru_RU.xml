@@ -53,7 +53,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <web>паутина</web>
         <filter>параметры фильтра</filter>
         <loadsavefilter>загрузка и сохранение предопределенных фильтров</loadsavefilter>
-        <filtro>поиск по всем</filtro>
         <buscar>найти</buscar>
         <buscartip>выполнение поиска с выбранными фильтрами</buscartip>
         <limpiar>сброс</limpiar>
