@@ -60,6 +60,11 @@ function __libsqlite_unix_timestamp($date)
     return strtotime($date);
 }
 
+function __libsqlite_from_unixtime($timestamp)
+{
+    return date("Y-m-d H:i:s",$timestamp);
+}
+
 function __libsqlite_year($date)
 {
     return date("Y", strtotime($date));

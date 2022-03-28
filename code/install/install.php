@@ -27,11 +27,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+
 // PREVENT MOBILE CASE
 ismobile(false);
+
 // GLOBALIZE SOME VARS
 global $_CONFIG;
 global $_LANG;
+
 // LOAD MAIN CONFIGURATION
 $_CONFIG = eval_attr(xml2array("xml/config.xml"));
 if (getDefault("ini_set")) {
@@ -46,6 +49,7 @@ if (getParam("env_lang")) {
 if (getDefault("putenv")) {
     eval_putenv(getDefault("putenv"));
 }
+
 // LOAD LANGUAGE
 $lang = getParam("lang", getDefault("lang"));
 $style = getParam("style", getDefault("style"));
@@ -58,9 +62,11 @@ if ($_CONFIG["info"]["revision"] == "GIT") {
     $_CONFIG["info"]["revision"] = gitversion();
 }
 $style = load_style($style) ? $style : "google/blue/light";
+
 // SUPPORT FOR LTR AND RTL LANGS
 $dir = $_LANG["dir"];
 $textalign = array("ltr" => "right","rtl" => "left");
+
 // SOME DEFINES
 define("__UI__", "class='ui-state-default ui-corner-all'");
 define("__BACK__", "<a href='javascript:history.back()' " . __UI__ . "><span class='fa fa-arrow-circle-left'></span>&nbsp;" . LANG("back") . "</a>");
@@ -576,147 +582,247 @@ define("__USER__", 1);
                             <?php echo LANG("step") . " " . intval(getParam("step")) . " - " . LANG("install_output"); ?>
                         </div>
                         <div <?php echo __DIV2__; ?>>
-                            <?php
-                                // CONNECT TO DATABASE
-                                $_CONFIG["db"]["type"] = getParam("dbtype", getDefault("db/type"));
-                                $_CONFIG["db"]["host"] = getParam("dbhost", getDefault("db/host"));
-                                $_CONFIG["db"]["port"] = getParam("dbport", getDefault("db/port"));
-                                $_CONFIG["db"]["user"] = getParam("dbuser", getDefault("db/user"));
-                                $_CONFIG["db"]["pass"] = getParam("dbpass", getDefault("db/pass"));
-                                $_CONFIG["db"]["name"] = getParam("dbname", getDefault("db/name"));
-                            if (in_array(getParam("dbtype", getDefault("db/type")), array("pdo_sqlite","sqlite3"))) {
-                                $dbfile = getDefault("db/file");
-                                if (!file_exists($dbfile)) {
-                                    touch($dbfile);
+                        <?php
+                        // CONNECT TO DATABASE
+                        $_CONFIG["db"]["type"] = getParam("dbtype", getDefault("db/type"));
+                        $_CONFIG["db"]["host"] = getParam("dbhost", getDefault("db/host"));
+                        $_CONFIG["db"]["port"] = getParam("dbport", getDefault("db/port"));
+                        $_CONFIG["db"]["user"] = getParam("dbuser", getDefault("db/user"));
+                        $_CONFIG["db"]["pass"] = getParam("dbpass", getDefault("db/pass"));
+                        $_CONFIG["db"]["name"] = getParam("dbname", getDefault("db/name"));
+                        if (in_array(getParam("dbtype", getDefault("db/type")), array("pdo_sqlite","sqlite3"))) {
+                            $dbfile = getDefault("db/file");
+                            if (!file_exists($dbfile)) {
+                                touch($dbfile);
+                            }
+                        }
+                        capture_next_error();
+                        db_connect();
+                        $error = get_clear_error();
+                        if (stripos($error, "try to install") !== false) {
+                            show_php_error();
+                        }
+                        // SAVE THE config.xml WITH THE NEW CONFIGURATION
+                        echo current_datetime() . ": " . LANG("config") . ": ";
+                        $config = array();
+                        // LOAD CONFIG.XML
+                        set_array($config, "node", array(
+                            "value" => "",
+                            "#attr" => array("include" => "xml/config.xml","replace" => "true")
+                        ));
+                        // STEP 0
+                        set_array($config, "node", array(
+                            "value" => array("lang" => $lang),
+                            "#attr" => array("path" => "default/lang","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("style" => $style),
+                            "#attr" => array("path" => "default/style","replace" => "true")
+                        ));
+                        // STEP 1
+                        set_array($config, "node", array(
+                            "value" => array("PATH" => getParam("env_path", getDefault("putenv/PATH"))),
+                            "#attr" => array("path" => "putenv/PATH","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("LANG" => getParam("env_lang", getDefault("putenv/LANG"))),
+                            "#attr" => array("path" => "putenv/LANG","replace" => "true")
+                        ));
+                        // STEP 2
+                        set_array($config, "node", array(
+                            "value" => array("type" => getParam("dbtype", getDefault("db/type"))),
+                            "#attr" => array("path" => "db/type","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("host" => getParam("dbhost", getDefault("db/host"))),
+                            "#attr" => array("path" => "db/host","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("port" => getParam("dbport", getDefault("db/port"))),
+                            "#attr" => array("path" => "db/port","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("user" => getParam("dbuser", getDefault("db/user"))),
+                            "#attr" => array("path" => "db/user","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("pass" => getParam("dbpass", getDefault("db/pass"))),
+                            "#attr" => array("path" => "db/pass","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("name" => getParam("dbname", getDefault("db/name"))),
+                            "#attr" => array("path" => "db/name","replace" => "true")
+                        ));
+                        // STEP 3
+                        set_array($config, "node", array(
+                            "value" => array("date.timezone" => getParam("timezone", getDefault("ini_set/date.timezone"))),
+                            "#attr" => array("path" => "ini_set/date.timezone","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("hostname" => getParam("hostname", getDefault("server/hostname"))),
+                            "#attr" => array("path" => "server/hostname","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("pathname" => getParam("pathname", getDefault("server/pathname"))),
+                            "#attr" => array("path" => "server/pathname","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("forcessl" => getParam("forcessl", eval_bool(getDefault("server/forcessl"))) ? "true" : "false"),
+                            "#attr" => array("path" => "server/forcessl","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("porthttp" => getParam("porthttp", getDefault("server/porthttp"))),
+                            "#attr" => array("path" => "server/porthttp","replace" => "true")
+                        ));
+                        set_array($config, "node", array(
+                            "value" => array("porthttps" => getParam("porthttps", getDefault("server/porthttps"))),
+                            "#attr" => array("path" => "server/porthttps","replace" => "true")
+                        ));
+                        //~ echo "<pre>".sprintr($config)."</pre>";die();
+                        $buffer = "<?xml version='1.0' encoding='UTF-8' ?>\n";
+                        $buffer .= array2xml($config, false, false);
+                        file_put_contents("files/config.xml", $buffer);
+                        if (file_exists("files/config.xml")) {
+                            echo __YES__ . __BR__;
+                        } else {
+                            echo __NO__ . __BR__;
+                        }
+                        // CREATE THE DATABASE SCHEMA
+                        echo current_datetime() . ": " . LANG("dbschema") . ": ";
+                        capture_next_error();
+                        $exists = CONFIG("xml/dbschema.xml");
+                        get_clear_error();
+                        if (!$exists) {
+                            db_schema();
+                            echo __YES__ . __BR__;
+                        } else {
+                            echo __NO__ . __BR__;
+                        }
+                        // INSERT THE STATIC DATA
+                        echo current_datetime() . ": " . LANG("dbstatic") . ": ";
+                        capture_next_error();
+                        $exists = CONFIG("xml/dbstatic.xml");
+                        get_clear_error();
+                        if (!$exists) {
+                            db_static();
+                            echo __YES__ . __BR__;
+                        } else {
+                            echo __NO__ . __BR__;
+                        }
+                        // IMPORT DEFAULT DATA
+                        $files = glob(__DEFAULT__);
+                        if (is_array($files) && count($files) > 0) {
+                            foreach ($files as $file) {
+                                $table = basename($file, ".xml");
+                                $query = "SELECT COUNT(*) FROM $table";
+                                $numrows = execute_query($query);
+                                echo current_datetime() . ": " . LANG("defaultdata") . ": " . basename($file) . ": ";
+                                if (!$numrows) {
+                                    $rows = eval_attr(xml2array($file));
+                                    $id_aplicacion = table2id($table);
+                                    foreach ($rows as $row) {
+                                        $query = make_insert_query($table, $row);
+                                        db_query($query);
+                                    }
+                                    echo __YES__ . __BR__;
+                                } else {
+                                    echo __NO__ . __BR__;
                                 }
                             }
-                                capture_next_error();
-                            db_connect();
-                            $error = get_clear_error();
-                            if (stripos($error, "try to install") !== false) {
-                                show_php_error();
+                        }
+                        // CREATE THE NEEDED PERMISSIONS TO MAIN GROUP
+                        echo current_datetime() . ": " . LANG("permissiondata") . ": ";
+                        $query = "SELECT COUNT(*) FROM tbl_grupos_p";
+                        $numrows = execute_query($query);
+                        if (!$numrows) {
+                            $temp = eval_attr(xml2array("install/xml/layers.xml"));
+                            $layer = array("name" => "all","apps" => array("app" => "*"));
+                            foreach ($temp as $temp2) {
+                                if ($temp2["name"] == getParam("layer")) {
+                                    $layer = $temp2;
+                                }
                             }
-                                // SAVE THE config.xml WITH THE NEW CONFIGURATION
-                                echo current_datetime() . ": " . LANG("config") . ": ";
-                                $config = array();
-                                // LOAD CONFIG.XML
-                                set_array($config, "node", array(
-                                    "value" => "",
-                                    "#attr" => array("include" => "xml/config.xml","replace" => "true")
-                                ));
-                                // STEP 0
-                                set_array($config, "node", array(
-                                    "value" => array("lang" => $lang),
-                                    "#attr" => array("path" => "default/lang","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("style" => $style),
-                                    "#attr" => array("path" => "default/style","replace" => "true")
-                                ));
-                                // STEP 1
-                                set_array($config, "node", array(
-                                    "value" => array("PATH" => getParam("env_path", getDefault("putenv/PATH"))),
-                                    "#attr" => array("path" => "putenv/PATH","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("LANG" => getParam("env_lang", getDefault("putenv/LANG"))),
-                                    "#attr" => array("path" => "putenv/LANG","replace" => "true")
-                                ));
-                                // STEP 2
-                                set_array($config, "node", array(
-                                    "value" => array("type" => getParam("dbtype", getDefault("db/type"))),
-                                    "#attr" => array("path" => "db/type","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("host" => getParam("dbhost", getDefault("db/host"))),
-                                    "#attr" => array("path" => "db/host","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("port" => getParam("dbport", getDefault("db/port"))),
-                                    "#attr" => array("path" => "db/port","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("user" => getParam("dbuser", getDefault("db/user"))),
-                                    "#attr" => array("path" => "db/user","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("pass" => getParam("dbpass", getDefault("db/pass"))),
-                                    "#attr" => array("path" => "db/pass","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("name" => getParam("dbname", getDefault("db/name"))),
-                                    "#attr" => array("path" => "db/name","replace" => "true")
-                                ));
-                                // STEP 3
-                                set_array($config, "node", array(
-                                    "value" => array("date.timezone" => getParam("timezone", getDefault("ini_set/date.timezone"))),
-                                    "#attr" => array("path" => "ini_set/date.timezone","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("hostname" => getParam("hostname", getDefault("server/hostname"))),
-                                    "#attr" => array("path" => "server/hostname","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("pathname" => getParam("pathname", getDefault("server/pathname"))),
-                                    "#attr" => array("path" => "server/pathname","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("forcessl" => getParam("forcessl", eval_bool(getDefault("server/forcessl"))) ? "true" : "false"),
-                                    "#attr" => array("path" => "server/forcessl","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("porthttp" => getParam("porthttp", getDefault("server/porthttp"))),
-                                    "#attr" => array("path" => "server/porthttp","replace" => "true")
-                                ));
-                                set_array($config, "node", array(
-                                    "value" => array("porthttps" => getParam("porthttps", getDefault("server/porthttps"))),
-                                    "#attr" => array("path" => "server/porthttps","replace" => "true")
-                                ));
-                                //~ echo "<pre>".sprintr($config)."</pre>";die();
-                                $buffer = "<?xml version='1.0' encoding='UTF-8' ?>\n";
-                                $buffer .= array2xml($config, false, false);
-                                file_put_contents("files/config.xml", $buffer);
-                            if (file_exists("files/config.xml")) {
-                                echo __YES__ . __BR__;
-                            } else {
-                                echo __NO__ . __BR__;
+                            $temp = eval_attr(xml2array("xml/dbstatic.xml"));
+                            $apps = array();
+                            foreach ($temp["tbl_aplicaciones"] as $app) {
+                                if (getParam("app_" . $app["id"])) {
+                                    $apps[] = $app["id"];
+                                }
                             }
-                                // CREATE THE DATABASE SCHEMA
-                                echo current_datetime() . ": " . LANG("dbschema") . ": ";
-                                capture_next_error();
-                                $exists = CONFIG("xml/dbschema.xml");
-                                get_clear_error();
-                            if (!$exists) {
-                                db_schema();
-                                echo __YES__ . __BR__;
-                            } else {
-                                echo __NO__ . __BR__;
+                            if (!count($apps)) {
+                                foreach ($temp["tbl_aplicaciones"] as $app) {
+                                    if (in_array($app["codigo"], $layer["apps"]) || in_array("*", $layer["apps"])) {
+                                        $apps[] = $app["id"];
+                                    }
+                                }
                             }
-                                // INSERT THE STATIC DATA
-                                echo current_datetime() . ": " . LANG("dbstatic") . ": ";
-                                capture_next_error();
-                                $exists = CONFIG("xml/dbstatic.xml");
-                                get_clear_error();
-                            if (!$exists) {
-                                db_static();
-                                echo __YES__ . __BR__;
-                            } else {
-                                echo __NO__ . __BR__;
+                            $apps = implode(",", $apps);
+                            $query = "SELECT id_aplicacion,id_permiso FROM tbl_aplicaciones_p WHERE id_aplicacion IN ($apps)";
+                            $result = db_query($query);
+                            while ($row = db_fetch_row($result)) {
+                                $query = make_insert_query("tbl_grupos_p", array(
+                                    "id_grupo" => 1,
+                                    "id_aplicacion" => $row["id_aplicacion"],
+                                    "id_permiso" => $row["id_permiso"],
+                                    "allow" => 1,
+                                    "deny" => 0
+                                ));
+                                db_query($query);
                             }
-                                // IMPORT DEFAULT DATA
-                                $files = glob(__DEFAULT__);
+                            db_free($result);
+                            echo __YES__ . __BR__;
+                        } else {
+                            echo __NO__ . __BR__;
+                        }
+                        // IMPORT EXAMPLE DATA
+                        if (getParam("exampledata")) {
+                            $files = glob(__EXAMPLE__);
                             if (is_array($files) && count($files) > 0) {
                                 foreach ($files as $file) {
-                                    $table = basename($file, ".xml");
+                                    $table = basename($file, ".csv");
                                     $query = "SELECT COUNT(*) FROM $table";
                                     $numrows = execute_query($query);
-                                    echo current_datetime() . ": " . LANG("defaultdata") . ": " . basename($file) . ": ";
+                                    echo current_datetime() . ": " . LANG("exampledata") . ": " . basename($file) . ": ";
                                     if (!$numrows) {
-                                        $rows = eval_attr(xml2array($file));
-                                        $id_aplicacion = table2id($table);
-                                        foreach ($rows as $row) {
-                                            $query = make_insert_query($table, $row);
+                                        $rows = file($file);
+                                        $keys = array_shift($rows);
+                                        $keys = trim($keys);
+                                        $keys = explode("|", $keys);
+                                        $keys = "`" . implode("`,`", $keys) . "`";
+                                        foreach ($rows as $index => $row) {
+                                            $row = trim($row);
+                                            if ($row != "") {
+                                                $row = str_replace("'", "''", $row);
+                                                $row = explode("|", $row);
+                                                $row = "'" . implode("','", $row) . "'";
+                                                $rows[$index] = $row;
+                                            } else {
+                                                unset($rows[$index]);
+                                            }
+                                        }
+                                        $rows2 = array_chunk($rows, 100);
+                                        $error = "";
+                                        foreach ($rows2 as $row) {
+                                            $row = implode("),(", $row);
+                                            $query = "INSERT INTO `$table`($keys) VALUES($row)";
+                                            capture_next_error();
                                             db_query($query);
+                                            $error = get_clear_error();
+                                            if ($error) {
+                                                $break;
+                                            }
+                                        }
+                                        if ($error) {
+                                            capture_next_error();
+                                            db_query("BEGIN");
+                                            get_clear_error();
+                                            foreach ($rows as $row) {
+                                                $query = "INSERT INTO `$table`($keys) VALUES($row)";
+                                                db_query($query);
+                                            }
+                                            capture_next_error();
+                                            db_query("COMMIT");
+                                            get_clear_error();
                                         }
                                         echo __YES__ . __BR__;
                                     } else {
@@ -724,203 +830,110 @@ define("__USER__", 1);
                                     }
                                 }
                             }
-                                // CREATE THE NEEDED PERMISSIONS TO MAIN GROUP
-                                echo current_datetime() . ": " . LANG("permissiondata") . ": ";
-                                $query = "SELECT COUNT(*) FROM tbl_grupos_p";
-                                $numrows = execute_query($query);
-                            if (!$numrows) {
-                                $temp = eval_attr(xml2array("install/xml/layers.xml"));
-                                $layer = array("name" => "all","apps" => array("app" => "*"));
-                                foreach ($temp as $temp2) {
-                                    if ($temp2["name"] == getParam("layer")) {
-                                        $layer = $temp2;
-                                    }
-                                }
-                                $temp = eval_attr(xml2array("xml/dbstatic.xml"));
-                                $apps = array();
-                                foreach ($temp["tbl_aplicaciones"] as $app) {
-                                    if (getParam("app_" . $app["id"])) {
-                                        $apps[] = $app["id"];
-                                    }
-                                }
-                                if (!count($apps)) {
-                                    foreach ($temp["tbl_aplicaciones"] as $app) {
-                                        if (in_array($app["codigo"], $layer["apps"]) || in_array("*", $layer["apps"])) {
-                                            $apps[] = $app["id"];
+                            // FIX FOR THE CALENDAR EXAMPLE
+                            $timestamp = time() - strtotime("2012-02-28 12:00:00") - 86400 * 365;
+                            $query = "UPDATE tbl_agenda
+                                SET dstart=FROM_UNIXTIME(UNIX_TIMESTAMP(dstart)+${timestamp}),
+                                    dstop=FROM_UNIXTIME(UNIX_TIMESTAMP(dstop)+${timestamp})";
+                            db_query($query);
+                            // CONTINUE
+                        }
+                        // IMPORT STREET DATA
+                        if (getParam("streetdata")) {
+                            $files = glob(__STREET__);
+                            if (is_array($files) && count($files) > 0) {
+                                foreach ($files as $file) {
+                                    $table = basename($file, ".csv.gz");
+                                    $query = "SELECT COUNT(*) FROM $table";
+                                    $numrows = execute_query($query);
+                                    echo current_datetime() . ": " . LANG("streetdata") . ": " . basename($file) . ": ";
+                                    if (!$numrows) {
+                                        $rows = gzfile($file);
+                                        $keys = array_shift($rows);
+                                        $keys = trim($keys);
+                                        $keys = explode("|", $keys);
+                                        $keys = "`" . implode("`,`", $keys) . "`";
+                                        foreach ($rows as $index => $row) {
+                                            $row = trim($row);
+                                            if ($row != "") {
+                                                $row = str_replace("'", "''", $row);
+                                                $row = explode("|", $row);
+                                                $row = "'" . implode("','", $row) . "'";
+                                                $rows[$index] = $row;
+                                            } else {
+                                                unset($rows[$index]);
+                                            }
                                         }
-                                    }
-                                }
-                                $apps = implode(",", $apps);
-                                $query = "SELECT id_aplicacion,id_permiso FROM tbl_aplicaciones_p WHERE id_aplicacion IN ($apps)";
-                                $result = db_query($query);
-                                while ($row = db_fetch_row($result)) {
-                                    $query = make_insert_query("tbl_grupos_p", array(
-                                        "id_grupo" => 1,
-                                        "id_aplicacion" => $row["id_aplicacion"],
-                                        "id_permiso" => $row["id_permiso"],
-                                        "allow" => 1,
-                                        "deny" => 0
-                                    ));
-                                    db_query($query);
-                                }
-                                db_free($result);
-                                echo __YES__ . __BR__;
-                            } else {
-                                echo __NO__ . __BR__;
-                            }
-                                // IMPORT EXAMPLE DATA
-                            if (getParam("exampledata")) {
-                                $files = glob(__EXAMPLE__);
-                                if (is_array($files) && count($files) > 0) {
-                                    foreach ($files as $file) {
-                                        $table = basename($file, ".csv");
-                                        $query = "SELECT COUNT(*) FROM $table";
-                                        $numrows = execute_query($query);
-                                        echo current_datetime() . ": " . LANG("exampledata") . ": " . basename($file) . ": ";
-                                        if (!$numrows) {
-                                            $rows = file($file);
-                                            $keys = array_shift($rows);
-                                            $keys = trim($keys);
-                                            $keys = explode("|", $keys);
-                                            $keys = "`" . implode("`,`", $keys) . "`";
-                                            foreach ($rows as $index => $row) {
-                                                $row = trim($row);
-                                                if ($row != "") {
-                                                    $row = str_replace("'", "''", $row);
-                                                    $row = explode("|", $row);
-                                                    $row = "'" . implode("','", $row) . "'";
-                                                    $rows[$index] = $row;
-                                                } else {
-                                                    unset($rows[$index]);
-                                                }
-                                            }
-                                            $rows2 = array_chunk($rows, 100);
-                                            $error = "";
-                                            foreach ($rows2 as $row) {
-                                                $row = implode("),(", $row);
-                                                $query = "INSERT INTO `$table`($keys) VALUES($row)";
-                                                capture_next_error();
-                                                db_query($query);
-                                                $error = get_clear_error();
-                                                if ($error) {
-                                                    $break;
-                                                }
-                                            }
+                                        $rows2 = array_chunk($rows, 100);
+                                        $error = "";
+                                        foreach ($rows2 as $row) {
+                                            $row = implode("),(", $row);
+                                            $query = "INSERT INTO `$table`($keys) VALUES($row)";
+                                            capture_next_error();
+                                            db_query($query);
+                                            $error = get_clear_error();
                                             if ($error) {
-                                                capture_next_error();
-                                                db_query("BEGIN");
-                                                get_clear_error();
-                                                foreach ($rows as $row) {
-                                                    $query = "INSERT INTO `$table`($keys) VALUES($row)";
-                                                    db_query($query);
-                                                }
-                                                capture_next_error();
-                                                db_query("COMMIT");
-                                                get_clear_error();
+                                                $break;
                                             }
-                                            echo __YES__ . __BR__;
-                                        } else {
-                                            echo __NO__ . __BR__;
                                         }
-                                    }
-                                }
-                            }
-                                // IMPORT STREET DATA
-                            if (getParam("streetdata")) {
-                                $files = glob(__STREET__);
-                                if (is_array($files) && count($files) > 0) {
-                                    foreach ($files as $file) {
-                                        $table = basename($file, ".csv.gz");
-                                        $query = "SELECT COUNT(*) FROM $table";
-                                        $numrows = execute_query($query);
-                                        echo current_datetime() . ": " . LANG("streetdata") . ": " . basename($file) . ": ";
-                                        if (!$numrows) {
-                                            $rows = gzfile($file);
-                                            $keys = array_shift($rows);
-                                            $keys = trim($keys);
-                                            $keys = explode("|", $keys);
-                                            $keys = "`" . implode("`,`", $keys) . "`";
-                                            foreach ($rows as $index => $row) {
-                                                $row = trim($row);
-                                                if ($row != "") {
-                                                    $row = str_replace("'", "''", $row);
-                                                    $row = explode("|", $row);
-                                                    $row = "'" . implode("','", $row) . "'";
-                                                    $rows[$index] = $row;
-                                                } else {
-                                                    unset($rows[$index]);
-                                                }
-                                            }
-                                            $rows2 = array_chunk($rows, 100);
-                                            $error = "";
-                                            foreach ($rows2 as $row) {
-                                                $row = implode("),(", $row);
+                                        if ($error) {
+                                            capture_next_error();
+                                            db_query("BEGIN");
+                                            get_clear_error();
+                                            foreach ($rows as $row) {
                                                 $query = "INSERT INTO `$table`($keys) VALUES($row)";
-                                                capture_next_error();
                                                 db_query($query);
-                                                $error = get_clear_error();
-                                                if ($error) {
-                                                    $break;
-                                                }
                                             }
-                                            if ($error) {
-                                                capture_next_error();
-                                                db_query("BEGIN");
-                                                get_clear_error();
-                                                foreach ($rows as $row) {
-                                                    $query = "INSERT INTO `$table`($keys) VALUES($row)";
-                                                    db_query($query);
-                                                }
-                                                capture_next_error();
-                                                db_query("COMMIT");
-                                                get_clear_error();
-                                            }
-                                            echo __YES__ . __BR__;
-                                        } else {
-                                            echo __NO__ . __BR__;
+                                            capture_next_error();
+                                            db_query("COMMIT");
+                                            get_clear_error();
                                         }
+                                        echo __YES__ . __BR__;
+                                    } else {
+                                        echo __NO__ . __BR__;
                                     }
                                 }
                             }
-                                // CREATE CONTROL AND INDEXING REGISTERS
-                                $apps = execute_query_array("SELECT * FROM tbl_aplicaciones WHERE tabla!=''");
-                                $id_usuario = __USER__;
-                                $datetime = current_datetime();
-                            foreach ($apps as $app) {
-                                $id = $app["id"];
-                                $tabla = $app["tabla"];
-                                $page = $app["codigo"];
-                                // CREATE CONTROL REGISTERS
-                                $query = "INSERT INTO tbl_registros(id_aplicacion,id_registro,id_usuario,datetime,first) SELECT '${id}' id_aplicacion,id id_registro,'${id_usuario}' id_usuario,'${datetime}' datetime,'1' first FROM ${tabla} a WHERE id NOT IN (SELECT id_registro FROM tbl_registros WHERE id_aplicacion='${id}');";
-                                db_query($query);
-                                // CREATE INDEXING REGISTERS
-                                $campos = get_fields($tabla);
-                                foreach ($campos as $key => $val) {
-                                    $campos[$key] = $val["name"];
-                                }
-                                $campos[] = "IFNULL((SELECT GROUP_CONCAT(CONCAT(datetime,' ',fichero,' ',search)) FROM tbl_ficheros WHERE id_aplicacion='${id}' AND id_registro=a.id),'')";
-                                $campos[] = "IFNULL((SELECT GROUP_CONCAT(CONCAT(datetime,' ',comentarios)) FROM tbl_comentarios WHERE id_aplicacion='${id}' AND id_registro=a.id),'')";
-                                $subtablas = $app["subtablas"];
-                                if ($subtablas != "") {
-                                    $subtablas = explode(",", $subtablas);
-                                    foreach ($subtablas as $temp) {
-                                        $subtabla = strtok($temp, "(");
-                                        $subcampo = strtok(")");
-                                        $subcampos = get_fields($subtabla);
-                                        foreach ($subcampos as $key => $val) {
-                                            $subcampos[$key] = $val["name"];
-                                        }
-                                        $subcampos = implode(",' ',", $subcampos);
-                                        $campos[] = "IFNULL((SELECT GROUP_CONCAT(CONCAT(${subcampos})) FROM ${subtabla} WHERE ${subcampo}=a.id),'')";
-                                    }
-                                }
-                                $campos = implode(",' ',", $campos);
-                                $query = "INSERT INTO idx_${page}(id,search) SELECT id,CONCAT(${campos}) search FROM ${tabla} a WHERE id NOT IN (SELECT id FROM idx_${page});";
-                                db_query($query);
+                        }
+                        // CREATE CONTROL AND INDEXING REGISTERS
+                        $apps = execute_query_array("SELECT * FROM tbl_aplicaciones WHERE tabla!=''");
+                        $id_usuario = __USER__;
+                        $datetime = current_datetime();
+                        foreach ($apps as $app) {
+                            $id = $app["id"];
+                            $tabla = $app["tabla"];
+                            $page = $app["codigo"];
+                            // CREATE CONTROL REGISTERS
+                            $query = "INSERT INTO tbl_registros(id_aplicacion,id_registro,id_usuario,datetime,first) SELECT '${id}' id_aplicacion,id id_registro,'${id_usuario}' id_usuario,'${datetime}' datetime,'1' first FROM ${tabla} a WHERE id NOT IN (SELECT id_registro FROM tbl_registros WHERE id_aplicacion='${id}');";
+                            db_query($query);
+                            // CREATE INDEXING REGISTERS
+                            $campos = get_fields($tabla);
+                            foreach ($campos as $key => $val) {
+                                $campos[$key] = $val["name"];
                             }
-                                // END OF INSTALL
-                                echo current_datetime() . ": " . LANG("finish") . __BR__;
-                            ?>
+                            $campos[] = "IFNULL((SELECT GROUP_CONCAT(CONCAT(datetime,' ',fichero,' ',search)) FROM tbl_ficheros WHERE id_aplicacion='${id}' AND id_registro=a.id),'')";
+                            $campos[] = "IFNULL((SELECT GROUP_CONCAT(CONCAT(datetime,' ',comentarios)) FROM tbl_comentarios WHERE id_aplicacion='${id}' AND id_registro=a.id),'')";
+                            $subtablas = $app["subtablas"];
+                            if ($subtablas != "") {
+                                $subtablas = explode(",", $subtablas);
+                                foreach ($subtablas as $temp) {
+                                    $subtabla = strtok($temp, "(");
+                                    $subcampo = strtok(")");
+                                    $subcampos = get_fields($subtabla);
+                                    foreach ($subcampos as $key => $val) {
+                                        $subcampos[$key] = $val["name"];
+                                    }
+                                    $subcampos = implode(",' ',", $subcampos);
+                                    $campos[] = "IFNULL((SELECT GROUP_CONCAT(CONCAT(${subcampos})) FROM ${subtabla} WHERE ${subcampo}=a.id),'')";
+                                }
+                            }
+                            $campos = implode(",' ',", $campos);
+                            $query = "INSERT INTO idx_${page}(id,search) SELECT id,CONCAT(${campos}) search FROM ${tabla} a WHERE id NOT IN (SELECT id FROM idx_${page});";
+                            db_query($query);
+                        }
+                        // END OF INSTALL
+                        echo current_datetime() . ": " . LANG("finish") . __BR__;
+                        ?>
                         </div>
                         <div <?php echo __DIV3__; ?>>
                             <?php echo __SALTOS__; ?>
@@ -948,4 +961,3 @@ if (is_array($files) && count($files) > 0) {
 }
 // THE END
 die();
-?>

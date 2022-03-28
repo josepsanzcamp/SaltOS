@@ -76,6 +76,7 @@ class database_sqlite3
             $this->link->createFunction("LPAD", "__libsqlite_lpad");
             $this->link->createFunction("CONCAT", "__libsqlite_concat");
             $this->link->createFunction("UNIX_TIMESTAMP", "__libsqlite_unix_timestamp");
+            $this->link->createFunction("FROM_UNIXTIME", "__libsqlite_from_unixtime");
             $this->link->createFunction("YEAR", "__libsqlite_year");
             $this->link->createFunction("MONTH", "__libsqlite_month");
             $this->link->createFunction("WEEK", "__libsqlite_week");

@@ -77,6 +77,7 @@ class database_pdo_sqlite
             $this->link->sqliteCreateFunction("LPAD", "__libsqlite_lpad");
             $this->link->sqliteCreateFunction("CONCAT", "__libsqlite_concat");
             $this->link->sqliteCreateFunction("UNIX_TIMESTAMP", "__libsqlite_unix_timestamp");
+            $this->link->sqliteCreateFunction("FROM_UNIXTIME", "__libsqlite_from_unixtime");
             $this->link->sqliteCreateFunction("YEAR", "__libsqlite_year");
             $this->link->sqliteCreateFunction("MONTH", "__libsqlite_month");
             $this->link->sqliteCreateFunction("WEEK", "__libsqlite_week");
