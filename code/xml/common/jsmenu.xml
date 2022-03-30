@@ -73,8 +73,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <!-- FOR SELECT ALL CHECKBOX FEATURE -->
     <function eval="true">"lang_selectallcheckbox() { return '".LANG_ESCAPE("selectallcheckbox")."'; }"</function>
     <function eval="true">"lang_selectonecheckbox() { return '".LANG_ESCAPE("selectonecheckbox")."'; }"</function>
-    <!-- FOR PLOT FEATURE -->
-    <function eval="true">"lang_withoutinfo() { return '".LANG_ESCAPE("withoutinfo")."'; }"</function>
     <!-- FOR MAX_INPUT_VARS FEATURE -->
     <function eval="true">"ini_get_max_input_vars() { return '".intval(ini_get("max_input_vars"))."'; }"</function>
     <!-- FOR ACTIONS FEATURE -->
@@ -91,10 +89,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <function eval="true">"icon_download() { return '".ICON("download")."'; }"</function>
     <function eval="true">"lang_print() { return '".LANG_ESCAPE("print")."'; }"</function>
     <function eval="true">"icon_print() { return '".ICON("print")."'; }"</function>
-    <!-- FOR CALCULATOR MODULE -->
-    <function eval="true">"lang_calculator() { return '".LANG_ESCAPE("calculator")."'; }"</function>
-    <!-- FOR TRANSLATOR MODULE -->
-    <function eval="true">"lang_translator() { return '".LANG_ESCAPE(check_commands(getDefault('commands/translate'),60)?"translator":"corrector")."'; }"</function>
     <!-- USING CACHE -->
     <cache>
         <!-- FOR CHECKERS -->
@@ -106,8 +100,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <include ifeval="eval_bool(getDefault('enableintegrity'))">js/checkintegrity.js</include>
         <include ifeval="eval_bool(getDefault('enablepurge'))">js/checkpurge.js</include>
         <include>js/favicon.js</include>
-        <include ifeval="eval_bool(getDefault('enabletranslator'))">js/translator.js</include>
-        <include>js/calculator.js</include>
         <include>js/folders.js</include>
     </cache>
 </root>

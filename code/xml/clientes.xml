@@ -363,7 +363,6 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
                     <actas>
                         <actas global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'actas\',',-id,'):',nombre) nombre,CONCAT('actas(',-id,')') link_view,CONCAT('pdfacta(',id,')') link_pdf,CONCAT('viewacta(',id,')') link_view2,CONCAT('mailacta(',id,')') link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z WHERE id_cliente=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
                     </actas>
-                    <graficas>SELECT '1' id</graficas>
                     <control include="xml/common/qcontrol.xml"/>
                     <folders include="xml/common/qfolders.xml"/>
                 </query>
@@ -703,32 +702,6 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
             <agenda include="xml/common/relatedagenda.xml" replace="true"/>
             <presupuestos include="xml/common/relatedpresupuestos.xml" replace="true"/>
             <actas include="xml/common/relatedactas.xml" replace="true"/>
-            <graficas>
-                <fieldset ifeval="!ismobile()">
-                    <title lang="true">graficas</title>
-                    <icon eval="true">ICON("plots")</icon>
-                    <row>
-                        <field>
-                            <type>plot</type>
-                            <width eval="true">CONFIG("plot_form_width")."px"</width>
-                            <height eval="true">CONFIG("plot_form_height")."px"</height>
-                            <vars>1</vars>
-                            <graph>bars</graph>
-                            <title lang="true">plotseguimiento12meses</title>
-                            <query global="id" eval="true">"SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) IS NULL THEN 0 ELSE ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_facturas) a LEFT JOIN tbl_facturas b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND id_cliente='".abs($id)."' AND cerrado='1' LEFT JOIN tbl_facturas_c c ON c.id_factura=b.id GROUP BY xx ORDER BY xx ASC"</query>
-                        </field>
-                        <field>
-                            <type>plot</type>
-                            <width eval="true">CONFIG("plot_form_width")."px"</width>
-                            <height eval="true">CONFIG("plot_form_height")."px"</height>
-                            <vars>1</vars>
-                            <graph>pie</graph>
-                            <title lang="true">plotseguimiento12meses</title>
-                            <query global="id" eval="true">"SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) IS NULL THEN 0 ELSE ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_facturas) a LEFT JOIN tbl_facturas b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND id_cliente='".abs($id)."' AND cerrado='1' LEFT JOIN tbl_facturas_c c ON c.id_factura=b.id GROUP BY xx ORDER BY xx ASC"</query>
-                        </field>
-                    </row>
-                </fieldset>
-            </graficas>
             <comments_old include="xml/common/commentsold.xml"/>
             <files_old include="xml/common/filesold.xml"/>
             <comments_new include="xml/common/commentnew.xml"/>

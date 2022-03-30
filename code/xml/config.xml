@@ -105,8 +105,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <cachetimeout>10000000</cachetimeout><!-- in microseconds -->
         <commandtimeout>60</commandtimeout><!-- in seconds, 60 is 1 minute -->
         <commandexpires>3600</commandexpires><!-- in seconds, 3600 is 1 hour -->
-        <enablecalculator eval="true">!ismobile()</enablecalculator>
-        <enabletranslator eval="true">!ismobile()</enabletranslator>
         <enableindexing>true</enableindexing>
         <enableintegrity>true</enableintegrity>
         <enablepurge>false</enablepurge>
@@ -132,12 +130,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <__soffice_formats__>bib,doc,xml,docx,fodt,html,ltx,txt,odt,ott,pdb,pdf,psw,rtf,sdw,stw,sxw,uot,vor,wps,bmp,emf,eps,fodg,gif,jpg,met,odd,otg,pbm,pct,pgm,png,ppm,ras,std,svg,svm,swf,sxd,tiff,wmf,xhtml,xpm,fodp,odg,odp,otp,potm,pot,pptx,pps,ppt,pwp,sda,sdd,sti,sxi,uop,csv,dbf,dif,fods,ods,xlsx,ots,pxl,sdc,slk,stc,sxc,uos,xls,xlt</__soffice_formats__>
         <pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
         <__pdftotext__>pdftotext -nopgbrk -layout __INPUT__ __OUTPUT__</__pdftotext__>
-        <translate>translate</translate><!-- for translator module -->
-        <__translate__>translate -s imtranslator -f __FROM__ -t __TO__ __INPUT__</__translate__>
-        <__translate_langs__>translate -s imtranslator -l</__translate_langs__>
-        <aspell>aspell</aspell><!-- for translator module -->
-        <__aspell__>aspell -a --mode=none --sug-mode=ultra -l __LANG__ &lt; __INPUT__</__aspell__>
-        <__aspell_langs__>aspell dump dicts</__aspell_langs__>
         <which>which</which><!-- for check commands -->
         <__which__>which __INPUT__</__which__>
         <pdftoppm>pdftoppm</pdftoppm><!-- for ocr module included in unoconv -->
@@ -246,12 +238,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <configs>
         <application_title>Suite de Gestión Empresarial</application_title>
         <application_revision>SVN</application_revision>
-        <plot_list_size>1</plot_list_size>
-        <plot_list_width>350</plot_list_width>
-        <plot_list_height>200</plot_list_height>
-        <plot_form_size>1</plot_form_size>
-        <plot_form_width>350</plot_form_width>
-        <plot_form_height>200</plot_form_height>
         <agenda_interval>30</agenda_interval>
         <inbox_interval>300</inbox_interval>
         <outbox_interval>30</outbox_interval>

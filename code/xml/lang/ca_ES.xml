@@ -188,7 +188,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <todoslosproyectos>[Tots els projectes]</todoslosproyectos>
         <todaslastareas>[Totes les tasques]</todaslastareas>
         <todaslascuentas>[Totes]</todaslascuentas>
-        <graficas>Gràfiques i estadístiques</graficas>
         <mail>Enviar PDF</mail>
         <mailtip>Envia el PDF al vostre compte de correu electrònic</mailtip>
         <view2>Visor PDF</view2>
@@ -234,7 +233,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <posx>Posició X</posx>
         <posy>Posició Y</posy>
         <angle>Angle</angle>
-        <withoutinfo>Sense informació per representar</withoutinfo>
         <sinproducto>[Sense producte associat]</sinproducto>
         <preview>Vista prèvia</preview>
         <sortasc>Ordenar ascendentment (A-Z)</sortasc>
@@ -528,12 +526,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_buscador>Cercador</quick_buscador>
         <quick_errorlog>Errors</quick_errorlog>
         <quick_categorias>Categories</quick_categorias>
-        <translator>Traductor</translator>
-        <translatortip>Per fer traduccions de textos</translatortip>
-        <corrector>Corrector</corrector>
-        <correctortip>Per fer correccions de textos</correctortip>
-        <calculator>Calculadora</calculator>
-        <calculatortip>Per fer càlculs matemàtics</calculatortip>
         <menu>Menú</menu>
         <menutip>Per veure i amagar el menú d'aplicacions</menutip>
     </menu>
@@ -560,7 +552,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <actasdata>Actes del client</actasdata>
         <actionliquidar>Liquidar fulls de feina seleccionats</actionliquidar>
         <msgliquidar>Vol liquidar els fulls de feina seleccionats?</msgliquidar>
-        <plotseguimiento12meses>Facturació de l'últim any del client</plotseguimiento12meses>
         <cuentacorriente>Compte corrent</cuentacorriente>
         <diapago>Dia de pagament</diapago>
         <cuentacontable>Compte comptable</cuentacontable>
@@ -610,8 +601,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <horastotal>Hores totals</horastotal>
         <preciomedio>Preu mitjà</preciomedio>
         <preciototal>Preu total</preciototal>
-        <plotseguimientotareas>Desviació del projecte</plotseguimientotareas>
-        <legendseguimientotareas>Hores pressupostades|Hores emprades</legendseguimientotareas>
         <real>Real</real>
         <diferencia>Diferència</diferencia>
         <partesopen>Fulls de feina sense liquidar</partesopen>
@@ -630,7 +619,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <facturaclose>Factures cobrades</facturaclose>
         <gastosdata>Despeses associades al client</gastosdata>
         <documentdata>Documents del client</documentdata>
-        <plotseguimientoestados>Agrupació de projectes per estat</plotseguimientoestados>
         <productosproyecto>Productes del projecte</productosproyecto>
         <descproductos>Descripció dels productes</descproductos>
         <actionfacturar>Facturar</actionfacturar>
@@ -666,8 +654,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgliquidar>Vol liquidar els fulls de feina seleccionats?</msgliquidar>
         <msgerror>Ha de seleccionar els fulls de feina que vol liquidar al llistat</msgerror>
         <fechainiliq>Data liquidat</fechainiliq>
-        <plotseguimientotop10>Els 10 clients amb més fulls de feina de l'últim any</plotseguimientotop10>
-        <plotseguimiento12meses>Facturació en fulls de feina de l'últim any</plotseguimiento12meses>
     </partes>
     <usuarios>
         <list>Llistat d'usuaris</list>
@@ -780,8 +766,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <trimestreliq>Trim. liquidat</trimestreliq>
         <fechainiliq>Data liquidat</fechainiliq>
         <totalliquidar>Les despeses liquidades sumen un total de: </totalliquidar>
-        <plotseguimientotop10>Els 10 proveïdors amb més facturació del darrer any</plotseguimientotop10>
-        <plotseguimiento12meses>Despeses del darrer any</plotseguimiento12meses>
         <sinpagador>[Sense pagador]</sinpagador>
         <vencimientos_old>Venciments</vencimientos_old>
         <vencimientos_new>Nous venciments</vencimientos_new>
@@ -804,8 +788,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <titular>Titular</titular>
         <baseimponible>Base imposable</baseimponible>
         <totalapagar>Total a pagar</totalapagar>
-        <plotseguimientotop10>Els 10 clients amb més facturació de l'últim any</plotseguimientotop10>
-        <plotseguimiento12meses>Facturació de l'últim any</plotseguimiento12meses>
         <concepts_old>Conceptes</concepts_old>
         <concepts_new>Nous conceptes</concepts_new>
         <products_old>Productes</products_old>
@@ -890,7 +872,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <forminsert>Alta d'un nou proveïdor</forminsert>
         <formupdate>Modificació del proveïdor</formupdate>
         <defaultdata>Dades de l' proveïdor</defaultdata>
-        <plotseguimiento12meses>Despeses de l'últim any del proveïdor</plotseguimiento12meses>
         <cuentacorriente>Compte corrent</cuentacorriente>
         <diapago>Compte comptable</diapago>
         <gastosdata>Dia de pagament</gastosdata>
@@ -986,11 +967,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <general>General</general>
         <title_general>Configureu alguns paràmetres generals de l'aplicació</title_general>
         <applicationtitle>Títol de l'aplicació</applicationtitle>
-        <plotlistsize>Mida dels gràfics en els llistats</plotlistsize>
-        <plotformsize>Mida dels gràfics en els formularis</plotformsize>
-        <small>Petit</small>
-        <medium>Mitjà</medium>
-        <big>Gran</big>
         <agendainterval>Cercar notificacions de l'agenda cada</agendainterval>
         <inboxinterval>Cercar correus nous cada</inboxinterval>
         <outboxinterval>Comprovar la safata de sortida cada</outboxinterval>
@@ -1071,9 +1047,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_plugins>Servidor plugins:</server_plugins>
         <vxinfo>Nota: (*) Alguns projectes no especifiquen la versió concreta de la llicència que utilitzen</vxinfo>
         <license>llicència </license>
-        <game>Joc</game>
         <licensetitle>A continuació, es mostra el text legal de la llicència </licensetitle>
-        <gametitle>Si has arribat fins a aquesta pantalla, et mereixes un descans. Pots jugar una mica!!!</gametitle>
         <translators>Traduccions</translators>
         <developers>Desenvolupadors</developers>
         <unavailable>Dades de contacte no disponibles. Contacti amb algun desenvolupador per a qualsevol dubte o suggeriment.</unavailable>
@@ -1369,7 +1343,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgcrear>Vol crear un projecte d'aquest pressupost?</msgcrear>
         <agendadata>Events del pressupost</agendadata>
         <actasdata>Actes del pressupost</actasdata>
-        <plotseguimientoestados>Agrupació de pressupostos per estat</plotseguimientoestados>
         <resumentareasproductos>Resum de tasques i productes</resumentareasproductos>
         <objetivospdf>Objectius</objetivospdf>
         <funcionalpdf>Funcional</funcionalpdf>
@@ -1504,18 +1477,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <deleteoffolder>Esborrar d'aquesta carpeta</deleteoffolder>
         <defaultfolder>Carpeta personal</defaultfolder>
     </folders>
-    <translator>
-        <translator>Traductor</translator>
-        <corrector>Corrector</corrector>
-        <es>Espanyol</es>
-        <ca>Català</ca>
-        <en>Anglès</en>
-        <pt>Portuguès</pt>
-        <eu>Euskera</eu>
-        <gl>Gallec</gl>
-        <fr>Francès</fr>
-        <ar>Àrab</ar>
-    </translator>
     <buscador>
         <list>Cercador</list>
         <todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>

@@ -34,7 +34,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <title lang="true">formupdate</title>
                 <query>
                     <general eval="true">make_select_config("application_title,
-                        plot_list_size,plot_list_width,plot_list_height,plot_form_size,plot_form_width,plot_form_height,
                         agenda_interval,inbox_interval,outbox_interval,feeds_interval,feeds_timeout,session_interval,session_warning,
                         indexing_interval,integrity_interval,purge_interval")</general>
                     <water eval="true">make_select_config("water_actas_text,water_actas_posx,water_actas_posy,water_actas_size,water_actas_angle,
@@ -96,57 +95,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 </fieldset>
                 <fieldset>
                     <buttons>true</buttons>
-                    <row>
-                        <field>
-                            <name>plot_list_size</name>
-                            <label lang="true">plotlistsize</label>
-                            <width>150px</width>
-                            <colspan>3</colspan>
-                            <type>select</type>
-                            <rows>
-                                <row>
-                                    <label eval="true">LANG("small")." (350x200)"</label>
-                                    <value>1</value>
-                                </row>
-                                <row>
-                                    <label eval="true">LANG("medium")." (475x300)"</label>
-                                    <value>2</value>
-                                </row>
-                                <row>
-                                    <label eval="true">LANG("big")." (600x400)"</label>
-                                    <value>3</value>
-                                </row>
-                            </rows>
-                        </field>
-                    </row>
-                    <row>
-                        <field>
-                            <name>plot_form_size</name>
-                            <label lang="true">plotformsize</label>
-                            <width>150px</width>
-                            <colspan>3</colspan>
-                            <type>select</type>
-                            <rows>
-                                <row>
-                                    <label eval="true">LANG("small")." (350x200)"</label>
-                                    <value>1</value>
-                                </row>
-                                <row>
-                                    <label eval="true">LANG("medium")." (475x300)"</label>
-                                    <value>2</value>
-                                </row>
-                                <row>
-                                    <label eval="true">LANG("big")." (600x400)"</label>
-                                    <value>3</value>
-                                </row>
-                            </rows>
-                        </field>
-                    </row>
-                    <row>
-                        <field>
-                            <type>separator</type>
-                        </field>
-                    </row>
                     <row>
                         <field>
                             <name>agenda_interval</name>
@@ -1187,16 +1135,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <update>
         <!-- general section -->
         <query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("application_title")</query>
-        <query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_list_size")</query>
-        <query match="general" prefix="true" eval="true">setParam("plot_list_width",implode(array_slice(array("","350","475","600"),intval(getParam("plot_list_size")),1)))</query>
-        <query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_list_width")</query>
-        <query match="general" prefix="true" eval="true">setParam("plot_list_height",implode(array_slice(array("","200","300","400"),intval(getParam("plot_list_size")),1)))</query>
-        <query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_list_height")</query>
-        <query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_form_size")</query>
-        <query match="general" prefix="true" eval="true">setParam("plot_form_width",implode(array_slice(array("","350","475","600"),intval(getParam("plot_form_size")),1)))</query>
-        <query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_form_width")</query>
-        <query match="general" prefix="true" eval="true">setParam("plot_form_height",implode(array_slice(array("","200","300","400"),intval(getParam("plot_form_size")),1)))</query>
-        <query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_form_height")</query>
         <query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("agenda_interval")</query>
         <query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("inbox_interval")</query>
         <query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("outbox_interval")</query>

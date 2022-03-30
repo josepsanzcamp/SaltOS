@@ -532,40 +532,6 @@ function remove_style_tag($temp)
     return $temp;
 }
 
-function highlight_geshi($html, $lang = "")
-{
-    require_once "lib/geshi/geshi.php";
-    if ($lang == "") {
-        static $open1 = "<pre>\n<code";
-        static $open2 = ">";
-        static $close = "</code></pre>";
-        $lenopen1 = strlen($open1);
-        $lenopen2 = strlen($open2);
-        $lenclose = strlen($close);
-        $pos1 = strpos($html, $open1);
-        while ($pos1 !== false) {
-            $pos2 = strpos($html, $open2, $pos1 + $lenopen1);
-            $lang = substr($html, $pos1 + $lenopen1, $pos2 - $pos1 - $lenopen1);
-            $lang = trim($lang);
-            $lang = str_replace(array('class="language-','"'), "", $lang);
-            if ($lang == "") {
-                $lang = "text";
-            }
-            $pos3 = strpos($html, $close, $pos2);
-            $html2 = substr($html, $pos2 + $lenopen2, $pos3 - $pos2 - $lenopen2);
-            $html2 = html_entity_decode($html2, ENT_COMPAT, "UTF-8");
-            $geshi = new GeSHi($html2, $lang);
-            $html3 = $geshi->parse_code();
-            $html = substr_replace($html, $html3, $pos1, $pos3 + $lenclose - $pos1);
-            $pos1 = strpos($html, $open1, $pos3);
-        }
-    } else {
-        $geshi = new GeSHi($html, $lang);
-        $html = $geshi->parse_code();
-    }
-    return $html;
-}
-
 function is_array_key_val($array)
 {
     $count = 0;

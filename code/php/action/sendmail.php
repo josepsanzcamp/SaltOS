@@ -58,8 +58,6 @@ if (getParam("action") == "sendmail") {
             javascript_unloading();
             die();
         }
-        // REPLACE HIGHLIGHT IF EXISTS
-        $body = highlight_geshi($body);
         // REMOVE THE SIGNATURE TAG IF EXISTS
         $body = str_replace(array("<signature>","</signature>"), "", $body);
         // CHECK FOR MOBILE DEVICES

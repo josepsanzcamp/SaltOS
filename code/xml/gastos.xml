@@ -302,52 +302,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <fields include="xml/common/filters.xml" replace="true" />
             <buttons include="xml/common/buttonslist.xml" />
         </form>
-        <form>
-            <fields ifeval="!ismobile()">
-                <title lang="true">graficas</title>
-                <icon eval="true">ICON("plots")</icon>
-                <row>
-                    <field>
-                        <type>plot</type>
-                        <width eval="true">CONFIG("plot_list_width")."px"</width>
-                        <height eval="true">CONFIG("plot_list_height")."px"</height>
-                        <vars>1</vars>
-                        <graph>bars</graph>
-                        <title lang="true">plotseguimiento12meses</title>
-                        <query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) GROUP BY xx ORDER BY xx ASC</query>
-                    </field>
-                    <field>
-                        <type>plot</type>
-                        <width eval="true">CONFIG("plot_list_width")."px"</width>
-                        <height eval="true">CONFIG("plot_list_height")."px"</height>
-                        <vars>1</vars>
-                        <graph>pie</graph>
-                        <title lang="true">plotseguimiento12meses</title>
-                        <query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) GROUP BY xx ORDER BY xx ASC</query>
-                    </field>
-                </row>
-                <row>
-                    <field>
-                        <type>plot</type>
-                        <width eval="true">CONFIG("plot_list_width")."px"</width>
-                        <height eval="true">CONFIG("plot_list_height")."px"</height>
-                        <vars>1</vars>
-                        <graph>bars</graph>
-                        <title lang="true">plotseguimientotop10</title>
-                        <query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,SUM(base) y1 FROM tbl_gastos,tbl_proveedores WHERE tbl_gastos.id_proveedor=tbl_proveedores.id AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY y0 ORDER BY y1 DESC LIMIT 10"</query>
-                    </field>
-                    <field>
-                        <type>plot</type>
-                        <width eval="true">CONFIG("plot_list_width")."px"</width>
-                        <height eval="true">CONFIG("plot_list_height")."px"</height>
-                        <vars>1</vars>
-                        <graph>pie</graph>
-                        <title lang="true">plotseguimientotop10</title>
-                        <query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,SUM(base) y1 FROM tbl_gastos,tbl_proveedores WHERE tbl_gastos.id_proveedor=tbl_proveedores.id AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY y0 ORDER BY y1 DESC LIMIT 10"</query>
-                    </field>
-                </row>
-            </fields>
-        </form>
         <quick>
             <row>
                 <field>

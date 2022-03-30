@@ -277,11 +277,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                                         </group>
                                     </field>
                                 </row>
+                            </rows>
+                        </field>
+                        <field>
+                            <type>grid</type>
+                            <class>top</class>
+                            <rows>
                                 <row>
                                     <field>
                                         <label>Excel</label>
                                         <type>excel</type>
                                         <name>excel</name>
+                                        <width>600px</width>
                                         <data>[
                                             [1,2,3,4,5,6,7,8,9,10],
                                             [11,12,13,14,15,16,17,18,19,20],
@@ -292,7 +299,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                                             [61,62,63,64,65,66,67,68,69,70],
                                             [71,72,73,74,75,76,77,78,79,80],
                                             [81,82,83,84,85,86,87,88,89,90],
-                                            [91,92,93,94,95,96,97,98,99,100]
+                                            [91,92,93,94,95,96,97,98,99,100],
+                                            [101,102,103,104,105,106,107,108,109,110],
+                                            [111,112,113,114,115,116,117,118,119,120],
+                                            [121,122,123,124,125,126,127,128,129,130],
+                                            [131,132,133,134,135,136,137,138,139,140],
+                                            [141,142,143,144,145,146,147,148,149,150],
+                                            [151,152,153,154,155,156,157,158,159,160],
+                                            [161,162,163,164,165,166,167,168,169,170],
+                                            [171,172,173,174,175,176,177,178,179,180],
+                                            [181,182,183,184,185,186,187,188,189,190],
+                                            [191,192,193,194,195,196,197,198,199,200]
                                         ]</data>
                                     </field>
                                 </row>
@@ -343,142 +360,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                                         <value>http://127.0.0.1/caca</value>
                                         <width>600px</width>
                                         <height>120px</height>
-                                    </field>
-                                </row>
-                                <row>
-                                    <field>
-                                        <label>OHLC plot</label>
-                                        <type>plot</type>
-                                        <name>plot</name>
-                                        <width>600px</width>
-                                        <height>240px</height>
-                                        <vars>4</vars>
-                                        <graph>ohlc</graph>
-                                        <title>Plot asd</title>
-                                        <rows>
-                                            <row><y0>2020-01</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>101</y4></row>
-                                            <row><y0>2020-02</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>99</y4></row>
-                                            <row><y0>2020-03</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>111</y4></row>
-                                            <row><y0>2020-04</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>109</y4></row>
-                                            <row><y0>2020-05</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>101</y4></row>
-                                            <row><y0>2020-06</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>99</y4></row>
-                                            <row><y0>2020-07</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>111</y4></row>
-                                            <row><y0>2020-08</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>109</y4></row>
-                                            <row><y0>2020-09</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>101</y4></row>
-                                            <row><y0>2020-10</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>99</y4></row>
-                                            <row><y0>2020-11</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>111</y4></row>
-                                            <row><y0>2020-12</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>109</y4></row>
-                                        </rows>
-                                    </field>
-                                </row>
-                            </rows>
-                        </field>
-                        <field>
-                            <type>grid</type>
-                            <class>top</class>
-                            <rows>
-                                <row>
-                                    <field>
-                                        <label>Bars plot</label>
-                                        <type>plot</type>
-                                        <name>plot</name>
-                                        <width>480px</width>
-                                        <height>180px</height>
-                                        <vars>1</vars>
-                                        <graph>bars</graph>
-                                        <title>Plot asd</title>
-                                        <rows>
-                                            <row><y0>2020-01</y0><y1>100</y1></row>
-                                            <row><y0>2020-02</y0><y1>50</y1></row>
-                                            <row><y0>2020-03</y0><y1>70</y1></row>
-                                            <row><y0>2020-04</y0><y1>90</y1></row>
-                                            <row><y0>2020-05</y0><y1>120</y1></row>
-                                            <row><y0>2020-06</y0><y1>130</y1></row>
-                                            <row><y0>2020-07</y0><y1>180</y1></row>
-                                            <row><y0>2020-08</y0><y1>140</y1></row>
-                                            <row><y0>2020-09</y0><y1>120</y1></row>
-                                            <row><y0>2020-10</y0><y1>80</y1></row>
-                                            <row><y0>2020-11</y0><y1>90</y1></row>
-                                            <row><y0>2020-12</y0><y1>100</y1></row>
-                                        </rows>
-                                    </field>
-                                </row>
-                                <row>
-                                    <field>
-                                        <label>Pie plot</label>
-                                        <type>plot</type>
-                                        <name>plot</name>
-                                        <width>480px</width>
-                                        <height>180px</height>
-                                        <vars>1</vars>
-                                        <graph>pie</graph>
-                                        <title>Plot asd</title>
-                                        <rows>
-                                            <row><y0>2020-01</y0><y1>100</y1></row>
-                                            <row><y0>2020-02</y0><y1>50</y1></row>
-                                            <row><y0>2020-03</y0><y1>70</y1></row>
-                                            <row><y0>2020-04</y0><y1>90</y1></row>
-                                            <row><y0>2020-05</y0><y1>120</y1></row>
-                                            <row><y0>2020-06</y0><y1>130</y1></row>
-                                            <row><y0>2020-07</y0><y1>180</y1></row>
-                                            <row><y0>2020-08</y0><y1>140</y1></row>
-                                            <row><y0>2020-09</y0><y1>120</y1></row>
-                                            <row><y0>2020-10</y0><y1>80</y1></row>
-                                            <row><y0>2020-11</y0><y1>90</y1></row>
-                                            <row><y0>2020-12</y0><y1>100</y1></row>
-                                        </rows>
-                                    </field>
-                                </row>
-                                <row>
-                                    <field>
-                                        <label>Points plot</label>
-                                        <type>plot</type>
-                                        <name>plot</name>
-                                        <width>480px</width>
-                                        <height>180px</height>
-                                        <vars>1</vars>
-                                        <graph>lines</graph>
-                                        <title>Plot asd</title>
-                                        <rows>
-                                            <row><y0>2020-01</y0><y1>100</y1></row>
-                                            <row><y0>2020-02</y0><y1>50</y1></row>
-                                            <row><y0>2020-03</y0><y1>70</y1></row>
-                                            <row><y0>2020-04</y0><y1>90</y1></row>
-                                            <row><y0>2020-05</y0><y1>120</y1></row>
-                                            <row><y0>2020-06</y0><y1>130</y1></row>
-                                            <row><y0>2020-07</y0><y1>180</y1></row>
-                                            <row><y0>2020-08</y0><y1>140</y1></row>
-                                            <row><y0>2020-09</y0><y1>120</y1></row>
-                                            <row><y0>2020-10</y0><y1>80</y1></row>
-                                            <row><y0>2020-11</y0><y1>90</y1></row>
-                                            <row><y0>2020-12</y0><y1>100</y1></row>
-                                        </rows>
-                                    </field>
-                                </row>
-                                <row>
-                                    <field>
-                                        <label>Points plot</label>
-                                        <type>plot</type>
-                                        <name>plot</name>
-                                        <width>480px</width>
-                                        <height>180px</height>
-                                        <vars>1</vars>
-                                        <graph>points</graph>
-                                        <title>Plot asd</title>
-                                        <rows>
-                                            <row><y0>2020-01</y0><y1>100</y1></row>
-                                            <row><y0>2020-02</y0><y1>50</y1></row>
-                                            <row><y0>2020-03</y0><y1>70</y1></row>
-                                            <row><y0>2020-04</y0><y1>90</y1></row>
-                                            <row><y0>2020-05</y0><y1>120</y1></row>
-                                            <row><y0>2020-06</y0><y1>130</y1></row>
-                                            <row><y0>2020-07</y0><y1>180</y1></row>
-                                            <row><y0>2020-08</y0><y1>140</y1></row>
-                                            <row><y0>2020-09</y0><y1>120</y1></row>
-                                            <row><y0>2020-10</y0><y1>80</y1></row>
-                                            <row><y0>2020-11</y0><y1>90</y1></row>
-                                            <row><y0>2020-12</y0><y1>100</y1></row>
-                                        </rows>
                                     </field>
                                 </row>
                             </rows>

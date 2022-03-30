@@ -188,7 +188,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <todoslosproyectos>[Hoch jInmol]</todoslosproyectos>
         <todaslastareas>[Hoch Qu']</todaslastareas>
         <todaslascuentas>[Hoch]</todaslascuentas>
-        <graficas>Charts statistics 'ej</graficas>
         <mail>Pdf ngeH</mail>
         <mailtip>Pdf ngeH email account</mailtip>
         <view2>Pdf Viewer</view2>
@@ -234,7 +233,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <posx>Position x</posx>
         <posy>Position y</posy>
         <angle>Tajvaj</angle>
-        <withoutinfo>'os de' pagh</withoutinfo>
         <sinproducto>[pagh product maqochpu'na' maHtaH]</sinproducto>
         <preview>Preview</preview>
         <sortasc>Sal (a-z) Segh</sortasc>
@@ -528,12 +526,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_buscador>Seeker</quick_buscador>
         <quick_errorlog>Qagh</quick_errorlog>
         <quick_categorias>Category</quick_categorias>
-        <translator>Mughwi'</translator>
-        <translatortip>Bingdaq ghitlh leghlu' mughmeh qu'</translatortip>
-        <corrector>Checker</corrector>
-        <correctortip>Vay' bingdaq ghitlh leghlu' corrections</correctortip>
-        <calculator>Calculator</calculator>
-        <calculatortip>Vay' mathematical calculations</calculatortip>
         <menu>Hidjoilev</menu>
         <menutip>Cha' 'ej app hidjolev so'</menutip>
     </menu>
@@ -560,7 +552,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <actasdata>Customer tup</actasdata>
         <actionliquidar>'ay' wiv settle</actionliquidar>
         <msgliquidar>Wiv 'ay' settle daneh'a'?</msgliquidar>
-        <plotseguimiento12meses>Wa'hu' dis billing customer</plotseguimiento12meses>
         <cuentacorriente>Qu'mey potlh account</cuentacorriente>
         <diapago>Payday</diapago>
         <cuentacontable>Ledger account</cuentacontable>
@@ -610,8 +601,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <horastotal>Total rep</horastotal>
         <preciomedio>Motlhbogh 'ay'</preciomedio>
         <preciototal>Total 'ay'</preciototal>
-        <plotseguimientotareas>Jinmol deviation</plotseguimientotareas>
-        <legendseguimientotareas>Budget rep 'arghbej rep</legendseguimientotareas>
         <real>Real</real>
         <diferencia>Difference</diferencia>
         <partesopen>Un liquidated lopno'</partesopen>
@@ -630,7 +619,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <facturaclose>Invoices huj</facturaclose>
         <gastosdata>Expenses ghah customer maqochpu'na' mahtah</gastosdata>
         <documentdata>Customer documents</documentdata>
-        <plotseguimientoestados>Jinmol pong sep ghom</plotseguimientoestados>
         <productosproyecto>Jinmol products</productosproyecto>
         <descproductos>Product description</descproductos>
         <actionfacturar>Neb</actionfacturar>
@@ -666,8 +654,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgliquidar>Wiv 'ay' settle daneh'a'?</msgliquidar>
         <msgerror>Lopno' settle neh tetlh daneh'a' ghob'e' wiv soh</msgerror>
         <fechainiliq>Settle date</fechainiliq>
-        <plotseguimientotop10>10 customers 'ach 'ay' dis qav</plotseguimientotop10>
-        <plotseguimiento12meses>Turnover qastahvis dis qav 'ay'</plotseguimiento12meses>
     </partes>
     <usuarios>
         <list>Users tetlh</list>
@@ -780,8 +766,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <trimestreliq>Chip. settle</trimestreliq>
         <fechainiliq>Settle date</fechainiliq>
         <totalliquidar>Total settled expenses:</totalliquidar>
-        <plotseguimientotop10>Providers niv-turnover 10 yor dis qav</plotseguimientotop10>
-        <plotseguimiento12meses>Wa'hu' dis expenses</plotseguimiento12meses>
         <sinpagador>[pagh payer]</sinpagador>
         <vencimientos_old>Maturity</vencimientos_old>
         <vencimientos_new>Maturities chu'</vencimientos_new>
@@ -804,8 +788,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <titular>Holder</titular>
         <baseimponible>Rup waw'</baseimponible>
         <totalapagar>Total payable</totalapagar>
-        <plotseguimientotop10>10 niv turnover customers yor qav dis</plotseguimientotop10>
-        <plotseguimiento12meses>Wa'hu' dis turnover</plotseguimiento12meses>
         <concepts_old>Concept</concepts_old>
         <concepts_new>Concepts chu'</concepts_new>
         <products_old>Product</products_old>
@@ -890,7 +872,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <forminsert>Supplier chu' registration</forminsert>
         <formupdate>Supplier modification</formupdate>
         <defaultdata>Supplier de'</defaultdata>
-        <plotseguimiento12meses>Supplier qav dis expenses</plotseguimiento12meses>
         <cuentacorriente>Qu'mey potlh account</cuentacorriente>
         <cuentacontable>Ledger account</cuentacontable>
         <diapago>Payday</diapago>
@@ -986,11 +967,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <general>Sa'</general>
         <title_general>Parameters sa' application 'op hijmeh</title_general>
         <applicationtitle>App title</applicationtitle>
-        <plotlistsize>Charts listings size</plotlistsize>
-        <plotformsize>Size charts chenmoh</plotformsize>
-        <small>Mach</small>
-        <medium>Medium</medium>
-        <big>Yiteb</big>
         <agendainterval>Nej 'isjah notifications hoch</agendainterval>
         <inboxinterval>Nej chu' emails hoch</inboxinterval>
         <outboxinterval>Check output tray hoch</outboxinterval>
@@ -1071,9 +1047,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_plugins>Plugins jabwi':</server_plugins>
         <vxinfo>Note: (*) specific version chaw' lo' chaH wej per 'op jInmol</vxinfo>
         <license>Chaw'</license>
-        <game>Qa'vaq</game>
         <licensetitle>Below mub bingdaq ghitlh leghlu' chaw'</licensetitle>
-        <gametitle>Vaj 'oH chenmoHta' SoH jIHDaq, ghor qotlh SoH. ghonja'gho loQ!!!</gametitle>
         <translators>Mughmeh</translators>
         <developers>Developer</developers>
         <unavailable>Details not lupoQ contact. [developer vay' pagh suggestions yu'. ghaHDaq contact BERNARDO.</unavailable>
@@ -1369,7 +1343,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgcrear>Budget jinmol chenmoh visuq vineh?</msgcrear>
         <agendadata>Budget wani'</agendadata>
         <actasdata>Budget tup</actasdata>
-        <plotseguimientoestados>Budgets pong sep ghom</plotseguimientoestados>
         <resumentareasproductos>Summary qu' products je</resumentareasproductos>
         <objetivospdf>Objective</objetivospdf>
         <funcionalpdf>Functional</funcionalpdf>
@@ -1504,18 +1477,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <deleteoffolder>Delete vo' folder</deleteoffolder>
         <defaultfolder>Personal folder</defaultfolder>
     </folders>
-    <translator>
-        <translator>Mughwi'</translator>
-        <corrector>Checker</corrector>
-        <es>Spanish</es>
-        <ca>Catalan</ca>
-        <en>English hol</en>
-        <pt>Portuguese</pt>
-        <eu>Basque</eu>
-        <gl>Galician</gl>
-        <fr>French</fr>
-        <ar>Arabic</ar>
-    </translator>
     <buscador>
         <list>Seeker</list>
         <todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>

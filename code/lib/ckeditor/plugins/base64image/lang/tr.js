@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","tr",{alt:"Alternatif Yazı",lockRatio:"Oranı Kilitle",vSpace:"Dikey Boşluk",hSpace:"Yatay Boşluk",border:"Kenar"});

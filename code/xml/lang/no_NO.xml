@@ -188,7 +188,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <todoslosproyectos>[Alle prosjekter]</todoslosproyectos>
         <todaslastareas>[Alle oppgaver]</todaslastareas>
         <todaslascuentas>[Alle]</todaslascuentas>
-        <graficas>Grafer og statistikk</graficas>
         <mail>Send PDF</mail>
         <mailtip>Send PDF til e-postkontoen din</mailtip>
         <view2>PDF-visning</view2>
@@ -234,7 +233,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <posx>X stilling</posx>
         <posy>Y-stilling</posy>
         <angle>Vinkel</angle>
-        <withoutinfo>Ingen informasjon å representere</withoutinfo>
         <sinproducto>[Uten tilknyttet produkt]</sinproducto>
         <preview>Forhåndsvisning</preview>
         <sortasc>Sorter stigende (A-Z)</sortasc>
@@ -528,12 +526,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_buscador>Søkemotor</quick_buscador>
         <quick_errorlog>Feil</quick_errorlog>
         <quick_categorias>Kategorier</quick_categorias>
-        <translator>Etter</translator>
-        <translatortip>For å gjøre tekstoversettelser</translatortip>
-        <corrector>Korrekturleser</corrector>
-        <correctortip>For å gjøre tekstkorreksjoner</correctortip>
-        <calculator>Kalkulator</calculator>
-        <calculatortip>å gjøre matematiske beregninger</calculatortip>
         <menu>Meny</menu>
         <menutip>For å vise og skjule applikasjonsmenyen</menutip>
     </menu>
@@ -560,7 +552,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <actasdata>Klientminutter</actasdata>
         <actionliquidar>Sett av valgte deler</actionliquidar>
         <msgliquidar>Vil du avvikle de valgte delene?</msgliquidar>
-        <plotseguimiento12meses>Kundens fakturering i fjor</plotseguimiento12meses>
         <cuentacorriente>Sjekker konto</cuentacorriente>
         <diapago>Betal dag</diapago>
         <cuentacontable>Regnskapskonto</cuentacontable>
@@ -610,8 +601,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <horastotal>Totalt antall timer</horastotal>
         <preciomedio>Gjennomsnittspris</preciomedio>
         <preciototal>Totalpris</preciototal>
-        <plotseguimientotareas>Prosjektavvik</plotseguimientotareas>
-        <legendseguimientotareas>Budsjetterte timer | Ansatte timer</legendseguimientotareas>
         <real>Real</real>
         <diferencia>Forskjellen</diferencia>
         <partesopen>Uoppgjorte deler</partesopen>
@@ -630,7 +619,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <facturaclose>Fakturaer samlet</facturaclose>
         <gastosdata>Utgifter forbundet med klienten</gastosdata>
         <documentdata>Kundedokumenter</documentdata>
-        <plotseguimientoestados>Gruppere prosjekter etter stat</plotseguimientoestados>
         <productosproyecto>Produkter av prosjektet</productosproyecto>
         <descproductos>Produktbeskrivelse</descproductos>
         <actionfacturar>Regning</actionfacturar>
@@ -666,8 +654,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgliquidar>Vil du avvikle de valgte delene?</msgliquidar>
         <msgerror>Du må velge delene du vil ordne opp i listen</msgerror>
         <fechainiliq>Avgjort dato</fechainiliq>
-        <plotseguimientotop10>De 10 kundene med flere deler av det siste året</plotseguimientotop10>
-        <plotseguimiento12meses>Fakturering i deler av det siste året</plotseguimiento12meses>
     </partes>
     <usuarios>
         <list>Liste over brukere</list>
@@ -780,8 +766,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <trimestreliq>Trim. likvidert</trimestreliq>
         <fechainiliq>Avgjort dato</fechainiliq>
         <totalliquidar>De utlignede utgiftene utgjør totalt:</totalliquidar>
-        <plotseguimientotop10>De 10 leverandørene med høyest omsetning det siste året</plotseguimientotop10>
-        <plotseguimiento12meses>Fjorårets utgifter</plotseguimiento12meses>
         <sinpagador>[Uten betaler]</sinpagador>
         <vencimientos_old>Løpetid</vencimientos_old>
         <vencimientos_new>Nye forfall</vencimientos_new>
@@ -804,8 +788,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <titular>Overskrift</titular>
         <baseimponible>Skattepliktig grunnlag</baseimponible>
         <totalapagar>Totalt å betale</totalapagar>
-        <plotseguimientotop10>De 10 kundene med høyest omsetning det siste året</plotseguimientotop10>
-        <plotseguimiento12meses>I fjor fakturering</plotseguimiento12meses>
         <concepts_old>Konsepter</concepts_old>
         <concepts_new>Nye konsepter</concepts_new>
         <products_old>Råvarer</products_old>
@@ -890,7 +872,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <forminsert>Registrering av en ny leverandør</forminsert>
         <formupdate>Leverandør modifisering</formupdate>
         <defaultdata>Leverandørinformasjon</defaultdata>
-        <plotseguimiento12meses>Tilbyderens utgifter i fjor</plotseguimiento12meses>
         <cuentacorriente>Sjekker konto</cuentacorriente>
         <cuentacontable>Regnskapskonto</cuentacontable>
         <diapago>Betal dag</diapago>
@@ -986,11 +967,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <general>General</general>
         <title_general>Konfigurer noen generelle applikasjonsparametere</title_general>
         <applicationtitle>Søknadstittel</applicationtitle>
-        <plotlistsize>Størrelse på grafikken i listene</plotlistsize>
-        <plotformsize>Størrelse på grafikk i former</plotformsize>
-        <small>Liten</small>
-        <medium>Medium</medium>
-        <big>Stor</big>
         <agendainterval>Finn kalendervarsler hver</agendainterval>
         <inboxinterval>Se etter nye e-poster hver</inboxinterval>
         <outboxinterval>Kontroller utskuffen hver</outboxinterval>
@@ -1071,9 +1047,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_plugins>Server plugins:</server_plugins>
         <vxinfo>Merk: (*) Noen prosjekter spesifiserer ikke den spesifikke versjonen av lisensen de bruker</vxinfo>
         <license>Lisens</license>
-        <game>Spill</game>
         <licensetitle>Nedenfor er den lovlige teksten til lisensen</licensetitle>
-        <gametitle>Hvis du har nådd denne skjermen, fortjener du en pause. Du kan spille litt !!!</gametitle>
         <translators>Oversettelser</translators>
         <developers>Utviklere</developers>
         <unavailable>Kontaktdata er ikke tilgjengelig. Kontakt en utvikler for spørsmål eller forslag.</unavailable>
@@ -1369,7 +1343,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgcrear>Vil du lage et prosjekt fra dette budsjettet?</msgcrear>
         <agendadata>Budsjettarrangementer</agendadata>
         <actasdata>Budsjettminutter</actasdata>
-        <plotseguimientoestados>Gruppere budsjetter etter stat</plotseguimientoestados>
         <resumentareasproductos>Sammendrag av oppgaver og produkter</resumentareasproductos>
         <objetivospdf>Målsettinger</objetivospdf>
         <funcionalpdf>Funksjonell</funcionalpdf>
@@ -1504,18 +1477,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <deleteoffolder>Slett fra denne mappen</deleteoffolder>
         <defaultfolder>Personlig mappe</defaultfolder>
     </folders>
-    <translator>
-        <translator>Etter</translator>
-        <corrector>Korrekturleser</corrector>
-        <es>Spansk</es>
-        <ca>Catalan</ca>
-        <en>Engelsk</en>
-        <pt>Portugisisk</pt>
-        <eu>Euskera</eu>
-        <gl>Galiciske</gl>
-        <fr>Fransk</fr>
-        <ar>Arabisk</ar>
-    </translator>
     <buscador>
         <list>Søkemotor</list>
         <todaslasaplicaciones>[Alle applikasjoner]</todaslasaplicaciones>

@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","ko",{alt:"이미지 설명",lockRatio:"비율 유지",vSpace:"수직여백",hSpace:"수평여백",border:"테두리"});

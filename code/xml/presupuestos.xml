@@ -206,32 +206,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <fields include="xml/common/filters.xml" replace="true" />
             <buttons include="xml/common/buttonslist.xml" />
         </form>
-        <form>
-            <fields ifeval="!ismobile()">
-                <title lang="true">graficas</title>
-                <icon eval="true">ICON("plots")</icon>
-                <row>
-                    <field>
-                        <type>plot</type>
-                        <width eval="true">CONFIG("plot_list_width")."px"</width>
-                        <height eval="true">CONFIG("plot_list_height")."px"</height>
-                        <vars>1</vars>
-                        <graph>bars</graph>
-                        <title lang="true">plotseguimientoestados</title>
-                        <query eval="true">"SELECT CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE CASE WHEN LENGTH(b.nombre)>10 THEN CONCAT(SUBSTR(b.nombre,1,10),'...') ELSE b.nombre END END y0,COUNT(*) y1 FROM tbl_presupuestos a LEFT JOIN tbl_estados b ON b.id=a.id_estado GROUP BY y0 ORDER BY b.pos ASC,y0 ASC"</query>
-                    </field>
-                    <field>
-                        <type>plot</type>
-                        <width eval="true">CONFIG("plot_list_width")."px"</width>
-                        <height eval="true">CONFIG("plot_list_height")."px"</height>
-                        <vars>1</vars>
-                        <graph>pie</graph>
-                        <title lang="true">plotseguimientoestados</title>
-                        <query eval="true">"SELECT CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE CASE WHEN LENGTH(b.nombre)>10 THEN CONCAT(SUBSTR(b.nombre,1,10),'...') ELSE b.nombre END END y0,COUNT(*) y1 FROM tbl_presupuestos a LEFT JOIN tbl_estados b ON b.id=a.id_estado GROUP BY y0 ORDER BY b.pos ASC,y0 ASC"</query>
-                    </field>
-                </row>
-            </fields>
-        </form>
         <quick>
             <row>
                 <field>

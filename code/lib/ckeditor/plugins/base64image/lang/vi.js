@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","vi",{alt:"Chú thích ảnh",lockRatio:"Giữ nguyên tỷ lệ",vSpace:"Khoảng đệm dọc",hSpace:"Khoảng đệm ngang",border:"Đường viền"});

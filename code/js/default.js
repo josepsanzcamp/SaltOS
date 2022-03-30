@@ -1819,11 +1819,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             $(this).ckeditor({
                 title:"",
                 skin:"moono-lisa",
-                extraPlugins:"codesnippetgeshi,autogrow,base64image",
+                extraPlugins:"autogrow",
                 removePlugins:"elementspath",
                 enterMode:CKEDITOR.ENTER_BR,
                 shiftEnterMode:CKEDITOR.ENTER_BR,
-                toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","CodeSnippet","base64image","HorizontalRule"]],
+                toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","HorizontalRule"]],
                 language:lang_default(),
                 autoGrow_onStartup:true,
                 autoGrow_minHeight:$(this).height()-25,
@@ -1832,7 +1832,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
                 dialog_backgroundCoverColor:"#aaa",
                 dialog_backgroundCoverOpacity:0.3,
                 resize_enabled:false,
-                codeSnippetGeshi_url:"../../?action=geshi",
                 //~ forcePasteAsPlainText:true,
                 //~ uiColor:get_colors("ui-state-default","background-color"),
                 //~ uiColor:"transparent",
@@ -1873,47 +1872,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             cm.on("viewportChange",fnresize);
             $(this).next().addClass(classes).css("margin","1px");
             cm.on("change",cm.save);
-        });
-        // REQUEST THE PLOTS
-        var attrs=["legend","vars","colors","graph","ticks","posx",
-            "data1","data2","data3","data4","data5","data6","data7","data8","data9","data10",
-            "data11","data12","data13","data14","data15","data16"];
-        $("img[isplot=true]",obj).each(function() {
-            var map="#"+$(this).prev().attr("id");
-            var interval=setInterval(function() {
-                var map2=$(map);
-                var img=$(map2).next().get(0);
-                if(!$(map2).length) {
-                    clearInterval(interval);
-                } else if($(img).is(":visible")) {
-                    clearInterval(interval);
-                    var querystring="action=phplot";
-                    querystring+="&width="+$(img).width();
-                    querystring+="&height="+$(img).height();
-                    var data=$(img).attr("title3");
-                    if(typeof(data)!="undefined") querystring+="&title="+encodeURIComponent(data);
-                    for(var i=0,len=attrs.length;i<len;i++) {
-                        var data=$(img).attr(attrs[i]);
-                        if(typeof(data)!="undefined") querystring+="&"+attrs[i]+"="+encodeURIComponent(data);
-                    };
-                    $.ajax({
-                        url:"index.php",
-                        data:querystring,
-                        type:"post",
-                        success:function(response) {
-                            $(img).attr("src",response["img"]);
-                            var map=$(img).attr("usemap");
-                            $(response["map"]).each(function() {
-                                var area="<area shape='"+this["shape"]+"' coords='"+this["coords"]+"' title='"+this["value"]+"'>";
-                                $(map).append(area);
-                            });
-                        },
-                        error:function(XMLHttpRequest,textStatus,errorThrown) {
-                            errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-                        }
-                    });
-                }
-            },100);
         });
         // PROGRAM AUTOCOMPLETE FIELDS
         $("input[isautocomplete=true],textarea[isautocomplete=true]",obj).each(function() {

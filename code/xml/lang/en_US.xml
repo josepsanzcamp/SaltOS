@@ -188,7 +188,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <todoslosproyectos>[All projects]</todoslosproyectos>
         <todaslastareas>[All Tasks]</todaslastareas>
         <todaslascuentas>[All]</todaslascuentas>
-        <graficas>Graphics and statistics</graficas>
         <mail>Send PDF</mail>
         <mailtip>Send the PDF to your email account</mailtip>
         <view2>PDF Viewer</view2>
@@ -234,7 +233,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <posx>Position X</posx>
         <posy>Position Y</posy>
         <angle>angle</angle>
-        <withoutinfo>Unknown to represent</withoutinfo>
         <sinproducto>[No associated product]</sinproducto>
         <preview>Preview</preview>
         <sortasc>Ascending sort (A-Z)</sortasc>
@@ -528,12 +526,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_buscador>Search</quick_buscador>
         <quick_errorlog>Errors</quick_errorlog>
         <quick_categorias>Categories</quick_categorias>
-        <translator>Translator</translator>
-        <translatortip>To do text's translations</translatortip>
-        <corrector>Spell checker</corrector>
-        <correctortip>To do text's corrections</correctortip>
-        <calculator>Calculator</calculator>
-        <calculatortip>To do mathematical calculations</calculatortip>
         <menu>Menu</menu>
         <menutip>To show and hide the application menu</menutip>
     </menu>
@@ -560,7 +552,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <actasdata>Customer Minutes</actasdata>
         <actionliquidar>Settle parties selected</actionliquidar>
         <msgliquidar>want to clear the selected parts?</msgliquidar>
-        <plotseguimiento12meses>Check the last year of client</plotseguimiento12meses>
         <cuentacorriente>Current Account</cuentacorriente>
         <diapago>Payday</diapago>
         <cuentacontable>Account accounting</cuentacontable>
@@ -610,8 +601,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <horastotal>Total Hours</horastotal>
         <preciomedio>Average</preciomedio>
         <preciototal>Total price</preciototal>
-        <plotseguimientotareas>Diversion of the project</plotseguimientotareas>
-        <legendseguimientotareas>budgeted Hours|Hours employed</legendseguimientotareas>
         <real>Real</real>
         <diferencia>Difference</diferencia>
         <partesopen>Parts unliquidated</partesopen>
@@ -630,7 +619,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <facturaclose>Billing charged</facturaclose>
         <gastosdata>Costs associated with the client</gastosdata>
         <documentdata>Customer Documents</documentdata>
-        <plotseguimientoestados>Grouping projects by state</plotseguimientoestados>
         <productosproyecto>Project Outputs</productosproyecto>
         <descproductos>Description of product</descproductos>
         <actionfacturar>Bill</actionfacturar>
@@ -666,8 +654,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgliquidar>want to clear the selected parts?</msgliquidar>
         <msgerror>must select the parts you want to settle in the list</msgerror>
         <fechainiliq>Date liquidated</fechainiliq>
-        <plotseguimientotop10>10 clients with more parts of last year</plotseguimientotop10>
-        <plotseguimiento12meses>Billing over the last year</plotseguimiento12meses>
     </partes>
     <usuarios>
         <list>List of users</list>
@@ -780,8 +766,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <trimestreliq>Trim. liquidated</trimestreliq>
         <fechainiliq>Date liquidated</fechainiliq>
         <totalliquidar>liquidated expenses totaling </totalliquidar>
-        <plotseguimientotop10>10 suppliers with increased turnover last year</plotseguimientotop10>
-        <plotseguimiento12meses>Expenditure of last year</plotseguimiento12meses>
         <sinpagador>[Without paying]</sinpagador>
         <vencimientos_old>Maturity</vencimientos_old>
         <vencimientos_new>New Maturity</vencimientos_new>
@@ -804,8 +788,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <titular>Banner</titular>
         <baseimponible>taxable base</baseimponible>
         <totalapagar>Total to pay</totalapagar>
-        <plotseguimientotop10>10 customers in more revenue last year</plotseguimientotop10>
-        <plotseguimiento12meses>Check the last year</plotseguimiento12meses>
         <concepts_old>Concepts</concepts_old>
         <concepts_new>New concepts</concepts_new>
         <products_old>Products</products_old>
@@ -890,7 +872,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <forminsert>Added a new supplier</forminsert>
         <formupdate>Changing the supplier</formupdate>
         <defaultdata>Details provider</defaultdata>
-        <plotseguimiento12meses>Expenditures provider last year</plotseguimiento12meses>
         <cuentacorriente>Current Account</cuentacorriente>
         <cuentacontable>Account accounting</cuentacontable>
         <diapago>Payday</diapago>
@@ -986,11 +967,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <general>General</general>
         <title_general>Configure general parameters of the application</title_general>
         <applicationtitle>Application title</applicationtitle>
-        <plotlistsize>Size of the graphics on the listings</plotlistsize>
-        <plotformsize>Size of the graphics in the form</plotformsize>
-        <small>Small</small>
-        <medium>Medium</medium>
-        <big>Grande</big>
         <agendainterval>Search for calendar notifications every</agendainterval>
         <inboxinterval>Check for new mail every</inboxinterval>
         <outboxinterval>Check the output tray every</outboxinterval>
@@ -1071,9 +1047,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_plugins>Server plugins:</server_plugins>
         <vxinfo>Note: (*) Some projects do not specify the specific version of the license to use</vxinfo>
         <license>License </license>
-        <game>Game</game>
         <licensetitle>Below shows the legal text of the license </licensetitle>
-        <gametitle>If you have reached this screen, you deserve a break. You can play a little!!!</gametitle>
         <translators>translations</translators>
         <developers>Developers</developers>
         <unavailable>Contact information not available. Contact a developer for any questions queries or suggestions.</unavailable>
@@ -1369,7 +1343,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgcrear>Want to create a project of this budget?</msgcrear>
         <agendadata>Events budget</agendadata>
         <actasdata>Proceedings of the budget</actasdata>
-        <plotseguimientoestados>Association of budgets by state</plotseguimientoestados>
         <resumentareasproductos>Summary of tasks and products</resumentareasproductos>
         <objetivospdf>Goals</objetivospdf>
         <funcionalpdf>Functional</funcionalpdf>
@@ -1504,18 +1477,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <deleteoffolder>Remove of this folder</deleteoffolder>
         <defaultfolder>Personal folder</defaultfolder>
     </folders>
-    <translator>
-        <translator>Translator</translator>
-        <corrector>Spell checker</corrector>
-        <es>Spanish</es>
-        <ca>Catalan</ca>
-        <en>English</en>
-        <pt>Portuguese</pt>
-        <eu>Euskera</eu>
-        <gl>Gallego</gl>
-        <fr>French</fr>
-        <ar>Arabic</ar>
-    </translator>
     <buscador>
         <list>Search</list>
         <todaslasaplicaciones>[All applications]</todaslasaplicaciones>

@@ -188,7 +188,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <todoslosproyectos>[Все проекты]</todoslosproyectos>
         <todaslastareas>[Все задачи]</todaslastareas>
         <todaslascuentas>[Все]</todaslascuentas>
-        <graficas>графики и статистика</graficas>
         <mail>Отправить PDF</mail>
         <mailtip>Отправка PDF-файла в учетную запись электронной почты</mailtip>
         <view2>Просмотрщик PDF</view2>
@@ -234,7 +233,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <posx>Позиция X</posx>
         <posy>Позиция Y</posy>
         <angle>Угол</angle>
-        <withoutinfo>нет информации для представления</withoutinfo>
         <sinproducto>[Нет связанного продукта]</sinproducto>
         <preview>предварительный просмотр</preview>
         <sortasc>Сортировка по возрастанию (от А до Я)</sortasc>
@@ -528,12 +526,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_buscador>искатель</quick_buscador>
         <quick_errorlog>ошибки</quick_errorlog>
         <quick_categorias>категории</quick_categorias>
-        <translator>Translator</translator>
-        <translatortip>выполнение текстовых переводов</translatortip>
-        <corrector>консилер</corrector>
-        <correctortip>внесение исправлений в текст</correctortip>
-        <calculator>калькулятор</calculator>
-        <calculatortip>производить математические расчеты</calculatortip>
         <menu>меню</menu>
         <menutip>отображение и скрытие меню приложения</menutip>
     </menu>
@@ -560,7 +552,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <actasdata>протоколы для клиентов</actasdata>
         <actionliquidar>ликвидация выбранных деталей</actionliquidar>
         <msgliquidar>вы хотите ликвидировать выбранные детали?</msgliquidar>
-        <plotseguimiento12meses>выставление счетов клиентом за последний год</plotseguimiento12meses>
         <cuentacorriente>расчетный счет</cuentacorriente>
         <diapago>день оплаты</diapago>
         <cuentacontable>бухгалтерский учет</cuentacontable>
@@ -610,8 +601,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <horastotal>всего часов</horastotal>
         <preciomedio>средняя цена</preciomedio>
         <preciototal>общая стоимость</preciototal>
-        <plotseguimientotareas>отклонение от проекта</plotseguimientotareas>
-        <legendseguimientotareas>Бюджетные часы| Отработанные часы</legendseguimientotareas>
         <real>реальный</real>
         <diferencia>разница</diferencia>
         <partesopen>непогашенные детали</partesopen>
@@ -630,7 +619,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <facturaclose>собранные счета-фактуры</facturaclose>
         <gastosdata>расходы, связанные с клиентом</gastosdata>
         <documentdata>документы клиента</documentdata>
-        <plotseguimientoestados>группировка проектов по штатам</plotseguimientoestados>
         <productosproyecto>проектная продукция</productosproyecto>
         <descproductos>описание продукции</descproductos>
         <actionfacturar>счет</actionfacturar>
@@ -666,8 +654,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgliquidar>вы хотите ликвидировать выбранные детали?</msgliquidar>
         <msgerror>вы должны выбрать части, которые вы хотите поселить в листинге</msgerror>
         <fechainiliq>дата установления</fechainiliq>
-        <plotseguimientotop10>10 клиентов с большей частью прошлого года</plotseguimientotop10>
-        <plotseguimiento12meses>выставление счетов в некоторых частях прошлого года</plotseguimiento12meses>
     </partes>
     <usuarios>
         <list>список пользователей</list>
@@ -780,8 +766,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <trimestreliq>подстригать. оседлый</trimestreliq>
         <fechainiliq>дата установления</fechainiliq>
         <totalliquidar>ликвидированные расходы составляют в общей сложности:</totalliquidar>
-        <plotseguimientotop10>10 поставщиков с самым высоким оборотом в прошлом году</plotseguimientotop10>
-        <plotseguimiento12meses>расходы прошлого года</plotseguimiento12meses>
         <sinpagador>[Нет плательщика]</sinpagador>
         <vencimientos_old>погашения</vencimientos_old>
         <vencimientos_new>новые сроки погашения</vencimientos_new>
@@ -804,8 +788,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <titular>держатель</titular>
         <baseimponible>налоговая база</baseimponible>
         <totalapagar>общая сумма к оплате</totalapagar>
-        <plotseguimientotop10>10 клиентов с самым высоким оборотом за последний год</plotseguimientotop10>
-        <plotseguimiento12meses>оборот за прошлый год</plotseguimiento12meses>
         <concepts_old>концепции</concepts_old>
         <concepts_new>новые концепции</concepts_new>
         <products_old>продукция</products_old>
@@ -890,7 +872,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <forminsert>регистрация нового поставщика</forminsert>
         <formupdate>модификация провайдера</formupdate>
         <defaultdata>сведения о поставщике</defaultdata>
-        <plotseguimiento12meses>расходы поставщика за прошлый год</plotseguimiento12meses>
         <cuentacorriente>расчетный счет</cuentacorriente>
         <cuentacontable>бухгалтерский учет</cuentacontable>
         <diapago>день оплаты</diapago>
@@ -986,11 +967,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <general>общее</general>
         <title_general>настройка некоторых общих параметров приложения</title_general>
         <applicationtitle>название заявки</applicationtitle>
-        <plotlistsize>размер диаграмм в объявлениях</plotlistsize>
-        <plotformsize>размер диаграмм в формах</plotformsize>
-        <small>маленький</small>
-        <medium>терпимая</medium>
-        <big>большой</big>
         <agendainterval>поиск уведомлений календаря по каждому</agendainterval>
         <inboxinterval>поиск новых писем каждый раз</inboxinterval>
         <outboxinterval>проверьте выходной лоток каждый</outboxinterval>
@@ -1071,9 +1047,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_plugins>серверные плагины:</server_plugins>
         <vxinfo>Примечание: (*) В некоторых проектах не указана конкретная версия лицензии, которую они используют</vxinfo>
         <license>лицензия</license>
-        <game>игра</game>
         <licensetitle>ниже приведен юридический текст лицензии</licensetitle>
-        <gametitle>Если вы прошли весь путь до этого экрана, вы заслуживаете перерыва. Можно немного поиграть!!!</gametitle>
         <translators>переводы</translators>
         <developers>разработчики</developers>
         <unavailable>Контактные данные отсутствуют. Свяжитесь с разработчиком по любым вопросам или предложениям.</unavailable>
@@ -1369,7 +1343,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgcrear>вы хотите создать проект из этого бюджета?</msgcrear>
         <agendadata>бюджетные мероприятия</agendadata>
         <actasdata>протокол бюджета</actasdata>
-        <plotseguimientoestados>группировка бюджетов по штатам</plotseguimientoestados>
         <resumentareasproductos>сводка задач и продуктов</resumentareasproductos>
         <objetivospdf>цели</objetivospdf>
         <funcionalpdf>функциональный</funcionalpdf>
@@ -1504,18 +1477,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <deleteoffolder>удалить из этой папки</deleteoffolder>
         <defaultfolder>личная папка</defaultfolder>
     </folders>
-    <translator>
-        <translator>Translator</translator>
-        <corrector>консилер</corrector>
-        <es>испанский</es>
-        <ca>каталанский</ca>
-        <en>английский</en>
-        <pt>португальский</pt>
-        <eu>баскский</eu>
-        <gl>галисийский</gl>
-        <fr>французский</fr>
-        <ar>Арабский</ar>
-    </translator>
     <buscador>
         <list>искатель</list>
         <todaslasaplicaciones>[Все приложения]</todaslasaplicaciones>

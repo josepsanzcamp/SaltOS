@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","ja",{alt:"代替テキスト",lockRatio:"比率を固定",vSpace:"垂直間隔",hSpace:"水平間隔",border:"枠線の幅"});

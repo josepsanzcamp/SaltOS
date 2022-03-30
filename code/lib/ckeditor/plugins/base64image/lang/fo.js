@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","fo",{alt:"Alternativur tekstur",lockRatio:"Læs lutfallið",vSpace:"Vinstri breddi",hSpace:"Høgri breddi",border:"Bordi"});

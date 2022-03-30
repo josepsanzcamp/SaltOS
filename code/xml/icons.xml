@@ -71,7 +71,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <filter>fa fa-search</filter>
     <form>fa fa-file-alt</form>
     <files>fa fa-folder-open</files>
-    <plots>fa fa-area-chart</plots>
     <error>fa fa-exclamation-triangle</error>
     <create>fa fa-plus-circle</create>
     <default>fa fa-tag</default>
@@ -115,8 +114,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <last>fa fa-fast-forward</last>
     <!-- QUICK -->
     <menu>fa fa-bars</menu>
-    <calculator>fa fa-calculator</calculator>
-    <translator>fa fa-flag</translator>
     <!-- EXTRAS -->
     <tagnew>fa fa-tag fa-tag-new</tagnew>
     <tagwait>fa fa-tag fa-tag-wait</tagwait>

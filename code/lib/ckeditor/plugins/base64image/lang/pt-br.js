@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","pt-br",{alt:"Texto Alternativo",lockRatio:"Travar Proporções",vSpace:"VSpace",hSpace:"HSpace",border:"Borda"});

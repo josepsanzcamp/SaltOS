@@ -2172,7 +2172,6 @@ saltos.form_table=function(width,clase) {
  * - separator
  * - label
  * - image
- * - plot
  * - menu
  * - grid
  * - excel
@@ -2762,11 +2761,11 @@ saltos.form_field_ckeditor=function(field) {
             $(this).ckeditor({
                 title:"",
                 skin:"moono-lisa",
-                extraPlugins:"codesnippetgeshi,autogrow,base64image",
+                extraPlugins:"autogrow",
                 removePlugins:"elementspath",
                 enterMode:CKEDITOR.ENTER_BR,
                 shiftEnterMode:CKEDITOR.ENTER_BR,
-                toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","CodeSnippet","base64image","HorizontalRule"]],
+                toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","HorizontalRule"]],
                 language:lang_default(),
                 autoGrow_onStartup:true,
                 autoGrow_minHeight:$(this).height()-25,
@@ -2775,7 +2774,6 @@ saltos.form_field_ckeditor=function(field) {
                 dialog_backgroundCoverColor:"#aaa",
                 dialog_backgroundCoverOpacity:0.3,
                 resize_enabled:false,
-                codeSnippetGeshi_url:"../../?action=geshi",
                 //~ forcePasteAsPlainText:true,
                 //~ uiColor:get_colors("ui-state-default","background-color"),
                 //~ uiColor:"transparent",
@@ -3341,70 +3339,6 @@ saltos.form_field_image=function(field) {
         $("img",td).attr("src",`?action=phpthumb&amp;src=${image}&amp;w=${field.width}&amp;h=${field.height}`);
     }
     obj.push(td);
-    return obj;
-};
-
-saltos.form_field_plot=function(field) {
-    saltos.check_params(field,["label",
-        "class2","colspan2","rowspan2","width2",
-        "class3","colspan","rowspan","width","height",
-        "name","class"]);
-    var obj=[];
-    if(field.label!="") {
-        var td=$(`
-            <td class="right nowrap label ${field.class2}" colspan="${field.colspan2}" rowspan="${field.rowspan2}" style="width:${field.width2}">
-                ${field.label}</td>
-        `);
-        obj.push(td);
-    }
-    var uniqid=saltos.uniqid();
-    var td=$(`
-        <td class="left ${field.class3}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width};height:${field.height}">
-            <map name="map${uniqid}" id="map${uniqid}"></map>
-            <img style="width:${field.width};height:${field.height}" class="${field.class}"
-                src="?action=phplot&amp;width=${field.width}&amp;height=${field.height}&amp;format=png&amp;loading=1"
-                isplot="true" id="${field.name}" usemap="#map${uniqid}"/></td>
-    `);
-    if(field.class=="") $("img",td).addClass("ui-state-default ui-corner-all image phplot");
-    obj.push(td);
-    // REQUEST THE PLOTS
-    var attr1=["width","height","title","legend","vars","colors","graph"];
-    var attr2={"x0":"posx","y0":"ticks","y1":"data1","y2":"data2","y3":"data3","y4":"data4","y5":"data5","y6":"data6","y7":"data7","y8":"data8","y9":"data9","y10":"data10","y11":"data11","y12":"data12","y13":"data13","y14":"data14","y15":"data15","y16":"data16"};
-    $("img[isplot=true]",td).each(function() {
-        var map="#"+$(this).prev().attr("id");
-        var interval=setInterval(function() {
-            var map2=$(map);
-            var img=$(map2).next().get(0);
-            if(!$(map2).length) {
-                clearInterval(interval);
-            } else if($(img).is(":visible")) {
-                clearInterval(interval);
-                var querystring="action=phplot";
-                for(var key in attr1) {
-                    if(isset(field[attr1[key]])) querystring+="&"+attr1[key]+"="+encodeURIComponent(field[attr1[key]]);
-                };
-                for(var key in field.rows.row) {
-                    querystring+="&"+attr2[key]+"="+encodeURIComponent(implode("|",array_column(field.rows,key)));
-                }
-                $.ajax({
-                    url:"index.php",
-                    data:querystring,
-                    type:"post",
-                    success:function(response) {
-                        $(img).attr("src",response["img"]);
-                        var map=$(img).attr("usemap");
-                        $(response["map"]).each(function() {
-                            var area="<area shape='"+this["shape"]+"' coords='"+this["coords"]+"' title='"+this["value"]+"'>";
-                            $(map).append(area);
-                        });
-                    },
-                    error:function(XMLHttpRequest,textStatus,errorThrown) {
-                        errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-                    }
-                });
-            }
-        },100);
-    });
     return obj;
 };
 

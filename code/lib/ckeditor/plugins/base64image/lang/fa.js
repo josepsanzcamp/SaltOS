@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","fa",{alt:"متن جایگزین",lockRatio:"قفل کردن نسبت",vSpace:"فاصلهٴ عمودی",hSpace:"فاصلهٴ افقی",border:"لبه"});

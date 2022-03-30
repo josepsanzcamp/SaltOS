@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","is",{alt:"Baklægur texti",lockRatio:"Festa stærðarhlutfall",vSpace:"Hægri bil",hSpace:"Vinstri bil",border:"Rammi"});

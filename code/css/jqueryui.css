@@ -380,11 +380,6 @@ span.number {
     right:6px;
 }
 
-/* FOR PLOTS */
-img[isplot=true] {
-    margin:2px;
-}
-
 /* FOR TOOLTIPS */
 .ui-tooltip {
     padding:5px 10px!important;

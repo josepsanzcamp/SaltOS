@@ -268,32 +268,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <fields include="xml/common/filters.xml" replace="true" />
             <buttons include="xml/common/buttonslist.xml" />
         </form>
-        <form>
-            <fields ifeval="!ismobile()">
-                <title lang="true">graficas</title>
-                <icon eval="true">ICON("plots")</icon>
-                <row>
-                    <field>
-                        <type>plot</type>
-                        <width eval="true">CONFIG("plot_list_width")."px"</width>
-                        <height eval="true">CONFIG("plot_list_height")."px"</height>
-                        <vars>1</vars>
-                        <graph>bars</graph>
-                        <title lang="true">plotseguimientoestados</title>
-                        <query eval="true">"SELECT CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE CASE WHEN LENGTH(b.nombre)>10 THEN CONCAT(SUBSTR(b.nombre,1,10),'...') ELSE b.nombre END END y0,COUNT(*) y1 FROM tbl_proyectos a LEFT JOIN tbl_estados b ON b.id=a.id_estado GROUP BY y0 ORDER BY b.pos ASC,y0 ASC"</query>
-                    </field>
-                    <field>
-                        <type>plot</type>
-                        <width eval="true">CONFIG("plot_list_width")."px"</width>
-                        <height eval="true">CONFIG("plot_list_height")."px"</height>
-                        <vars>1</vars>
-                        <graph>pie</graph>
-                        <title lang="true">plotseguimientoestados</title>
-                        <query eval="true">"SELECT CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE CASE WHEN LENGTH(b.nombre)>10 THEN CONCAT(SUBSTR(b.nombre,1,10),'...') ELSE b.nombre END END y0,COUNT(*) y1 FROM tbl_proyectos a LEFT JOIN tbl_estados b ON b.id=a.id_estado GROUP BY y0 ORDER BY b.pos ASC,y0 ASC"</query>
-                    </field>
-                </row>
-            </fields>
-        </form>
         <quick>
             <row>
                 <field>
@@ -414,7 +388,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <products_old>
                         <products_old global="id" eval="true">"SELECT *,ROUND(precio*unidades*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_p WHERE id_proyecto=".abs($id)." ORDER BY id ASC"</products_old>
                     </products_old>
-                    <graficas>SELECT '1' id</graficas>
                     <comments_old include="xml/common/qcommentsold.xml" />
                     <files_old include="xml/common/qfilesold.xml" />
                     <seguimientos>
@@ -1452,33 +1425,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
                     </tail>
                 </fieldset>
             </products_new>
-            <graficas>
-                <fieldset ifeval="!ismobile()">
-                    <title lang="true">graficas</title>
-                    <icon eval="true">ICON("plots")</icon>
-                    <row>
-                        <field>
-                            <type>plot</type>
-                            <width eval="true">CONFIG("plot_form_width")."px"</width>
-                            <height eval="true">CONFIG("plot_form_height")."px"</height>
-                            <vars>2</vars>
-                            <graph>bars</graph>
-                            <legend lang="true">legendseguimientotareas</legend>
-                            <title lang="true">plotseguimientotareas</title>
-                            <query global="id" eval="true">"SELECT CASE WHEN LENGTH(a.tarea)>10 THEN CONCAT(SUBSTR(a.tarea,1,10),'...') ELSE a.tarea END y0,a.horas y1,(SELECT CASE WHEN SUM(horas) IS NULL THEN 0 ELSE SUM(horas) END sumahoras FROM tbl_seguimientos WHERE id_tarea=a.id) y2 FROM tbl_proyectos_t a WHERE a.id_proyecto='".abs($id)."' ORDER BY a.id"</query>
-                        </field>
-                        <field>
-                            <type>plot</type>
-                            <width eval="true">CONFIG("plot_form_width")."px"</width>
-                            <height eval="true">CONFIG("plot_form_height")."px"</height>
-                            <vars>1</vars>
-                            <graph>pie</graph>
-                            <title lang="true">plotseguimientotareas</title>
-                            <query global="id" eval="true">"SELECT y0,y1+y2 y1 FROM (SELECT CASE WHEN LENGTH(a.tarea)>10 THEN CONCAT(SUBSTR(a.tarea,1,10),'...') ELSE a.tarea END y0,a.horas y1,(SELECT CASE WHEN SUM(horas) IS NULL THEN 0 ELSE SUM(horas) END sumahoras FROM tbl_seguimientos WHERE id_tarea=a.id) y2 FROM tbl_proyectos_t a WHERE a.id_proyecto='".abs($id)."' ORDER BY a.id) b"</query>
-                        </field>
-                    </row>
-                </fieldset>
-            </graficas>
             <comments_old include="xml/common/commentsold.xml"/>
             <files_old include="xml/common/filesold.xml" />
             <comments_new include="xml/common/commentnew.xml"/>

@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","id",{alt:"Teks alternatif",lockRatio:"Lock Ratio",vSpace:"VSpace",hSpace:"HSpace",border:"Batas"});

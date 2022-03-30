@@ -214,7 +214,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <query include="xml/common/qdefaultview.xml" replace="true" />
                     <comments_old include="xml/common/qcommentsold.xml"/>
                     <files_old include="xml/common/qfilesold.xml"/>
-                    <graficas>SELECT '1' id</graficas>
                     <contactos>
                         <contactos global="id,page" eval="true">"
 SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
@@ -519,32 +518,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proveedores"
                     </row>
                 </fieldset>
             </default>
-            <graficas>
-                <fieldset ifeval="!ismobile()">
-                    <title lang="true">graficas</title>
-                    <icon eval="true">ICON("plots")</icon>
-                    <row>
-                        <field>
-                            <type>plot</type>
-                            <width eval="true">CONFIG("plot_form_width")."px"</width>
-                            <height eval="true">CONFIG("plot_form_height")."px"</height>
-                            <vars>1</vars>
-                            <graph>bars</graph>
-                            <title lang="true">plotseguimiento12meses</title>
-                            <query global="id" eval="true">"SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND id_proveedor='".abs($id)."' GROUP BY xx ORDER BY xx ASC"</query>
-                        </field>
-                        <field>
-                            <type>plot</type>
-                            <width eval="true">CONFIG("plot_form_width")."px"</width>
-                            <height eval="true">CONFIG("plot_form_height")."px"</height>
-                            <vars>1</vars>
-                            <graph>pie</graph>
-                            <title lang="true">plotseguimiento12meses</title>
-                            <query global="id" eval="true">"SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND id_proveedor='".abs($id)."' GROUP BY xx ORDER BY xx ASC"</query>
-                        </field>
-                    </row>
-                </fieldset>
-            </graficas>
             <contactos include="xml/common/relatedcontacts.xml" replace="true" />
             <gastos include="xml/common/relatedgastos.xml" replace="true" />
             <comments_old include="xml/common/commentsold.xml"/>

@@ -32,20 +32,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <tip lang="true">menutip</tip>
             <class>nowrap shortcut_ctrl_m</class>
         </option>
-        <option ifeval="eval_bool(getDefault('enablecalculator'))">
-            <label lang="true">calculator</label>
-            <onclick>calculator()</onclick>
-            <icon eval="true">ICON("calculator")</icon>
-            <tip lang="true">calculatortip</tip>
-            <class>nowrap shortcut_ctrl_j</class>
-        </option>
-        <option ifeval="eval_bool(getDefault('enabletranslator'))">
-            <label eval="true">LANG(check_commands(getDefault('commands/translate'),60)?"translator":"corrector")</label>
-            <onclick>translator()</onclick>
-            <icon eval="true">ICON("translator")</icon>
-            <tip eval="true">LANG(check_commands(getDefault('commands/translate'),60)?"translatortip":"correctortip")</tip>
-            <class>nowrap shortcut_ctrl_k</class>
-        </option>
     </header>
     <header ifeval="!ismobile()">
         <temp global="rows" eval="true">$rows=execute_query_array("SELECT * FROM tbl_quick WHERE id_usuario='".current_user()."' ORDER BY id DESC")</temp>

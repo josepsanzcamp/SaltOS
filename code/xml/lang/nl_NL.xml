@@ -188,7 +188,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <todoslosproyectos>[Alle projecten]</todoslosproyectos>
         <todaslastareas>[Alle taken]</todaslastareas>
         <todaslascuentas>[Alle]</todaslascuentas>
-        <graficas>Grafieken en statistieken</graficas>
         <mail>Stuur PDF</mail>
         <mailtip>Stuur de pdf naar uw e-mailaccount</mailtip>
         <view2>PDF-viewer</view2>
@@ -234,7 +233,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <posx>X-positie</posx>
         <posy>Y-positie</posy>
         <angle>Hoek</angle>
-        <withoutinfo>Geen informatie om te vertegenwoordigen</withoutinfo>
         <sinproducto>[Zonder bijbehorend product]</sinproducto>
         <preview>Voorbeeld</preview>
         <sortasc>Oplopend sorteren (A-Z)</sortasc>
@@ -528,12 +526,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_buscador>Zoekmachine</quick_buscador>
         <quick_errorlog>Fouten</quick_errorlog>
         <quick_categorias>Categorieën</quick_categorias>
-        <translator>Vertaler</translator>
-        <translatortip>Om tekstvertalingen te doen</translatortip>
-        <corrector>Concealer</corrector>
-        <correctortip>Tekstcorrecties aanbrengen</correctortip>
-        <calculator>Rekenmachine</calculator>
-        <calculatortip>Wiskundige berekeningen uitvoeren</calculatortip>
         <menu>Menu</menu>
         <menutip>Om het toepassingsmenu te tonen en te verbergen</menutip>
     </menu>
@@ -560,7 +552,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <actasdata>Client minuten</actasdata>
         <actionliquidar>Bepaal geselecteerde onderdelen</actionliquidar>
         <msgliquidar>Wilt u de geselecteerde onderdelen liquideren?</msgliquidar>
-        <plotseguimiento12meses>Facturering van klant vorig jaar</plotseguimiento12meses>
         <cuentacorriente>Account controleren</cuentacorriente>
         <diapago>Betaal dag</diapago>
         <cuentacontable>Boekhoudkundige rekening</cuentacontable>
@@ -610,8 +601,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <horastotal>Totaal aantal uren</horastotal>
         <preciomedio>Gemiddelde prijs</preciomedio>
         <preciototal>Totale prijs</preciototal>
-        <plotseguimientotareas>Projectafwijking</plotseguimientotareas>
-        <legendseguimientotareas>Gebudgetteerde uren | Werkzame uren</legendseguimientotareas>
         <real>Echt</real>
         <diferencia>Verschil</diferencia>
         <partesopen>Onrustige onderdelen</partesopen>
@@ -630,7 +619,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <facturaclose>Facturen verzameld</facturaclose>
         <gastosdata>Uitgaven verbonden aan de klant</gastosdata>
         <documentdata>Klantdocumenten</documentdata>
-        <plotseguimientoestados>Groeperen van projecten per staat</plotseguimientoestados>
         <productosproyecto>Producten van het project</productosproyecto>
         <descproductos>Producten beschrijving</descproductos>
         <actionfacturar>Bill</actionfacturar>
@@ -666,8 +654,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgliquidar>Wilt u de geselecteerde onderdelen liquideren?</msgliquidar>
         <msgerror>U moet in de lijst de onderdelen selecteren die u wilt regelen</msgerror>
         <fechainiliq>Afgewikkelde datum</fechainiliq>
-        <plotseguimientotop10>De 10 klanten met meer delen van het afgelopen jaar</plotseguimientotop10>
-        <plotseguimiento12meses>Facturering in delen van het afgelopen jaar</plotseguimiento12meses>
     </partes>
     <usuarios>
         <list>Lijst met gebruikers</list>
@@ -780,8 +766,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <trimestreliq>Trimmen. geliquideerd</trimestreliq>
         <fechainiliq>Afgewikkelde datum</fechainiliq>
         <totalliquidar>De geliquideerde kosten bedragen in totaal:</totalliquidar>
-        <plotseguimientotop10>De 10 leveranciers met de hoogste omzet van het afgelopen jaar</plotseguimientotop10>
-        <plotseguimiento12meses>Kosten van vorig jaar</plotseguimiento12meses>
         <sinpagador>[Zonder betaler]</sinpagador>
         <vencimientos_old>Looptijd</vencimientos_old>
         <vencimientos_new>Nieuwe looptijden</vencimientos_new>
@@ -804,8 +788,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <titular>Houder</titular>
         <baseimponible>Belastbare basis</baseimponible>
         <totalapagar>Totaal te betalen</totalapagar>
-        <plotseguimientotop10>De 10 klanten met de hoogste omzet van het afgelopen jaar</plotseguimientotop10>
-        <plotseguimiento12meses>Facturering vorig jaar</plotseguimiento12meses>
         <concepts_old>Concepten</concepts_old>
         <concepts_new>Nieuwe concepten</concepts_new>
         <products_old>Producten</products_old>
@@ -890,7 +872,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <forminsert>Registratie van een nieuwe provider</forminsert>
         <formupdate>Wijziging van leverancier</formupdate>
         <defaultdata>Leveranciersgegevens</defaultdata>
-        <plotseguimiento12meses>Provider's kosten van vorig jaar</plotseguimiento12meses>
         <cuentacorriente>Account controleren</cuentacorriente>
         <cuentacontable>Boekhoudkundige rekening</cuentacontable>
         <diapago>Betaal dag</diapago>
@@ -986,11 +967,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <general>Algemeen</general>
         <title_general>Configureer enkele algemene toepassingsparameters</title_general>
         <applicationtitle>Toepassingstitel</applicationtitle>
-        <plotlistsize>Grootte van de afbeeldingen in de aanbiedingen</plotlistsize>
-        <plotformsize>Grootte van afbeeldingen in formulieren</plotformsize>
-        <small>Klein</small>
-        <medium>Gemiddeld</medium>
-        <big>Groot</big>
         <agendainterval>Zoek elke kalendermeldingen</agendainterval>
         <inboxinterval>Controleer elke keer op nieuwe e-mails</inboxinterval>
         <outboxinterval>Controleer de uitvoerlade elke keer</outboxinterval>
@@ -1071,9 +1047,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_plugins>Server plug-ins:</server_plugins>
         <vxinfo>Opmerking: (*) Sommige projecten specificeren niet de specifieke versie van de licentie die ze gebruiken</vxinfo>
         <license>Licentie</license>
-        <game>Spel</game>
         <licensetitle>Hieronder vindt u de juridische tekst van de licentie</licensetitle>
-        <gametitle>Als je dit scherm hebt bereikt, verdien je een pauze. Je kunt een beetje spelen !!!</gametitle>
         <translators>Vertalingen</translators>
         <developers>Ontwikkelaars</developers>
         <unavailable>Contactgegevens niet beschikbaar. Neem contact op met een ontwikkelaar voor vragen of suggesties.</unavailable>
@@ -1369,7 +1343,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgcrear>Wil je vanuit dit budget een project maken?</msgcrear>
         <agendadata>Budget evenementen</agendadata>
         <actasdata>Budget minuten</actasdata>
-        <plotseguimientoestados>Budgetten groeperen op staat</plotseguimientoestados>
         <resumentareasproductos>Overzicht van taken en producten</resumentareasproductos>
         <objetivospdf>Doelstellingen</objetivospdf>
         <funcionalpdf>Functioneel</funcionalpdf>
@@ -1504,18 +1477,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <deleteoffolder>Verwijderen uit deze map</deleteoffolder>
         <defaultfolder>Persoonlijke map</defaultfolder>
     </folders>
-    <translator>
-        <translator>Vertaler</translator>
-        <corrector>Concealer</corrector>
-        <es>Spaans</es>
-        <ca>Catalaans</ca>
-        <en>Engels</en>
-        <pt>Portugees</pt>
-        <eu>Baskisch</eu>
-        <gl>Galicisch</gl>
-        <fr>Frans</fr>
-        <ar>Arab</ar>
-    </translator>
     <buscador>
         <list>Zoekmachine</list>
         <todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>

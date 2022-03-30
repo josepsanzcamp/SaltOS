@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","km",{alt:"អត្ថបទជំនួស",lockRatio:"អត្រាឡុក",vSpace:"VSpace",hSpace:"គំលាតទទឹង",border:"ស៊ុម"});

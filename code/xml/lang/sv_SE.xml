@@ -188,7 +188,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <todoslosproyectos>[Alla projekt]</todoslosproyectos>
         <todaslastareas>[Alla uppgifter]</todaslastareas>
         <todaslascuentas>All]</todaslascuentas>
-        <graficas>Grafer och statistik</graficas>
         <mail>Skicka PDF</mail>
         <mailtip>Skicka PDF till ditt e-postkonto</mailtip>
         <view2>PDF-visare</view2>
@@ -234,7 +233,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <posx>X-position</posx>
         <posy>Y-position</posy>
         <angle>Vinkel</angle>
-        <withoutinfo>Ingen information att representera</withoutinfo>
         <sinproducto>[Utan tillhörande produkt]</sinproducto>
         <preview>Förhandsgranskning</preview>
         <sortasc>Sortera stigande (A-Z)</sortasc>
@@ -528,12 +526,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_buscador>Sökmotor</quick_buscador>
         <quick_errorlog>Fel</quick_errorlog>
         <quick_categorias>Kategorier</quick_categorias>
-        <translator>översättare</translator>
-        <translatortip>Att göra textöversättningar</translatortip>
-        <corrector>Korrekturläsare</corrector>
-        <correctortip>För att göra textkorrigeringar</correctortip>
-        <calculator>Kalkylator</calculator>
-        <calculatortip>Att göra matematiska beräkningar</calculatortip>
         <menu>Meny</menu>
         <menutip>Visa och dölja applikationsmenyn</menutip>
     </menu>
@@ -560,7 +552,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <actasdata>Klientminuter</actasdata>
         <actionliquidar>Justera valda delar</actionliquidar>
         <msgliquidar>Vill du likvidera de valda delarna?</msgliquidar>
-        <plotseguimiento12meses>Kundens fakturering förra året</plotseguimiento12meses>
         <cuentacorriente>Kontrollerar konto</cuentacorriente>
         <diapago>Betala dag</diapago>
         <cuentacontable>Redovisningskonto</cuentacontable>
@@ -610,8 +601,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <horastotal>Totalt antal timmar</horastotal>
         <preciomedio>Genomsnittligt pris</preciomedio>
         <preciototal>Totalt pris</preciototal>
-        <plotseguimientotareas>Projektavvikelse</plotseguimientotareas>
-        <legendseguimientotareas>Budgeterade timmar | Anställda timmar</legendseguimientotareas>
         <real>Real</real>
         <diferencia>Skillnad</diferencia>
         <partesopen>Oupprättade delar</partesopen>
@@ -630,7 +619,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <facturaclose>Fakturor samlade in</facturaclose>
         <gastosdata>Kostnader kopplade till klienten</gastosdata>
         <documentdata>Kunddokument</documentdata>
-        <plotseguimientoestados>Gruppera projekt efter stat</plotseguimientoestados>
         <productosproyecto>Produkter från projektet</productosproyecto>
         <descproductos>Produktbeskrivning</descproductos>
         <actionfacturar>Räkning</actionfacturar>
@@ -666,8 +654,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgliquidar>Vill du likvidera de valda delarna?</msgliquidar>
         <msgerror>Du måste välja de delar du vill lösa i listan</msgerror>
         <fechainiliq>Avgjort datum</fechainiliq>
-        <plotseguimientotop10>De tio kunderna med fler delar av det senaste året</plotseguimientotop10>
-        <plotseguimiento12meses>Fakturering i delar av det senaste året</plotseguimiento12meses>
     </partes>
     <usuarios>
         <list>Lista över användare</list>
@@ -780,8 +766,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <trimestreliq>Trim. avvecklas</trimestreliq>
         <fechainiliq>Avgjort datum</fechainiliq>
         <totalliquidar>De likviderade kostnaderna uppgår till totalt:</totalliquidar>
-        <plotseguimientotop10>De tio leverantörerna med den högsta omsättningen under det senaste året</plotseguimientotop10>
-        <plotseguimiento12meses>Förra årets utgifter</plotseguimiento12meses>
         <sinpagador>[Utan betalare]</sinpagador>
         <vencimientos_old>Löptider</vencimientos_old>
         <vencimientos_new>Nya löptider</vencimientos_new>
@@ -804,8 +788,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <titular>Rubrik</titular>
         <baseimponible>Skattepliktig bas</baseimponible>
         <totalapagar>Totalt att betala</totalapagar>
-        <plotseguimientotop10>De tio kunderna med den högsta omsättningen under det senaste året</plotseguimientotop10>
-        <plotseguimiento12meses>Förra året fakturering</plotseguimiento12meses>
         <concepts_old>Begrepp</concepts_old>
         <concepts_new>Nya koncept</concepts_new>
         <products_old>Producerar</products_old>
@@ -890,7 +872,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <forminsert>Registrering av en ny leverantör</forminsert>
         <formupdate>Leverantörsändring</formupdate>
         <defaultdata>Leverantörsinformation</defaultdata>
-        <plotseguimiento12meses>Leverantörens förra årskostnader</plotseguimiento12meses>
         <cuentacorriente>Kontrollerar konto</cuentacorriente>
         <cuentacontable>Redovisningskonto</cuentacontable>
         <diapago>Betala dag</diapago>
@@ -986,11 +967,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <general>Allmänna</general>
         <title_general>Konfigurera några allmänna applikationsparametrar</title_general>
         <applicationtitle>Applikationens titel</applicationtitle>
-        <plotlistsize>Storleken på grafiken i listorna</plotlistsize>
-        <plotformsize>Storlek på grafik i former</plotformsize>
-        <small>Liten</small>
-        <medium>Medium</medium>
-        <big>Bra</big>
         <agendainterval>Sök kalenderaviseringar varje</agendainterval>
         <inboxinterval>Sök efter nya e-postmeddelanden varje</inboxinterval>
         <outboxinterval>Kontrollera utmatningsfacket varje</outboxinterval>
@@ -1071,9 +1047,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_plugins>Server plugins:</server_plugins>
         <vxinfo>Obs: (*) Vissa projekt anger inte den specifika versionen av den licens de använder</vxinfo>
         <license>Licens</license>
-        <game>Spel</game>
         <licensetitle>Nedan visas den lagliga texten på licensen</licensetitle>
-        <gametitle>Om du har nått den här skärmen förtjänar du en paus. Du kan spela lite !!!</gametitle>
         <translators>översättningar</translators>
         <developers>Utvecklare</developers>
         <unavailable>Kontaktuppgifter är inte tillgängliga. Kontakta en utvecklare för frågor eller förslag.</unavailable>
@@ -1369,7 +1343,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgcrear>Vill du skapa ett projekt från denna budget?</msgcrear>
         <agendadata>Budgethändelser</agendadata>
         <actasdata>Budgetminuter</actasdata>
-        <plotseguimientoestados>Gruppera budgetar efter stat</plotseguimientoestados>
         <resumentareasproductos>Sammanfattning av uppgifter och produkter</resumentareasproductos>
         <objetivospdf>See also  objetivo</objetivospdf>
         <funcionalpdf>Funktionell</funcionalpdf>
@@ -1504,18 +1477,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <deleteoffolder>Ta bort från den här mappen</deleteoffolder>
         <defaultfolder>Personlig mapp</defaultfolder>
     </folders>
-    <translator>
-        <translator>översättare</translator>
-        <corrector>Korrekturläsare</corrector>
-        <es>Spanska</es>
-        <ca>Katalanska</ca>
-        <en>Engelska</en>
-        <pt>Portugisiska</pt>
-        <eu>Euskera</eu>
-        <gl>Galiciska</gl>
-        <fr>Franska</fr>
-        <ar>Arabiska</ar>
-    </translator>
     <buscador>
         <list>Sökmotor</list>
         <todaslasaplicaciones>[Alla applikationer]</todaslasaplicaciones>

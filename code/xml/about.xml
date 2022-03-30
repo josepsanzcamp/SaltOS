@@ -316,19 +316,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
                         </field>
                         <field>
-                            <label>PHPLOT 6.2.0 (LGPL-2.1)</label>
-                            <type>link</type>
-                            <class>tbody</class>
-                            <onclick>openwin("http://sourceforge.net/projects/phplot/")</onclick>
-                        </field>
-                    </row>
-                    <row>
-                        <field>
                             <label>PHP Mobile Detect 2.8.36 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
                         </field>
+                    </row>
+                    <row>
                         <field>
                             <label>MimeParser 1.96 (BSD)</label>
                             <type>link</type>
@@ -347,14 +341,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <class>tbody</class>
                             <onclick>openwin("http://www.phpclasses.org/package/2-PHP-Access-to-e-mail-mailboxes-using-the-POP3-protocol.html")</onclick>
                         </field>
-                    </row>
-                    <row>
                         <field>
                             <label>ZIP/TAR Archives 2.1 (BSD &amp; GPL)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.phpclasses.org/package/945-PHP-Create-tar-gzip-bzip2-zip-extract-tar-gzip-bzip2-.html")</onclick>
                         </field>
+                    </row>
+                    <row>
                         <field>
                             <label>WordPress 2.9 (GPL-2.0)</label>
                             <type>link</type>
@@ -373,14 +367,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <class>tbody</class>
                             <onclick>openwin("http://www.openwall.com/phpass/")</onclick>
                         </field>
-                    </row>
-                    <row>
                         <field>
                             <label>Password Strength 1.0.0 (GPL-3.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
                         </field>
+                    </row>
+                    <row>
                         <field>
                             <label>RoundCubeMail 1.5.2 (GPL-3.0)</label>
                             <type>link</type>
@@ -399,20 +393,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <class>tbody</class>
                             <onclick>openwin("http://www.phpclasses.org/package/3-PHP-HTTP-client-to-access-Web-site-pages.html")</onclick>
                         </field>
-                    </row>
-                    <row>
-                        <field>
-                            <label>GeSHi 1.0.9.1 (GPL)</label>
-                            <type>link</type>
-                            <class>tbody</class>
-                            <onclick>openwin("https://github.com/GeSHi/geshi-1.0/")</onclick>
-                        </field>
                         <field>
                             <label>Google API PHP Client v2.11 (ASL-2.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/googleapis/google-api-php-client")</onclick>
                         </field>
+                    </row>
+                    <row>
                         <field>
                             <label>EDIFACT 0.5.1 (LGPL-3.0)</label>
                             <type>link</type>
@@ -422,7 +410,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         <field>
                             <type>separator</type>
                             <class>tbody</class>
-                            <colspan>1</colspan>
+                            <colspan>3</colspan>
                         </field>
                     </row>
                     <row>
@@ -602,25 +590,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
                         </field>
                         <field>
-                            <label>Bouncing Beholder 2012 (ZLib/LibPNG)</label>
-                            <type>link</type>
-                            <class>tbody</class>
-                            <onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
-                        </field>
-                        <field>
-                            <label>timbre.js 14.11.25 (MIT)</label>
-                            <type>link</type>
-                            <class>tbody</class>
-                            <onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
-                        </field>
-                        <field>
                             <label>CKEditor 4.18.0 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://ckeditor.com/")</onclick>
                         </field>
-                    </row>
-                    <row>
                         <field>
                             <label>CodeMirror v5.65.2 (MIT)</label>
                             <type>link</type>
@@ -632,11 +606,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/imaya/zlib.js")</onclick>
-                        </field>
-                        <field>
-                            <type>separator</type>
-                            <class>tbody</class>
-                            <colspan>2</colspan>
                         </field>
                     </row>
                     <row>
@@ -698,20 +667,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://www.imagemagick.org/")</onclick>
                         </field>
                         <field>
-                            <label>Aspell 0.60.6 (GPL-2.0, LGPL-2.0 &amp; BSD)</label>
-                            <type>link</type>
-                            <class>tbody</class>
-                            <onclick>openwin("http://aspell.net/")</onclick>
-                        </field>
-                        <field>
-                            <label>Libtranslate 0.99 (BSD)</label>
-                            <type>link</type>
-                            <class>tbody</class>
-                            <onclick>openwin("http://www.nongnu.org/libtranslate/")</onclick>
-                        </field>
-                    </row>
-                    <row>
-                        <field>
                             <label>Tesseract OCR 3.04 (ASL-2.0)</label>
                             <type>link</type>
                             <class>tbody</class>
@@ -723,6 +678,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <class>tbody</class>
                             <onclick>openwin("http://poppler.freedesktop.org/")</onclick>
                         </field>
+                    </row>
+                    <row>
                         <field>
                             <label>wkhtmltopdf 0.12.4 (GPLv3+)</label>
                             <type>link</type>
@@ -734,6 +691,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/brechtsanders/xlsxio/")</onclick>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <class>tbody</class>
+                            <colspan>2</colspan>
                         </field>
                     </row>
                     <row>
@@ -786,31 +748,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <height>240px</height>
                             <readonly>true</readonly>
                             <class3>ascii</class3>
-                        </field>
-                    </row>
-                </fieldset>
-                <fieldset ifeval="!ismobile()">
-                    <title lang="true">game</title>
-                    <icon eval="true">ICON("about")</icon>
-                    <row>
-                        <field>
-                            <label lang="true">gametitle</label>
-                            <type>label</type>
-                            <class>left bold</class>
-                        </field>
-                    </row>
-                    <row>
-                        <field>
-                            <type>separator</type>
-                        </field>
-                    </row>
-                    <row>
-                        <field>
-                            <name>game</name>
-                            <type>iframe</type>
-                            <value eval="true">"?action=game&amp;r=".getDefault("info/revision")</value>
-                            <width>800px</width>
-                            <height>240px</height>
                         </field>
                     </row>
                 </fieldset>

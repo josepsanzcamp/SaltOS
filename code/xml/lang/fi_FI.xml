@@ -188,7 +188,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <todoslosproyectos>[Kaikki projektit]</todoslosproyectos>
         <todaslastareas>[Kaikki tehtävät]</todaslastareas>
         <todaslascuentas>Kaikki]</todaslascuentas>
-        <graficas>Kaaviot ja tilastot</graficas>
         <mail>Lähetä PDF</mail>
         <mailtip>Lähetä PDF sähköpostitilillesi</mailtip>
         <view2>PDF-katseluohjelma</view2>
@@ -234,7 +233,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <posx>X-asema</posx>
         <posy>Y-asema</posy>
         <angle>Kulma</angle>
-        <withoutinfo>Ei tietoa edustaa</withoutinfo>
         <sinproducto>[Ilman liittyvää tuotetta]</sinproducto>
         <preview>Esikatselu</preview>
         <sortasc>Lajittele nousevasti (A-Z)</sortasc>
@@ -528,12 +526,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_buscador>Hakukone</quick_buscador>
         <quick_errorlog>Virheitä</quick_errorlog>
         <quick_categorias>Luokat</quick_categorias>
-        <translator>Kääntäjä</translator>
-        <translatortip>Tekstin käännösten tekeminen</translatortip>
-        <corrector>Korjauslukija</corrector>
-        <correctortip>Tekstin korjaamiseksi</correctortip>
-        <calculator>Laskin</calculator>
-        <calculatortip>Matemaattisten laskelmien tekeminen</calculatortip>
         <menu>Valikko</menu>
         <menutip>Sovellusvalikon näyttäminen ja piilottaminen</menutip>
     </menu>
@@ -560,7 +552,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <actasdata>Asiakkaan minuutit</actasdata>
         <actionliquidar>Määritä valitut osat</actionliquidar>
         <msgliquidar>Haluatko selvittää valitut osat?</msgliquidar>
-        <plotseguimiento12meses>Asiakkaan viime vuoden laskutus</plotseguimiento12meses>
         <cuentacorriente>Tili tarkistetaan</cuentacorriente>
         <diapago>Palkkapäivä</diapago>
         <cuentacontable>Kirjanpito-tili</cuentacontable>
@@ -610,8 +601,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <horastotal>Tuntia yhteensä</horastotal>
         <preciomedio>Keskimääräinen hinta</preciomedio>
         <preciototal>Kokonaishinta</preciototal>
-        <plotseguimientotareas>Projektin poikkeama</plotseguimientotareas>
-        <legendseguimientotareas>Budjetoidut tunnit | Työtunnit</legendseguimientotareas>
         <real>Real</real>
         <diferencia>Ero</diferencia>
         <partesopen>Ratkaisemattomat osat</partesopen>
@@ -630,7 +619,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <facturaclose>Laskut kerätty</facturaclose>
         <gastosdata>Asiakkaaseen liittyvät kulut</gastosdata>
         <documentdata>Asiakirjat</documentdata>
-        <plotseguimientoestados>Ryhmittelevät hankkeet valtion mukaan</plotseguimientoestados>
         <productosproyecto>Projektin tuotteet</productosproyecto>
         <descproductos>Tuotteiden kuvaus</descproductos>
         <actionfacturar>Lasku</actionfacturar>
@@ -666,8 +654,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgliquidar>Haluatko selvittää valitut osat?</msgliquidar>
         <msgerror>Sinun on valittava luettelossa osat, jotka haluat asettaa</msgerror>
         <fechainiliq>Varattu päivämäärä</fechainiliq>
-        <plotseguimientotop10>10 asiakasta, joilla on enemmän osia viime vuodesta</plotseguimientotop10>
-        <plotseguimiento12meses>Laskutus osista viime vuodesta</plotseguimiento12meses>
     </partes>
     <usuarios>
         <list>Käyttäjäluettelo</list>
@@ -780,8 +766,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <trimestreliq>Leikata. selvitystilaan</trimestreliq>
         <fechainiliq>Varattu päivämäärä</fechainiliq>
         <totalliquidar>Maksatut kulut ovat yhteensä:</totalliquidar>
-        <plotseguimientotop10>Kymmenen toimittajaa, joiden liikevaihto on viime vuonna korkein</plotseguimientotop10>
-        <plotseguimiento12meses>Viime vuoden kulut</plotseguimiento12meses>
         <sinpagador>[Ilman maksajaa]</sinpagador>
         <vencimientos_old>Erääntyminen</vencimientos_old>
         <vencimientos_new>Uudet maturiteetit</vencimientos_new>
@@ -804,8 +788,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <titular>Otsikko</titular>
         <baseimponible>Verotettava perusta</baseimponible>
         <totalapagar>Maksettava yhteensä</totalapagar>
-        <plotseguimientotop10>Kymmenen asiakasta, joilla on viime vuoden suurin liikevaihto</plotseguimientotop10>
-        <plotseguimiento12meses>Viime vuoden laskutus</plotseguimiento12meses>
         <concepts_old>Käsitteet</concepts_old>
         <concepts_new>Uudet käsitteet</concepts_new>
         <products_old>Tuottaa</products_old>
@@ -890,7 +872,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <forminsert>Uuden palveluntarjoajan rekisteröinti</forminsert>
         <formupdate>Toimittajan muutos</formupdate>
         <defaultdata>Toimittajan tiedot</defaultdata>
-        <plotseguimiento12meses>Palveluntarjoajan viime vuoden kulut</plotseguimiento12meses>
         <cuentacorriente>Tili tarkistetaan</cuentacorriente>
         <cuentacontable>Kirjanpito-tili</cuentacontable>
         <diapago>Palkkapäivä</diapago>
@@ -986,11 +967,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <general>Yleinen</general>
         <title_general>Määritä joitain yleisiä sovellusparametreja</title_general>
         <applicationtitle>Sovelluksen otsikko</applicationtitle>
-        <plotlistsize>Listausten grafiikan koko</plotlistsize>
-        <plotformsize>Grafiikan koko lomakkeissa</plotformsize>
-        <small>Pieni</small>
-        <medium>Keskikokoinen</medium>
-        <big>Suuri</big>
         <agendainterval>Etsi kalenteri-ilmoituksia jokaisesta</agendainterval>
         <inboxinterval>Tarkista, onko uusia sähköposteja jokaisesta</inboxinterval>
         <outboxinterval>Tarkista tulostelokero jokainen</outboxinterval>
@@ -1071,9 +1047,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_plugins>Palvelimen laajennukset:</server_plugins>
         <vxinfo>Huomaa: (*) Jotkut projektit eivät määrittele käyttämänsä käyttöoikeuden tiettyä versiota</vxinfo>
         <license>Lisenssi</license>
-        <game>Peli</game>
         <licensetitle>Alla on lisenssin laillinen teksti</licensetitle>
-        <gametitle>Jos olet saavuttanut tämän näytön, ansaitset tauon. Voit pelata vähän !!!</gametitle>
         <translators>Käännökset</translators>
         <developers>Kehittäjät</developers>
         <unavailable>Yhteystietoja ei ole saatavana. Ota yhteyttä kehittäjään saadaksesi kysymyksiä tai ehdotuksia.</unavailable>
@@ -1369,7 +1343,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgcrear>Haluatko luoda projektin tästä budjetista?</msgcrear>
         <agendadata>Budjettitapahtumat</agendadata>
         <actasdata>Budjetin minuutit</actasdata>
-        <plotseguimientoestados>Budjettien ryhmittely valtion mukaan</plotseguimientoestados>
         <resumentareasproductos>Yhteenveto tehtävistä ja tuotteista</resumentareasproductos>
         <objetivospdf>Tavoitteet</objetivospdf>
         <funcionalpdf>Toiminnallinen</funcionalpdf>
@@ -1504,18 +1477,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <deleteoffolder>Poista tästä kansiosta</deleteoffolder>
         <defaultfolder>Henkilökohtainen kansio</defaultfolder>
     </folders>
-    <translator>
-        <translator>Kääntäjä</translator>
-        <corrector>Korjauslukija</corrector>
-        <es>Espanjalainen</es>
-        <ca>Katalaani</ca>
-        <en>Englanti</en>
-        <pt>Portugali</pt>
-        <eu>Euskera</eu>
-        <gl>Galician</gl>
-        <fr>Ranskalainen</fr>
-        <ar>Arabialainen</ar>
-    </translator>
     <buscador>
         <list>Hakukone</list>
         <todaslasaplicaciones>[Kaikki sovellukset]</todaslasaplicaciones>

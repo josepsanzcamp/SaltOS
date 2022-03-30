@@ -188,7 +188,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <todoslosproyectos>[جميع المشاريع]</todoslosproyectos>
         <todaslastareas>[جميع المهام]</todaslastareas>
         <todaslascuentas>[الكل]</todaslascuentas>
-        <graficas>الرسومات والإحصاءات</graficas>
         <mail>ارسال PDF</mail>
         <mailtip>ارسال ك PDF to لبريدك الالكتروني</mailtip>
         <view2>عارض الPDF </view2>
@@ -234,7 +233,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <posx>الموضع X</posx>
         <posy>الموضع Y</posy>
         <angle>الزاوية</angle>
-        <withoutinfo>العرض غير معروف </withoutinfo>
         <sinproducto>[لايوجد منتج ذو علاقة]</sinproducto>
         <preview>عرض</preview>
         <sortasc>ترتيب تصاعدي (A-Z)</sortasc>
@@ -528,12 +526,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_buscador>بحث</quick_buscador>
         <quick_errorlog>الاخطاء</quick_errorlog>
         <quick_categorias>فئات</quick_categorias>
-        <translator>المترجم</translator>
-        <translatortip>للقيام بترجمات النص</translatortip>
-        <corrector>مدقق الإملائي</corrector>
-        <correctortip>لإجراء تصحيحات النص</correctortip>
-        <calculator>الحاسبة</calculator>
-        <calculatortip>للقيام بحسابات رياضية</calculatortip>
         <menu>القائمة</menu>
         <menutip>لاظهار واخفاء قائمة التطبيق</menutip>
     </menu>
@@ -560,7 +552,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <actasdata>محاضر الزبائن</actasdata>
         <actionliquidar>تسوية الأطراف المحددة</actionliquidar>
         <msgliquidar>هل تريد مسح الاجزاء المحددة؟</msgliquidar>
-        <plotseguimiento12meses>تحقق من السنة الماضية للعميل</plotseguimiento12meses>
         <cuentacorriente>الحساب الحالي</cuentacorriente>
         <diapago>يوم الدفع</diapago>
         <cuentacontable>حساب دفتر الاستاذ</cuentacontable>
@@ -610,8 +601,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <horastotal>اجمالي الساعات</horastotal>
         <preciomedio>المتوسط</preciomedio>
         <preciototal>اجمالي السعر</preciototal>
-        <plotseguimientotareas>تحاويل المشروع</plotseguimientotareas>
-        <legendseguimientotareas>ساعات الميزانية | ساعات العمل</legendseguimientotareas>
         <real>العقارات</real>
         <diferencia>الفارق</diferencia>
         <partesopen>الاجزاء غير المسددة</partesopen>
@@ -630,7 +619,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <facturaclose>فواتير مستحقة</facturaclose>
         <gastosdata>التكاليف المرتبطة بالزبون</gastosdata>
         <documentdata>مستندات الزبون</documentdata>
-        <plotseguimientoestados>تجميع المشاريع بالولايات "او الدول"</plotseguimientoestados>
         <productosproyecto>مخرجات المشروع</productosproyecto>
         <descproductos>وصف المنتج</descproductos>
         <actionfacturar>الفاتورة</actionfacturar>
@@ -666,8 +654,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgliquidar>هل تريد حذف الاجزاء المحددة؟</msgliquidar>
         <msgerror>يجب ان تحدد اﻷجزاء التي تود تسويتها من القائمة</msgerror>
         <fechainiliq>تاريخ التصفية</fechainiliq>
-        <plotseguimientotop10>10 عملاء مع أجزاء أكثر من العام الماضي</plotseguimientotop10>
-        <plotseguimiento12meses>الفواتير خلال العام الماضي</plotseguimiento12meses>
     </partes>
     <usuarios>
         <list>قائمة المستخدمين</list>
@@ -780,8 +766,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <trimestreliq>تقصليص تسوية</trimestreliq>
         <fechainiliq>تاريخ التصفية</fechainiliq>
         <totalliquidar>مجموع  مصاريف التصفية </totalliquidar>
-        <plotseguimientotop10>10 موردين مع زيادة حجم التداول في العام السابق</plotseguimientotop10>
-        <plotseguimiento12meses>نفقات العام الماضي</plotseguimiento12meses>
         <sinpagador>[بدون دفع]</sinpagador>
         <vencimientos_old>الاستحقاق</vencimientos_old>
         <vencimientos_new>إستحقاق جديد</vencimientos_new>
@@ -804,8 +788,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <titular>البانر</titular>
         <baseimponible>قاعدة الضريبة</baseimponible>
         <totalapagar>المجموع الواجب دفعه</totalapagar>
-        <plotseguimientotop10>اكبر 10 عملاء ذو عائدات عالة في العام السابق</plotseguimientotop10>
-        <plotseguimiento12meses>تحقق من العام الماضي</plotseguimiento12meses>
         <concepts_old>المفاهيم</concepts_old>
         <concepts_new>مفاهيم جديدة</concepts_new>
         <products_old>المنتجات</products_old>
@@ -890,7 +872,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <forminsert>إضافة مورد جديد</forminsert>
         <formupdate>تغير المورد</formupdate>
         <defaultdata>تفاصيل الموفر</defaultdata>
-        <plotseguimiento12meses>نفقات الموفر العام الماضي</plotseguimiento12meses>
         <cuentacorriente>الحساب الحالي</cuentacorriente>
         <cuentacontable>حساب المحاسبة</cuentacontable>
         <diapago>يوم الدفع</diapago>
@@ -986,11 +967,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <general>عام</general>
         <title_general>قم بتهيئة البرمترات العمة للتطبيقة</title_general>
         <applicationtitle>عنوان التطبيق</applicationtitle>
-        <plotlistsize> حجم الرسومات على القوائم </plotlistsize>
-        <plotformsize> حجم الرسومات على النموذج</plotformsize>
-        <small>صغير</small>
-        <medium>متوسط</medium>
-        <big>كبير</big>
         <agendainterval>ابحث في اشعارات التقويم كل </agendainterval>
         <inboxinterval>تحقق من وجود بريد جديد كل</inboxinterval>
         <outboxinterval>تحقق من حاوية الإخراج كل</outboxinterval>
@@ -1071,9 +1047,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_plugins>اضافات الخادم:</server_plugins>
         <vxinfo>ملحوظة: (*) بعض المشاريع لاتستخدم رخصة معينة</vxinfo>
         <license>الرخصة </license>
-        <game>لعبة</game>
         <licensetitle>أدناه النص القانوني للترخيص </licensetitle>
-        <gametitle>إذا كنت قد وصلت هذه الشاشة، فأنت تستحق استراحة. يمكنك ان تلعب قليلا!!!</gametitle>
         <translators>الترجمات</translators>
         <developers>المطورين</developers>
         <unavailable>معلومات الاتصال غير متوفرة. اتصل بالمطور لأية استفسارات أو أسئلة اواقتراحات..</unavailable>
@@ -1369,7 +1343,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgcrear>هل تريد انشاء مشروع جديد علي هذه الموازنة؟</msgcrear>
         <agendadata>أحداث الموازنة</agendadata>
         <actasdata>الوقائع علي الموازنة</actasdata>
-        <plotseguimientoestados>ارتباط الموازنات بالدولة</plotseguimientoestados>
         <resumentareasproductos>ملخص المهام والمنتجات</resumentareasproductos>
         <objetivospdf>الأهداف</objetivospdf>
         <funcionalpdf>الوظيفي</funcionalpdf>
@@ -1504,18 +1477,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <deleteoffolder>حذف هذا الدليل</deleteoffolder>
         <defaultfolder>الدليل الشخصي</defaultfolder>
     </folders>
-    <translator>
-        <translator>المترجم</translator>
-        <corrector>مدقق الإملائي</corrector>
-        <es>الإسبانية</es>
-        <ca>الكتالانية</ca>
-        <en>الإنكليزية</en>
-        <pt>البرتغالية</pt>
-        <eu>أوسكرا</eu>
-        <gl>جاليجو</gl>
-        <fr>الفرنسية</fr>
-        <ar>العربية</ar>
-    </translator>
     <buscador>
         <list>بحث</list>
         <todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>

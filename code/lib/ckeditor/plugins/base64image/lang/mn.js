@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","mn",{alt:"Зургийг орлох бичвэр",lockRatio:"Радио түгжих",vSpace:"Босоо зай",hSpace:"Хөндлөн зай",border:"Хүрээ"});

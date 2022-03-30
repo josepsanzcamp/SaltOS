@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("base64image","ka",{alt:"სანაცვლო ტექსტი",lockRatio:"პროპორციის შენარჩუნება",vSpace:"ჰორიზონტალური სივრცე",hSpace:"ვერტიკალური სივრცე",border:"ჩარჩო"});

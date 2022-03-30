@@ -188,7 +188,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <todoslosproyectos>[Tous les projets]</todoslosproyectos>
         <todaslastareas>[Toutes les tâches]</todaslastareas>
         <todaslascuentas>[Tous]</todaslascuentas>
-        <graficas>Graphisme et statistiques</graficas>
         <mail>Envoyer un PDF</mail>
         <mailtip>Envoyer le fichier PDF à votre compte de messagerie</mailtip>
         <view2>Visualiser le PDF</view2>
@@ -234,7 +233,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <posx>Position X</posx>
         <posy>Position Y</posy>
         <angle>angle</angle>
-        <withoutinfo>inconnue pour représenter</withoutinfo>
         <sinproducto>[Aucun produit associé]</sinproducto>
         <preview>Aperçu</preview>
         <sortasc>Tri croissant (de A à Z)</sortasc>
@@ -528,12 +526,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_buscador>Recherche</quick_buscador>
         <quick_errorlog>Erreurs</quick_errorlog>
         <quick_categorias>Les catégories</quick_categorias>
-        <translator>Traducteur</translator>
-        <translatortip>Pour faire des traductions de texte</translatortip>
-        <corrector>Orthographe</corrector>
-        <correctortip>Pour faire des corrections de texte</correctortip>
-        <calculator>Calculateur</calculator>
-        <calculatortip>Pour faire des calculs mathématiques</calculatortip>
         <menu>Menu</menu>
         <menutip>Pour afficher et masquer le menu de l'application</menutip>
     </menu>
@@ -560,7 +552,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <actasdata>Procès-verbal à la clientèle</actasdata>
         <actionliquidar>Parties sélectionnées</actionliquidar>
         <msgliquidar>Voulez effacer les parties sélectionnées?</msgliquidar>
-        <plotseguimiento12meses>Vérifiez la dernière année du client</plotseguimiento12meses>
         <cuentacorriente>compte relié au grand livre</cuentacorriente>
         <diapago>salaire</diapago>
         <cuentacontable>Comptable compte</cuentacontable>
@@ -610,8 +601,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <horastotal>Heures Total</horastotal>
         <preciomedio>Moyenne</preciomedio>
         <preciototal>Prix total</preciototal>
-        <plotseguimientotareas>Diversion du projet</plotseguimientotareas>
-        <legendseguimientotareas>Heures  budgétisé | Heures employés</legendseguimientotareas>
         <real>réel</real>
         <diferencia>Différence</diferencia>
         <partesopen>Pièces non réglés</partesopen>
@@ -630,7 +619,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <facturaclose>Facturation chargée</facturaclose>
         <gastosdata>Coûts associés avec le client</gastosdata>
         <documentdata>Documents à la clientèle</documentdata>
-        <plotseguimientoestados>Groupement des projets par l'état</plotseguimientoestados>
         <productosproyecto>Résultats du projet</productosproyecto>
         <descproductos>Description du produit</descproductos>
         <actionfacturar>Produire facture</actionfacturar>
@@ -666,8 +654,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgliquidar>voulez effacer les parties sélectionnées? </msgliquidar>
         <msgerror>doit sélectionner les parties que vous voulez à s'installer dans la liste</msgerror>
         <fechainiliq>Date de fin</fechainiliq>
-        <plotseguimientotop10>10 clients avec plusieurs parties de l'année dernière</plotseguimientotop10>
-        <plotseguimiento12meses>Facturation cours de l'année dernière</plotseguimiento12meses>
     </partes>
     <usuarios>
         <list>Liste des utilisateurs</list>
@@ -780,8 +766,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <trimestreliq>Trimestre. liquidité</trimestreliq>
         <fechainiliq>Date liquidité </fechainiliq>
         <totalliquidar>dépenses liquidées totalisant</totalliquidar>
-        <plotseguimientotop10>10 fournisseurs à l'année dernière le chiffre d'affaires a augmenté</plotseguimientotop10>
-        <plotseguimiento12meses>Dépenses de l'année dernière</plotseguimiento12meses>
         <sinpagador>[Sans payer]</sinpagador>
         <vencimientos_old>échéance</vencimientos_old>
         <vencimientos_new>nouvelle maturité</vencimientos_new>
@@ -804,8 +788,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <titular>bannière</titular>
         <baseimponible>base imposable</baseimponible>
         <totalapagar>Total à payer</totalapagar>
-        <plotseguimientotop10>10 clients dans plus de revenus l'année dernière</plotseguimientotop10>
-        <plotseguimiento12meses>Vérifier l'année dernière</plotseguimiento12meses>
         <concepts_old>Concepts</concepts_old>
         <concepts_new>concepts Nouveau</concepts_new>
         <products_old>produits</products_old>
@@ -890,7 +872,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <forminsert>Ajouté un nouveau fournisseur</forminsert>
         <formupdate>changement de fournisseur</formupdate>
         <defaultdata> Détails fournisseur</defaultdata>
-        <plotseguimiento12meses>Dépenses fournisseur de l'année dernière</plotseguimiento12meses>
         <cuentacorriente>compte courant</cuentacorriente>
         <cuentacontable>comptable compte</cuentacontable>
         <diapago>salaire</diapago>
@@ -986,11 +967,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <general>général</general>
         <title_general>Configurer les paramètres générale de l'application</title_general>
         <applicationtitle>Titre de l'application </applicationtitle>
-        <plotlistsize>Taille des graphiques sur les listes</plotlistsize>
-        <plotformsize>Taille des graphiques en forme</plotformsize>
-        <small>petits</small>
-        <medium>Moyen</medium>
-        <big>Grande</big>
         <agendainterval>Rechercher pour les notifications de calendrier chaque</agendainterval>
         <inboxinterval>Vérifiez de courrier toutes les</inboxinterval>
         <outboxinterval>Vérifiez le bac de sortie tous les</outboxinterval>
@@ -1071,9 +1047,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_plugins>Extensions Serveurs:</server_plugins>
         <vxinfo>Note: (*) Certains projets ne précisent pas la version spécifique de la licence d'utilisation</vxinfo>
         <license> Licence</license>
-        <game>Jeu</game>
         <licensetitle>ci-dessous montre le texte légal de la licence</licensetitle>
-        <gametitle>Si vous avez atteint cet écran, vous méritez une pause. Vous pouvez jouer un peu gametitle !!!</gametitle>
         <translators>traductions</translators>
         <developers>Développeurs</developers>
         <unavailable>Coordonnées pas disponibles. Contactez un développeur pour toutes les requêtes des questions ou suggestions.</unavailable>
@@ -1369,7 +1343,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgcrear>Envie de créer un projet de ce budget?</msgcrear>
         <agendadata>Événement budget</agendadata>
         <actasdata>Actes du budget</actasdata>
-        <plotseguimientoestados>Association  des budgets par l'état</plotseguimientoestados>
         <resumentareasproductos>Résumé  des tâches et des produits</resumentareasproductos>
         <objetivospdf>Objectifs</objetivospdf>
         <funcionalpdf>fonctionnelle</funcionalpdf>
@@ -1504,18 +1477,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <deleteoffolder>Supprimer ce dossier</deleteoffolder>
         <defaultfolder>Dossier Personnel</defaultfolder>
     </folders>
-    <translator>
-        <translator>Traduction</translator>
-        <corrector>Orthographe</corrector>
-        <es>Spanish</es>
-        <ca>Catalan</ca>
-        <en>English</en>
-        <pt>Portuguese</pt>
-        <eu>Euskera</eu>
-        <gl>Gallego</gl>
-        <fr>French</fr>
-        <ar>Show more     arabe</ar>
-    </translator>
     <buscador>
         <list>Rechercher</list>
         <todaslasaplicaciones>[Toutes les demandes]</todaslasaplicaciones>
