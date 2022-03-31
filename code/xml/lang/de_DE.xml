@@ -355,10 +355,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sentfromsaltos>E-Mail wurde mit SaltOS versandt</sentfromsaltos>
         <foldersdata>Ordner</foldersdata>
         <loweradd>hinzufügen</loweradd>
-        <notify>Benachrichtigungen</notify>
         <help>Hilfe</help>
-        <desktoptip>Desktop-Benachrichtigungen aktivieren</desktoptip>
-        <desktoptxt>Desktop-Benachrichtigungen aktiviert</desktoptxt>
         <selectallcheckbox>Alle auswählen</selectallcheckbox>
         <selectonecheckbox>Eines auswählen</selectonecheckbox>
         <formapago>Zahlscheinpolizze</formapago>

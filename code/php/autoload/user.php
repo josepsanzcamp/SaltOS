@@ -285,32 +285,6 @@ function check_remember()
     return;
 }
 
-function remake_password($user, $pass)
-{
-    $query = "SELECT * FROM tbl_usuarios WHERE " . make_where_query(array(
-        "activo" => 1,
-        "login" => $user,
-    ));
-    $result = db_query($query);
-    if (db_num_rows($result) == 1) {
-        $row = db_fetch_row($result);
-        if ($user == $row["login"]) {
-            if (check_password($pass, $row["password"])) {
-                $pass = $row["password"];
-            } elseif (in_array($row["password"], array(md5($pass),sha1($pass)))) {
-                // CONVERT FROM MD5/SHA1 TO CRYPT FORMAT
-                $pass = hash_password($pass);
-                $query = make_update_query("tbl_usuarios", array(
-                    "password" => $pass
-                ), "activo='1' AND login='${user}'");
-                db_query($query);
-            }
-        }
-    }
-    db_free($result);
-    return $pass;
-}
-
 function check_basicauth()
 {
     if (!eval_bool(getDefault("security/allowbasicauth"))) {
@@ -334,7 +308,7 @@ function check_basicauth()
         require "php/action/logout.php";
     }
     setSession("user", getServer("PHP_AUTH_USER"));
-    setSession("pass", remake_password(getServer("PHP_AUTH_USER"), getServer("PHP_AUTH_PW")));
+    setSession("pass", password_remake(getServer("PHP_AUTH_USER"), getServer("PHP_AUTH_PW")));
     pre_datauser();
     check_security("login");
     return;

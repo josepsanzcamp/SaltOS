@@ -355,10 +355,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sentfromsaltos>Mensagem enviado do meu SaltOS</sentfromsaltos>
         <foldersdata>Pastas</foldersdata>
         <loweradd>adicionar</loweradd>
-        <notify>Notificações</notify>
         <help>Ajuda</help>
-        <desktoptip>Habilitar notificações de área de trabalho integrado com</desktoptip>
-        <desktoptxt>Notificações integrada com o desktop habilitado</desktoptxt>
         <selectallcheckbox>Selecionar todos os registros</selectallcheckbox>
         <selectonecheckbox>Selecione este registro</selectonecheckbox>
         <formapago>Forma de pagamento</formapago>

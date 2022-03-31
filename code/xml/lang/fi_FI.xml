@@ -355,10 +355,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sentfromsaltos>Posti lähetetty SaltOS-laitteistani</sentfromsaltos>
         <foldersdata>Kansiot</foldersdata>
         <loweradd>lisätä</loweradd>
-        <notify>Ilmoitukset</notify>
         <help>Help</help>
-        <desktoptip>Ota integroidut työpöytäilmoitukset käyttöön</desktoptip>
-        <desktoptxt>Integroidut työpöytäilmoitukset käytössä</desktoptxt>
         <selectallcheckbox>Valitse kaikki tietueet</selectallcheckbox>
         <selectonecheckbox>Valitse tämä tietue</selectonecheckbox>
         <formapago>Maksutapa</formapago>

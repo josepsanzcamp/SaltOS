@@ -355,10 +355,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sentfromsaltos>NgeH vo' saltos email</sentfromsaltos>
         <foldersdata>Folder</foldersdata>
         <loweradd>boq</loweradd>
-        <notify>Notification</notify>
         <help>Qah</help>
-        <desktoptip>Enable built-in notifications desktop</desktoptip>
-        <desktoptxt>Desktop-integrated notifications tlhe'</desktoptxt>
         <selectallcheckbox>Hoch ta wiv</selectallcheckbox>
         <selectonecheckbox>Ta wiv</selectonecheckbox>
         <formapago>Payment method</formapago>

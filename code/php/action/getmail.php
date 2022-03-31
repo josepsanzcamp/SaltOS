@@ -633,9 +633,6 @@ if (getParam("action") == "getmail") {
             if ($count) {
                 javascript_template("number_correo($count);");
             }
-            if ($count) {
-                javascript_template("favicon_animate($count);");
-            }
             javascript_history(0, $condition);
         }
     }

@@ -365,33 +365,6 @@ function __query2dump($query, $file)
     ));
 }
 
-function __favicon_color2dec($color, $component)
-{
-    $offset = array("R" => 0,"G" => 2,"B" => 4);
-    if (!isset($offset[$component])) {
-        show_php_error(array("phperror" => "Unknown component"));
-    }
-    return hexdec(substr($color, $offset[$component], 2));
-}
-
-function __favicon_color2aprox($fgcolor, $bgcolor)
-{
-    $fgcolor = intval($fgcolor / 85);
-    $bgcolor = intval($bgcolor / 85);
-    $color = 3;
-    if ($fgcolor == $color) {
-        $color--;
-    }
-    if ($bgcolor == $color) {
-        $color--;
-    }
-    if ($fgcolor == $color) {
-        $color--;
-    }
-    $color = $color * 85;
-    return $color;
-}
-
 // FUNCTION THAT RETURNS THE META ATTRIBUTES
 function __favoritos_explode_meta($html)
 {

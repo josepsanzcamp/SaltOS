@@ -355,10 +355,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sentfromsaltos>E-mail verzonden vanaf mijn SaltOS</sentfromsaltos>
         <foldersdata>Mappen</foldersdata>
         <loweradd>toevoegen</loweradd>
-        <notify>Kennisgevingen</notify>
         <help>Help</help>
-        <desktoptip>Schakel geïntegreerde bureaubladmeldingen in</desktoptip>
-        <desktoptxt>Geïntegreerde bureaubladmeldingen ingeschakeld</desktoptxt>
         <selectallcheckbox>Selecteer alle records</selectallcheckbox>
         <selectonecheckbox>Selecteer dit record</selectonecheckbox>
         <formapago>Betaalwijze</formapago>

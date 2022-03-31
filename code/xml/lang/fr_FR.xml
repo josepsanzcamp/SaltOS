@@ -355,10 +355,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sentfromsaltos>Courriel envoyer de mon SaltOS</sentfromsaltos>
         <foldersdata>Dossier</foldersdata>
         <loweradd>Ajouter</loweradd>
-        <notify>Notifications</notify>
         <help>Aide</help>
-        <desktoptip>Activer intégré avec les notifications de bureau</desktoptip>
-        <desktoptxt>Notifications intégrés avec le bureau activés</desktoptxt>
         <selectallcheckbox>Sélectionner tous les enregistrements</selectallcheckbox>
         <selectonecheckbox>Sélectionnez ce dossier</selectonecheckbox>
         <formapago> paiement</formapago>

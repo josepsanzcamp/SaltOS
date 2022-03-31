@@ -537,19 +537,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://stanlemon.net/projects/jgrowl.html")</onclick>
                         </field>
                         <field>
-                            <label>Favicon 0.2.1 (MIT &amp; GPL*)</label>
-                            <type>link</type>
-                            <class>tbody</class>
-                            <onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
-                        </field>
-                    </row>
-                    <row>
-                        <field>
                             <label>Locutus 2.0.16 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://locutus.io/php/")</onclick>
                         </field>
+                    </row>
+                    <row>
                         <field>
                             <label>Handsontable 6.2.2 (MIT)</label>
                             <type>link</type>
@@ -567,6 +561,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/blueimp/jQuery-File-Upload")</onclick>
+                        </field>
+                        <field>
+                            <type>separator</type>
+                            <class>tbody</class>
+                            <colspan>1</colspan>
                         </field>
                     </row>
                     <row>

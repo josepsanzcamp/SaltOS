@@ -480,28 +480,15 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
     }
 
     /* FOR NOTIFICATIONS FEATURES */
-    var popup_notice=null;
-    var popup_timeout=null;
-
     function make_notice() {
+        // DEFINE SOME DEFAULTS THAT CAN NOT BE DEFINED IN RUNTIME
+        $.jGrowl.defaults.closer=false;
+        $.jGrowl.defaults.position="bottom-right";
         // REMOVE ALL NOTIFICATIONS EXCEPT THE VOID ELEMENT, IT'S IMPORTANT!!!
         if($("#jGrowl").length>0) {
             $(".jGrowl-notification").each(function() {
                 if($(this).text()!="") $(this).remove();
             });
-        }
-    }
-
-    function hide_popupnotice() {
-        // CANCEL IF EXISTS THE SETTIMEOUT
-        if(popup_timeout) {
-            clearTimeout(popup_timeout);
-            popup_timeout=null;
-        }
-        // CLOSE IF EXISTS THE DESKTOP NOTIFICATION
-        if(popup_notice) {
-            popup_notice.cancel();
-            popup_notice=null;
         }
     }
 
@@ -540,19 +527,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
                 theme:theme
             }
         );
-        // EXECUTE THE CODE TO ADD THE DESKTOP NOTIFICATION
-        var hasperm1=window.webkitNotifications;
-        var hasperm2=hasperm1?(window.webkitNotifications.checkPermission()==0):false;
-        var hasperm3=hasperm2?getIntCookie("saltos_desktop"):false;
-        if(hasperm3) {
-            hide_popupnotice();
-            var icon=$("link[rel='shortcut icon']").attr("href");
-            popup_notice=window.webkitNotifications.createNotification(icon,title,strip_tags(message));
-            popup_notice.replaceId="saltos_desktop";
-            popup_notice.show();
-            popup_notice.onclick=function() { hide_popupnotice(); };
-            popup_timeout=setTimeout(function() { hide_popupnotice(); },10000);
-        }
     }
 
     /* FOR COOKIE MANAGEMENT */
@@ -2438,10 +2412,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
     // TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE
     $.ajaxSetup({ cache:true });
-
-    // DEFINE SOME DEFAULTS THAT CAN NOT BE DEFINED IN RUNTIME
-    $.jGrowl.defaults.closer=false;
-    $.jGrowl.defaults.position="bottom-right";
 
     // WHEN DOCUMENT IS READY
     $(function() {

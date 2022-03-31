@@ -27,7 +27,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <!-- FOR GENERAL PURPOSES -->
     <function>openurl(url) { uninstall_onbeforeunload(); window.location.href=url; setTimeout(function() { install_onbeforeunload(); },100); }</function>
     <function>openwin(url) { window.open(url); }</function>
-    <function eval="true">"logout() { dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msglogout")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); make_notice(); hide_popupnotice(); ".(check_user()?"check_outbox();":"")." opencontent('?action=logout'); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+    <function eval="true">"logout() { dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msglogout")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); make_notice(); ".(check_user()?"check_outbox();":"")." opencontent('?action=logout'); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
     <function eval="true">"alerta(msg,callback) { if(typeof(callback)=='undefined') callback=function() {}; dialog('".LANG_ESCAPE("alert")."',msg,{'".LANG_ESCAPE("buttoncontinue")."':function() { dialog('close'); callback(); } }); }"</function>
     <!-- FOR CONTROL MANAGER -->
     <function global="page" eval="true">"current_page() { return '$page'; }"</function>
@@ -41,7 +41,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <function eval="true">"lang_requiredfield() { return '".LANG_ESCAPE("requiredfield")."'; }"</function>
     <function eval="true">"lang_buttoncontinue() { return '".LANG_ESCAPE("buttoncontinue")."'; }"</function>
     <!-- FOR UNLOAD EVENT -->
-    <function eval="true">"install_onbeforeunload() { window.onbeforeunload=function() { hide_popupnotice(); ".(check_user()?"check_outbox();":"")." }; }"</function>
+    <function eval="true">"install_onbeforeunload() { window.onbeforeunload=function() { ".(check_user()?"check_outbox();":"")." }; }"</function>
     <function>uninstall_onbeforeunload() { window.onbeforeunload=null; }</function>
     <inline>install_onbeforeunload();</inline>
     <!-- FOR STYLE MANAGER -->
@@ -65,8 +65,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <function>updatesession() { check_session("update"); }</function>
     <!-- FOR CKEDITOR LANG -->
     <function global="lang" eval="true">"lang_default() { return '".substr($lang,0,2)."'; }"</function>
-    <!-- FOR DESKTOP MODULE -->
-    <function eval="true">"lang_desktoptxt() { return '".LANG_ESCAPE("desktoptxt")."'; }"</function>
     <!-- FOR FOLDERS MODULE -->
     <function eval="true">"lang_addtofolderok() { return '".LANG_ESCAPE("addtofolderok")."'; }"</function>
     <function eval="true">"lang_delfromfolderok() { return '".LANG_ESCAPE("delfromfolderok")."'; }"</function>
@@ -99,7 +97,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <include ifeval="eval_bool(getDefault('enableindexing'))">js/checkindexing.js</include>
         <include ifeval="eval_bool(getDefault('enableintegrity'))">js/checkintegrity.js</include>
         <include ifeval="eval_bool(getDefault('enablepurge'))">js/checkpurge.js</include>
-        <include>js/favicon.js</include>
         <include>js/folders.js</include>
     </cache>
 </root>

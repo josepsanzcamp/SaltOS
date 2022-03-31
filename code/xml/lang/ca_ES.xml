@@ -355,10 +355,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sentfromsaltos>Correu enviat des del meu SaltOS</sentfromsaltos>
         <foldersdata>Carpetes</foldersdata>
         <loweradd>afegir</loweradd>
-        <notify>Notificacions</notify>
         <help>Ajut</help>
-        <desktoptip>Habilitar notificacions integrades amb l'escriptori</desktoptip>
-        <desktoptxt>Notificacions integrades amb l'escriptori activades</desktoptxt>
         <selectallcheckbox>Seleccionar tots els registres</selectallcheckbox>
         <selectonecheckbox>Seleccionar aquest registre</selectonecheckbox>
         <formapago>Forma de pagament</formapago>

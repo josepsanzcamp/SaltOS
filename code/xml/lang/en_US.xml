@@ -355,10 +355,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sentfromsaltos>Email sent from my SaltOS</sentfromsaltos>
         <foldersdata>Folders</foldersdata>
         <loweradd>add</loweradd>
-        <notify>Notifications</notify>
         <help>Help</help>
-        <desktoptip>Enable integrated with desktop notifications</desktoptip>
-        <desktoptxt>Notifications integrated with desktop enabled</desktoptxt>
         <selectallcheckbox>Select all records</selectallcheckbox>
         <selectonecheckbox>Select this record</selectonecheckbox>
         <formapago>Payment</formapago>

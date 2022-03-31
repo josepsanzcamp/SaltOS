@@ -225,9 +225,6 @@ if (count($notify_texts) + count($reader_texts)) {
     if ($count) {
         javascript_template("number_agenda($count);");
     }
-    if ($count) {
-        javascript_template("favicon_animate($count);");
-    }
 }
 javascript_headers();
 die();

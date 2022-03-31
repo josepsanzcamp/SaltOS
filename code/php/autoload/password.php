@@ -25,7 +25,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-function check_password($pass, $hash)
+function password_verify_phpass($pass, $hash)
 {
     require_once "lib/phpass/PasswordHash.php";
     $t_hasher = new PasswordHash(8, true);
@@ -34,17 +34,33 @@ function check_password($pass, $hash)
     return $result;
 }
 
-function hash_password($pass)
+function password_remake($user, $pass)
 {
-    require_once "lib/phpass/PasswordHash.php";
-    $t_hasher = new PasswordHash(8, true);
-    // TO PREVENT /DEV/URANDOM RESTRICTION ACCESS ERRORS
-    capture_next_error();
-    $result = $t_hasher->HashPassword($pass);
-    // TO PREVENT /DEV/URANDOM RESTRICTION ACCESS ERRORS
-    get_clear_error();
-    unset($t_hasher);
-    return $result;
+    $query = "SELECT * FROM tbl_usuarios WHERE " . make_where_query(array(
+        "activo" => 1,
+        "login" => $user,
+    ));
+    $result = db_query($query);
+    if (db_num_rows($result) == 1) {
+        $row = db_fetch_row($result);
+        if ($user == $row["login"]) {
+            if (password_verify($pass, $row["password"])) {
+                $pass = $row["password"];
+            } elseif (
+                in_array($row["password"], array(md5($pass),sha1($pass))) ||
+                password_verify_phpass($pass, $row["password"])
+            ) {
+                // CONVERT FROM MD5/SHA1/PHPASS TO PASSWORD_HASH FORMAT
+                $pass = password_hash($pass, PASSWORD_BCRYPT);
+                $query = make_update_query("tbl_usuarios", array(
+                    "password" => $pass
+                ), "activo='1' AND login='${user}'");
+                db_query($query);
+            }
+        }
+    }
+    db_free($result);
+    return $pass;
 }
 
 function password_strength($pass)

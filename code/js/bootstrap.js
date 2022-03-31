@@ -705,9 +705,6 @@ saltos.dialog=function(title,message,buttons) {
 };
 
 /* FOR NOTIFICATIONS FEATURES */
-saltos.popup_notice=null;
-saltos.popup_timeout=null;
-
 saltos.make_notice=function() {
     // DEFINE SOME DEFAULTS THAT CAN NOT BE DEFINED IN RUNTIME
     $.jGrowl.defaults.closer=false;
@@ -717,19 +714,6 @@ saltos.make_notice=function() {
         $(".jGrowl-notification").each(function() {
             if($(this).text()!="") $(this).remove();
         });
-    }
-};
-
-saltos.hide_popupnotice=function() {
-    // CANCEL IF EXISTS THE SETTIMEOUT
-    if(saltos.popup_timeout) {
-        clearTimeout(saltos.popup_timeout);
-        saltos.popup_timeout=null;
-    }
-    // CLOSE IF EXISTS THE DESKTOP NOTIFICATION
-    if(saltos.popup_notice) {
-        saltos.popup_notice.cancel();
-        saltos.popup_notice=null;
     }
 };
 
@@ -770,19 +754,6 @@ saltos.notice=function(title,message,arg1,arg2,arg3) {
             theme:theme
         }
     );
-    // EXECUTE THE CODE TO ADD THE DESKTOP NOTIFICATION
-    var hasperm1=window.webkitNotifications;
-    var hasperm2=hasperm1?(window.webkitNotifications.checkPermission()==0):false;
-    var hasperm3=hasperm2?getIntCookie("saltos_desktop"):false;
-    if(hasperm3) {
-        saltos.hide_popupnotice();
-        var icon=$("link[rel='shortcut icon']").attr("href");
-        saltos.popup_notice=window.webkitNotifications.createNotification(icon,title,strip_tags(message));
-        saltos.popup_notice.replaceId="saltos_desktop";
-        saltos.popup_notice.show();
-        saltos.popup_notice.onclick=function() { saltos.hide_popupnotice(); };
-        saltos.popup_timeout=setTimeout(function() { saltos.hide_popupnotice(); },10000);
-    }
 };
 
 /* FOR BLOCK THE UI AND NOT PERMIT 2 REQUESTS AT THE SAME TIME */
@@ -4216,11 +4187,6 @@ function dialog(title,message,buttons) {
 function make_notice() {
     //~ console.log("call to deprecated function make_notice");
     return saltos.make_notice();
-};
-
-function hide_popupnotice() {
-    //~ console.log("call to deprecated function hide_popupnotice");
-    return saltos.hide_popupnotice();
 };
 
 function notice(title,message,arg1,arg2,arg3) {

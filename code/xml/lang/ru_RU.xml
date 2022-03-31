@@ -355,10 +355,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sentfromsaltos>Почта, отправленная с моего SaltOS</sentfromsaltos>
         <foldersdata>папки</foldersdata>
         <loweradd>добавлять</loweradd>
-        <notify>уведомления</notify>
         <help>справка</help>
-        <desktoptip>включение встроенных уведомлений с помощью рабочего стола</desktoptip>
-        <desktoptxt>встроенные уведомления с включенным рабочим столом</desktoptxt>
         <selectallcheckbox>выберите все записи</selectallcheckbox>
         <selectonecheckbox>выберите эту запись</selectonecheckbox>
         <formapago>способ оплаты</formapago>

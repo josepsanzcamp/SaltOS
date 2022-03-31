@@ -355,10 +355,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sentfromsaltos>E-post sendt fra SaltOS</sentfromsaltos>
         <foldersdata>Mapper</foldersdata>
         <loweradd>legge</loweradd>
-        <notify>Varsler</notify>
         <help>Hjelp</help>
-        <desktoptip>Aktiver integrerte skrivebordsvarsler</desktoptip>
-        <desktoptxt>Integrerte skrivebordsvarsler aktivert</desktoptxt>
         <selectallcheckbox>Velg alle poster</selectallcheckbox>
         <selectonecheckbox>Velg denne posten</selectonecheckbox>
         <formapago>Betalingsmåte</formapago>

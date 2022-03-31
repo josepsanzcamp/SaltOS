@@ -38,7 +38,7 @@ if ($user != "" || $pass != "") {
         setParam("action", "logout");
         require "php/action/logout.php";
     }
-    $pass = remake_password($user, $pass);
+    $pass = password_remake($user, $pass);
     sess_init();
     setSession("user", $user);
     setSession("pass", $pass);

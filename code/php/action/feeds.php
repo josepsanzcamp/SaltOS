@@ -519,9 +519,6 @@ if (!getParam("ajax")) {
         if ($count) {
             javascript_template("number_feeds($count);");
         }
-        if ($count) {
-            javascript_template("favicon_animate($count);");
-        }
         javascript_history(0, $condition);
     }
 }

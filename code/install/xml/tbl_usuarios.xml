@@ -31,7 +31,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <id_aplicacion>31</id_aplicacion>
         <activo>1</activo>
         <login eval="true">getParam("user","admin")</login>
-        <password eval="true">hash_password(getParam("pass","admin"))</password>
+        <password eval="true">password_hash(getParam("pass","admin"),PASSWORD_BCRYPT)</password>
         <hora_ini>00:00:00</hora_ini>
         <hora_fin>24:00:00</hora_fin>
         <dias_sem>1111111</dias_sem>

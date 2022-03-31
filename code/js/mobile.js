@@ -336,9 +336,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
     }
 
     /* FOR NOTIFICATIONS FEATURES */
-    var popup_notice=null;
-    var popup_timeout=null;
-
     function make_notice() {
         // REMOVE ALL NOTIFICATIONS EXCEPT THE VOID ELEMENT, IT'S IMPORTANT!!!
         if($("#jGrowl").length>0) {
@@ -346,10 +343,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
                 if($(this).text()!="") $(this).remove();
             });
         }
-    }
-
-    function hide_popupnotice() {
-        // UNUSED
     }
 
     function notice(title,message,arg1,arg2,arg3) {
@@ -1116,18 +1109,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
         $.fn.autocomplete=function() {
             // NOTHING TO DO
         };
-        // JQUERY FAVICON PLUGIN
-        $.favicon=function() {
-            // NOTHING TO DO
-        };
-        $.extend($.favicon,{
-            animate:function () {
-                // NOTHING TO DO
-            },
-            unanimate:function () {
-                // NOTHING TO DO
-            }
-        });
     })(jQuery);
 
     // WHEN DOCUMENT IS READY

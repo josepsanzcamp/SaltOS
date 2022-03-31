@@ -355,10 +355,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sentfromsaltos>E-post skickat från min SaltOS</sentfromsaltos>
         <foldersdata>Mappar</foldersdata>
         <loweradd>lägga till</loweradd>
-        <notify>Anmälningar</notify>
         <help>Hjälp</help>
-        <desktoptip>Aktivera integrerade skrivbordsaviseringar</desktoptip>
-        <desktoptxt>Integrerade skrivbordsaviseringar aktiverade</desktoptxt>
         <selectallcheckbox>Välj alla poster</selectallcheckbox>
         <selectonecheckbox>Välj den här posten</selectonecheckbox>
         <formapago>Betalningsmetod</formapago>

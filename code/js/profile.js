@@ -27,27 +27,6 @@ if(typeof(__profile__)=="undefined" && typeof(parent.__profile__)=="undefined") 
     "use strict";
     var __profile__=1;
 
-    function checkbox_desktop(obj) {
-        if(typeof(obj)=="undefined") var obj=null;
-        var hasperm1=window.webkitNotifications;
-        var hasperm2=hasperm1?(window.webkitNotifications.checkPermission()==0):false;
-        var hasperm3=hasperm2?getIntCookie("saltos_desktop"):false;
-        if(!hasperm1) {
-            $("#default_0_desktop").prop("checked",false);
-            $("#default_0_desktop").prop("disabled",true);
-            $("label[for=default_0_desktop]").addClass("ui-state-disabled");
-        } else if(!hasperm2) {
-            if(!obj) $("#default_0_desktop").prop("checked",false);
-            else window.webkitNotifications.requestPermission(checkbox_desktop);
-        } else {
-            if(!obj) var checked=getIntCookie("saltos_desktop");
-            else var checked=$("#default_0_desktop").prop("checked");
-            $("#default_0_desktop").prop("checked",checked);
-            setIntCookie("saltos_desktop",checked?1:0);
-            if(obj && checked) notice(lang_alert(),lang_desktoptxt());
-        }
-    };
-
     function update_score() {
         var pass=$("input[name$=password_new]");
         if($(pass).val()) {
@@ -95,7 +74,4 @@ $(function() {
         $(checkbox).prop("checked",false);
         $(this).prop("checked",value);
     });
-    setTimeout(function() {
-        checkbox_desktop();
-    },100);
 });

@@ -65,6 +65,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <fields>
             <default>
                 <fieldset>
+                    <buttons>true</buttons>
                     <title lang="true">general</title>
                     <icon eval="true">ICON("profile")</icon>
                     <row ifeval="!getDefault('forcelang') || !getDefault('forcestyle')">
@@ -143,32 +144,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <type>password</type>
                             <width>60px</width>
                             <onchange>check_passwords()</onchange>
-                        </field>
-                    </row>
-                </fieldset>
-                <fieldset ifeval="!ismobile()">
-                    <buttons>true</buttons>
-                    <row>
-                        <field>
-                            <type>label</type>
-                            <label lang="true">notify</label>
-                            <colspan>5</colspan>
-                            <class>center bold</class>
-                        </field>
-                    </row>
-                    <row>
-                        <field>
-                            <type>separator</type>
-                        </field>
-                    </row>
-                    <row>
-                        <field>
-                            <name>desktop</name>
-                            <type>checkbox</type>
-                            <label lang="true">desktoptip</label>
-                            <value>1</value>
-                            <colspan>4</colspan>
-                            <onchange>checkbox_desktop(this);</onchange>
                         </field>
                     </row>
                 </fieldset>
@@ -395,13 +370,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </javascript>
     </form>
     <update>
-        <query match="default" prefix="true" eval="true">getParam("password_old")?"SELECT '".LANG_ESCAPE("erroroldpassword")."' action_error,'0' action_commit,'-1' action_go FROM tbl_usuarios WHERE '".(check_password(getParam("password_old"),execute_query("SELECT password FROM tbl_usuarios WHERE id='".current_user()."'"))?"1":"0")."'!='1' AND id='".current_user()."'":""</query>
+        <query match="default" prefix="true" eval="true">getParam("password_old")?"SELECT '".LANG_ESCAPE("erroroldpassword")."' action_error,'0' action_commit,'-1' action_go FROM tbl_usuarios WHERE '".(password_verify(getParam("password_old"),execute_query("SELECT password FROM tbl_usuarios WHERE id='".current_user()."'"))?"1":"0")."'!='1' AND id='".current_user()."'":""</query>
         <query match="default" prefix="true" eval="true">getParam("password_new")?"SELECT '".LANG_ESCAPE("errornewpassword")."' action_error,'0' action_commit,'-1' action_go FROM tbl_usuarios WHERE '".getParam("password_new")."'!='".getParam("password_new2")."' AND id='".current_user()."'":""</query>
         <query match="default" prefix="true" eval="true">getParam("password_new")?"SELECT '".LANG_ESCAPE("errornewpassword2")."' action_error,'0' action_commit,'-1' action_go FROM tbl_usuarios WHERE '".(password_strength(getParam("password_new"))>=intval(getDefault("security/minscore"))?"1":"0")."'!='1' AND id='".current_user()."'":""</query>
         <query match="default" prefix="true" eval="true">(!getParam("password_old") AND getParam("password_new"))?"SELECT '".LANG_ESCAPE("erroroldpassword")."' action_error,'0' action_commit,'-1' action_go FROM tbl_usuarios WHERE id='".current_user()."'":""</query>
         <query match="default" prefix="true" eval="true">(getParam("password_old") AND !getParam("password_new"))?"SELECT '".LANG_ESCAPE("errornewpassword")."' action_error,'0' action_commit,'-1' action_go FROM tbl_usuarios WHERE id='".current_user()."'":""</query>
         <query match="default" prefix="true" eval="true">getParam("password_new")?make_update_query("tbl_usuarios",array(
-            "password"=>hash_password(getParam("password_new"))
+            "password"=>password_hash(getParam("password_new"),PASSWORD_BCRYPT)
         ),make_where_query(array(
             "id"=>current_user()
         ))):""</query>
