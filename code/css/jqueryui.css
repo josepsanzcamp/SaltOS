@@ -352,34 +352,6 @@ img.image {
     margin-bottom:0;
 }
 
-/* FOR NUMBERS */
-a.number {
-    position:relative;
-}
-
-span.number {
-    position:absolute;
-    left:12px;
-    z-index:100;
-    font-size:10px;
-    line-height:11px;
-    color:#ffffff;
-    background-color:#ea4335;
-    border-radius:50%;
-}
-
-.number1 {
-    padding:1px 3px;
-}
-
-.number2 {
-    padding:1px 1px;
-}
-
-.rtl span.number {
-    right:6px;
-}
-
 /* FOR TOOLTIPS */
 .ui-tooltip {
     padding:5px 10px!important;
@@ -400,16 +372,6 @@ span.number {
 
 .rtl .tabs .help {
     float:left!important;
-}
-
-/* FOR HEADER */
-.tabs2 span.number {
-    top:1px;
-    left:17px;
-}
-
-.rtl .tabs2 span.number {
-    right:17px;
 }
 
 /* FOR BACK TO TOP FEATURE */

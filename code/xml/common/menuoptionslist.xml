@@ -29,7 +29,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <onclick global="temp" eval="true">"opencontent('?page=$temp')"</onclick>
         <icon global="temp" eval="true">ICON($temp)</icon>
         <tip global="temp" eval="true">LANG("desc_$temp")</tip>
-        <class global="temp" eval="true">"nowrap".($temp=="correo"?" number number_correo":"").($temp=="agenda"?" number number_agenda":"").($temp=="feeds"?" number number_feeds":"")</class>
+        <class global="temp" eval="true">"nowrap"</class>
         <selected global="page,temp" eval="true">$page==$temp?"true":"false"</selected>
         <name global="temp" eval="true">$temp</name>
     </option>

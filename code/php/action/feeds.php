@@ -508,17 +508,6 @@ if (!getParam("ajax")) {
                 "!($condition)"
             );
         }
-        $query = "SELECT COUNT(*)
-            FROM tbl_feeds
-            WHERE state_new='1'
-                AND id_feed IN (
-                    SELECT id
-                    FROM tbl_usuarios_f
-                    WHERE id_usuario='" . current_user() . "')";
-        $count = execute_query($query);
-        if ($count) {
-            javascript_template("number_feeds($count);");
-        }
         javascript_history(0, $condition);
     }
 }

@@ -61,10 +61,6 @@ if(typeof(__checkagenda__)=="undefined" && typeof(parent.__checkagenda__)=="unde
         });
     }
 
-    function number_agenda(num) {
-        make_numbers($(".number_agenda"),num);
-    }
-
     $(function() {
         if(config_agenda_interval()>0) {
             var agenda_counter=config_agenda_interval();

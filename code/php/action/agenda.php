@@ -88,8 +88,6 @@ $dias2 = array("",
     LANG("sabado"),
     LANG("domingo")
 );
-$notify_texts = array();
-$reader_texts = array();
 // BUSCAR NOTIFICACIONES
 $query = "SELECT 'dstart' type,
     '" . LANG_ESCAPE("notifyprev", "agenda") . "' title,
@@ -172,59 +170,12 @@ while ($row = db_fetch_row($result)) {
         $title = str_replace("'", "", $title);
         $msg = str_replace(array("'","\n","\r"), " ", $msg);
         javascript_template("notice('$title','$msg',true,function() { $.ajax({ url:'$urlrecv' }); },'ui-state-highlight id_$id hash_$hash');");
-        if (!in_array($title, $notify_texts)) {
-            $notify_texts[] = $title;
-        }
-        $fecha = $dias2[date("N", $unix)] . " " . str_replace($orig, $dest2, date("d/m/Y", $unix));
-        if ($current == $today) {
-            $fecha = LANG("today", "agenda") . ", " . $fecha;
-        }
-        if ($current == $yesterday) {
-            $fecha = LANG("yesterday", "agenda") . ", " . $fecha;
-        }
-        if ($current == $tomorrow) {
-            $fecha = LANG("tomorrow", "agenda") . ", " . $fecha;
-        }
-        $horaini = substr($row["dstart"], 11, 5);
-        $horafin = substr($row["dstop"], 11, 5);
-        $fecha .= ". " . $horaini;
-        if ($horaini != $horafin) {
-            $fecha .= "-" . $horafin;
-        }
-        $reader_texts[] = "${nombre}. ${fecha}${lugar}. ${descripcion}";
     }
 }
 db_free($result);
 // OCULTAR NO ENCONTRADOS
 foreach ($id_hash as $key => $val) {
     javascript_template("$('.id_${val[0]}').remove()");
-}
-// NOTIFICACIONES EXTRAS
-if (count($notify_texts) + count($reader_texts)) {
-    $query = "SELECT COUNT(*) FROM (
-        SELECT a.id
-        FROM tbl_agenda a
-        LEFT JOIN tbl_registros f ON f.id_aplicacion='" . page2id("agenda") . "'
-            AND f.id_registro=a.id
-            AND f.first=1
-        LEFT JOIN tbl_estados c ON a.id_estado=c.id
-        WHERE f.id_usuario='" . current_user() . "'
-            AND activo='1' AND
-            notify_delay!='0'
-            AND UNIX_TIMESTAMP('" . current_datetime() . "') > UNIX_TIMESTAMP(dstart)+notify_delay*3600*notify_sign
-        UNION
-        SELECT a.id FROM tbl_agenda a
-        LEFT JOIN tbl_registros f ON f.id_aplicacion='" . page2id("agenda") . "'
-            AND f.id_registro=a.id
-            AND f.first=1
-        LEFT JOIN tbl_estados c ON a.id_estado=c.id
-        WHERE f.id_usuario='" . current_user() . "'
-            AND activo='1'
-            AND UNIX_TIMESTAMP('" . current_datetime() . "') > UNIX_TIMESTAMP(dstop)) a";
-    $count = execute_query($query);
-    if ($count) {
-        javascript_template("number_agenda($count);");
-    }
 }
 javascript_headers();
 die();

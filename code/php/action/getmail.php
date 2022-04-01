@@ -622,17 +622,6 @@ if (getParam("action") == "getmail") {
                 $newemail . LANG("msgnewokpop3email" . min($newemail, 2), "correo") . $gotoemail,
                 "!($condition)"
             );
-            $query = "SELECT COUNT(*)
-                FROM tbl_correo
-                WHERE state_new='1'
-                    AND id_cuenta IN (
-                        SELECT id
-                        FROM tbl_usuarios_c
-                        WHERE id_usuario='" . current_user() . "')";
-            $count = execute_query($query);
-            if ($count) {
-                javascript_template("number_correo($count);");
-            }
             javascript_history(0, $condition);
         }
     }

@@ -1073,7 +1073,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
         var header=$(".ui-layout-north");
         var header2=$(".ui-layout-north",html);
         $(header2).attr("hash",md5($(header2).html()));
-        unmake_numbers(header);
         if($(header).attr("hash")!=$(header2).attr("hash")) {
             $(header).replaceWith(header2);
             make_tabs2(header2);
@@ -1089,7 +1088,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
         if(saltos_login) sync_cookies("start");
         // UPDATE THE MENU IF NEEDED
         //~ console.time("updatecontent west fase 0");
-        unmake_numbers(menu);
         if($(menu).attr("hash")!=$(menu2).attr("hash")) {
             make_resizable(menu2);
             make_menu(menu2);

@@ -115,10 +115,6 @@ if(typeof(__checkemail__)=="undefined" && typeof(parent.__checkemail__)=="undefi
         return islist && nocheck && istop && intab && noover;
     }
 
-    function number_correo(num) {
-        make_numbers($(".number_correo"),num);
-    }
-
     $(function() {
         if(config_inbox_interval()>0) {
             var inbox_counter=config_inbox_interval();

@@ -78,10 +78,6 @@ if(typeof(__checkfeeds__)=="undefined" && typeof(parent.__checkfeeds__)=="undefi
         return islist && nocheck && istop && intab && noover;
     }
 
-    function number_feeds(num) {
-        make_numbers($(".number_feeds"),num);
-    }
-
     $(function() {
         if(config_feeds_interval()>0) {
             var feeds_counter=config_feeds_interval();

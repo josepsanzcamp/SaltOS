@@ -311,49 +311,4 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
         WHERE a.id='".intval(getParam("id"))."'
             AND (publico='1' OR ".check_sql("textos","list").")"</textos>
-    <!-- FOR NUMBERS MODULE -->
-    <numbers eval="true">"SELECT 'number_correo' query,COUNT(*) total
-        FROM tbl_correo
-        WHERE state_new='1' AND id_cuenta IN (
-            SELECT id
-            FROM tbl_usuarios_c
-            WHERE id_usuario='".current_user()."'
-        )
-        AND NOT (
-            '".getParam("page")."'='correo'
-            AND '".getParam("action2")."'='form'
-            AND '".abs(intval(getParam("id")))."'=id
-        )
-        UNION
-        SELECT 'number_agenda' query,COUNT(*) total
-        FROM (
-            SELECT a.id FROM tbl_agenda a
-            LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.first=1
-            LEFT JOIN tbl_estados c ON a.id_estado=c.id
-            WHERE f.id_usuario='".current_user()."'
-                AND activo='1'
-                AND notify_delay!='0'
-                AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstart)+notify_delay*3600*notify_sign
-        UNION
-        SELECT a.id
-        FROM tbl_agenda a
-        LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.first=1
-        LEFT JOIN tbl_estados c ON a.id_estado=c.id
-        WHERE f.id_usuario='".current_user()."'
-            AND activo='1'
-            AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstop)
-        ) a
-        UNION
-        SELECT 'number_feeds' query,COUNT(*) total
-        FROM tbl_feeds
-        WHERE state_new='1'
-            AND id_feed IN (
-                SELECT id
-                FROM tbl_usuarios_f
-                WHERE id_usuario='".current_user()."')
-                AND NOT (
-                    '".getParam("page")."'='feeds'
-                    AND '".getParam("action2")."'='form'
-                    AND '".abs(intval(getParam("id")))."'=id
-                )"</numbers>
 </root>
