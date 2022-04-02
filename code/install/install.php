@@ -830,12 +830,29 @@ define("__USER__", 1);
                                     }
                                 }
                             }
-                            // FIX FOR THE CALENDAR EXAMPLE
+                            // FIX FOR THE DATE AND DATETIME DATA FROM EXAMPLE
+                            $fixes = array(
+                                array("tbl_actas","dstart"),
+                                array("tbl_actas","dstop"),
+                                array("tbl_agenda","dstart"),
+                                array("tbl_agenda","dstop"),
+                                array("tbl_campanyas","dstart"),
+                                array("tbl_campanyas","dstop"),
+                                array("tbl_facturas","fecha"),
+                                array("tbl_facturas","fecha2"),
+                                array("tbl_gastos","fecha"),
+                                array("tbl_gastos","fecha2"),
+                                array("tbl_partes","fecha"),
+                                array("tbl_partes","fecha2"),
+                                array("tbl_presupuestos","fecha"),
+                                array("tbl_seguimientos","fecha"),
+                            );
                             $timestamp = time() - strtotime("2012-02-28 12:00:00") - 86400 * 365;
-                            $query = "UPDATE tbl_agenda
-                                SET dstart=FROM_UNIXTIME(UNIX_TIMESTAMP(dstart)+${timestamp}),
-                                    dstop=FROM_UNIXTIME(UNIX_TIMESTAMP(dstop)+${timestamp})";
-                            db_query($query);
+                            foreach ($fixes as $fix) {
+                                $query = "UPDATE ${fix[0]}
+                                    SET ${fix[1]}=FROM_UNIXTIME(UNIX_TIMESTAMP(${fix[1]})+${timestamp})";
+                                db_query($query);
+                            }
                             // CONTINUE
                         }
                         // IMPORT STREET DATA
