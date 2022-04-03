@@ -23,47 +23,49 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__checkintegrity__)=="undefined" && typeof(parent.__checkintegrity__)=="undefined") {
+if (typeof __checkintegrity__ == "undefined" && typeof parent.__checkintegrity__ == "undefined") {
     "use strict";
-    var __checkintegrity__=1;
+    var __checkintegrity__ = 1;
 
-    var integrity_executing=0;
+    var integrity_executing = 0;
 
-    function check_integrity() {
-        if(integrity_executing) return;
-        integrity_executing=1;
+    function check_integrity()
+    {
+        if (integrity_executing) {
+            return;
+        }
+        integrity_executing = 1;
         // SOME CHECKS
-        if($(".ui-layout-west").text()=="") {
-            integrity_executing=0;
+        if ($(".ui-layout-west").text() == "") {
+            integrity_executing = 0;
             return;
         }
         // NORMAL USAGE
-        var data="action=integrity";
+        var data = "action=integrity";
         $.ajax({
             url:"index.php",
             data:data,
             type:"get",
-            success:function(response) {
+            success:function (response) {
                 $(".ui-layout-center").append(response);
-                integrity_executing=0;
+                integrity_executing = 0;
             },
-            error:function(XMLHttpRequest,textStatus,errorThrown) {
-                integrity_executing=0;
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
+                integrity_executing = 0;
             }
         });
     }
 
-    $(function() {
-        if(config_integrity_interval()>0) {
-            var integrity_counter=config_integrity_interval();
-            setInterval(function() {
-                integrity_counter=integrity_executing?0:integrity_counter+100;
-                if(integrity_counter>=config_integrity_interval()) {
+    $(function () {
+        if (config_integrity_interval() > 0) {
+            var integrity_counter = config_integrity_interval();
+            setInterval(function () {
+                integrity_counter = integrity_executing ? 0 : integrity_counter + 100;
+                if (integrity_counter >= config_integrity_interval()) {
                     check_integrity();
-                    integrity_counter=0;
+                    integrity_counter = 0;
                 }
             },100);
         }
     });
-
 }

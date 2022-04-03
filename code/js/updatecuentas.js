@@ -23,29 +23,32 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__updatecuentas__)=="undefined" && typeof(parent.__updatecuentas__)=="undefined") {
+if (typeof __updatecuentas__ == "undefined" && typeof parent.__updatecuentas__ == "undefined") {
     "use strict";
-    var __updatecuentas__=1;
+    var __updatecuentas__ = 1;
 
-    function update_cuentas() {
-        var usuario=$("select[name$=id_usuario]");
-        var cuenta=$("select[name$=id_cuenta]");
-        if(cuentas_defaults=="") cuentas_defaults=$(cuenta).html();
-        var data="action=ajax&query=cuentas&id_usuario="+$(usuario).val();
+    function update_cuentas()
+    {
+        var usuario = $("select[name$=id_usuario]");
+        var cuenta = $("select[name$=id_cuenta]");
+        if (cuentas_defaults == "") {
+            cuentas_defaults = $(cuenta).html();
+        }
+        var data = "action=ajax&query=cuentas&id_usuario=" + $(usuario).val();
         $.ajax({
             url:"index.php",
             data:data,
             type:"get",
-            success:function(response) {
-                var options=cuentas_defaults;
-                var original=$(cuenta).attr("original");
-                $(response["rows"]).each(function() {
-                    var selected=(this["id"]==original)?"selected='selected'":"";
-                    options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
+            success:function (response) {
+                var options = cuentas_defaults;
+                var original = $(cuenta).attr("original");
+                $(response["rows"]).each(function () {
+                    var selected = (this["id"] == original) ? "selected='selected'" : "";
+                    options += "<option value='" + this["id"] + "' " + selected + ">" + this["nombre"] + "</option>";
                 });
                 $(cuenta).html(options);
             },
-            error:function(XMLHttpRequest,textStatus,errorThrown) {
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
                 errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
             }
         });
@@ -54,6 +57,7 @@ if(typeof(__updatecuentas__)=="undefined" && typeof(parent.__updatecuentas__)=="
 }
 
 "use strict";
-var cuentas_defaults="";
+var cuentas_defaults = "";
 
-$(function() { update_cuentas(); });
+$(function () {
+    update_cuentas(); });

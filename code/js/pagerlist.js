@@ -23,32 +23,43 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__pagerlist__)=="undefined" && typeof(parent.__pagerlist__)=="undefined") {
+if (typeof __pagerlist__ == "undefined" && typeof parent.__pagerlist__ == "undefined") {
     "use strict";
-    var __pagerlist__=1;
+    var __pagerlist__ = 1;
 
-    function update_pagerlist() {
-        if(!$("#selectpager").length) return;
-        var data="action=pagerlist&page="+getParam("page");
+    function update_pagerlist()
+    {
+        if (!$("#selectpager").length) {
+            return;
+        }
+        var data = "action=pagerlist&page=" + getParam("page");
         $.ajax({
             url:"index.php",
             data:data,
             type:"get",
             success:function (response) {
-                var value2=response["value"];
-                var options="";
-                $(response["rows"]).each(function() {
-                    var selected=(this["value"]==value2)?"selected='selected'":"";
-                    options+="<option value='"+this["value"]+"' "+selected+">"+this["label"]+"</option>";
+                var value2 = response["value"];
+                var options = "";
+                $(response["rows"]).each(function () {
+                    var selected = (this["value"] == value2) ? "selected='selected'" : "";
+                    options += "<option value='" + this["value"] + "' " + selected + ">" + this["label"] + "</option>";
                 });
                 $("#selectpager").html(options);
-                if(response["first"]) $("#firstpager").removeClass("ui-state-disabled");
-                if(response["previous"]) $("#previouspager").removeClass("ui-state-disabled");
-                if(response["next"]) $("#nextpager").removeClass("ui-state-disabled");
-                if(response["last"]) $("#lastpager").removeClass("ui-state-disabled");
+                if (response["first"]) {
+                    $("#firstpager").removeClass("ui-state-disabled");
+                }
+                if (response["previous"]) {
+                    $("#previouspager").removeClass("ui-state-disabled");
+                }
+                if (response["next"]) {
+                    $("#nextpager").removeClass("ui-state-disabled");
+                }
+                if (response["last"]) {
+                    $("#lastpager").removeClass("ui-state-disabled");
+                }
                 $(".infopager").html(response["info"]);
             },
-            error:function(XMLHttpRequest,textStatus,errorThrown) {
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
                 errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
             }
         });
@@ -57,4 +68,5 @@ if(typeof(__pagerlist__)=="undefined" && typeof(parent.__pagerlist__)=="undefine
 }
 
 "use strict";
-$(function() { update_pagerlist(); });
+$(function () {
+    update_pagerlist(); });

@@ -23,28 +23,29 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__profile__)=="undefined" && typeof(parent.__profile__)=="undefined") {
+if (typeof __profile__ == "undefined" && typeof parent.__profile__ == "undefined") {
     "use strict";
-    var __profile__=1;
+    var __profile__ = 1;
 
-    function update_score() {
-        var pass=$("input[name$=password_new]");
-        if($(pass).val()) {
-            var data="action=score&pass="+encodeURIComponent($(pass).val())+"&format=json"
+    function update_score()
+    {
+        var pass = $("input[name$=password_new]");
+        if ($(pass).val()) {
+            var data = "action=score&pass=" + encodeURIComponent($(pass).val()) + "&format=json"
             $.ajax({
                 url:"index.php",
                 data:data,
                 type:"post",
-                success:function(response) {
+                success:function (response) {
                     $(".score").removeClass("none");
                     $(".score").attr("src",response["image"]);
-                    if(intval(response["valid"])) {
+                    if (intval(response["valid"])) {
                         $(pass).removeClass("ui-state-error");
                     } else {
                         $(pass).addClass("ui-state-error");
                     }
                 },
-                error:function(XMLHttpRequest,textStatus,errorThrown) {
+                error:function (XMLHttpRequest,textStatus,errorThrown) {
                     errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
                 }
             });
@@ -54,10 +55,11 @@ if(typeof(__profile__)=="undefined" && typeof(parent.__profile__)=="undefined") 
         }
     }
 
-    function check_passwords() {
-        var pass=$("input[name$=password_new]");
-        var pass2=$("input[name$=password_new2]");
-        if($(pass).val()==$(pass2).val()) {
+    function check_passwords()
+    {
+        var pass = $("input[name$=password_new]");
+        var pass2 = $("input[name$=password_new2]");
+        if ($(pass).val() == $(pass2).val()) {
             $(pass2).removeClass("ui-state-error");
         } else {
             $(pass2).addClass("ui-state-error");
@@ -67,10 +69,10 @@ if(typeof(__profile__)=="undefined" && typeof(parent.__profile__)=="undefined") 
 }
 
 "use strict";
-$(function() {
-    var checkbox="input[type=checkbox][name$=email_default]";
-    $(checkbox).on("change",function() {
-        var value=$(this).prop("checked");
+$(function () {
+    var checkbox = "input[type=checkbox][name$=email_default]";
+    $(checkbox).on("change",function () {
+        var value = $(this).prop("checked");
         $(checkbox).prop("checked",false);
         $(this).prop("checked",value);
     });

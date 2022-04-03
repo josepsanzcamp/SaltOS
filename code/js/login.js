@@ -23,12 +23,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__login__)=="undefined" && typeof(parent.__login__)=="undefined") {
+if (typeof __login__ == "undefined" && typeof parent.__login__ == "undefined") {
     "use strict";
-    var __login__=1;
+    var __login__ = 1;
 
-    function update_captcha() {
-        $(".captcha").attr("src","?action=captcha&amp;_="+time());
+    function update_captcha()
+    {
+        $(".captcha").attr("src","?action=captcha&amp;_=" + time());
     }
 
 }

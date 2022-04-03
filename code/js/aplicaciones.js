@@ -23,23 +23,24 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__aplicaciones__)=="undefined" && typeof(parent.__aplicaciones__)=="undefined") {
+if (typeof __aplicaciones__ == "undefined" && typeof parent.__aplicaciones__ == "undefined") {
     "use strict";
-    var __aplicaciones__=1;
+    var __aplicaciones__ = 1;
 
-    function todo_aplicaciones() {
+    function todo_aplicaciones()
+    {
         var valor;
-        var inicializado=0;
+        var inicializado = 0;
 
-        for(var i=0,len=document.form.elements.length;i<len;i++) {
-            obj=document.form.elements[i];
-            if(obj.type) {
-                if(obj.name.substr(obj.name.length-8,8)=="activado") {
-                    if(!inicializado) {
-                        valor=!obj.checked;
-                        inicializado=1;
+        for (var i = 0,len = document.form.elements.length; i < len; i++) {
+            obj = document.form.elements[i];
+            if (obj.type) {
+                if (obj.name.substr(obj.name.length - 8,8) == "activado") {
+                    if (!inicializado) {
+                        valor = !obj.checked;
+                        inicializado = 1;
                     }
-                    obj.checked=valor;
+                    obj.checked = valor;
                 }
             }
         }

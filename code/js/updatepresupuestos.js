@@ -23,30 +23,33 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__updatepresupuestos__)=="undefined" && typeof(parent.__updatepresupuestos__)=="undefined") {
+if (typeof __updatepresupuestos__ == "undefined" && typeof parent.__updatepresupuestos__ == "undefined") {
     "use strict";
-    var __updatepresupuestos__=1;
+    var __updatepresupuestos__ = 1;
 
-    function update_presupuestos() {
-        var cliente=$("select[name$=id_cliente]");
-        var posiblecli=$("select[name$=id_posiblecli]");
-        var presupuesto=$("select[name$=id_presupuesto]");
-        if(presupuestos_defaults=="") presupuestos_defaults=$(presupuesto).html();
-        var data="action=ajax&query=presupuestos&id_cliente="+$(cliente).val()+"&id_posiblecli="+$(posiblecli).val();
+    function update_presupuestos()
+    {
+        var cliente = $("select[name$=id_cliente]");
+        var posiblecli = $("select[name$=id_posiblecli]");
+        var presupuesto = $("select[name$=id_presupuesto]");
+        if (presupuestos_defaults == "") {
+            presupuestos_defaults = $(presupuesto).html();
+        }
+        var data = "action=ajax&query=presupuestos&id_cliente=" + $(cliente).val() + "&id_posiblecli=" + $(posiblecli).val();
         $.ajax({
             url:"index.php",
             data:data,
             type:"get",
-            success:function(response) {
-                var options=presupuestos_defaults;
-                var original=$(presupuesto).attr("original");
-                $(response["rows"]).each(function() {
-                    var selected=(this["id"]==original)?"selected='selected'":"";
-                    options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
+            success:function (response) {
+                var options = presupuestos_defaults;
+                var original = $(presupuesto).attr("original");
+                $(response["rows"]).each(function () {
+                    var selected = (this["id"] == original) ? "selected='selected'" : "";
+                    options += "<option value='" + this["id"] + "' " + selected + ">" + this["nombre"] + "</option>";
                 });
                 $(presupuesto).html(options);
             },
-            error:function(XMLHttpRequest,textStatus,errorThrown) {
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
                 errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
             }
         });
@@ -55,6 +58,7 @@ if(typeof(__updatepresupuestos__)=="undefined" && typeof(parent.__updatepresupue
 }
 
 "use strict";
-var presupuestos_defaults="";
+var presupuestos_defaults = "";
 
-$(function() { update_presupuestos(); });
+$(function () {
+    update_presupuestos(); });

@@ -23,58 +23,65 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__folders__)=="undefined" && typeof(parent.__folders__)=="undefined") {
+if (typeof __folders__ == "undefined" && typeof parent.__folders__ == "undefined") {
     "use strict";
-    var __folders__=1;
+    var __folders__ = 1;
 
-    function addregfolder(id_folder,page,id_registro) {
-        var data='action=ajax&query=addregfolder&id_folder='+id_folder+'&page='+page+'&id_registro='+id_registro;
+    function addregfolder(id_folder,page,id_registro)
+    {
+        var data = 'action=ajax&query=addregfolder&id_folder=' + id_folder + '&page=' + page + '&id_registro=' + id_registro;
         $.ajax({
             url:'',
             data:data,
             type:"get",
-            success:function(response) {
+            success:function (response) {
                 notice(lang_alert(),lang_addtofolderok());
             },
-            error:function(XMLHttpRequest,textStatus,errorThrown) {
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
                 errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
             }
         });
     }
 
-    function delregfolder(id_folder,page,id_registro) {
-        var data='action=ajax&query=delregfolder&id_folder='+id_folder+'&page='+page+'&id_registro='+id_registro;
+    function delregfolder(id_folder,page,id_registro)
+    {
+        var data = 'action=ajax&query=delregfolder&id_folder=' + id_folder + '&page=' + page + '&id_registro=' + id_registro;
         $.ajax({
             url:'',
             data:data,
             type:"get",
-            success:function(response) {
+            success:function (response) {
                 notice(lang_alert(),lang_delfromfolderok());
             },
-            error:function(XMLHttpRequest,textStatus,errorThrown) {
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
                 errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
             }
         });
     }
 
-    function delappfolder(id_folder,page) {
-        var data='action=ajax&query=delappfolder&id_folder='+id_folder+'&page='+page;
+    function delappfolder(id_folder,page)
+    {
+        var data = 'action=ajax&query=delappfolder&id_folder=' + id_folder + '&page=' + page;
         $.ajax({
             url:'',
             data:data,
             type:"get",
-            success:function(response) {
+            success:function (response) {
                 notice(lang_alert(),lang_delfromfolderok());
             },
-            error:function(XMLHttpRequest,textStatus,errorThrown) {
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
                 errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
             }
         });
     }
 
-    function swapregfolder(obj) {
-        var id=$("input[name$=id]",obj.parentNode.parentNode).val();
-        if(obj.checked) addregfolder(id,getParam("page"),getParam("id")); else delregfolder(id,getParam("page"),getParam("id"));
+    function swapregfolder(obj)
+    {
+        var id = $("input[name$=id]",obj.parentNode.parentNode).val();
+        if (obj.checked) {
+            addregfolder(id,getParam("page"),getParam("id")); } else {
+            delregfolder(id,getParam("page"),getParam("id"));
+            }
     }
 
 }

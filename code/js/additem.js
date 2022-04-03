@@ -23,55 +23,64 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__additem__)=="undefined" && typeof(parent.__additem__)=="undefined") {
+if (typeof __additem__ == "undefined" && typeof parent.__additem__ == "undefined") {
     "use strict";
-    var __additem__=1;
+    var __additem__ = 1;
 
-    function additem(obj) {
-        var padre=$(obj).parent();
-        var padre2=$(padre).parent();
-        var maxiter=100;
-        while(maxiter>0 && !$("table.tabla",padre2).length) {
-            padre=$(padre).parent();
-            padre2=$(padre).parent();
+    function additem(obj)
+    {
+        var padre = $(obj).parent();
+        var padre2 = $(padre).parent();
+        var maxiter = 100;
+        while (maxiter > 0 && !$("table.tabla",padre2).length) {
+            padre = $(padre).parent();
+            padre2 = $(padre).parent();
             maxiter--;
         }
-        var limit=$("tr",padre).has("input[type=hidden]").length;
-        var num=$("tr:visible",padre).has("input[type=hidden]").length;
-        if(num<limit) {
-            var count=0;
-            $("tr",padre).has("input[type=hidden]").each(function() {
-                if(num==count) $(this).removeClass("none");
+        var limit = $("tr",padre).has("input[type=hidden]").length;
+        var num = $("tr:visible",padre).has("input[type=hidden]").length;
+        if (num < limit) {
+            var count = 0;
+            $("tr",padre).has("input[type=hidden]").each(function () {
+                if (num == count) {
+                    $(this).removeClass("none");
+                }
                 count++;
             });
             make_tables(padre);
-            if(num+1==limit) $(obj).addClass("ui-state-disabled");
+            if (num + 1 == limit) {
+                $(obj).addClass("ui-state-disabled");
+            }
         }
     }
 
-    function init_additem() {
-        $(".init_additem").each(function() {
-            var padre=$(this).parent();
-            var padre2=$(padre).parent();
-            var maxiter=100;
-            while(maxiter>0 && !$("table.tabla",padre2).length) {
-                padre=$(padre).parent();
-                padre2=$(padre).parent();
+    function init_additem()
+    {
+        $(".init_additem").each(function () {
+            var padre = $(this).parent();
+            var padre2 = $(padre).parent();
+            var maxiter = 100;
+            while (maxiter > 0 && !$("table.tabla",padre2).length) {
+                padre = $(padre).parent();
+                padre2 = $(padre).parent();
                 maxiter--;
             }
-            var temp=$("input[type=hidden][name$=id]",padre);
-            var total=0;
-            $(temp).each(function() {
-                if(is_numeric(this.value)) {
+            var temp = $("input[type=hidden][name$=id]",padre);
+            var total = 0;
+            $(temp).each(function () {
+                if (is_numeric(this.value)) {
                     $(this).parent().removeClass("none");
                     total++;
                 }
             });
-            if(!total) additem(this);
+            if (!total) {
+                additem(this);
+            }
         });
 
     }
 }
 
 "use strict";
-$(function() { init_additem(); });
+$(function () {
+    init_additem(); });

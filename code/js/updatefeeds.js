@@ -23,31 +23,34 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__updatefeeds__)=="undefined" && typeof(parent.__updatefeeds__)=="undefined") {
+if (typeof __updatefeeds__ == "undefined" && typeof parent.__updatefeeds__ == "undefined") {
     "use strict";
-    var __updatefeeds__=1;
+    var __updatefeeds__ = 1;
 
-    function update_feeds() {
-        var usuario=$("select[name$=id_usuario]");
-        var feed=$("select[name$=id_feed]");
-        var feed2=$("select[name$=id_feed2]");
-        if(feeds_defaults=="") feeds_defaults=$(feed).html();
-        var data="action=ajax&query=feeds&id_usuario="+$(usuario).val();
+    function update_feeds()
+    {
+        var usuario = $("select[name$=id_usuario]");
+        var feed = $("select[name$=id_feed]");
+        var feed2 = $("select[name$=id_feed2]");
+        if (feeds_defaults == "") {
+            feeds_defaults = $(feed).html();
+        }
+        var data = "action=ajax&query=feeds&id_usuario=" + $(usuario).val();
         $.ajax({
             url:"index.php",
             data:data,
             type:"get",
-            success:function(response) {
-                var options=feeds_defaults;
-                var original=$(feed).attr("original");
-                $(response["rows"]).each(function() {
-                    var selected=(this["id"]==original)?"selected='selected'":"";
-                    options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
+            success:function (response) {
+                var options = feeds_defaults;
+                var original = $(feed).attr("original");
+                $(response["rows"]).each(function () {
+                    var selected = (this["id"] == original) ? "selected='selected'" : "";
+                    options += "<option value='" + this["id"] + "' " + selected + ">" + this["nombre"] + "</option>";
                 });
                 $(feed).html(options);
                 $(feed2).html(options);
             },
-            error:function(XMLHttpRequest,textStatus,errorThrown) {
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
                 errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
             }
         });
@@ -56,6 +59,7 @@ if(typeof(__updatefeeds__)=="undefined" && typeof(parent.__updatefeeds__)=="unde
 }
 
 "use strict";
-var feeds_defaults="";
+var feeds_defaults = "";
 
-$(function() { update_feeds(); });
+$(function () {
+    update_feeds(); });

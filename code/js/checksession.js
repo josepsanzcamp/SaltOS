@@ -23,47 +23,49 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__checksession__)=="undefined" && typeof(parent.__checksession__)=="undefined") {
+if (typeof __checksession__ == "undefined" && typeof parent.__checksession__ == "undefined") {
     "use strict";
-    var __checksession__=1;
+    var __checksession__ = 1;
 
-    var session_executing=0;
+    var session_executing = 0;
 
-    function check_session(action2) {
-        if(session_executing) return;
-        session_executing=1;
+    function check_session(action2)
+    {
+        if (session_executing) {
+            return;
+        }
+        session_executing = 1;
         // SOME CHECKS
-        if($(".ui-layout-west").text()=="") {
-            session_executing=0;
+        if ($(".ui-layout-west").text() == "") {
+            session_executing = 0;
             return;
         }
         // NORMAL USAGE
-        var data="action=session"+((typeof(action2)=="undefined")?"":"&action2="+action2);
+        var data = "action=session" + ((typeof action2 == "undefined") ? "" : "&action2=" + action2);
         $.ajax({
             url:"index.php",
             data:data,
             type:"get",
-            success:function(response) {
+            success:function (response) {
                 $(".ui-layout-center").append(response);
-                session_executing=0;
+                session_executing = 0;
             },
-            error:function(XMLHttpRequest,textStatus,errorThrown) {
-                session_executing=0;
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
+                session_executing = 0;
             }
         });
     }
 
-    $(function() {
-        if(config_session_interval()>0) {
-            var session_counter=config_session_interval();
-            setInterval(function() {
-                session_counter=session_executing?0:session_counter+100;
-                if(session_counter>=config_session_interval()) {
+    $(function () {
+        if (config_session_interval() > 0) {
+            var session_counter = config_session_interval();
+            setInterval(function () {
+                session_counter = session_executing ? 0 : session_counter + 100;
+                if (session_counter >= config_session_interval()) {
                     check_session();
-                    session_counter=0;
+                    session_counter = 0;
                 }
             },100);
         }
     });
-
 }

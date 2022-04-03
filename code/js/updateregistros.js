@@ -23,29 +23,32 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-if(typeof(__updateregistros__)=="undefined" && typeof(parent.__updateregistros__)=="undefined") {
+if (typeof __updateregistros__ == "undefined" && typeof parent.__updateregistros__ == "undefined") {
     "use strict";
-    var __updateregistros__=1;
+    var __updateregistros__ = 1;
 
-    function update_registros() {
-        var aplicacion=$("select[name$=id_aplicacion]");
-        var registro=$("select[name$=id_registro]");
-        if(registros_defaults=="") registros_defaults=$(registro).html();
-        var data="action=ajax&query=registros&id_aplicacion="+$(aplicacion).val();
+    function update_registros()
+    {
+        var aplicacion = $("select[name$=id_aplicacion]");
+        var registro = $("select[name$=id_registro]");
+        if (registros_defaults == "") {
+            registros_defaults = $(registro).html();
+        }
+        var data = "action=ajax&query=registros&id_aplicacion=" + $(aplicacion).val();
         $.ajax({
             url:"index.php",
             data:data,
             type:"get",
-            success:function(response) {
-                var options=registros_defaults;
-                var original=$(registro).attr("original");
-                $(response["rows"]).each(function() {
-                    var selected=(this["id"]==original)?"selected='selected'":"";
-                    options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
+            success:function (response) {
+                var options = registros_defaults;
+                var original = $(registro).attr("original");
+                $(response["rows"]).each(function () {
+                    var selected = (this["id"] == original) ? "selected='selected'" : "";
+                    options += "<option value='" + this["id"] + "' " + selected + ">" + this["nombre"] + "</option>";
                 });
                 $(registro).html(options);
             },
-            error:function(XMLHttpRequest,textStatus,errorThrown) {
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
                 errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
             }
         });
@@ -54,6 +57,7 @@ if(typeof(__updateregistros__)=="undefined" && typeof(parent.__updateregistros__
 }
 
 "use strict";
-var registros_defaults="";
+var registros_defaults = "";
 
-$(function() { update_registros(); });
+$(function () {
+    update_registros(); });
