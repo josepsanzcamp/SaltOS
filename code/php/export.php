@@ -217,7 +217,7 @@ function __export_file_csv(
     Output:
         They will returns all data
 */
-function __export_file_excel($matrix, $title = "", $type = "Xls")
+function __export_file_excel($matrix, $title = "", $type = "Xlsx")
 {
     require_once "lib/phpspreadsheet/vendor/autoload.php";
     $objPHPExcel = new PhpOffice\PhpSpreadsheet\Spreadsheet();

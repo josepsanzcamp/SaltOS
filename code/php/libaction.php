@@ -424,26 +424,6 @@ function __favoritos_get_metas($html)
     return $result;
 }
 
-function __feeds_getnode($path, $array)
-{
-    if (!is_array($path)) {
-        $path = explode("/", $path);
-    }
-    $elem = array_shift($path);
-    if (!is_array($array) || !isset($array[$elem])) {
-        return null;
-    }
-    if (count($path) == 0) {
-        return $array[$elem];
-    }
-    return __feeds_getnode($path, __feeds_getvalue($array[$elem]));
-}
-
-function __feeds_getvalue($array)
-{
-    return (is_array($array) && isset($array["value"]) && isset($array["#attr"])) ? $array["value"] : $array;
-}
-
 function __feeds_xml2array_helper($xml)
 {
     require_once "php/import.php";
@@ -513,46 +493,47 @@ function __feeds_detect($array)
 
 function __feeds_fetchmain($array)
 {
+    require_once "php/import.php";
     $type = __feeds_detect($array);
     $title = "";
     $link = "";
     $description = "";
     $image = "img/deffeed.png";
     if ($type == "rdf") {
-        $title = getutf8(__feeds_getnode("rdf:RDF/channel/title", $array));
-        $link = __feeds_getnode("rdf:RDF/channel/link", $array);
-        $description = getutf8(__feeds_getnode("rdf:RDF/channel/description", $array));
-        $image = __feeds_getnode("rdf:RDF/image/url", $array);
+        $title = getutf8(__import_getnode("rdf:RDF/channel/title", $array));
+        $link = __import_getnode("rdf:RDF/channel/link", $array);
+        $description = getutf8(__import_getnode("rdf:RDF/channel/description", $array));
+        $image = __import_getnode("rdf:RDF/image/url", $array);
     } elseif ($type == "rss2") {
-        $title = getutf8(__feeds_getnode("rss/channel/title", $array));
-        $link = __feeds_getnode("rss/channel/link", $array);
-        $description = getutf8(__feeds_getnode("rss/channel/description", $array));
-        $image = __feeds_getnode("rss/channel/image/url", $array);
+        $title = getutf8(__import_getnode("rss/channel/title", $array));
+        $link = __import_getnode("rss/channel/link", $array);
+        $description = getutf8(__import_getnode("rss/channel/description", $array));
+        $image = __import_getnode("rss/channel/image/url", $array);
     } elseif ($type == "atom") {
-        $title = getutf8(__feeds_getvalue(__feeds_getnode("feed/title", $array)));
-        $link = __feeds_getnode("feed/link", $array);
+        $title = getutf8(__import_getvalue(__import_getnode("feed/title", $array)));
+        $link = __import_getnode("feed/link", $array);
         $count = 0;
         while ($link !== null) {
-            $rel = __feeds_getnode("#attr/rel", $link);
-            $type = __feeds_getnode("#attr/type", $link);
+            $rel = __import_getnode("#attr/rel", $link);
+            $type = __import_getnode("#attr/type", $link);
             if ($rel == "alternate" && $type == "text/html") {
-                $link = __feeds_getnode("#attr/href", $link);
+                $link = __import_getnode("#attr/href", $link);
                 break;
             }
             if ($rel == "alternate" && !isset($alternate)) {
-                $alternate = __feeds_getnode("#attr/href", $link);
+                $alternate = __import_getnode("#attr/href", $link);
             }
             $count++;
-            $link = __feeds_getnode("feed/link#${count}", $array);
+            $link = __import_getnode("feed/link#${count}", $array);
         }
         if (!$link && isset($alternate)) {
             $link = $alternate;
         }
         // FIX FOR GOOGLE GROUPS
         if (!$link) {
-            $link = __feeds_getnode("feed/id", $array);
+            $link = __import_getnode("feed/id", $array);
         }
-        $description = getutf8(__feeds_getvalue(__feeds_getnode("feed/subtitle", $array)));
+        $description = getutf8(__import_getvalue(__import_getnode("feed/subtitle", $array)));
     }
     $array = array("title" => $title,"link" => $link,"description" => $description,"image" => $image);
     foreach ($array as $key => $val) {
@@ -563,14 +544,15 @@ function __feeds_fetchmain($array)
 
 function __feeds_fetchitems($array)
 {
+    require_once "php/import.php";
     require_once "php/getmail.php";
     $type = __feeds_detect($array);
     $items = array();
     if ($type == "rdf") {
-        $item = __feeds_getvalue(__feeds_getnode("rdf:RDF/item", $array));
+        $item = __import_getvalue(__import_getnode("rdf:RDF/item", $array));
         $count = 0;
         while ($item !== null) {
-            $title = __feeds_getnode("title", $item);
+            $title = __import_getnode("title", $item);
             if (is_array($title)) {
                 $title = __array2xml_write_nodes($title);
                 $title = getutf8($title);
@@ -578,16 +560,16 @@ function __feeds_fetchitems($array)
             } else {
                 $title = getutf8($title);
             }
-            $link = __feeds_getnode("link", $item);
+            $link = __import_getnode("link", $item);
             if (is_array($link)) {
                 $link = array_shift($link);
             }
-            $description = __feeds_getnode("description", $item);
+            $description = __import_getnode("description", $item);
             if (is_array($description)) {
                 $description = __array2xml_write_nodes($description);
             }
             $description = getutf8($description);
-            $pubdate = __feeds_getnode("dc:date", $item);
+            $pubdate = __import_getnode("dc:date", $item);
             if (is_array($pubdate)) {
                 $pubdate = array_shift($pubdate);
             }
@@ -608,13 +590,13 @@ function __feeds_fetchitems($array)
                 );
             }
             $count++;
-            $item = __feeds_getvalue(__feeds_getnode("rdf:RDF/item#${count}", $array));
+            $item = __import_getvalue(__import_getnode("rdf:RDF/item#${count}", $array));
         }
     } elseif ($type == "rss2") {
-        $item = __feeds_getvalue(__feeds_getnode("rss/channel/item", $array));
+        $item = __import_getvalue(__import_getnode("rss/channel/item", $array));
         $count = 0;
         while ($item !== null) {
-            $title = __feeds_getnode("title", $item);
+            $title = __import_getnode("title", $item);
             if (is_array($title)) {
                 $title = __array2xml_write_nodes($title);
                 $title = getutf8($title);
@@ -622,16 +604,16 @@ function __feeds_fetchitems($array)
             } else {
                 $title = getutf8($title);
             }
-            $link = __feeds_getnode("link", $item);
+            $link = __import_getnode("link", $item);
             if (is_array($link)) {
                 $link = array_shift($link);
             }
-            $description = __feeds_getnode("description", $item);
+            $description = __import_getnode("description", $item);
             if (is_array($description)) {
                 $description = __array2xml_write_nodes($description);
             }
             $description = getutf8($description);
-            $pubdate = __feeds_getnode("pubDate", $item);
+            $pubdate = __import_getnode("pubDate", $item);
             if (is_array($pubdate)) {
                 $pubdate = array_shift($pubdate);
             }
@@ -652,13 +634,13 @@ function __feeds_fetchitems($array)
                 );
             }
             $count++;
-            $item = __feeds_getvalue(__feeds_getnode("rss/channel/item#${count}", $array));
+            $item = __import_getvalue(__import_getnode("rss/channel/item#${count}", $array));
         }
     } elseif ($type == "atom") {
-        $item = __feeds_getvalue(__feeds_getnode("feed/entry", $array));
+        $item = __import_getvalue(__import_getnode("feed/entry", $array));
         $count = 0;
         while ($item !== null) {
-            $title = __feeds_getvalue(__feeds_getnode("title", $item));
+            $title = __import_getvalue(__import_getnode("title", $item));
             if (is_array($title)) {
                 $title = __array2xml_write_nodes($title);
                 $title = getutf8($title);
@@ -666,38 +648,38 @@ function __feeds_fetchitems($array)
             } else {
                 $title = getutf8($title);
             }
-            $link = __feeds_getnode("link", $item);
+            $link = __import_getnode("link", $item);
             $count2 = 0;
             while ($link !== null) {
-                $rel = __feeds_getnode("#attr/rel", $link);
-                $type = __feeds_getnode("#attr/type", $link);
+                $rel = __import_getnode("#attr/rel", $link);
+                $type = __import_getnode("#attr/type", $link);
                 if ($rel == "alternate" && $type == "text/html") {
-                    $link = __feeds_getnode("#attr/href", $link);
+                    $link = __import_getnode("#attr/href", $link);
                     break;
                 }
                 if ($rel == "alternate" && !isset($alternate)) {
-                    $alternate = __feeds_getnode("#attr/href", $link);
+                    $alternate = __import_getnode("#attr/href", $link);
                 }
                 $count2++;
-                $link = __feeds_getnode("link#${count2}", $item);
+                $link = __import_getnode("link#${count2}", $item);
             }
             if (!$link && isset($alternate)) {
                 $link = $alternate;
             }
             // FIX FOR GOOGLE GROUPS
             if (!$link) {
-                $link = __feeds_getnode("#attr/href", __feeds_getnode("link", $item));
+                $link = __import_getnode("#attr/href", __import_getnode("link", $item));
             }
             if (is_array($link)) {
                 $link = array_shift($link);
             }
             // GET CONTENT (AND SUMMARY IS OPTIONAL IN SOME FEEDS)
-            $summary = __feeds_getvalue(__feeds_getnode("summary", $item));
+            $summary = __import_getvalue(__import_getnode("summary", $item));
             if (is_array($summary)) {
                 $summary = __array2xml_write_nodes($summary);
             }
             $summary = trim(null2string(getutf8($summary)));
-            $content = __feeds_getvalue(__feeds_getnode("content", $item));
+            $content = __import_getvalue(__import_getnode("content", $item));
             if (is_array($content)) {
                 $content = __array2xml_write_nodes($content);
             }
@@ -734,7 +716,7 @@ function __feeds_fetchitems($array)
                 $description = $content;
             }
             // CONTINUE
-            $pubdate = __feeds_getnode("updated", $item);
+            $pubdate = __import_getnode("updated", $item);
             if (is_array($pubdate)) {
                 $pubdate = array_shift($pubdate);
             }
@@ -755,7 +737,7 @@ function __feeds_fetchitems($array)
                 );
             }
             $count++;
-            $item = __feeds_getvalue(__feeds_getnode("feed/entry#${count}", $array));
+            $item = __import_getvalue(__import_getnode("feed/entry#${count}", $array));
         }
     }
     foreach ($items as $key => $val) {

@@ -27,70 +27,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 /*
     Name:
-        __import_find_chars
-    Abstract:
-        TODO
-    Input:
-        TODO
-    Output:
-        TODO
-*/
-function __import_find_chars($data, $pos, $chars)
-{
-    $result = array();
-    $len = strlen($chars);
-    for ($i = 0; $i < $len; $i++) {
-        $temp = strpos($data, $chars[$i], $pos);
-        if ($temp !== false) {
-            $result[] = $temp;
-        }
-    }
-    return count($result) ? min($result) : false;
-}
-
-/*
-    Name:
-        __import_find_query
-    Abstract:
-        TODO
-    Input:
-        TODO
-    Output:
-        TODO
-*/
-function __import_find_query($data, $pos)
-{
-    $len = strlen($data);
-    $parentesis = 0;
-    $parser = 1;
-    $exists = 0;
-    $pos2 = __import_find_chars($data, $pos, "\\'();");
-    while ($pos2 !== false) {
-        if ($data[$pos2] == "\\") {
-            $pos2++;
-        } elseif ($data[$pos2] == "'") {
-            $parser = !$parser;
-        } elseif ($data[$pos2] == "(" && $parser) {
-            $parentesis++;
-        } elseif ($data[$pos2] == ")" && $parser) {
-            $parentesis--;
-        } elseif ($data[$pos2] == ";" && $parser && !$parentesis) {
-            $exists = 1;
-            break;
-        }
-        if ($pos2 + 1 >= $len) {
-            break;
-        }
-        $pos2 = __import_find_chars($data, $pos2 + 1, "\\'();");
-    }
-    if (!$parser || $parentesis || !$exists) {
-        return 0;
-    }
-    return $pos2 - $pos;
-}
-
-/*
-    Name:
         import_file
     Abstract:
         This function is intended to import data in the supported formats
@@ -373,6 +309,96 @@ function __import_getnode($path, $array)
 function __import_getvalue($array)
 {
     return (is_array($array) && isset($array["value"]) && isset($array["#attr"])) ? $array["value"] : $array;
+}
+
+/*
+    Name:
+        __import_setnode
+    Abstract:
+        TODO
+    Input:
+        TODO
+    Output:
+        TODO
+*/
+function __import_setnode($path, &$array, $value)
+{
+    if (!is_array($path)) {
+        $path = explode("/", $path);
+    }
+    $elem = array_shift($path);
+    if (!is_array($array) || !isset($array[$elem])) {
+        return false;
+    }
+    if (count($path) == 0) {
+        $array[$elem] = $value;
+        return true;
+    }
+    if (is_array($array[$elem]) && isset($array[$elem]["value"]) && isset($array[$elem]["#attr"])) {
+        return __import_setnode($path, $array[$elem]["value"], $value);
+    } else {
+        return __import_setnode($path, $array[$elem], $value);
+    }
+}
+
+/*
+    Name:
+        __import_delnode
+    Abstract:
+        TODO
+    Input:
+        TODO
+    Output:
+        TODO
+*/
+function __import_delnode($path, &$array)
+{
+    if (!is_array($path)) {
+        $path = explode("/", $path);
+    }
+    $elem = array_shift($path);
+    if (!is_array($array) || !isset($array[$elem])) {
+        return false;
+    }
+    if (count($path) == 0) {
+        unset($array[$elem]);
+        return true;
+    }
+    if (is_array($array[$elem]) && isset($array[$elem]["value"]) && isset($array[$elem]["#attr"])) {
+        return __import_delnode($path, $array[$elem]["value"]);
+    } else {
+        return __import_delnode($path, $array[$elem]);
+    }
+}
+
+/*
+    Name:
+        __import_addnode
+    Abstract:
+        TODO
+    Input:
+        TODO
+    Output:
+        TODO
+*/
+function __import_addnode($path, &$array, $value)
+{
+    if (!is_array($path)) {
+        $path = explode("/", $path);
+    }
+    $elem = array_shift($path);
+    if (count($path) == 0) {
+        set_array($array, $elem, $value);
+        return true;
+    }
+    if (!is_array($array) || !isset($array[$elem])) {
+        return false;
+    }
+    if (is_array($array[$elem]) && isset($array[$elem]["value"]) && isset($array[$elem]["#attr"])) {
+        return __import_addnode($path, $array[$elem]["value"], $value);
+    } else {
+        return __import_addnode($path, $array[$elem], $value);
+    }
 }
 
 /*
@@ -1623,4 +1649,68 @@ function __import_make_table_ascii($array)
     $buffer = ob_get_clean();
     // BYE BYE
     return $buffer;
+}
+
+/*
+    Name:
+        __import_find_chars
+    Abstract:
+        TODO
+    Input:
+        TODO
+    Output:
+        TODO
+*/
+function __import_find_chars($data, $pos, $chars)
+{
+    $result = array();
+    $len = strlen($chars);
+    for ($i = 0; $i < $len; $i++) {
+        $temp = strpos($data, $chars[$i], $pos);
+        if ($temp !== false) {
+            $result[] = $temp;
+        }
+    }
+    return count($result) ? min($result) : false;
+}
+
+/*
+    Name:
+        __import_find_query
+    Abstract:
+        TODO
+    Input:
+        TODO
+    Output:
+        TODO
+*/
+function __import_find_query($data, $pos)
+{
+    $len = strlen($data);
+    $parentesis = 0;
+    $parser = 1;
+    $exists = 0;
+    $pos2 = __import_find_chars($data, $pos, "\\'();");
+    while ($pos2 !== false) {
+        if ($data[$pos2] == "\\") {
+            $pos2++;
+        } elseif ($data[$pos2] == "'") {
+            $parser = !$parser;
+        } elseif ($data[$pos2] == "(" && $parser) {
+            $parentesis++;
+        } elseif ($data[$pos2] == ")" && $parser) {
+            $parentesis--;
+        } elseif ($data[$pos2] == ";" && $parser && !$parentesis) {
+            $exists = 1;
+            break;
+        }
+        if ($pos2 + 1 >= $len) {
+            break;
+        }
+        $pos2 = __import_find_chars($data, $pos2 + 1, "\\'();");
+    }
+    if (!$parser || $parentesis || !$exists) {
+        return 0;
+    }
+    return $pos2 - $pos;
 }
