@@ -313,9 +313,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sessionupdate>klik hier om te voorkomen dat het sluit</sessionupdate>
         <sessionupdated>Sessie is geüpdatet</sessionupdated>
         <link>Link</link>
-        <importacion>Importeren</importacion>
-        <todaslasimportaciones>[Alle invoer]</todaslasimportaciones>
-        <sinimportacion>[Geen bijbehorende import]</sinimportacion>
         <textos_select>Selecteer een tekst en druk op Toevoegen</textos_select>
         <textos_add>Toevoegen</textos_add>
         <selectall>Alles selecteren</selectall>
@@ -409,7 +406,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <support>Technische ondersteuning</support>
         <logout>Log uit</logout>
         <seguimientos>Taak volgen</seguimientos>
-        <datacfg>Database</datacfg>
         <correo>E-mail</correo>
         <cuentas>Accounts</cuentas>
         <periodicas>Periodieke facturen</periodicas>
@@ -424,7 +420,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <feeds>RSS-feedlezer</feeds>
         <favoritos>Favorieten</favoritos>
         <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-        <importaciones>Invoer</importaciones>
         <gestioncomercial>Commercieel</gestioncomercial>
         <gestionproyectos>Projecten</gestionproyectos>
         <gestioncontabilidad>Boekhouding</gestioncontabilidad>
@@ -432,10 +427,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestionfiltros>Filters</gestionfiltros>
         <gestionadministracion>Administratie</gestionadministracion>
         <gestiontipos>Soorten</gestiontipos>
-        <gestionsistema>Systeem</gestionsistema>
         <folders>Mappen</folders>
         <buscador>Zoekmachine</buscador>
-        <errorlog>Foutlogboeken</errorlog>
         <categorias>Categorieën</categorias>
         <desc_clientes>Beheer de klanten van uw bedrijf</desc_clientes>
         <desc_contactos>Om toegang te krijgen tot de contacten van een klant</desc_contactos>
@@ -457,7 +450,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_profile>Wijzig uw gebruikersvoorkeuren</desc_profile>
         <desc_maincfg>Wijzig de algemene toepassingsvoorkeuren</desc_maincfg>
         <desc_seguimientos>Beheer projecttaken met tracking</desc_seguimientos>
-        <desc_datacfg>Maak back-ups en herstel ze eenvoudig</desc_datacfg>
         <desc_correo>Lees en verstuur hier e-mails naar uw klanten en leveranciers</desc_correo>
         <desc_cuentas>Definieer grootboekrekeningen voor boekhouding</desc_cuentas>
         <desc_periodicas>Plan terugkerende facturen met vervaldatums</desc_periodicas>
@@ -476,9 +468,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_feeds>Volg uw RSS- en Atom-feeds van deze applicatie</desc_feeds>
         <desc_favoritos>Beheer uw favorieten vanaf hier</desc_favoritos>
         <desc_ivas>Beheer de belastingtarieven vanaf hier</desc_ivas>
-        <desc_importaciones>Importeer vanaf hier gegevens naar de belangrijkste toepassingen</desc_importaciones>
         <desc_buscador>Om de hele database te doorzoeken</desc_buscador>
-        <desc_errorlog>Om het SaltOS-foutenlogboek te bekijken</desc_errorlog>
         <desc_categorias>Om de categorieën van bepaalde applicaties te zien</desc_categorias>
         <quick_home>Home</quick_home>
         <quick_correo>Mail</quick_correo>
@@ -506,7 +496,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_actas>Minuten</quick_actas>
         <quick_maincfg>Installatie</quick_maincfg>
         <quick_seguimientos>Vervolgacties</quick_seguimientos>
-        <quick_datacfg>BBDD</quick_datacfg>
         <quick_cuentas>Accounts</quick_cuentas>
         <quick_periodicas>Periodiek</quick_periodicas>
         <quick_empleados>Medewerkers</quick_empleados>
@@ -519,9 +508,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_ficheros>Bestanden</quick_ficheros>
         <quick_feeds>RSS</quick_feeds>
         <quick_favoritos>Favorieten</quick_favoritos>
-        <quick_importaciones>Invoer</quick_importaciones>
         <quick_buscador>Zoekmachine</quick_buscador>
-        <quick_errorlog>Fouten</quick_errorlog>
         <quick_categorias>Categorieën</quick_categorias>
         <menu>Menu</menu>
         <menutip>Om het toepassingsmenu te tonen en te verbergen</menutip>
@@ -1072,21 +1059,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>Gegevens bijhouden</defaultdata>
         <add>Voeg tracking toe</add>
     </seguimientos>
-    <datacfg>
-        <formupdate>Acties op de database</formupdate>
-        <export>Exporteren</export>
-        <title_export>Exporteer de volledige database in SQL-indeling</title_export>
-        <desc_export>Hiermee kunt u een back-up van de hele database opslaan</desc_export>
-        <desc2_export>Este ordenador</desc2_export>
-        <import>Importeren</import>
-        <title_import>Importeer de volledige database in SQL-indeling</title_import>
-        <desc_import>Hiermee kunt u alle gegevens van een back-up importeren</desc_import>
-        <desc2_import>Selecteer het te importeren bestand door op de knop [Bladeren] te drukken en vervolgens op de knop [Importeren] om de nieuwe gegevens van de back-up te laden</desc2_import>
-        <desc3_import>Belangrijk: bij het importeren worden de huidige gegevens in de applicatie gewist</desc3_import>
-        <filenotfound>De inhoud van het importbestand kon niet worden gelezen</filenotfound>
-        <filefoundok>Back-up succesvol geïmporteerd</filefoundok>
-        <fileimporterror>Er is een fout opgetreden bij het importeren van het bestand</fileimporterror>
-    </datacfg>
     <correo>
         <list>Mailinglijst</list>
         <create>Stuur nieuwe mail</create>
@@ -1458,16 +1430,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgnumnocool>Ze zijn gemarkeerd als niet interessant:</msgnumnocool>
         <actionfavoritos>Toevoegen aan favorieten</actionfavoritos>
     </feeds>
-    <importaciones>
-        <list>Vermelding importeren</list>
-        <create>Nieuwe import</create>
-        <formview>Importeer details</formview>
-        <forminsert>Registratie van een nieuwe import</forminsert>
-        <formupdate>Wijziging importeren</formupdate>
-        <defaultdata>Gegevens importeren</defaultdata>
-        <sinaplicacion>[Zonder aanvraag]</sinaplicacion>
-        <importdata>Bestandsgegevens</importdata>
-    </importaciones>
     <folders>
         <notfound>Map niet gevonden</notfound>
         <todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>
@@ -1478,10 +1440,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Zoekmachine</list>
         <todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>
     </buscador>
-    <errorlog>
-        <formupdate>Foutlogboeken</formupdate>
-        <defaultdata>Bestandsinhoud</defaultdata>
-    </errorlog>
     <favoritos>
         <list>Favorietenlijst</list>
         <create>Nieuwe favoriet</create>

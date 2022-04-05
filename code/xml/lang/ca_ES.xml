@@ -313,9 +313,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sessionupdate>clic aquí per evitar que es tanqui</sessionupdate>
         <sessionupdated>S'ha actualitzat la sessió correctament</sessionupdated>
         <link>Enllaç</link>
-        <importacion>Importació</importacion>
-        <todaslasimportaciones>[Totes les importacions]</todaslasimportaciones>
-        <sinimportacion>[Sense importació associada]</sinimportacion>
         <textos_select>Seleccioneu un text i premeu Afegir</textos_select>
         <textos_add>Afegir</textos_add>
         <selectall>Selecciona-ho tot</selectall>
@@ -409,7 +406,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <support>Suport tècnic</support>
         <logout>Tancar sessió</logout>
         <seguimientos>Seguiment de tasques</seguimientos>
-        <datacfg>Base de dades</datacfg>
         <correo>Correu electrònic</correo>
         <cuentas>Comptes</cuentas>
         <periodicas>Factures periòdiques</periodicas>
@@ -424,7 +420,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <feeds>Lector de feeds RSS</feeds>
         <favoritos>Favorits</favoritos>
         <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-        <importaciones>Importacions</importaciones>
         <gestioncomercial>Comercial</gestioncomercial>
         <gestionproyectos>Projectes</gestionproyectos>
         <gestioncontabilidad>Comptabilitat</gestioncontabilidad>
@@ -432,10 +427,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestionfiltros>Filtres</gestionfiltros>
         <gestionadministracion>Administració</gestionadministracion>
         <gestiontipos>Tipus</gestiontipos>
-        <gestionsistema>Sistema</gestionsistema>
         <folders>Carpetes</folders>
         <buscador>Cercador</buscador>
-        <errorlog>Logs d'error</errorlog>
         <categorias>Categories</categorias>
         <desc_clientes>Gestioni els clients de la seva empresa</desc_clientes>
         <desc_contactos>Per accedir als contactes d'un client</desc_contactos>
@@ -457,7 +450,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_profile>Canvieu les preferències del seu usuari</desc_profile>
         <desc_maincfg>Canvieu les preferències globlal de l'aplicació</desc_maincfg>
         <desc_seguimientos>Controli les tasques d'un projecte amb els seguiments</desc_seguimientos>
-        <desc_datacfg>Realitzi còpies de seguretat i restaurelas fàcilment</desc_datacfg>
         <desc_correo>Llegiu i enviï correus des d'aquí als seus clients i proveïdors</desc_correo>
         <desc_cuentas>Definiu els comptes comptables per a la comptabilitat</desc_cuentas>
         <desc_periodicas>Programeu factures periòdiques amb dates de venciment</desc_periodicas>
@@ -476,9 +468,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_feeds>Seguiu els seus feeds RSS i Atom des d'aquesta aplicació</desc_feeds>
         <desc_favoritos>Gestioni els seus favorits des d'aquí</desc_favoritos>
         <desc_ivas>Administrar els impostos des d'aquí</desc_ivas>
-        <desc_importaciones>Import dades a les principals aplicacions des d'aquí</desc_importaciones>
         <desc_buscador>Per cercar a tota la base de dades</desc_buscador>
-        <desc_errorlog>Per veure el registre d'errors de SaltOS</desc_errorlog>
         <desc_categorias>Per veure les categories de certes aplicacions</desc_categorias>
         <quick_home>Inici</quick_home>
         <quick_correo>Correu</quick_correo>
@@ -506,7 +496,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_actas>Actes</quick_actas>
         <quick_maincfg>Configuració</quick_maincfg>
         <quick_seguimientos>Seguiments</quick_seguimientos>
-        <quick_datacfg>BBDD</quick_datacfg>
         <quick_cuentas>Comptes</quick_cuentas>
         <quick_periodicas>Periòdiques</quick_periodicas>
         <quick_empleados>Empleats</quick_empleados>
@@ -519,9 +508,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_ficheros>Fitxers</quick_ficheros>
         <quick_feeds>RSS</quick_feeds>
         <quick_favoritos>Favorits</quick_favoritos>
-        <quick_importaciones>Importacions</quick_importaciones>
         <quick_buscador>Cercador</quick_buscador>
-        <quick_errorlog>Errors</quick_errorlog>
         <quick_categorias>Categories</quick_categorias>
         <menu>Menú</menu>
         <menutip>Per veure i amagar el menú d'aplicacions</menutip>
@@ -1072,21 +1059,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>Dades del seguiment</defaultdata>
         <add>Afegir seguiment</add>
     </seguimientos>
-    <datacfg>
-        <formupdate>Accions sobre la base de dades</formupdate>
-        <export>Exportar</export>
-        <title_export>Exportar tota la base de dades en format SQL</title_export>
-        <desc_export>Permet guardar una còpia de seguretat de tota la base de dades</desc_export>
-        <desc2_export>Realitzi aquesta operació de forma periòdica i guardi aquest fitxer en un lloc segur com una memòria flash, un CD o qualsevol altre dispositiu extern a aquest ordinador</desc2_export>
-        <import>Importar</import>
-        <title_import>Importa tota la base de dades en format SQL</title_import>
-        <desc_import>Permet importar totes les dades des d'una còpia de seguretat</desc_import>
-        <desc2_import>Seleccioneu el fitxer a importar prement el botó [Examinar] i després premeu el botó [Importar] per realitzar la càrrega de les noves dades des de la còpia de seguretat</desc2_import>
-        <desc3_import>Important: La importació esborrarà les dades actuals que tingui en l'aplicació</desc3_import>
-        <filenotfound>No s'ha pogut llegir el contingut del fitxer d'importació</filenotfound>
-        <filefoundok>S'ha importat correctament la còpia de seguretat </filefoundok>
-        <fileimporterror>S'ha produit un error al importar el fitxer </fileimporterror>
-    </datacfg>
     <correo>
         <list>Llistat de correus</list>
         <create>Enviar nou correu</create>
@@ -1458,16 +1430,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgnumnocool>S'han marcat com no interesants: </msgnumnocool>
         <actionfavoritos>Afegir als favorits</actionfavoritos>
     </feeds>
-    <importaciones>
-        <list>Llistat d'importacions</list>
-        <create>Nova importació</create>
-        <formview>Detall de la importació</formview>
-        <forminsert>Alta d'una nova importació</forminsert>
-        <formupdate>Modificació de la importació</formupdate>
-        <defaultdata>Dades de la importació</defaultdata>
-        <sinaplicacion>[Sense aplicació]</sinaplicacion>
-        <importdata>Dades del fitxer</importdata>
-    </importaciones>
     <folders>
         <notfound>Carpeta no trobada</notfound>
         <todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>
@@ -1478,10 +1440,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Cercador</list>
         <todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>
     </buscador>
-    <errorlog>
-        <formupdate>Logs d'error</formupdate>
-        <defaultdata>Contingut del fitxer </defaultdata>
-    </errorlog>
     <favoritos>
         <list>Llistat de favorits</list>
         <create>Nou favorit</create>

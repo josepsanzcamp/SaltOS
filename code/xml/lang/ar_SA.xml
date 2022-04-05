@@ -313,9 +313,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sessionupdate>اضغط هنا لمنع الاغلاق</sessionupdate>
         <sessionupdated>تم تحديث تسجيل الدخول بنجاح</sessionupdated>
         <link>رابط</link>
-        <importacion>استيراد</importacion>
-        <todaslasimportaciones>[جميع الواردات]</todaslasimportaciones>
-        <sinimportacion>[لايوجد وارد ذو علاقة]</sinimportacion>
         <textos_select>اختر نص واضغط علي اضافة</textos_select>
         <textos_add>إضافة</textos_add>
         <selectall>تحديد الكل</selectall>
@@ -409,7 +406,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <support>الدعم</support>
         <logout>اغلاق الجلسة</logout>
         <seguimientos>متابعة مهمة</seguimientos>
-        <datacfg>قاعدة البيانات</datacfg>
         <correo>البريد</correo>
         <cuentas>الحسابات</cuentas>
         <periodicas>دورة الفواتير</periodicas>
@@ -424,7 +420,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <feeds>RSS قارئ موجز</feeds>
         <favoritos>المفضلات</favoritos>
         <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-        <importaciones>استيراد</importaciones>
         <gestioncomercial>المبيعات</gestioncomercial>
         <gestionproyectos>المشاريع</gestionproyectos>
         <gestioncontabilidad>المحاسبة</gestioncontabilidad>
@@ -432,10 +427,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestionfiltros>عوامل التصفيه</gestionfiltros>
         <gestionadministracion>إدارة</gestionadministracion>
         <gestiontipos>الانواع</gestiontipos>
-        <gestionsistema>النظام</gestionsistema>
         <folders>الأدلة</folders>
         <buscador>بحث</buscador>
-        <errorlog>سجلات الأخطاء</errorlog>
         <categorias>فئات</categorias>
         <desc_clientes>إدارة عملاء الشركة</desc_clientes>
         <desc_contactos>للوصول إلى جهات اتصال العميل</desc_contactos>
@@ -457,7 +450,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_profile>قم بتغيير تفضيلات المستخدم</desc_profile>
         <desc_maincfg>قم بتغيير افضليات التطبيق بشكل كلي</desc_maincfg>
         <desc_seguimientos>تحكم في مهام مشروع مع المتابعة</desc_seguimientos>
-        <desc_datacfg>قم بعملية النسخ الاحتياط والاستعادة بسهولة</desc_datacfg>
         <desc_correo>قراءة وإرسال البريد من هنا للعملاء والموردين</desc_correo>
         <desc_cuentas>تعريف المحاسبي لحسابات دفتر الأستاذ</desc_cuentas>
         <desc_periodicas>جدولة انتهاء تواريخ دورة الفواتير</desc_periodicas>
@@ -476,9 +468,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_feeds>تتبع خلاصات RSS و اتوم من هذا التطبيق</desc_feeds>
         <desc_favoritos>إدارة المفضلة من هنا</desc_favoritos>
         <desc_ivas>إدارة الضرائب من هنا</desc_ivas>
-        <desc_importaciones>استيراد البيانات للتطبيقات الرئيسية من هنا</desc_importaciones>
         <desc_buscador>للبحث في جميع محتويات قاعدة البيانات</desc_buscador>
-        <desc_errorlog>لمشاهدة سجلات الخطأ في SaltOS</desc_errorlog>
         <desc_categorias>للاطلاع على فئات تطبيقات محددة</desc_categorias>
         <quick_home>الرئيسية</quick_home>
         <quick_correo>البريد</quick_correo>
@@ -506,7 +496,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_actas>الأوراق</quick_actas>
         <quick_maincfg>الاعدادات</quick_maincfg>
         <quick_seguimientos>المتابعات</quick_seguimientos>
-        <quick_datacfg>قاعدة البيانات</quick_datacfg>
         <quick_cuentas>الحسابات</quick_cuentas>
         <quick_periodicas>الدورة</quick_periodicas>
         <quick_empleados>الموظفين</quick_empleados>
@@ -519,9 +508,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_ficheros>المرفقات</quick_ficheros>
         <quick_feeds>تغذيات RSS </quick_feeds>
         <quick_favoritos>المفضلات</quick_favoritos>
-        <quick_importaciones>الواردات</quick_importaciones>
         <quick_buscador>بحث</quick_buscador>
-        <quick_errorlog>الاخطاء</quick_errorlog>
         <quick_categorias>فئات</quick_categorias>
         <menu>القائمة</menu>
         <menutip>لاظهار واخفاء قائمة التطبيق</menutip>
@@ -1072,21 +1059,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>مراقبة بيانات</defaultdata>
         <add>اضافة قنوات</add>
     </seguimientos>
-    <datacfg>
-        <formupdate>الاجرائات علي البيانات الاساسية</formupdate>
-        <export>تصدير</export>
-        <title_export>تصدير جيع قاعدة البيانات علي هيئة SQL</title_export>
-        <desc_export>تتيح لك عمل backup لقاعدة البيانات بالكامل</desc_export>
-        <desc2_export>قم بهذه العملية بشكل دوري  ,احفظ هذا الملف في مكان امن كذاكرة فلاش , قرص مضغوط او اي جهاز خارجي لهذا الحاسب</desc2_export>
-        <import>استيراد</import>
-        <title_import>استيراد جميع قاعدة البيانات علي هيئة SQL</title_import>
-        <desc_import>يمكن جلب جميع قاعدة البيانات من الbackup</desc_import>
-        <desc2_import>حدد الملف بالضغط علي [تصفح] ثم اضغط علي [استيراد] لجلب البيانات الجديدة من الbackup</desc2_import>
-        <desc3_import>مهم: الاستيراد يقوم بحذف البيانات الموجودة حاليا علي التطبيق</desc3_import>
-        <filenotfound>غير قادر علي قرائة محتويات الملف الراد استيراده</filenotfound>
-        <filefoundok>لقد تم جلب بيانات ال backup بنجاح</filefoundok>
-        <fileimporterror>خطأ عند محاولة استيراد الملف</fileimporterror>
-    </datacfg>
     <correo>
         <list>قائمة البريد</list>
         <create>ارسال ايميل جديد</create>
@@ -1458,16 +1430,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgnumnocool>تم تعليمها كرائعة:  </msgnumnocool>
         <actionfavoritos>إضافة إلى الإشارات المرجعية</actionfavoritos>
     </feeds>
-    <importaciones>
-        <list>قائمة الاستيرادات</list>
-        <create>استيراد جديد</create>
-        <formview>تفصيل الاستيراد</formview>
-        <forminsert>اضافة استيراد جديد</forminsert>
-        <formupdate>تغير استيراد</formupdate>
-        <defaultdata>استيراد بيانات</defaultdata>
-        <sinaplicacion>[بدون تطبيق]</sinaplicacion>
-        <importdata>محتويات الملف</importdata>
-    </importaciones>
     <folders>
         <notfound>الدليل غير موجود</notfound>
         <todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>
@@ -1478,10 +1440,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>بحث</list>
         <todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>
     </buscador>
-    <errorlog>
-        <formupdate>سجلات الأخطاء</formupdate>
-        <defaultdata>محتويات الملف </defaultdata>
-    </errorlog>
     <favoritos>
         <list>قائمة المفضلة</list>
         <create>مفضلة جديدة</create>

@@ -90,6 +90,9 @@ if (!cache_exists($cache, $src)) {
         case "tiff":
             $im = __phpthumb_imagecreatefromtiff($src);
             break;
+        case "webp":
+            $im = imagecreatefromwebp($src);
+            break;
         default:
             show_php_error(array("phperror" => "Unsupported input format: ${format_input}"));
     }
@@ -147,6 +150,9 @@ if (!cache_exists($cache, $src)) {
             break;
         case "bmp":
             imagebmp($im2, $cache);
+            break;
+        case "webp":
+            imagewebp($im2, $cache);
             break;
         default:
             show_php_error(array("phperror" => "Unsupported output format: ${format_output}"));

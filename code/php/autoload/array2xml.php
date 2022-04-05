@@ -28,9 +28,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 function __array2xml_check_node_name($name)
 {
     try {
-        new DomElement($name);
+        new DOMElement(":${name}");
         return 1;
-    } catch (DomException $e) {
+    } catch (DOMException $e) {
+        return 0;
+    }
+}
+
+function __array2xml_check_node_attr($name)
+{
+    try {
+        new DOMAttr($name);
+        return 1;
+    } catch (DOMException $e) {
         return 0;
     }
 }
@@ -48,16 +58,19 @@ function __array2xml_write_nodes(&$array, $level = null)
     $buffer = "";
     foreach ($array as $key => $val) {
         $key = limpiar_key($key);
+        if (!__array2xml_check_node_name($key)) {
+            show_php_error(array("phperror" => "Invalid XML tag name '${key}'"));
+        }
         $attr = "";
         if (is_array($val) && isset($val["value"]) && isset($val["#attr"])) {
             $attr = array();
             foreach ($val["#attr"] as $key2 => $val2) {
                 $key2 = limpiar_key($key2);
-                $val2 = str_replace("&", "&amp;", $val2);
-                if (!__array2xml_check_node_name($key2)) {
-                    show_php_error(array("phperror" => "Invalid XML attr name '${key2}' with the value '${val2}'"));
+                if (!__array2xml_check_node_attr($key2)) {
+                    show_php_error(array("phperror" => "Invalid XML attr name '${key2}'"));
                 }
-                $attr[] = $key2 . "=" . '"' . $val2 . '"';
+                $val2 = str_replace("&", "&amp;", $val2);
+                $attr[] = "${key2}=\"${val2}\"";
             }
             $attr = " " . implode(" ", $attr);
             $val = $val["value"];
@@ -67,9 +80,6 @@ function __array2xml_write_nodes(&$array, $level = null)
             $buffer .= __array2xml_write_nodes($val, $level);
             $buffer .= "${prefix}</${key}>${postfix}";
         } else {
-            if (!__array2xml_check_node_name($key)) {
-                show_php_error(array("phperror" => "Invalid XML tag name '${key}' for the value '${val}'"));
-            }
             $val = remove_bad_chars(null2string($val));
             if (strpos($val, "<") !== false || strpos($val, "&") !== false) {
                 $count = 1;
@@ -78,7 +88,12 @@ function __array2xml_write_nodes(&$array, $level = null)
                 }
                 $val = "<![CDATA[${val}]]>";
             }
-            $buffer .= $prefix . (($val != "") ? "<${key}${attr}>${val}</${key}>" : "<${key}${attr}/>") . $postfix;
+            if ($val != "") {
+                $buffer .= "${prefix}<${key}${attr}>${val}</${key}>${postfix}";
+            } else {
+                $buffer .= "${prefix}<${key}${attr}/>${postfix}";
+            }
+
         }
     }
     return $buffer;

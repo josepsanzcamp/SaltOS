@@ -313,9 +313,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sessionupdate>carregue aqui para evitar o fechamento</sessionupdate>
         <sessionupdated>sessão atualizada corretamente</sessionupdated>
         <link>Ligação</link>
-        <importacion>Importação</importacion>
-        <todaslasimportaciones>[Todas as importações]</todaslasimportaciones>
-        <sinimportacion>[Sem importação associada]</sinimportacion>
         <textos_select>Selecione um texto e pressione adicionar</textos_select>
         <textos_add>Adicionar</textos_add>
         <selectall>Selecionar tudo</selectall>
@@ -409,7 +406,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <support>Suporte técnico</support>
         <logout>Encerrar sessão</logout>
         <seguimientos>Tarefas</seguimientos>
-        <datacfg>Base de dados</datacfg>
         <correo>Mensagem eletrônica</correo>
         <cuentas>Contas</cuentas>
         <periodicas>Faturas periódicas</periodicas>
@@ -424,7 +420,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <feeds>Leitor de feeds RSS</feeds>
         <favoritos>Favoritos</favoritos>
         <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-        <importaciones>Importações</importaciones>
         <gestioncomercial>Comercial</gestioncomercial>
         <gestionproyectos>Projetos</gestionproyectos>
         <gestioncontabilidad>Contabilidade</gestioncontabilidad>
@@ -432,10 +427,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestionfiltros>Show more     filtros</gestionfiltros>
         <gestionadministracion>Administração</gestionadministracion>
         <gestiontipos>Tipos</gestiontipos>
-        <gestionsistema>Sistema</gestionsistema>
         <folders>Pastas</folders>
         <buscador>Pesquisador</buscador>
-        <errorlog>Logs de erros</errorlog>
         <categorias>Categorias</categorias>
         <desc_clientes>Gerenciar os clientes da empresa</desc_clientes>
         <desc_contactos>Para acessar os contatos de um cliente</desc_contactos>
@@ -457,7 +450,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_profile>Modifique as suas preferências de utilizador</desc_profile>
         <desc_maincfg>Modifique as preferências globlais da aplicação</desc_maincfg>
         <desc_seguimientos>Controle as tarefas de um projeto com os seguimentos</desc_seguimientos>
-        <desc_datacfg>Realize cópias de seguranaa e restaure-as facilmente</desc_datacfg>
         <desc_correo>Leia e envie mensagens para os seus clientes e fornecedores</desc_correo>
         <desc_cuentas>Defina as contas para a contabilidade</desc_cuentas>
         <desc_periodicas>Programe as faturas periódicas com datas de vencimento</desc_periodicas>
@@ -476,9 +468,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_feeds>Siga os seus feeds RSS e Atom a partir daqui</desc_feeds>
         <desc_favoritos>Gerenciamento de favoritos desde aqui</desc_favoritos>
         <desc_ivas>Gerencie os impostos daqui</desc_ivas>
-        <desc_importaciones>Importe dados das principais aplicações aqui</desc_importaciones>
         <desc_buscador>Para pesquisar todo o conteúdo do banco de dados</desc_buscador>
-        <desc_errorlog>Para ver os logs de erros de Saltos</desc_errorlog>
         <desc_categorias>Para ver as categorias de aplicativos específicos</desc_categorias>
         <quick_home>Início</quick_home>
         <quick_correo>Mensagem</quick_correo>
@@ -506,7 +496,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_actas>Atas</quick_actas>
         <quick_maincfg>Configuração</quick_maincfg>
         <quick_seguimientos>Seguimentos</quick_seguimientos>
-        <quick_datacfg>BBDD</quick_datacfg>
         <quick_cuentas>Contas</quick_cuentas>
         <quick_periodicas>periódicas</quick_periodicas>
         <quick_empleados>Empregados</quick_empleados>
@@ -519,9 +508,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_ficheros>Arquivos</quick_ficheros>
         <quick_feeds>RSS</quick_feeds>
         <quick_favoritos>Favoritos</quick_favoritos>
-        <quick_importaciones>Importações</quick_importaciones>
         <quick_buscador>Pesquisador</quick_buscador>
-        <quick_errorlog>Erros</quick_errorlog>
         <quick_categorias>Categorias</quick_categorias>
         <menu>Menu</menu>
         <menutip>Para mostrar e ocultar o menu do aplicativo</menutip>
@@ -1072,21 +1059,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>Dados do seguimento</defaultdata>
         <add>Inserir seguimento</add>
     </seguimientos>
-    <datacfg>
-        <formupdate>Ações sobre a base de Dados</formupdate>
-        <export>Exportar</export>
-        <title_export>Exportar toda a base de Dados em formato SQL</title_export>
-        <desc_export>Permite guardar uma cópia de segurança de toda a base de dados</desc_export>
-        <desc2_export>Realize esta operação de forma periódica e guarde este arquivo em um lugar seguro(memória flash, um CD ou qualquer outro dispositivo externo)</desc2_export>
-        <import>Importar</import>
-        <title_import>Importar toda a base de Dados em formato SQL</title_import>
-        <desc_import>Permite importar todos os Dados desde uma cópia de segurança</desc_import>
-        <desc2_import>Selecione o arquivo a importar clicando no botão [Examinar] e depois no botao [Importar] para realizar a carga dos novos dados inclusive a cópia de segurança</desc2_import>
-        <desc3_import>Importante: A importação apagará os dados atuais da aplicação</desc3_import>
-        <filenotfound>Não foi possível ler o conteúdo do arquivo de importação</filenotfound>
-        <filefoundok>A restauração foi efetuada com sucesso dos dados </filefoundok>
-        <fileimporterror>Erro ao tentar importar o arquivo</fileimporterror>
-    </datacfg>
     <correo>
         <list>Lista de mensagens</list>
         <create>Criar novo email</create>
@@ -1458,16 +1430,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgnumnocool>Foram marcados como desinteressante: </msgnumnocool>
         <actionfavoritos>Adicionar aos favoritos</actionfavoritos>
     </feeds>
-    <importaciones>
-        <list>Lista de importações</list>
-        <create>Nova importação</create>
-        <formview>Detalhe da importação</formview>
-        <forminsert>Inserir Nova importação</forminsert>
-        <formupdate>Modificar a importação</formupdate>
-        <defaultdata>Dados da importação</defaultdata>
-        <sinaplicacion>[Sem aplicação]</sinaplicacion>
-        <importdata>Conteúdo do arquivo</importdata>
-    </importaciones>
     <folders>
         <notfound>Pasta não encontrada</notfound>
         <todaslasaplicaciones>[Todas as candidaturas]</todaslasaplicaciones>
@@ -1478,10 +1440,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Pesquisa</list>
         <todaslasaplicaciones>[Todas as aplicações]</todaslasaplicaciones>
     </buscador>
-    <errorlog>
-        <formupdate>Logs de erros</formupdate>
-        <defaultdata>Conteúdo do arquivo </defaultdata>
-    </errorlog>
     <favoritos>
         <list>Listado de favoritos</list>
         <create>Nuevo favorito</create>

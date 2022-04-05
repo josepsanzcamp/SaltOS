@@ -43,6 +43,7 @@ productos.t2t
 empleados.t2t
 usuarios.t2t
 grupos.t2t
+maincfg.t2t
 
 Tipus
 
@@ -54,8 +55,3 @@ ivas.t2t
 prioridades.t2t
 textos.t2t
 tiposevento.t2t
-
-Sistema
-
-datacfg.t2t
-maincfg.t2t

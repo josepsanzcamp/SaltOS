@@ -313,9 +313,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sessionupdate>Klicken Sie hier um die Schließung zu vermeiden</sessionupdate>
         <sessionupdated>Die Sitzung wurde korrekt aktualisiert</sessionupdated>
         <link>Link</link>
-        <importacion>Importieren</importacion>
-        <todaslasimportaciones>[Alle Imports]</todaslasimportaciones>
-        <sinimportacion>[Ohne Imports]</sinimportacion>
         <textos_select>Wählen Sie einen Text und klicken Sie auf hinzufügen</textos_select>
         <textos_add>Hinzufügen</textos_add>
         <selectall>Alle auswählen</selectall>
@@ -409,7 +406,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <support>Support</support>
         <logout>Logout</logout>
         <seguimientos>Aufgaben</seguimientos>
-        <datacfg>Datenbank</datacfg>
         <correo>E-Mail</correo>
         <cuentas>Konten</cuentas>
         <periodicas>Wiederk. Rechnungen</periodicas>
@@ -424,7 +420,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <feeds>RSS-Feeds</feeds>
         <favoritos>Favoriten</favoritos>
         <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-        <importaciones>Imports</importaciones>
         <gestioncomercial>Marketing</gestioncomercial>
         <gestionproyectos>Projekte</gestionproyectos>
         <gestioncontabilidad>Rechnungswesen</gestioncontabilidad>
@@ -432,10 +427,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestionfiltros>Show more     filter</gestionfiltros>
         <gestionadministracion>Verwaltung</gestionadministracion>
         <gestiontipos>Typen</gestiontipos>
-        <gestionsistema>System</gestionsistema>
         <folders>Ordner</folders>
         <buscador>Suche</buscador>
-        <errorlog>Fehlerprotokolle</errorlog>
         <categorias>Kategorien</categorias>
         <desc_clientes>Verwalten Sie hier Ihre Kunden</desc_clientes>
         <desc_contactos>Verwalten Sie hier Ihre Kontakte</desc_contactos>
@@ -457,7 +450,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_profile>Verwalten Sie hier Ihre Benutzer-Einstellungen</desc_profile>
         <desc_maincfg>Verwalten Sie hier Ihre globalen Einstellungen der Anwendung</desc_maincfg>
         <desc_seguimientos>Verwalten Sie hier Ihre Aufgaben</desc_seguimientos>
-        <desc_datacfg>Verwalten Sie hier Ihre Backups</desc_datacfg>
         <desc_correo>Verwalten Sie hier Ihre E-Mails</desc_correo>
         <desc_cuentas>Verwalten Sie hier Ihre Konten</desc_cuentas>
         <desc_periodicas>Verwalten Sie hier Ihre periodische Rechnungen</desc_periodicas>
@@ -476,9 +468,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_feeds>Verwalten Sie hier Ihre RSS-Feeds</desc_feeds>
         <desc_favoritos>Verwalten Sie hier Ihre Favoriten</desc_favoritos>
         <desc_ivas>Verwalten sie die steuern von hier aus</desc_ivas>
-        <desc_importaciones>Importieren von Daten für die wichtigsten Anwendungen</desc_importaciones>
         <desc_buscador>Klicken Sie hier um in den gesamten Inhalt der Datenbank zu durchsuchen</desc_buscador>
-        <desc_errorlog>Klicken Sie hier um die Fehlerprotokolle von SaltOS zu sehen</desc_errorlog>
         <desc_categorias>Anzeigen der kategorien bestimmter anwendungen</desc_categorias>
         <quick_home>Startseite</quick_home>
         <quick_correo>Mail</quick_correo>
@@ -506,7 +496,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_actas>Protokolle</quick_actas>
         <quick_maincfg>Einstellungen</quick_maincfg>
         <quick_seguimientos>Tracking</quick_seguimientos>
-        <quick_datacfg>Datenbank</quick_datacfg>
         <quick_cuentas>Konten</quick_cuentas>
         <quick_periodicas>Wiederk. Rechnungen</quick_periodicas>
         <quick_empleados>Mitarbeiter</quick_empleados>
@@ -519,9 +508,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_ficheros>Dateien</quick_ficheros>
         <quick_feeds>RSS-Feeds</quick_feeds>
         <quick_favoritos>Favoriten</quick_favoritos>
-        <quick_importaciones>Importieren</quick_importaciones>
         <quick_buscador>Suche</quick_buscador>
-        <quick_errorlog>Fehlerprot.</quick_errorlog>
         <quick_categorias>Kategorien</quick_categorias>
         <menu>Menü</menu>
         <menutip>Hier klicken um das Menü ein- bzw. auszublenden</menutip>
@@ -1072,21 +1059,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>Aufgabe Daten</defaultdata>
         <add>Aufgabe hinzufügen</add>
     </seguimientos>
-    <datacfg>
-        <formupdate>Datenbank Verwaltung</formupdate>
-        <export>Export</export>
-        <title_export>Export der gesamten Datenbank im SQL-Format</title_export>
-        <desc_export>Damit können Sie ein Backup der gesamten Datenbank speichern</desc_export>
-        <desc2_export>Führen Sie diese Operation regelmäßig aus und speichern Sie diese Datei an einem sicheren Ort wie Flash-Speicher, CD oder auf einem anderen externen Speicher</desc2_export>
-        <import>Import</import>
-        <title_import>Importieren Sie die gesamte Datenbank im SQL-Format</title_import>
-        <desc_import>Damit können Sie alle Daten aus einem Backup wiederherstellen</desc_import>
-        <desc2_import>Wählen Sie die Importdatei über die Schaltfläche [Durchsuchen] und klicken dann die Schaltfläche [Import] um die Daten aus dem Backup wiederherzustellen</desc2_import>
-        <desc3_import>Wichtig: Der Import löscht alle aktuellen Daten aus der Datenbank!!</desc3_import>
-        <filenotfound>Importdatei kann nicht gelesen werden</filenotfound>
-        <filefoundok>Die Sicherung wurde erfolgreich importiert</filefoundok>
-        <fileimporterror>Fehler beim importieren der datei</fileimporterror>
-    </datacfg>
     <correo>
         <list>E-Mails</list>
         <create>Neue E-Mail</create>
@@ -1458,16 +1430,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgnumnocool>Wurden als nicht interessant markiert: </msgnumnocool>
         <actionfavoritos>Den Favoriten hinzufügen</actionfavoritos>
     </feeds>
-    <importaciones>
-        <list>Importe</list>
-        <create>Neuer Import</create>
-        <formview>Import Details</formview>
-        <forminsert>Neuen Import erstellen</forminsert>
-        <formupdate>Import bearbeiten</formupdate>
-        <defaultdata>Import Daten</defaultdata>
-        <sinaplicacion>[Ohne Anwendung]</sinaplicacion>
-        <importdata>Inhalt der datei</importdata>
-    </importaciones>
     <folders>
         <notfound>Ordner nicht gefunden</notfound>
         <todaslasaplicaciones>[Alle Anwendungen]</todaslasaplicaciones>
@@ -1478,10 +1440,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Suche</list>
         <todaslasaplicaciones>[Alle Anwendungen]</todaslasaplicaciones>
     </buscador>
-    <errorlog>
-        <formupdate>Fehlerprotokolle</formupdate>
-        <defaultdata>Inhalt der Datei </defaultdata>
-    </errorlog>
     <favoritos>
         <list>Favoriten</list>
         <create>Neuer Favorit</create>

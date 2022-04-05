@@ -511,7 +511,8 @@ saltos.limpiar_key = function (arg) {
 
 saltos.querystring2array = function (querystring) {
     if (querystring == "") {
-        return };
+        return {};
+    }
     var items = explode("&",querystring);
     var result = {};
     for (var key in items) {
@@ -4286,9 +4287,11 @@ saltos.json_sync_request = function (url,key) {
         },
     }).responseJSON;
     if (!is_array(temp)) {
-        return };
+        return {};
+    }
     if (!isset(temp[key])) {
-        return };
+        return {};
+    }
     return temp[key];
 };
 

@@ -35,10 +35,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <agenda>fa fa-calendar</agenda>
     <profile>fa fa-user-circle</profile>
     <logout>fa fa-sign-out-alt</logout>
-    <importaciones>fa fa-cogs</importaciones>
     <maincfg>fa fa-cogs</maincfg>
-    <datacfg>fa fa-database</datacfg>
-    <errorlog>fa fa-bug</errorlog>
     <empleados>fa fa-user</empleados>
     <usuarios>fa fa-user</usuarios>
     <grupos>fa fa-users</grupos>

@@ -194,11 +194,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <campo>comentarios</campo>
         </row>
         <row>
-            <id>26</id>
-            <codigo>datacfg</codigo>
-            <nombre>Base de datos</nombre>
-        </row>
-        <row>
             <id>27</id>
             <codigo>correo</codigo>
             <nombre>Correo</nombre>
@@ -290,18 +285,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <campo>"CONCAT((SELECT title FROM tbl_usuarios_f WHERE tbl_usuarios_f.id=id_feed),' - ',title,' (',TRIM(CONCAT(CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew","feeds")." ' ELSE '' END,CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified","feeds")." ' ELSE '' END,CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait","feeds")." ' ELSE '' END,CASE state_cool WHEN 1 THEN '".LANG_ESCAPE("statecool","feeds")." ' ELSE '' END,CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN '".LANG_ESCAPE("stateread","feeds")." ' ELSE '' END)),')')"</campo>
         </row>
         <row>
-            <id>40</id>
-            <codigo>importaciones</codigo>
-            <nombre>Importaciones</nombre>
-            <tabla>tbl_importaciones</tabla>
-            <campo>nombre</campo>
-        </row>
-        <row>
-            <id>41</id>
-            <codigo>errorlog</codigo>
-            <nombre>Logs de error</nombre>
-        </row>
-        <row>
             <id>42</id>
             <codigo>favoritos</codigo>
             <nombre>Favoritos</nombre>
@@ -346,10 +329,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <id_permiso>10</id_permiso>
         </row>
         <row>
-            <id_aplicacion>26</id_aplicacion>
-            <id_permiso>10,15,16</id_permiso>
-        </row>
-        <row>
             <id_aplicacion>27</id_aplicacion>
             <id_permiso>10,3,1,8,5,11,12,14,2,9,7</id_permiso>
         </row>
@@ -358,16 +337,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <id_permiso>10,1,8,5,11,12,14,2,9,7</id_permiso>
         </row>
         <row>
-            <id_aplicacion>40</id_aplicacion>
-            <id_permiso>10,3,1,8,4,5,11,12,13,14,2,9,6,7,15,16</id_permiso>
-        </row>
-        <row>
             <id_aplicacion>23</id_aplicacion>
             <id_permiso>17,18,19</id_permiso>
-        </row>
-        <row>
-            <id_aplicacion>41</id_aplicacion>
-            <id_permiso>10</id_permiso>
         </row>
         <row>
             <id_aplicacion>42</id_aplicacion>
@@ -483,18 +454,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <codigo>all_delete</codigo>
             <pos>43</pos>
             <nombre>Eliminar todos los registros</nombre>
-        </row>
-        <row>
-            <id>15</id>
-            <codigo>export</codigo>
-            <pos>51</pos>
-            <nombre>Exportar</nombre>
-        </row>
-        <row>
-            <id>16</id>
-            <codigo>import</codigo>
-            <pos>52</pos>
-            <nombre>Importar</nombre>
         </row>
         <row>
             <id>17</id>

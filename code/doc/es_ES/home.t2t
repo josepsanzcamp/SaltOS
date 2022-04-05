@@ -56,6 +56,7 @@ Para gestionar la configuración del propio SaltOS existen varias aplicaciones:
   - **[Empleados http://viewpdf/page=empleados]**, de de alta, de baja o modifique empleados.
   - **[Usuarios http://viewpdf/page=usuarios]**, de de alta, de baja o modifique usuarios.
   - **[Grupos http://viewpdf/page=grupos]**, cree grupos de trabajo para los usuarios.
+  - **[Configuración http://viewpdf/page=maincfg]**, cambie las preferencias globales de la aplicación
 - Tipos
   - **[Cuentas http://viewpdf/page=cuentas]**
   - **[Epígrafes http://viewpdf/page=epigrafes]**, defina los epígrafes para las facturas y gastos.
@@ -63,10 +64,6 @@ Para gestionar la configuración del propio SaltOS existen varias aplicaciones:
   - **[Formas de pago http://viewpdf/page=formaspago]**, defina formas de pago para gestionar los gastos.
   - **[Prioridades http://viewpdf/page=prioridades]**, defina las prioridades para las entradas en la agenda.
   - **[Tipos de eventos http://viewpdf/page=tiposevento]**, defina los tipos de evento que necesite.
-- Sistema
-  - **Importaciones**
-  - **[Configuración http://viewpdf/page=maincfg]**, cambie las preferencias globales de la aplicación
-  - **[Base de datos http://viewpdf/page=datacfg]**, realice copias de seguridad y restaurelas fácilmente.
 
 
 ==Interfaz==

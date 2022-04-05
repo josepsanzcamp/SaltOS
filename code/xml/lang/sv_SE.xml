@@ -313,9 +313,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sessionupdate>klicka här för att förhindra att den stängs</sessionupdate>
         <sessionupdated>Sessionen har uppdaterats</sessionupdated>
         <link>Länk</link>
-        <importacion>Import</importacion>
-        <todaslasimportaciones>[All import]</todaslasimportaciones>
-        <sinimportacion>[Ingen tillhörande import]</sinimportacion>
         <textos_select>Välj en text och tryck på Lägg till</textos_select>
         <textos_add>Lägga till</textos_add>
         <selectall>Välj alla</selectall>
@@ -409,7 +406,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <support>Teknisk support</support>
         <logout>Logga ut</logout>
         <seguimientos>Uppgiftsspårning</seguimientos>
-        <datacfg>Databas</datacfg>
         <correo>Elektronisk post</correo>
         <cuentas>Konton</cuentas>
         <periodicas>Periodiska fakturor</periodicas>
@@ -424,7 +420,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <feeds>RSS-flödesläsare</feeds>
         <favoritos>Favorit</favoritos>
         <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-        <importaciones>Import</importaciones>
         <gestioncomercial>Kommersiell</gestioncomercial>
         <gestionproyectos>Projekt</gestionproyectos>
         <gestioncontabilidad>Redovisning</gestioncontabilidad>
@@ -432,10 +427,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestionfiltros>Filter</gestionfiltros>
         <gestionadministracion>Administration</gestionadministracion>
         <gestiontipos>Typ</gestiontipos>
-        <gestionsistema>Systemet</gestionsistema>
         <folders>Mappar</folders>
         <buscador>Sökmotor</buscador>
-        <errorlog>Felloggar</errorlog>
         <categorias>Kategorier</categorias>
         <desc_clientes>Hantera ditt företags kunder</desc_clientes>
         <desc_contactos>För att komma åt kundens kontakter</desc_contactos>
@@ -457,7 +450,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_profile>ändra dina användarinställningar</desc_profile>
         <desc_maincfg>ändra globala applikationsinställningar</desc_maincfg>
         <desc_seguimientos>Kontrollera projektuppgifter med spårning</desc_seguimientos>
-        <desc_datacfg>Gör säkerhetskopior och återställ dem enkelt</desc_datacfg>
         <desc_correo>Läs och skicka e-postmeddelanden härifrån till dina kunder och leverantörer</desc_correo>
         <desc_cuentas>Definiera bokbok för bokföring</desc_cuentas>
         <desc_periodicas>Planera återkommande fakturor med förfallodatum</desc_periodicas>
@@ -476,9 +468,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_feeds>Följ dina RSS- och Atom-flöden från den här applikationen</desc_feeds>
         <desc_favoritos>Hantera dina favoriter härifrån</desc_favoritos>
         <desc_ivas>Hantera skattesatser härifrån</desc_ivas>
-        <desc_importaciones>Importera data till de viktigaste applikationerna härifrån</desc_importaciones>
         <desc_buscador>För att söka i hela databasen</desc_buscador>
-        <desc_errorlog>För att se SaltOS-felloggen</desc_errorlog>
         <desc_categorias>För att se kategorierna för vissa applikationer</desc_categorias>
         <quick_home>Initiering</quick_home>
         <quick_correo>Post</quick_correo>
@@ -506,7 +496,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_actas>Förfaranden</quick_actas>
         <quick_maincfg>Konfiguration</quick_maincfg>
         <quick_seguimientos>Följ</quick_seguimientos>
-        <quick_datacfg>BBDD</quick_datacfg>
         <quick_cuentas>Konton</quick_cuentas>
         <quick_periodicas>Periodisk</quick_periodicas>
         <quick_empleados>Personal</quick_empleados>
@@ -519,9 +508,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_ficheros>Filer</quick_ficheros>
         <quick_feeds>RSS</quick_feeds>
         <quick_favoritos>Favorit</quick_favoritos>
-        <quick_importaciones>Import</quick_importaciones>
         <quick_buscador>Sökmotor</quick_buscador>
-        <quick_errorlog>Fel</quick_errorlog>
         <quick_categorias>Kategorier</quick_categorias>
         <menu>Meny</menu>
         <menutip>Visa och dölja applikationsmenyn</menutip>
@@ -1072,21 +1059,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>Spårningsdata</defaultdata>
         <add>Lägg till spårning</add>
     </seguimientos>
-    <datacfg>
-        <formupdate>åtgärder i databasen</formupdate>
-        <export>Export</export>
-        <title_export>Exportera hela databasen i SQL-format</title_export>
-        <desc_export>Låter dig spara en säkerhetskopia av hela databasen</desc_export>
-        <desc2_export>Utför denna åtgärd med jämna mellanrum och spara den här filen på ett säkert ställe som ett flashminne, en CD eller någon annan enhet utanför den här datorn.</desc2_export>
-        <import>Import</import>
-        <title_import>Importera hela databasen i SQL-format</title_import>
-        <desc_import>Gör att du kan importera all data från en säkerhetskopia</desc_import>
-        <desc2_import>Välj filen som ska importeras genom att trycka på [Bläddra] -knappen och tryck sedan på [Importera] -knappen för att ladda den nya informationen från säkerhetskopian</desc2_import>
-        <desc3_import>Viktigt: Importen raderar de aktuella uppgifterna du har i applikationen</desc3_import>
-        <filenotfound>Innehållet i importfilen kunde inte läsas</filenotfound>
-        <filefoundok>Säkerhetskopia importeras framgångsrikt</filefoundok>
-        <fileimporterror>Ett fel inträffade vid import av filen</fileimporterror>
-    </datacfg>
     <correo>
         <list>E-postlista</list>
         <create>Skicka nytt mail</create>
@@ -1458,16 +1430,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgnumnocool>De har markerats som inte intressanta:</msgnumnocool>
         <actionfavoritos>Lägg till i favoriter</actionfavoritos>
     </feeds>
-    <importaciones>
-        <list>Importera lista</list>
-        <create>Ny import</create>
-        <formview>Importera detalj</formview>
-        <forminsert>Registrering av en ny import</forminsert>
-        <formupdate>Importera ändring</formupdate>
-        <defaultdata>Importera data</defaultdata>
-        <sinaplicacion>[Utan ansökan]</sinaplicacion>
-        <importdata>Filuppgifter</importdata>
-    </importaciones>
     <folders>
         <notfound>Mappen hittades inte</notfound>
         <todaslasaplicaciones>[Alla applikationer]</todaslasaplicaciones>
@@ -1478,10 +1440,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Sökmotor</list>
         <todaslasaplicaciones>[Alla applikationer]</todaslasaplicaciones>
     </buscador>
-    <errorlog>
-        <formupdate>Felloggar</formupdate>
-        <defaultdata>Filinnehåll</defaultdata>
-    </errorlog>
     <favoritos>
         <list>Favoritlista</list>
         <create>Ny favorit</create>

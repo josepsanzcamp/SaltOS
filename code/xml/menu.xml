@@ -258,7 +258,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         check_user('productos','menu') ||
         check_user('empleados','menu') ||
         check_user('usuarios','menu') ||
-        check_user('grupos','menu'))">
+        check_user('grupos','menu') ||
+        check_user('maincfg','menu'))">
         <label lang="true">gestionadministracion</label>
         <name>gestionadministracion</name>
         <class>menu</class>
@@ -286,6 +287,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <option include="xml/common/menuoptionscreate.xml" replace="true"/>
         <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
         <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+        <temp global="temp" eval="true">$temp="maincfg"</temp>
+        <option include="xml/common/menuoptionslist.xml" replace="true"/>
     </group>
     <group ifeval="(
         check_user('categorias','menu') ||
@@ -354,26 +357,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <option include="xml/common/menuoptionscreate.xml" replace="true"/>
         <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
         <option include="xml/common/menuoptionsreset.xml" replace="true"/>
-    </group>
-    <group ifeval="(
-        check_user('importaciones','menu') ||
-        check_user('maincfg','menu') ||
-        check_user('datacfg','menu') ||
-        check_user('errorlog','menu'))">
-        <label lang="true">gestionsistema</label>
-        <name>gestionsistema</name>
-        <class>menu</class>
-        <temp global="temp" eval="true">$temp="importaciones"</temp>
-        <option include="xml/common/menuoptionslist.xml" replace="true"/>
-        <option include="xml/common/menuoptionsquery.xml" replace="true"/>
-        <option include="xml/common/menuoptionscreate.xml" replace="true"/>
-        <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
-        <option include="xml/common/menuoptionsreset.xml" replace="true"/>
-        <temp global="temp" eval="true">$temp="maincfg"</temp>
-        <option include="xml/common/menuoptionslist.xml" replace="true"/>
-        <temp global="temp" eval="true">$temp="datacfg"</temp>
-        <option include="xml/common/menuoptionslist.xml" replace="true"/>
-        <temp global="temp" eval="true">$temp="errorlog"</temp>
-        <option include="xml/common/menuoptionslist.xml" replace="true"/>
     </group>
 </root>

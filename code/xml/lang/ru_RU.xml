@@ -313,9 +313,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sessionupdate>нажмите здесь, чтобы предотвратить его закрытие</sessionupdate>
         <sessionupdated>сеанс успешно обновлен</sessionupdated>
         <link>связь</link>
-        <importacion>импорт</importacion>
-        <todaslasimportaciones>[Все импорты]</todaslasimportaciones>
-        <sinimportacion>[Нет связанного импорта]</sinimportacion>
         <textos_select>Выделите текст и нажмите кнопку Добавить</textos_select>
         <textos_add>добавлять</textos_add>
         <selectall>выбрать все</selectall>
@@ -409,7 +406,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <support>техническая поддержка</support>
         <logout>выйти из системы</logout>
         <seguimientos>отслеживание задач</seguimientos>
-        <datacfg>база данных</datacfg>
         <correo>отправить по электронной почте</correo>
         <cuentas>счета</cuentas>
         <periodicas>повторяющиеся счета-фактуры</periodicas>
@@ -424,7 +420,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <feeds>Устройство чтения RSS-каналов</feeds>
         <favoritos>избранное</favoritos>
         <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-        <importaciones>импорт</importaciones>
         <gestioncomercial>торговый</gestioncomercial>
         <gestionproyectos>проекты</gestionproyectos>
         <gestioncontabilidad>бухгалтерский учет</gestioncontabilidad>
@@ -432,10 +427,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestionfiltros>фильтры</gestionfiltros>
         <gestionadministracion>администрация</gestionadministracion>
         <gestiontipos>типы</gestiontipos>
-        <gestionsistema>система</gestionsistema>
         <folders>папки</folders>
         <buscador>искатель</buscador>
-        <errorlog>журналы ошибок</errorlog>
         <categorias>категории</categorias>
         <desc_clientes>управляйте клиентами вашей компании</desc_clientes>
         <desc_contactos>доступ к контактам клиента</desc_contactos>
@@ -457,7 +450,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_profile>изменение пользовательских настроек</desc_profile>
         <desc_maincfg>изменение глобальных настроек приложения</desc_maincfg>
         <desc_seguimientos>управление задачами проекта с помощью трассировок</desc_seguimientos>
-        <desc_datacfg>простое резервное копирование и восстановление</desc_datacfg>
         <desc_correo>читайте и отправляйте электронные письма отсюда своим клиентам и поставщикам</desc_correo>
         <desc_cuentas>определение бухгалтерских счетов для бухгалтерского учета</desc_cuentas>
         <desc_periodicas>планирование периодических счетов-фактур с указанием сроков выполнения</desc_periodicas>
@@ -476,9 +468,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_feeds>Следите за своими RSS- и Atom-каналами из этого приложения</desc_feeds>
         <desc_favoritos>управляйте избранным здесь</desc_favoritos>
         <desc_ivas>управляйте налоговыми ставками отсюда</desc_ivas>
-        <desc_importaciones>импорт данных в основные приложения отсюда</desc_importaciones>
         <desc_buscador>поиск по всей базе данных</desc_buscador>
-        <desc_errorlog>Просмотр журнала ошибок SaltOS</desc_errorlog>
         <desc_categorias>просмотр категорий определенных приложений</desc_categorias>
         <quick_home>начало</quick_home>
         <quick_correo>почта</quick_correo>
@@ -506,7 +496,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_actas>протокол</quick_actas>
         <quick_maincfg>конфигурация</quick_maincfg>
         <quick_seguimientos>следы</quick_seguimientos>
-        <quick_datacfg>ДБ</quick_datacfg>
         <quick_cuentas>счета</quick_cuentas>
         <quick_periodicas>периодический</quick_periodicas>
         <quick_empleados>сотрудников</quick_empleados>
@@ -519,9 +508,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_ficheros>файлы</quick_ficheros>
         <quick_feeds>ЛЕНТА НОВОСТЕЙ</quick_feeds>
         <quick_favoritos>избранное</quick_favoritos>
-        <quick_importaciones>импорт</quick_importaciones>
         <quick_buscador>искатель</quick_buscador>
-        <quick_errorlog>ошибки</quick_errorlog>
         <quick_categorias>категории</quick_categorias>
         <menu>меню</menu>
         <menutip>отображение и скрытие меню приложения</menutip>
@@ -1072,21 +1059,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>данные отслеживания</defaultdata>
         <add>добавить отслеживание</add>
     </seguimientos>
-    <datacfg>
-        <formupdate>действия с базой данных</formupdate>
-        <export>экспорт</export>
-        <title_export>Экспорт всей базы данных в формате SQL</title_export>
-        <desc_export>позволяет сохранить резервную копию всей базы данных</desc_export>
-        <desc2_export>Периодически выполняйте эту операцию и сохраняйте файл в надежном месте, например на компакт-диске флэш-памяти или любом другом устройстве, внешнем по отношению к компьютеру</desc2_export>
-        <import>импорт</import>
-        <title_import>Импорт всей базы данных в формате SQL</title_import>
-        <desc_import>позволяет импортировать все данные из резервной копии</desc_import>
-        <desc2_import>Выберите файл для импорта, нажав кнопку [Обзор], а затем нажмите кнопку [Импорт], чтобы загрузить новые данные из резервной копии</desc2_import>
-        <desc3_import>Важно: Импорт удалит текущие данные, которые у вас есть в приложении</desc3_import>
-        <filenotfound>не удалось прочитать содержимое файла импорта</filenotfound>
-        <filefoundok>резервная копия успешно импортирована</filefoundok>
-        <fileimporterror>произошла ошибка при импорте файла</fileimporterror>
-    </datacfg>
     <correo>
         <list>список рассылки</list>
         <create>отправить новую почту</create>
@@ -1458,16 +1430,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgnumnocool>они были отмечены как неинтересные:</msgnumnocool>
         <actionfavoritos>добавить в избранное</actionfavoritos>
     </feeds>
-    <importaciones>
-        <list>список импортов</list>
-        <create>новый импорт</create>
-        <formview>сведения об импорте</formview>
-        <forminsert>регистрация нового импорта</forminsert>
-        <formupdate>импорт модификации</formupdate>
-        <defaultdata>импорт данных</defaultdata>
-        <sinaplicacion>[Нет приложения]</sinaplicacion>
-        <importdata>данные файла</importdata>
-    </importaciones>
     <folders>
         <notfound>папка не найдена</notfound>
         <todaslasaplicaciones>[Все приложения]</todaslasaplicaciones>
@@ -1478,10 +1440,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>искатель</list>
         <todaslasaplicaciones>[Все приложения]</todaslasaplicaciones>
     </buscador>
-    <errorlog>
-        <formupdate>журналы ошибок</formupdate>
-        <defaultdata>содержимое файла</defaultdata>
-    </errorlog>
     <favoritos>
         <list>список избранного</list>
         <create>новое избранное</create>

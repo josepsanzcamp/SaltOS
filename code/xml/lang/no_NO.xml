@@ -313,9 +313,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sessionupdate>klikk her for å forhindre at den lukkes</sessionupdate>
         <sessionupdated>økten ble oppdatert</sessionupdated>
         <link>Link</link>
-        <importacion>Import</importacion>
-        <todaslasimportaciones>[All import]</todaslasimportaciones>
-        <sinimportacion>[Ingen tilknyttet import]</sinimportacion>
         <textos_select>Velg en tekst og trykk Legg til</textos_select>
         <textos_add>Legge</textos_add>
         <selectall>Velg alle</selectall>
@@ -409,7 +406,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <support>Teknisk support</support>
         <logout>Logg deg ut</logout>
         <seguimientos>Oppgavesporing</seguimientos>
-        <datacfg>Database</datacfg>
         <correo>Elektronisk post</correo>
         <cuentas>Kontoer</cuentas>
         <periodicas>Periodiske fakturaer</periodicas>
@@ -424,7 +420,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <feeds>RSS-feedleser</feeds>
         <favoritos>Favoritt</favoritos>
         <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-        <importaciones>Import</importaciones>
         <gestioncomercial>Kommersiell</gestioncomercial>
         <gestionproyectos>Prosjekter</gestionproyectos>
         <gestioncontabilidad>Regnskap</gestioncontabilidad>
@@ -432,10 +427,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestionfiltros>Filtre</gestionfiltros>
         <gestionadministracion>Administrasjon</gestionadministracion>
         <gestiontipos>Typen</gestiontipos>
-        <gestionsistema>System</gestionsistema>
         <folders>Mapper</folders>
         <buscador>Søkemotor</buscador>
-        <errorlog>Feillogger</errorlog>
         <categorias>Kategorier</categorias>
         <desc_clientes>Administrer bedriftens kunder</desc_clientes>
         <desc_contactos>For å få tilgang til en kundes kontakter</desc_contactos>
@@ -457,7 +450,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_profile>Endre brukerinnstillinger</desc_profile>
         <desc_maincfg>Endre globale applikasjonsinnstillinger</desc_maincfg>
         <desc_seguimientos>Kontroller prosjektoppgaver med sporing</desc_seguimientos>
-        <desc_datacfg>Gjør sikkerhetskopier og gjenopprett dem enkelt</desc_datacfg>
         <desc_correo>Les og send e-postmeldinger herfra til dine kunder og leverandører</desc_correo>
         <desc_cuentas>Definer hovedbokskontoer for regnskap</desc_cuentas>
         <desc_periodicas>Planlegg tilbakevendende fakturaer med forfallsdatoer</desc_periodicas>
@@ -476,9 +468,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_feeds>Følg RSS- og Atom-feeds fra dette programmet</desc_feeds>
         <desc_favoritos>Administrer favorittene dine herfra</desc_favoritos>
         <desc_ivas>Administrer skattesatsene herfra</desc_ivas>
-        <desc_importaciones>Importer data til hovedprogrammene herfra</desc_importaciones>
         <desc_buscador>For å søke i hele databasen</desc_buscador>
-        <desc_errorlog>For å se SaltOS feillogg</desc_errorlog>
         <desc_categorias>For å se kategoriene for bestemte applikasjoner</desc_categorias>
         <quick_home>Initiering</quick_home>
         <quick_correo>Post</quick_correo>
@@ -506,7 +496,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_actas>Rettergang</quick_actas>
         <quick_maincfg>Konfigurasjon</quick_maincfg>
         <quick_seguimientos>Følger</quick_seguimientos>
-        <quick_datacfg>BBDD</quick_datacfg>
         <quick_cuentas>Kontoer</quick_cuentas>
         <quick_periodicas>Periodisk</quick_periodicas>
         <quick_empleados>Ansatte</quick_empleados>
@@ -519,9 +508,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_ficheros>Filer</quick_ficheros>
         <quick_feeds>RSS</quick_feeds>
         <quick_favoritos>Favoritt</quick_favoritos>
-        <quick_importaciones>Import</quick_importaciones>
         <quick_buscador>Søkemotor</quick_buscador>
-        <quick_errorlog>Feil</quick_errorlog>
         <quick_categorias>Kategorier</quick_categorias>
         <menu>Meny</menu>
         <menutip>For å vise og skjule applikasjonsmenyen</menutip>
@@ -1072,21 +1059,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>Sporingsdata</defaultdata>
         <add>Legg til sporing</add>
     </seguimientos>
-    <datacfg>
-        <formupdate>Handlinger i databasen</formupdate>
-        <export>Eksport</export>
-        <title_export>Eksporter hele databasen i SQL-format</title_export>
-        <desc_export>Lar deg lagre en sikkerhetskopi av hele databasen</desc_export>
-        <desc2_export>Utfør denne operasjonen med jevne mellomrom og oppbevar denne filen på et trygt sted, for eksempel et flashminne, en CD eller en annen enhet utenfor denne datamaskinen.</desc2_export>
-        <import>Import</import>
-        <title_import>Importer hele databasen i SQL-format</title_import>
-        <desc_import>Lar deg importere alle data fra en sikkerhetskopi</desc_import>
-        <desc2_import>Velg filen du vil importere ved å trykke på [Bla gjennom] -knappen og trykk deretter på [Importer] -knappen for å laste inn de nye dataene fra sikkerhetskopien</desc2_import>
-        <desc3_import>Viktig: Importen vil slette de gjeldende dataene du har i applikasjonen</desc3_import>
-        <filenotfound>Innholdet i importfilen kunne ikke leses</filenotfound>
-        <filefoundok>Sikkerhetskopi importert</filefoundok>
-        <fileimporterror>Det oppstod en feil under import av filen</fileimporterror>
-    </datacfg>
     <correo>
         <list>Postliste</list>
         <create>Send ny mail</create>
@@ -1458,16 +1430,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgnumnocool>De har blitt merket som ikke interessante:</msgnumnocool>
         <actionfavoritos>Legg til i favoritter</actionfavoritos>
     </feeds>
-    <importaciones>
-        <list>Importer liste</list>
-        <create>Ny import</create>
-        <formview>Importer detalj</formview>
-        <forminsert>Registrering av ny import</forminsert>
-        <formupdate>Importendring</formupdate>
-        <defaultdata>Importer data</defaultdata>
-        <sinaplicacion>[Uten søknad]</sinaplicacion>
-        <importdata>Fildata</importdata>
-    </importaciones>
     <folders>
         <notfound>Mappen ikke funnet</notfound>
         <todaslasaplicaciones>[Alle applikasjoner]</todaslasaplicaciones>
@@ -1478,10 +1440,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Søkemotor</list>
         <todaslasaplicaciones>[Alle applikasjoner]</todaslasaplicaciones>
     </buscador>
-    <errorlog>
-        <formupdate>Feillogger</formupdate>
-        <defaultdata>Filinnhold</defaultdata>
-    </errorlog>
     <favoritos>
         <list>Favorittliste</list>
         <create>Ny favoritt</create>

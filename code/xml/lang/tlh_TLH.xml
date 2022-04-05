@@ -313,9 +313,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <sessionupdate>click nadev 'oh bot vo' closing</sessionupdate>
         <sessionupdated>Updated session successfully</sessionupdated>
         <link>Link</link>
-        <importacion>Dughajmoh</importacion>
-        <todaslasimportaciones>[Hoch DughajmoH]</todaslasimportaciones>
-        <sinimportacion>[pagh maqochpu'na' maHtaH DughajmoH]</sinimportacion>
         <textos_select>BIngDaq ghItlh leghlu' wIv 'ej chel click</textos_select>
         <textos_add>Boq</textos_add>
         <selectall>Hoch wiv</selectall>
@@ -409,7 +406,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <support>Qutlh</support>
         <logout>Logout</logout>
         <seguimientos>Ghoch qu'</seguimientos>
-        <datacfg>Database</datacfg>
         <correo>Email</correo>
         <cuentas>Account</cuentas>
         <periodicas>Periodic invoices</periodicas>
@@ -424,7 +420,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <feeds>Yab potlh law' je' rss</feeds>
         <favoritos>Favorite</favoritos>
         <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
-        <importaciones>Dughajmoh</importaciones>
         <gestioncomercial>Commercial</gestioncomercial>
         <gestionproyectos>Jinmol</gestionproyectos>
         <gestioncontabilidad>Account</gestioncontabilidad>
@@ -432,10 +427,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestionfiltros>Filter</gestionfiltros>
         <gestionadministracion>Loh</gestionadministracion>
         <gestiontipos>Segh</gestiontipos>
-        <gestionsistema>Pat</gestionsistema>
         <folders>Folder</folders>
         <buscador>Seeker</buscador>
-        <errorlog>Qagh qonos</errorlog>
         <categorias>Category</categorias>
         <desc_clientes>Wey customers vu'</desc_clientes>
         <desc_contactos>Customer contacts naw'</desc_contactos>
@@ -457,7 +450,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_profile>User preferences choh</desc_profile>
         <desc_maincfg>App globlalability preferences choh</desc_maincfg>
         <desc_seguimientos>Yiseh jinmol qu' follow-ups</desc_seguimientos>
-        <desc_datacfg>Hergh dub ghajha'ghach sabha' je</desc_datacfg>
         <desc_correo>Lad 'ej emails ngeh nadevvo' customers suppliers je</desc_correo>
         <desc_cuentas>Ledger accounts accounting define</desc_cuentas>
         <desc_periodicas>Recur invoices je due schedule dates</desc_periodicas>
@@ -476,9 +468,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <desc_feeds>Rss Atom 'ej je' tlha' vo' app</desc_feeds>
         <desc_favoritos>Favorites vu' nadevvo'</desc_favoritos>
         <desc_ivas>Rup rates vu' nadevvo'</desc_ivas>
-        <desc_importaciones>De' dughajmoh vaj yor apps nadevvo'</desc_importaciones>
         <desc_buscador>Database naq search</desc_buscador>
-        <desc_errorlog>Saltos Qagh QonoS jIH</desc_errorlog>
         <desc_categorias>Be applications categories vilegh</desc_categorias>
         <quick_home>Juh</quick_home>
         <quick_correo>Mail</quick_correo>
@@ -506,7 +496,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_actas>Tup</quick_actas>
         <quick_maincfg>Configuration</quick_maincfg>
         <quick_seguimientos>Trace</quick_seguimientos>
-        <quick_datacfg>DB</quick_datacfg>
         <quick_cuentas>Account</quick_cuentas>
         <quick_periodicas>Periodic</quick_periodicas>
         <quick_empleados>Employee</quick_empleados>
@@ -519,9 +508,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_ficheros>Teywi'</quick_ficheros>
         <quick_feeds>RSS</quick_feeds>
         <quick_favoritos>Favorite</quick_favoritos>
-        <quick_importaciones>Dughajmoh</quick_importaciones>
         <quick_buscador>Seeker</quick_buscador>
-        <quick_errorlog>Qagh</quick_errorlog>
         <quick_categorias>Category</quick_categorias>
         <menu>Hidjoilev</menu>
         <menutip>Cha' 'ej app hidjolev so'</menutip>
@@ -1072,21 +1059,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>De' ghoch</defaultdata>
         <add>Tracking chel</add>
     </seguimientos>
-    <datacfg>
-        <formupdate>Actions database</formupdate>
-        <export>Export</export>
-        <title_export>NaQ database neH sql format export</title_export>
-        <desc_export>Chaw' soh ghah chach naq database tod</desc_export>
-        <desc2_export>Yo'SeH much periodically je teywI' ngevwI' neH QaD Daq such as lulIjbe'lu'bogh flash, cd pagh vay' latlh jan external De'wI'</desc2_export>
-        <import>Dughajmoh</import>
-        <title_import>DughajmoH naQ database neH sql format</title_import>
-        <desc_import>Chaw' soh ghah hoch de' dughajmoh vo' chach</desc_import>
-        <desc2_import>TeywI' DughajmoH pong [Browse] button pressing wIv 'ej vaj [DughajmoH] button De' chu' load vo' chach press</desc2_import>
-        <desc3_import>Potlh: vay' Qu'mey potlh De' Daghaj neH app erase Qu' DughajmoH</desc3_import>
-        <filenotfound>Unable 'a ghih dughajmoh teywi' lad</filenotfound>
-        <filefoundok>Chach, successfully dughajmoh</filefoundok>
-        <fileimporterror>Wa'vatlh teywi' dughajmoh qas qagh</fileimporterror>
-    </datacfg>
     <correo>
         <list>Mail listing</list>
         <create>Mail chu' ngeh</create>
@@ -1458,16 +1430,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <msgnumnocool>Chah ghitlhta' je un daj:</msgnumnocool>
         <actionfavoritos>Boq favorites</actionfavoritos>
     </feeds>
-    <importaciones>
-        <list>Dughajmoh tetlh</list>
-        <create>Chu' dughajmoh</create>
-        <formview>Detail dughajmoh</formview>
-        <forminsert>Registration chu' dughajmoh</forminsert>
-        <formupdate>Modification dughajmoh</formupdate>
-        <defaultdata>De' dughajmoh</defaultdata>
-        <sinaplicacion>[pagh Application]</sinaplicacion>
-        <importdata>Teywi' de'</importdata>
-    </importaciones>
     <folders>
         <notfound>Folder wej vitu'</notfound>
         <todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>
@@ -1478,10 +1440,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Seeker</list>
         <todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>
     </buscador>
-    <errorlog>
-        <formupdate>Qagh qonos</formupdate>
-        <defaultdata>Teywi' 'a ghih</defaultdata>
-    </errorlog>
     <favoritos>
         <list>Favourite tetlh</list>
         <create>Favorite chu'</create>

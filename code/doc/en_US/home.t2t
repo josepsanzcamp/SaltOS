@@ -56,6 +56,7 @@ To manage the configuration of SaltOS itself there are several applications:
   - **[Empleados http://viewpdf/page=empleados]**Of high, low or modify employees.
   - **[Usuarios http://viewpdf/page=usuarios]**Of high, low or modify users.
   - **[Grupos http://viewpdf/page=grupos]**Create working groups to users.
+  - **[Configuración http://viewpdf/page=maincfg]**, Change global application preferences
 - Type
   - **[Cuentas http://viewpdf/page=cuentas]**
   - **[Epígrafes http://viewpdf/page=epigrafes]**, Define sections for bills and expenses.
@@ -63,10 +64,6 @@ To manage the configuration of SaltOS itself there are several applications:
   - **[Formas de pago http://viewpdf/page=formaspago]**, Define payment methods to manage expenses.
   - **[Prioridades http://viewpdf/page=prioridades]**, Define priorities for phonebook entries.
   - **[Tipos de eventos http://viewpdf/page=tiposevento]**, Define the event types you need.
-- System
-  - **Importaciones**
-  - **[Configuración http://viewpdf/page=maincfg]**, Change global application preferences
-  - **[Base de datos http://viewpdf/page=datacfg]**Perform backups and restore them easily.
 
 
 ==Interface==
