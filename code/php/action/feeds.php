@@ -258,7 +258,6 @@ if (getParam("id")) {
     if (!$row) {
         die();
     }
-    $row["description"] = saltos_make_clickable($row["description"]);
     $row["description"] = href_replace($row["description"]);
     $cid = getParam("cid");
     if ($cid == "body") {

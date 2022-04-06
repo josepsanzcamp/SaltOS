@@ -93,7 +93,6 @@ function __array2xml_write_nodes(&$array, $level = null)
             } else {
                 $buffer .= "${prefix}<${key}${attr}/>${postfix}";
             }
-
         }
     }
     return $buffer;

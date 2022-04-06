@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <title>Установщик SaltOS</title>
+        <yes>да</yes>
+        <no>нет</no>
+        <language>выбор языка, макет и иконки</language>
+        <welcome_message>Добро пожаловать в установку saltos</welcome_message>
+        <lang_message>выберите язык</lang_message>
+        <style_message>выберите макет</style_message>
+        <begin_message translated="false">Pulse "Siguiente" para instalar SaltOS en 5 sencillos pasos</begin_message>
+        <back>предыдущий</back>
+        <next>следующий</next>
+        <test>проверка</test>
+        <install>Установка SaltOS</install>
+        <saltos>Запустите SaltOS</saltos>
+        <is_writable>проверка разрешений на запись</is_writable>
+        <is_executable>проверка внешних программ</is_executable>
+        <directory>каталог</directory>
+        <file>файл</file>
+        <executable>выполнимый</executable>
+        <database_link>подключение к базе данных</database_link>
+        <select_dbtype>Выберите СУБД</select_dbtype>
+        <select_prefered>(рекомендуется)</select_prefered>
+        <selected_dbtype>Выбранные СУБД</selected_dbtype>
+        <dbfile>файл базы данных</dbfile>
+        <dbtest>тестовое соединение сработало</dbtest>
+        <dbvoid>база данных пуста</dbvoid>
+        <dbhost>Сервер БД</dbhost>
+        <dbport>порт</dbport>
+        <dbuser>пользователь</dbuser>
+        <dbpass>ключ</dbpass>
+        <dbname>имя базы данных</dbname>
+        <admin_account>данные доступа к учетной записи администратора</admin_account>
+        <user>пользователь</user>
+        <pass>ключ</pass>
+        <email>отправить по электронной почте</email>
+        <optional>необязательный</optional>
+        <server_config>конфигурация сервера</server_config>
+        <timezone>часовой пояс</timezone>
+        <hostname>веб-сервер</hostname>
+        <pathname>путь к серверу</pathname>
+        <automatic>автоматически</automatic>
+        <forcessl>Принудительный SSL (https)</forcessl>
+        <porthttp>порт http</porthttp>
+        <porthttps>порт https</porthttps>
+        <initial_data>загрузка исходных данных</initial_data>
+        <exampledata>импорт образцов данных</exampledata>
+        <undefined>неопределенный</undefined>
+        <install_input>сводка по установке и подтверждение</install_input>
+        <install_output>результат установки</install_output>
+        <config>сохранение параметров доступа к базе данных</config>
+        <dbschema>создание таблиц в базе данных</dbschema>
+        <dbstatic>импорт внутренних данных</dbstatic>
+        <streetdata>импорт уличных данных</streetdata>
+        <defaultdata>импорт общих данных</defaultdata>
+        <permissiondata>создание разрешений для группы администраторов</permissiondata>
+        <finish>окончание установки</finish>
+        <gotohome>перезаряжать</gotohome>
+        <notifybug>сообщение о сбое</notifybug>
+        <step>шаг</step>
+        <lang>язык</lang>
+        <style>проектировать</style>
+        <env_vars>переменные среды</env_vars>
+        <env_path>ПУТЬ</env_path>
+        <env_lang>ДАВНЫМ-ДАВНО</env_lang>
+        <applications>приложений</applications>
+        <select_layer>выберите профиль</select_layer>
+        <selected_layer>выбранный профиль</selected_layer>
+        <layer_all>все приложения</layer_all>
+        <layer_personal>приложения для личного пользования</layer_personal>
+        <select_apps>выберите приложения</select_apps>
+        <selected_apps>избранные приложения</selected_apps>
+    </common>
+</root>

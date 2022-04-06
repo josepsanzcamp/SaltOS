@@ -209,7 +209,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <include>lib/jquery/jquery.jgrowl.min.js</include>
             <include>lib/jquery/jquery.colorpicker.min.js</include>
             <include>lib/jquery/jquery.timepicker.min.js</include>
-            <include>lib/zlibjs/zlibjs.min.js</include>
         </cache>
         <inline ifeval="!ismobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
         <cache ifeval="!ismobile()">
@@ -231,7 +230,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <include>lib/jquery/jquery.form.min.js</include>
             <include>lib/jquery/jquery.mobile.min.js</include>
             <include>lib/jquery/jquery.autogrow-textarea.min.js</include>
-            <include>lib/zlibjs/zlibjs.min.js</include>
         </cache>
     </javascript>
     <configs>

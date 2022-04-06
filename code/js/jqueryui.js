@@ -4887,14 +4887,6 @@ saltos.push.stop = function () {
 };
 
 /* UNIMPLEMENTED FUNCTIONS */
-saltos.hash_encode = function (url) {
-    console.log("call to unimplemented function hash_encode");
-};
-
-saltos.hash_decode = function (hash) {
-    console.log("call to unimplemented function hash_decode");
-};
-
 saltos.current_href = function () {
     console.log("call to unimplemented function current_href");
 };
@@ -5134,18 +5126,6 @@ function isloadingcontent()
 {
     //~ console.log("call to deprecated function isloadingcontent");
     return saltos.isloadingcontent();
-};
-
-function hash_encode(url)
-{
-    //~ console.log("call to deprecated function hash_encode");
-    return saltos.hash_encode(url);
-};
-
-function hash_decode(hash)
-{
-    //~ console.log("call to deprecated function hash_decode");
-    return saltos.hash_decode(hash);
 };
 
 function current_href()

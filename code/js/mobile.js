@@ -680,20 +680,6 @@ if (typeof __mobile__ == "undefined" && typeof parent.__mobile__ == "undefined")
     }
 
     /* FOR HISTORY MANAGEMENT */
-    function hash_encode(url)
-    {
-        return str_replace(["+","/"],["-","_"],btoa(bytesToString((new Zlib.RawDeflate(stringToBytes(url))).compress())));
-    }
-
-    function hash_decode(hash)
-    {
-        try {
-            return bytesToString((new Zlib.RawInflate(stringToBytes(atob(str_replace(["-","_"],["+","/"],hash))))).decompress());
-        } catch (e) {
-            return "";
-        }
-    }
-
     function current_href()
     {
         var url = window.location.href;
@@ -758,14 +744,7 @@ if (typeof __mobile__ == "undefined" && typeof parent.__mobile__ == "undefined")
     function init_history()
     {
         $(window).on("hashchange",function () {
-            // TRICK FOR OLD BROWSERS
-            if (ignore_hashchange) {
-                ignore_hashchange = 0;
-                return;
-            }
-            // NORMAL CODE
             var url = current_hash();
-            url = hash_decode(url);
             addcontent("cancel");
             opencontent(url);
         });
@@ -781,7 +760,7 @@ if (typeof __mobile__ == "undefined" && typeof parent.__mobile__ == "undefined")
         if (pos === false) {
             url += "?page=" + current_page();
         }
-        history_replaceState(current_href() + "#" + hash_encode(url));
+        history_replaceState(current_href() + "#" + url);
     }
 
     /* FOR CONTENT MANAGEMENT */
@@ -814,12 +793,12 @@ if (typeof __mobile__ == "undefined" && typeof parent.__mobile__ == "undefined")
         }
         // IF ACTION UPDATE
         if (action_addcontent == "update") {
-            history_replaceState(current_href() + "#" + hash_encode(url));
+            history_replaceState(current_href() + "#" + url);
             action_addcontent = "";
             return;
         }
         // NORMAL CODE
-        history_pushState(current_href() + "#" + hash_encode(url));
+        history_pushState(current_href() + "#" + url);
     }
 
     function submitcontent(form,callback)

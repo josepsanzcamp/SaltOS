@@ -1,3 +1,0 @@
-
-wordpress.php
-- php script generated using the wordpress 2.9 source code files

@@ -847,20 +847,6 @@ if (typeof __default__ == "undefined" && typeof parent.__default__ == "undefined
     }
 
     /* FOR HISTORY MANAGEMENT */
-    function hash_encode(url)
-    {
-        return str_replace(["+","/"],["-","_"],btoa(bytesToString((new Zlib.RawDeflate(stringToBytes(url))).compress())));
-    }
-
-    function hash_decode(hash)
-    {
-        try {
-            return bytesToString((new Zlib.RawInflate(stringToBytes(atob(str_replace(["-","_"],["+","/"],hash))))).decompress());
-        } catch (e) {
-            return "";
-        }
-    }
-
     function current_href()
     {
         var url = window.location.href;
@@ -881,57 +867,20 @@ if (typeof __default__ == "undefined" && typeof parent.__default__ == "undefined
         return url;
     }
 
-    // TRICK FOR OLD BROWSERS
-    var ignore_hashchange = 0;
-
     function history_pushState(url)
     {
-        // TRICK FOR OLD BROWSERS
-        if (typeof history.pushState != 'function') {
-            if (window.location.href != url) {
-                ignore_hashchange = 1;
-                window.location.href = url;
-            }
-            return;
-        }
-        // NORMAL CODE
         history.pushState(null,null,url);
-        // CHECK FOR SOME FUCKED BROWSERS
-        if (window.location.href != url) {
-            ignore_hashchange = 1;
-            window.location.href = url;
-        }
     }
 
     function history_replaceState(url)
     {
-        // TRICK FOR OLD BROWSERS
-        if (typeof history.replaceState != 'function') {
-            if (window.location.href != url) {
-                ignore_hashchange = 1;
-                window.location.replace(url);
-            }
-            return;
-        }
-        // NORMAL CODE
         history.replaceState(null,null,url);
-        // CHECK FOR SOME FUCKED BROWSERS
-        if (window.location.href != url) {
-            ignore_hashchange = 1;
-            window.location.replace(url);
-        }
     }
 
     function init_history()
     {
         $(window).on("hashchange",function () {
-            // TRICK FOR OLD BROWSERS
-            if (ignore_hashchange) {
-                ignore_hashchange = 0;
-                return;
-            }
-            // NORMAL CODE
-            var url = hash_decode(current_hash());
+            var url = current_hash();
             addcontent("cancel");
             opencontent(url);
         });
@@ -947,7 +896,7 @@ if (typeof __default__ == "undefined" && typeof parent.__default__ == "undefined
         if (pos === false) {
             url += "?page=" + current_page();
         }
-        history_replaceState(current_href() + "#" + hash_encode(url));
+        history_replaceState(current_href() + "#" + url);
     }
 
     /* FOR CONTENT MANAGEMENT */
@@ -969,7 +918,6 @@ if (typeof __default__ == "undefined" && typeof parent.__default__ == "undefined
             return;
         }
         if (url == "error") {
-            ignore_hashchange = 1;
             history.go(-1);
             return;
         }
@@ -980,12 +928,12 @@ if (typeof __default__ == "undefined" && typeof parent.__default__ == "undefined
         }
         // IF ACTION UPDATE
         if (action_addcontent == "update") {
-            history_replaceState(current_href() + "#" + hash_encode(url));
+            history_replaceState(current_href() + "#" + url);
             action_addcontent = "";
             return;
         }
         // NORMAL CODE
-        history_pushState(current_href() + "#" + hash_encode(url));
+        history_pushState(current_href() + "#" + url);
     }
 
     function submitcontent(form,callback)

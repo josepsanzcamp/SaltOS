@@ -144,13 +144,11 @@ if (getParam("action") == "getmail") {
                             array("&nbsp;",str_repeat("&nbsp;", 8),"<br/>\n"),
                             $temp
                         );
-                        $temp = saltos_make_clickable($temp);
                         $temp = href_replace($temp);
                     }
                     if ($type == "html") {
                         $temp = remove_script_tag($temp);
                         $temp = remove_style_tag($temp);
-                        $temp = saltos_make_clickable($temp);
                         $temp = href_replace($temp);
                     }
                     foreach ($result as $index2 => $node2) {
@@ -346,13 +344,11 @@ if (getParam("action") == "getmail") {
                             array("&nbsp;",str_repeat("&nbsp;", 8),"<br/>\n"),
                             $temp
                         );
-                        $temp = saltos_make_clickable($temp);
                         $temp = href_replace($temp);
                     }
                     if ($type == "html") {
                         $temp = remove_script_tag($temp);
                         $temp = remove_style_tag($temp);
-                        $temp = saltos_make_clickable($temp);
                         $temp = href_replace($temp);
                     }
                     foreach ($result as $index2 => $node2) {
@@ -730,17 +726,5 @@ if (getParam("page") == "correo") {
                 "viewpdf" => $viewpdf
             ));
         }
-    }
-    if (isset($id_extra[1]) && isset($id_extra[2]) && $id_extra[1] == "feed") {
-        // MARCAR FEED COMO LEIDO SI ES EL PROPIETARIO
-        $query = make_update_query("tbl_feeds", array(
-            "state_new" => 0
-        ), "id=(SELECT id_registro
-            FROM tbl_registros
-            WHERE id_aplicacion='" . page2id("feeds") . "'
-                AND id_registro='${id_extra[2]}'
-                AND id_usuario='" . current_user() . "'
-                AND first=1)");
-        db_query($query);
     }
 }

@@ -350,12 +350,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>WordPress 2.9 (GPL-2.0)</label>
-                            <type>link</type>
-                            <class>tbody</class>
-                            <onclick>openwin("http://wordpress.org/download/")</onclick>
-                        </field>
-                        <field>
                             <label>EvalMath 2005 (BSD)</label>
                             <type>link</type>
                             <class>tbody</class>
@@ -373,14 +367,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <class>tbody</class>
                             <onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
                         </field>
-                    </row>
-                    <row>
                         <field>
                             <label>RoundCubeMail 1.5.2 (GPL-3.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/roundcube/roundcubemail")</onclick>
                         </field>
+                    </row>
+                    <row>
                         <field>
                             <label>BMP-PHP 07.02.2010 (MIT)</label>
                             <type>link</type>
@@ -399,18 +393,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/googleapis/google-api-php-client")</onclick>
                         </field>
-                    </row>
-                    <row>
                         <field>
                             <label>EDIFACT 0.5.1 (LGPL-3.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/php-edifact/edifact")</onclick>
-                        </field>
-                        <field>
-                            <type>separator</type>
-                            <class>tbody</class>
-                            <colspan>3</colspan>
                         </field>
                     </row>
                     <row>
@@ -601,10 +588,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://codemirror.net/")</onclick>
                         </field>
                         <field>
-                            <label>zlib.js v0.3.1 (MIT)</label>
-                            <type>link</type>
+                            <type>separator</type>
                             <class>tbody</class>
-                            <onclick>openwin("https://github.com/imaya/zlib.js")</onclick>
+                            <colspan>1</colspan>
                         </field>
                     </row>
                     <row>

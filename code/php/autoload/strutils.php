@@ -482,14 +482,6 @@ function getutf8($str)
     return $str;
 }
 
-// USING WORDPRESS FEATURES
-function saltos_make_clickable($temp)
-{
-    require_once "lib/wordpress/wordpress.php";
-    $temp = make_clickable($temp);
-    return $temp;
-}
-
 // FOR SOME HREF REPLACEMENTS
 function href_replace($temp)
 {
