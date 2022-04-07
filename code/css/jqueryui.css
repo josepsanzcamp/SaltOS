@@ -481,11 +481,6 @@ img.image {
     background-position:-240px -240px;
 }
 
-/* FOR EXCEL */
-div.excel {
-    overflow:hidden;
-}
-
 /* FOR DATEPICKER */
 .ui-datepicker-calendar .ui-datepicker-today a {
     background:#fbec88!important;

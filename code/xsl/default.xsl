@@ -1237,7 +1237,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </xsl:if>
             <td class="{class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width};height:{height}">
                 <input type="hidden" name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" autocomplete="off"/>
-                <div class="excel" style="height:100%">
+                <div class="excel" style="width:{width};height:{height};overflow:hidden">
                     <xsl:attribute name="rows"><xsl:call-template name="xml2json"><xsl:with-param name="xml" select="rows"/></xsl:call-template></xsl:attribute>
                     <xsl:attribute name="data"><xsl:value-of select="data"/></xsl:attribute>
                     <xsl:attribute name="rowHeaders"><xsl:value-of select="rowHeaders"/></xsl:attribute>

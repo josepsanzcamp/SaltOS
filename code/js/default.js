@@ -1046,7 +1046,9 @@ if (typeof __default__ == "undefined" && typeof parent.__default__ == "undefined
         //~ console.time("opencontent");
         // LOGOUT EXCEPTION
         if (strpos(url,"page=logout") !== false) {
-            logout(); return; }
+            logout();
+            return;
+        }
         // TO FIX ERROR 414: REQUEST URI TOO LONG
         var type = (strlen(url) > 1024) ? "post" : "get";
         // CONTINUE

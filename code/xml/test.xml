@@ -288,7 +288,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                                         <label>Excel</label>
                                         <type>excel</type>
                                         <name>excel</name>
-                                        <width>600px</width>
+                                        <width>480px</width>
+                                        <height>360px</height>
                                         <data>[
                                             [1,2,3,4,5,6,7,8,9,10],
                                             [11,12,13,14,15,16,17,18,19,20],
@@ -311,6 +312,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                                             [181,182,183,184,185,186,187,188,189,190],
                                             [191,192,193,194,195,196,197,198,199,200]
                                         ]</data>
+                                        <!--<rowHeaders>['uno','dos','tres']</rowHeaders>-->
+                                        <colHeaders>['a','b','c']</colHeaders>
+                                        <minSpareRows>2</minSpareRows>
+                                        <contextMenu>true</contextMenu>
+                                        <rowHeaderWidth>60</rowHeaderWidth>
+                                        <colWidths>[30,60,90]</colWidths>
                                     </field>
                                 </row>
                             </rows>

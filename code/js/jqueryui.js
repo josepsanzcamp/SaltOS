@@ -4171,7 +4171,7 @@ saltos.form_field_excel = function (field) {
     var td = $(`
         <td class="${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width};height:${field.height}">
             <input type="hidden" name="${field.name}" id="${field.name}" autocomplete="off"/>
-            <div class="excel" style="height:100%"></div></td>
+            <div class="excel" style="width:${field.width};height:${field.height};overflow:hidden"></div></td>
     `);
     //~ if(field.onchange!="") $("input",td).on("change",{event:field.onchange},saltos.__form_event);
     if (field.onchange != "") {
@@ -5431,4 +5431,3 @@ $.ajaxSetup({ cache:true });
     saltos.opencontent(saltos.history.current_hash());
 
 }(jQuery));
-

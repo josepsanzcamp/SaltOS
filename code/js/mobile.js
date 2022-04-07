@@ -528,8 +528,8 @@ if (typeof __mobile__ == "undefined" && typeof parent.__mobile__ == "undefined")
                     var value = $.ajax({
                         url:"index.php",
                         data:data,
-                        type:"get",
-                        async:false
+                        type:"post",
+                        async:false,
                     }).responseText;
                     if (value != "") {
                         cookies_data[hash].orig = cookies_data[hash].val;
@@ -625,7 +625,7 @@ if (typeof __mobile__ == "undefined" && typeof parent.__mobile__ == "undefined")
                 };
                 cookies_counter = 0;
             } else {
-                $.cookie(name,value,{path:"/"});
+                $.cookie(name,value,{expires:365,path:"/"});
             }
         } else {
             if (cookies_data[hash].val != value) {
@@ -700,45 +700,14 @@ if (typeof __mobile__ == "undefined" && typeof parent.__mobile__ == "undefined")
         return url;
     }
 
-    // TRICK FOR OLD BROWSERS
-    var ignore_hashchange = 0;
-
     function history_pushState(url)
     {
-        // TRICK FOR OLD BROWSERS
-        if (typeof history.pushState != 'function') {
-            if (window.location.href != url) {
-                ignore_hashchange = 1;
-                window.location.href = url;
-            }
-            return;
-        }
-        // NORMAL CODE
         history.pushState(null,null,url);
-        // CHECK FOR SOME FUCKED BROWSERS
-        if (window.location.href != url) {
-            ignore_hashchange = 1;
-            window.location.href = url;
-        }
     }
 
     function history_replaceState(url)
     {
-        // TRICK FOR OLD BROWSERS
-        if (typeof history.replaceState != 'function') {
-            if (window.location.href != url) {
-                ignore_hashchange = 1;
-                window.location.replace(url);
-            }
-            return;
-        }
-        // NORMAL CODE
         history.replaceState(null,null,url);
-        // CHECK FOR SOME FUCKED BROWSERS
-        if (window.location.href != url) {
-            ignore_hashchange = 1;
-            window.location.replace(url);
-        }
     }
 
     function init_history()
@@ -782,7 +751,6 @@ if (typeof __mobile__ == "undefined" && typeof parent.__mobile__ == "undefined")
             return;
         }
         if (url == "error") {
-            ignore_hashchange = 1;
             history.go(-1);
             return;
         }
@@ -880,8 +848,12 @@ if (typeof __mobile__ == "undefined" && typeof parent.__mobile__ == "undefined")
     {
         // LOGOUT EXCEPTION
         if (strpos(url,"page=logout") !== false) {
-            logout(); return; }
+            logout();
+            return;
+        }
         // TO FIX ERROR 414: REQUEST URI TOO LONG
+        var type = (strlen(url) > 1024) ? "post" : "get";
+        // CONTINUE
         var temp = explode("?",url,2);
         if (temp[0] == "") {
             temp[0] = "index.php";
@@ -889,7 +861,6 @@ if (typeof __mobile__ == "undefined" && typeof parent.__mobile__ == "undefined")
         if (typeof temp[1] == "undefined") {
             temp[1] = "";
         }
-        var type = (strlen(url) > 1024) ? "post" : "get";
         // NORMAL USAGE
         if (typeof callback == "undefined") {
             var callback = function () {};

@@ -203,9 +203,3 @@ body {
     padding:0 0.25em;
     text-align:center;
 }
-
-/* FOR EXCEL */
-div.excel {
-    overflow:hidden;
-}
-
