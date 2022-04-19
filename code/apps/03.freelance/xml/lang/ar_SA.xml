@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <clientes>العملاء</clientes>
+        <contactos>جهات الاتصال</contactos>
+        <documentos>المستندات</documentos>
+        <facturas>الفواتير</facturas>
+        <proveedores>الموفرين</proveedores>
+        <gastos>النفقات</gastos>
+        <epigrafes>البنود</epigrafes>
+        <formaspago>السداد</formaspago>
+        <cuentas>الحسابات</cuentas>
+        <periodicas>دورة الفواتير</periodicas>
+        <empleados>الموظفين</empleados>
+        <productos>المنتجات</productos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <gestioncomercial>المبيعات</gestioncomercial>
+        <gestioncontabilidad>المحاسبة</gestioncontabilidad>
+        <desc_clientes>إدارة عملاء الشركة</desc_clientes>
+        <desc_contactos>للوصول إلى جهات اتصال العميل</desc_contactos>
+        <desc_facturas>التعامل مع جميع الفواتير (فواتير، واردات، الخ ...)</desc_facturas>
+        <desc_proveedores>قم بادارة موردي الشركة</desc_proveedores>
+        <desc_gastos>تحكم بالتكاليف واعرف ما اذا كان يتم تصفيتها</desc_gastos>
+        <desc_documentos>يرجى تجميع كافة الوثائق الخاصة بالشركة</desc_documentos>
+        <desc_epigrafes>حدد المدخلات للفواتير والنفقات</desc_epigrafes>
+        <desc_formaspago>قم بتعيين طرق الدفع لادارة المصاريف</desc_formaspago>
+        <desc_cuentas>تعريف المحاسبي لحسابات دفتر الأستاذ</desc_cuentas>
+        <desc_periodicas>جدولة انتهاء تواريخ دورة الفواتير</desc_periodicas>
+        <desc_empleados>الموظفين من الاعلى ,الاسفل او التعديل</desc_empleados>
+        <desc_productos>قم هنا بتعريف المنتجات للبيع</desc_productos>
+        <desc_ivas>إدارة الضرائب من هنا</desc_ivas>
+        <quick_clientes>العملاء</quick_clientes>
+        <quick_contactos>جهات الاتصال</quick_contactos>
+        <quick_documentos>المستندات</quick_documentos>
+        <quick_facturas>الفواتير</quick_facturas>
+        <quick_proveedores>الموفرين</quick_proveedores>
+        <quick_gastos>التكاليف</quick_gastos>
+        <quick_epigrafes>العناوين</quick_epigrafes>
+        <quick_formaspago>الدفع</quick_formaspago>
+        <quick_cuentas>الحسابات</quick_cuentas>
+        <quick_periodicas>الدورة</quick_periodicas>
+        <quick_empleados>الموظفين</quick_empleados>
+        <quick_productos>المنتجات</quick_productos>
+    </menu>
+    <clientes>
+        <list>قائمة العملاء</list>
+        <create>عميل جديد</create>
+        <formview>تفاصيل زبون</formview>
+        <forminsert>اضافة عميل جديد</forminsert>
+        <formupdate>تغير العميل</formupdate>
+        <defaultdata>بيانات الزبون</defaultdata>
+        <contactdata>جهات اتصال الزبون</contactdata>
+        <projectopen>المشاريع النشطة</projectopen>
+        <projectclose>المشاريع المغلقة</projectclose>
+        <incidentopen>الأحداث النشطة</incidentopen>
+        <incidentclose>الاحداث المغلقة</incidentclose>
+        <partesopen>الأجزاء غير المسددة</partesopen>
+        <partesclose>الاجزاء التي تمت تسويتها</partesclose>
+        <albaranes>بيانات الشحن</albaranes>
+        <facturaopen>الفواتير غير المحصلة</facturaopen>
+        <facturaclose>الفواتير الواجب دفعها</facturaclose>
+        <gastosdata>التكاليف المرتبطة بالعميل</gastosdata>
+        <documentdata>مستندات الزبائن</documentdata>
+        <agendadata>نشاطات العملاء</agendadata>
+        <actasdata>محاضر الزبائن</actasdata>
+        <actionliquidar>تسوية الأطراف المحددة</actionliquidar>
+        <msgliquidar>هل تريد مسح الاجزاء المحددة؟</msgliquidar>
+        <cuentacorriente>الحساب الحالي</cuentacorriente>
+        <diapago>يوم الدفع</diapago>
+        <cuentacontable>حساب دفتر الاستاذ</cuentacontable>
+        <nombrecomercial>الاسم التجاري</nombrecomercial>
+        <nombrefiscal>الاسم الضريبي</nombrefiscal>
+        <tipocliente>نوع الزبون</tipocliente>
+        <clientefiscal>الضرائب</clientefiscal>
+        <clientejuridico>القانوني</clientejuridico>
+        <add>إضافة عميل</add>
+        <presupuestosdata>ميزانيات العملاء</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>قائمة جهات الاتصال</list>
+        <create>جهة اتصال جديدة</create>
+        <formview>تفاصيل جهة الاتصال</formview>
+        <forminsert>إضافة جهة اتصال جديدة</forminsert>
+        <formupdate>تعديل جهة اتصال</formupdate>
+        <defaultdata>تفاصيل جهة الاتصال</defaultdata>
+        <add>اضافة جهة اتصال</add>
+    </contactos>
+    <documentos>
+        <list>قائمة المستندات</list>
+        <create>مستند جديد</create>
+        <formview>تفاصيل الالمستند</formview>
+        <forminsert>إضافة مستند جديد</forminsert>
+        <formupdate>تعديل المستند</formupdate>
+        <defaultdata>مستند</defaultdata>
+    </documentos>
+    <epigrafes>
+        <list>قائمة المدخلات</list>
+        <create>بند جديد</create>
+        <formview>تفاصيل بند</formview>
+        <forminsert>إضافة بند جديد</forminsert>
+        <formupdate>تعديل البند</formupdate>
+        <defaultdata>مواعيد البند</defaultdata>
+    </epigrafes>
+    <formaspago>
+        <list>قائمة طرق الدفع</list>
+        <create>طريقة دفع جديدة</create>
+        <formview>تفاصيل الدفع</formview>
+        <forminsert>تسجيل طريقة دفع جديدة</forminsert>
+        <formupdate>تعديل طريقة الدفع</formupdate>
+        <defaultdata>معلومات حول الدفع</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>قائمة النفقات</list>
+        <create>نفقة جديدة</create>
+        <formview>تفاصيل النفقة</formview>
+        <forminsert>إضافة نفقة جديدة</forminsert>
+        <formupdate>تعديل نفقة</formupdate>
+        <defaultdata>بيانات نفقة</defaultdata>
+        <pagadopor>الدفع</pagadopor>
+        <liquidar>تسوية</liquidar>
+        <dateliq>تاريخ التسوية</dateliq>
+        <msgliquidar>هل تريد حذف النفقة المحددة؟</msgliquidar>
+        <msgerror>يجب تحديد تكاليف تسوية المطلوب في القائمة</msgerror>
+        <trimestrereg>تقليص المساهمة</trimestrereg>
+        <fechainireg>تاريخ الادخال</fechainireg>
+        <trimestreliq>تقصليص تسوية</trimestreliq>
+        <fechainiliq>تاريخ التصفية</fechainiliq>
+        <totalliquidar>مجموع  مصاريف التصفية </totalliquidar>
+        <sinpagador>[بدون دفع]</sinpagador>
+        <vencimientos_old>الاستحقاق</vencimientos_old>
+        <vencimientos_new>إستحقاق جديد</vencimientos_new>
+        <fechavencimiento>تاريخ الاستحقاق</fechavencimiento>
+        <pagado>المدفوعة</pagado>
+        <fechapagado>تاريخ الدفع</fechapagado>
+    </gastos>
+    <facturas>
+        <list>قائمة الفواتير</list>
+        <create>فاتورة جديدة</create>
+        <formview>تفاصيل الفاتورة</formview>
+        <forminsert>إضافة فاتورة جديدة</forminsert>
+        <formupdate>تعديل الفاتورة</formupdate>
+        <defaultdata>بيانات من الفاتورة</defaultdata>
+        <errorfac101>يمكنك فقط فتح الفاتورة الاخيرة</errorfac101>
+        <errorfac103>لايمكنك حذف فاتورة تم إغلاقها</errorfac103>
+        <numfacxxx>رقم الفاتورة</numfacxxx>
+        <numalbxxx>ملاحظات التوصيل</numalbxxx>
+        <fechaemision>تاريخ البث</fechaemision>
+        <titular>البانر</titular>
+        <baseimponible>قاعدة الضريبة</baseimponible>
+        <totalapagar>المجموع الواجب دفعه</totalapagar>
+        <concepts_old>المفاهيم</concepts_old>
+        <concepts_new>مفاهيم جديدة</concepts_new>
+        <products_old>المنتجات</products_old>
+        <products_new>منتجات جديدة</products_new>
+        <vencimientos_old>استحقاقات</vencimientos_old>
+        <vencimientos_new>استحقاق جديد</vencimientos_new>
+        <fechavencimiento>تاريخ الاستحقاق</fechavencimiento>
+        <fechacobrado>تاريخ الدفع</fechacobrado>
+        <clientdata>بيانات الزبون</clientdata>
+        <vencimientosfactura>استحقاق هذه الفاتورة</vencimientosfactura>
+        <vencimientosalbaran>استحقاق امر التسليم هذا</vencimientosalbaran>
+        <vencimientoscobrado>هذا الحقل تم تغييره عن طريق استخدام بيانات من الاستحقاقات </vencimientoscobrado>
+    </facturas>
+    <proveedores>
+        <list>قائمة الموردين</list>
+        <create>مورد جديد</create>
+        <formview>تفاصيل الموفر</formview>
+        <forminsert>إضافة مورد جديد</forminsert>
+        <formupdate>تغير المورد</formupdate>
+        <defaultdata>تفاصيل الموفر</defaultdata>
+        <cuentacorriente>الحساب الحالي</cuentacorriente>
+        <cuentacontable>حساب المحاسبة</cuentacontable>
+        <diapago>يوم الدفع</diapago>
+        <gastosdata>التكاليف المرتبطة بالموفر</gastosdata>
+        <contactdata>جهات اتصال الموفر</contactdata>
+        <nombrecomercial>الاسم التجاري</nombrecomercial>
+        <nombrefiscal>الاسم الضريبي</nombrefiscal>
+        <add>إضافة موفر</add>
+    </proveedores>
+    <cuentas>
+        <list>قائمة الحسابات</list>
+        <create>حساب جديد</create>
+        <formview>تفاصيل الحساب</formview>
+        <forminsert>تسجيل حساب جديد</forminsert>
+        <formupdate>تغيير حساب</formupdate>
+        <defaultdata>معلومات حساب</defaultdata>
+        <logo>الشعار</logo>
+        <title_logo>حدد  اشعار, موضعه, حجمه والالوان ليتم استخدامها علي الفواتير</title_logo>
+        <logoleft>موضع الاشعار X</logoleft>
+        <logotop>Y</logotop>
+        <logowidth>العرض</logowidth>
+        <logoheight>الارتفاع</logoheight>
+        <logofile>ملف الاشعار الحالي</logofile>
+        <logofilenew>ملف جديد (JPEG فقط)</logofilenew>
+        <colorline>لون الخطوط</colorline>
+        <colortext1>العناوين</colortext1>
+        <colortext2>النص</colortext2>
+        <title_facturas>ضبط الماملات ليتم استخدامها علي الفواتير</title_facturas>
+        <facturabool>استخدم </facturabool>
+        <facturavalue>القيمة الافتراضية (اذا تم استخدامها)</facturavalue>
+        <facturapie1>زيل الفاتورة</facturapie1>
+        <facturapie2>خط السير الثاني</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>قائمة الفواتير العادية</list>
+        <create>دورة مستندية جديدة</create>
+        <formview>دورة فاتورة مفصلة</formview>
+        <forminsert>التسجيل لفاتورة منتظمة جديدة</forminsert>
+        <formupdate>تغير فاتورة منتظمة</formupdate>
+        <defaultdata>بيانات من فاتورة منتظمة</defaultdata>
+        <concepts_old>مفاهيم</concepts_old>
+        <concepts_new>مفاهيم جديدة</concepts_new>
+        <products_old>منتجات</products_old>
+        <products_new>منتجات جديدة</products_new>
+        <vencimientos_old>استحقاق</vencimientos_old>
+        <vencimientos_new>استحقاق جديد</vencimientos_new>
+        <fechavencimiento>تاريخ الاستحقاق</fechavencimiento>
+        <diaemision>يوم البث</diaemision>
+        <diaini>يوم ما</diaini>
+        <dia>يوم</dia>
+        <meses>أشهر</meses>
+        <liquidar>البناء</liquidar>
+        <totalliquidar>جمالي عدد الفواتير التي تم انشائها: </totalliquidar>
+        <msgerror>يجب تحديد الفواتير التي ترغب في إنشاء قائمة والشهر لاستخدامها</msgerror>
+        <msgliquidar>هل تريد إنشاء الفواتير المحددة ؟</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>قائمة الموظفين</list>
+        <create>موظف جديد</create>
+        <formview>تفاصيل الموظف</formview>
+        <forminsert>إضافة موظف جديد</forminsert>
+        <formupdate>تعديل الموظف</formupdate>
+        <defaultdata>معلومات عن الموظف</defaultdata>
+        <contactdata>جهات الاتصال بالموظف</contactdata>
+    </empleados>
+    <productos>
+        <list>المتجر</list>
+        <create>منتج جديد</create>
+        <formview>تفاصيل المنتج</formview>
+        <forminsert>إضافة منتج جديد</forminsert>
+        <formupdate>تغيير في المنتج</formupdate>
+        <defaultdata>بيانات المنتج</defaultdata>
+        <ref>الرقم المرجعي.</ref>
+        <peso>الوزن</peso>
+        <volumen>حجم</volumen>
+        <dimensiones>ابعاد</dimensiones>
+        <fotofile>الصورة الحالية</fotofile>
+        <fotofilenew>صورة جديدة</fotofilenew>
+        <siniva eval="true">"[".CONFIG("accounting_iva_name")." دون]"</siniva>
+    </productos>
+    <ivas>
+        <list eval="true">CONFIG("accounting_iva_name")." قائمة"</list>
+        <create eval="true">CONFIG("accounting_iva_name")."الجديد"</create>
+        <formview eval="true">CONFIG("accounting_iva_name")." تفاصيل"</formview>
+        <forminsert eval="true">CONFIG("accounting_iva_name")." إضافة جديد"</forminsert>
+        <formupdate eval="true">CONFIG("accounting_iva_name")." تغيير"</formupdate>
+        <defaultdata eval="true">CONFIG("accounting_iva_name")." بيانات"</defaultdata>
+    </ivas>
+</root>

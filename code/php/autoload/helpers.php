@@ -59,10 +59,10 @@ function check_filter($array)
 function add_css_page(&$result, $page)
 {
     $file = "css/${page}.css";
-    if (!file_exists($file)) {
+    if (!file_exists(detect_app_file($file))) {
         $file = $page;
     }
-    if (file_exists($file)) {
+    if (file_exists(detect_app_file($file))) {
         $exists = 0;
         if (isset($result["styles"])) {
             if (in_array($file, $result["styles"])) {
@@ -71,17 +71,13 @@ function add_css_page(&$result, $page)
             foreach ($result["styles"] as $array) {
                 if (is_array($array)) {
                     if (in_array($file, $array)) {
-                                        $exists = 1;
+                        $exists = 1;
                     }
                 }
             }
         }
         if (!$exists) {
-            if (!eval_bool(getDefault("cache/usecsscache"))) {
-                set_array($result["styles"], "include", $file);
-            } else {
-                set_array($result["styles"], "cache", array("include" => $file));
-            }
+            set_array($result["styles"], "cache", array("include" => $file));
         }
     }
 }
@@ -89,10 +85,10 @@ function add_css_page(&$result, $page)
 function add_js_page(&$result, $page)
 {
     $file = "js/${page}.js";
-    if (!file_exists($file)) {
+    if (!file_exists(detect_app_file($file))) {
         $file = $page;
     }
-    if (file_exists($file)) {
+    if (file_exists(detect_app_file($file))) {
         $exists = 0;
         if (isset($result["javascript"])) {
             if (in_array($file, $result["javascript"])) {
@@ -101,17 +97,13 @@ function add_js_page(&$result, $page)
             foreach ($result["javascript"] as $array) {
                 if (is_array($array)) {
                     if (in_array($file, $array)) {
-                                        $exists = 1;
+                        $exists = 1;
                     }
                 }
             }
         }
         if (!$exists) {
-            if (!eval_bool(getDefault("cache/usejscache"))) {
-                set_array($result["javascript"], "include", $file);
-            } else {
-                set_array($result["javascript"], "cache", array("include" => $file));
-            }
+            set_array($result["javascript"], "cache", array("include" => $file));
         }
     }
 }

@@ -91,11 +91,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <env_path>VÄG</env_path>
         <env_lang>LANG</env_lang>
         <applications>Tillämpningar</applications>
-        <select_layer>Välj profil</select_layer>
-        <selected_layer>Vald profil</selected_layer>
-        <layer_all>Alla applikationer</layer_all>
-        <layer_personal>Ansökningar för personligt bruk</layer_personal>
-        <select_apps>Välj applikationer</select_apps>
-        <selected_apps>Valda applikationer</selected_apps>
+        <select_apps>Välj profil</select_apps>
+        <selected_apps>Vald profil</selected_apps>
+        <apps_all>Alla applikationer</apps_all>
+        <apps_01_core>Minimala systemapplikationer</apps_01_core>
+        <apps_02_personal>Ansökningar för personligt bruk</apps_02_personal>
+        <apps_03_freelance>Faktureringsprogram</apps_03_freelance>
+        <apps_04_projects>Ansökningar om projektledning</apps_04_projects>
+        <select_apps2>Välj applikationer</select_apps2>
+        <selected_apps2>Valda applikationer</selected_apps2>
     </common>
 </root>

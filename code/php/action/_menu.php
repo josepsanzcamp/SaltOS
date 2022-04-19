@@ -30,7 +30,7 @@ if (!check_user()) {
 }
 
 $_LANG["default"] = "menu,common";
-$_RESULT[$action] = eval_attr(xml2array("xml/menu.xml"));
+$_RESULT[$action] = eval_attr(xml2array(detect_apps_files("xml/menu.xml")));
 
 require_once "php/libaction.php";
 $_RESULT[$action] = __default_eval_querytag($_RESULT[$action]);

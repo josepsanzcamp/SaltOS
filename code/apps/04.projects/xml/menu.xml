@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <group path="group[name=gestioncomercial]" add="true">
+        <temp global="temp" eval="true">$temp="campanyas"</temp>
+        <option include="xml/common/menuoptionslist.xml" replace="true"/>
+        <option include="xml/common/menuoptionsquery.xml" replace="true"/>
+        <option include="xml/common/menuoptionscreate.xml" replace="true"/>
+        <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+        <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+        <temp global="temp" eval="true">$temp="posiblescli"</temp>
+        <option include="xml/common/menuoptionslist.xml" replace="true"/>
+        <option include="xml/common/menuoptionsquery.xml" replace="true"/>
+        <option include="xml/common/menuoptionscreate.xml" replace="true"/>
+        <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+        <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+        <temp global="temp" eval="true">$temp="presupuestos"</temp>
+        <option include="xml/common/menuoptionslist.xml" replace="true"/>
+        <option include="xml/common/menuoptionsquery.xml" replace="true"/>
+        <option include="xml/common/menuoptionscreate.xml" replace="true"/>
+        <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+        <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+        <temp global="temp" eval="true">$temp="actas"</temp>
+        <option include="xml/common/menuoptionslist.xml" replace="true"/>
+        <option include="xml/common/menuoptionsquery.xml" replace="true"/>
+        <option include="xml/common/menuoptionscreate.xml" replace="true"/>
+        <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+        <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+    </group>
+    <group path="group[name=gestioncomercial]" after="true">
+        <group ifeval="(
+            check_user('proyectos','menu') ||
+            check_user('seguimientos','menu') ||
+            check_user('partes','menu') ||
+            check_user('actas','menu') ||
+            check_user('incidencias','menu'))">
+            <label lang="true">gestionproyectos</label>
+            <name>gestionproyectos</name>
+            <class>menu</class>
+            <temp global="temp" eval="true">$temp="proyectos"</temp>
+            <option include="xml/common/menuoptionslist.xml" replace="true"/>
+            <option include="xml/common/menuoptionsquery.xml" replace="true"/>
+            <option include="xml/common/menuoptionscreate.xml" replace="true"/>
+            <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+            <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+            <temp global="temp" eval="true">$temp="seguimientos"</temp>
+            <option include="xml/common/menuoptionslist.xml" replace="true"/>
+            <option include="xml/common/menuoptionsquery.xml" replace="true"/>
+            <option include="xml/common/menuoptionscreate.xml" replace="true"/>
+            <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+            <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+            <temp global="temp" eval="true">$temp="partes"</temp>
+            <option include="xml/common/menuoptionslist.xml" replace="true"/>
+            <option include="xml/common/menuoptionsquery.xml" replace="true"/>
+            <option include="xml/common/menuoptionscreate.xml" replace="true"/>
+            <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+            <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+            <temp global="temp" eval="true">$temp="actas"</temp>
+            <option include="xml/common/menuoptionslist.xml" replace="true"/>
+            <option include="xml/common/menuoptionsquery.xml" replace="true"/>
+            <option include="xml/common/menuoptionscreate.xml" replace="true"/>
+            <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+            <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+            <temp global="temp" eval="true">$temp="incidencias"</temp>
+            <option include="xml/common/menuoptionslist.xml" replace="true"/>
+            <option include="xml/common/menuoptionsquery.xml" replace="true"/>
+            <option include="xml/common/menuoptionscreate.xml" replace="true"/>
+            <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+            <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+        </group>
+    </group>
+    <group path="group[name=gestiontipos]" add="true">
+        <temp global="temp" eval="true">$temp="categorias"</temp>
+        <option include="xml/common/menuoptionslist.xml" replace="true"/>
+        <option include="xml/common/menuoptionsquery.xml" replace="true"/>
+        <option include="xml/common/menuoptionscreate.xml" replace="true"/>
+        <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+        <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+        <temp global="temp" eval="true">$temp="prioridades"</temp>
+        <option include="xml/common/menuoptionslist.xml" replace="true"/>
+        <option include="xml/common/menuoptionsquery.xml" replace="true"/>
+        <option include="xml/common/menuoptionscreate.xml" replace="true"/>
+        <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+        <option include="xml/common/menuoptionsreset.xml" replace="true"/>
+    </group>
+</root>

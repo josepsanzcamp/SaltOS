@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <lang>sv_SE</lang>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <nopage>Välj ett program för att börja arbeta</nopage>
+        <nocheckuser>Felaktigt användarnamn eller lösenord</nocheckuser>
+        <nochecktime>Användare utanför öppettider</nochecktime>
+        <nocheckday>Användare utanför arbetsdagen</nocheckday>
+        <view>Utsikt</view>
+        <edit>Redigera</edit>
+        <copy>Kopia</copy>
+        <delete>Radera</delete>
+        <first>Första sidan</first>
+        <previous>Föregående sida</previous>
+        <next>Nästa sida</next>
+        <last>Sista sidan</last>
+        <id>Cod.</id>
+        <codigo>Kod</codigo>
+        <cif>C.I.F</cif>
+        <nombre>Namn</nombre>
+        <apellidos>Familjenamn</apellidos>
+        <tel_fijo>Fast</tel_fijo>
+        <tel_movil>Movil</tel_movil>
+        <telefono>Telefon</telefono>
+        <fax>Fax</fax>
+        <email>E-post</email>
+        <web>Bana</web>
+        <filter>Filteralternativ</filter>
+        <loadsavefilter>Ladda och spara fördefinierade filter</loadsavefilter>
+        <buscar>Sök</buscar>
+        <buscartip>Sök med de valda filtren</buscartip>
+        <limpiar>återställ</limpiar>
+        <limpiartip>Rengör filtret och visa alla data</limpiartip>
+        <username>Användaren</username>
+        <datetime>Datum och tid</datetime>
+        <direccion>Adress</direccion>
+        <codpostal>Postnummer</codpostal>
+        <poblacion>Population</poblacion>
+        <provincia>Provins</provincia>
+        <pais>Land</pais>
+        <comentarios>Kommentarer</comentarios>
+        <descripcion>Beskrivning</descripcion>
+        <buttoncreate>Skapa</buttoncreate>
+        <buttoncreatereturnhere>Skapa och gå tillbaka hit</buttoncreatereturnhere>
+        <buttonupdate>Uppdatering</buttonupdate>
+        <buttonupdatereturnhere>Uppdatera och kom tillbaka hit</buttonupdatereturnhere>
+        <buttoncancel>Avboka</buttoncancel>
+        <buttonreturn>återgång</buttonreturn>
+        <date>Datum</date>
+        <incidencia>Incidens</incidencia>
+        <estado>Tillstånd</estado>
+        <parte>Del</parte>
+        <tarea>Uppgift</tarea>
+        <tareas>Uppgifter</tareas>
+        <liquidado>Avvecklas</liquidado>
+        <base>Basis</base>
+        <total>Totala</total>
+        <cerrado>Sluten</cerrado>
+        <cobrado>Inkasseras</cobrado>
+        <empresa>Företaget</empresa>
+        <msgdelete>Vill du ta bort den här posten?</msgdelete>
+        <permdenied>Du har inte behörigheter att utföra den här åtgärden</permdenied>
+        <sinnombre>Inget namn</sinnombre>
+        <deldenied>Det kan inte raderas eftersom det används i en annan applikation</deldenied>
+        <yes>Ja</yes>
+        <no>Inte</no>
+        <cliente>Kund</cliente>
+        <posiblecli>Möjlig kund</posiblecli>
+        <password>Nyckel</password>
+        <numfac>N.Fac.</numfac>
+        <numc>NC</numc>
+        <numctip>Antal kommentarer</numctip>
+        <numf>NF</numf>
+        <numftip>Antal filer</numftip>
+        <numt>NT</numt>
+        <numttip>Antal uppgifter</numttip>
+        <numv>NV</numv>
+        <numvtip>Antal förfall</numvtip>
+        <nums>NS</nums>
+        <numstip>Antal uppföljningar</numstip>
+        <nump>NP</nump>
+        <numptip>Antal produkter</numptip>
+        <fechaini>Ange datum</fechaini>
+        <fechafin>och</fechafin>
+        <commentdel>Radera den här kommentaren</commentdel>
+        <attachments>Bifogade filer</attachments>
+        <shortattachments>Bilagor</shortattachments>
+        <userdatetime>Användare, datum och tid</userdatetime>
+        <fileandsize>Fil och storlek</fileandsize>
+        <download>Nedladdning</download>
+        <activar>Activate</activar>
+        <newcomment>Ny kommentar</newcomment>
+        <newattachments>Nya bilagor</newattachments>
+        <proyecto>Projekt</proyecto>
+        <documento>Dokument</documento>
+        <hora>Tid</hora>
+        <horas>Timmar</horas>
+        <minutos>Minuter</minutos>
+        <precio>Pris</precio>
+        <liq>Liq.</liq>
+        <aplicacion>Ansökan</aplicacion>
+        <rol>Roll</rol>
+        <permiso>Tillstånd</permiso>
+        <pos>Pos.</pos>
+        <posicion>Ställning</posicion>
+        <trimestre>Kvartal</trimestre>
+        <otroscampos>Andra fält</otroscampos>
+        <excel>Excel</excel>
+        <exceltip>Ladda ner en Excel-fil med aktuell information</exceltip>
+        <pdf>Ladda ner PDF</pdf>
+        <pdftip>Ladda ner en PDF-fil med aktuell information</pdftip>
+        <epigrafe>Epigraph</epigrafe>
+        <campoauto>(*) Automatiskt fält</campoauto>
+        <cerr>Cerr.</cerr>
+        <cobr>Corte.</cobr>
+        <concepto>Koncept</concepto>
+        <unid>St.</unid>
+        <unidades>Unids.</unidades>
+        <unidadestotal>Totalt antal enheter</unidadestotal>
+        <prun>Pr./Un.</prun>
+        <dto>Dto.</dto>
+        <importe>Mängd</importe>
+        <percent>Procentuell</percent>
+        <todos>All]</todos>
+        <todoslosclientes>[Alla klienter]</todoslosclientes>
+        <todoslosposiblescli>[Alla potentiella kunder]</todoslosposiblescli>
+        <todoslosusuarios>[Alla användare]</todoslosusuarios>
+        <todoslosgrupos>[Alla grupper]</todoslosgrupos>
+        <todoslosproveedores>[Alla leverantörer]</todoslosproveedores>
+        <mostrartodos>[Visa alla]</mostrartodos>
+        <sinusuario>[Ingen användare]</sinusuario>
+        <paginaspc>Sida</paginaspc>
+        <regsfrom>register över</regsfrom>
+        <spcdespc>Av</spcdespc>
+        <spcalspc>Till</spcalspc>
+        <regspage>Poster per sida:</regspage>
+        <registerdata>Registreringsdata</registerdata>
+        <userinsert>Skapad av</userinsert>
+        <userupdate>ändrad av</userupdate>
+        <allstates>[Alla stater]</allstates>
+        <allenabled>[Alla tillgångar}</allenabled>
+        <alldisabled>[Alla icke-aktiva}</alldisabled>
+        <lastinsert>En post har skapats med koden:</lastinsert>
+        <lastupdate>Registret har ändrats med koden:</lastupdate>
+        <lastdelete>Posten med koden har raderats:</lastdelete>
+        <proveedor>Leverantör</proveedor>
+        <acta>Rekord</acta>
+        <presupuesto>Budget</presupuesto>
+        <newfichero>Ny fil</newfichero>
+        <fichero>Fil</fichero>
+        <size>Storlek</size>
+        <mime>Mimatyp</mime>
+        <grupo>Grupp</grupo>
+        <ficheroactual>Aktuell fil</ficheroactual>
+        <language>Språk</language>
+        <style>Utformning</style>
+        <nodata>Inga resultat att visa</nodata>
+        <nosearch>Du måste ange en term för att kunna göra en sökning</nosearch>
+        <prioridad>Prioritet</prioridad>
+        <sinproyecto>[Utan tillhörande projekt]</sinproyecto>
+        <sintarea>[Ingen associerad uppgift]</sintarea>
+        <todoslosproyectos>[Alla projekt]</todoslosproyectos>
+        <todaslastareas>[Alla uppgifter]</todaslastareas>
+        <todaslascuentas>All]</todaslascuentas>
+        <mail>Skicka PDF</mail>
+        <mailtip>Skicka PDF till ditt e-postkonto</mailtip>
+        <view2>PDF-visare</view2>
+        <view2tip>Visa dokumentet med den interna SaltOS-visaren</view2tip>
+        <view2error>Ett fel inträffade när PDF-visaren öppnades</view2error>
+        <view2hash>Om problemet kvarstår, kontakta teknisk tjänst som anger följande kod:</view2hash>
+        <view2opening>öppnar visir, vänta ett ögonblick ...</view2opening>
+        <msgnotuseremail>Du har inte konfigurerat någon e-postadress</msgnotuseremail>
+        <msgnotsmtpemail>Utgående e-postserver är inte konfigurerad</msgnotsmtpemail>
+        <sincliente>[Utan tillhörande klient]</sincliente>
+        <sinposiblecli>[Utan möjlig associerad klient]</sinposiblecli>
+        <sinepigrafe>[Utan tillhörande rubrik]</sinepigrafe>
+        <sinprioridad>[Ingen prioritet]</sinprioridad>
+        <sinestado>Stateless ]</sinestado>
+        <dstart>Initiering</dstart>
+        <dstop>änden</dstop>
+        <evento>Händelse</evento>
+        <sincuenta>[Utan konto]</sincuenta>
+        <cuenta>Konto</cuenta>
+        <sindia>[Ingen dag]</sindia>
+        <sinmes>[Ingen månad]</sinmes>
+        <mes>Månad</mes>
+        <factura>Räkning</factura>
+        <albaran>Leveransavgift</albaran>
+        <msglogout>Vill du avsluta ansökan?</msglogout>
+        <mostrarcomo>Visa som</mostrarcomo>
+        <nif>NIF</nif>
+        <vcard>VCard</vcard>
+        <cargo>Office</cargo>
+        <empleado>Anställd</empleado>
+        <sinproveedor>[Utan tillhörande leverantör]</sinproveedor>
+        <sinempleado>[Ingen anställd]</sinempleado>
+        <port>Port</port>
+        <extra>Säkerhet</extra>
+        <requiredfield>Obligatoriskt fält</requiredfield>
+        <sinpais>[Inget land valt]</sinpais>
+        <sinprovincia>[Ingen provins vald]</sinprovincia>
+        <sinpoblacion>[Ingen befolkning vald]</sinpoblacion>
+        <sincodpostal>[Inget val]</sincodpostal>
+        <usedfilter>Filter aktiverat</usedfilter>
+        <suma>Summan</suma>
+        <average>Genomsnitt</average>
+        <posx>X-position</posx>
+        <posy>Y-position</posy>
+        <angle>Vinkel</angle>
+        <sinproducto>[Utan tillhörande produkt]</sinproducto>
+        <preview>Förhandsgranskning</preview>
+        <sortasc>Sortera stigande (A-Z)</sortasc>
+        <sortdesc>Sortera fallande (Z-A)</sortdesc>
+        <confirm>Bekräftelse</confirm>
+        <alert>Uppmärksamhet</alert>
+        <error>Fel</error>
+        <buttonaccept>Acceptera</buttonaccept>
+        <buttoncontinue>Fortsätta</buttoncontinue>
+        <enero>Januari</enero>
+        <febrero>Februari</febrero>
+        <marzo>Mars</marzo>
+        <abril>April</abril>
+        <mayo>Maj</mayo>
+        <junio>Juni</junio>
+        <julio>Juli</julio>
+        <agosto>Augusti</agosto>
+        <setiembre>September</setiembre>
+        <octubre>Oktober</octubre>
+        <noviembre>November</noviembre>
+        <diciembre>December</diciembre>
+        <lunes>Måndag</lunes>
+        <martes>Tisdag</martes>
+        <miercoles>Onsdag</miercoles>
+        <jueves>Torsdag</jueves>
+        <viernes>Fredag</viernes>
+        <sabado>Lördag</sabado>
+        <domingo>Söndag</domingo>
+        <sabadoydomingo>Lördag och söndag</sabadoydomingo>
+        <sinpresupuesto>[Ingen tillhörande budget]</sinpresupuesto>
+        <todoslospresupuestos>[Alla budgetar]</todoslospresupuestos>
+        <unknownerror>Ett anslutningsfel har inträffat (kontrollera att nätverksåtkomst fungerar korrekt och om problemet kvarstår, kontakta applikationsadministratören)</unknownerror>
+        <qrcode>QR-kod</qrcode>
+        <lugar>Plats</lugar>
+        <loading>Laddar data, vänta ett ögonblick ...</loading>
+        <sending>Skickar data, vänta lite ...</sending>
+        <prod>Prod.</prod>
+        <addfile>Lägg till fil</addfile>
+        <addproduct>Lägg till produkt</addproduct>
+        <addconcept>Lägg till koncept</addconcept>
+        <addvencimiento>Lägg till utgång</addvencimiento>
+        <addtarea>Lägg till uppgift</addtarea>
+        <send>Send</send>
+        <notas>Anteckningar</notas>
+        <sincampanya>[Ingen associerad kampanj]</sincampanya>
+        <campanya>Kampanj</campanya>
+        <todaslascampanyas>[Alla kampanjer]</todaslascampanyas>
+        <numpc>NPC</numpc>
+        <numpctip>Antal potentiella kunder</numpctip>
+        <numcl>NCL</numcl>
+        <numcltip>Antal klienter</numcltip>
+        <numag>HÄSTKRAKE</numag>
+        <numagtip>Antal evenemang på dagordningen</numagtip>
+        <numpr>NPR</numpr>
+        <numprtip>Antal budgetar</numprtip>
+        <numpy>NPY</numpy>
+        <numpytip>Antal projekt</numpytip>
+        <tipoevento>Händelsetyp</tipoevento>
+        <sintipoevento>[Utan händelsetyp]</sintipoevento>
+        <fileuploaderror>Ett fel inträffade när filen skickades:</fileuploaderror>
+        <postlimiterror>Ett fel inträffade när data skickades till servern</postlimiterror>
+        <resumeneconomico>Ekonomisk sammanfattning</resumeneconomico>
+        <pdf2filter_title>PDF-exportfilter</pdf2filter_title>
+        <pdf2filter_message>Välj de data du vill inkludera i PDF: n:</pdf2filter_message>
+        <view2filter_title>PDF-visningsfilter</view2filter_title>
+        <view2filter_message>Välj de data du vill se i PDF: n:</view2filter_message>
+        <msgerrorsemaphore>Ett samtidighetsfel har inträffat, åtkomsten till åtgärden avbryts</msgerrorsemaphore>
+        <msgnotcheckbox>Du måste välja en post från listan för att använda detta alternativ</msgnotcheckbox>
+        <gotohome>Reload</gotohome>
+        <notifybug>Rapportera misslyckande</notifybug>
+        <actioncompress>Ladda ner valda filer</actioncompress>
+        <zipformat>ZIP-format</zipformat>
+        <tarformat>TJÄRA</tarformat>
+        <gzipformat>GZIP</gzipformat>
+        <bzipformat>BZIP2</bzipformat>
+        <temporalfiles>Tillfälliga filer</temporalfiles>
+        <sessionexpire>Sessionen kommer att stängas i</sessionexpire>
+        <sessionupdate>klicka här för att förhindra att den stängs</sessionupdate>
+        <sessionupdated>Sessionen har uppdaterats</sessionupdated>
+        <link>Länk</link>
+        <textos_select>Välj en text och tryck på Lägg till</textos_select>
+        <textos_add>Lägga till</textos_add>
+        <selectall>Välj alla</selectall>
+        <selectnone>Rensa val</selectnone>
+        <addtofolder>Visa i den här mappen</addtofolder>
+        <addtofolderok>Detta innehåll har lagts till i mappen</addtofolderok>
+        <delfromfolderok>Detta mappinnehåll har gömts</delfromfolderok>
+        <savedfilters>Sparade filter</savedfilters>
+        <optionfilter>Välj ett sparat filter</optionfilter>
+        <newfilter>Namnet på det nya filtret</newfilter>
+        <loadfilter>Belastning</loadfilter>
+        <loadfiltertip>Klicka här för att ladda det valda filtret</loadfiltertip>
+        <updatefilter>Uppdatering</updatefilter>
+        <updatefiltertip>Klicka här för att uppdatera det valda filtret</updatefiltertip>
+        <deletefilter>Radera</deletefilter>
+        <deletefiltertip>Klicka här för att ta bort det valda filtret</deletefiltertip>
+        <createfilter>Skapa</createfilter>
+        <createfiltertip>Klicka här för att skapa ett nytt filter</createfiltertip>
+        <createfilterok>Det nya filtret har skapats</createfilterok>
+        <createfilterko>Filternamn måste definieras</createfilterko>
+        <loadfilterok>Filter har laddats</loadfilterok>
+        <loadfilterko>Du måste välja ett filter för att kunna ladda</loadfilterko>
+        <updatefilterok>Filter har uppdaterats</updatefilterok>
+        <updatefilterko>Du måste välja ett filter för att kunna ändra det</updatefilterko>
+        <deletefilterok>Filter har tagits bort</deletefilterok>
+        <deletefilterko>Du måste välja ett filter för att kunna ta bort det</deletefilterko>
+        <renamefilter>Rename</renamefilter>
+        <renamefiltertip>Klicka här för att byta namn på ett befintligt filter</renamefiltertip>
+        <renamefilterok>Det befintliga filtret har bytt namn</renamefilterok>
+        <renamefilterko1>Du måste välja ett filter för att byta namn på det</renamefilterko1>
+        <renamefilterko2>Det återstår att definiera det nya namnet på det filter som ska byta namn</renamefilterko2>
+        <showmenu>Visa menyn</showmenu>
+        <hidemenu>Dölj menyn</hidemenu>
+        <showtools>Visa verktyg</showtools>
+        <hidetools>Dölj verktyg</hidetools>
+        <inbackground>Den här åtgärden körs i bakgrunden, vänta några ögonblick</inbackground>
+        <sentfromsaltos>E-post skickat från min SaltOS</sentfromsaltos>
+        <foldersdata>Mappar</foldersdata>
+        <loweradd>lägga till</loweradd>
+        <help>Hjälp</help>
+        <selectallcheckbox>Välj alla poster</selectallcheckbox>
+        <selectonecheckbox>Välj den här posten</selectonecheckbox>
+        <formapago>Betalningsmetod</formapago>
+        <todaslasformasdepago>[Alla betalningsformer]</todaslasformasdepago>
+        <sinformapago>[Utan betalningsmetod]</sinformapago>
+        <actions>åtgärder på den här posten</actions>
+        <msgfilesindexed1>Filen indexeras i databasen</msgfilesindexed1>
+        <msgfilesindexed2>Filer som indexeras i databasen</msgfilesindexed2>
+        <msgregistersindexed1>Posten indexeras i databasen</msgregistersindexed1>
+        <msgregistersindexed2>Poster som indexeras i databasen</msgregistersindexed2>
+        <msgregisterspurged1>Posten rensad från databasen</msgregisterspurged1>
+        <msgregisterspurged2>Poster rensade från databasen</msgregisterspurged2>
+        <biglist>$ gräns poster</biglist>
+        <biglisttip>Uppmärksamhet: $ -gränsregister visas och applikationen kan fungera långsamt</biglisttip>
+        <activo>Aktiv</activo>
+        <activo_desc>Ange den aktiva eller befintliga användaren efter arv</activo_desc>
+        <print>Skriva ut</print>
+    </common>
+    <login>
+        <logintitle>åtkomst till applikationen</logintitle>
+        <remember>Kom ihåg lösenordet på den här datorn</remember>
+        <enter>Logga in</enter>
+        <captcha1>Säkerhetskod</captcha1>
+        <captcha2>Ange koden här</captcha2>
+        <captcha3>Ladda om bilden</captcha3>
+        <mobileaccess>åtkomst från mobil enhet</mobileaccess>
+    </login>
+    <menu>
+        <home>Initiering</home>
+        <usuarios>Användare</usuarios>
+        <grupos>Grupper</grupos>
+        <profile>Min profil</profile>
+        <maincfg>Konfiguration</maincfg>
+        <about>Om SaltOS</about>
+        <support>Teknisk support</support>
+        <logout>Logga ut</logout>
+        <ficheros>Bifogade filer</ficheros>
+        <gestiongeneral>Allmänna</gestiongeneral>
+        <gestionfiltros>Filter</gestionfiltros>
+        <gestionadministracion>Administration</gestionadministracion>
+        <folders>Mappar</folders>
+        <buscador>Sökmotor</buscador>
+        <desc_usuarios>Registrera, avsluta prenumerationen eller ändra användare</desc_usuarios>
+        <desc_grupos>Skapa arbetsgrupper för användare</desc_grupos>
+        <desc_profile>ändra dina användarinställningar</desc_profile>
+        <desc_maincfg>ändra globala applikationsinställningar</desc_maincfg>
+        <desc_about>Känner till poäng för denna ansökan</desc_about>
+        <desc_logout>Klicka här när du vill stänga din arbetssession</desc_logout>
+        <desc_home>öppna programmets huvudskärm</desc_home>
+        <desc_support>Kontakta teknisk support</desc_support>
+        <desc_ficheros>öppna alla filer i hela applikationen</desc_ficheros>
+        <desc_buscador>För att söka i hela databasen</desc_buscador>
+        <quick_home>Initiering</quick_home>
+        <quick_profile>Profil</quick_profile>
+        <quick_support>Stöd</quick_support>
+        <quick_about>Om</quick_about>
+        <quick_logout>Stänga</quick_logout>
+        <quick_usuarios>Användare</quick_usuarios>
+        <quick_grupos>Grupper</quick_grupos>
+        <quick_maincfg>Konfiguration</quick_maincfg>
+        <quick_ficheros>Filer</quick_ficheros>
+        <quick_buscador>Sökmotor</quick_buscador>
+        <menu>Meny</menu>
+        <menutip>Visa och dölja applikationsmenyn</menutip>
+    </menu>
+    <usuarios>
+        <list>Lista över användare</list>
+        <create>Ny användare</create>
+        <formview>Användarinformation</formview>
+        <forminsert>Registrering av en ny användare</forminsert>
+        <formupdate>Användarändring</formupdate>
+        <personaldata>Användardata</personaldata>
+        <entrada>Tillträde</entrada>
+        <salida>Utgång</salida>
+        <dias>Dagar</dias>
+        <logged>Ansluten</logged>
+        <password2>Upprepa tangenten</password2>
+        <errorpassword>De angivna knapparna matchar inte</errorpassword>
+        <contacto>Kontakt</contacto>
+        <sincontacto>[Ingen kopplad kontakt]</sincontacto>
+        <permdata>Behörigheter efter ansökan</permdata>
+        <allow>Tillåta</allow>
+        <deny>Avfall</deny>
+        <groupsdata>Användargrupper</groupsdata>
+        <pop3host>POP3-server</pop3host>
+        <pop3delete>Radera tidigare servermeddelanden</pop3delete>
+        <pop3days>dagar</pop3days>
+        <smtphost>SMTP-server</smtphost>
+        <emailprivated>Det här kontot är privat (bara jag har åtkomst)</emailprivated>
+        <emaildefault>Standardkonto (det jag använder mest)</emaildefault>
+        <emaildisabled>Avaktivera detta e-postkonto</emaildisabled>
+        <emaildelete>Ta bort detta e-postkonto (data går förlorade för alltid)</emaildelete>
+        <emailsignatureold>Aktuell signatur</emailsignatureold>
+        <emailsignaturenew>Ny signatur</emailsignaturenew>
+        <correonew>Ny post</correonew>
+        <addmetocc>Lägg till mig som CC i alla e-postmeddelanden jag skickar</addmetocc>
+        <defaultcrt>Aktivera som standard mottagningsbekräftelsen</defaultcrt>
+        <gcalendar>Google Kalender</gcalendar>
+        <prefgcalendar>Synkronisering av kalendern med tjänsten Google Kalender</prefgcalendar>
+        <prefgcalendar2>Med det här alternativet kan du använda kalendern från SaltOS och från Google Kalender, hålla data uppdaterade automatiskt och utan att oroa dig för att behöva kopiera data från en kalender till den andra</prefgcalendar2>
+        <emailgcalendar>Gmail-e-postkonto</emailgcalendar>
+        <tokengcalendar>åtkomsttoken</tokengcalendar>
+        <feedstitle>Konfigurera flödena du vill läsa från SaltOS (RSS 1.0, RSS 2.0 och Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>Titel</title>
+        <description>Beskrivning</description>
+        <image>Bild</image>
+        <test>Prova</test>
+        <add>Lägga till</add>
+        <feedslist>Lista med konfigurerade RSS-flöden</feedslist>
+        <feeds_old>Konfigurerade flöden</feeds_old>
+        <feeds_new>Nytt foder</feeds_new>
+        <lowerdisabled>inaktiverad</lowerdisabled>
+        <singrupo>[Utan grupp]</singrupo>
+        <sinaplicacion>[Utan ansökan]</sinaplicacion>
+        <registro>Registrering</registro>
+        <sinregistro>[Utan registrering]</sinregistro>
+        <showdetalles>[Se detaljer]</showdetalles>
+        <hidedetalles>[Dölj detaljer]</hidedetalles>
+        <appsregsdata>Registreringstillstånd</appsregsdata>
+    </usuarios>
+    <grupos>
+        <list>Gruppnotering</list>
+        <create>Ny grupp</create>
+        <formview>Gruppdetalj</formview>
+        <forminsert>Registrering av en ny grupp</forminsert>
+        <formupdate>Gruppmodifiering</formupdate>
+        <defaultdata>Gruppdata</defaultdata>
+        <permdata>Behörigheter efter ansökan</permdata>
+        <allow>Tillåta</allow>
+        <deny>Avfall</deny>
+        <showdetalles>[Se detaljer]</showdetalles>
+        <hidedetalles>[Dölj detaljer]</hidedetalles>
+    </grupos>
+    <profile>
+        <formupdate>Min profil</formupdate>
+        <oldpassword>Gammal nyckel</oldpassword>
+        <newpassword>Nytt lösenord</newpassword>
+        <newpassword2>Upprepa tangenten</newpassword2>
+        <erroroldpassword>Den gamla nyckeln är fel</erroroldpassword>
+        <errornewpassword>De angivna knapparna matchar inte</errornewpassword>
+        <errornewpassword2>Den nya nyckeln måste vara mer komplex</errornewpassword2>
+        <prefgeneral>Allmänna preferenser</prefgeneral>
+        <cambioclave>ändra ditt personliga lösenord</cambioclave>
+        <general>Allmänna</general>
+        <title_correo_old>Ställ in POP3-e-postkontot för din användare</title_correo_old>
+        <pop3host>POP3-server</pop3host>
+        <pop3delete>Radera tidigare servermeddelanden</pop3delete>
+        <pop3days>dagar</pop3days>
+        <smtphost>SMTP-server</smtphost>
+        <emailprivated>Det här kontot är privat (bara jag har åtkomst)</emailprivated>
+        <emaildefault>Standardkonto (det jag använder mest)</emaildefault>
+        <emaildisabled>Avaktivera detta e-postkonto</emaildisabled>
+        <emaildelete>Ta bort detta e-postkonto (data går förlorade för alltid)</emaildelete>
+        <emailsignatureold>Aktuell signatur</emailsignatureold>
+        <emailsignaturenew>Ny signatur</emailsignaturenew>
+        <correonew>Ny post</correonew>
+        <title_correo_new>Ställ in ett nytt POP3-e-postkonto för din användare</title_correo_new>
+        <gcalendar>Google Kalender</gcalendar>
+        <prefgcalendar>Synkronisering av kalendern med tjänsten Google Kalender</prefgcalendar>
+        <prefgcalendar2>Med det här alternativet kan du använda kalendern från SaltOS och från Google Kalender, hålla data uppdaterade automatiskt och utan att oroa dig för att behöva kopiera data från en kalender till den andra</prefgcalendar2>
+        <emailgcalendar>Gmail-e-postkonto</emailgcalendar>
+        <tokengcalendar>åtkomsttoken</tokengcalendar>
+        <addmetocc>Lägg till mig som CC i alla e-postmeddelanden jag skickar</addmetocc>
+        <defaultcrt>Aktivera som standard mottagningsbekräftelsen</defaultcrt>
+        <feedstitle>Konfigurera flödena du vill läsa från SaltOS (RSS 1.0, RSS 2.0 och Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>Titel</title>
+        <description>Beskrivning</description>
+        <image>Bild</image>
+        <test>Prova</test>
+        <add>Lägga till</add>
+        <feedslist>Lista med konfigurerade RSS-flöden</feedslist>
+        <feeds_old>Konfigurerade flöden</feeds_old>
+        <feeds_new>Nytt foder</feeds_new>
+        <lowerdisabled>inaktiverad</lowerdisabled>
+        <quick>Snabbmeny</quick>
+        <prefquick>Konfigurera här snabbmenyn i det övre området</prefquick>
+        <sinaplicacion>[Utan ansökan]</sinaplicacion>
+        <quick_button_f1>Första knappen (F1)</quick_button_f1>
+        <quick_button_f2>Andra knappen (F2)</quick_button_f2>
+        <quick_button_f3>Tredje knappen (F3)</quick_button_f3>
+        <quick_button_f4>Fjärde knappen (F4)</quick_button_f4>
+        <quick_button_f5>Femte knapp (F5)</quick_button_f5>
+        <quick_button_f6>Sjätte knappen (F6)</quick_button_f6>
+        <quick_button_f7>Sjunde knappen (F7)</quick_button_f7>
+        <quick_button_f8>Åttonde knappen (F8)</quick_button_f8>
+        <quick_button_f9>Nionde knappen (F9)</quick_button_f9>
+        <quick_button_f10>Tionde knapp (F10)</quick_button_f10>
+        <quick_button_f11>Elfte knapp (F11)</quick_button_f11>
+        <quick_button_f12>Tolfte knapp (F12)</quick_button_f12>
+        <folderstab>Användarmappar</folderstab>
+        <folderspref>Ställ in användarboxar här och lämna sedan vad du vill</folderspref>
+        <newfolder>Ny användarbox</newfolder>
+        <withoutparent>[Utan mapp]</withoutparent>
+        <inparentfolder>och hänger från mappen</inparentfolder>
+        <namefolder>Mappnamn</namefolder>
+        <parentfolder>Häng i mappen</parentfolder>
+    </profile>
+    <maincfg>
+        <formupdate>Konfiguration</formupdate>
+        <general>Allmänna</general>
+        <title_general>Konfigurera några allmänna applikationsparametrar</title_general>
+        <applicationtitle>Applikationens titel</applicationtitle>
+        <agendainterval>Sök kalenderaviseringar varje</agendainterval>
+        <inboxinterval>Sök efter nya e-postmeddelanden varje</inboxinterval>
+        <outboxinterval>Kontrollera utmatningsfacket varje</outboxinterval>
+        <feedsinterval>Sök efter nya inlägg varje</feedsinterval>
+        <feedstimeout>Glöm tidigare borttagna flöden</feedstimeout>
+        <sessioninterval>Kontrollera utloggningsmeddelande varje</sessioninterval>
+        <sessionwarning>Varna för utloggning innan</sessionwarning>
+        <indexinginterval>Indexera nya filer varje</indexinginterval>
+        <integrityinterval>Kontrollera integriteten varje</integrityinterval>
+        <purgeinterval>Rensa data varje</purgeinterval>
+        <emailsupport>E-post för teknisk support</emailsupport>
+        <segundos>sekunder</segundos>
+        <dias>dagar</dias>
+        <title_logo>Definiera logotyp, placering, storlek och färger som ska användas i pdf- skivorna</title_logo>
+        <logo>Logo</logo>
+        <logoleft>Logo X-position</logoleft>
+        <logotop>OCH</logotop>
+        <logowidth>Bredd</logowidth>
+        <logoheight>Hög</logoheight>
+        <logofile>Aktuell logofil</logofile>
+        <logofilenew>Ny fil (endast JPEG)</logofilenew>
+        <colorline>Färgen på linjerna</colorline>
+        <colortext1>Värdepapper</colortext1>
+        <colortext2>Texter</colortext2>
+        <title_correo>Konfigurera några globala parametrar för att skicka e-post från SaltOS</title_correo>
+        <cuentasupport>Support för utgående e-post</cuentasupport>
+        <cuentaincidencias>Utgående posthändelser</cuentaincidencias>
+        <water>Vattenmärken</water>
+        <title_water>Definiera vattenmärken som ska användas i pdf-skivorna</title_water>
+        <wateractas>Protokoll: Text</wateractas>
+        <waterpartes>Delar: Text</waterpartes>
+        <waterfacturas>Fakturor: Text</waterfacturas>
+        <wateralbaranes>Leveransanmärkningar: Text</wateralbaranes>
+        <waterpresupuestos>Budgetar: Text</waterpresupuestos>
+        <waterclientes>Kunder: Text</waterclientes>
+        <waterproyectos>Projekt: Text</waterproyectos>
+        <waterposiblescli>Framtida kunder: Text</waterposiblescli>
+        <watercorreo>E-post: Text</watercorreo>
+        <waterfeeds>Inmatningar: Text</waterfeeds>
+        <emailasync>Använd asynkron skicka (snabbare)</emailasync>
+        <accounting>Redovisning</accounting>
+        <title_accounting>Konfigurera globala redovisningsdata här</title_accounting>
+        <accounting_currency>Valuta</accounting_currency>
+        <accounting_iva_name>Skattnamn (tillagd)</accounting_iva_name>
+        <accounting_irpf_name>Skattnamn (subtraherat)</accounting_irpf_name>
+        <accounting_value>Standardvärde (endast om det används)</accounting_value>
+        <applications_config>Tillämpningar</applications_config>
+        <config_tabs>Inställningsflikar</config_tabs>
+        <default_values>Standardvärden</default_values>
+        <configuracion_presupuestos>Budgetkonfiguration</configuracion_presupuestos>
+        <configuracion_agenda>Schemalägg konfiguration</configuracion_agenda>
+        <configuracion_incidencias>Incidentinställningar</configuracion_incidencias>
+        <configuracion_facturas>Fakturakonfiguration</configuracion_facturas>
+        <configuracion_gastos>Kostnadskonfiguration</configuracion_gastos>
+        <show_tab_objetivos_presupuesto>Visa mål</show_tab_objetivos_presupuesto>
+        <show_tab_condiciones_presupuesto>Visa villkor</show_tab_condiciones_presupuesto>
+        <show_tab_funcional_presupuesto>Visa funktionellt förslag</show_tab_funcional_presupuesto>
+        <show_tab_tecnica_presupuesto>Visa tekniska förslag</show_tab_tecnica_presupuesto>
+        <show_tab_info_adicional_presupuesto>Visa ytterligare information</show_tab_info_adicional_presupuesto>
+        <show_tab_tareas_presupuesto>Visa uppgifter</show_tab_tareas_presupuesto>
+        <show_tab_productos_presupuesto>Visa produkter</show_tab_productos_presupuesto>
+        <sin_configurar>Ej inställt]</sin_configurar>
+        <filtro_grupo_usuarios_incidencias>Visa användare av en grupp i användarlistor</filtro_grupo_usuarios_incidencias>
+        <filtro_grupo_usuarios_implicados_incidencias>Grupp involverad</filtro_grupo_usuarios_implicados_incidencias>
+        <filtro_grupo_usuarios_asignados_incidencias>Tilldelad grupp</filtro_grupo_usuarios_asignados_incidencias>
+    </maincfg>
+    <about>
+        <formupdate>Om SaltOS</formupdate>
+        <copyright>Denna programvara distribueras under villkoren i GPL-3.0-licensen:</copyright>
+        <components>Denna programvara använder följande komponenter:</components>
+        <server_base>Basserver:</server_base>
+        <php_plugins>PHP-plugins:</php_plugins>
+        <javascript_base>Javascript-bas:</javascript_base>
+        <bootstrap_plugins>Bootstrap-plugins:</bootstrap_plugins>
+        <jquery_plugins>JQuery-plugins:</jquery_plugins>
+        <javascript_plugins>Javascript-plugins:</javascript_plugins>
+        <other_plugins>Andra plugins:</other_plugins>
+        <server_plugins>Server plugins:</server_plugins>
+        <vxinfo>Obs: (*) Vissa projekt anger inte den specifika versionen av den licens de använder</vxinfo>
+        <license>Licens</license>
+        <licensetitle>Nedan visas den lagliga texten på licensen</licensetitle>
+        <translators>översättningar</translators>
+        <developers>Utvecklare</developers>
+        <unavailable>Kontaktuppgifter är inte tillgängliga. Kontakta en utvecklare för frågor eller förslag.</unavailable>
+    </about>
+    <support>
+        <formupdate>Teknisk support</formupdate>
+        <contact>Teknisk support</contact>
+        <subject>Företag</subject>
+        <msgsendemail>Ett e-postmeddelande har skickats till teknisk support</msgsendemail>
+        <msgnotemailsupport>Ingen e-postadress har angivits för teknisk support</msgnotemailsupport>
+        <msgnotsubject>Det har inte angetts något</msgnotsubject>
+        <msgnotcomments>Ingen kommentar har skrivits in</msgnotcomments>
+    </support>
+    <home>
+        <formupdate>Initiering</formupdate>
+        <buscar2>Sök i alla SaltOS</buscar2>
+        <buscar3>Sök bara i filer</buscar3>
+    </home>
+    <denied>
+        <title>åtkomst nekad</title>
+        <short>Du har inte behörigheter att utföra den här åtgärden</short>
+        <large>Systemet har blockerat applikationen från att köras på grund av otillräckliga behörigheter att köra denna del av applikationen. Om du tycker att det är ett fel, kontakta applikationsadministratören</large>
+    </denied>
+    <ficheros>
+        <list>Lista över bifogade filer</list>
+        <todaslasaplicaciones>[Alla applikationer]</todaslasaplicaciones>
+    </ficheros>
+    <folders>
+        <notfound>Mappen hittades inte</notfound>
+        <todaslasaplicaciones>[Alla applikationer]</todaslasaplicaciones>
+        <deleteoffolder>Ta bort från den här mappen</deleteoffolder>
+        <defaultfolder>Personlig mapp</defaultfolder>
+    </folders>
+    <buscador>
+        <list>Sökmotor</list>
+        <todaslasaplicaciones>[Alla applikationer]</todaslasaplicaciones>
+    </buscador>
+</root>

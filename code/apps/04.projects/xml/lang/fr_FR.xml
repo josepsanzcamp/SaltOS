@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <incidencias>incidents</incidencias>
+        <proyectos>Projets</proyectos>
+        <partes>Groupes de travail</partes>
+        <prioridades>Priorités</prioridades>
+        <actas>Procès verbal</actas>
+        <seguimientos>Suivi des tâches</seguimientos>
+        <presupuestos>Budgets</presupuestos>
+        <posiblescli>clients potentiels</posiblescli>
+        <campanyas>Campagnes commerciale</campanyas>
+        <gestionproyectos>Projets</gestionproyectos>
+        <categorias>Les catégories</categorias>
+        <desc_incidencias>Gérer d'ici l'impact de ses clients</desc_incidencias>
+        <desc_proyectos>suivi de vos projets avec cette application</desc_proyectos>
+        <desc_partes>En haute tout le travail effectué en utilisant des pièces d'une heure</desc_partes>
+        <desc_actas>Tenir un registre où faire des rencontres plus de contrôle</desc_actas>
+        <desc_prioridades>Définir les priorités pour les entrées d'agenda</desc_prioridades>
+        <desc_seguimientos>tâches de contrôle dans un projet avec suivi</desc_seguimientos>
+        <desc_posiblescli>Contrôle vos clients potentiels peuvent être</desc_posiblescli>
+        <desc_presupuestos>Faire budgets rapidement et facilement</desc_presupuestos>
+        <desc_campanyas> Cliquez campagnes publicitaires avec un suivi</desc_campanyas>
+        <desc_categorias>Pour voir les catégories d'applications spécifiques</desc_categorias>
+        <quick_incidencias>Incidents</quick_incidencias>
+        <quick_proyectos>Projets</quick_proyectos>
+        <quick_partes>Parties</quick_partes>
+        <quick_prioridades>Priorités</quick_prioridades>
+        <quick_actas>Documents</quick_actas>
+        <quick_seguimientos>traques</quick_seguimientos>
+        <quick_presupuestos>Citations</quick_presupuestos>
+        <quick_posiblescli>P.clients</quick_posiblescli>
+        <quick_campanyas>Campagnes</quick_campanyas>
+        <quick_categorias>Les catégories</quick_categorias>
+    </menu>
+    <incidencias>
+        <list>Liste d'impact</list>
+        <create>Nouvel incident</create>
+        <formview>effet détaillée</formview>
+        <forminsert>Ajout d'un nouvel effet</forminsert>
+        <formupdate>l'incidence Changement</formupdate>
+        <defaultdata>Données de l'incidence</defaultdata>
+        <usersdata>Utilisatrices      (feminine)     utilisateurs      (masculine)</usersdata>
+        <implicados>Impliqué</implicados>
+        <asignadoa>Assigné à</asignadoa>
+        <msgsendemail>a été envoyé un courriel à tous ceux qui sont impliqués dans l'incidence</msgsendemail>
+        <boolsendmail>Envoyer un e-mail</boolsendmail>
+        <boolsendmailtip>Si vous activez cette option, un email sera envoyé à tous les utilisateurs impliqués dans le bug</boolsendmailtip>
+        <categoria>Catégorie</categoria>
+        <sincategoria>[Sans catégorie]</sincategoria>
+        <allcategorias>[Toutes catégories]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>liste Projet</list>
+        <create>Nouveau projet</create>
+        <formview>Détails du projet</formview>
+        <forminsert>Ajout d'un nouveau projet</forminsert>
+        <formupdate>Projet Changement</formupdate>
+        <defaultdata>des données du projet</defaultdata>
+        <tareasproyecto>Tâches du projet</tareasproyecto>
+        <desctareas>Description de tâches</desctareas>
+        <horastotal>Heures Total</horastotal>
+        <preciomedio>Moyenne</preciomedio>
+        <preciototal>Prix total</preciototal>
+        <real>réel</real>
+        <diferencia>Différence</diferencia>
+        <partesopen>Pièces non réglés</partesopen>
+        <partesclose>Parties réglé</partesclose>
+        <relatedseguimientos>Suivi liées</relatedseguimientos>
+        <relatedincidencias>Problèmes liés</relatedincidencias>
+        <actionliquidar>Parties sélectionnées</actionliquidar>
+        <msgliquidar>voulez effacer les parties sélectionnées?</msgliquidar>
+        <agendadata>Événements connexes</agendadata>
+        <actasdata>Records relatives</actasdata>
+        <contactdata>Contacts clients</contactdata>
+        <incidentopen>Incidents actifs</incidentopen>
+        <incidentclose>Incident fermé</incidentclose>
+        <albaranes>récépissés</albaranes>
+        <facturaopen>valeurs non recouvrées</facturaopen>
+        <facturaclose>Facturation chargée</facturaclose>
+        <gastosdata>Coûts associés avec le client</gastosdata>
+        <documentdata>Documents à la clientèle</documentdata>
+        <productosproyecto>Résultats du projet</productosproyecto>
+        <descproductos>Description du produit</descproductos>
+        <actionfacturar>Produire facture</actionfacturar>
+        <msgfacturar>voulez vérifier le projet?</msgfacturar>
+        <errorfacturar>Il existe déjà un projet de loi de ce projet</errorfacturar>
+        <okfacturar>a facturé le projet correctement</okfacturar>
+        <addseguimientos>Mise à jour</addseguimientos>
+        <addactas> Minutes</addactas>
+        <addcontactos>Contact</addcontactos>
+        <addagenda>événement</addagenda>
+        <resumentareasproductos>Résumé des tâches et des produit</resumentareasproductos>
+        <presupuestosdata>Citations du projet</presupuestosdata>
+    </proyectos>
+    <partes>
+        <list>Liste des pièces</list>
+        <create>Nouveau groupe de travail</create>
+        <formview>détails dans</formview>
+        <forminsert>Inscription d'une nouvelle pièce</forminsert>
+        <formupdate>Changement dans les</formupdate>
+        <defaultdata>Données en</defaultdata>
+        <horasfact>Heures facturé</horasfact>
+        <preciohora>Prix/heure</preciohora>
+        <liquidar> Liquidation</liquidar>
+        <dateliq>Date fixée </dateliq>
+        <msgliquidar>voulez effacer les parties sélectionnées? </msgliquidar>
+        <msgerror>doit sélectionner les parties que vous voulez à s'installer dans la liste</msgerror>
+        <fechainiliq>Date de fin</fechainiliq>
+    </partes>
+    <prioridades>
+        <list>Liste de priorité</list>
+        <create>Nouvelle priorité</create>
+        <formview>Détails de la priorité</formview>
+        <forminsert>Ajout d'une nouvelle priorité</forminsert>
+        <formupdate>Modification de la priorité</formupdate>
+        <defaultdata>Dates de priorité</defaultdata>
+    </prioridades>
+    <actas>
+        <list>Liste des dossiers</list>
+        <create>Nouveau rapport</create>
+        <formview>Notice détaillée</formview>
+        <forminsert>Ajout d'un nouveau rapport</forminsert>
+        <formupdate>Changer minutes</formupdate>
+        <defaultdata>Détails du dossier</defaultdata>
+        <dstart>Début</dstart>
+        <dstop>Fin</dstop>
+        <asistentes>Assistant</asistentes>
+        <temas>Thèmes</temas>
+        <aceptados>Acceptés</aceptados>
+        <cancelados>Annulé</cancelados>
+        <pendientes>Boucles d'oreilles</pendientes>
+        <add>minutes Ajouter</add>
+    </actas>
+    <seguimientos>
+        <list>liste de suivi</list>
+        <create>Nouvelle piste</create>
+        <formview>Détail de suivi</formview>
+        <forminsert>Ajout d'une nouvelle piste</forminsert>
+        <formupdate> Changer suivi</formupdate>
+        <defaultdata>Les données de surveillance</defaultdata>
+        <add>canaux Ajouter</add>
+    </seguimientos>
+    <posiblescli>
+        <list>Liste des clients potentiels</list>
+        <create>Nouveau client potentiel</create>
+        <formview> Détail du client potentiel</formview>
+        <forminsert>Ajout d'un nouveau client potentiel</forminsert>
+        <formupdate>Changer le client potentiel</formupdate>
+        <defaultdata>données du prospect</defaultdata>
+        <crearcliente>Créer client</crearcliente>
+        <clientcreatedok>Le nouveau client a été créée avec succès</clientcreatedok>
+        <msgcrear>voulez convertir le prospect sur un client?</msgcrear>
+        <agendadata>Événements  perspective</agendadata>
+        <actasdata>Actes du client potentiel</actasdata>
+        <presupuestosdata>Citations du client potentiel</presupuestosdata>
+        <facturacion>Facturation</facturacion>
+        <iaedesc>Aperçu IAE</iaedesc>
+        <iaecod>Code IAE</iaecod>
+        <contacto> Personne contacter</contacto>
+        <changedenied>Impossible de désactiver un prospect qui a minutes, agenda et/ou des budgets</changedenied>
+    </posiblescli>
+    <presupuestos>
+        <list>Liste  des budgets</list>
+        <create>Nouveau budget</create>
+        <formview>Détails du budget</formview>
+        <forminsert>Ajout d'un nouveau budget</forminsert>
+        <formupdate>Changer le budget</formupdate>
+        <defaultdata>Information sur le budget</defaultdata>
+        <tareaspresupuesto>Tâches budget</tareaspresupuesto>
+        <desctareas>Description de tâches</desctareas>
+        <horastotal>Heures Total</horastotal>
+        <preciomedio>Moyenne</preciomedio>
+        <preciototal>Prix total</preciototal>
+        <productospresupuesto>Produits budget</productospresupuesto>
+        <descproductos>Aperçu des produits</descproductos>
+        <objetivos>Objectifs du budget</objetivos>
+        <funcional>Proposition fonctionnelle</funcional>
+        <tecnica>proposition technique</tecnica>
+        <extras>Informations complémentaires</extras>
+        <condiciones>Conditions du budget</condiciones>
+        <valoracion>Évaluation économique</valoracion>
+        <crearproyecto>Créer un projet</crearproyecto>
+        <projectexists>Ce budget et est liée à un projet</projectexists>
+        <clientnotexists>Vous devez connecter avec un client (si elle est liée à un client potentiel, assurez-client en premier)</clientnotexists>
+        <projectcreatedok>a été créé correctement nouveau projet</projectcreatedok>
+        <msgcrear>Envie de créer un projet de ce budget?</msgcrear>
+        <agendadata>Événement budget</agendadata>
+        <actasdata>Actes du budget</actasdata>
+        <resumentareasproductos>Résumé  des tâches et des produits</resumentareasproductos>
+        <objetivospdf>Objectifs</objetivospdf>
+        <funcionalpdf>fonctionnelle</funcionalpdf>
+        <tecnicapdf>Technologie</tecnicapdf>
+        <extraspdf>information</extraspdf>
+        <condicionespdf>Conditions</condicionespdf>
+        <actionfacturar>Facture</actionfacturar>
+        <msgfacturar>Vous voulez vérifier le budget?</msgfacturar>
+        <errorfacturar>Il y a déjà un projet de loi de ce budget</errorfacturar>
+        <okfacturar>A correctement facturé le budget</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>Liste des campagnes</list>
+        <create>Nouvelle campagne</create>
+        <formview>campagne détaillée</formview>
+        <forminsert>Ajout d'une nouvelle campagne</forminsert>
+        <formupdate>Campagne Changement</formupdate>
+        <defaultdata>Détails  de la campagne</defaultdata>
+        <agendadata>Événement  de l'année</agendadata>
+        <presupuestosdata>Citations  de l'année</presupuestosdata>
+        <projectopen>Projets  active</projectopen>
+        <projectclose>projets terminés</projectclose>
+        <clientesdata>Les clients  capturée</clientesdata>
+        <posiblesclidata>clients potentiels</posiblesclidata>
+    </campanyas>
+    <categorias>
+        <list>Liste des catégories</list>
+        <create>Nouvelle catégorie</create>
+        <formview>Détail de la catégorie</formview>
+        <forminsert>Ajout d'une nouvelle catégorie</forminsert>
+        <formupdate>Modifier la catégorie</formupdate>
+        <defaultdata>Données de la catégorie</defaultdata>
+    </categorias>
+</root>

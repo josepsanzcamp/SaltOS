@@ -4407,11 +4407,13 @@ saltos.add_js = function (arg) {
                         saltos.add_js_code(arg[key][key2]);
                         break;
                     case "cache":
+                        var files = [];
                         for (var key3 in arg[key][key2]) {
                             if (saltos.limpiar_key(key3) == "include") {
-                                saltos.add_js_file(arg[key][key2][key3]);
+                                files.push(arg[key][key2][key3]);
                             }
                         }
+                        saltos.add_js_file("?action=cache&amp;files="+files.join(","));
                         break;
                 }
             }
@@ -4439,11 +4441,13 @@ saltos.add_css = function (arg) {
                         saltos.add_css_code(arg[key][key2]);
                         break;
                     case "cache":
+                        var files = [];
                         for (var key3 in arg[key][key2]) {
                             if (saltos.limpiar_key(key3) == "include") {
-                                saltos.add_css_file(arg[key][key2][key3]);
+                                files.push(arg[key][key2][key3]);
                             }
                         }
+                        saltos.add_css_file("?action=cache&amp;files="+files.join(","));
                         break;
                 }
             }

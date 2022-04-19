@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <lang>no_NO</lang>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <nopage>Velg et program for å begynne å jobbe</nopage>
+        <nocheckuser>Feil brukernavn eller passord</nocheckuser>
+        <nochecktime>Bruker utenfor arbeidstid</nochecktime>
+        <nocheckday>Bruker utenfor arbeidsdagen</nocheckday>
+        <view>Utsikt</view>
+        <edit>Redigere</edit>
+        <copy>Kopi</copy>
+        <delete>Slette</delete>
+        <first>Første side</first>
+        <previous>Forrige side</previous>
+        <next>Neste side</next>
+        <last>Siste side</last>
+        <id>Torsk.</id>
+        <codigo>Kode</codigo>
+        <cif>C.I.F</cif>
+        <nombre>Navn</nombre>
+        <apellidos>Etternavn</apellidos>
+        <tel_fijo>Fast</tel_fijo>
+        <tel_movil>Movil</tel_movil>
+        <telefono>Telefon</telefono>
+        <fax>Faks</fax>
+        <email>E-post</email>
+        <web>Web</web>
+        <filter>Filteralternativer</filter>
+        <loadsavefilter>Last inn og lagre forhåndsdefinerte filtre</loadsavefilter>
+        <buscar>Søk</buscar>
+        <buscartip>Søk med de valgte filtrene</buscartip>
+        <limpiar>Reset</limpiar>
+        <limpiartip>Rengjør filteret og vis alle dataene</limpiartip>
+        <username>Bruker</username>
+        <datetime>Dato og klokkeslett</datetime>
+        <direccion>Adresse</direccion>
+        <codpostal>Postnummer</codpostal>
+        <poblacion>Befolkning</poblacion>
+        <provincia>Provinsen</provincia>
+        <pais>Land</pais>
+        <comentarios>Kommentarer</comentarios>
+        <descripcion>Beskrivelse</descripcion>
+        <buttoncreate>Skape</buttoncreate>
+        <buttoncreatereturnhere>Opprett og returner hit</buttoncreatereturnhere>
+        <buttonupdate>Oppdatering</buttonupdate>
+        <buttonupdatereturnhere>Oppdater og kom tilbake hit</buttonupdatereturnhere>
+        <buttoncancel>Avbryte</buttoncancel>
+        <buttonreturn>Retur</buttonreturn>
+        <date>Dato</date>
+        <incidencia>Forekomst</incidencia>
+        <estado>Stat</estado>
+        <parte>Del</parte>
+        <tarea>Oppgave</tarea>
+        <tareas>Oppgaver</tareas>
+        <liquidado>Likvidert</liquidado>
+        <base>Basis</base>
+        <total>Total</total>
+        <cerrado>Lukket</cerrado>
+        <cobrado>Innløses</cobrado>
+        <empresa>Selskap</empresa>
+        <msgdelete>Vil du slette denne posten?</msgdelete>
+        <permdenied>Du har ikke tillatelser til å utføre denne handlingen</permdenied>
+        <sinnombre>Ingen navn</sinnombre>
+        <deldenied>Det kan ikke slettes fordi det brukes i et annet program</deldenied>
+        <yes>Ja</yes>
+        <no>Ikke</no>
+        <cliente>Kunde</cliente>
+        <posiblecli>Mulig kunde</posiblecli>
+        <password>Nøkkel</password>
+        <numfac>N.Fac.</numfac>
+        <numc>NC</numc>
+        <numctip>Antall kommentarer</numctip>
+        <numf>NF</numf>
+        <numftip>Antall filer</numftip>
+        <numt>NT</numt>
+        <numttip>Antall oppgaver</numttip>
+        <numv>NV</numv>
+        <numvtip>Antall forfall</numvtip>
+        <nums>NS</nums>
+        <numstip>Antall oppfølginger</numstip>
+        <nump>NP</nump>
+        <numptip>Antall produkter</numptip>
+        <fechaini>Angi dato</fechaini>
+        <fechafin>og</fechafin>
+        <commentdel>Slett denne kommentaren</commentdel>
+        <attachments>Vedlagte filer</attachments>
+        <shortattachments>Vedlegg</shortattachments>
+        <userdatetime>Bruker, dato og klokkeslett</userdatetime>
+        <fileandsize>Fil og størrelse</fileandsize>
+        <download>Nedlasting</download>
+        <activar>Activate</activar>
+        <newcomment>Ny kommentar</newcomment>
+        <newattachments>Nye vedlegg</newattachments>
+        <proyecto>Prosjekt</proyecto>
+        <documento>Dokument</documento>
+        <hora>Tid</hora>
+        <horas>Timer</horas>
+        <minutos>Minutter</minutos>
+        <precio>Pris</precio>
+        <liq>Liq.</liq>
+        <aplicacion>Søknad</aplicacion>
+        <rol>Rolle</rol>
+        <permiso>Tillatelse</permiso>
+        <pos>Pos.</pos>
+        <posicion>Stilling</posicion>
+        <trimestre>Kvartal</trimestre>
+        <otroscampos>Andre felt</otroscampos>
+        <excel>Excel</excel>
+        <exceltip>Last ned en Excel-fil med gjeldende data</exceltip>
+        <pdf>Last ned PDF</pdf>
+        <pdftip>Last ned en PDF-fil med gjeldende data</pdftip>
+        <epigrafe>Epigraph</epigrafe>
+        <campoauto>(*) Automatisk felt</campoauto>
+        <cerr>Cerr.</cerr>
+        <cobr>Corte.</cobr>
+        <concepto>Konsept</concepto>
+        <unid>Stk.</unid>
+        <unidades>Unids.</unidades>
+        <unidadestotal>Totalt antall enheter</unidadestotal>
+        <prun>Pr./Un.</prun>
+        <dto>Dto.</dto>
+        <importe>Mengden</importe>
+        <percent>Prosent</percent>
+        <todos>[Alle]</todos>
+        <todoslosclientes>[Alle klienter]</todoslosclientes>
+        <todoslosposiblescli>[Alle potensielle kunder]</todoslosposiblescli>
+        <todoslosusuarios>[Alle brukere]</todoslosusuarios>
+        <todoslosgrupos>[Alle grupper]</todoslosgrupos>
+        <todoslosproveedores>[Alle leverandører]</todoslosproveedores>
+        <mostrartodos>[Vis alle]</mostrartodos>
+        <sinusuario>[Ingen bruker]</sinusuario>
+        <paginaspc>Side</paginaspc>
+        <regsfrom>poster av</regsfrom>
+        <spcdespc>Av</spcdespc>
+        <spcalspc>Til</spcalspc>
+        <regspage>Registreringer per side:</regspage>
+        <registerdata>Registreringsdata</registerdata>
+        <userinsert>Opprettet av</userinsert>
+        <userupdate>Endret av</userupdate>
+        <allstates>[Alle stater]</allstates>
+        <allenabled>[Alle eiendeler}</allenabled>
+        <alldisabled>[Alle ikke-aktive}</alldisabled>
+        <lastinsert>Det er opprettet en post med koden:</lastinsert>
+        <lastupdate>Registeret er endret med koden:</lastupdate>
+        <lastdelete>Posten med koden er slettet:</lastdelete>
+        <proveedor>Leverandør</proveedor>
+        <acta>Posten</acta>
+        <presupuesto>Budsjett</presupuesto>
+        <newfichero>Ny fil</newfichero>
+        <fichero>Fil</fichero>
+        <size>Størrelse</size>
+        <mime>Mimetype</mime>
+        <grupo>Gruppe</grupo>
+        <ficheroactual>Gjeldende fil</ficheroactual>
+        <language>Språk</language>
+        <style>Utforming</style>
+        <nodata>Ingen resultater å vise</nodata>
+        <nosearch>Du må legge inn et begrep for å kunne søke</nosearch>
+        <prioridad>Prioritet</prioridad>
+        <sinproyecto>[Uten tilknyttet prosjekt]</sinproyecto>
+        <sintarea>[Ingen tilknyttet oppgave]</sintarea>
+        <todoslosproyectos>[Alle prosjekter]</todoslosproyectos>
+        <todaslastareas>[Alle oppgaver]</todaslastareas>
+        <todaslascuentas>[Alle]</todaslascuentas>
+        <mail>Send PDF</mail>
+        <mailtip>Send PDF til e-postkontoen din</mailtip>
+        <view2>PDF-visning</view2>
+        <view2tip>Vis dokumentet med den interne SaltOS-visningen</view2tip>
+        <view2error>Det oppstod en feil under åpningen av PDF-visningen</view2error>
+        <view2hash>Hvis problemet vedvarer, kan du kontakte den tekniske tjenesten som viser følgende kode:</view2hash>
+        <view2opening>åpner visir, vent litt ...</view2opening>
+        <msgnotuseremail>Du har ikke konfigurert noen e-postadresse</msgnotuseremail>
+        <msgnotsmtpemail>Utgående postserver er ikke konfigurert</msgnotsmtpemail>
+        <sincliente>[Uten tilknyttet klient]</sincliente>
+        <sinposiblecli>[Uten mulig tilknyttet klient]</sinposiblecli>
+        <sinepigrafe>[Uten tilhørende overskrift]</sinepigrafe>
+        <sinprioridad>[Ingen prioritet]</sinprioridad>
+        <sinestado>Tilstandsløs]</sinestado>
+        <dstart>Initiering</dstart>
+        <dstop>End</dstop>
+        <evento>Event</evento>
+        <sincuenta>[Uten konto]</sincuenta>
+        <cuenta>Konto</cuenta>
+        <sindia>[Ingen dag]</sindia>
+        <sinmes>[Ingen måned]</sinmes>
+        <mes>Måned</mes>
+        <factura>Regning</factura>
+        <albaran>Leveringsbrev</albaran>
+        <msglogout>Vil du avslutte applikasjonen?</msglogout>
+        <mostrarcomo>Vis som</mostrarcomo>
+        <nif>NIF</nif>
+        <vcard>VCard</vcard>
+        <cargo>Kontor</cargo>
+        <empleado>Ansatt</empleado>
+        <sinproveedor>[Uten tilknyttet leverandør]</sinproveedor>
+        <sinempleado>[Ingen tilknyttet ansatt]</sinempleado>
+        <port>Port</port>
+        <extra>Sikkerhet</extra>
+        <requiredfield>Påkrevd felt</requiredfield>
+        <sinpais>[Ingen land valgt]</sinpais>
+        <sinprovincia>[Ingen provins valgt]</sinprovincia>
+        <sinpoblacion>[Ingen befolkning valgt]</sinpoblacion>
+        <sincodpostal>[Ingen valg]</sincodpostal>
+        <usedfilter>Filter aktivert</usedfilter>
+        <suma>Sum</suma>
+        <average>Gjennomsnittlig</average>
+        <posx>X stilling</posx>
+        <posy>Y-stilling</posy>
+        <angle>Vinkel</angle>
+        <sinproducto>[Uten tilknyttet produkt]</sinproducto>
+        <preview>Forhåndsvisning</preview>
+        <sortasc>Sorter stigende (A-Z)</sortasc>
+        <sortdesc>Sorter synkende (Z-A)</sortdesc>
+        <confirm>Bekreftelse</confirm>
+        <alert>Oppmerksomhet</alert>
+        <error>Feil</error>
+        <buttonaccept>Aksepterer</buttonaccept>
+        <buttoncontinue>Fortsette</buttoncontinue>
+        <enero>Januar</enero>
+        <febrero>Februar</febrero>
+        <marzo>Mars</marzo>
+        <abril>April</abril>
+        <mayo>Mai</mayo>
+        <junio>Juni</junio>
+        <julio>Juli</julio>
+        <agosto>August</agosto>
+        <setiembre>September</setiembre>
+        <octubre>Oktober</octubre>
+        <noviembre>November</noviembre>
+        <diciembre>Desember</diciembre>
+        <lunes>Mandag</lunes>
+        <martes>Tirsdag</martes>
+        <miercoles>Onsdag</miercoles>
+        <jueves>Torsdag</jueves>
+        <viernes>Fredag</viernes>
+        <sabado>Lørdag</sabado>
+        <domingo>Søndag</domingo>
+        <sabadoydomingo>Lørdag og søndag</sabadoydomingo>
+        <sinpresupuesto>[Ingen tilknyttet budsjett]</sinpresupuesto>
+        <todoslospresupuestos>[Alle budsjetter]</todoslospresupuestos>
+        <unknownerror>Det har oppstått en tilkoblingsfeil (sjekk at nettverkstilgangen fungerer som den skal, og hvis problemet vedvarer, kontakt applikasjonsadministratoren)</unknownerror>
+        <qrcode>QR-kode</qrcode>
+        <lugar>Sted</lugar>
+        <loading>Laster inn data, vent litt ...</loading>
+        <sending>Sender data, vent litt ...</sending>
+        <prod>Prod.</prod>
+        <addfile>Legg til fil</addfile>
+        <addproduct>Legg til produkt</addproduct>
+        <addconcept>Legg til konsept</addconcept>
+        <addvencimiento>Legg til utløp</addvencimiento>
+        <addtarea>Legg til oppgave</addtarea>
+        <send>Send</send>
+        <notas>Notater</notas>
+        <sincampanya>[Ingen tilknyttet kampanje]</sincampanya>
+        <campanya>Kampanje</campanya>
+        <todaslascampanyas>[Alle kampanjer]</todaslascampanyas>
+        <numpc>NPC</numpc>
+        <numpctip>Antall potensielle kunder</numpctip>
+        <numcl>NCL</numcl>
+        <numcltip>Antall klienter</numcltip>
+        <numag>NAG</numag>
+        <numagtip>Antall arrangementer på agendaen</numagtip>
+        <numpr>NPR</numpr>
+        <numprtip>Antall budsjetter</numprtip>
+        <numpy>NPY</numpy>
+        <numpytip>Antall prosjekter</numpytip>
+        <tipoevento>Arrangementstype</tipoevento>
+        <sintipoevento>[Uten arrangementstype]</sintipoevento>
+        <fileuploaderror>Det oppstod en feil under sending av filen:</fileuploaderror>
+        <postlimiterror>Det oppstod en feil under sending av data til serveren</postlimiterror>
+        <resumeneconomico>økonomisk sammendrag</resumeneconomico>
+        <pdf2filter_title>PDF eksportfilter</pdf2filter_title>
+        <pdf2filter_message>Velg dataene du vil inkludere i PDF-filen:</pdf2filter_message>
+        <view2filter_title>PDF-visningsfilter</view2filter_title>
+        <view2filter_message>Velg dataene du vil se i PDF:</view2filter_message>
+        <msgerrorsemaphore>Det har oppstått en samtidighetsfeil, tilgangen til handlingen er kansellert</msgerrorsemaphore>
+        <msgnotcheckbox>Du må velge en post fra listen for å bruke dette alternativet</msgnotcheckbox>
+        <gotohome>Reload</gotohome>
+        <notifybug>Rapporter feil</notifybug>
+        <actioncompress>Last ned valgte filer</actioncompress>
+        <zipformat>ZIP-format</zipformat>
+        <tarformat>TAR</tarformat>
+        <gzipformat>GZIP</gzipformat>
+        <bzipformat>BZIP2</bzipformat>
+        <temporalfiles>Midlertidige filer</temporalfiles>
+        <sessionexpire>økten blir avsluttet i</sessionexpire>
+        <sessionupdate>klikk her for å forhindre at den lukkes</sessionupdate>
+        <sessionupdated>økten ble oppdatert</sessionupdated>
+        <link>Link</link>
+        <textos_select>Velg en tekst og trykk Legg til</textos_select>
+        <textos_add>Legge</textos_add>
+        <selectall>Velg alle</selectall>
+        <selectnone>Fjern valg</selectnone>
+        <addtofolder>Vis i denne mappen</addtofolder>
+        <addtofolderok>Dette innholdet er lagt til i mappen</addtofolderok>
+        <delfromfolderok>Dette mappeinnholdet er skjult</delfromfolderok>
+        <savedfilters>Lagrede filtre</savedfilters>
+        <optionfilter>Velg et lagret filter</optionfilter>
+        <newfilter>Navnet på det nye filteret</newfilter>
+        <loadfilter>Last</loadfilter>
+        <loadfiltertip>Klikk her for å laste inn det valgte filteret</loadfiltertip>
+        <updatefilter>Oppdatering</updatefilter>
+        <updatefiltertip>Klikk her for å oppdatere det valgte filteret</updatefiltertip>
+        <deletefilter>Slette</deletefilter>
+        <deletefiltertip>Klikk her for å slette det valgte filteret</deletefiltertip>
+        <createfilter>Skape</createfilter>
+        <createfiltertip>Klikk her for å lage et nytt filter</createfiltertip>
+        <createfilterok>Det nye filteret er opprettet</createfilterok>
+        <createfilterko>Filternavn må defineres</createfilterko>
+        <loadfilterok>Filteret er lastet</loadfilterok>
+        <loadfilterko>Du må velge et filter for å kunne laste</loadfilterko>
+        <updatefilterok>Filteret har blitt oppdatert</updatefilterok>
+        <updatefilterko>Du må velge et filter for å kunne endre det</updatefilterko>
+        <deletefilterok>Filteret er slettet</deletefilterok>
+        <deletefilterko>Du må velge et filter for å kunne slette det</deletefilterko>
+        <renamefilter>Rename</renamefilter>
+        <renamefiltertip>Klikk her for å gi nytt navn til et eksisterende filter</renamefiltertip>
+        <renamefilterok>Det eksisterende filteret har fått nytt navn</renamefilterok>
+        <renamefilterko1>Du må velge et filter for å gi nytt navn til det</renamefilterko1>
+        <renamefilterko2>Det gjenstår å definere det nye navnet på filteret som skal gi nytt navn</renamefilterko2>
+        <showmenu>Vis meny</showmenu>
+        <hidemenu>Skjul meny</hidemenu>
+        <showtools>Vis verktøy</showtools>
+        <hidetools>Skjul verktøy</hidetools>
+        <inbackground>Denne handlingen kjører i bakgrunnen, vent noen øyeblikk</inbackground>
+        <sentfromsaltos>E-post sendt fra SaltOS</sentfromsaltos>
+        <foldersdata>Mapper</foldersdata>
+        <loweradd>legge</loweradd>
+        <help>Hjelp</help>
+        <selectallcheckbox>Velg alle poster</selectallcheckbox>
+        <selectonecheckbox>Velg denne posten</selectonecheckbox>
+        <formapago>Betalingsmåte</formapago>
+        <todaslasformasdepago>[Alle betalingsformer]</todaslasformasdepago>
+        <sinformapago>[Uten betalingsmetode]</sinformapago>
+        <actions>Handlinger på denne posten</actions>
+        <msgfilesindexed1>Fil indeksert i databasen</msgfilesindexed1>
+        <msgfilesindexed2>Filer indeksert i databasen</msgfilesindexed2>
+        <msgregistersindexed1>Post indeksert i databasen</msgregistersindexed1>
+        <msgregistersindexed2>Poster indeksert i databasen</msgregistersindexed2>
+        <msgregisterspurged1>Posten renset fra databasen</msgregisterspurged1>
+        <msgregisterspurged2>Poster renset fra databasen</msgregisterspurged2>
+        <biglist>$ grense poster</biglist>
+        <biglisttip>Oppmerksomhet: $ limit records vises, og applikasjonen kan fungere sakte</biglisttip>
+        <activo>Aktiv</activo>
+        <activo_desc>For å indikere den aktive eller eksisterende brukeren etter arv</activo_desc>
+        <print>Skrive ut</print>
+    </common>
+    <login>
+        <logintitle>Tilgang til applikasjonen</logintitle>
+        <remember>Husk passordet på denne datamaskinen</remember>
+        <enter>Logg inn</enter>
+        <captcha1>Sikkerhetskode</captcha1>
+        <captcha2>Skriv inn koden her</captcha2>
+        <captcha3>Last inn bilde på nytt</captcha3>
+        <mobileaccess>Tilgang fra mobilenhet</mobileaccess>
+    </login>
+    <menu>
+        <home>Initiering</home>
+        <usuarios>Brukere</usuarios>
+        <grupos>Grupper</grupos>
+        <profile>Min profil</profile>
+        <maincfg>Konfigurasjon</maincfg>
+        <about>Om SaltOS</about>
+        <support>Teknisk support</support>
+        <logout>Logg deg ut</logout>
+        <ficheros>Vedlagte filer</ficheros>
+        <gestiongeneral>General</gestiongeneral>
+        <gestionfiltros>Filtre</gestionfiltros>
+        <gestionadministracion>Administrasjon</gestionadministracion>
+        <folders>Mapper</folders>
+        <buscador>Søkemotor</buscador>
+        <desc_usuarios>Registrer, avslett abonnement eller endre brukere</desc_usuarios>
+        <desc_grupos>Lag arbeidsgrupper for brukere</desc_grupos>
+        <desc_profile>Endre brukerinnstillinger</desc_profile>
+        <desc_maincfg>Endre globale applikasjonsinnstillinger</desc_maincfg>
+        <desc_about>Kjenne studiepoengene til denne søknaden</desc_about>
+        <desc_logout>Klikk her når du vil avslutte arbeidsøkten</desc_logout>
+        <desc_home>Få tilgang til hovedskjermbildet til applikasjonen</desc_home>
+        <desc_support>Kontakt teknisk support</desc_support>
+        <desc_ficheros>Få tilgang til alle filene i hele applikasjonen</desc_ficheros>
+        <desc_buscador>For å søke i hele databasen</desc_buscador>
+        <quick_home>Initiering</quick_home>
+        <quick_profile>Profil</quick_profile>
+        <quick_support>Støtte</quick_support>
+        <quick_about>Omtrent</quick_about>
+        <quick_logout>Nær</quick_logout>
+        <quick_usuarios>Brukere</quick_usuarios>
+        <quick_grupos>Grupper</quick_grupos>
+        <quick_maincfg>Konfigurasjon</quick_maincfg>
+        <quick_ficheros>Filer</quick_ficheros>
+        <quick_buscador>Søkemotor</quick_buscador>
+        <menu>Meny</menu>
+        <menutip>For å vise og skjule applikasjonsmenyen</menutip>
+    </menu>
+    <usuarios>
+        <list>Liste over brukere</list>
+        <create>Ny bruker</create>
+        <formview>Brukerdetalj</formview>
+        <forminsert>Registrering av en ny bruker</forminsert>
+        <formupdate>Brukermodifisering</formupdate>
+        <personaldata>Brukerdata</personaldata>
+        <entrada>Oppføring</entrada>
+        <salida>Utgang</salida>
+        <dias>Dager</dias>
+        <logged>Tilkoblet</logged>
+        <password2>Gjenta tasten</password2>
+        <errorpassword>De angitte tastene stemmer ikke overens</errorpassword>
+        <contacto>Kontakt</contacto>
+        <sincontacto>[Ingen tilknyttet kontakt]</sincontacto>
+        <permdata>Tillatelser etter søknad</permdata>
+        <allow>Tillate</allow>
+        <deny>Avfall</deny>
+        <groupsdata>Brukergrupper</groupsdata>
+        <pop3host>POP3-server</pop3host>
+        <pop3delete>Slett tidligere servermeldinger</pop3delete>
+        <pop3days>dager</pop3days>
+        <smtphost>SMTP-server</smtphost>
+        <emailprivated>Denne kontoen er privat (bare jeg har tilgang)</emailprivated>
+        <emaildefault>Standardkonto (den jeg bruker mest)</emaildefault>
+        <emaildisabled>Deaktiver denne e-postkontoen</emaildisabled>
+        <emaildelete>Slett denne e-postkontoen (data vil gå tapt for alltid)</emaildelete>
+        <emailsignatureold>Gjeldende signatur</emailsignatureold>
+        <emailsignaturenew>Ny signatur</emailsignaturenew>
+        <correonew>Ny mail</correonew>
+        <addmetocc>Legg til meg som CC i alle e-postmeldinger jeg sender</addmetocc>
+        <defaultcrt>Aktiver som standard mottaksbekreftelsesforespørselen</defaultcrt>
+        <gcalendar>Google Kalender</gcalendar>
+        <prefgcalendar>Synkronisering av kalenderen med Google Kalender-tjenesten</prefgcalendar>
+        <prefgcalendar2>Med dette alternativet kan du bruke kalenderen fra SaltOS og fra Google Kalender, holde dataene oppdatert automatisk og uten å bekymre deg for å måtte kopiere dataene fra den ene kalenderen til den andre.</prefgcalendar2>
+        <emailgcalendar>Gmail-e-postkonto</emailgcalendar>
+        <tokengcalendar>Tilgangstoken</tokengcalendar>
+        <feedstitle>Konfigurer innmatingene du vil lese fra SaltOS (RSS 1.0, RSS 2.0 og Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>Tittel</title>
+        <description>Beskrivelse</description>
+        <image>Bilde</image>
+        <test>Prøve</test>
+        <add>Legge</add>
+        <feedslist>Liste over konfigurerte RSS-feeds</feedslist>
+        <feeds_old>Konfigurerte feeds</feeds_old>
+        <feeds_new>Nytt fôr</feeds_new>
+        <lowerdisabled>deaktivert</lowerdisabled>
+        <singrupo>[Uten gruppe]</singrupo>
+        <sinaplicacion>[Uten søknad]</sinaplicacion>
+        <registro>Registrering</registro>
+        <sinregistro>[Uten registrering]</sinregistro>
+        <showdetalles>[Se detaljer]</showdetalles>
+        <hidedetalles>[Skjul detaljer]</hidedetalles>
+        <appsregsdata>Registreringstillatelser</appsregsdata>
+    </usuarios>
+    <grupos>
+        <list>Gruppeoppføring</list>
+        <create>Ny gruppe</create>
+        <formview>Gruppedetalj</formview>
+        <forminsert>Registrering av en ny gruppe</forminsert>
+        <formupdate>Gruppemodifisering</formupdate>
+        <defaultdata>Gruppedata</defaultdata>
+        <permdata>Tillatelser etter søknad</permdata>
+        <allow>Tillate</allow>
+        <deny>Avfall</deny>
+        <showdetalles>[Se detaljer]</showdetalles>
+        <hidedetalles>[Skjul detaljer]</hidedetalles>
+    </grupos>
+    <profile>
+        <formupdate>Min profil</formupdate>
+        <oldpassword>Gammel nøkkel</oldpassword>
+        <newpassword>Nytt passord</newpassword>
+        <newpassword2>Gjenta tasten</newpassword2>
+        <erroroldpassword>Den gamle nøkkelen er feil</erroroldpassword>
+        <errornewpassword>De angitte tastene stemmer ikke overens</errornewpassword>
+        <errornewpassword2>Den nye nøkkelen må være mer sammensatt</errornewpassword2>
+        <prefgeneral>Generelle preferanser</prefgeneral>
+        <cambioclave>Endre ditt personlige passord</cambioclave>
+        <general>General</general>
+        <title_correo_old>Sett opp POP3-e-postkontoen for brukeren din</title_correo_old>
+        <pop3host>POP3-server</pop3host>
+        <pop3delete>Slett tidligere servermeldinger</pop3delete>
+        <pop3days>dager</pop3days>
+        <smtphost>SMTP-server</smtphost>
+        <emailprivated>Denne kontoen er privat (bare jeg har tilgang)</emailprivated>
+        <emaildefault>Standardkonto (den jeg bruker mest)</emaildefault>
+        <emaildisabled>Deaktiver denne e-postkontoen</emaildisabled>
+        <emaildelete>Slett denne e-postkontoen (data vil gå tapt for alltid)</emaildelete>
+        <emailsignatureold>Gjeldende signatur</emailsignatureold>
+        <emailsignaturenew>Ny signatur</emailsignaturenew>
+        <correonew>Ny mail</correonew>
+        <title_correo_new>Sett opp en ny POP3-e-postkonto for brukeren din</title_correo_new>
+        <gcalendar>Google Kalender</gcalendar>
+        <prefgcalendar>Synkronisering av kalenderen med Google Kalender-tjenesten</prefgcalendar>
+        <prefgcalendar2>Med dette alternativet kan du bruke kalenderen fra SaltOS og fra Google Kalender, holde dataene oppdatert automatisk og uten å bekymre deg for å måtte kopiere dataene fra den ene kalenderen til den andre.</prefgcalendar2>
+        <emailgcalendar>Gmail-e-postkonto</emailgcalendar>
+        <tokengcalendar>Tilgangstoken</tokengcalendar>
+        <addmetocc>Legg til meg som CC i alle e-postmeldinger jeg sender</addmetocc>
+        <defaultcrt>Aktiver som standard mottaksbekreftelsesforespørselen</defaultcrt>
+        <feedstitle>Konfigurer innmatingene du vil lese fra SaltOS (RSS 1.0, RSS 2.0 og Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>Tittel</title>
+        <description>Beskrivelse</description>
+        <image>Bilde</image>
+        <test>Prøve</test>
+        <add>Legge</add>
+        <feedslist>Liste over konfigurerte RSS-feeds</feedslist>
+        <feeds_old>Konfigurerte feeds</feeds_old>
+        <feeds_new>Nytt fôr</feeds_new>
+        <lowerdisabled>deaktivert</lowerdisabled>
+        <quick>Hurtigmeny</quick>
+        <prefquick>Konfigurer her hurtigmenyen i det øvre området</prefquick>
+        <sinaplicacion>[Uten søknad]</sinaplicacion>
+        <quick_button_f1>Første knapp (F1)</quick_button_f1>
+        <quick_button_f2>Andre knapp (F2)</quick_button_f2>
+        <quick_button_f3>Tredje knapp (F3)</quick_button_f3>
+        <quick_button_f4>Fjerde knapp (F4)</quick_button_f4>
+        <quick_button_f5>Femte knapp (F5)</quick_button_f5>
+        <quick_button_f6>Sjette knapp (F6)</quick_button_f6>
+        <quick_button_f7>Syvende knapp (F7)</quick_button_f7>
+        <quick_button_f8>Åttende knapp (F8)</quick_button_f8>
+        <quick_button_f9>Niende knapp (F9)</quick_button_f9>
+        <quick_button_f10>Tiende knapp (F10)</quick_button_f10>
+        <quick_button_f11>Ellevte knapp (F11)</quick_button_f11>
+        <quick_button_f12>Tolvte knapp (F12)</quick_button_f12>
+        <folderstab>Brukermapper</folderstab>
+        <folderspref>Sett opp brukerbokser her, og legg deretter igjen det du vil</folderspref>
+        <newfolder>Ny brukerboks</newfolder>
+        <withoutparent>[Uten mappe]</withoutparent>
+        <inparentfolder>og henger fra mappen</inparentfolder>
+        <namefolder>Mappenavn</namefolder>
+        <parentfolder>Heng fra mappen</parentfolder>
+    </profile>
+    <maincfg>
+        <formupdate>Konfigurasjon</formupdate>
+        <general>General</general>
+        <title_general>Konfigurer noen generelle applikasjonsparametere</title_general>
+        <applicationtitle>Søknadstittel</applicationtitle>
+        <agendainterval>Finn kalendervarsler hver</agendainterval>
+        <inboxinterval>Se etter nye e-poster hver</inboxinterval>
+        <outboxinterval>Kontroller utskuffen hver</outboxinterval>
+        <feedsinterval>Søk etter nye innlegg hver</feedsinterval>
+        <feedstimeout>Glem tidligere slettede strømmer</feedstimeout>
+        <sessioninterval>Sjekk utloggingsvarsel hver</sessioninterval>
+        <sessionwarning>Advarsel om utlogging før</sessionwarning>
+        <indexinginterval>Indekser nye filer hver</indexinginterval>
+        <integrityinterval>Kontroller integriteten hver</integrityinterval>
+        <purgeinterval>Rens data hver</purgeinterval>
+        <emailsupport>E-post for teknisk support</emailsupport>
+        <segundos>sekunder</segundos>
+        <dias>dager</dias>
+        <title_logo>Definer logoen, posisjonen, størrelsen og fargene som skal brukes i pdf-ene</title_logo>
+        <logo>Logo</logo>
+        <logoleft>Logo X-stilling</logoleft>
+        <logotop>OG</logotop>
+        <logowidth>Bredde</logowidth>
+        <logoheight>Høy</logoheight>
+        <logofile>Gjeldende logofil</logofile>
+        <logofilenew>Ny fil (bare JPEG)</logofilenew>
+        <colorline>Farge på linjene</colorline>
+        <colortext1>Verdipapirer</colortext1>
+        <colortext2>Tekster</colortext2>
+        <title_correo>Konfigurer noen globale parametere for sending av e-post fra SaltOS</title_correo>
+        <cuentasupport>Support for utgående post</cuentasupport>
+        <cuentaincidencias>Utgående posthendelser</cuentaincidencias>
+        <water>Vannmerker</water>
+        <title_water>Definer vannmerker som skal brukes i pdf-ene</title_water>
+        <wateractas>Protokoll: Tekst</wateractas>
+        <waterpartes>Deler: Tekst</waterpartes>
+        <waterfacturas>Fakturaer: Tekst</waterfacturas>
+        <wateralbaranes>Leveringsmerknader: Tekst</wateralbaranes>
+        <waterpresupuestos>Budsjetter: Tekst</waterpresupuestos>
+        <waterclientes>Klienter: Tekst</waterclientes>
+        <waterproyectos>Prosjekter: Tekst</waterproyectos>
+        <waterposiblescli>Potensielle kunder: Tekst</waterposiblescli>
+        <watercorreo>E-post: tekst</watercorreo>
+        <waterfeeds>Feeds: Tekst</waterfeeds>
+        <emailasync>Bruk asynkron sending (raskere)</emailasync>
+        <accounting>Regnskap</accounting>
+        <title_accounting>Konfigurer globale regnskapsdata her</title_accounting>
+        <accounting_currency>Valuta</accounting_currency>
+        <accounting_iva_name>Skattnavn (lagt til)</accounting_iva_name>
+        <accounting_irpf_name>Skattnavn (trukket)</accounting_irpf_name>
+        <accounting_value>Standardverdi (bare hvis brukt)</accounting_value>
+        <applications_config>Søknader</applications_config>
+        <config_tabs>Innstillinger-faner</config_tabs>
+        <default_values>Standardverdier</default_values>
+        <configuracion_presupuestos>Budsjettkonfigurasjon</configuracion_presupuestos>
+        <configuracion_agenda>Planlegg konfigurasjon</configuracion_agenda>
+        <configuracion_incidencias>Innstillinger for hendelser</configuracion_incidencias>
+        <configuracion_facturas>Fakturakonfigurasjon</configuracion_facturas>
+        <configuracion_gastos>Kostnadskonfigurasjon</configuracion_gastos>
+        <show_tab_objetivos_presupuesto>Vis mål</show_tab_objetivos_presupuesto>
+        <show_tab_condiciones_presupuesto>Vis forhold</show_tab_condiciones_presupuesto>
+        <show_tab_funcional_presupuesto>Vis funksjonelt forslag</show_tab_funcional_presupuesto>
+        <show_tab_tecnica_presupuesto>Vis teknisk forslag</show_tab_tecnica_presupuesto>
+        <show_tab_info_adicional_presupuesto>Vis tilleggsinformasjon</show_tab_info_adicional_presupuesto>
+        <show_tab_tareas_presupuesto>Vis oppgaver</show_tab_tareas_presupuesto>
+        <show_tab_productos_presupuesto>Vis produkter</show_tab_productos_presupuesto>
+        <sin_configurar>Ikke satt]</sin_configurar>
+        <filtro_grupo_usuarios_incidencias>Vis brukere av en gruppe i brukerlister</filtro_grupo_usuarios_incidencias>
+        <filtro_grupo_usuarios_implicados_incidencias>Gruppe involvert</filtro_grupo_usuarios_implicados_incidencias>
+        <filtro_grupo_usuarios_asignados_incidencias>Tildelt gruppe</filtro_grupo_usuarios_asignados_incidencias>
+    </maincfg>
+    <about>
+        <formupdate>Om SaltOS</formupdate>
+        <copyright>Denne programvaren distribueres under betingelsene i GPL-3.0-lisensen:</copyright>
+        <components>Denne programvaren bruker følgende komponenter:</components>
+        <server_base>Baseserver:</server_base>
+        <php_plugins>PHP-plugins:</php_plugins>
+        <javascript_base>Javascript-base:</javascript_base>
+        <bootstrap_plugins>Bootstrap-plugins:</bootstrap_plugins>
+        <jquery_plugins>JQuery-plugins:</jquery_plugins>
+        <javascript_plugins>Javascript-plugins:</javascript_plugins>
+        <other_plugins>Andre plugins:</other_plugins>
+        <server_plugins>Server plugins:</server_plugins>
+        <vxinfo>Merk: (*) Noen prosjekter spesifiserer ikke den spesifikke versjonen av lisensen de bruker</vxinfo>
+        <license>Lisens</license>
+        <licensetitle>Nedenfor er den lovlige teksten til lisensen</licensetitle>
+        <translators>Oversettelser</translators>
+        <developers>Utviklere</developers>
+        <unavailable>Kontaktdata er ikke tilgjengelig. Kontakt en utvikler for spørsmål eller forslag.</unavailable>
+    </about>
+    <support>
+        <formupdate>Teknisk support</formupdate>
+        <contact>Teknisk support</contact>
+        <subject>Virksomhet</subject>
+        <msgsendemail>Det er sendt en e-post til teknisk support</msgsendemail>
+        <msgnotemailsupport>Ingen e-postadresse er spesifisert for teknisk support</msgnotemailsupport>
+        <msgnotsubject>Det er ikke lagt inn noe</msgnotsubject>
+        <msgnotcomments>Ingen kommentarer er lagt inn</msgnotcomments>
+    </support>
+    <home>
+        <formupdate>Initiering</formupdate>
+        <buscar2>Søk i alle SaltOS</buscar2>
+        <buscar3>Søk bare i filer</buscar3>
+    </home>
+    <denied>
+        <title>Tilgang nektet</title>
+        <short>Du har ikke tillatelser til å utføre denne handlingen</short>
+        <large>Systemet har blokkert applikasjonen i å kjøre på grunn av utilstrekkelige privilegier til å utføre denne delen av applikasjonen. Hvis du tror det er en feil, kan du kontakte applikasjonsadministratoren</large>
+    </denied>
+    <ficheros>
+        <list>Liste over vedlagte filer</list>
+        <todaslasaplicaciones>[Alle applikasjoner]</todaslasaplicaciones>
+    </ficheros>
+    <folders>
+        <notfound>Mappen ikke funnet</notfound>
+        <todaslasaplicaciones>[Alle applikasjoner]</todaslasaplicaciones>
+        <deleteoffolder>Slett fra denne mappen</deleteoffolder>
+        <defaultfolder>Personlig mappe</defaultfolder>
+    </folders>
+    <buscador>
+        <list>Søkemotor</list>
+        <todaslasaplicaciones>[Alle applikasjoner]</todaslasaplicaciones>
+    </buscador>
+</root>

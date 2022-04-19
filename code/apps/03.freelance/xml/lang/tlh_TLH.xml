@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <clientes>Customer</clientes>
+        <contactos>Contact</contactos>
+        <documentos>Document</documentos>
+        <facturas>Neb</facturas>
+        <proveedores>Supplier</proveedores>
+        <gastos>Expense</gastos>
+        <epigrafes>Heading</epigrafes>
+        <formaspago>Payment methods</formaspago>
+        <cuentas>Account</cuentas>
+        <periodicas>Periodic invoices</periodicas>
+        <empleados>Employee</empleados>
+        <productos>Product</productos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <gestioncomercial>Commercial</gestioncomercial>
+        <gestioncontabilidad>Account</gestioncontabilidad>
+        <desc_clientes>Wey customers vu'</desc_clientes>
+        <desc_contactos>Customer contacts naw'</desc_contactos>
+        <desc_facturas>Hoch invoices vu' (slips, huj, etc packing..)</desc_facturas>
+        <desc_proveedores>Wey suppliers vu'</desc_proveedores>
+        <desc_gastos>Check expenses 'ej chaq settled chah visov</desc_gastos>
+        <desc_documentos>Documentation hoch wey nitebha' ghom ghaj</desc_documentos>
+        <desc_epigrafes>Headings invoices expenses 'ej define</desc_epigrafes>
+        <desc_formaspago>Payment methods expenses vu' define</desc_formaspago>
+        <desc_cuentas>Ledger accounts accounting define</desc_cuentas>
+        <desc_periodicas>Recur invoices je due schedule dates</desc_periodicas>
+        <desc_empleados>Discharge, discharge pagh employees modify</desc_empleados>
+        <desc_productos>Products nadev define vaj chahvad lah ngev soh</desc_productos>
+        <desc_ivas>Rup rates vu' nadevvo'</desc_ivas>
+        <quick_clientes>Customer</quick_clientes>
+        <quick_contactos>Contact</quick_contactos>
+        <quick_documentos>Document</quick_documentos>
+        <quick_facturas>Neb</quick_facturas>
+        <quick_proveedores>Supplier</quick_proveedores>
+        <quick_gastos>Expense</quick_gastos>
+        <quick_epigrafes>Heading</quick_epigrafes>
+        <quick_formaspago>F.payment</quick_formaspago>
+        <quick_cuentas>Account</quick_cuentas>
+        <quick_periodicas>Periodic</quick_periodicas>
+        <quick_empleados>Employee</quick_empleados>
+        <quick_productos>Product</quick_productos>
+    </menu>
+    <clientes>
+        <list>Customer tetlh</list>
+        <create>Customer chu'</create>
+        <formview>Customer detail</formview>
+        <forminsert>Customer chu' registration</forminsert>
+        <formupdate>Customer modification</formupdate>
+        <defaultdata>Customer de'</defaultdata>
+        <contactdata>Customer contacts</contactdata>
+        <projectopen>Pov jinmol</projectopen>
+        <projectclose>Soq jinmol</projectclose>
+        <incidentopen>Pov potlh'e'</incidentopen>
+        <incidentclose>Soq potlh'e'</incidentclose>
+        <partesopen>Un liquidated lopno'</partesopen>
+        <partesclose>Liquidate lopno'</partesclose>
+        <albaranes>Invoice</albaranes>
+        <facturaopen>Invoices wej bos</facturaopen>
+        <facturaclose>Invoices huj</facturaclose>
+        <gastosdata>Expenses ghah customer maqochpu'na' mahtah</gastosdata>
+        <documentdata>Customer documents</documentdata>
+        <agendadata>Customer wani'</agendadata>
+        <actasdata>Customer tup</actasdata>
+        <actionliquidar>'ay' wiv settle</actionliquidar>
+        <msgliquidar>Wiv 'ay' settle daneh'a'?</msgliquidar>
+        <cuentacorriente>Qu'mey potlh account</cuentacorriente>
+        <diapago>Payday</diapago>
+        <cuentacontable>Ledger account</cuentacontable>
+        <nombrecomercial>Sop pong.</nombrecomercial>
+        <nombrefiscal>Rup pong</nombrefiscal>
+        <tipocliente>Customer segh</tipocliente>
+        <clientefiscal>Fiscal</clientefiscal>
+        <clientejuridico>Mub</clientejuridico>
+        <add>Customer chel</add>
+        <presupuestosdata>Customer budgets</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>Contact tetlh</list>
+        <create>Contact chu'</create>
+        <formview>Detail contact</formview>
+        <forminsert>Contact chu' registration</forminsert>
+        <formupdate>Modification contact</formupdate>
+        <defaultdata>Details contact</defaultdata>
+        <add>Contact chel</add>
+    </contactos>
+    <documentos>
+        <list>Document listing</list>
+        <create>Document chu'</create>
+        <formview>Document detail</formview>
+        <forminsert>Document chu' registration</forminsert>
+        <formupdate>Modification document</formupdate>
+        <defaultdata>Document de'</defaultdata>
+    </documentos>
+    <epigrafes>
+        <list>Captions tetlh</list>
+        <create>Caption chu'</create>
+        <formview>Detail caption</formview>
+        <forminsert>Caption chu' discharge</forminsert>
+        <formupdate>Modification heading</formupdate>
+        <defaultdata>De' nach</defaultdata>
+    </epigrafes>
+    <formaspago>
+        <list>Payments chenmoh tetlh</list>
+        <create>Method payment chu'</create>
+        <formview>Method payment detail</formview>
+        <forminsert>Jenwi' chu' payment method</forminsert>
+        <formupdate>Method payment choh</formupdate>
+        <defaultdata>Payment method de'</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>Expenses tetlh</list>
+        <create>Chu' rep</create>
+        <formview>Detail rep</formview>
+        <forminsert>Jenwi' expense chu'</forminsert>
+        <formupdate>Modification rep</formupdate>
+        <defaultdata>De' rep</defaultdata>
+        <pagadopor>Payer</pagadopor>
+        <liquidar>Settle</liquidar>
+        <dateliq>Date liq.</dateliq>
+        <msgliquidar>Wiv expenses settle daneh'a'?</msgliquidar>
+        <msgerror>Expenses settle neh tetlh daneh'a' ghob'e' wiv soh</msgerror>
+        <trimestrereg>Chip. input</trimestrereg>
+        <fechainireg>Entry date</fechainireg>
+        <trimestreliq>Chip. settle</trimestreliq>
+        <fechainiliq>Settle date</fechainiliq>
+        <totalliquidar>Total settled expenses:</totalliquidar>
+        <sinpagador>[pagh payer]</sinpagador>
+        <vencimientos_old>Maturity</vencimientos_old>
+        <vencimientos_new>Maturities chu'</vencimientos_new>
+        <fechavencimiento>Expiration date</fechavencimiento>
+        <pagado>Yidil</pagado>
+        <fechapagado>Date yidil</fechapagado>
+    </gastos>
+    <facturas>
+        <list>Invoice listing</list>
+        <create>Chu' neb</create>
+        <formview>Invoice detail</formview>
+        <forminsert>Invoice chu' registration</forminsert>
+        <formupdate>Invoice choh</formupdate>
+        <defaultdata>Invoice de'</defaultdata>
+        <errorfac101>Lah pos neh qav invoice</errorfac101>
+        <errorfac103>Soq invoice pagh delete soh</errorfac103>
+        <numfacxxx>Invoice mi'</numfacxxx>
+        <numalbxxx>Slip packing pagh</numalbxxx>
+        <fechaemision>Wani'vammo' tlha' date</fechaemision>
+        <titular>Holder</titular>
+        <baseimponible>Rup waw'</baseimponible>
+        <totalapagar>Total payable</totalapagar>
+        <concepts_old>Concept</concepts_old>
+        <concepts_new>Concepts chu'</concepts_new>
+        <products_old>Product</products_old>
+        <products_new>Products chu'</products_new>
+        <vencimientos_old>Maturity</vencimientos_old>
+        <vencimientos_new>Maturities chu'</vencimientos_new>
+        <fechavencimiento>Expiration date</fechavencimiento>
+        <fechacobrado>Vudmey tlhopdaq date</fechacobrado>
+        <clientdata>Customer de'</clientdata>
+        <vencimientosfactura>Expirations invoice</vencimientosfactura>
+        <vencimientosalbaran>Packing slip expirations</vencimientosalbaran>
+        <vencimientoscobrado>Choh je'lah 'e' baj huj aging de' yilo'</vencimientoscobrado>
+    </facturas>
+    <proveedores>
+        <list>Suppliers tetlh</list>
+        <create>Supplier chu'</create>
+        <formview>Supplier detail</formview>
+        <forminsert>Supplier chu' registration</forminsert>
+        <formupdate>Supplier modification</formupdate>
+        <defaultdata>Supplier de'</defaultdata>
+        <cuentacorriente>Qu'mey potlh account</cuentacorriente>
+        <cuentacontable>Ledger account</cuentacontable>
+        <diapago>Payday</diapago>
+        <gastosdata>Costs ghah supplier maqochpu'na' mahtah</gastosdata>
+        <contactdata>Provider contacts</contactdata>
+        <nombrecomercial>Mech pong</nombrecomercial>
+        <nombrefiscal>Rup pong</nombrefiscal>
+        <add>Provider chel</add>
+    </proveedores>
+    <cuentas>
+        <list>Accounts tetlh</list>
+        <create>Account chu'</create>
+        <formview>Account detail</formview>
+        <forminsert>Account chu' registration</forminsert>
+        <formupdate>Account modification</formupdate>
+        <defaultdata>Account de'</defaultdata>
+        <logo>Logo</logo>
+        <title_logo>Logo, position, size, 'ej colors lo' invoices define</title_logo>
+        <logoleft>Position x logo</logoleft>
+        <logotop>JE</logotop>
+        <logowidth>Width</logowidth>
+        <logoheight>Jen</logoheight>
+        <logofile>Teywi' logo qu'mey potlh</logofile>
+        <logofilenew>Chu' teywI' (jpeg neH)</logofilenew>
+        <colorline>Tlhegh color</colorline>
+        <colortext1>Title</colortext1>
+        <colortext2>Bingdaq ghitlh leghlu'</colortext2>
+        <title_facturas>Be parameters lo' invoice issuance define</title_facturas>
+        <facturabool>Yan</facturabool>
+        <facturavalue>Default (neh vaj lo')</facturavalue>
+        <facturapie1>Tlhegh qamdu' wa'dich</facturapie1>
+        <facturapie2>Qamdu' tlhegh cha'dich</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>Periodic invoices tetlh</list>
+        <create>Chu' recur neb</create>
+        <formview>Periodic invoice detail</formview>
+        <forminsert>Chu' recur invoice registration</forminsert>
+        <formupdate>Periodic invoice modification</formupdate>
+        <defaultdata>Periodic invoice de'</defaultdata>
+        <concepts_old>Concept</concepts_old>
+        <concepts_new>Concepts chu'</concepts_new>
+        <products_old>Product</products_old>
+        <products_new>Products chu'</products_new>
+        <vencimientos_old>Maturity</vencimientos_old>
+        <vencimientos_new>Maturities chu'</vencimientos_new>
+        <fechavencimiento>Expiration date</fechavencimiento>
+        <diaemision>'uchtah jaj</diaemision>
+        <diaini>Sabtahbogh jaj</diaini>
+        <dia>Jaj</dia>
+        <meses>Maqtagh</meses>
+        <liquidar>Generate</liquidar>
+        <totalliquidar>Qo'nos mi' invoices pa' total generated:</totalliquidar>
+        <msgerror>Invoices generate tetlh jar lo' 'ej daneh'a' ghob'e' wiv soh</msgerror>
+        <msgliquidar>Wiv invoices generate daneh'a'?</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>Employee tetlh</list>
+        <create>Employee chu'</create>
+        <formview>Employee detail</formview>
+        <forminsert>Employee chu' discharge</forminsert>
+        <formupdate>Employee modification</formupdate>
+        <defaultdata>Employee de'</defaultdata>
+        <contactdata>Employee contacts</contactdata>
+    </empleados>
+    <productos>
+        <list>Product listing</list>
+        <create>Product chu'</create>
+        <formview>Product detail</formview>
+        <forminsert>Product chu' registration</forminsert>
+        <formupdate>Product modification</formupdate>
+        <defaultdata>Product de'</defaultdata>
+        <ref>Ref.</ref>
+        <peso>Ngi'</peso>
+        <volumen>Muq</volumen>
+        <dimensiones>Dimension</dimensiones>
+        <fotofile>Qu'mey potlh photo</fotofile>
+        <fotofilenew>Photo chu'</fotofilenew>
+        <siniva eval="true">"[Hutlh ".CONFIG("accounting_iva_name")."]"</siniva>
+    </productos>
+    <ivas>
+        <list eval="true">"Tetlh ".CONFIG("accounting_iva_name")</list>
+        <create eval="true">"Chu' ".CONFIG("accounting_iva_name")</create>
+        <formview eval="true">"Detauls ".CONFIG("accounting_iva_name")</formview>
+        <forminsert eval="true">"Chu' chel ".CONFIG("accounting_iva_name")</forminsert>
+        <formupdate eval="true">"choH ".CONFIG("accounting_iva_name")</formupdate>
+        <defaultdata eval="true">"De' ".CONFIG("accounting_iva_name")</defaultdata>
+    </ivas>
+</root>

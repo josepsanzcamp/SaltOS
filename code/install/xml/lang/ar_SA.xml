@@ -90,12 +90,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <env_vars>متغيرات بيئة النظام</env_vars>
         <env_path>المسار</env_path>
         <env_lang>الغة</env_lang>
-        <applications>Applications</applications>
-        <select_layer>Select the layer</select_layer>
-        <selected_layer>Layer selected</selected_layer>
-        <layer_all>All applications</layer_all>
-        <layer_personal>Personal applications</layer_personal>
-        <select_apps>Select the applications</select_apps>
-        <selected_apps>Applications selected</selected_apps>
+        <applications>التطبيقات</applications>
+        <select_apps>حدد الملف الشخصي</select_apps>
+        <selected_apps>ملف التعريف المحدد</selected_apps>
+        <apps_all>جميع التطبيقات</apps_all>
+        <apps_01_core>الحد الأدنى من تطبيقات النظام</apps_01_core>
+        <apps_02_personal>تطبيقات للاستخدام الشخصي</apps_02_personal>
+        <apps_03_freelance>تطبيقات الفوترة</apps_03_freelance>
+        <apps_04_projects>تطبيقات لإدارة المشاريع</apps_04_projects>
+        <select_apps2>اختر التطبيقات</select_apps2>
+        <selected_apps2>التطبيقات المختارة</selected_apps2>
     </common>
 </root>

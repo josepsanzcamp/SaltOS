@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <incidencias>Sammarbeids</incidencias>
+        <proyectos>Prosjekter</proyectos>
+        <partes>Arbeidsdeler</partes>
+        <prioridades>Prioriteringer</prioridades>
+        <actas>Møtereferater</actas>
+        <seguimientos>Oppgavesporing</seguimientos>
+        <presupuestos>Budsjetter</presupuestos>
+        <posiblescli>Mulige klienter</posiblescli>
+        <campanyas>Kommersielle kampanjer</campanyas>
+        <gestionproyectos>Prosjekter</gestionproyectos>
+        <categorias>Kategorier</categorias>
+        <desc_incidencias>Administrer herfra hendelsene til kundene dine</desc_incidencias>
+        <desc_proyectos>Følg prosjektene dine med denne applikasjonen</desc_proyectos>
+        <desc_partes>Registrer alt arbeidet du gjør ved å bruke timelister</desc_partes>
+        <desc_actas>Hold oversikt når du holder møter for mer kontroll</desc_actas>
+        <desc_prioridades>Definer prioriteringer for kalenderoppføringer</desc_prioridades>
+        <desc_seguimientos>Kontroller prosjektoppgaver med sporing</desc_seguimientos>
+        <desc_posiblescli>Kontroller potensielle kunder du måtte ha</desc_posiblescli>
+        <desc_presupuestos>Lag budsjetter raskt og enkelt</desc_presupuestos>
+        <desc_campanyas>Gjør markedsføringskampanjer med oppfølging</desc_campanyas>
+        <desc_categorias>For å se kategoriene for bestemte applikasjoner</desc_categorias>
+        <quick_incidencias>Sammarbeids</quick_incidencias>
+        <quick_proyectos>Prosjekter</quick_proyectos>
+        <quick_partes>Deler</quick_partes>
+        <quick_prioridades>Prioriteringer</quick_prioridades>
+        <quick_actas>Rettergang</quick_actas>
+        <quick_seguimientos>Følger</quick_seguimientos>
+        <quick_presupuestos>Budsjetter</quick_presupuestos>
+        <quick_posiblescli>P.clientes</quick_posiblescli>
+        <quick_campanyas>Kampanje</quick_campanyas>
+        <quick_categorias>Kategorier</quick_categorias>
+    </menu>
+    <incidencias>
+        <list>Liste over hendelser</list>
+        <create>Ny forekomst</create>
+        <formview>Hendelsesdetalj</formview>
+        <forminsert>Registrering av en ny hendelse</forminsert>
+        <formupdate>Endring av forekomst</formupdate>
+        <defaultdata>Insidensdata</defaultdata>
+        <usersdata>Brukere</usersdata>
+        <implicados>Implicados</implicados>
+        <asignadoa>Tildelt til</asignadoa>
+        <msgsendemail>Det er sendt en e-post til alle de involverte i hendelsen</msgsendemail>
+        <boolsendmail>Send e-post</boolsendmail>
+        <boolsendmailtip>Hvis du aktiverer dette alternativet, vil det bli sendt en e-post til alle involverte</boolsendmailtip>
+        <categoria>Kategori</categoria>
+        <sincategoria>[Uten kategori]</sincategoria>
+        <allcategorias>[Alle kategorier]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>Liste over prosjekter</list>
+        <create>Nytt prosjekt</create>
+        <formview>Prosjektdetalj</formview>
+        <forminsert>Registrering av et nytt prosjekt</forminsert>
+        <formupdate>Endring av prosjektet</formupdate>
+        <defaultdata>Prosjektdata</defaultdata>
+        <tareasproyecto>Prosjektoppgaver</tareasproyecto>
+        <desctareas>Beskrivelse av oppgaver</desctareas>
+        <horastotal>Totalt antall timer</horastotal>
+        <preciomedio>Gjennomsnittspris</preciomedio>
+        <preciototal>Totalpris</preciototal>
+        <real>Real</real>
+        <diferencia>Forskjellen</diferencia>
+        <partesopen>Uoppgjorte deler</partesopen>
+        <partesclose>Likviderte deler</partesclose>
+        <relatedseguimientos>Relaterte oppfølginger</relatedseguimientos>
+        <relatedincidencias>Relaterte hendelser</relatedincidencias>
+        <actionliquidar>Sett av valgte deler</actionliquidar>
+        <msgliquidar>Vil du avvikle de valgte delene?</msgliquidar>
+        <agendadata>Relaterte hendelser</agendadata>
+        <actasdata>Relaterte handlinger</actasdata>
+        <contactdata>Kundekontakter</contactdata>
+        <incidentopen>Aktive hendelser</incidentopen>
+        <incidentclose>Stengte hendelser</incidentclose>
+        <albaranes>Leveringsnotater</albaranes>
+        <facturaopen>Uinnsamlede fakturaer</facturaopen>
+        <facturaclose>Fakturaer samlet</facturaclose>
+        <gastosdata>Utgifter forbundet med klienten</gastosdata>
+        <documentdata>Kundedokumenter</documentdata>
+        <productosproyecto>Produkter av prosjektet</productosproyecto>
+        <descproductos>Produktbeskrivelse</descproductos>
+        <actionfacturar>Regning</actionfacturar>
+        <msgfacturar>Vil du fakturere prosjektet?</msgfacturar>
+        <errorfacturar>Det er allerede en faktura for dette prosjektet</errorfacturar>
+        <okfacturar>Prosjektet er fakturert riktig</okfacturar>
+        <addseguimientos>Sporing</addseguimientos>
+        <addactas>Posten</addactas>
+        <addcontactos>Kontakt</addcontactos>
+        <addagenda>Event</addagenda>
+        <resumentareasproductos>Sammendrag av oppgaver og produkter</resumentareasproductos>
+        <presupuestosdata>Prosjektbudsjetter</presupuestosdata>
+    </proyectos>
+    <partes>
+        <list>Deleliste</list>
+        <create>Ny del</create>
+        <formview>Del detalj</formview>
+        <forminsert>Registrering av en ny del</forminsert>
+        <formupdate>Del modifisering</formupdate>
+        <defaultdata>Deldata</defaultdata>
+        <horasfact>Faktureringstid</horasfact>
+        <preciohora>Pris / time</preciohora>
+        <liquidar>Likvidere</liquidar>
+        <dateliq>Dato liq.</dateliq>
+        <msgliquidar>Vil du avvikle de valgte delene?</msgliquidar>
+        <msgerror>Du må velge delene du vil ordne opp i listen</msgerror>
+        <fechainiliq>Avgjort dato</fechainiliq>
+    </partes>
+    <prioridades>
+        <list>Prioritetslisting</list>
+        <create>Ny prioritering</create>
+        <formview>Prioritetsdetalj</formview>
+        <forminsert>Legge til en ny prioritering</forminsert>
+        <formupdate>Prioritetsendring</formupdate>
+        <defaultdata>Prioritetsdata</defaultdata>
+    </prioridades>
+    <actas>
+        <list>Liste over minutter</list>
+        <create>Ny rekord</create>
+        <formview>Minutter detalj</formview>
+        <forminsert>Registrering av ny rekord</forminsert>
+        <formupdate>Endring av referatet</formupdate>
+        <defaultdata>Referatdata</defaultdata>
+        <dstart>Initiering</dstart>
+        <dstop>End</dstop>
+        <asistentes>Deltakere</asistentes>
+        <temas>Emner</temas>
+        <aceptados>Aksepterte</aceptados>
+        <cancelados>Kansellert</cancelados>
+        <pendientes>øredobber</pendientes>
+        <add>Legg til minutter</add>
+    </actas>
+    <seguimientos>
+        <list>Sporingsliste</list>
+        <create>Ny oppfølging</create>
+        <formview>Sporingsdetalj</formview>
+        <forminsert>Registrering av ny oppfølging</forminsert>
+        <formupdate>Sporingsendring</formupdate>
+        <defaultdata>Sporingsdata</defaultdata>
+        <add>Legg til sporing</add>
+    </seguimientos>
+    <posiblescli>
+        <list>Liste over mulige klienter</list>
+        <create>Ny potensiell kunde</create>
+        <formview>Detalj om mulig klient</formview>
+        <forminsert>Registrering av en ny potensiell klient</forminsert>
+        <formupdate>Endring av mulig klient</formupdate>
+        <defaultdata>Data om mulig klient</defaultdata>
+        <crearcliente>Opprett kunde</crearcliente>
+        <clientcreatedok>Den nye klienten er opprettet</clientcreatedok>
+        <msgcrear>Vil du konvertere den potensielle kunden til en kunde?</msgcrear>
+        <agendadata>Potensielle kundearrangementer</agendadata>
+        <actasdata>Referat fra den potensielle klienten</actasdata>
+        <presupuestosdata>Budsjetter til den mulige klienten</presupuestosdata>
+        <facturacion>Fakturering</facturacion>
+        <iaedesc>Beskrivelse IAE</iaedesc>
+        <iaecod>Kod. IAE</iaecod>
+        <contacto>Kontaktpers</contacto>
+        <changedenied>Du kan ikke deaktivere en potensiell klient som har referater, agenda og / eller budsjetter</changedenied>
+    </posiblescli>
+    <presupuestos>
+        <list>Budsjettliste</list>
+        <create>Nytt sitat</create>
+        <formview>Budsjettdetalj</formview>
+        <forminsert>Legge til et nytt budsjett</forminsert>
+        <formupdate>Endring av budsjett</formupdate>
+        <defaultdata>Budsjettdata</defaultdata>
+        <tareaspresupuesto>Budsjettoppgaver</tareaspresupuesto>
+        <desctareas>Beskrivelse av oppgaver</desctareas>
+        <horastotal>Totalt antall timer</horastotal>
+        <preciomedio>Gjennomsnittspris</preciomedio>
+        <preciototal>Totalpris</preciototal>
+        <productospresupuesto>Budsjettprodukter</productospresupuesto>
+        <descproductos>Produktbeskrivelse</descproductos>
+        <objetivos>Budsjettmål</objetivos>
+        <funcional>Funksjonelt forslag</funcional>
+        <tecnica>Teknisk forslag</tecnica>
+        <extras>Ytterligere informasjon</extras>
+        <condiciones>Budsjettbetingelser</condiciones>
+        <valoracion>økonomisk verdsettelse</valoracion>
+        <crearproyecto>Lag prosjekt</crearproyecto>
+        <projectexists>Dette budsjettet er allerede relatert til et prosjekt</projectexists>
+        <clientnotexists>Du må forholde deg til en kunde (hvis du er relatert til en potensiell kunde, gjør dem til en kunde først)</clientnotexists>
+        <projectcreatedok>Det nye prosjektet er opprettet</projectcreatedok>
+        <msgcrear>Vil du lage et prosjekt fra dette budsjettet?</msgcrear>
+        <agendadata>Budsjettarrangementer</agendadata>
+        <actasdata>Budsjettminutter</actasdata>
+        <resumentareasproductos>Sammendrag av oppgaver og produkter</resumentareasproductos>
+        <objetivospdf>Målsettinger</objetivospdf>
+        <funcionalpdf>Funksjonell</funcionalpdf>
+        <tecnicapdf>Teknikk</tecnicapdf>
+        <extraspdf>Informasjon</extraspdf>
+        <condicionespdf>Vilkår</condicionespdf>
+        <actionfacturar>Regning</actionfacturar>
+        <msgfacturar>Vil du fakturere prosjektet?</msgfacturar>
+        <errorfacturar>Det er allerede en faktura for dette tilbudet</errorfacturar>
+        <okfacturar>Budsjettet er fakturert riktig</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>Kampanjeliste</list>
+        <create>Ny kampanje</create>
+        <formview>Kampanjedetalj</formview>
+        <forminsert>Registrering av en ny kampanje</forminsert>
+        <formupdate>Kampanjeendring</formupdate>
+        <defaultdata>Kampanjedata</defaultdata>
+        <agendadata>Kampanjehendelser</agendadata>
+        <presupuestosdata>Kampanjebudsjetter</presupuestosdata>
+        <projectopen>Aktive prosjekter</projectopen>
+        <projectclose>Lukkede prosjekter</projectclose>
+        <clientesdata>Kunder rekruttert</clientesdata>
+        <posiblesclidata>Mulige klienter</posiblesclidata>
+    </campanyas>
+    <categorias>
+        <list>Liste over kategorier</list>
+        <create>Ny kategori</create>
+        <formview>Kategoridetalj</formview>
+        <forminsert>Registrering av en ny kategori</forminsert>
+        <formupdate>Endring av kategorien</formupdate>
+        <defaultdata>Kategoridata</defaultdata>
+    </categorias>
+</root>

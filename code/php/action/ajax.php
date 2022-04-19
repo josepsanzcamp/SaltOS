@@ -29,7 +29,7 @@ if (!check_user()) {
     action_denied();
 }
 
-$config = xml2array("xml/ajax.xml");
+$config = xml2array(detect_apps_files("xml/ajax.xml"));
 if (eval_bool(getDefault("debug/actiondebug"))) {
     debug_dump(false);
 }

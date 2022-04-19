@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <estados>State</estados>
+        <agenda>Calendar &amp; Events</agenda>
+        <correo>Email</correo>
+        <tiposevento>Types of Events</tiposevento>
+        <textos>Texts predefined</textos>
+        <feeds>RSS Feed Reader</feeds>
+        <favoritos>Bookmarks</favoritos>
+        <gestiontipos>Types</gestiontipos>
+        <desc_agenda>Enter in the calendar all the visits and meetings</desc_agenda>
+        <desc_estados>Define the possible states of an event, project, etc...</desc_estados>
+        <desc_correo>read and send mail from here to its customers and suppliers</desc_correo>
+        <desc_tiposevento>Define the event types needing</desc_tiposevento>
+        <desc_textos>Create predefined texts for use in other applications</desc_textos>
+        <desc_feeds>Track your RSS and Atom feeds from this application</desc_feeds>
+        <desc_favoritos>Manage your bookmarks from here</desc_favoritos>
+        <quick_correo>Email</quick_correo>
+        <quick_agenda>Agenda</quick_agenda>
+        <quick_estados>State</quick_estados>
+        <quick_tiposevento>T.events</quick_tiposevento>
+        <quick_textos>Texts</quick_textos>
+        <quick_feeds>RSS</quick_feeds>
+        <quick_favoritos>Bookmarks</quick_favoritos>
+    </menu>
+    <estados>
+        <list>List of state</list>
+        <create>New State</create>
+        <formview>Details of the state</formview>
+        <forminsert>Registration of a new state</forminsert>
+        <formupdate>Change status</formupdate>
+        <defaultdata>Dates of state</defaultdata>
+        <activo>Active</activo>
+    </estados>
+    <agenda>
+        <list>List of Events</list>
+        <create>New event</create>
+        <formview>Detail of the event</formview>
+        <forminsert>Added a new event</forminsert>
+        <formupdate>Changing of the event</formupdate>
+        <defaultdata>Event Info</defaultdata>
+        <otrasfechas>Other dates</otrasfechas>
+        <todoseventos>[all events]</todoseventos>
+        <todoayer>Events of yesterday</todoayer>
+        <todohoy>Today's Events</todohoy>
+        <todomanana>Events tomorrow</todomanana>
+        <todosemana>Events of the week</todosemana>
+        <todomes>Events this month</todomes>
+        <todoano>Events this year</todoano>
+        <usersdata>Users allocated</usersdata>
+        <asignadoa>Assigned to</asignadoa>
+        <notifydelay>Report</notifydelay>
+        <notifysign>time / s</notifysign>
+        <notifydstart>Notification received start</notifydstart>
+        <notifydstop>Final report received</notifydstop>
+        <notifyantes>Before</notifyantes>
+        <notifydespues>After</notifydespues>
+        <notifyprev>Notification prior to the event</notifyprev>
+        <notifypost>Event Notification finished</notifypost>
+        <notifyclear>Notices</notifyclear>
+        <notifytip>Clear the notifications</notifytip>
+        <notifyclearok>Events restarted:</notifyclearok>
+        <notifyclearko>No events found outstanding to restart</notifyclearko>
+        <calendar>Calendar of Events</calendar>
+        <prevmonth>Previous month</prevmonth>
+        <currentmonth>Current Month</currentmonth>
+        <nextmonth>Next Month</nextmonth>
+        <today>Today</today>
+        <yesterday>Yesterday</yesterday>
+        <tomorrow>Tomorrow</tomorrow>
+        <continue>Cont ..</continue>
+        <by>by</by>
+        <calendarinfo>Showing information to date:</calendarinfo>
+        <add>Add Event</add>
+        <gcalendar>Google Calendar</gcalendar>
+        <gcalendartip>Sync events between Google Calendar and SaltOS</gcalendartip>
+        <notgcalendaremail>You have not configured Google Calendar account preferences</notgcalendaremail>
+        <invalidgcalendartoken>Data access your Google Calendar account is incorrect</invalidgcalendartoken>
+        <requestgcalendartoken>Click here to obtain an access token</requestgcalendartoken>
+        <insertgcalendar>SaltOS events created in Google Calendar:</insertgcalendar>
+        <updategcalendar>SaltOS events updated in Google Calendar:</updategcalendar>
+        <insertsaltos>Google Calendar events created in SaltOS:</insertsaltos>
+        <updatesaltos>Google Calendar events updated in SaltOS:</updatesaltos>
+        <notinsertupdate>There are no events to update</notinsertupdate>
+        <expand>Expand</expand>
+        <expandtip>Expand to show detail of all calendar events</expandtip>
+        <collapse>Collapse</collapse>
+        <collapsetip>Collapse to hide the details of all events calendar</collapsetip>
+        <loadingsmall>Loading...</loadingsmall>
+    </agenda>
+    <correo>
+        <list>Mailing List</list>
+        <create>Send a new email</create>
+        <formview>Detail of email</formview>
+        <forminsert>Send a new email</forminsert>
+        <formupdate>Forward email</formupdate>
+        <defaultdata>Email data</defaultdata>
+        <from>From</from>
+        <to>To</to>
+        <cc>CC</cc>
+        <bcc>BCC</bcc>
+        <subject>Subject</subject>
+        <attachments>Attachments</attachments>
+        <message>Message</message>
+        <recibir>Receive</recibir>
+        <recibirtip>Click here to receive new emails</recibirtip>
+        <enviar>Send</enviar>
+        <enviartip>Click here to send emails from the outbox</enviartip>
+        <msgnotpop3email>There is no email account set up or activated</msgnotpop3email>
+        <msgnotpop3host>Not configured the POP3 server</msgnotpop3host>
+        <msgerrorpop3email>There has been the following error: </msgerrorpop3email>
+        <msgnewokpop3email1> new mail received in the Inbox</msgnewokpop3email1>
+        <msgnewokpop3email2> new mail received in Inbox</msgnewokpop3email2>
+        <msggotoemail>Go to email</msggotoemail>
+        <msgnewkopop3email>No new email</msgnewkopop3email>
+        <msgconnrefusedpop3email>Connection refused by server</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>Can not connect to server</msgconnerrorpop3email>
+        <msgopenerrorpop3email>File containing the message not found</msgopenerrorpop3email>
+        <msgpropietario>Only the owner of email can use these benefits</msgpropietario>
+        <msgnotfound>No emails found selected, change the filter</msgnotfound>
+        <msgnumsileidos>Have been marked as read: </msgnumsileidos>
+        <msgnumsiwait>Have been marked as pending: </msgnumsiwait>
+        <msgnumsispam>There were marked as SPAM: </msgnumsispam>
+        <msgnumnoleidos>Have been marked as unread </msgnumnoleidos>
+        <msgnumnowait>You have been marked as pending: </msgnumnowait>
+        <msgnumnospam>You have been marked as SPAM: </msgnumnospam>
+        <msgnumdelete>Have been deleted: </msgnumdelete>
+        <statenew>New</statenew>
+        <actionnew>New</actionnew>
+        <stateread>Read</stateread>
+        <statereply>Answered</statereply>
+        <stateforward>Forward</stateforward>
+        <statewait>Pending</statewait>
+        <statespam>SPAM</statespam>
+        <statesent>Sent</statesent>
+        <statenotsent>Unsent</statenotsent>
+        <stateerror>Error</stateerror>
+        <stateall>All</stateall>
+        <todaslascuentas>[All Accounts]</todaslascuentas>
+        <buttonsend>Submit</buttonsend>
+        <buttonsendreturnhere>Send and return here</buttonsendreturnhere>
+        <onlynew>Only new</onlynew>
+        <onlywait>Only pending</onlywait>
+        <hidespam>Hide SPAM</hidespam>
+        <withfiles>With attachment</withfiles>
+        <onlyspam>Only SPAM</onlyspam>
+        <withoutfiles>No attachment</withoutfiles>
+        <actionwait>Pending</actionwait>
+        <actionspam>SPAM</actionspam>
+        <actionreply>Reply</actionreply>
+        <actionreplyall>Reply all</actionreplyall>
+        <actionforward>Forward</actionforward>
+        <messageid>Message ID</messageid>
+        <fulldata>Email zoom</fulldata>
+        <sourcedata>Email source</sourcedata>
+        <leidos>Read</leidos>
+        <wait>Pending</wait>
+        <spam>SPAM</spam>
+        <borrar>Clear</borrar>
+        <borrartip>Delete all Selected e</borrartip>
+        <msgleidos>Do you want to mark as read / unread all selected emails?</msgleidos>
+        <msgwait>Want to be marked as pending / no pending all selected emails?</msgwait>
+        <msgspam>Want to be marked as SPAM / SPAM not all selected emails?</msgspam>
+        <msgdelete2>Want to delete all selected emails?</msgdelete2>
+        <msgnotsendfound>There are no pending messages to send</msgnotsendfound>
+        <msgerrorsendmail>There has been the following error: </msgerrorsendmail>
+        <msgtotalsendmail1> mail sent from the output tray</msgtotalsendmail1>
+        <msgtotalsendmail2> mail sent from the output tray</msgtotalsendmail2>
+        <stateinbox>Input</stateinbox>
+        <stateoutbox>Output</stateoutbox>
+        <onlyinbox>Only incoming</onlyinbox>
+        <onlyoutbox>Outbound only</onlyoutbox>
+        <options>Options</options>
+        <optionstip>Show more options from the list</optionstip>
+        <pdfoptions>PDF options</pdfoptions>
+        <sinsubject>(no subject)</sinsubject>
+        <msgfromkosendmail>Setting for the From field not found</msgfromkosendmail>
+        <msgsendoksendmail>It has been successfully sent e-mail</msgsendoksendmail>
+        <replysubject>Re: </replysubject>
+        <replyallsubject>Re: </replyallsubject>
+        <forwardsubject>Fwd: </forwardsubject>
+        <embeddedmessage>The #datetime#, #fromname# wrote:</embeddedmessage>
+        <actionreplytip>To reply to the sender of this message</actionreplytip>
+        <actionreplyalltip>To respond to all users of this message</actionreplyalltip>
+        <actionforwardtip>To forward this email to others</actionforwardtip>
+        <noleidos>Not read</noleidos>
+        <nowait>No pending</nowait>
+        <nospam>No SPAM</nospam>
+        <today>Today</today>
+        <yesterday>Yesterday</yesterday>
+        <week>Week</week>
+        <month>Month</month>
+        <confirmreadingto>Request acknowledgment</confirmreadingto>
+        <marcarcorreos>Mark as</marcarcorreos>
+        <message0> messages</message0>
+        <message1> message</message1>
+        <message2> messages</message2>
+        <campos>Fields</campos>
+        <allcampos>[all fields]</allcampos>
+        <onlyemail>Only in the email address</onlyemail>
+        <onlysubject>Only in the subject</onlysubject>
+        <onlybody>Only in the message</onlybody>
+        <filtrarcorreos>Filter by</filtrarcorreos>
+        <priority>Priority</priority>
+        <priorityhigh>High</priorityhigh>
+        <prioritynormal>Normal</prioritynormal>
+        <prioritylow>Low</prioritylow>
+        <sensitivity>Sensitivity</sensitivity>
+        <sensitivitynormal>Normal</sensitivitynormal>
+        <sensitivitypersonal>Personal</sensitivitypersonal>
+        <sensitivityprivate>Private</sensitivityprivate>
+        <sensitivityconfidential>Confidential</sensitivityconfidential>
+        <addincidencia>Add bug</addincidencia>
+        <addincidenciatip>Create a new bug using this email as initial report</addincidenciatip>
+        <addincidenciamsg>Do you want to create a new bug using this email as initial report?</addincidenciamsg>
+        <addincidenciaok>Bug created with the code: </addincidenciaok>
+        <notsupportdefined>Support email account not defined in SaltOS</notsupportdefined>
+        <notsupportfound>This email doesn't contain the support email account</notsupportfound>
+        <incidenciaexists>Bug found with the code: </incidenciaexists>
+        <interrorsendmail>This email was not sent by an internal error</interrorsendmail>
+    </correo>
+    <tiposevento>
+        <list>List of types of events</list>
+        <create>New Type of event</create>
+        <formview>Describe the type of event</formview>
+        <forminsert>Alta a new type of event</forminsert>
+        <formupdate>Changing the type of event</formupdate>
+        <defaultdata>Data type of event</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>List of predefined text</list>
+        <publico>Public</publico>
+        <publico_desc>Everyone can use this text preset</publico_desc>
+        <create>New preset text</create>
+        <formview>Detail predefined text</formview>
+        <forminsert>Added a new default text</forminsert>
+        <formupdate>Changing the default text</formupdate>
+        <defaultdata>default text data</defaultdata>
+        <sinaplicacion>[Without application]</sinaplicacion>
+    </textos>
+    <feeds>
+        <list>List of RSS feeds</list>
+        <msgnewfeedsok1> new post downloaded</msgnewfeedsok1>
+        <msgnewfeedsok2> new posts downloaded</msgnewfeedsok2>
+        <msgnewfeedsko>Found No new posts</msgnewfeedsko>
+        <msgmodifiedfeedsok1> post-date</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2> posts to date</msgmodifiedfeedsok2>
+        <msgnotfeeds>There is no RSS feed configured or enabled</msgnotfeeds>
+        <feed>RSS Feed</feed>
+        <title>Title</title>
+        <pubdate>Date pub.</pubdate>
+        <recibir>Receiving</recibir>
+        <recibirtip>Click here to receive new posts</recibirtip>
+        <todoslosfeeds>[All]</todoslosfeeds>
+        <defaultdata>Detail post</defaultdata>
+        <fulldata>Zoom in on post</fulldata>
+        <actionwait>Pending</actionwait>
+        <statenew>New</statenew>
+        <actionnew>New</actionnew>
+        <statemodified>Last</statemodified>
+        <statewait>Pending</statewait>
+        <stateread>Read</stateread>
+        <actionforward>Forward</actionforward>
+        <actionforwardtip>To forward this e-mail post</actionforwardtip>
+        <formview>Details of the post</formview>
+        <msggotofeeds>go to RSS feeds</msggotofeeds>
+        <onlynew>Only new</onlynew>
+        <onlywait>Only pending</onlywait>
+        <options>Options</options>
+        <optionstip>Show more options from the list</optionstip>
+        <pdfoptions>PDF options</pdfoptions>
+        <stateall>All</stateall>
+        <today>Today</today>
+        <yesterday>Yesterday</yesterday>
+        <week>Week</week>
+        <month>Month</month>
+        <marcarfeeds>Mark as</marcarfeeds>
+        <leidos>Read</leidos>
+        <wait>Pending</wait>
+        <borrar>Clear</borrar>
+        <borrartip>Delete all selected posts</borrartip>
+        <noleidos>Not read</noleidos>
+        <nowait>Not pending</nowait>
+        <msgleidos>Do you want to make as read / not read all selected posts?</msgleidos>
+        <msgwait>Do you want to mark as pending / not pending all selected posts?</msgwait>
+        <msgdelete2>Delete all posts selected?</msgdelete2>
+        <msgpropietario>Only the owner of the posts you can use these benefits</msgpropietario>
+        <msgnotfound>not found selected posts, change the filter</msgnotfound>
+        <msgnumsileidos>have been marked as read: </msgnumsileidos>
+        <msgnumsiwait>have been marked as pending: </msgnumsiwait>
+        <msgnumnoleidos>have been marked as unread </msgnumnoleidos>
+        <msgnumnowait>has been marked as pending: </msgnumnowait>
+        <msgnumdelete>have been deleted: </msgnumdelete>
+        <message0> posts</message0>
+        <message1> post</message1>
+        <message2> posts</message2>
+        <msgerrorfeed>There was an error with the following feed: </msgerrorfeed>
+        <sintitle>(no title)</sintitle>
+        <post>RSS Post</post>
+        <filtrarfeeds>Filter by</filtrarfeeds>
+        <actioncool>Cool</actioncool>
+        <statecool>Cool</statecool>
+        <onlycool>Only cool</onlycool>
+        <cool>Cool</cool>
+        <nocool>Not cool</nocool>
+        <msgcool>Do you want to mark as cool / not cool all selected posts?</msgcool>
+        <msgnumsicool>have been marked as cool: </msgnumsicool>
+        <msgnumnocool>has been marked as cool: </msgnumnocool>
+        <actionfavoritos>Add to bookmarks</actionfavoritos>
+    </feeds>
+    <favoritos>
+        <list>Bookmarks list</list>
+        <create>New bookmark</create>
+        <url>URL</url>
+        <bookmarkexists>The url you try to save already exists.</bookmarkexists>
+        <invalidurl>The url is invalid, check the web address: </invalidurl>
+        <bookmarkadded>The url was successfully added to bookmarks</bookmarkadded>
+        <previews>Previews</previews>
+    </favoritos>
+</root>

@@ -136,11 +136,13 @@ define("__USER__", 1);
                             <?php echo __BOLD__; ?><?php echo LANG("welcome_message"); ?><?php echo __COLOR__; ?><?php echo __BR__; ?>
                             <?php echo __BR__; ?>
                             <?php echo LANG("lang_message"); ?>:
-                            <?php $temp = eval_attr(xml2array("xml/common/langs.xml")); ?>
-                            <?php $langs = array(); ?>
-                            <?php foreach ($temp["rows"] as $row) {
+                            <?php
+                            $temp = eval_attr(xml2array(detect_apps_files("xml/common/langs.xml")));
+                            $langs = array();
+                            foreach ($temp["rows"] as $row) {
                                 $langs[$row["value"]] = $row["label"];
-                            } ?>
+                            }
+                            ?>
                             <select name="lang" onchange="document.form.step.value='0';document.form.submit()" <?php echo __UI__; ?>>
                                 <?php foreach ($langs as $key => $val) { ?>
                                     <?php $selected = ($lang == $key) ? "selected" : ""; ?>
@@ -149,11 +151,13 @@ define("__USER__", 1);
                             </select>
                             <?php echo __BR__; ?>
                             <?php echo LANG("style_message"); ?>:
-                            <?php $temp = eval_attr(xml2array("xml/styles.xml")); ?>
-                            <?php $styles = array(); ?>
-                            <?php foreach ($temp as $row) {
+                            <?php
+                            $temp = eval_attr(xml2array(detect_apps_files("xml/common/styles.xml")));
+                            $styles = array();
+                            foreach ($temp["rows"] as $row) {
                                 $styles[$row["value"]] = $row["label"];
-                            } ?>
+                            }
+                            ?>
                             <select name="style" onchange="document.form.step.value='0';document.form.submit()" <?php echo __UI__; ?>>
                                 <?php foreach ($styles as $key => $val) { ?>
                                     <?php $selected = ($style == $key) ? "selected" : ""; ?>
@@ -176,11 +180,18 @@ define("__USER__", 1);
                         </div>
                         <div <?php echo __DIV2__; ?>>
                             <input type="hidden" name="step" value="<?php echo intval(getParam("step")) + 1; ?>"/>
-                            <?php $cancontinue = 1; ?>
-                            <?php foreach (getDefault("dirs") as $dir) { ?>
-                                <?php $cancontinue &= ($iswritable = is_writable($dir)); ?>
-                                <?php echo substr($dir, -4, 4) == ".xml" ? LANG("file") . ":" : LANG("directory") . ":"; ?> <?php echo $dir; ?>: <?php echo $iswritable ? __YES__ : __NO__; ?><?php echo __BR__; ?>
-                            <?php } ?>
+                            <?php
+                            $cancontinue = 1;
+                            foreach (getDefault("dirs") as $dir) {
+                                $cancontinue &= ($iswritable = is_writable($dir));
+                                echo substr($dir, -4, 4) == ".xml" ? LANG("file") : LANG("directory");
+                                echo ": ";
+                                echo $dir;
+                                echo ": ";
+                                echo $iswritable ? __YES__ : __NO__;
+                                echo __BR__;
+                            }
+                            ?>
                         </div>
                         <div <?php echo __DIV1__; ?>>
                             <?php echo LANG("step") . " " . intval(getParam("step")) . " - " . LANG("env_vars"); ?>
@@ -193,32 +204,41 @@ define("__USER__", 1);
                             <?php echo LANG("step") . " " . intval(getParam("step")) . " - " . LANG("is_executable"); ?>
                         </div>
                         <div <?php echo __DIV2__; ?>>
-                            <?php $cancontinue2 = 1; ?>
-                            <?php $procesed = array(); ?>
-                            <?php foreach (getDefault("commands") as $index => $command) { ?>
-                                <?php if (substr($index, 0, 2) != "__" && substr($index, -2, 2) != "__" && !in_array($command, $procesed)) { ?>
-                                    <?php $cancontinue2 &= ($exists = check_commands($command)); ?>
-                                    <?php echo LANG("executable"); ?>: <?php echo $exists ? trim(ob_passthru(str_replace(array("__INPUT__"), array($command), getDefault("commands/__which__")))) : $command; ?>: <?php echo $exists ? __YES__ : __NO__; ?><?php echo __BR__; ?>
-                                    <?php $procesed[] = $command; ?>
-                                <?php } ?>
-                            <?php } ?>
+                            <?php
+                            $cancontinue2 = 1;
+                            $procesed = array();
+                            foreach (getDefault("commands") as $index => $command) {
+                                if (substr($index, 0, 2) != "__" && substr($index, -2, 2) != "__" && !in_array($command, $procesed)) {
+                                    $cancontinue2 &= ($exists = check_commands($command));
+                                    echo LANG("executable") . ": ";
+                                    echo $exists ? trim(ob_passthru(str_replace(array("__INPUT__"), array($command), getDefault("commands/__which__")))) : $command;
+                                    echo ": ";
+                                    echo $exists ? __YES__ : __NO__;
+                                    echo __BR__;
+                                    $procesed[] = $command;
+                                }
+                            }
+                            ?>
                         </div>
                         <div <?php echo __DIV3__; ?>>
-                            <?php echo __BACK__; ?>
-                            <?php if (!$cancontinue || !$cancontinue2) {
+                            <?php
+                            echo __BACK__;
+                            if (!$cancontinue || !$cancontinue2) {
                                 echo __TEST__;
-                            } ?>
-                            <?php if ($cancontinue) {
+                            }
+                            if ($cancontinue) {
                                 echo __NEXT__;
-                            } ?>
+                            }
+                            ?>
                         </div>
-                        <?php unset($_GET["step"]); ?>
-                        <?php unset($_GET["env_path"]); ?>
-                        <?php unset($_GET["env_lang"]); ?>
-                        <?php foreach ($_GET as $key => $val) {
+                        <?php
+                        unset($_GET["step"]);
+                        unset($_GET["env_path"]);
+                        unset($_GET["env_lang"]);
+                        foreach ($_GET as $key => $val) {
                             echo "<input type='hidden' name='$key' value='$val'/>";
-                        } ?>
-                    <?php } elseif (intval(getParam("step")) == $step++) { ?>
+                        }
+                    } elseif (intval(getParam("step")) == $step++) { ?>
                         <!-- **************************************************************************************************************************************************************** -->
                         <!-- **************************************************************************** STEP 2 **************************************************************************** -->
                         <!-- **************************************************************************************************************************************************************** -->
@@ -226,8 +246,9 @@ define("__USER__", 1);
                             <?php echo LANG("step") . " " . intval(getParam("step")) . " - " . LANG("database_link"); ?>
                         </div>
                         <div <?php echo __DIV2__; ?>>
-                            <?php $cancontinue = 1; ?>
-                            <?php if (!getParam("dbtype")) { ?>
+                            <?php
+                            $cancontinue = 1;
+                            if (!getParam("dbtype")) { ?>
                                 <input type="hidden" name="step" value="<?php echo intval(getParam("step")); ?>"/>
                                 <?php echo LANG("select_dbtype"); ?>:
                                 <select name="dbtype" <?php echo __UI__; ?>>
@@ -251,33 +272,58 @@ define("__USER__", 1);
                                 </select>
                             <?php } elseif (in_array(getParam("dbtype"), array("pdo_sqlite","sqlite3"))) { ?>
                                 <input type="hidden" name="step" value="<?php echo intval(getParam("step")) + 1; ?>"/>
-                                <?php $dbtypes = array("pdo_sqlite" => "SQLite3 (PDO)","sqlite3" => "SQLite3 (extension)"); ?>
-                                <?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__ . $dbtypes[getParam("dbtype")] . __COLOR__; ?><?php echo __BR__; ?>
-                                <?php $dbfile = getDefault("db/file"); ?>
-                                <?php if (!file_exists($dbfile)) {
+                                <?php
+                                $dbtypes = array(
+                                    "pdo_sqlite" => "SQLite3 (PDO)",
+                                    "sqlite3" => "SQLite3 (extension)"
+                                );
+                                echo LANG("selected_dbtype");
+                                echo ": ";
+                                echo __GREEN__ . $dbtypes[getParam("dbtype")] . __COLOR__;
+                                echo __BR__;
+                                $dbfile = getDefault("db/file");
+                                if (!file_exists($dbfile)) {
                                     touch($dbfile);
-                                } ?>
-                                <?php $cancontinue &= ($iswritable = is_writable($dbfile)); ?>
-                                <?php echo LANG("dbfile"); ?>: <?php echo $dbfile; ?>: <?php echo $iswritable ? __YES__ : __NO__; ?><?php echo __BR__; ?>
-                                <?php $_CONFIG["db"]["type"] = getParam("dbtype"); ?>
-                                <?php capture_next_error();
+                                }
+                                $cancontinue &= ($iswritable = is_writable($dbfile));
+                                echo LANG("dbfile");
+                                echo ": ";
+                                echo $dbfile;
+                                echo ": ";
+                                echo $iswritable ? __YES__ : __NO__;
+                                echo __BR__;
+                                $_CONFIG["db"]["type"] = getParam("dbtype");
+                                capture_next_error();
                                 db_connect();
-                                $error = get_clear_error(); ?>
-                                <?php if (stripos($error, "try to install") !== false) {
+                                $error = get_clear_error();
+                                if (stripos($error, "try to install") !== false) {
                                     show_php_error();
-                                } ?>
-                                <?php $cancontinue &= ($error == ""); ?>
-                                <?php echo LANG("dbtest"); ?>: <?php echo $error == "" ? __YES__ : __NO__; ?><?php echo __BR__; ?>
-                                <?php if ($error == "") { ?>
-                                    <?php $count = count(get_tables()); ?>
-                                    <?php $cancontinue &= ($count == 0); ?>
-                                    <?php echo LANG("dbvoid"); ?>: <?php echo $count == 0 ? __YES__ : __NO__; ?><?php echo __BR__; ?>
-                                <?php } ?>
-                            <?php } elseif (in_array(getParam("dbtype"), array("pdo_mysql","mysql","mysqli"))) { ?>
-                                <?php $dbtypes = array("pdo_mysql" => "MariaDB &amp; MySQL (PDO)","mysql" => "MariaDB &amp; MySQL (extension)","mysqli" => "MariaDB &amp; MySQL (improved extension)"); ?>
-                                <?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__ . $dbtypes[getParam("dbtype")] . __COLOR__; ?><?php echo __BR__; ?>
-                                <?php echo __HR__; ?>
-                                <?php if (!getParam("dbhost") || !getParam("dbport") || !getParam("dbname")) { ?>
+                                }
+                                $cancontinue &= ($error == "");
+                                echo LANG("dbtest");
+                                echo ": ";
+                                echo $error == "" ? __YES__ : __NO__;
+                                echo __BR__;
+                                if ($error == "") {
+                                    $count = count(get_tables());
+                                    $cancontinue &= ($count == 0);
+                                    echo LANG("dbvoid");
+                                    echo ": ";
+                                    echo $count == 0 ? __YES__ : __NO__;
+                                    echo __BR__;
+                                }
+                            } elseif (in_array(getParam("dbtype"), array("pdo_mysql","mysql","mysqli"))) {
+                                $dbtypes = array(
+                                    "pdo_mysql" => "MariaDB &amp; MySQL (PDO)",
+                                    "mysql" => "MariaDB &amp; MySQL (extension)",
+                                    "mysqli" => "MariaDB &amp; MySQL (improved extension)"
+                                );
+                                echo LANG("selected_dbtype");
+                                echo ": ";
+                                echo __GREEN__ . $dbtypes[getParam("dbtype")] . __COLOR__;
+                                echo __BR__;
+                                echo __HR__;
+                                if (!getParam("dbhost") || !getParam("dbport") || !getParam("dbname")) { ?>
                                     <input type="hidden" name="step" value="<?php echo intval(getParam("step")); ?>"/>
                                     <?php echo LANG("dbhost"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="dbhost" value="<?php echo getDefault("db/host"); ?>"/><?php echo __BR__; ?>
                                     <?php echo LANG("dbport"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="dbport" value="<?php echo getDefault("db/port"); ?>"/><?php echo __BR__; ?>
@@ -286,47 +332,60 @@ define("__USER__", 1);
                                     <?php echo LANG("dbname"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="dbname" value="<?php echo getDefault("db/name"); ?>"/><?php echo __BR__; ?>
                                 <?php } else { ?>
                                     <input type="hidden" name="step" value="<?php echo intval(getParam("step")) + 1; ?>"/>
-                                    <?php echo LANG("dbhost"); ?>: <?php echo __GREEN__ . getParam("dbhost") . __COLOR__; ?><?php echo __BR__; ?>
-                                    <?php echo LANG("dbport"); ?>: <?php echo __GREEN__ . getParam("dbport") . __COLOR__; ?><?php echo __BR__; ?>
-                                    <?php echo LANG("dbuser"); ?>: <?php echo getParam("dbuser") ? __GREEN__ . getParam("dbuser") . __COLOR__ : __RED__ . LANG("undefined") . __COLOR__; ?><?php echo __BR__; ?>
-                                    <?php echo LANG("dbpass"); ?>: <?php echo getParam("dbpass") ? __GREEN__ . getParam("dbpass") . __COLOR__ : __RED__ . LANG("undefined") . __COLOR__; ?><?php echo __BR__; ?>
-                                    <?php echo LANG("dbname"); ?>: <?php echo __GREEN__ . getParam("dbname") . __COLOR__; ?><?php echo __BR__; ?>
-                                    <?php $_CONFIG["db"]["type"] = getParam("dbtype"); ?>
-                                    <?php $_CONFIG["db"]["host"] = getParam("dbhost"); ?>
-                                    <?php $_CONFIG["db"]["port"] = getParam("dbport"); ?>
-                                    <?php $_CONFIG["db"]["user"] = getParam("dbuser"); ?>
-                                    <?php $_CONFIG["db"]["pass"] = getParam("dbpass"); ?>
-                                    <?php $_CONFIG["db"]["name"] = getParam("dbname"); ?>
-                                    <?php capture_next_error();
+                                    <?php
+                                    echo LANG("dbhost") . ": " . __GREEN__ . getParam("dbhost") . __COLOR__ . __BR__;
+                                    echo LANG("dbport") . ": " . __GREEN__ . getParam("dbport") . __COLOR__ . __BR__;
+                                    echo LANG("dbuser") . ": ";
+                                    echo getParam("dbuser") ? __GREEN__ . getParam("dbuser") . __COLOR__ : __RED__ . LANG("undefined") . __COLOR__;
+                                    echo __BR__;
+                                    echo LANG("dbpass") . ": ";
+                                    echo getParam("dbpass") ? __GREEN__ . getParam("dbpass") . __COLOR__ : __RED__ . LANG("undefined") . __COLOR__;
+                                    echo __BR__;
+                                    echo LANG("dbname") . ": " . __GREEN__ . getParam("dbname") . __COLOR__ . __BR__;
+                                    $_CONFIG["db"]["type"] = getParam("dbtype");
+                                    $_CONFIG["db"]["host"] = getParam("dbhost");
+                                    $_CONFIG["db"]["port"] = getParam("dbport");
+                                    $_CONFIG["db"]["user"] = getParam("dbuser");
+                                    $_CONFIG["db"]["pass"] = getParam("dbpass");
+                                    $_CONFIG["db"]["name"] = getParam("dbname");
+                                    capture_next_error();
                                     db_connect();
-                                    $error = get_clear_error(); ?>
-                                    <?php if (stripos($error, "try to install") !== false) {
+                                    $error = get_clear_error();
+                                    if (stripos($error, "try to install") !== false) {
                                         show_php_error();
-                                    } ?>
-                                    <?php $cancontinue &= ($error == ""); ?>
-                                    <?php echo LANG("dbtest"); ?>: <?php echo $error == "" ? __YES__ : __NO__; ?><?php echo __BR__; ?>
-                                    <?php if ($error == "") { ?>
-                                        <?php $count = count(get_tables()); ?>
-                                        <?php $cancontinue &= ($count == 0); ?>
-                                        <?php echo LANG("dbvoid"); ?>: <?php echo $count == 0 ? __YES__ : __NO__; ?><?php echo __BR__; ?>
-                                    <?php } ?>
-                                <?php } ?>
-                            <?php } ?>
+                                    }
+                                    $cancontinue &= ($error == "");
+                                    echo LANG("dbtest") . ": ";
+                                    echo $error == "" ? __YES__ : __NO__;
+                                    echo __BR__;
+                                    if ($error == "") {
+                                        $count = count(get_tables());
+                                        $cancontinue &= ($count == 0);
+                                        echo LANG("dbvoid") . ": ";
+                                        echo $count == 0 ? __YES__ : __NO__;
+                                        echo __BR__;
+                                    }
+                                }
+                            }
+                            ?>
                         </div>
                         <div <?php echo __DIV3__; ?>>
-                            <?php echo __BACK__; ?>
-                            <?php if (!$cancontinue) {
+                            <?php
+                            echo __BACK__;
+                            if (!$cancontinue) {
                                 echo __TEST__;
-                            } ?>
-                            <?php if ($cancontinue) {
+                            }
+                            if ($cancontinue) {
                                 echo __NEXT__;
-                            } ?>
+                            }
+                            ?>
                         </div>
-                        <?php unset($_GET["step"]); ?>
-                        <?php foreach ($_GET as $key => $val) {
+                        <?php
+                        unset($_GET["step"]);
+                        foreach ($_GET as $key => $val) {
                             echo "<input type='hidden' name='$key' value='$val'/>";
-                        } ?>
-                    <?php } elseif (intval(getParam("step")) == $step++) { ?>
+                        }
+                    } elseif (intval(getParam("step")) == $step++) { ?>
                         <!-- **************************************************************************************************************************************************************** -->
                         <!-- **************************************************************************** STEP 3 **************************************************************************** -->
                         <!-- **************************************************************************************************************************************************************** -->
@@ -343,25 +402,30 @@ define("__USER__", 1);
                             <?php echo LANG("step") . " " . intval(getParam("step")) . " - " . LANG("server_config"); ?>
                         </div>
                         <div <?php echo __DIV2__; ?>>
-                            <?php echo LANG("timezone"); ?>:
-                            <?php $temp = eval_attr(xml2array("xml/common/timezones.xml")); ?>
-                            <?php $timezone = $temp["value"]; ?>
-                            <?php $timezones = array(); ?>
-                            <?php foreach ($temp["rows"] as $row) {
+                            <?php
+                            echo LANG("timezone") . ": ";
+                            $temp = eval_attr(xml2array("xml/timezones.xml"));
+                            $timezone = $temp["value"];
+                            $timezones = array();
+                            foreach ($temp["rows"] as $row) {
                                 $timezones[$row["value"]] = $row["label"];
-                            } ?>
+                            }
+                            ?>
                             <select name="timezone" <?php echo __UI__; ?>>
-                                <?php foreach ($timezones as $key => $val) { ?>
-                                    <?php $selected = ($timezone == $key) ? "selected" : ""; ?>
+                                <?php
+                                foreach ($timezones as $key => $val) {
+                                    $selected = ($timezone == $key) ? "selected" : "";
+                                    ?>
                                     <option value="<?php echo $key; ?>" <?php echo $selected; ?>><?php echo $val; ?></option>
                                 <?php } ?>
                             </select>
                             <?php echo __BR__; ?>
                             <?php echo LANG("hostname"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="hostname" value="<?php echo getParam("hostname", getDefault("server/hostname")); ?>"/> (<?php echo LANG("optional"); ?>)<?php echo __BR__; ?>
                             <?php echo LANG("pathname"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="pathname" value="<?php echo getParam("pathname", getDefault("server/pathname")); ?>"/> (<?php echo LANG("optional"); ?>)<?php echo __BR__; ?>
-                            <input type="checkbox" name="forcessl" id="forcessl" value="1" <?php if (eval_bool(getDefault("server/forcessl"))) {
+                            <input type="checkbox" name="forcessl" id="forcessl" value="1"
+                            <?php if (eval_bool(getDefault("server/forcessl"))) {
                                 echo "checked='true'";
-                                                                                           } ?>/><label style="vertical-align:25%" for="forcessl"><?php echo LANG("forcessl"); ?></label><?php echo __BR__; ?>
+                            } ?>/><label style="vertical-align:25%" for="forcessl"><?php echo LANG("forcessl"); ?></label><?php echo __BR__; ?>
                             <?php echo LANG("porthttp"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="porthttp" value="<?php echo getParam("porthttp", getDefault("server/porthttp")); ?>"/><?php echo __BR__; ?>
                             <?php echo LANG("porthttps"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="porthttps" value="<?php echo getParam("porthttps", getDefault("server/porthttps")); ?>"/><?php echo __BR__; ?>
                         </div>
@@ -373,14 +437,17 @@ define("__USER__", 1);
                             <input type="checkbox" name="streetdata" id="streetdata" value="1"/><label style="vertical-align:25%" for="streetdata"><?php echo LANG("streetdata"); ?></label><?php echo __BR__; ?>
                         </div>
                         <div <?php echo __DIV3__; ?>>
-                            <?php echo __BACK__; ?>
-                            <?php echo __NEXT__; ?>
+                            <?php
+                            echo __BACK__;
+                            echo __NEXT__;
+                            ?>
                         </div>
-                        <?php unset($_GET["step"]); ?>
-                        <?php foreach ($_GET as $key => $val) {
+                        <?php
+                        unset($_GET["step"]);
+                        foreach ($_GET as $key => $val) {
                             echo "<input type='hidden' name='$key' value='$val'/>";
-                        } ?>
-                    <?php } elseif (intval(getParam("step")) == $step++) { ?>
+                        }
+                    } elseif (intval(getParam("step")) == $step++) { ?>
                         <!-- **************************************************************************************************************************************************************** -->
                         <!-- **************************************************************************** STEP 4 **************************************************************************** -->
                         <!-- **************************************************************************************************************************************************************** -->
@@ -388,61 +455,70 @@ define("__USER__", 1);
                             <?php echo LANG("step") . " " . intval(getParam("step")) . " - " . LANG("applications"); ?>
                         </div>
                         <div <?php echo __DIV2__; ?>>
-                            <?php if (!getParam("layer")) { ?>
+                            <?php if (!getParam("apps")) { ?>
                                 <input type="hidden" name="step" value="<?php echo intval(getParam("step")); ?>"/>
-                                <?php echo LANG("select_layer"); ?>:
-                                <?php $temp = eval_attr(xml2array("install/xml/layers.xml")); ?>
-                                <select name="layer" <?php echo __UI__; ?>>
-                                    <?php foreach ($temp as $layer) { ?>
-                                        <option value="<?php echo $layer["name"]; ?>"><?php echo LANG("layer_" . $layer["name"]); ?></option>
+                                <?php echo LANG("select_apps"); ?>:
+                                <?php $temp = eval_attr(xml2array("install/xml/apps.xml")); ?>
+                                <select name="apps" <?php echo __UI__; ?>>
+                                    <?php foreach ($temp as $temp2) { ?>
+                                        <option value="<?php echo $temp2["name"]; ?>"><?php echo LANG("apps_" . encode_bad_chars($temp2["name"])); ?></option>
                                     <?php } ?>
                                 </select>
                             <?php } else { ?>
                                 <input type="hidden" name="step" value="<?php echo intval(getParam("step")) + 1; ?>"/>
-                                <?php $temp = eval_attr(xml2array("install/xml/layers.xml")); ?>
-                                <?php $layer = array("name" => "all","apps" => array("app" => "*")); ?>
-                                <?php foreach ($temp as $temp2) {
-                                    if ($temp2["name"] == getParam("layer")) {
+                                <?php
+                                $temp = eval_attr(xml2array("install/xml/apps.xml"));
+                                $layer = reset($temp);
+                                foreach ($temp as $temp2) {
+                                    if ($temp2["name"] == getParam("apps")) {
                                         $layer = $temp2;
                                     }
-                                } ?>
-                                <?php echo LANG("selected_layer"); ?>: <?php echo __GREEN__ . LANG("layer_" . $layer["name"]) . __COLOR__; ?><?php echo __BR__; ?>
-                                <?php echo __HR__; ?>
-                                <?php $temp = eval_attr(xml2array("xml/dbstatic.xml")); ?>
-                                <?php $apps = array(); ?>
-                                <?php foreach ($temp["tbl_aplicaciones"] as $app) { ?>
-                                    <?php $exists = 0; ?>
-                                    <?php foreach ($temp["tbl_aplicaciones_p"] as $perm) { ?>
-                                        <?php if (in_array($app["id"], explode(",", $perm["id_aplicacion"]))) {
+                                }
+                                echo LANG("selected_apps") . ": " . __GREEN__ . LANG("apps_" . encode_bad_chars($layer["name"])) . __COLOR__ . __BR__;
+                                echo __HR__;
+                                $temp = eval_attr(xml_join(xml2array(detect_apps_files("xml/dbstatic.xml"))));
+                                $apps = array();
+                                foreach ($temp["tbl_aplicaciones"] as $app) {
+                                    $exists = 0;
+                                    foreach ($temp["tbl_aplicaciones_p"] as $perm) {
+                                        if (in_array($app["id"], explode(",", $perm["id_aplicacion"]))) {
                                             $exists = 1;
-                                        } ?>
-                                    <?php } ?>
-                                    <?php if ($exists) {
-                                        $apps[] = array("id" => $app["id"],"codigo" => $app["codigo"],"nombre" => $app["nombre"],"checked" => in_array($app["codigo"], $layer["apps"]) || in_array("*", $layer["apps"]));
-                                    } ?>
-                                <?php } ?>
-                                <?php $count = 0; ?>
+                                        }
+                                    }
+                                    if ($exists) {
+                                        $apps[] = array(
+                                            "id" => $app["id"],
+                                            "codigo" => $app["codigo"],
+                                            "nombre" => $app["nombre"],
+                                            "checked" => in_array($app["codigo"], $layer["apps"])
+                                        );
+                                    }
+                                }
+                                $count = 0;
+                                ?>
                                 <table class="width100" cellpadding="0" cellspacing="0" border="0" style="font:inherit">
                                     <tr>
                                         <td class="width1 nowrap top">
-                                            <?php echo LANG("select_apps"); ?>:
+                                            <?php echo LANG("select_apps2"); ?>:
                                         </td>
                                         <td>
                                             <table class="width100" cellpadding="0" cellspacing="0" border="0" style="font:inherit">
-                                                <?php foreach ($apps as $app) { ?>
-                                                    <?php if ($count % 4 == 0) {
-                                                        ?><tr><?php
-                                                    } ?>
-                                                    <td class="width25">
-                                                        <input type="checkbox" name="app_<?php echo $app["id"]; ?>" id="app_<?php echo $app["id"]; ?>" value="1" <?php if (eval_bool($app["checked"])) {
-                                                            echo "checked='true'";
-                                                                                         } ?>/><label style="vertical-align:25%" for="app_<?php echo $app["id"]; ?>"><?php echo $app["nombre"]; ?></label>
-                                                    </td>
-                                                    <?php if ($count % 4 == 3) {
-                                                        ?></tr><?php
-                                                    } ?>
-                                                    <?php $count++; ?>
-                                                <?php } ?>
+                                                <?php
+                                                foreach ($apps as $app) {
+                                                    if ($count % 4 == 0) { ?>
+                                                    <tr>
+                                                    <?php } ?>
+                                                        <td class="width25">
+                                                            <input type="checkbox" name="app_<?php echo $app["id"]; ?>" id="app_<?php echo $app["id"]; ?>" value="1"
+                                                            <?php if (eval_bool($app["checked"])) {
+                                                                echo "checked='true'";
+                                                            } ?>/><label style="vertical-align:25%" for="app_<?php echo $app["id"]; ?>"><?php echo $app["nombre"]; ?></label>
+                                                        </td>
+                                                    <?php if ($count % 4 == 3) { ?>
+                                                    </tr>
+                                                    <?php }
+                                                    $count++;
+                                                } ?>
                                             </table>
                                         </td>
                                     </tr>
@@ -450,14 +526,17 @@ define("__USER__", 1);
                             <?php } ?>
                         </div>
                         <div <?php echo __DIV3__; ?>>
-                            <?php echo __BACK__; ?>
-                            <?php echo __NEXT__; ?>
+                            <?php
+                            echo __BACK__;
+                            echo __NEXT__;
+                            ?>
                         </div>
-                        <?php unset($_GET["step"]); ?>
-                        <?php foreach ($_GET as $key => $val) {
+                        <?php
+                        unset($_GET["step"]);
+                        foreach ($_GET as $key => $val) {
                             echo "<input type='hidden' name='$key' value='$val'/>";
-                        } ?>
-                    <?php } elseif (intval(getParam("step")) == $step++) { ?>
+                        }
+                    } elseif (intval(getParam("step")) == $step++) { ?>
                         <!-- **************************************************************************************************************************************************************** -->
                         <!-- **************************************************************************** STEP 5 **************************************************************************** -->
                         <!-- **************************************************************************************************************************************************************** -->
@@ -466,115 +545,151 @@ define("__USER__", 1);
                             <?php echo LANG("step") . " " . intval(getParam("step")) . " - " . LANG("install_input"); ?>
                         </div>
                         <div <?php echo __DIV2__; ?>>
-                            <b><?php echo LANG("language"); ?></b><?php echo __BR__; ?>
-                            <?php $temp = eval_attr(xml2array("xml/common/langs.xml")); ?>
-                            <?php $langs = array(); ?>
-                            <?php foreach ($temp["rows"] as $row) {
+                            <?php
+                            echo "<b>" . LANG("language") . ":</b>" . __BR__;
+                            $temp = eval_attr(xml2array(detect_apps_files("xml/common/langs.xml")));
+                            $langs = array();
+                            foreach ($temp["rows"] as $row) {
                                 $langs[$row["value"]] = $row["label"];
-                            } ?>
-                            <?php echo LANG("lang"); ?>: <?php echo __GREEN__ . $langs[getParam("lang", getDefault("lang"))] . " (" . getParam("lang", getDefault("lang")) . ")" . __COLOR__ . __BR__; ?>
-                            <?php $temp = eval_attr(xml2array("xml/styles.xml")); ?>
-                            <?php $styles = array(); ?>
-                            <?php foreach ($temp as $row) {
+                            }
+                            echo LANG("lang") . ": " . __GREEN__ . $langs[getParam("lang", getDefault("lang"))] . " (" . getParam("lang", getDefault("lang")) . ")" . __COLOR__ . __BR__;
+                            $temp = eval_attr(xml2array(detect_apps_files("xml/common/styles.xml")));
+                            $styles = array();
+                            foreach ($temp["rows"] as $row) {
                                 $styles[$row["value"]] = $row["label"];
-                            } ?>
-                            <?php echo LANG("style"); ?>: <?php echo __GREEN__ . $styles[getParam("style", getDefault("style"))] . " (" . getParam("style", getDefault("style")) . ")" . __COLOR__ . __BR__; ?>
-                            <?php echo __HR__; ?>
-                            <b><?php echo LANG("is_writable"); ?></b><?php echo __BR__; ?>
-                            <?php foreach (getDefault("dirs") as $dir) { ?>
-                                <?php $iswritable = is_writable($dir); ?>
-                                <?php echo substr($dir, -4, 4) == ".xml" ? LANG("file") . ":" : LANG("directory") . ":"; ?> <?php echo $dir; ?>: <?php echo $iswritable ? __YES__ : __NO__; ?><?php echo __BR__; ?>
-                            <?php } ?>
-                            <?php echo __HR__; ?>
-                            <b><?php echo LANG("env_vars"); ?></b><?php echo __BR__; ?>
-                            <?php echo LANG("env_path"); ?>: <?php echo __GREEN__ . getParam("env_path", getDefault("putenv/PATH")) . __COLOR__ . __BR__; ?>
-                            <?php echo LANG("env_lang"); ?>: <?php echo __GREEN__ . getParam("env_lang", getDefault("putenv/LANG")) . __COLOR__ . __BR__; ?>
-                            <?php echo __HR__; ?>
-                            <b><?php echo LANG("is_executable"); ?></b><?php echo __BR__; ?>
-                            <?php $procesed = array(); ?>
-                            <?php foreach (getDefault("commands") as $index => $command) { ?>
-                                <?php if (substr($index, 0, 2) != "__" && substr($index, -2, 2) != "__" && !in_array($command, $procesed)) { ?>
-                                    <?php $exists = check_commands($command); ?>
-                                    <?php echo LANG("executable"); ?>: <?php echo $exists ? trim(ob_passthru(str_replace(array("__INPUT__"), array($command), getDefault("commands/__which__")))) : $command; ?>: <?php echo $exists ? __YES__ : __NO__; ?><?php echo __BR__; ?>
-                                    <?php $procesed[] = $command; ?>
-                                <?php } ?>
-                            <?php } ?>
-                            <?php echo __HR__; ?>
-                            <b><?php echo LANG("database_link"); ?>:</b><?php echo __BR__; ?>
-                            <?php if (in_array(getParam("dbtype", getDefault("db/type")), array("pdo_sqlite","sqlite3"))) { ?>
-                                <?php $dbtypes = array("pdo_sqlite" => "SQLite3 (PDO)","sqlite3" => "SQLite3 (extension)"); ?>
-                                <?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__ . $dbtypes[getParam("dbtype", getDefault("db/type"))] . __COLOR__; ?><?php echo __BR__; ?>
-                                <?php $dbfile = getDefault("db/file"); ?>
-                                <?php echo LANG("dbfile"); ?>: <?php echo __GREEN__ . $dbfile . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php } elseif (in_array(getParam("dbtype", getDefault("db/type")), array("pdo_mysql","mysql","mysqli"))) { ?>
-                                <?php $dbtypes = array("pdo_mysql" => "MariaDB &amp; MySQL (PDO)","mysql" => "MariaDB &amp; MySQL (extension)","mysqli" => "MariaDB &amp; MySQL (improved extension)"); ?>
-                                <?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__ . $dbtypes[getParam("dbtype", getDefault("db/type"))] . __COLOR__; ?><?php echo __BR__; ?>
-                                <?php echo LANG("dbhost"); ?>: <?php echo __GREEN__ . getParam("dbhost", getDefault("db/host")) . __COLOR__; ?><?php echo __BR__; ?>
-                                <?php echo LANG("dbport"); ?>: <?php echo __GREEN__ . getParam("dbport", getDefault("db/port")) . __COLOR__; ?><?php echo __BR__; ?>
-                                <?php echo LANG("dbuser"); ?>: <?php echo getParam("dbuser") ? __GREEN__ . getParam("dbuser") . __COLOR__ : __RED__ . LANG("undefined") . __COLOR__; ?><?php echo __BR__; ?>
-                                <?php echo LANG("dbpass"); ?>: <?php echo getParam("dbpass") ? __GREEN__ . getParam("dbpass") . __COLOR__ : __RED__ . LANG("undefined") . __COLOR__; ?><?php echo __BR__; ?>
-                                <?php echo LANG("dbname"); ?>: <?php echo __GREEN__ . getParam("dbname", getDefault("db/name")) . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php } ?>
-                            <?php echo __HR__; ?>
-                            <b><?php echo LANG("admin_account"); ?>:</b><?php echo __BR__; ?>
-                            <?php echo LANG("user"); ?>: <?php echo __GREEN__ . getParam("user", "admin") . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php echo LANG("pass"); ?>: <?php echo __GREEN__ . getParam("pass", "admin") . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php echo LANG("email"); ?>: <?php echo getParam("email") ? __GREEN__ . getParam("email") . __COLOR__ : __RED__ . LANG("undefined") . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php echo __HR__; ?>
-                            <b><?php echo LANG("server_config"); ?>:</b><?php echo __BR__; ?>
-                            <?php echo LANG("timezone"); ?>: <?php echo __GREEN__ . getParam("timezone", getDefault("ini_set/date.timezone")) . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php echo LANG("hostname"); ?>: <?php echo getParam("hostname", getDefault("server/hostname")) ? __GREEN__ . getParam("hostname", getDefault("server/hostname")) . __COLOR__ : __RED__ . LANG("automatic") . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php echo LANG("pathname"); ?>: <?php echo getParam("pathname", getDefault("server/pathname")) ? __GREEN__ . getParam("pathname", getDefault("server/pathname")) . __COLOR__ : __RED__ . LANG("automatic") . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php echo LANG("forcessl"); ?>: <?php echo getParam("forcessl", eval_bool(getDefault("server/forcessl"))) ? __GREEN__ . __YES__ . __COLOR__ : __RED__ . __NO__ . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php echo LANG("porthttp"); ?>: <?php echo __GREEN__ . getParam("porthttp", getDefault("server/porthttp")) . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php echo LANG("porthttps"); ?>: <?php echo __GREEN__ . getParam("porthttps", getDefault("server/porthttps")) . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php echo __HR__; ?>
-                            <b><?php echo LANG("initial_data"); ?>:</b><?php echo __BR__; ?>
-                            <?php echo LANG("exampledata"); ?>: <?php echo getParam("exampledata") ? __GREEN__ . __YES__ . __COLOR__ : __RED__ . __NO__ . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php echo LANG("streetdata"); ?>: <?php echo getParam("streetdata") ? __GREEN__ . __YES__ . __COLOR__ : __RED__ . __NO__ . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php echo __HR__; ?>
-                            <b><?php echo LANG("applications"); ?>:</b><?php echo __BR__; ?>
-                            <?php $temp = eval_attr(xml2array("install/xml/layers.xml")); ?>
-                            <?php $layer = array("name" => "all","apps" => array("app" => "*")); ?>
-                            <?php foreach ($temp as $temp2) {
-                                if ($temp2["name"] == getParam("layer")) {
+                            }
+                            echo LANG("style") . ": " . __GREEN__ . $styles[getParam("style", getDefault("style"))] . " (" . getParam("style", getDefault("style")) . ")" . __COLOR__ . __BR__;
+                            echo __HR__;
+                            echo "<b>" . LANG("is_writable") . ":</b>" . __BR__;
+                            foreach (getDefault("dirs") as $dir) {
+                                $iswritable = is_writable($dir);
+                                echo substr($dir, -4, 4) == ".xml" ? LANG("file") : LANG("directory");
+                                echo ": " . $dir . ": ";
+                                echo $iswritable ? __YES__ : __NO__;
+                                echo __BR__;
+                            }
+                            echo __HR__;
+                            echo "<b>" . LANG("env_vars") . ":</b>" . __BR__;
+                            echo LANG("env_path") . ": " . __GREEN__ . getParam("env_path", getDefault("putenv/PATH")) . __COLOR__ . __BR__;
+                            echo LANG("env_lang") . ": " . __GREEN__ . getParam("env_lang", getDefault("putenv/LANG")) . __COLOR__ . __BR__;
+                            echo __HR__;
+                            echo "<b>" . LANG("is_executable") . ":</b>" . __BR__;
+                            $procesed = array();
+                            foreach (getDefault("commands") as $index => $command) {
+                                if (substr($index, 0, 2) != "__" && substr($index, -2, 2) != "__" && !in_array($command, $procesed)) {
+                                    $exists = check_commands($command);
+                                    echo LANG("executable") . ": ";
+                                    echo $exists ? trim(ob_passthru(str_replace(array("__INPUT__"), array($command), getDefault("commands/__which__")))) : $command;
+                                    echo ": ";
+                                    echo $exists ? __YES__ : __NO__;
+                                    echo __BR__;
+                                    $procesed[] = $command;
+                                }
+                            }
+                            echo __HR__;
+                            echo "<b>" . LANG("database_link") . ":</b>";
+                            echo __BR__;
+                            if (in_array(getParam("dbtype", getDefault("db/type")), array("pdo_sqlite","sqlite3"))) {
+                                $dbtypes = array(
+                                    "pdo_sqlite" => "SQLite3 (PDO)",
+                                    "sqlite3" => "SQLite3 (extension)"
+                                );
+                                echo LANG("selected_dbtype") . ": " . __GREEN__ . $dbtypes[getParam("dbtype", getDefault("db/type"))] . __COLOR__ . __BR__;
+                                $dbfile = getDefault("db/file");
+                                echo LANG("dbfile") . ": " . __GREEN__ . $dbfile . __COLOR__ . __BR__;
+                            } elseif (in_array(getParam("dbtype", getDefault("db/type")), array("pdo_mysql","mysql","mysqli"))) {
+                                $dbtypes = array(
+                                    "pdo_mysql" => "MariaDB &amp; MySQL (PDO)",
+                                    "mysql" => "MariaDB &amp; MySQL (extension)",
+                                    "mysqli" => "MariaDB &amp; MySQL (improved extension)"
+                                );
+                                echo LANG("selected_dbtype") . ": " . __GREEN__ . $dbtypes[getParam("dbtype", getDefault("db/type"))] . __COLOR__ . __BR__;
+                                echo LANG("dbhost") . ": " . __GREEN__ . getParam("dbhost", getDefault("db/host")) . __COLOR__ . __BR__;
+                                echo LANG("dbport") . ": " . __GREEN__ . getParam("dbport", getDefault("db/port")) . __COLOR__ . __BR__;
+                                echo LANG("dbuser") . ": ";
+                                echo getParam("dbuser") ? __GREEN__ . getParam("dbuser") . __COLOR__ : __RED__ . LANG("undefined") . __COLOR__;
+                                echo __BR__;
+                                echo LANG("dbpass") . ": ";
+                                echo getParam("dbpass") ? __GREEN__ . getParam("dbpass") . __COLOR__ : __RED__ . LANG("undefined") . __COLOR__;
+                                echo __BR__;
+                                echo LANG("dbname") . ": " . __GREEN__ . getParam("dbname", getDefault("db/name")) . __COLOR__ . __BR__;
+                            }
+                            echo __HR__;
+                            echo "<b>" . LANG("admin_account") . ":</b>" . __BR__;
+                            echo LANG("user") . ": " . __GREEN__ . getParam("user", "admin") . __COLOR__ . __BR__;
+                            echo LANG("pass") . ": " . __GREEN__ . getParam("pass", "admin") . __COLOR__ . __BR__;
+                            echo LANG("email") . ": ";
+                            echo getParam("email") ? __GREEN__ . getParam("email") . __COLOR__ : __RED__ . LANG("undefined") . __COLOR__;
+                            echo __BR__;
+                            echo __HR__;
+                            echo "<b>" . LANG("server_config") . ":</b>" . __BR__;
+                            echo LANG("timezone") . ": " . __GREEN__ . getParam("timezone", getDefault("ini_set/date.timezone")) . __COLOR__ .  __BR__;
+                            echo LANG("hostname") . ": ";
+                            echo getParam("hostname", getDefault("server/hostname")) ? __GREEN__ . getParam("hostname", getDefault("server/hostname")) . __COLOR__ : __RED__ . LANG("automatic") . __COLOR__;
+                            echo __BR__;
+                            echo LANG("pathname") . ": ";
+                            echo getParam("pathname", getDefault("server/pathname")) ? __GREEN__ . getParam("pathname", getDefault("server/pathname")) . __COLOR__ : __RED__ . LANG("automatic") . __COLOR__;
+                            echo __BR__;
+                            echo LANG("forcessl") . ": ";
+                            echo getParam("forcessl", eval_bool(getDefault("server/forcessl"))) ? __GREEN__ . __YES__ . __COLOR__ : __RED__ . __NO__ . __COLOR__;
+                            echo __BR__;
+                            echo LANG("porthttp") . ": " . __GREEN__ . getParam("porthttp", getDefault("server/porthttp")) . __COLOR__ . __BR__;
+                            echo LANG("porthttps") . ": " . __GREEN__ . getParam("porthttps", getDefault("server/porthttps")) . __COLOR__ . __BR__;
+                            echo __HR__;
+                            echo "<b>" . LANG("initial_data") . ":</b>" . __BR__;
+                            echo LANG("exampledata") . ": ";
+                            echo getParam("exampledata") ? __GREEN__ . __YES__ . __COLOR__ : __RED__ . __NO__ . __COLOR__;
+                            echo __BR__;
+                            echo LANG("streetdata") . ": ";
+                            echo getParam("streetdata") ? __GREEN__ . __YES__ . __COLOR__ : __RED__ . __NO__ . __COLOR__;
+                            echo __BR__;
+                            echo __HR__;
+                            echo "<b>" . LANG("applications") . ":</b>" . __BR__;
+                            $temp = eval_attr(xml2array("install/xml/apps.xml"));
+                            $layer = reset($temp);
+                            foreach ($temp as $temp2) {
+                                if ($temp2["name"] == getParam("apps")) {
                                     $layer = $temp2;
                                 }
-                            } ?>
-                            <?php echo LANG("selected_layer"); ?>: <?php echo __GREEN__ . LANG("layer_" . $layer["name"]) . __COLOR__; ?><?php echo __BR__; ?>
-                            <?php $temp = eval_attr(xml2array("xml/dbstatic.xml")); ?>
-                            <?php $apps = array(); ?>
-                            <?php foreach ($temp["tbl_aplicaciones"] as $app) {
+                            }
+                            echo LANG("selected_apps") . ": " . __GREEN__ . LANG("apps_" . $layer["name"]) . __COLOR__ . __BR__;
+                            $temp = eval_attr(xml_join(xml2array(detect_apps_files("xml/dbstatic.xml"))));
+                            $apps = array();
+                            foreach ($temp["tbl_aplicaciones"] as $app) {
                                 if (getParam("app_" . $app["id"])) {
                                     $apps[] = $app["nombre"];
                                 }
-                            } ?>
-                            <?php if (!count($apps)) { ?>
-                                <?php foreach ($temp["tbl_aplicaciones"] as $app) { ?>
-                                    <?php $exists = 0; ?>
-                                    <?php foreach ($temp["tbl_aplicaciones_p"] as $perm) { ?>
-                                        <?php if (in_array($app["id"], explode(",", $perm["id_aplicacion"]))) {
+                            }
+                            if (!count($apps)) {
+                                foreach ($temp["tbl_aplicaciones"] as $app) {
+                                    $exists = 0;
+                                    foreach ($temp["tbl_aplicaciones_p"] as $perm) {
+                                        if (in_array($app["id"], explode(",", $perm["id_aplicacion"]))) {
                                             $exists = 1;
-                                        } ?>
-                                    <?php } ?>
-                                    <?php if ($exists) {
-                                        if (in_array($app["codigo"], $layer["apps"]) || in_array("*", $layer["apps"])) {
+                                        }
+                                    }
+                                    if ($exists) {
+                                        if (in_array($app["codigo"], $layer["apps"])) {
                                             $apps[] = $app["nombre"];
                                         }
-                                    } ?>
-                                <?php } ?>
-                            <?php } ?>
-                            <?php echo LANG("selected_apps"); ?>: <?php echo __GREEN__ . implode(", ", $apps) . __COLOR__; ?><?php echo __BR__; ?>
+                                    }
+                                }
+                            }
+                            echo LANG("selected_apps2") . ": " . __GREEN__ . implode(", ", $apps) . __COLOR__ . __BR__;
+                            ?>
                         </div>
                         <div <?php echo __DIV3__; ?>>
-                            <?php echo __BACK__; ?>
-                            <?php echo __INSTALL__; ?>
+                            <?php
+                            echo __BACK__;
+                            echo __INSTALL__;
+                            ?>
                         </div>
-                        <?php unset($_GET["step"]); ?>
-                        <?php foreach ($_GET as $key => $val) {
+                        <?php
+                        unset($_GET["step"]);
+                        foreach ($_GET as $key => $val) {
                             echo "<input type='hidden' name='$key' value='$val'/>";
-                        } ?>
-                    <?php } elseif (intval(getParam("step")) == $step++) { ?>
+                        }
+                    } elseif (intval(getParam("step")) == $step++) { ?>
                         <!-- **************************************************************************************************************************************************************** -->
                         <!-- **************************************************************************** STEP 6 **************************************************************************** -->
                         <!-- **************************************************************************************************************************************************************** -->
@@ -735,14 +850,14 @@ define("__USER__", 1);
                         $query = "SELECT COUNT(*) FROM tbl_grupos_p";
                         $numrows = execute_query($query);
                         if (!$numrows) {
-                            $temp = eval_attr(xml2array("install/xml/layers.xml"));
-                            $layer = array("name" => "all","apps" => array("app" => "*"));
+                            $temp = eval_attr(xml2array("install/xml/apps.xml"));
+                            $layer = reset($temp);
                             foreach ($temp as $temp2) {
-                                if ($temp2["name"] == getParam("layer")) {
+                                if ($temp2["name"] == getParam("apps")) {
                                     $layer = $temp2;
                                 }
                             }
-                            $temp = eval_attr(xml2array("xml/dbstatic.xml"));
+                            $temp = eval_attr(xml_join(xml2array(detect_apps_files("xml/dbstatic.xml"))));
                             $apps = array();
                             foreach ($temp["tbl_aplicaciones"] as $app) {
                                 if (getParam("app_" . $app["id"])) {
@@ -751,7 +866,7 @@ define("__USER__", 1);
                             }
                             if (!count($apps)) {
                                 foreach ($temp["tbl_aplicaciones"] as $app) {
-                                    if (in_array($app["codigo"], $layer["apps"]) || in_array("*", $layer["apps"])) {
+                                    if (in_array($app["codigo"], $layer["apps"])) {
                                         $apps[] = $app["id"];
                                     }
                                 }

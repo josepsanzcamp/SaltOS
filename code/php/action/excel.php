@@ -31,10 +31,10 @@ if (!check_user()) {
 
 require_once "php/libaction.php";
 $_LANG["default"] = "$page,menu,common";
-if (!file_exists("xml/${page}.xml")) {
+if (!file_exists(detect_app_file("xml/${page}.xml"))) {
     action_denied();
 }
-$config = xml2array("xml/${page}.xml");
+$config = xml2array(detect_app_file("xml/${page}.xml"));
 if (!isset($config[$action])) {
     action_denied();
 }

@@ -34,8 +34,8 @@ $files = explode(",", $files);
 foreach ($files as $key => $val) {
     $file = trim($val);
     $ext = strtolower(extension($file));
-    if (in_array($ext, array("js","css")) && file_exists($file)) {
-        $files[$key] = $file;
+    if (in_array($ext, array("js","css")) && file_exists(detect_app_file($file))) {
+        $files[$key] = detect_app_file($file);
     } else {
         unset($files[$key]);
     }

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <estados>Valtiot</estados>
+        <agenda>Esityslista ja tapahtumat</agenda>
+        <correo>Sähköposti</correo>
+        <tiposevento>Tapahtumatyypit</tiposevento>
+        <textos>Ennalta määritetyt tekstit</textos>
+        <feeds>RSS-syötteenlukija</feeds>
+        <favoritos>Suosikki</favoritos>
+        <gestiontipos>Tyyppi</gestiontipos>
+        <desc_agenda>Ota esityslistalle kaikki vierailut ja kokoukset</desc_agenda>
+        <desc_estados>Määritä tapahtuman, projektin jne. mahdolliset tilat ...</desc_estados>
+        <desc_correo>Lue ja lähetä sähköpostit täältä asiakkaillesi ja toimittajille</desc_correo>
+        <desc_tiposevento>Määritä tarvittavat tapahtumatyypit</desc_tiposevento>
+        <desc_textos>Luo ennalta määritettyjä tekstejä käytettäväksi muissa sovelluksissa</desc_textos>
+        <desc_feeds>Seuraa RSS- ja Atom-syötteitäsi tästä sovelluksesta</desc_feeds>
+        <desc_favoritos>Hallitse suosikkejasi täältä</desc_favoritos>
+        <quick_correo>Posti</quick_correo>
+        <quick_agenda>Päiväkirja</quick_agenda>
+        <quick_estados>Valtiot</quick_estados>
+        <quick_tiposevento>T. tapahtumia</quick_tiposevento>
+        <quick_textos>Tekstien</quick_textos>
+        <quick_feeds>RSS</quick_feeds>
+        <quick_favoritos>Suosikki</quick_favoritos>
+    </menu>
+    <estados>
+        <list>Luettelo valtioista</list>
+        <create>Uusi osavaltio</create>
+        <formview>Valtion yksityiskohta</formview>
+        <forminsert>Uuden valtion rekisteröinti</forminsert>
+        <formupdate>Tilamuutos</formupdate>
+        <defaultdata>Valtion tiedot</defaultdata>
+        <activo>Aktiivinen</activo>
+    </estados>
+    <agenda>
+        <list>Luettelo tapahtumista</list>
+        <create>Uusi tapahtuma</create>
+        <formview>Tapahtuman yksityiskohta</formview>
+        <forminsert>Uuden tapahtuman rekisteröinti</forminsert>
+        <formupdate>Tapahtuman muokkaaminen</formupdate>
+        <defaultdata>Tapahtumatiedot</defaultdata>
+        <otrasfechas>Muut päivämäärät</otrasfechas>
+        <todoseventos>[Kaikki tapahtumat]</todoseventos>
+        <todoayer>Eiliset tapahtumat</todoayer>
+        <todohoy>Tämän päivän tapahtumat</todohoy>
+        <todomanana>Huomisen tapahtumat</todomanana>
+        <todosemana>Viikon tapahtumat</todosemana>
+        <todomes>Kuukauden tapahtumat</todomes>
+        <todoano>Vuoden tapahtumat</todoano>
+        <usersdata>Määritetyt käyttäjät</usersdata>
+        <asignadoa>Määritetty</asignadoa>
+        <notifydelay>Ilmoittaa</notifydelay>
+        <notifysign>tunti / s</notifysign>
+        <notifydstart>Aloitusilmoitus vastaanotettu</notifydstart>
+        <notifydstop>Lopullinen ilmoitus saatu</notifydstop>
+        <notifyantes>Ennen</notifyantes>
+        <notifydespues>Sitten</notifydespues>
+        <notifyprev>Tapahtumaa edeltävä ilmoitus</notifyprev>
+        <notifypost>Tapahtuman valmistunut ilmoitus</notifypost>
+        <notifyclear>Ilmoitukset</notifyclear>
+        <notifytip>Tyhjennä ilmoitukset</notifytip>
+        <notifyclearok>Käynnistetyt tapahtumat:</notifyclearok>
+        <notifyclearko>Ei odottavia tapahtumia uudelleenkäynnistystä varten</notifyclearko>
+        <calendar>Tapahtumakalenteri</calendar>
+        <prevmonth>Edellinen kuukausi</prevmonth>
+        <currentmonth>Nykyinen kuukausi</currentmonth>
+        <nextmonth>Ensi kuussa</nextmonth>
+        <today>Tänään</today>
+        <yesterday>Eilen</yesterday>
+        <tomorrow>Huomenna</tomorrow>
+        <continue>Jatkuu ...</continue>
+        <by>mennessä</by>
+        <calendarinfo>Näytetään tiedot tähän mennessä:</calendarinfo>
+        <add>Lisää tapahtuma</add>
+        <gcalendar>Google-kalenteri</gcalendar>
+        <gcalendartip>Synkronoi tapahtumat SaltOS: n ja Google-kalenterin välillä</gcalendartip>
+        <notgcalendaremail>Et ole määrittänyt Google-kalenteritiliäsi asetuksissa</notgcalendaremail>
+        <invalidgcalendartoken>Google-kalenteritilisi käyttöoikeustiedot ovat vääriä</invalidgcalendartoken>
+        <requestgcalendartoken>Napsauta tätä saadaksesi käyttöoikeustunnuksen</requestgcalendartoken>
+        <insertgcalendar>Google-kalenteriin luodut SaltOS-tapahtumat:</insertgcalendar>
+        <updategcalendar>SaltOS-tapahtumat päivitettiin Google-kalenterissa:</updategcalendar>
+        <insertsaltos>SaltOSissa luodut Google-kalenteritapahtumat:</insertsaltos>
+        <updatesaltos>Päivitetyt Google-kalenteritapahtumat SaltOS: ssa:</updatesaltos>
+        <notinsertupdate>Päivitettäviä tapahtumia ei ole</notinsertupdate>
+        <expand>Laajentaa</expand>
+        <expandtip>Laajenna näyttääksesi kalenteritapahtumien yksityiskohdat</expandtip>
+        <collapse>Sopimus</collapse>
+        <collapsetip>Pienennä piilottaaksesi kalenteritapahtumien yksityiskohdat</collapsetip>
+        <loadingsmall>Ladataan ...</loadingsmall>
+    </agenda>
+    <correo>
+        <list>Postituslista</list>
+        <create>Lähetä uusi viesti</create>
+        <formview>Postin yksityiskohdat</formview>
+        <forminsert>Lähetä uusi sähköposti</forminsert>
+        <formupdate>Lähetä edelleen viesti</formupdate>
+        <defaultdata>Postitiedot</defaultdata>
+        <from>Of</from>
+        <to>Että</to>
+        <cc>CC</cc>
+        <bcc>BCC</bcc>
+        <subject>Liiketoiminta</subject>
+        <attachments>Liitetiedostoja</attachments>
+        <message>Viesti</message>
+        <recibir>Vastaanottaa</recibir>
+        <recibirtip>Napsauta tätä saadaksesi uusia sähköposteja</recibirtip>
+        <enviar>Lähetä</enviar>
+        <enviartip>Napsauta tätä, kun haluat lähettää sähköpostia sähköpostiviestistä</enviartip>
+        <msgnotpop3email>Sähköpostitiliä ei ole määritetty tai aktivoitu</msgnotpop3email>
+        <msgnotpop3host>POP3-palvelinta ei ole määritetty</msgnotpop3host>
+        <msgerrorpop3email>Seuraava virhe on tapahtunut:</msgerrorpop3email>
+        <msgnewokpop3email1>Uusi sähköposti vastaanotettu postilaatikkoon</msgnewokpop3email1>
+        <msgnewokpop3email2>Saapuneet-kansioon vastaanotetut uudet sähköpostit</msgnewokpop3email2>
+        <msggotoemail>mene postitse</msggotoemail>
+        <msgnewkopop3email>Uusia sähköposteja ei ole</msgnewkopop3email>
+        <msgconnrefusedpop3email>Palvelin hylkäsi yhteyden</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>Palvelimeen ei voida muodostaa yhteyttä</msgconnerrorpop3email>
+        <msgopenerrorpop3email>Viestiä sisältävää tiedostoa ei löytynyt</msgopenerrorpop3email>
+        <msgpropietario>Vain sähköpostien omistaja voi käyttää näitä ominaisuuksia</msgpropietario>
+        <msgnotfound>Valittuja sähköposteja ei löytynyt, muokkaa suodatinta</msgnotfound>
+        <msgnumsileidos>Ne on merkitty luetuiksi:</msgnumsileidos>
+        <msgnumsiwait>Ne on merkitty odottaviksi:</msgnumsiwait>
+        <msgnumsispam>Ne on merkitty roskapostiksi:</msgnumsispam>
+        <msgnumnoleidos>Ne on merkitty lukemattomiksi:</msgnumnoleidos>
+        <msgnumnowait>Ne on merkitty odottamattomiksi:</msgnumnowait>
+        <msgnumnospam>Ne on merkitty ei-roskapostiksi:</msgnumnospam>
+        <msgnumdelete>Seuraavat on poistettu:</msgnumdelete>
+        <statenew>Uusi</statenew>
+        <actionnew>Uusi</actionnew>
+        <stateread>Luettu</stateread>
+        <statereply>Vastasi</statereply>
+        <stateforward>Välitti</stateforward>
+        <statewait>Odotettaessa</statewait>
+        <statespam>ROSKAPOSTISTA</statespam>
+        <statesent>Lähettiläs</statesent>
+        <statenotsent>Ei lähetetty</statenotsent>
+        <stateerror>Virhe</stateerror>
+        <stateall>Kaikki</stateall>
+        <todaslascuentas>[Kaikki tilit]</todaslascuentas>
+        <buttonsend>Lähetä</buttonsend>
+        <buttonsendreturnhere>Lähetä ja palaa tänne</buttonsendreturnhere>
+        <onlynew>Aivan uusi</onlynew>
+        <onlywait>Vain odottaa</onlywait>
+        <hidespam>Piilota roskapostit</hidespam>
+        <withfiles>Liitteillä</withfiles>
+        <onlyspam>Vain roskapostia</onlyspam>
+        <withoutfiles>Ei liitteitä</withoutfiles>
+        <actionwait>Odotettaessa</actionwait>
+        <actionspam>ROSKAPOSTISTA</actionspam>
+        <actionreply>Vastaus</actionreply>
+        <actionreplyall>Vastaa kaikille</actionreplyall>
+        <actionforward>Eteenpäin</actionforward>
+        <messageid>Id-viesti</messageid>
+        <fulldata>Mail zoom</fulldata>
+        <sourcedata>Postilähde</sourcedata>
+        <leidos>Luettu</leidos>
+        <wait>Odotettaessa</wait>
+        <spam>ROSKAPOSTISTA</spam>
+        <borrar>Poistaa</borrar>
+        <borrartip>Poista kaikki valitut sähköpostit</borrartip>
+        <msgleidos>Haluatko merkitä kaikki valitut sähköpostit luetuiksi / lukemattomiksi?</msgleidos>
+        <msgwait>Haluatko merkitä kaikki valitut sähköpostiviestit odottavana / olematta odottavana?</msgwait>
+        <msgspam>Haluatko merkitä kaikki valitut sähköpostit roskapostiksi / ei roskapostiksi?</msgspam>
+        <msgdelete2>Haluatko poistaa kaikki valitut sähköpostit?</msgdelete2>
+        <msgnotsendfound>Lähetettäviä viestejä ei ole odotettavissa</msgnotsendfound>
+        <msgerrorsendmail>Seuraava virhe on tapahtunut:</msgerrorsendmail>
+        <msgtotalsendmail1>Sähköposti lähetetään lähtevistä</msgtotalsendmail1>
+        <msgtotalsendmail2>Sähköpostiviestit, jotka lähetetään lähtevistä</msgtotalsendmail2>
+        <stateinbox>Merkintä</stateinbox>
+        <stateoutbox>Ulostulo</stateoutbox>
+        <onlyinbox>Vain aloittelijoille</onlyinbox>
+        <onlyoutbox>Vain lähtevät</onlyoutbox>
+        <options>Vaihtoehtoja</options>
+        <optionstip>Näytä lisää listausvaihtoehtoja</optionstip>
+        <pdfoptions>PDF-asetukset</pdfoptions>
+        <sinsubject>(ei aihetta)</sinsubject>
+        <msgfromkosendmail>Vaadittavat määritykset Lähettäjä: ei löydy</msgfromkosendmail>
+        <msgsendoksendmail>Sähköpostin lähetys onnistui</msgsendoksendmail>
+        <replysubject>Re:</replysubject>
+        <replyallsubject>Re:</replyallsubject>
+        <forwardsubject>Fwd:</forwardsubject>
+        <embeddedmessage># datetime #, # fromname # kirjoitti:</embeddedmessage>
+        <actionreplytip>Vastaa viestin lähettäjälle</actionreplytip>
+        <actionreplyalltip>Vastaa kaikille tämän viestin käyttäjille</actionreplyalltip>
+        <actionforwardtip>Lähetä edelleen tämä sähköposti muille käyttäjille</actionforwardtip>
+        <noleidos>Lukematon</noleidos>
+        <nowait>Ei vireillä</nowait>
+        <nospam>Ei roskapostia</nospam>
+        <today>Tänään</today>
+        <yesterday>Eilen</yesterday>
+        <week>Viikko</week>
+        <month>Kuukausi</month>
+        <confirmreadingto>Pyydä vahvistus vastaanottamisesta</confirmreadingto>
+        <marcarcorreos>Merkitse nimellä</marcarcorreos>
+        <message0>Viestiä</message0>
+        <message1>Viesti</message1>
+        <message2>Viestiä</message2>
+        <campos>Campos</campos>
+        <allcampos>[Kaikki kentät]</allcampos>
+        <onlyemail>Vain suuntiin</onlyemail>
+        <onlysubject>Vain asiassa</onlysubject>
+        <onlybody>Vain viestissä</onlybody>
+        <filtrarcorreos>Suodata</filtrarcorreos>
+        <priority>Prioriteetti</priority>
+        <priorityhigh>Korkea</priorityhigh>
+        <prioritynormal>Normaali</prioritynormal>
+        <prioritylow>Pudota</prioritylow>
+        <sensitivity>Herkkyys</sensitivity>
+        <sensitivitynormal>Normaali</sensitivitynormal>
+        <sensitivitypersonal>Henkilöstö</sensitivitypersonal>
+        <sensitivityprivate>Yksityinen</sensitivityprivate>
+        <sensitivityconfidential>Luottamuksellinen</sensitivityconfidential>
+        <addincidencia>Luo esiintyvyys</addincidencia>
+        <addincidenciatip>Luo tapaus tästä sähköpostiviestistä</addincidenciatip>
+        <addincidenciamsg>Haluatko luoda tapauksen tästä sähköpostiviestistä?</addincidenciamsg>
+        <addincidenciaok>Tapahtuma on luotu koodilla:</addincidenciaok>
+        <notsupportdefined>Tukisähköpostitiliä ei ole määritelty</notsupportdefined>
+        <notsupportfound>Tämä sähköposti ei sisällä tukisähköpostitiliä</notsupportfound>
+        <incidenciaexists>Tämä tapaus on jo olemassa ja sillä on koodi:</incidenciaexists>
+        <interrorsendmail>Tätä sähköpostia ei lähetetty sisäisen virheen vuoksi</interrorsendmail>
+    </correo>
+    <tiposevento>
+        <list>Luettelo tapahtumatyypeistä</list>
+        <create>Uuden tyyppinen tapahtuma</create>
+        <formview>Tapahtuman tyyppi</formview>
+        <forminsert>Uuden tyyppisen tapahtuman rekisteröinti</forminsert>
+        <formupdate>Tapahtuman tyypin muuttaminen</formupdate>
+        <defaultdata>Tapahtumatyyppitiedot</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>Luettelo ennalta määritellyistä teksteistä</list>
+        <publico>Julkinen</publico>
+        <publico_desc>Kaikki voivat käyttää tätä ennalta määritettyä tekstiä</publico_desc>
+        <create>Uusi ennalta määritetty teksti</create>
+        <formview>Ennalta määritelty teksti</formview>
+        <forminsert>Uuden ennalta määritetyn tekstin lisääminen</forminsert>
+        <formupdate>Ennalta määritetyn tekstin muuttaminen</formupdate>
+        <defaultdata>Ennalta määritetyt tekstitiedot</defaultdata>
+        <sinaplicacion>[Ilman hakemusta]</sinaplicacion>
+    </textos>
+    <feeds>
+        <list>Luettelo RSS-syötteistä</list>
+        <msgnewfeedsok1>Uusi viesti ladattu</msgnewfeedsok1>
+        <msgnewfeedsok2>Uudet ladatut viestit</msgnewfeedsok2>
+        <msgnewfeedsko>Uusia viestejä ei löytynyt</msgnewfeedsko>
+        <msgmodifiedfeedsok1>Päivitetty viesti</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2>Päivitetyt viestit</msgmodifiedfeedsok2>
+        <msgnotfeeds>RSS-syötettä ei ole määritetty tai aktivoitu</msgnotfeeds>
+        <feed>RSS-syöte</feed>
+        <title>Otsikko</title>
+        <pubdate>Julkaisupäivä</pubdate>
+        <recibir>Vastaanottaa</recibir>
+        <recibirtip>Napsauta tätä saadaksesi uusia viestejä</recibirtip>
+        <todoslosfeeds>[Kaikki RSS-syötteet]</todoslosfeeds>
+        <defaultdata>Lähetä yksityiskohta</defaultdata>
+        <fulldata>Lähetä zoom</fulldata>
+        <actionwait>Odotettaessa</actionwait>
+        <statenew>Uusi</statenew>
+        <actionnew>Uusi</actionnew>
+        <statemodified>Muokattu</statemodified>
+        <statewait>Odotettaessa</statewait>
+        <stateread>Luettu</stateread>
+        <actionforward>Eteenpäin</actionforward>
+        <actionforwardtip>Lähetä edelleen tämä viesti sähköpostitse</actionforwardtip>
+        <formview>Lähetä yksityiskohta</formview>
+        <msggotofeeds>siirry RSS-syötteisiin</msggotofeeds>
+        <onlynew>Aivan uusi</onlynew>
+        <onlywait>Vain odottaa</onlywait>
+        <options>Vaihtoehtoja</options>
+        <optionstip>Näytä lisää listausvaihtoehtoja</optionstip>
+        <pdfoptions>PDF-asetukset</pdfoptions>
+        <stateall>Kaikki</stateall>
+        <today>Tänään</today>
+        <yesterday>Eilen</yesterday>
+        <week>Viikko</week>
+        <month>Kuukausi</month>
+        <marcarfeeds>Merkitse nimellä</marcarfeeds>
+        <leidos>Luettu</leidos>
+        <wait>Odotettaessa</wait>
+        <borrar>Poistaa</borrar>
+        <borrartip>Poista kaikki valitut viestit</borrartip>
+        <noleidos>Lukematon</noleidos>
+        <nowait>Ei vireillä</nowait>
+        <msgleidos>Haluatko merkitä kaikki valitut viestit luetuiksi / lukemattomiksi?</msgleidos>
+        <msgwait>Haluatko merkitä kaikki valitut viestit odottavana / ei odottavana?</msgwait>
+        <msgdelete2>Haluatko poistaa kaikki valitut viestit?</msgdelete2>
+        <msgpropietario>Vain viestien omistaja voi käyttää näitä ominaisuuksia</msgpropietario>
+        <msgnotfound>Valittuja viestejä ei löytynyt. muokkaa suodatinta</msgnotfound>
+        <msgnumsileidos>Ne on merkitty luetuiksi:</msgnumsileidos>
+        <msgnumsiwait>Ne on merkitty odottaviksi:</msgnumsiwait>
+        <msgnumnoleidos>Ne on merkitty lukemattomiksi:</msgnumnoleidos>
+        <msgnumnowait>Ne on merkitty odottamattomiksi:</msgnumnowait>
+        <msgnumdelete>Seuraavat on poistettu:</msgnumdelete>
+        <message0>Viestiä</message0>
+        <message1>Posti</message1>
+        <message2>Viestiä</message2>
+        <msgerrorfeed>Seuraavassa syötteessä on tapahtunut virhe:</msgerrorfeed>
+        <sintitle>Otsikkoa)</sintitle>
+        <post>RSS-viesti</post>
+        <filtrarfeeds>Suodata</filtrarfeeds>
+        <actioncool>Mielenkiintoinen</actioncool>
+        <statecool>Mielenkiintoinen</statecool>
+        <onlycool>Aivan mielenkiintoista</onlycool>
+        <cool>Mielenkiintoinen</cool>
+        <nocool>Ei mielenkiintoista</nocool>
+        <msgcool>Haluatko merkitä kaikki valitut viestit mielenkiintoisiksi / ei mielenkiintoisiksi?</msgcool>
+        <msgnumsicool>Ne on merkitty mielenkiintoisiksi:</msgnumsicool>
+        <msgnumnocool>Ne on merkitty mielenkiintoisiksi:</msgnumnocool>
+        <actionfavoritos>Lisää suosikkeihin</actionfavoritos>
+    </feeds>
+    <favoritos>
+        <list>Suosikkilista</list>
+        <create>Uusi suosikki</create>
+        <url>URL-</url>
+        <bookmarkexists>Url, jonka yrität tallentaa, on jo suosikki.</bookmarkexists>
+        <invalidurl>Url ei kelpaa, tarkista verkkoosoite:</invalidurl>
+        <bookmarkadded>Url-osoite on lisätty suosikkeihin</bookmarkadded>
+        <previews>Pikkukuvat</previews>
+    </favoritos>
+</root>

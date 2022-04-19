@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <tbl_aplicaciones>
+        <row>
+            <id>10</id>
+            <codigo>home</codigo>
+            <nombre>Inicio</nombre>
+        </row>
+        <row>
+            <id>11</id>
+            <codigo>usuarios</codigo>
+            <nombre>Usuarios</nombre>
+            <tabla>tbl_usuarios</tabla>
+            <campo>login</campo>
+            <subtablas>tbl_usuarios_c(id_usuario),tbl_usuarios_f(id_usuario)</subtablas>
+        </row>
+        <row>
+            <id>13</id>
+            <codigo>support</codigo>
+            <nombre>Soporte técnico</nombre>
+        </row>
+        <row>
+            <id>14</id>
+            <codigo>grupos</codigo>
+            <nombre>Grupos</nombre>
+            <tabla>tbl_grupos</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>18</id>
+            <codigo>about</codigo>
+            <nombre>Acerca de SaltOS</nombre>
+        </row>
+        <row>
+            <id>19</id>
+            <codigo>logout</codigo>
+            <nombre>Cerrar sesión</nombre>
+        </row>
+        <row>
+            <id>20</id>
+            <codigo>folders</codigo>
+            <nombre>Carpetas</nombre>
+        </row>
+        <row>
+            <id>23</id>
+            <codigo>profile</codigo>
+            <nombre>Mi perfil</nombre>
+        </row>
+        <row>
+            <id>24</id>
+            <codigo>maincfg</codigo>
+            <nombre>Configuración</nombre>
+        </row>
+        <row>
+            <id>30</id>
+            <codigo>buscador</codigo>
+            <nombre>Buscador</nombre>
+        </row>
+        <row>
+            <id>38</id>
+            <codigo>ficheros</codigo>
+            <nombre>Ficheros adjuntos</nombre>
+        </row>
+        <row>
+            <id>45</id>
+            <codigo>test</codigo>
+            <nombre>Test</nombre>
+        </row>
+    </tbl_aplicaciones>
+    <tbl_aplicaciones_i>
+        <row>
+            <id_aplicacion>10,23,18,13,19,38,20,30,45</id_aplicacion>
+            <id_permiso>10</id_permiso>
+            <allow>1</allow>
+            <deny>0</deny>
+        </row>
+    </tbl_aplicaciones_i>
+    <tbl_aplicaciones_p>
+        <row>
+            <id_aplicacion>14,11</id_aplicacion>
+            <id_permiso>10,3,1,8,4,5,11,12,13,14,2,9,6,7</id_permiso>
+        </row>
+        <row>
+            <id_aplicacion>24</id_aplicacion>
+            <id_permiso>10</id_permiso>
+        </row>
+        <row>
+            <id_aplicacion>23</id_aplicacion>
+            <id_permiso>17,18,19</id_permiso>
+        </row>
+    </tbl_aplicaciones_p>
+    <tbl_categorias_a>
+        <row>
+            <id_aplicacion>3</id_aplicacion>
+        </row>
+    </tbl_categorias_a>
+    <tbl_estados_a>
+        <row>
+            <id_aplicacion>3</id_aplicacion>
+        </row>
+        <row>
+            <id_aplicacion>4</id_aplicacion>
+        </row>
+        <row>
+            <id_aplicacion>17</id_aplicacion>
+        </row>
+        <row>
+            <id_aplicacion>32</id_aplicacion>
+        </row>
+        <row>
+            <id_aplicacion>34</id_aplicacion>
+        </row>
+        <row>
+            <id_aplicacion>35</id_aplicacion>
+        </row>
+    </tbl_estados_a>
+    <tbl_permisos>
+        <row>
+            <id>10</id>
+            <codigo>menu</codigo>
+            <pos>1</pos>
+            <nombre>Mostrar entrada en el menú</nombre>
+        </row>
+        <row>
+            <id>3</id>
+            <codigo>create</codigo>
+            <pos>2</pos>
+            <nombre>Crear registros</nombre>
+        </row>
+        <row>
+            <id>1</id>
+            <codigo>user_list</codigo>
+            <pos>11</pos>
+            <nombre>Listar sólo registros del usuario</nombre>
+        </row>
+        <row>
+            <id>11</id>
+            <codigo>group_list</codigo>
+            <pos>12</pos>
+            <nombre>Listar registros del usuario y grupo</nombre>
+        </row>
+        <row>
+            <id>2</id>
+            <codigo>all_list</codigo>
+            <pos>13</pos>
+            <nombre>Listar todos los registros</nombre>
+        </row>
+        <row>
+            <id>8</id>
+            <codigo>user_view</codigo>
+            <pos>21</pos>
+            <nombre>Ver detalle sólo de los registros del usuario</nombre>
+        </row>
+        <row>
+            <id>12</id>
+            <codigo>group_view</codigo>
+            <pos>22</pos>
+            <nombre>Ver detalle de los registros del usuario y grupo</nombre>
+        </row>
+        <row>
+            <id>9</id>
+            <codigo>all_view</codigo>
+            <pos>23</pos>
+            <nombre>Ver detalle de todos los registros</nombre>
+        </row>
+        <row>
+            <id>4</id>
+            <codigo>user_edit</codigo>
+            <pos>31</pos>
+            <nombre>Modificar sólo los registros del usuario</nombre>
+        </row>
+        <row>
+            <id>13</id>
+            <codigo>group_edit</codigo>
+            <pos>32</pos>
+            <nombre>Modificar los registros del usuario y grupo</nombre>
+        </row>
+        <row>
+            <id>6</id>
+            <codigo>all_edit</codigo>
+            <pos>33</pos>
+            <nombre>Modificar todos los registros</nombre>
+        </row>
+        <row>
+            <id>5</id>
+            <codigo>user_delete</codigo>
+            <pos>41</pos>
+            <nombre>Eliminar sólo los registros del usuario</nombre>
+        </row>
+        <row>
+            <id>14</id>
+            <codigo>group_delete</codigo>
+            <pos>42</pos>
+            <nombre>Eliminar los registros del usuario y grupo</nombre>
+        </row>
+        <row>
+            <id>7</id>
+            <codigo>all_delete</codigo>
+            <pos>43</pos>
+            <nombre>Eliminar todos los registros</nombre>
+        </row>
+        <row>
+            <id>17</id>
+            <codigo>gcalendar</codigo>
+            <pos>53</pos>
+            <nombre>Google Calendar</nombre>
+        </row>
+        <row>
+            <id>18</id>
+            <codigo>feeds</codigo>
+            <pos>54</pos>
+            <nombre>Feeds</nombre>
+        </row>
+        <row>
+            <id>19</id>
+            <codigo>correo</codigo>
+            <pos>55</pos>
+            <nombre>Correo electrónico</nombre>
+        </row>
+    </tbl_permisos>
+</root>

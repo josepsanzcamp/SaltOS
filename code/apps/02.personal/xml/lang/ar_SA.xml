@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <estados>الحالة</estados>
+        <agenda>التقويم والاحداث</agenda>
+        <correo>البريد</correo>
+        <tiposevento>انواع الاحداث</tiposevento>
+        <textos>نصوص محددة مسبقا</textos>
+        <feeds>RSS قارئ موجز</feeds>
+        <favoritos>المفضلات</favoritos>
+        <gestiontipos>الانواع</gestiontipos>
+        <desc_agenda>ضع علي التقويم جميع الزيارات والاجتماعات</desc_agenda>
+        <desc_estados>حدد الحالات الممكنة لحدث, مشروع ..الخ</desc_estados>
+        <desc_correo>قراءة وإرسال البريد من هنا للعملاء والموردين</desc_correo>
+        <desc_tiposevento>تحديد أنواع الأحداث التي تحتاجها</desc_tiposevento>
+        <desc_textos>إنشاء نصوص معرفة مسبقا للاستخدام في تطبيقات أخرى</desc_textos>
+        <desc_feeds>تتبع خلاصات RSS و اتوم من هذا التطبيق</desc_feeds>
+        <desc_favoritos>إدارة المفضلة من هنا</desc_favoritos>
+        <quick_correo>البريد</quick_correo>
+        <quick_agenda>الاجندة</quick_agenda>
+        <quick_estados>الحالات</quick_estados>
+        <quick_tiposevento>انواع الاحداث</quick_tiposevento>
+        <quick_textos>النصوص</quick_textos>
+        <quick_feeds>تغذيات RSS </quick_feeds>
+        <quick_favoritos>المفضلات</quick_favoritos>
+    </menu>
+    <estados>
+        <list>قائمة الحالات</list>
+        <create>حالة جديدة</create>
+        <formview>تفاصيل الحالة</formview>
+        <forminsert>تسجيل الحالة الجديدة</forminsert>
+        <formupdate>تغيير الحالة</formupdate>
+        <defaultdata>تواريخ الحالة</defaultdata>
+        <activo>منشطة</activo>
+    </estados>
+    <agenda>
+        <list>قائمة بالاحداث</list>
+        <create>حدث جديد</create>
+        <formview>تفاصيل الحدث</formview>
+        <forminsert>إضافة حدث جديد</forminsert>
+        <formupdate>التعديل علي الحدث</formupdate>
+        <defaultdata>معومات عن الحدث</defaultdata>
+        <otrasfechas>تواريخ اخرى</otrasfechas>
+        <todoseventos>[جميع الاحداث]</todoseventos>
+        <todoayer>احداث الامس</todoayer>
+        <todohoy>أحداث اليوم</todohoy>
+        <todomanana>أحداث الغد</todomanana>
+        <todosemana>أحداث الأسبوع</todosemana>
+        <todomes>الأحداث لهذا الشهر</todomes>
+        <todoano>أحداث هذه السنة</todoano>
+        <usersdata>مخصصات المستخدمين</usersdata>
+        <asignadoa>تعيين ل</asignadoa>
+        <notifydelay>تغرير</notifydelay>
+        <notifysign>الزمن / ث</notifysign>
+        <notifydstart>بدأ تلغي الاشعار</notifydstart>
+        <notifydstop>اخر تغرير مستلم</notifydstop>
+        <notifyantes>قبل</notifyantes>
+        <notifydespues>بعد</notifydespues>
+        <notifyprev>اشعار سابق للحدث</notifyprev>
+        <notifypost>إنتهاء اشعار الحدث</notifypost>
+        <notifyclear>اﻷشعارات</notifyclear>
+        <notifytip>امسح الاشعارات</notifytip>
+        <notifyclearok>استئناف الاحداث:</notifyclearok>
+        <notifyclearko>لاتوجد احداث معلقة ليتم استنافها</notifyclearko>
+        <calendar>تقويم الاحداث</calendar>
+        <prevmonth>الشهر السابق</prevmonth>
+        <currentmonth>الهر الحالي</currentmonth>
+        <nextmonth>الشهر التالي</nextmonth>
+        <today>اليوم</today>
+        <yesterday>امس</yesterday>
+        <tomorrow>غدا</tomorrow>
+        <continue>يتبع ..</continue>
+        <by>بواسطة </by>
+        <calendarinfo>اظهار المعلومات الي التاريخ:</calendarinfo>
+        <add>إضافة حدث</add>
+        <gcalendar>تقويم Google </gcalendar>
+        <gcalendartip>مزامنة التقويم بين تقويم Google و تقويم SaltOS</gcalendartip>
+        <notgcalendaremail>لم تقم بتهيئة حساب الافضليات لتقويم Google</notgcalendaremail>
+        <invalidgcalendartoken>البيانات الواصلة لحسابتقويم قوقل لديك غير صحيحة</invalidgcalendartoken>
+        <requestgcalendartoken>انقر هنا للحصول على رمز وصول</requestgcalendartoken>
+        <insertgcalendar>أحداث SaltOS المنشئة علي تقويم Google :</insertgcalendar>
+        <updategcalendar>أحداث SaltOS المحدثة علي تقويم Google :</updategcalendar>
+        <insertsaltos>أحداث تقويم Google التي تم إنشائها علي SaltOS:</insertsaltos>
+        <updatesaltos>أحداث تقويم Google التي تم تحديثها علي SaltOS:</updatesaltos>
+        <notinsertupdate>لا يوجد أحداث لليتم تحديثها</notinsertupdate>
+        <expand>توسيع</expand>
+        <expandtip>قم بالتوسيع لاظهارالتفاصل لجميع الاحداث علي التقويم</expandtip>
+        <collapse>تضييق</collapse>
+        <collapsetip>التضييق لاخفاء التفاصيل لجميع الأحداث علي التقويم</collapsetip>
+        <loadingsmall>جاري التحميل...</loadingsmall>
+    </agenda>
+    <correo>
+        <list>قائمة البريد</list>
+        <create>ارسال ايميل جديد</create>
+        <formview>تفاصيل الايميل</formview>
+        <forminsert>إرسال ايميل جديد</forminsert>
+        <formupdate>اعادة توجيه ايميل</formupdate>
+        <defaultdata>بيانات الايميل</defaultdata>
+        <from>من</from>
+        <to>الي</to>
+        <cc>CC</cc>
+        <bcc>مخفيه</bcc>
+        <subject>الموضوع</subject>
+        <attachments>المرفقات</attachments>
+        <message>الرسالة</message>
+        <recibir>استقبال</recibir>
+        <recibirtip>اضغط هنا لاستقبال رسائل جديدة</recibirtip>
+        <enviar>إرسال</enviar>
+        <enviartip>اضغط هنا لارسال رسائل من صندوق الصادر</enviartip>
+        <msgnotpop3email>لم يتم ضبط او تنشيط اي حساب بريدي</msgnotpop3email>
+        <msgnotpop3host>لم يتم تهيئة خادم POP3 </msgnotpop3host>
+        <msgerrorpop3email>لقد حدثت الخطأ التالي: </msgerrorpop3email>
+        <msgnewokpop3email1> لقد تم استقبال رسالة جديدة في صندوق الوارد</msgnewokpop3email1>
+        <msgnewokpop3email2> لقد تم استقبال رسالة جديدة في صندوق الوارد</msgnewokpop3email2>
+        <msggotoemail>الزهاب للبريد</msggotoemail>
+        <msgnewkopop3email>ليس هناك بريد جديد</msgnewkopop3email>
+        <msgconnrefusedpop3email>لقد تم رفض الاتصال من الخادم</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>لايمكن الاتصال بالخادم</msgconnerrorpop3email>
+        <msgopenerrorpop3email>لم يتم ايجاد الملف المحتوي علي الرساله</msgopenerrorpop3email>
+        <msgpropietario>فقط مالك البريد يمكنه استخدام هذه المزايا</msgpropietario>
+        <msgnotfound>لا توجد رسائل محددة , قم بتغيير المرشح</msgnotfound>
+        <msgnumsileidos>تم تصنيفها كمقروئة: </msgnumsileidos>
+        <msgnumsiwait>تم تصنيفها كمؤجلة: </msgnumsiwait>
+        <msgnumsispam>تم تصنيفها ك SPAM: </msgnumsispam>
+        <msgnumnoleidos>تم تصنيفها كغير مقروئة: </msgnumnoleidos>
+        <msgnumnowait>لقد قمت بتصنيفها كمؤجلة: </msgnumnowait>
+        <msgnumnospam>لقد قمت بتصنيفها كغير مرغوبة: </msgnumnospam>
+        <msgnumdelete>تم حذفها: </msgnumdelete>
+        <statenew>جديد</statenew>
+        <actionnew>جديد</actionnew>
+        <stateread>غير مقروئة</stateread>
+        <statereply>تم الرد عليها</statereply>
+        <stateforward>معاد توجيهها</stateforward>
+        <statewait>مؤجلة</statewait>
+        <statespam>مرغوب فيهاغير </statespam>
+        <statesent>مرسلة</statesent>
+        <statenotsent>لم يتم ارسالة</statenotsent>
+        <stateerror>خطأ</stateerror>
+        <stateall>الكل</stateall>
+        <todaslascuentas>[جميع الحسابات]</todaslascuentas>
+        <buttonsend>ارسال</buttonsend>
+        <buttonsendreturnhere>قم بالارسال وعد الي هنا</buttonsendreturnhere>
+        <onlynew>فقط الجديدة</onlynew>
+        <onlywait>فقط المؤجلة</onlywait>
+        <hidespam>اخفاء الغير مرغوبة</hidespam>
+        <withfiles>مع مرفق</withfiles>
+        <onlyspam>فقط الغير مرغوبة</onlyspam>
+        <withoutfiles>بدون مرفق</withoutfiles>
+        <actionwait>تأجيل</actionwait>
+        <actionspam>غير مرغوبة</actionspam>
+        <actionreply>رد</actionreply>
+        <actionreplyall>رد علي الكل</actionreplyall>
+        <actionforward>اعادة توجيه</actionforward>
+        <messageid>رمز الرسالة</messageid>
+        <fulldata>تكبير </fulldata>
+        <sourcedata>مصدر الرسالة</sourcedata>
+        <leidos>قرائة</leidos>
+        <wait>تأجيل</wait>
+        <spam>غير مرغوبة</spam>
+        <borrar>مسح</borrar>
+        <borrartip>حذف جميع المحدد</borrartip>
+        <msgleidos>هل تريد تصنيف جميع الرسائل المحددة كمقروئة/غير مقروئة؟</msgleidos>
+        <msgwait>هل تريد تصنيف جميع الرسائل المحددة كمؤجلة/غير موجلة؟</msgwait>
+        <msgspam>هل تريد تصنيف جميع الرسائل المحددة كمرغوبة/غير مرغوب فيها؟</msgspam>
+        <msgdelete2>هل تريد حذف جميع الرسائل المحددة؟</msgdelete2>
+        <msgnotsendfound>لاتوجد رسائل مؤجلة لترسل</msgnotsendfound>
+        <msgerrorsendmail>يوجد الخطأ التالي: </msgerrorsendmail>
+        <msgtotalsendmail1> تم ارسال الرسالة من حاوية الصادر</msgtotalsendmail1>
+        <msgtotalsendmail2> تم ارسال الرسالة من حاوية الصادر</msgtotalsendmail2>
+        <stateinbox>الوارد</stateinbox>
+        <stateoutbox>الصادر</stateoutbox>
+        <onlyinbox>فقط الوارد</onlyinbox>
+        <onlyoutbox>فقط الصادر</onlyoutbox>
+        <options>خيارات</options>
+        <optionstip>عرض خيارات اضافية من القائمة</optionstip>
+        <pdfoptions>خيارات PDF</pdfoptions>
+        <sinsubject>(ليوجد عنوان)</sinsubject>
+        <msgfromkosendmail>الاعدادات لحقل المرسل غير موجودة</msgfromkosendmail>
+        <msgsendoksendmail>لقد تم ارسال الرسالة بنجاح</msgsendoksendmail>
+        <replysubject>رد: </replysubject>
+        <replyallsubject>رد: </replyallsubject>
+        <forwardsubject>إ.ت: </forwardsubject>
+        <embeddedmessage>لقد كتب #datetime#, #fromname# wrote:</embeddedmessage>
+        <actionreplytip>للرد علي مرسل الرسالة</actionreplytip>
+        <actionreplyalltip>للرد على جميع مستخدمي هذه الرسالة</actionreplyalltip>
+        <actionforwardtip>لاعادة توجيه هذه الرسالة للاخرين</actionforwardtip>
+        <noleidos>غير مقروئة</noleidos>
+        <nowait>لا يوجد رسائل مؤجلة</nowait>
+        <nospam>لا يوجد رسائل غير مرغوب فيها</nospam>
+        <today>اليوم</today>
+        <yesterday>بالامس</yesterday>
+        <week>اسبوع</week>
+        <month>شهر</month>
+        <confirmreadingto>طلب إقرار</confirmreadingto>
+        <marcarcorreos>تصنيف ك</marcarcorreos>
+        <message0> رسائل</message0>
+        <message1> رسالة</message1>
+        <message2> رسائل</message2>
+        <campos>الحقول</campos>
+        <allcampos>[جميع الحقول]</allcampos>
+        <onlyemail>فقط في عنوان البريد</onlyemail>
+        <onlysubject>فقط في الموضوع</onlysubject>
+        <onlybody>فقط في محتوى الرسالة</onlybody>
+        <filtrarcorreos>ترشيح ب</filtrarcorreos>
+        <priority>الاولوية</priority>
+        <priorityhigh>عالية</priorityhigh>
+        <prioritynormal>عادية</prioritynormal>
+        <prioritylow>منخفضة</prioritylow>
+        <sensitivity>الحساسيه</sensitivity>
+        <sensitivitynormal>عادية</sensitivitynormal>
+        <sensitivitypersonal>شخصي</sensitivitypersonal>
+        <sensitivityprivate>خاص</sensitivityprivate>
+        <sensitivityconfidential>سري</sensitivityconfidential>
+        <addincidencia>إضافة خطأ</addincidencia>
+        <addincidenciatip>إنشاء خطأ جديد باستخدام هذا البريد الإلكتروني كتقرير أولي</addincidenciatip>
+        <addincidenciamsg>هل تريد إنشاء خطأ جديد باستخدام هذا البريد الإلكتروني كتقرير أولي؟</addincidenciamsg>
+        <addincidenciaok>خطأ تم إنشاؤه باستخدام التعليمات البرمجية:</addincidenciaok>
+        <notsupportdefined>دعم حساب البريد الإلكتروني غير محدد في SaltOS</notsupportdefined>
+        <notsupportfound>لا يحتوي هذا البريد الإلكتروني على حساب البريد الإلكتروني للدعم</notsupportfound>
+        <incidenciaexists>تم العثور على الخطأ باستخدام الرمز:</incidenciaexists>
+        <interrorsendmail>لم يتم إرسال هذا البريد الإلكتروني بواسطة خطأ داخلي</interrorsendmail>
+    </correo>
+    <tiposevento>
+        <list>قائمة بانواع الاحداث</list>
+        <create>نوع حدث جديد</create>
+        <formview>وصف لنوع الحدث</formview>
+        <forminsert>إضافة نوع حدث جديد</forminsert>
+        <formupdate>تغيير نوع حدث</formupdate>
+        <defaultdata>نوع بيانات الحدث</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>قائمة بالنصوص المعرفة مسبقا</list>
+        <publico>الحكومة</publico>
+        <publico_desc>يمكن للجميع استخدام هذا النص المعد مسبقا</publico_desc>
+        <create>نص جديد معرف مسبقا</create>
+        <formview>تفصايل النص المعرف مسبقا</formview>
+        <forminsert>إضافة نص افتراضي جديد</forminsert>
+        <formupdate>تعديل النص الافتراضي</formupdate>
+        <defaultdata>بيانات النص الافتراضي</defaultdata>
+        <sinaplicacion>[بدون تطبيق]</sinaplicacion>
+    </textos>
+    <feeds>
+        <list>قائمة تغذيات RSS</list>
+        <msgnewfeedsok1> المشاركة المنزلة حديثا</msgnewfeedsok1>
+        <msgnewfeedsok2> المشاركات المنزلة حديثا</msgnewfeedsok2>
+        <msgnewfeedsko>لم يتم ايجاد اي مشاركات جديدة</msgnewfeedsko>
+        <msgmodifiedfeedsok1> تاريخ المشاركة</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2> المشاركات حتى الآن</msgmodifiedfeedsok2>
+        <msgnotfeeds>لم يتم تكوين او تمكين تغية RSS</msgnotfeeds>
+        <feed>تغذية RSS</feed>
+        <title>العنوان</title>
+        <pubdate>تاريخ النشر.</pubdate>
+        <recibir>استقبال</recibir>
+        <recibirtip>اضغط هنا لاستقبال المشاكات الجديدة</recibirtip>
+        <todoslosfeeds>[الكل]</todoslosfeeds>
+        <defaultdata>تفاصيل المشاركة</defaultdata>
+        <fulldata>التكبير في المشاركة</fulldata>
+        <actionwait>تاجيل</actionwait>
+        <statenew>جديد</statenew>
+        <actionnew>جديد</actionnew>
+        <statemodified>الاخير</statemodified>
+        <statewait>مؤجلة</statewait>
+        <stateread>قرائة</stateread>
+        <actionforward>اعادة توجيه</actionforward>
+        <actionforwardtip>لاعادة توجيه مشاركة الايميل</actionforwardtip>
+        <formview>تفاصيل المشاركة</formview>
+        <msggotofeeds>الذهاب الي تغذيات RSS</msggotofeeds>
+        <onlynew>الحديثة فقط</onlynew>
+        <onlywait>فقط المؤجلة</onlywait>
+        <options>خيارات</options>
+        <optionstip>اظهر المزيد من الخيارات من القائمة</optionstip>
+        <pdfoptions>خيارات PDF</pdfoptions>
+        <stateall>الكل</stateall>
+        <today>اليوم</today>
+        <yesterday>أمس</yesterday>
+        <week>اسبوع</week>
+        <month>شهر</month>
+        <marcarfeeds>تصنيف ك</marcarfeeds>
+        <leidos>مقروئة</leidos>
+        <wait>مؤجلة</wait>
+        <borrar>مسح</borrar>
+        <borrartip>حذف جميع المشاركات المحددة</borrartip>
+        <noleidos>غير مقروئة</noleidos>
+        <nowait>غير مؤجلة</nowait>
+        <msgleidos>هل تريد تصنيف كافة المشاركات كمقروئة/غير مقروئة؟</msgleidos>
+        <msgwait>هل تريد تصنيف كافة المشاركات كمؤجلة/غير مؤجلة؟</msgwait>
+        <msgdelete2>حذف جميع المشاركات المحددة؟</msgdelete2>
+        <msgpropietario>فقط مالك المشاركات يمكنه استخدام هذه المزايا</msgpropietario>
+        <msgnotfound>لم يتم ايجاد المشاركات المحددة ,قم بيتغير المرشح</msgnotfound>
+        <msgnumsileidos>لقد تم تصنيفها كمقروئة: </msgnumsileidos>
+        <msgnumsiwait>لقد تم تصنيفها كمؤجلة: </msgnumsiwait>
+        <msgnumnoleidos>لقد تم تصنيفها كغير مقروئة </msgnumnoleidos>
+        <msgnumnowait>لقد تم تصنيفها كمؤجلة: </msgnumnowait>
+        <msgnumdelete>تم حذف حذف: </msgnumdelete>
+        <message0> مشاركات</message0>
+        <message1> مشاركة</message1>
+        <message2> مشاركات</message2>
+        <msgerrorfeed>يوجد خطأ في هذه المشاركة : </msgerrorfeed>
+        <sintitle>(لايوجد عنوان)</sintitle>
+        <post>مشاركات RSS </post>
+        <filtrarfeeds>ترشيح بواسطة</filtrarfeeds>
+        <actioncool>رائع</actioncool>
+        <statecool>رائع</statecool>
+        <onlycool>الرائعة فقط</onlycool>
+        <cool>رائع</cool>
+        <nocool>غير رائع</nocool>
+        <msgcool>هل تريد تعليم  جميع المشاركاتب كرائعة/غير رائعة؟</msgcool>
+        <msgnumsicool>تم تعليمها كرائعة: </msgnumsicool>
+        <msgnumnocool>تم تعليمها كرائعة:  </msgnumnocool>
+        <actionfavoritos>إضافة إلى الإشارات المرجعية</actionfavoritos>
+    </feeds>
+    <favoritos>
+        <list>قائمة المفضلة</list>
+        <create>مفضلة جديدة</create>
+        <url>URL</url>
+        <bookmarkexists>عنوان URL الذي تحاول حفظه موجود مسبقا في قائمة المفضلة لديط.</bookmarkexists>
+        <invalidurl>عنوان URL غير صالح،الرجاء  التحقق من عنوان الويب: </invalidurl>
+        <bookmarkadded>تمت إضافة رابط بنجاح إلى الإشارات المرجعية</bookmarkadded>
+        <previews>معاينات</previews>
+    </favoritos>
+</root>

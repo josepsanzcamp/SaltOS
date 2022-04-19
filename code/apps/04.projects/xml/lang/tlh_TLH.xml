@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <incidencias>Potlh'e'</incidencias>
+        <proyectos>Jinmol</proyectos>
+        <partes>'ay' qap</partes>
+        <prioridades>Priority</prioridades>
+        <actas>Qep tup</actas>
+        <seguimientos>Ghoch qu'</seguimientos>
+        <presupuestos>Budget</presupuestos>
+        <posiblescli>Potential customers</posiblescli>
+        <campanyas>Commercial campaigns</campanyas>
+        <gestionproyectos>Jinmol</gestionproyectos>
+        <categorias>Category</categorias>
+        <desc_incidencias>Customers potlh'e' vu' nadevvo'</desc_incidencias>
+        <desc_proyectos>Je app jinmol pab</desc_proyectos>
+        <desc_partes>Jenwi' hoch qap timesheets lo' sohvad</desc_partes>
+        <desc_actas>Ta pol heghdi' qep seh latlh data'</desc_actas>
+        <desc_prioridades>Hijmeh priorities agenda entries</desc_prioridades>
+        <desc_seguimientos>Yiseh jinmol qu' follow-ups</desc_seguimientos>
+        <desc_posiblescli>Prospects chaq daghaj yiseh</desc_posiblescli>
+        <desc_presupuestos>Budgets chenmoh nom 'ej hergh</desc_presupuestos>
+        <desc_campanyas>Malja' campaigns follow-ups qu'</desc_campanyas>
+        <desc_categorias>Be applications categories vilegh</desc_categorias>
+        <quick_incidencias>Potlh'e'</quick_incidencias>
+        <quick_proyectos>Jinmol</quick_proyectos>
+        <quick_partes>'ay'</quick_partes>
+        <quick_prioridades>Priority</quick_prioridades>
+        <quick_actas>Tup</quick_actas>
+        <quick_seguimientos>Trace</quick_seguimientos>
+        <quick_presupuestos>Budget</quick_presupuestos>
+        <quick_posiblescli>P.customers</quick_posiblescli>
+        <quick_campanyas>Campaign</quick_campanyas>
+        <quick_categorias>Category</quick_categorias>
+    </menu>
+    <incidencias>
+        <list>Potlh'e' tetlh</list>
+        <create>Chu' potlh'e'</create>
+        <formview>Potlh'e' detail</formview>
+        <forminsert>Jenwi' potlh'e' chu'</forminsert>
+        <formupdate>Incidence choh</formupdate>
+        <defaultdata>Potlh'e' de'</defaultdata>
+        <usersdata>User</usersdata>
+        <implicados>Involve</implicados>
+        <asignadoa>Assigned</asignadoa>
+        <msgsendemail>Ngeh jiboqqang hoch involve neh potlh'e'</msgsendemail>
+        <boolsendmail>Email ngeh</boolsendmail>
+        <boolsendmailtip>Vaj duh soh enable, ngeh jiboqqang involve hoch</boolsendmailtip>
+        <categoria>Category</categoria>
+        <sincategoria>[pagh category]</sincategoria>
+        <allcategorias>[Hoch categories]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>Jinmol tetlh</list>
+        <create>Jinmol chu'</create>
+        <formview>Jinmol, 'ej detail</formview>
+        <forminsert>Jinmol chu' registration</forminsert>
+        <formupdate>Jinmol, 'ej modification</formupdate>
+        <defaultdata>Jinmol de'</defaultdata>
+        <tareasproyecto>Jinmol qu'</tareasproyecto>
+        <desctareas>Qu' description</desctareas>
+        <horastotal>Total rep</horastotal>
+        <preciomedio>Motlhbogh 'ay'</preciomedio>
+        <preciototal>Total 'ay'</preciototal>
+        <real>Real</real>
+        <diferencia>Difference</diferencia>
+        <partesopen>Un liquidated lopno'</partesopen>
+        <partesclose>Liquidate lopno'</partesclose>
+        <relatedseguimientos>Relate follow-ups</relatedseguimientos>
+        <relatedincidencias>Relate potlh'e'</relatedincidencias>
+        <actionliquidar>'ay' wiv settle</actionliquidar>
+        <msgliquidar>Wiv 'ay' settle daneh'a'?</msgliquidar>
+        <agendadata>Relate wani'</agendadata>
+        <actasdata>Relate tup</actasdata>
+        <contactdata>Customer contacts</contactdata>
+        <incidentopen>Pov potlh'e'</incidentopen>
+        <incidentclose>Soq potlh'e'</incidentclose>
+        <albaranes>Invoice</albaranes>
+        <facturaopen>Invoices wej bos</facturaopen>
+        <facturaclose>Invoices huj</facturaclose>
+        <gastosdata>Expenses ghah customer maqochpu'na' mahtah</gastosdata>
+        <documentdata>Customer documents</documentdata>
+        <productosproyecto>Jinmol products</productosproyecto>
+        <descproductos>Product description</descproductos>
+        <actionfacturar>Neb</actionfacturar>
+        <msgfacturar>Jinmol, 'ej invoice daneh?</msgfacturar>
+        <errorfacturar>Jas chonayta' invoice jinmol</errorfacturar>
+        <okfacturar>Successfully neb jinmol</okfacturar>
+        <addseguimientos>Ghoch</addseguimientos>
+        <addactas>Vang</addactas>
+        <addcontactos>Contact</addcontactos>
+        <addagenda>Wani'</addagenda>
+        <resumentareasproductos>Summary qu' products je</resumentareasproductos>
+        <presupuestosdata>Jinmol budgets</presupuestosdata>
+    </proyectos>
+    <partes>
+        <list>'ay' tetlh</list>
+        <create>Chu' 'ay'</create>
+        <formview>Detail 'ay'</formview>
+        <forminsert>Jenwi' 'ay' chu'</forminsert>
+        <formupdate>Modification 'ay'</formupdate>
+        <defaultdata>Ghom de'</defaultdata>
+        <horasfact>Rep checked</horasfact>
+        <preciohora>'ay' ghap rep</preciohora>
+        <liquidar>Settle</liquidar>
+        <dateliq>Date liq.</dateliq>
+        <msgliquidar>Wiv 'ay' settle daneh'a'?</msgliquidar>
+        <msgerror>Lopno' settle neh tetlh daneh'a' ghob'e' wiv soh</msgerror>
+        <fechainiliq>Settle date</fechainiliq>
+    </partes>
+    <prioridades>
+        <list>Priority tetlh</list>
+        <create>Priority chu'</create>
+        <formview>Priority detail</formview>
+        <forminsert>Jenwi' priority chu'</forminsert>
+        <formupdate>Priority choh</formupdate>
+        <defaultdata>Priority de'</defaultdata>
+    </prioridades>
+    <actas>
+        <list>Tup tetlh</list>
+        <create>Chu' tup</create>
+        <formview>Tup detail</formview>
+        <forminsert>Lut chu' registration</forminsert>
+        <formupdate>Tup amendment</formupdate>
+        <defaultdata>De' tup</defaultdata>
+        <dstart>Juh</dstart>
+        <dstop>Rin</dstop>
+        <asistentes>Boqwi'</asistentes>
+        <temas>Topic</temas>
+        <aceptados>Laj</aceptados>
+        <cancelados>Qil</cancelados>
+        <pendientes>Earring</pendientes>
+        <add>Tup chel</add>
+    </actas>
+    <seguimientos>
+        <list>Follow-ups tetlh</list>
+        <create>Follow-up chu'</create>
+        <formview>Detail follow-up</formview>
+        <forminsert>Jenwi' follow-up chu'</forminsert>
+        <formupdate>Follow-up choh</formupdate>
+        <defaultdata>De' ghoch</defaultdata>
+        <add>Tracking chel</add>
+    </seguimientos>
+    <posiblescli>
+        <list>Prospects tetlh</list>
+        <create>Potential chu' customer</create>
+        <formview>Detail customer wa'dich lubejpu'</formview>
+        <forminsert>Chu' customer potential registration</forminsert>
+        <formupdate>Potential customer modification</formupdate>
+        <defaultdata>Customer de'</defaultdata>
+        <crearcliente>Customer chenmoh</crearcliente>
+        <clientcreatedok>Chenmohta' customer chu' successfully</clientcreatedok>
+        <msgcrear>Damoj wa'dich lubejpu' customer vaj customer daneh?</msgcrear>
+        <agendadata>Wani' customer potential</agendadata>
+        <actasdata>'a qaspa' customer wa'dich lubejpu' sanmaj</actasdata>
+        <presupuestosdata>Wa'dich lubejpu' customer budgets</presupuestosdata>
+        <facturacion>Neb</facturacion>
+        <iaedesc>Description iae</iaedesc>
+        <iaecod>Cod. iae</iaecod>
+        <contacto>Pers. contact</contacto>
+        <changedenied>Wa'dich lubejpu' customer tup, schedule qoj quotes ghajbogh pagh yichu'ha' soh</changedenied>
+    </posiblescli>
+    <presupuestos>
+        <list>Budget tetlh</list>
+        <create>Budget chu'</create>
+        <formview>Budget detail</formview>
+        <forminsert>Jenwi' budget chu'</forminsert>
+        <formupdate>Budget choh</formupdate>
+        <defaultdata>Budget de'</defaultdata>
+        <tareaspresupuesto>Budget qu'</tareaspresupuesto>
+        <desctareas>Qu' description</desctareas>
+        <horastotal>Total rep</horastotal>
+        <preciomedio>Motlhbogh 'ay'</preciomedio>
+        <preciototal>Total 'ay'</preciototal>
+        <productospresupuesto>Budget products</productospresupuesto>
+        <descproductos>Product description</descproductos>
+        <objetivos>Budget objectives</objetivos>
+        <funcional>Functional proposal</funcional>
+        <tecnica>Technical proposal</tecnica>
+        <extras>Saturjaj de'</extras>
+        <condiciones>Budget je</condiciones>
+        <valoracion>Economic valuation</valoracion>
+        <crearproyecto>Jinmol chenmoh</crearproyecto>
+        <projectexists>Chonayta' related budget jinmol</projectexists>
+        <clientnotexists>Relate customer (vaj related customer wa'dich lubejpu', customer chenmoh chah wa'dich)</clientnotexists>
+        <projectcreatedok>Chenmoh jinmol chu' successfully</projectcreatedok>
+        <msgcrear>Budget jinmol chenmoh visuq vineh?</msgcrear>
+        <agendadata>Budget wani'</agendadata>
+        <actasdata>Budget tup</actasdata>
+        <resumentareasproductos>Summary qu' products je</resumentareasproductos>
+        <objetivospdf>Objective</objetivospdf>
+        <funcionalpdf>Functional</funcionalpdf>
+        <tecnicapdf>Technical</tecnicapdf>
+        <extraspdf>De'</extraspdf>
+        <condicionespdf>Je</condicionespdf>
+        <actionfacturar>Neb</actionfacturar>
+        <msgfacturar>Jinmol, 'ej invoice daneh?</msgfacturar>
+        <errorfacturar>Jas chonayta' invoice budget</errorfacturar>
+        <okfacturar>Successfully neb budget</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>Campaign tetlh</list>
+        <create>Campaign chu'</create>
+        <formview>Campaign detail</formview>
+        <forminsert>Campaign chu' registration</forminsert>
+        <formupdate>Campaign modification</formupdate>
+        <defaultdata>Campaign de'</defaultdata>
+        <agendadata>Campaign wani'</agendadata>
+        <presupuestosdata>Campaign budgets</presupuestosdata>
+        <projectopen>Pov jinmol</projectopen>
+        <projectclose>Soq jinmol</projectclose>
+        <clientesdata>Customers jon</clientesdata>
+        <posiblesclidata>Potential customers</posiblesclidata>
+    </campanyas>
+    <categorias>
+        <list>Categories tetlh</list>
+        <create>Category chu'</create>
+        <formview>Detail category</formview>
+        <forminsert>Category chu' registration</forminsert>
+        <formupdate>Modification category</formupdate>
+        <defaultdata>Category de'</defaultdata>
+    </categorias>
+</root>

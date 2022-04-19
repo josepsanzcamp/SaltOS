@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <!-- FOR DIRECTIONS MODULE -->
+    <paises eval="true">"SELECT id, nombre label
+        FROM tbl_paises
+        WHERE ".make_like_query("nombre",getParam("term"))."
+        ORDER BY nombre ASC
+        LIMIT 25"</paises>
+    <provincias eval="true">"SELECT id, nombre label
+        FROM tbl_provincias
+        WHERE id_pais=".intval(getParam("filter"))."
+            AND ".make_like_query("nombre",getParam("term"))."
+        ORDER BY nombre ASC
+        LIMIT 25"</provincias>
+    <poblaciones eval="true">"SELECT id, nombre label
+        FROM tbl_poblaciones
+        WHERE id_provincia=".intval(getParam("filter"))."
+            AND ".make_like_query("nombre",getParam("term"))."
+        ORDER BY nombre ASC
+        LIMIT 25"</poblaciones>
+    <codpostales eval="true">"SELECT id, nombre label
+        FROM tbl_codpostal
+        WHERE id_poblacion=".intval(getParam("filter"))."
+            AND ".make_like_query("nombre",getParam("term"))."
+        ORDER BY nombre ASC
+        LIMIT 25"</codpostales>
+    <!-- FOR GENERAL APPS -->
+    <cliente eval="true">"SELECT id,nombre,nombre1,nombre2,
+            id_tipo,cif,direccion,
+            id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,
+            nombre_provincia,nombre_poblacion,nombre_codpostal,
+            email,web,tel_fijo,tel_movil,fax
+        FROM (
+            SELECT a2.id id,a2.nombre nombre,a2.nombre1 nombre1,a2.nombre2 nombre2,
+                a2.id_tipo id_tipo,a2.cif cif,e.id_usuario id_usuario,d.id_grupo id_grupo,
+                direccion,id_pais,id_provincia,id_poblacion,id_codpostal,
+                nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
+                email,web,tel_fijo,tel_movil,fax
+            FROM tbl_clientes a2
+            LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a2.id AND e.first=1
+            LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+        ) a
+        WHERE a.id='".intval(getParam("id_cliente"))."'
+            AND ".check_sql("clientes","list")</cliente>
+    <tipocliente eval="true">"SELECT
+        '".LANG_ESCAPE(getParam("id_tipo")==1?"nombrecomercial":"nombre","clientes")."' nombre1,
+        '".LANG_ESCAPE(getParam("id_tipo")==1?"nombrefiscal":"apellidos","clientes")."' nombre2,
+        '".LANG_ESCAPE(getParam("id_tipo")==1?"cif":"nif","clientes")."' cif"</tipocliente>
+    <proveedores eval="true">"SELECT id,nombre
+        FROM (
+            SELECT a2.id id,a2.nombre nombre,a2.cif cif,a2.comentarios comentarios,e.id_usuario id_usuario,d.id_grupo id_grupo
+            FROM tbl_proveedores a2
+            LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proveedores")."' AND e.id_registro=a2.id AND e.first=1
+            LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+        ) a WHERE ".make_like_query("nombre,cif,comentarios",getParam("filtro"))."
+            AND ".check_sql("proveedores","list")."
+        ORDER BY nombre"</proveedores>
+    <productos eval="true">"SELECT id,CASE ref WHEN '' THEN nombre ELSE CONCAT(nombre,' (',ref,')') END label,precio,descuento
+        FROM (
+            SELECT a2.*,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_productos a2
+            LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("productos")."' AND e.id_registro=a2.id AND e.first=1
+            LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+        ) a
+        WHERE ".make_like_query("id,nombre,ref,descripcion,precio,descuento,peso,volumen,dimensiones,web",getParam("term"))."
+            AND ".check_sql("productos","list")."
+        ORDER BY nombre LIMIT 25"</productos>
+    <clientes eval="true">"SELECT id,CASE cif WHEN '' THEN nombre ELSE CONCAT(nombre,' (',cif,')') END label
+        FROM (
+            SELECT a2.*,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_clientes a2
+            LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a2.id AND e.first=1
+            LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+        ) a
+        WHERE ".make_like_query("id,nombre,nombre1,nombre2,cif,comentarios,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax",getParam("term"))."
+            AND ".check_sql("clientes","list")."
+        ORDER BY nombre LIMIT 25"</clientes>
+</root>

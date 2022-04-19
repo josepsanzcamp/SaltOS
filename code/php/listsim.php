@@ -31,10 +31,10 @@ function list_simulator($newpage, $ids = "concat")
     global $action;
     global $_LANG;
     // LOAD THE APPLICATION FILE
-    if (!file_exists("xml/$newpage.xml")) {
+    if (!file_exists(detect_app_file("xml/$newpage.xml"))) {
         return null;
     }
-    $config = xml2array("xml/$newpage.xml");
+    $config = xml2array(detect_app_file("xml/$newpage.xml"));
     if (!isset($config["list"])) {
         return null;
     }

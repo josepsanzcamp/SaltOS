@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <estados>государств</estados>
+        <agenda>повестка дня и мероприятия</agenda>
+        <correo>отправить по электронной почте</correo>
+        <tiposevento>виды мероприятий</tiposevento>
+        <textos>предопределенные тексты</textos>
+        <feeds>Устройство чтения RSS-каналов</feeds>
+        <favoritos>избранное</favoritos>
+        <gestiontipos>типы</gestiontipos>
+        <desc_agenda>запишите все визиты и встречи в повестку дня</desc_agenda>
+        <desc_estados>определите возможные статусы инцидента, проекта и т.д.</desc_estados>
+        <desc_correo>читайте и отправляйте электронные письма отсюда своим клиентам и поставщикам</desc_correo>
+        <desc_tiposevento>определение необходимых типов событий</desc_tiposevento>
+        <desc_textos>создание предопределенных текстов для использования в других приложениях</desc_textos>
+        <desc_feeds>Следите за своими RSS- и Atom-каналами из этого приложения</desc_feeds>
+        <desc_favoritos>управляйте избранным здесь</desc_favoritos>
+        <quick_correo>почта</quick_correo>
+        <quick_agenda>повестка дня</quick_agenda>
+        <quick_estados>государств</quick_estados>
+        <quick_tiposevento>т.события</quick_tiposevento>
+        <quick_textos>тексты</quick_textos>
+        <quick_feeds>ЛЕНТА НОВОСТЕЙ</quick_feeds>
+        <quick_favoritos>избранное</quick_favoritos>
+    </menu>
+    <estados>
+        <list>список государств</list>
+        <create>новое состояние</create>
+        <formview>сведения о статусе</formview>
+        <forminsert>регистрация в новом государстве</forminsert>
+        <formupdate>изменение состояния</formupdate>
+        <defaultdata>данные о состоянии</defaultdata>
+        <activo>активный</activo>
+    </estados>
+    <agenda>
+        <list>список событий</list>
+        <create>новое событие</create>
+        <formview>подробное описание мероприятия</formview>
+        <forminsert>регистрация нового мероприятия</forminsert>
+        <formupdate>изменение события</formupdate>
+        <defaultdata>подробности мероприятия</defaultdata>
+        <otrasfechas>другие даты</otrasfechas>
+        <todoseventos>[Все события]</todoseventos>
+        <todoayer>вчерашние события</todoayer>
+        <todohoy>сегодняшние события</todohoy>
+        <todomanana>события завтрашнего дня</todomanana>
+        <todosemana>события недели</todosemana>
+        <todomes>события месяца</todomes>
+        <todoano>события года</todoano>
+        <usersdata>назначенные пользователи</usersdata>
+        <asignadoa>назначено</asignadoa>
+        <notifydelay>извещать</notifydelay>
+        <notifysign>час/с</notifysign>
+        <notifydstart>получено уведомление о возбуждении</notifydstart>
+        <notifydstop>получено окончательное уведомление</notifydstop>
+        <notifyantes>перед</notifyantes>
+        <notifydespues>после</notifydespues>
+        <notifyprev>предварительное уведомление о событии</notifyprev>
+        <notifypost>уведомление о событии завершено</notifypost>
+        <notifyclear>уведомления</notifyclear>
+        <notifytip>очистка уведомлений</notifytip>
+        <notifyclearok>перезапущенные события:</notifyclearok>
+        <notifyclearko>не найдено ожидающих событий для перезапуска</notifyclearko>
+        <calendar>календарь событий</calendar>
+        <prevmonth>предыдущий месяц</prevmonth>
+        <currentmonth>текущий месяц</currentmonth>
+        <nextmonth>в следующем месяце</nextmonth>
+        <today>сегодня</today>
+        <yesterday>вчера</yesterday>
+        <tomorrow>завтра</tomorrow>
+        <continue>продолжение...</continue>
+        <by>около</by>
+        <calendarinfo>отображение информации на сегодняшний день:</calendarinfo>
+        <add>добавить событие</add>
+        <gcalendar>Календарь Google</gcalendar>
+        <gcalendartip>Синхронизация событий между SaltOS и Календарем Google</gcalendartip>
+        <notgcalendaremail>Вы не настроили аккаунт Google Календаря в настройках</notgcalendaremail>
+        <invalidgcalendartoken>Неверные данные для входа в аккаунт Google Календаря</invalidgcalendartoken>
+        <requestgcalendartoken>нажмите здесь, чтобы получить маркер доступа</requestgcalendartoken>
+        <insertgcalendar>События SaltOS, созданные в Календаре Google:</insertgcalendar>
+        <updategcalendar>Обновлены события SaltOS в Календаре Google:</updategcalendar>
+        <insertsaltos>События Календаря Google, созданные в SaltOS:</insertsaltos>
+        <updatesaltos>Обновлены события Календаря Google в SaltOS:</updatesaltos>
+        <notinsertupdate>нет событий для обновления</notinsertupdate>
+        <expand>расширять</expand>
+        <expandtip>развернуть, чтобы отобразить сведения обо всех событиях календаря</expandtip>
+        <collapse>контракт</collapse>
+        <collapsetip>свернуть, чтобы скрыть сведения обо всех событиях календаря</collapsetip>
+        <loadingsmall>погрузка...</loadingsmall>
+    </agenda>
+    <correo>
+        <list>список рассылки</list>
+        <create>отправить новую почту</create>
+        <formview>сведения об электронной почте</formview>
+        <forminsert>отправить новое сообщение электронной почты</forminsert>
+        <formupdate>пересылка сообщения электронной почты</formupdate>
+        <defaultdata>почтовые реквизиты</defaultdata>
+        <from>из</from>
+        <to>для</to>
+        <cc>КУБОВЫЙ</cc>
+        <bcc>БЦК</bcc>
+        <subject>дело</subject>
+        <attachments>вложения</attachments>
+        <message>сообщение</message>
+        <recibir>получать</recibir>
+        <recibirtip>нажмите здесь, чтобы получать новые электронные письма</recibirtip>
+        <enviar>отправить</enviar>
+        <enviartip>нажмите здесь, чтобы отправлять электронные письма из папки «исходящие»</enviartip>
+        <msgnotpop3email>учетная запись электронной почты не настроена и не активирована</msgnotpop3email>
+        <msgnotpop3host>POP3-сервер не настроен</msgnotpop3host>
+        <msgerrorpop3email>произошла следующая ошибка:</msgerrorpop3email>
+        <msgnewokpop3email1>новая почта, полученная в папке "входящие"</msgnewokpop3email1>
+        <msgnewokpop3email2>новые письма, полученные в папке "входящие"</msgnewokpop3email2>
+        <msggotoemail>перейти к почте</msggotoemail>
+        <msgnewkopop3email>нет новых писем</msgnewkopop3email>
+        <msgconnrefusedpop3email>соединение отклонено сервером</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>не удается подключиться к серверу</msgconnerrorpop3email>
+        <msgopenerrorpop3email>файл, содержащий сообщение, не найден</msgopenerrorpop3email>
+        <msgpropietario>только владелец электронных писем может использовать эти функции</msgpropietario>
+        <msgnotfound>выбранные письма не найдены, измените фильтр</msgnotfound>
+        <msgnumsileidos>они были помечены следующим образом:</msgnumsileidos>
+        <msgnumsiwait>следующие вопросы были помечены как находящиеся на рассмотрении:</msgnumsiwait>
+        <msgnumsispam>Они были помечены как СПАМ:</msgnumsispam>
+        <msgnumnoleidos>они были помечены как непрочитанные:</msgnumnoleidos>
+        <msgnumnowait>следующие вопросы были помечены как нерассмотренные:</msgnumnowait>
+        <msgnumnospam>Они были помечены как не спам:</msgnumnospam>
+        <msgnumdelete>были исключены следующие положения:</msgnumdelete>
+        <statenew>новые функции</statenew>
+        <actionnew>новые функции</actionnew>
+        <stateread>читать</stateread>
+        <statereply>ответил</statereply>
+        <stateforward>пересылаются</stateforward>
+        <statewait>серьга</statewait>
+        <statespam>СПАМ</statespam>
+        <statesent>посланник</statesent>
+        <statenotsent>не отправлено</statenotsent>
+        <stateerror>ошибка</stateerror>
+        <stateall>все</stateall>
+        <todaslascuentas>[Все счета]</todaslascuentas>
+        <buttonsend>отправить</buttonsend>
+        <buttonsendreturnhere>отправить и вернуть здесь</buttonsendreturnhere>
+        <onlynew>только для новых</onlynew>
+        <onlywait>только в ожидании</onlywait>
+        <hidespam>Скрыть СПАМ</hidespam>
+        <withfiles>с вложениями</withfiles>
+        <onlyspam>Только спам</onlyspam>
+        <withoutfiles>нет вложений</withoutfiles>
+        <actionwait>серьга</actionwait>
+        <actionspam>СПАМ</actionspam>
+        <actionreply>отвечать</actionreply>
+        <actionreplyall>респ. всем</actionreplyall>
+        <actionforward>вперёд</actionforward>
+        <messageid>идентификатор сообщения</messageid>
+        <fulldata>масштабирование почты</fulldata>
+        <sourcedata>источник электронной почты</sourcedata>
+        <leidos>читать</leidos>
+        <wait>серьга</wait>
+        <spam>СПАМ</spam>
+        <borrar>стереть</borrar>
+        <borrartip>удаление всех выбранных писем</borrartip>
+        <msgleidos>вы хотите пометить все выбранные письма как прочитанные/непрочитанные?</msgleidos>
+        <msgwait>вы хотите пометить все выбранные письма как ожидающие/не ожидающие?</msgwait>
+        <msgspam>Вы хотите пометить все выбранные письма как СПАМ/не СПАМ?</msgspam>
+        <msgdelete2>вы хотите удалить все выбранные письма?</msgdelete2>
+        <msgnotsendfound>нет сообщений для отправки</msgnotsendfound>
+        <msgerrorsendmail>произошла следующая ошибка:</msgerrorsendmail>
+        <msgtotalsendmail1>почта, отправленная из папки «исходящие»</msgtotalsendmail1>
+        <msgtotalsendmail2>электронные письма, отправленные из папки «исходящие»</msgtotalsendmail2>
+        <stateinbox>вход</stateinbox>
+        <stateoutbox>выход</stateoutbox>
+        <onlyinbox>только стартеры</onlyinbox>
+        <onlyoutbox>только исходящие</onlyoutbox>
+        <options>параметры</options>
+        <optionstip>показать больше вариантов листинга</optionstip>
+        <pdfoptions>Параметры PDF</pdfoptions>
+        <sinsubject>(без предмета)</sinsubject>
+        <msgfromkosendmail>Конфигурация для От: Требуется</msgfromkosendmail>
+        <msgsendoksendmail>письмо успешно отправлено</msgsendoksendmail>
+        <replysubject>D:</replysubject>
+        <replyallsubject>D:</replyallsubject>
+        <forwardsubject>Fwd:</forwardsubject>
+        <embeddedmessage>#datetime#, #fromname# написал:</embeddedmessage>
+        <actionreplytip>ответ отправителю этого сообщения</actionreplytip>
+        <actionreplyalltip>чтобы ответить всем пользователям этого сообщения</actionreplyalltip>
+        <actionforwardtip>пересылка этого сообщения другим пользователям</actionforwardtip>
+        <noleidos>не читается</noleidos>
+        <nowait>не находится на рассмотрении</nowait>
+        <nospam>Нет СПАМА</nospam>
+        <today>сегодня</today>
+        <yesterday>вчера</yesterday>
+        <week>неделя</week>
+        <month>месяц</month>
+        <confirmreadingto>запросить подтверждение получения</confirmreadingto>
+        <marcarcorreos>пометить как</marcarcorreos>
+        <message0>сообщения</message0>
+        <message1>сообщение</message1>
+        <message2>сообщения</message2>
+        <campos>поля</campos>
+        <allcampos>[Все поля]</allcampos>
+        <onlyemail>только по направлениям</onlyemail>
+        <onlysubject>только в вопросе</onlysubject>
+        <onlybody>только в сообщении</onlybody>
+        <filtrarcorreos>фильтровать по</filtrarcorreos>
+        <priority>приоритет</priority>
+        <priorityhigh>громкий</priorityhigh>
+        <prioritynormal>нормальный</prioritynormal>
+        <prioritylow>несчастный случай</prioritylow>
+        <sensitivity>чувствительность</sensitivity>
+        <sensitivitynormal>нормальный</sensitivitynormal>
+        <sensitivitypersonal>персонал</sensitivitypersonal>
+        <sensitivityprivate>частный</sensitivityprivate>
+        <sensitivityconfidential>конфиденциальный</sensitivityconfidential>
+        <addincidencia>создание адвокации</addincidencia>
+        <addincidenciatip>создайте проблему из этого сообщения электронной почты</addincidenciatip>
+        <addincidenciamsg>вы хотите создать проблему из этого письма?</addincidenciamsg>
+        <addincidenciaok>проблема была создана с кодом:</addincidenciaok>
+        <notsupportdefined>учетная запись электронной почты службы поддержки не определена</notsupportdefined>
+        <notsupportfound>это сообщение электронной почты не содержит учетной записи электронной почты службы поддержки</notsupportfound>
+        <incidenciaexists>эта проблема уже существует и имеет код:</incidenciaexists>
+        <interrorsendmail>это письмо не было отправлено из-за внутренней ошибки</interrorsendmail>
+    </correo>
+    <tiposevento>
+        <list>список типов событий</list>
+        <create>новый тип события</create>
+        <formview>подробная информация о типе мероприятия</formview>
+        <forminsert>регистрация нового типа мероприятия</forminsert>
+        <formupdate>изменение типа события</formupdate>
+        <defaultdata>данные о типе события</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>список предопределенных текстов</list>
+        <publico>общественный</publico>
+        <publico_desc>каждый может использовать этот предопределенный текст</publico_desc>
+        <create>новый предопределенный текст</create>
+        <formview>предопределенные сведения о тексте</formview>
+        <forminsert>регистрация нового предопределенного текста</forminsert>
+        <formupdate>изменение предопределенного текста</formupdate>
+        <defaultdata>предопределенные текстовые данные</defaultdata>
+        <sinaplicacion>[Нет приложения]</sinaplicacion>
+    </textos>
+    <feeds>
+        <list>Список RSS-каналов</list>
+        <msgnewfeedsok1>новый пост загружен</msgnewfeedsok1>
+        <msgnewfeedsok2>новые загруженные сообщения</msgnewfeedsok2>
+        <msgnewfeedsko>новые сообщения не найдены</msgnewfeedsko>
+        <msgmodifiedfeedsok1>обновленный пост</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2>обновленные посты</msgmodifiedfeedsok2>
+        <msgnotfeeds>RSS-канал не настроен и не активирован</msgnotfeeds>
+        <feed>RSS-канал</feed>
+        <title>титул</title>
+        <pubdate>дата паба.</pubdate>
+        <recibir>получать</recibir>
+        <recibirtip>нажмите здесь, чтобы получать новые сообщения</recibirtip>
+        <todoslosfeeds>[Все RSS-каналы]</todoslosfeeds>
+        <defaultdata>подробности поста</defaultdata>
+        <fulldata>масштабирование поста</fulldata>
+        <actionwait>серьга</actionwait>
+        <statenew>новые функции</statenew>
+        <actionnew>новые функции</actionnew>
+        <statemodified>модифицированный</statemodified>
+        <statewait>серьга</statewait>
+        <stateread>читать</stateread>
+        <actionforward>вперёд</actionforward>
+        <actionforwardtip>переслать это сообщение по электронной почте</actionforwardtip>
+        <formview>подробности поста</formview>
+        <msggotofeeds>перейти к RSS-каналам</msggotofeeds>
+        <onlynew>только для новых</onlynew>
+        <onlywait>только в ожидании</onlywait>
+        <options>параметры</options>
+        <optionstip>показать больше вариантов листинга</optionstip>
+        <pdfoptions>Параметры PDF</pdfoptions>
+        <stateall>все</stateall>
+        <today>сегодня</today>
+        <yesterday>вчера</yesterday>
+        <week>неделя</week>
+        <month>месяц</month>
+        <marcarfeeds>пометить как</marcarfeeds>
+        <leidos>читать</leidos>
+        <wait>серьга</wait>
+        <borrar>стереть</borrar>
+        <borrartip>удаление всех выбранных записей</borrartip>
+        <noleidos>не читается</noleidos>
+        <nowait>не находится на рассмотрении</nowait>
+        <msgleidos>вы хотите пометить все выбранные сообщения как прочитанные/непрочитанные?</msgleidos>
+        <msgwait>вы хотите пометить все выбранные сообщения как ожидающие/не ожидающие рассмотрения?</msgwait>
+        <msgdelete2>вы хотите удалить все выбранные сообщения?</msgdelete2>
+        <msgpropietario>только владелец постов может использовать эти функции</msgpropietario>
+        <msgnotfound>выбранные записи не найдены, измените фильтр</msgnotfound>
+        <msgnumsileidos>они были помечены следующим образом:</msgnumsileidos>
+        <msgnumsiwait>следующие вопросы были помечены как находящиеся на рассмотрении:</msgnumsiwait>
+        <msgnumnoleidos>они были помечены как непрочитанные:</msgnumnoleidos>
+        <msgnumnowait>следующие вопросы были помечены как нерассмотренные:</msgnumnowait>
+        <msgnumdelete>были исключены следующие положения:</msgnumdelete>
+        <message0>сообщения</message0>
+        <message1>поместить</message1>
+        <message2>сообщения</message2>
+        <msgerrorfeed>произошла ошибка со следующим каналом:</msgerrorfeed>
+        <sintitle>(без названия)</sintitle>
+        <post>Публикация RSS</post>
+        <filtrarfeeds>фильтровать по</filtrarfeeds>
+        <actioncool>интересный</actioncool>
+        <statecool>интересный</statecool>
+        <onlycool>только интересное</onlycool>
+        <cool>интересный</cool>
+        <nocool>не интересно</nocool>
+        <msgcool>вы хотите отметить все выбранные посты как интересные/неинтересные?</msgcool>
+        <msgnumsicool>они были отмечены как интересные:</msgnumsicool>
+        <msgnumnocool>они были отмечены как неинтересные:</msgnumnocool>
+        <actionfavoritos>добавить в избранное</actionfavoritos>
+    </feeds>
+    <favoritos>
+        <list>список избранного</list>
+        <create>новое избранное</create>
+        <url>URL-АДРЕС</url>
+        <bookmarkexists>Url-адрес, который вы пытаетесь сохранить, уже существует как избранный.</bookmarkexists>
+        <invalidurl>Url недопустим, проверьте веб-адрес:</invalidurl>
+        <bookmarkadded>Url-адрес успешно добавлен в избранное</bookmarkadded>
+        <previews>превью</previews>
+    </favoritos>
+</root>

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <estados>Stater</estados>
+        <agenda>Agenda og arrangementer</agenda>
+        <correo>Elektronisk post</correo>
+        <tiposevento>Typer hendelser</tiposevento>
+        <textos>Forhåndsdefinerte tekster</textos>
+        <feeds>RSS-feedleser</feeds>
+        <favoritos>Favoritt</favoritos>
+        <gestiontipos>Typen</gestiontipos>
+        <desc_agenda>Sett på dagsorden alle besøk og møter</desc_agenda>
+        <desc_estados>Definer mulige tilstander for en hendelse, et prosjekt osv. ...</desc_estados>
+        <desc_correo>Les og send e-postmeldinger herfra til dine kunder og leverandører</desc_correo>
+        <desc_tiposevento>Definer hvilke typer hendelser du trenger</desc_tiposevento>
+        <desc_textos>Lag forhåndsdefinerte tekster for bruk i andre applikasjoner</desc_textos>
+        <desc_feeds>Følg RSS- og Atom-feeds fra dette programmet</desc_feeds>
+        <desc_favoritos>Administrer favorittene dine herfra</desc_favoritos>
+        <quick_correo>Post</quick_correo>
+        <quick_agenda>Dagbok</quick_agenda>
+        <quick_estados>Stater</quick_estados>
+        <quick_tiposevento>T. hendelser</quick_tiposevento>
+        <quick_textos>Tekster</quick_textos>
+        <quick_feeds>RSS</quick_feeds>
+        <quick_favoritos>Favoritt</quick_favoritos>
+    </menu>
+    <estados>
+        <list>Liste over stater</list>
+        <create>Ny stat</create>
+        <formview>Oppgi detalj</formview>
+        <forminsert>Registrering av en ny stat</forminsert>
+        <formupdate>Statusendring</formupdate>
+        <defaultdata>Oppgi data</defaultdata>
+        <activo>Aktiv</activo>
+    </estados>
+    <agenda>
+        <list>Liste over hendelser</list>
+        <create>Ny hendelse</create>
+        <formview>Arrangementsdetalj</formview>
+        <forminsert>Påmelding av et nytt arrangement</forminsert>
+        <formupdate>Endring av hendelser</formupdate>
+        <defaultdata>Hendelsesdata</defaultdata>
+        <otrasfechas>Andre datoer</otrasfechas>
+        <todoseventos>[Alle arrangementer]</todoseventos>
+        <todoayer>Gårsdagens hendelser</todoayer>
+        <todohoy>Dagens hendelser</todohoy>
+        <todomanana>Morgendagens hendelser</todomanana>
+        <todosemana>Ukens hendelser</todosemana>
+        <todomes>Månedens hendelser</todomes>
+        <todoano>årets begivenheter</todoano>
+        <usersdata>Tildelte brukere</usersdata>
+        <asignadoa>Tildelt til</asignadoa>
+        <notifydelay>Varsle</notifydelay>
+        <notifysign>time / s</notifysign>
+        <notifydstart>Startvarsel mottatt</notifydstart>
+        <notifydstop>Endelig varsel mottatt</notifydstop>
+        <notifyantes>Før</notifyantes>
+        <notifydespues>Deretter</notifydespues>
+        <notifyprev>Varsling før hendelse</notifyprev>
+        <notifypost>Varsel om hendelse fullført</notifypost>
+        <notifyclear>Varsler</notifyclear>
+        <notifytip>Fjern varsler</notifytip>
+        <notifyclearok>Restartede hendelser:</notifyclearok>
+        <notifyclearko>Ingen ventende hendelser å starte på nytt</notifyclearko>
+        <calendar>Arrangementskalender</calendar>
+        <prevmonth>Forrige måned</prevmonth>
+        <currentmonth>Inneværende måned</currentmonth>
+        <nextmonth>Neste måned</nextmonth>
+        <today>I dag</today>
+        <yesterday>I går</yesterday>
+        <tomorrow>I morgen</tomorrow>
+        <continue>Fortsett ...</continue>
+        <by>av</by>
+        <calendarinfo>Viser informasjon til dags dato:</calendarinfo>
+        <add>Legg til arrangement</add>
+        <gcalendar>Google Kalender</gcalendar>
+        <gcalendartip>Synkroniser hendelser mellom SaltOS og Google Kalender</gcalendartip>
+        <notgcalendaremail>Du har ikke konfigurert Google Kalender-kontoen i innstillinger</notgcalendaremail>
+        <invalidgcalendartoken>Tilgangsdataene til Google Kalender-kontoen din er feil</invalidgcalendartoken>
+        <requestgcalendartoken>Klikk her for å få et tilgangstoken</requestgcalendartoken>
+        <insertgcalendar>SaltOS-hendelser opprettet i Google Kalender:</insertgcalendar>
+        <updategcalendar>SaltOS-hendelser oppdatert på Google Kalender:</updategcalendar>
+        <insertsaltos>Google Kalender-hendelser opprettet i SaltOS:</insertsaltos>
+        <updatesaltos>Oppdaterte Google Kalender-hendelser i SaltOS:</updatesaltos>
+        <notinsertupdate>Det er ingen hendelser å oppdatere</notinsertupdate>
+        <expand>Utvide</expand>
+        <expandtip>Utvid for å vise detaljer om alle kalenderhendelser</expandtip>
+        <collapse>Kontrakt</collapse>
+        <collapsetip>Skjul for å skjule detaljene for alle kalenderhendelser</collapsetip>
+        <loadingsmall>Laster inn ...</loadingsmall>
+    </agenda>
+    <correo>
+        <list>Postliste</list>
+        <create>Send ny mail</create>
+        <formview>E-postdetalj</formview>
+        <forminsert>Send en ny e-post</forminsert>
+        <formupdate>Videresend en mail</formupdate>
+        <defaultdata>Mail data</defaultdata>
+        <from>Av</from>
+        <to>Til</to>
+        <cc>CC</cc>
+        <bcc>BCC</bcc>
+        <subject>Virksomhet</subject>
+        <attachments>Vedlegg</attachments>
+        <message>Beskjed</message>
+        <recibir>Motta</recibir>
+        <recibirtip>Klikk her for å motta nye e-postmeldinger</recibirtip>
+        <enviar>Send</enviar>
+        <enviartip>Klikk her for å sende e-post fra utboksen</enviartip>
+        <msgnotpop3email>Det er ingen e-postkonto konfigurert eller aktivert</msgnotpop3email>
+        <msgnotpop3host>POP3-serveren er ikke konfigurert</msgnotpop3host>
+        <msgerrorpop3email>Følgende feil har oppstått:</msgerrorpop3email>
+        <msgnewokpop3email1>Ny post mottatt i innboksen</msgnewokpop3email1>
+        <msgnewokpop3email2>Nye e-postmeldinger mottatt i innboksen</msgnewokpop3email2>
+        <msggotoemail>gå til posten</msggotoemail>
+        <msgnewkopop3email>Det er ingen nye e-poster</msgnewkopop3email>
+        <msgconnrefusedpop3email>Tilkobling nektet av serveren</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>Kan ikke koble til serveren</msgconnerrorpop3email>
+        <msgopenerrorpop3email>Filen som inneholder meldingen ble ikke funnet</msgopenerrorpop3email>
+        <msgpropietario>Bare eieren av e-postene kan bruke disse funksjonene</msgpropietario>
+        <msgnotfound>Ingen valgte e-poster funnet. endre filter</msgnotfound>
+        <msgnumsileidos>De er merket som lest:</msgnumsileidos>
+        <msgnumsiwait>De er merket som verserende:</msgnumsiwait>
+        <msgnumsispam>De er merket som spam:</msgnumsispam>
+        <msgnumnoleidos>De er merket som ulest:</msgnumnoleidos>
+        <msgnumnowait>De er merket som ikke avventende:</msgnumnowait>
+        <msgnumnospam>De er merket som ikke-spam:</msgnumnospam>
+        <msgnumdelete>Følgende er slettet:</msgnumdelete>
+        <statenew>Ny</statenew>
+        <actionnew>Ny</actionnew>
+        <stateread>Lese</stateread>
+        <statereply>Svarte</statereply>
+        <stateforward>Videre</stateforward>
+        <statewait>Påvente</statewait>
+        <statespam>SPAM</statespam>
+        <statesent>Utsending</statesent>
+        <statenotsent>Ikke sendt</statenotsent>
+        <stateerror>Feil</stateerror>
+        <stateall>Alt</stateall>
+        <todaslascuentas>[Alle kontoer]</todaslascuentas>
+        <buttonsend>Send</buttonsend>
+        <buttonsendreturnhere>Send og returner hit</buttonsendreturnhere>
+        <onlynew>Bare ny</onlynew>
+        <onlywait>Bare i påvente</onlywait>
+        <hidespam>Skjul spam</hidespam>
+        <withfiles>Med vedlegg</withfiles>
+        <onlyspam>Bare spam</onlyspam>
+        <withoutfiles>Ingen vedlegg</withoutfiles>
+        <actionwait>Påvente</actionwait>
+        <actionspam>SPAM</actionspam>
+        <actionreply>Svaret</actionreply>
+        <actionreplyall>Svar alle</actionreplyall>
+        <actionforward>Frem</actionforward>
+        <messageid>Id-melding</messageid>
+        <fulldata>Mail zoom</fulldata>
+        <sourcedata>Postkilde</sourcedata>
+        <leidos>Lese</leidos>
+        <wait>Påvente</wait>
+        <spam>SPAM</spam>
+        <borrar>Slette</borrar>
+        <borrartip>Slett alle valgte e-postmeldinger</borrartip>
+        <msgleidos>Vil du merke alle valgte e-postmeldinger som lest / ulest?</msgleidos>
+        <msgwait>Vil du merke alle valgte e-postmeldinger som avventende / ikke ventende?</msgwait>
+        <msgspam>Vil du merke alle valgte e-postmeldinger som spam / ikke-spam?</msgspam>
+        <msgdelete2>Vil du slette alle valgte e-postmeldinger?</msgdelete2>
+        <msgnotsendfound>Det er ingen ventende meldinger du kan sende</msgnotsendfound>
+        <msgerrorsendmail>Følgende feil har oppstått:</msgerrorsendmail>
+        <msgtotalsendmail1>E-post sendt fra utboksen</msgtotalsendmail1>
+        <msgtotalsendmail2>E-postmeldinger sendt fra utboksen</msgtotalsendmail2>
+        <stateinbox>Oppføring</stateinbox>
+        <stateoutbox>Utgang</stateoutbox>
+        <onlyinbox>Forretter</onlyinbox>
+        <onlyoutbox>Bare utgående</onlyoutbox>
+        <options>Opsjoner</options>
+        <optionstip>Vis flere oppføringsalternativer</optionstip>
+        <pdfoptions>PDF-alternativer</pdfoptions>
+        <sinsubject>(ingen emne)</sinsubject>
+        <msgfromkosendmail>Konfigurasjon for påkrevd Fra: ikke funnet</msgfromkosendmail>
+        <msgsendoksendmail>E-post har blitt sendt</msgsendoksendmail>
+        <replysubject>Re:</replysubject>
+        <replyallsubject>Re:</replyallsubject>
+        <forwardsubject>Fwd:</forwardsubject>
+        <embeddedmessage># datetime #, # fromname # skrev:</embeddedmessage>
+        <actionreplytip>For å svare avsenderen av denne meldingen</actionreplytip>
+        <actionreplyalltip>For å svare på alle brukerne av denne meldingen</actionreplyalltip>
+        <actionforwardtip>For å videresende denne e-posten til andre brukere</actionforwardtip>
+        <noleidos>Ulest</noleidos>
+        <nowait>Ikke i påvente</nowait>
+        <nospam>Ingen spam</nospam>
+        <today>I dag</today>
+        <yesterday>I går</yesterday>
+        <week>Uke</week>
+        <month>Måned</month>
+        <confirmreadingto>Be om bekreftelse på kvittering</confirmreadingto>
+        <marcarcorreos>Merk som</marcarcorreos>
+        <message0>Innlegg</message0>
+        <message1>Beskjed</message1>
+        <message2>Innlegg</message2>
+        <campos>Campos</campos>
+        <allcampos>[Alle felt]</allcampos>
+        <onlyemail>Bare i retninger</onlyemail>
+        <onlysubject>Bare i saken</onlysubject>
+        <onlybody>Bare i meldingen</onlybody>
+        <filtrarcorreos>Filtrer etter</filtrarcorreos>
+        <priority>Prioritet</priority>
+        <priorityhigh>Høy</priorityhigh>
+        <prioritynormal>Normal</prioritynormal>
+        <prioritylow>Slipp</prioritylow>
+        <sensitivity>Følsomhet</sensitivity>
+        <sensitivitynormal>Normal</sensitivitynormal>
+        <sensitivitypersonal>Ansatte</sensitivitypersonal>
+        <sensitivityprivate>Privat</sensitivityprivate>
+        <sensitivityconfidential>Konfidensiell</sensitivityconfidential>
+        <addincidencia>Skap forekomst</addincidencia>
+        <addincidenciatip>Opprett en hendelse fra denne e-postmeldingen</addincidenciatip>
+        <addincidenciamsg>Vil du lage en hendelse fra denne e-postmeldingen?</addincidenciamsg>
+        <addincidenciaok>Hendelsen er opprettet med koden:</addincidenciaok>
+        <notsupportdefined>Support e-postkonto ikke definert</notsupportdefined>
+        <notsupportfound>Denne e-postadressen inneholder ikke support-e-postkontoen</notsupportfound>
+        <incidenciaexists>Denne hendelsen eksisterer allerede og har koden:</incidenciaexists>
+        <interrorsendmail>Denne e-posten ble ikke sendt på grunn av en intern feil</interrorsendmail>
+    </correo>
+    <tiposevento>
+        <list>Liste over arrangementstyper</list>
+        <create>Ny type arrangement</create>
+        <formview>Detalj av hendelsestype</formview>
+        <forminsert>Påmelding av en ny type arrangement</forminsert>
+        <formupdate>Endre arrangementstypen</formupdate>
+        <defaultdata>Data om hendelsestype</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>Liste over forhåndsdefinerte tekster</list>
+        <publico>Offentlig</publico>
+        <publico_desc>Alle kan bruke denne forhåndsdefinerte teksten</publico_desc>
+        <create>Ny forhåndsdefinert tekst</create>
+        <formview>Forhåndsdefinert tekstdetalj</formview>
+        <forminsert>Legger til en ny forhåndsdefinert tekst</forminsert>
+        <formupdate>Endre den forhåndsdefinerte teksten</formupdate>
+        <defaultdata>Forhåndsdefinerte tekstdata</defaultdata>
+        <sinaplicacion>[Uten søknad]</sinaplicacion>
+    </textos>
+    <feeds>
+        <list>Liste over RSS-feeds</list>
+        <msgnewfeedsok1>Nytt innlegg lastet ned</msgnewfeedsok1>
+        <msgnewfeedsok2>Nye nedlastede innlegg</msgnewfeedsok2>
+        <msgnewfeedsko>Ingen nye innlegg funnet</msgnewfeedsko>
+        <msgmodifiedfeedsok1>Oppdatert innlegg</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2>Oppdaterte innlegg</msgmodifiedfeedsok2>
+        <msgnotfeeds>Det er ingen RSS-feed konfigurert eller aktivert</msgnotfeeds>
+        <feed>RSS-feed</feed>
+        <title>Tittel</title>
+        <pubdate>Pub date</pubdate>
+        <recibir>Motta</recibir>
+        <recibirtip>Klikk her for å motta nye innlegg</recibirtip>
+        <todoslosfeeds>[Alle RSS-feeder]</todoslosfeeds>
+        <defaultdata>Innleggdetalj</defaultdata>
+        <fulldata>Post zoom</fulldata>
+        <actionwait>Påvente</actionwait>
+        <statenew>Ny</statenew>
+        <actionnew>Ny</actionnew>
+        <statemodified>Modifisert</statemodified>
+        <statewait>Påvente</statewait>
+        <stateread>Lese</stateread>
+        <actionforward>Frem</actionforward>
+        <actionforwardtip>For å videresende dette innlegget på e-post</actionforwardtip>
+        <formview>Innleggdetalj</formview>
+        <msggotofeeds>gå til RSS-feeds</msggotofeeds>
+        <onlynew>Bare ny</onlynew>
+        <onlywait>Bare i påvente</onlywait>
+        <options>Opsjoner</options>
+        <optionstip>Vis flere oppføringsalternativer</optionstip>
+        <pdfoptions>PDF-alternativer</pdfoptions>
+        <stateall>Alt</stateall>
+        <today>I dag</today>
+        <yesterday>I går</yesterday>
+        <week>Uke</week>
+        <month>Måned</month>
+        <marcarfeeds>Merk som</marcarfeeds>
+        <leidos>Lese</leidos>
+        <wait>Påvente</wait>
+        <borrar>Slette</borrar>
+        <borrartip>Slett alle valgte innlegg</borrartip>
+        <noleidos>Ulest</noleidos>
+        <nowait>Ikke i påvente</nowait>
+        <msgleidos>Vil du merke alle valgte innlegg som lest / ulest?</msgleidos>
+        <msgwait>Vil du merke alle valgte innlegg som ventende / ikke i påvente?</msgwait>
+        <msgdelete2>Vil du slette alle valgte innlegg?</msgdelete2>
+        <msgpropietario>Bare eier av innleggene kan bruke disse funksjonene</msgpropietario>
+        <msgnotfound>Ingen valgte innlegg funnet. endre filteret</msgnotfound>
+        <msgnumsileidos>De er merket som lest:</msgnumsileidos>
+        <msgnumsiwait>De er merket som verserende:</msgnumsiwait>
+        <msgnumnoleidos>De er merket som ulest:</msgnumnoleidos>
+        <msgnumnowait>De er merket som ikke avventende:</msgnumnowait>
+        <msgnumdelete>Følgende er slettet:</msgnumdelete>
+        <message0>Innlegg</message0>
+        <message1>Post</message1>
+        <message2>Innlegg</message2>
+        <msgerrorfeed>Det har oppstått en feil med følgende strøm:</msgerrorfeed>
+        <sintitle>Uten tittel)</sintitle>
+        <post>RSS-innlegg</post>
+        <filtrarfeeds>Filtrer etter</filtrarfeeds>
+        <actioncool>Interessant</actioncool>
+        <statecool>Interessant</statecool>
+        <onlycool>Bare interessant</onlycool>
+        <cool>Interessant</cool>
+        <nocool>Ikke interessant</nocool>
+        <msgcool>Vil du merke alle valgte innlegg som interessante / ikke interessante?</msgcool>
+        <msgnumsicool>De har blitt merket som interessante:</msgnumsicool>
+        <msgnumnocool>De har blitt merket som ikke interessante:</msgnumnocool>
+        <actionfavoritos>Legg til i favoritter</actionfavoritos>
+    </feeds>
+    <favoritos>
+        <list>Favorittliste</list>
+        <create>Ny favoritt</create>
+        <url>URL</url>
+        <bookmarkexists>Nettadressen du prøver å lagre, eksisterer allerede som favoritt.</bookmarkexists>
+        <invalidurl>Url-adressen er ikke gyldig. sjekk nettadressen:</invalidurl>
+        <bookmarkadded>Url-en er blitt lagt til i favoritter</bookmarkadded>
+        <previews>Miniatyrbilder</previews>
+    </favoritos>
+</root>

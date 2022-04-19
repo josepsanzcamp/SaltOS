@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <clientes>клиентов</clientes>
+        <contactos>контакты</contactos>
+        <documentos>документы</documentos>
+        <facturas>счета</facturas>
+        <proveedores>поставщиков</proveedores>
+        <gastos>расход</gastos>
+        <epigrafes>заголовки</epigrafes>
+        <formaspago>способы оплаты</formaspago>
+        <cuentas>счета</cuentas>
+        <periodicas>повторяющиеся счета-фактуры</periodicas>
+        <empleados>сотрудников</empleados>
+        <productos>продукция</productos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <gestioncomercial>торговый</gestioncomercial>
+        <gestioncontabilidad>бухгалтерский учет</gestioncontabilidad>
+        <desc_clientes>управляйте клиентами вашей компании</desc_clientes>
+        <desc_contactos>доступ к контактам клиента</desc_contactos>
+        <desc_facturas>управление всеми счетами-фактурами (накладными, коллекциями и т.д.)</desc_facturas>
+        <desc_proveedores>управляйте поставщиками вашей компании</desc_proveedores>
+        <desc_gastos>контролируйте расходы и знайте, урегулированы ли они</desc_gastos>
+        <desc_documentos>сгруппируйте всю документацию вашей компании</desc_documentos>
+        <desc_epigrafes>определение заголовков для счетов-фактур и расходов</desc_epigrafes>
+        <desc_formaspago>определение способов оплаты для управления расходами</desc_formaspago>
+        <desc_cuentas>определение бухгалтерских счетов для бухгалтерского учета</desc_cuentas>
+        <desc_periodicas>планирование периодических счетов-фактур с указанием сроков выполнения</desc_periodicas>
+        <desc_empleados>увольнение, отмена подписки или изменение сотрудников</desc_empleados>
+        <desc_productos>определите свои продукты здесь, чтобы иметь возможность их продавать</desc_productos>
+        <desc_ivas>управляйте налоговыми ставками отсюда</desc_ivas>
+        <quick_clientes>клиентов</quick_clientes>
+        <quick_contactos>контакты</quick_contactos>
+        <quick_documentos>документы</quick_documentos>
+        <quick_facturas>счета</quick_facturas>
+        <quick_proveedores>поставщиков</quick_proveedores>
+        <quick_gastos>расход</quick_gastos>
+        <quick_epigrafes>заголовки</quick_epigrafes>
+        <quick_formaspago>F.оплата</quick_formaspago>
+        <quick_cuentas>счета</quick_cuentas>
+        <quick_periodicas>периодический</quick_periodicas>
+        <quick_empleados>сотрудников</quick_empleados>
+        <quick_productos>продукция</quick_productos>
+    </menu>
+    <clientes>
+        <list>список клиентов</list>
+        <create>новый клиент</create>
+        <formview>информация о клиенте</formview>
+        <forminsert>регистрация нового клиента</forminsert>
+        <formupdate>модификация клиента</formupdate>
+        <defaultdata>данные клиента</defaultdata>
+        <contactdata>контакты для клиентов</contactdata>
+        <projectopen>активные проекты</projectopen>
+        <projectclose>закрытые проекты</projectclose>
+        <incidentopen>активные инциденты</incidentopen>
+        <incidentclose>закрытые инциденты</incidentclose>
+        <partesopen>непогашенные детали</partesopen>
+        <partesclose>ликвидированные партии</partesclose>
+        <albaranes>счета</albaranes>
+        <facturaopen>невзысканные счета</facturaopen>
+        <facturaclose>собранные счета-фактуры</facturaclose>
+        <gastosdata>расходы, связанные с клиентом</gastosdata>
+        <documentdata>документы клиента</documentdata>
+        <agendadata>мероприятия для клиентов</agendadata>
+        <actasdata>протоколы для клиентов</actasdata>
+        <actionliquidar>ликвидация выбранных деталей</actionliquidar>
+        <msgliquidar>вы хотите ликвидировать выбранные детали?</msgliquidar>
+        <cuentacorriente>расчетный счет</cuentacorriente>
+        <diapago>день оплаты</diapago>
+        <cuentacontable>бухгалтерский учет</cuentacontable>
+        <nombrecomercial>имя едят.</nombrecomercial>
+        <nombrefiscal>налоговое наименование</nombrefiscal>
+        <tipocliente>тип клиента</tipocliente>
+        <clientefiscal>финансовый</clientefiscal>
+        <clientejuridico>юридический</clientejuridico>
+        <add>добавить клиент</add>
+        <presupuestosdata>котировки клиентов</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>список контактов</list>
+        <create>новый контакт</create>
+        <formview>контактная информация</formview>
+        <forminsert>регистрация нового контакта</forminsert>
+        <formupdate>модификация контакта</formupdate>
+        <defaultdata>контактная информация</defaultdata>
+        <add>добавить контакт</add>
+    </contactos>
+    <documentos>
+        <list>перечень документов</list>
+        <create>новый документ</create>
+        <formview>сведения о документе</formview>
+        <forminsert>регистрация нового документа</forminsert>
+        <formupdate>изменение документа</formupdate>
+        <defaultdata>данные документа</defaultdata>
+    </documentos>
+    <epigrafes>
+        <list>список рубрик</list>
+        <create>новый заголовок</create>
+        <formview>подробная информация о заголовке</formview>
+        <forminsert>регистрация новой рубрики</forminsert>
+        <formupdate>изменение заголовка</formupdate>
+        <defaultdata>данные заголовка</defaultdata>
+    </epigrafes>
+    <formaspago>
+        <list>список способов оплаты</list>
+        <create>новый способ оплаты</create>
+        <formview>подробная информация о способе оплаты</formview>
+        <forminsert>регистрация нового способа оплаты</forminsert>
+        <formupdate>изменение способа оплаты</formupdate>
+        <defaultdata>сведения о способе оплаты</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>перечень расходов</list>
+        <create>новые расходы</create>
+        <formview>подробная информация о расходах</formview>
+        <forminsert>регистрация нового расхода</forminsert>
+        <formupdate>изменение расходов</formupdate>
+        <defaultdata>данные о расходах</defaultdata>
+        <pagadopor>плательщик</pagadopor>
+        <liquidar>ликвидировать</liquidar>
+        <dateliq>свидание с лицом.</dateliq>
+        <msgliquidar>хотите урегулировать выбранные расходы?</msgliquidar>
+        <msgerror>вы должны выбрать расходы, которые вы хотите урегулировать в списке</msgerror>
+        <trimestrereg>подстригать. вход</trimestrereg>
+        <fechainireg>дата въезда</fechainireg>
+        <trimestreliq>подстригать. оседлый</trimestreliq>
+        <fechainiliq>дата установления</fechainiliq>
+        <totalliquidar>ликвидированные расходы составляют в общей сложности:</totalliquidar>
+        <sinpagador>[Нет плательщика]</sinpagador>
+        <vencimientos_old>погашения</vencimientos_old>
+        <vencimientos_new>новые сроки погашения</vencimientos_new>
+        <fechavencimiento>срок годности</fechavencimiento>
+        <pagado>оплачиваемый</pagado>
+        <fechapagado>оплаченная дата</fechapagado>
+    </gastos>
+    <facturas>
+        <list>список счетов-фактур</list>
+        <create>новый счет-фактура</create>
+        <formview>детали счета-фактуры</formview>
+        <forminsert>регистрация нового счета-фактуры</forminsert>
+        <formupdate>изменение счета-фактуры</formupdate>
+        <defaultdata>данные счета-фактуры</defaultdata>
+        <errorfac101>открыт только последний счет-фактура</errorfac101>
+        <errorfac103>не удается удалить закрытый счет-фактуру</errorfac103>
+        <numfacxxx>номер счета-фактуры</numfacxxx>
+        <numalbxxx>номер накладной</numalbxxx>
+        <fechaemision>дата выдачи</fechaemision>
+        <titular>держатель</titular>
+        <baseimponible>налоговая база</baseimponible>
+        <totalapagar>общая сумма к оплате</totalapagar>
+        <concepts_old>концепции</concepts_old>
+        <concepts_new>новые концепции</concepts_new>
+        <products_old>продукция</products_old>
+        <products_new>новые продукты</products_new>
+        <vencimientos_old>погашения</vencimientos_old>
+        <vencimientos_new>новые сроки погашения</vencimientos_new>
+        <fechavencimiento>срок годности</fechavencimiento>
+        <fechacobrado>дата сбора</fechacobrado>
+        <clientdata>данные клиента</clientdata>
+        <vencimientosfactura>сроки оплаты этого счета-фактуры</vencimientosfactura>
+        <vencimientosalbaran>сроки погашения настоящей накладной</vencimientosalbaran>
+        <vencimientoscobrado>заряженное поле было изменено с использованием данных зрелости</vencimientoscobrado>
+    </facturas>
+    <proveedores>
+        <list>список поставщиков</list>
+        <create>новый поставщик</create>
+        <formview>сведения о поставщике</formview>
+        <forminsert>регистрация нового поставщика</forminsert>
+        <formupdate>модификация провайдера</formupdate>
+        <defaultdata>сведения о поставщике</defaultdata>
+        <cuentacorriente>расчетный счет</cuentacorriente>
+        <cuentacontable>бухгалтерский учет</cuentacontable>
+        <diapago>день оплаты</diapago>
+        <gastosdata>расходы, связанные с поставщиком</gastosdata>
+        <contactdata>контакты поставщиков</contactdata>
+        <nombrecomercial>фирменное наименование</nombrecomercial>
+        <nombrefiscal>налоговое наименование</nombrefiscal>
+        <add>добавить провайдера</add>
+    </proveedores>
+    <cuentas>
+        <list>список счетов</list>
+        <create>новый аккаунт</create>
+        <formview>сведения об учетной записи</formview>
+        <forminsert>регистрация нового аккаунта</forminsert>
+        <formupdate>изменение учетной записи</formupdate>
+        <defaultdata>реквизиты счета</defaultdata>
+        <logo>лого</logo>
+        <title_logo>определение логотипа, положения, размера и цветов, которые будут использоваться в счетах-фактурах</title_logo>
+        <logoleft>Положение логотипа X</logoleft>
+        <logotop>И</logotop>
+        <logowidth>широкий</logowidth>
+        <logoheight>высокий</logoheight>
+        <logofile>файл текущего логотипа</logofile>
+        <logofilenew>Новый файл (только в формате JPEG)</logofilenew>
+        <colorline>цвет линий</colorline>
+        <colortext1>названия</colortext1>
+        <colortext2>тексты</colortext2>
+        <title_facturas>определение определенных параметров, которые будут использоваться при выставлении счетов-фактур</title_facturas>
+        <facturabool>использование</facturabool>
+        <facturavalue>значение по умолчанию (только если используется)</facturavalue>
+        <facturapie1>нога первой линии</facturapie1>
+        <facturapie2>подножие второй линии</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>список периодических счетов-фактур</list>
+        <create>новый повторяющийся счет-фактура</create>
+        <formview>подробная информация о периодическом счете-фактуре</formview>
+        <forminsert>регистрация нового периодического счета-фактуры</forminsert>
+        <formupdate>изменение периодического счета-фактуры</formupdate>
+        <defaultdata>периодические данные счетов-фактур</defaultdata>
+        <concepts_old>концепции</concepts_old>
+        <concepts_new>новые концепции</concepts_new>
+        <products_old>продукция</products_old>
+        <products_new>новые продукты</products_new>
+        <vencimientos_old>погашения</vencimientos_old>
+        <vencimientos_new>новые сроки погашения</vencimientos_new>
+        <fechavencimiento>срок годности</fechavencimiento>
+        <diaemision>день выпуска</diaemision>
+        <diaini>между днями</diaini>
+        <dia>день</dia>
+        <meses>месяцы</meses>
+        <liquidar>порождать</liquidar>
+        <totalliquidar>общее количество сгенерированных счетов-фактур:</totalliquidar>
+        <msgerror>вы должны выбрать счета, которые вы хотите сгенерировать в списке, и месяц для использования</msgerror>
+        <msgliquidar>вы хотите сгенерировать выбранные счета-фактуры?</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>список сотрудников</list>
+        <create>новый сотрудник</create>
+        <formview>сведения о сотруднике</formview>
+        <forminsert>регистрация нового сотрудника</forminsert>
+        <formupdate>модификация сотрудника</formupdate>
+        <defaultdata>данные сотрудников</defaultdata>
+        <contactdata>контакты сотрудников</contactdata>
+    </empleados>
+    <productos>
+        <list>список продуктов</list>
+        <create>новый продукт</create>
+        <formview>сведения о продукте</formview>
+        <forminsert>регистрация нового продукта</forminsert>
+        <formupdate>модификация продукта</formupdate>
+        <defaultdata>данные о продукте</defaultdata>
+        <ref>см.</ref>
+        <peso>вес</peso>
+        <volumen>том</volumen>
+        <dimensiones>размеры</dimensiones>
+        <fotofile>текущая фотография</fotofile>
+        <fotofilenew>новое фото</fotofilenew>
+        <siniva eval="true">"[Без ".CONFIG("accounting_iva_name")."]"</siniva>
+    </productos>
+    <ivas>
+        <list eval="true">"Список ".CONFIG("accounting_iva_name")</list>
+        <create eval="true">"Новые функции ".CONFIG("accounting_iva_name")</create>
+        <formview eval="true">"Подробная информация о ".CONFIG("accounting_iva_name")</formview>
+        <forminsert eval="true">"Регистрация нового ".CONFIG("accounting_iva_name")</forminsert>
+        <formupdate eval="true">"Модификация ".CONFIG("accounting_iva_name")</formupdate>
+        <defaultdata eval="true">"Данные ".CONFIG("accounting_iva_name")</defaultdata>
+    </ivas>
+</root>

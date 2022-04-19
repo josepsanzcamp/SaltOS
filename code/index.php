@@ -63,7 +63,7 @@ semaphore_release(__FILE__);
 
 // GET THE LANGUAGE
 $lang = get_lang();
-$_LANG = eval_attr(xml2Array("xml/lang/${lang}.xml"));
+$_LANG = eval_attr(xml_join(xml2array(detect_apps_files("xml/lang/${lang}.xml"))));
 $_CONFIG = eval_attr($_CONFIG);
 if (getDefault("info/revision") == "SVN") {
     $_CONFIG["info"]["revision"] = svnversion();

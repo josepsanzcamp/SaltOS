@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <incidencias>الأحداث</incidencias>
+        <proyectos>المشاريع</proyectos>
+        <partes>فرق العمل</partes>
+        <prioridades>الأولويات</prioridades>
+        <actas>محضر الاجتماع</actas>
+        <seguimientos>متابعة مهمة</seguimientos>
+        <presupuestos>الميزانيات</presupuestos>
+        <posiblescli>العملاء المحتملين</posiblescli>
+        <campanyas>الحملات التجارية</campanyas>
+        <gestionproyectos>المشاريع</gestionproyectos>
+        <categorias>فئات</categorias>
+        <desc_incidencias>ادر من هنا التأثير بعملائها</desc_incidencias>
+        <desc_proyectos>تابع مشاريعك بهذا النظام</desc_proyectos>
+        <desc_partes>على اعلى مستوى سيتم انجاز العمل في جزء من الساعة</desc_partes>
+        <desc_actas>الاحتفاظ بسجل في حينه يسهل من السيطرة علي الاجتماع</desc_actas>
+        <desc_prioridades>قم بتحديد اولويات لمدخلات التقويم</desc_prioridades>
+        <desc_seguimientos>تحكم في مهام مشروع مع المتابعة</desc_seguimientos>
+        <desc_posiblescli>السيطرة على الزبائن المحتملين يمكن أن تكون</desc_posiblescli>
+        <desc_presupuestos>إجراء الميزانيات بسرعة وسهولة</desc_presupuestos>
+        <desc_campanyas>انقر فوق الحملات الإعلانية مع المتابعة</desc_campanyas>
+        <desc_categorias>للاطلاع على فئات تطبيقات محددة</desc_categorias>
+        <quick_incidencias>الأحداث</quick_incidencias>
+        <quick_proyectos>المشاريع</quick_proyectos>
+        <quick_partes>الأطراف</quick_partes>
+        <quick_prioridades>الأولويات</quick_prioridades>
+        <quick_actas>الأوراق</quick_actas>
+        <quick_seguimientos>المتابعات</quick_seguimientos>
+        <quick_presupuestos>الميزانيات</quick_presupuestos>
+        <quick_posiblescli>العملاء المحتملين</quick_posiblescli>
+        <quick_campanyas>الحملات</quick_campanyas>
+        <quick_categorias>فئات</quick_categorias>
+    </menu>
+    <incidencias>
+        <list>قائمة التأثيرات</list>
+        <create>حدث جديد</create>
+        <formview>تفاصيل التأثير</formview>
+        <forminsert>اضافة تأثير جديد</forminsert>
+        <formupdate>تغيير الحدث</formupdate>
+        <defaultdata>البيانات في الحدث</defaultdata>
+        <usersdata>المستخدمين</usersdata>
+        <implicados>المعنيه</implicados>
+        <asignadoa>تعيين ل</asignadoa>
+        <msgsendemail>لقد تم ارسال بريد لكل المعنيين بالحدث</msgsendemail>
+        <boolsendmail>إرسال بريد إلكتروني</boolsendmail>
+        <boolsendmailtip>إذا قمت بتمكين هذا الخيار، سيتم إرسال بريد إلكتروني إلى جميع المستخدمين المشاركين في الخطأ</boolsendmailtip>
+        <categoria>الفئه</categoria>
+        <sincategoria>[بدون فئة]</sincategoria>
+        <allcategorias>[جميع الفئات]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>قائمة المشاريع</list>
+        <create>مشروع جديد</create>
+        <formview>تفاصيل المشروع</formview>
+        <forminsert>إضافة مشروع جديد</forminsert>
+        <formupdate>تغيير مشروع</formupdate>
+        <defaultdata>بيانات المشروع</defaultdata>
+        <tareasproyecto>مهام المشروع</tareasproyecto>
+        <desctareas>وصف المهام</desctareas>
+        <horastotal>اجمالي الساعات</horastotal>
+        <preciomedio>المتوسط</preciomedio>
+        <preciototal>اجمالي السعر</preciototal>
+        <real>العقارات</real>
+        <diferencia>الفارق</diferencia>
+        <partesopen>الاجزاء غير المسددة</partesopen>
+        <partesclose>الاجزاء المسددة</partesclose>
+        <relatedseguimientos>المتابعات ذات الصلة</relatedseguimientos>
+        <relatedincidencias>القضايا ذات الصلة</relatedincidencias>
+        <actionliquidar>تسوية الاطراف المحددة</actionliquidar>
+        <msgliquidar>هل تريد مسح الاجزاء المحددة؟</msgliquidar>
+        <agendadata>الاحداث ذات الصلة</agendadata>
+        <actasdata>السجلات ذات الصلة</actasdata>
+        <contactdata>جهات اتصال الذبون</contactdata>
+        <incidentopen>حوادث نشطة</incidentopen>
+        <incidentclose>حوادث مغلقة</incidentclose>
+        <albaranes>بيانات الشحن</albaranes>
+        <facturaopen>فواتير غير محصلة</facturaopen>
+        <facturaclose>فواتير مستحقة</facturaclose>
+        <gastosdata>التكاليف المرتبطة بالزبون</gastosdata>
+        <documentdata>مستندات الزبون</documentdata>
+        <productosproyecto>مخرجات المشروع</productosproyecto>
+        <descproductos>وصف المنتج</descproductos>
+        <actionfacturar>الفاتورة</actionfacturar>
+        <msgfacturar>هل تود التحقق من المشروع؟</msgfacturar>
+        <errorfacturar>هناك فاتورة بالفعل لهذا المشروع</errorfacturar>
+        <okfacturar>تم توصيف المشروع بشكل صحيح</okfacturar>
+        <addseguimientos>تحديث</addseguimientos>
+        <addactas>محاضر</addactas>
+        <addcontactos>جهات اتصال</addcontactos>
+        <addagenda>حدث</addagenda>
+        <resumentareasproductos>ملخ المهام والمنتجات</resumentareasproductos>
+        <presupuestosdata>ميزانيات المشروع</presupuestosdata>
+    </proyectos>
+    <partes>
+        <list>قائمة الأجزاء</list>
+        <create>مدخل جديد</create>
+        <formview>تفاصيل مدخل</formview>
+        <forminsert>تفاصيل الجزء الجديد</forminsert>
+        <formupdate>تعديل مدخل</formupdate>
+        <defaultdata>بيانات مدخل</defaultdata>
+        <horasfact>سعات فعليه</horasfact>
+        <preciohora>السعر/ساعة</preciohora>
+        <liquidar>تسوية</liquidar>
+        <dateliq>تاريخ التسوية</dateliq>
+        <msgliquidar>هل تريد حذف الاجزاء المحددة؟</msgliquidar>
+        <msgerror>يجب ان تحدد اﻷجزاء التي تود تسويتها من القائمة</msgerror>
+        <fechainiliq>تاريخ التصفية</fechainiliq>
+    </partes>
+    <prioridades>
+        <list>قائمة الأولويات</list>
+        <create>أولوية جديدة</create>
+        <formview>تفاصيل اﻷولوية</formview>
+        <forminsert>إضافة أولوية جديدة</forminsert>
+        <formupdate>تعديل الاولوية</formupdate>
+        <defaultdata>تواريخ اﻷولوية</defaultdata>
+    </prioridades>
+    <actas>
+        <list>قائمة السجلات</list>
+        <create>تقرير جديد</create>
+        <formview>سجل مفصل</formview>
+        <forminsert>اضافة تقرير جديد</forminsert>
+        <formupdate>تغيير المحضر</formupdate>
+        <defaultdata>تفاصيل السجل</defaultdata>
+        <dstart>بدء</dstart>
+        <dstop>انهاء</dstop>
+        <asistentes>المعالجات</asistentes>
+        <temas>الثيمات</temas>
+        <aceptados>المقبولة</aceptados>
+        <cancelados>الملغاة</cancelados>
+        <pendientes>المؤجلة</pendientes>
+        <add>اضافة محضر</add>
+    </actas>
+    <seguimientos>
+        <list>قائمة المتابعة</list>
+        <create>متابعة جديدة</create>
+        <formview>تفاصيل متابعة</formview>
+        <forminsert>اضافة متابعة جديدة</forminsert>
+        <formupdate>تغيير متابعة</formupdate>
+        <defaultdata>مراقبة بيانات</defaultdata>
+        <add>اضافة قنوات</add>
+    </seguimientos>
+    <posiblescli>
+        <list>قائمة العملاء المحتملين</list>
+        <create>عميل محتمل جديد</create>
+        <formview>تفاصيل العميل المحتمل</formview>
+        <forminsert>إضافة عميل محتمل جديد</forminsert>
+        <formupdate>تعديل عميل محتمل</formupdate>
+        <defaultdata>بيانات محتملة</defaultdata>
+        <crearcliente>إنشاء عميل</crearcliente>
+        <clientcreatedok>تم إنشاء العميل الجديد بنجاح</clientcreatedok>
+        <msgcrear>هل تود تغيير الاحتمالية علي العميل؟</msgcrear>
+        <agendadata>الأحداث المحتملة</agendadata>
+        <actasdata>مداولات العملاء المحتملين</actasdata>
+        <presupuestosdata>أسهم العملاء المحتملين</presupuestosdata>
+        <facturacion>الفواتير</facturacion>
+        <iaedesc>نظرة عامة علي IAE</iaedesc>
+        <iaecod>رمز IAE</iaecod>
+        <contacto>عدد افراد الاتصال</contacto>
+        <changedenied>لايمكن ايقاف عميل محتمل لديه محاضر , جدول اعمال و/أو ميزانيات</changedenied>
+    </posiblescli>
+    <presupuestos>
+        <list>قائمة بالميزانيات</list>
+        <create>ميزانية جديدة</create>
+        <formview>تفاصيل الميزانية</formview>
+        <forminsert>إضافة ميزانية جديدة</forminsert>
+        <formupdate>تغير الميزانية</formupdate>
+        <defaultdata>معلومات عن الميزانية</defaultdata>
+        <tareaspresupuesto>مهام الميزانية</tareaspresupuesto>
+        <desctareas>تفاصيل المهام</desctareas>
+        <horastotal>اجمالي الساعات</horastotal>
+        <preciomedio>المتوسط</preciomedio>
+        <preciototal>اجمالي السعر</preciototal>
+        <productospresupuesto>ميزانية المنتجات</productospresupuesto>
+        <descproductos>نظرة عامة على المنتج</descproductos>
+        <objetivos>الأهداف من الميزانية</objetivos>
+        <funcional>المقترح الوظيفي</funcional>
+        <tecnica>المقترح التقني</tecnica>
+        <extras>بيانات اضافية</extras>
+        <condiciones>شروط الميزانية</condiciones>
+        <valoracion>التقييم الاقتصادي</valoracion>
+        <crearproyecto>انشاء مشروع</crearproyecto>
+        <projectexists>هذه الموازنة وعلاقتها بالمشروع</projectexists>
+        <clientnotexists>يجب الاتصالع بالعميل (إذا كان ذو علاقة بعميل محتمل ,اجعل العميل )</clientnotexists>
+        <projectcreatedok>لقد تم انشاء مشروع جديد بنجاح</projectcreatedok>
+        <msgcrear>هل تريد انشاء مشروع جديد علي هذه الموازنة؟</msgcrear>
+        <agendadata>أحداث الموازنة</agendadata>
+        <actasdata>الوقائع علي الموازنة</actasdata>
+        <resumentareasproductos>ملخص المهام والمنتجات</resumentareasproductos>
+        <objetivospdf>الأهداف</objetivospdf>
+        <funcionalpdf>الوظيفي</funcionalpdf>
+        <tecnicapdf>التقني</tecnicapdf>
+        <extraspdf>معلومات</extraspdf>
+        <condicionespdf>الشروط</condicionespdf>
+        <actionfacturar>بيل</actionfacturar>
+        <msgfacturar>هل تريد التحقق من الميزانية؟</msgfacturar>
+        <errorfacturar>هناك بالفعل فاتورة من هذه الميزانية</errorfacturar>
+        <okfacturar>قام بفوترة الميزانية بشكل صحيح</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>قائمة الحملات</list>
+        <create>حملة جديدة</create>
+        <formview>تفاصيل حملة</formview>
+        <forminsert>إضافة حملة جديدة</forminsert>
+        <formupdate>تغيير حملة</formupdate>
+        <defaultdata>تفاصيل الحملة</defaultdata>
+        <agendadata>أحداث العام</agendadata>
+        <presupuestosdata>اسعار العام</presupuestosdata>
+        <projectopen>نشاريع نشطة</projectopen>
+        <projectclose>مشاريع مغلقة</projectclose>
+        <clientesdata>عملاء مقيدون</clientesdata>
+        <posiblesclidata>عملاء محتملون</posiblesclidata>
+    </campanyas>
+    <categorias>
+        <list>قائمة الفئات</list>
+        <create>فئة جديدة</create>
+        <formview>تفاصيل الفئة</formview>
+        <forminsert>إضافة فئة جديدة</forminsert>
+        <formupdate>تعديل الفئة</formupdate>
+        <defaultdata>بيانات الفئة</defaultdata>
+    </categorias>
+</root>

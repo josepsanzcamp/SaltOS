@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <clientes>Klanten</clientes>
+        <contactos>Contacten</contactos>
+        <documentos>Documenten</documentos>
+        <facturas>Rekeningen</facturas>
+        <proveedores>Aanbieders</proveedores>
+        <gastos>Uitgaven</gastos>
+        <epigrafes>Opschriften</epigrafes>
+        <formaspago>Betaalmethoden</formaspago>
+        <cuentas>Accounts</cuentas>
+        <periodicas>Periodieke facturen</periodicas>
+        <empleados>Medewerkers</empleados>
+        <productos>Producten</productos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <gestioncomercial>Commercieel</gestioncomercial>
+        <gestioncontabilidad>Boekhouding</gestioncontabilidad>
+        <desc_clientes>Beheer de klanten van uw bedrijf</desc_clientes>
+        <desc_contactos>Om toegang te krijgen tot de contacten van een klant</desc_contactos>
+        <desc_facturas>Beheer alle facturen (afleverbonnen, kosten, enz ...)</desc_facturas>
+        <desc_proveedores>Beheer de leveranciers van uw bedrijf</desc_proveedores>
+        <desc_gastos>Beheers de uitgaven en weet of ze zijn verrekend</desc_gastos>
+        <desc_documentos>Zorg dat alle documentatie van uw bedrijf gegroepeerd is</desc_documentos>
+        <desc_epigrafes>Definieer de rubrieken voor facturen en uitgaven</desc_epigrafes>
+        <desc_formaspago>Definieer betalingsmethoden om uitgaven te beheren</desc_formaspago>
+        <desc_cuentas>Definieer grootboekrekeningen voor boekhouding</desc_cuentas>
+        <desc_periodicas>Plan terugkerende facturen met vervaldatums</desc_periodicas>
+        <desc_empleados>Medewerkers registreren, annuleren of wijzigen</desc_empleados>
+        <desc_productos>Definieer hier uw producten om ze te kunnen verkopen</desc_productos>
+        <desc_ivas>Beheer de belastingtarieven vanaf hier</desc_ivas>
+        <quick_clientes>Klanten</quick_clientes>
+        <quick_contactos>Contacten</quick_contactos>
+        <quick_documentos>Documenten</quick_documentos>
+        <quick_facturas>Rekeningen</quick_facturas>
+        <quick_proveedores>Aanbieders</quick_proveedores>
+        <quick_gastos>Uitgaven</quick_gastos>
+        <quick_epigrafes>Opschriften</quick_epigrafes>
+        <quick_formaspago>F. betaling</quick_formaspago>
+        <quick_cuentas>Accounts</quick_cuentas>
+        <quick_periodicas>Periodiek</quick_periodicas>
+        <quick_empleados>Medewerkers</quick_empleados>
+        <quick_productos>Producten</quick_productos>
+    </menu>
+    <clientes>
+        <list>Klantenlijst</list>
+        <create>Nieuwe klant</create>
+        <formview>Klantendetail</formview>
+        <forminsert>Registratie van een nieuwe klant</forminsert>
+        <formupdate>Klant modificatie</formupdate>
+        <defaultdata>Klantgegevens</defaultdata>
+        <contactdata>Klantencontacten</contactdata>
+        <projectopen>Actieve projecten</projectopen>
+        <projectclose>Afgesloten projecten</projectclose>
+        <incidentopen>Actieve incidenten</incidentopen>
+        <incidentclose>Gesloten incidenten</incidentclose>
+        <partesopen>Onrustige onderdelen</partesopen>
+        <partesclose>Vereffende onderdelen</partesclose>
+        <albaranes>Afleverbonnen</albaranes>
+        <facturaopen>Niet-geïnde facturen</facturaopen>
+        <facturaclose>Facturen verzameld</facturaclose>
+        <gastosdata>Uitgaven verbonden aan de klant</gastosdata>
+        <documentdata>Klantdocumenten</documentdata>
+        <agendadata>Klantevenementen</agendadata>
+        <actasdata>Client minuten</actasdata>
+        <actionliquidar>Bepaal geselecteerde onderdelen</actionliquidar>
+        <msgliquidar>Wilt u de geselecteerde onderdelen liquideren?</msgliquidar>
+        <cuentacorriente>Account controleren</cuentacorriente>
+        <diapago>Betaal dag</diapago>
+        <cuentacontable>Boekhoudkundige rekening</cuentacontable>
+        <nombrecomercial>Naam eten.</nombrecomercial>
+        <nombrefiscal>Fiscale naam</nombrefiscal>
+        <tipocliente>Clienttype</tipocliente>
+        <clientefiscal>Aanklager</clientefiscal>
+        <clientejuridico>Juridisch</clientejuridico>
+        <add>Klant toevoegen</add>
+        <presupuestosdata>Klantenbudgetten</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>Contactenlijst</list>
+        <create>Nieuw contact</create>
+        <formview>Contactdetails</formview>
+        <forminsert>Een nieuw contact registreren</forminsert>
+        <formupdate>Contact wijziging</formupdate>
+        <defaultdata>Contactgegevens</defaultdata>
+        <add>Contact toevoegen</add>
+    </contactos>
+    <documentos>
+        <list>Lijst met documenten</list>
+        <create>Nieuw document</create>
+        <formview>Documentdetail</formview>
+        <forminsert>Een nieuw document registreren</forminsert>
+        <formupdate>Documentwijziging</formupdate>
+        <defaultdata>Documentgegevens</defaultdata>
+    </documentos>
+    <epigrafes>
+        <list>Lijst met rubrieken</list>
+        <create>Nieuwe kop</create>
+        <formview>Detail van de titel</formview>
+        <forminsert>Registratie van een nieuwe rubriek</forminsert>
+        <formupdate>Wijziging van de titel</formupdate>
+        <defaultdata>Details van de rubriek</defaultdata>
+    </epigrafes>
+    <formaspago>
+        <list>Lijst met betaalmethoden</list>
+        <create>Nieuwe betalingsmethode</create>
+        <formview>Betalingsmethode detail</formview>
+        <forminsert>Registratie van een nieuwe betalingsmethode</forminsert>
+        <formupdate>Wijziging van de betalingsmethode</formupdate>
+        <defaultdata>Betaalmethode gegevens</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>Lijst van uitgaven</list>
+        <create>Nieuwe kosten</create>
+        <formview>Detailuitgaven</formview>
+        <forminsert>Registratie van een nieuwe uitgave</forminsert>
+        <formupdate>Kostenwijziging</formupdate>
+        <defaultdata>Gegevens besteden</defaultdata>
+        <pagadopor>Betaler</pagadopor>
+        <liquidar>Liquideren</liquidar>
+        <dateliq>Datum liq.</dateliq>
+        <msgliquidar>Wilt u de geselecteerde kosten verrekenen?</msgliquidar>
+        <msgerror>U moet in de lijst de uitgaven selecteren die u wilt verrekenen</msgerror>
+        <trimestrereg>Trimmen. entree</trimestrereg>
+        <fechainireg>Incheckdatum</fechainireg>
+        <trimestreliq>Trimmen. geliquideerd</trimestreliq>
+        <fechainiliq>Afgewikkelde datum</fechainiliq>
+        <totalliquidar>De geliquideerde kosten bedragen in totaal:</totalliquidar>
+        <sinpagador>[Zonder betaler]</sinpagador>
+        <vencimientos_old>Looptijd</vencimientos_old>
+        <vencimientos_new>Nieuwe looptijden</vencimientos_new>
+        <fechavencimiento>Vervaldatum</fechavencimiento>
+        <pagado>Betaald</pagado>
+        <fechapagado>Datum betaald</fechapagado>
+    </gastos>
+    <facturas>
+        <list>Lijst met facturen</list>
+        <create>Nieuwe factuur</create>
+        <formview>Factuurgegevens</formview>
+        <forminsert>Registratie van een nieuwe factuur</forminsert>
+        <formupdate>Factuurwijziging</formupdate>
+        <defaultdata>Factuurgegevens</defaultdata>
+        <errorfac101>Alleen de laatste factuur kan worden geopend</errorfac101>
+        <errorfac103>Kan een gesloten factuur niet verwijderen</errorfac103>
+        <numfacxxx>Factuurnummer</numfacxxx>
+        <numalbxxx>Nummer van afleverbon</numalbxxx>
+        <fechaemision>Uitgiftedatum</fechaemision>
+        <titular>Houder</titular>
+        <baseimponible>Belastbare basis</baseimponible>
+        <totalapagar>Totaal te betalen</totalapagar>
+        <concepts_old>Concepten</concepts_old>
+        <concepts_new>Nieuwe concepten</concepts_new>
+        <products_old>Producten</products_old>
+        <products_new>Nieuwe producten</products_new>
+        <vencimientos_old>Looptijd</vencimientos_old>
+        <vencimientos_new>Nieuwe looptijden</vencimientos_new>
+        <fechavencimiento>Vervaldatum</fechavencimiento>
+        <fechacobrado>Afhaaldatum</fechacobrado>
+        <clientdata>Klantgegevens</clientdata>
+        <vencimientosfactura>Looptijd van deze factuur</vencimientosfactura>
+        <vencimientosalbaran>Looptijd van deze leveringsbon</vencimientosalbaran>
+        <vencimientoscobrado>Het verzamelde veld is aangepast met behulp van de volwassenheidsgegevens</vencimientoscobrado>
+    </facturas>
+    <proveedores>
+        <list>Provider lijst</list>
+        <create>Nieuwe provider</create>
+        <formview>Details leverancier</formview>
+        <forminsert>Registratie van een nieuwe provider</forminsert>
+        <formupdate>Wijziging van leverancier</formupdate>
+        <defaultdata>Leveranciersgegevens</defaultdata>
+        <cuentacorriente>Account controleren</cuentacorriente>
+        <cuentacontable>Boekhoudkundige rekening</cuentacontable>
+        <diapago>Betaal dag</diapago>
+        <gastosdata>Provider-gerelateerde kosten</gastosdata>
+        <contactdata>Contacten van leverancier</contactdata>
+        <nombrecomercial>Handelsnaam</nombrecomercial>
+        <nombrefiscal>Fiscale naam</nombrefiscal>
+        <add>Provider toevoegen</add>
+    </proveedores>
+    <cuentas>
+        <list>Lijst met accounts</list>
+        <create>Nieuw account</create>
+        <formview>Accountgegevens</formview>
+        <forminsert>Registratie van een nieuw account</forminsert>
+        <formupdate>Accountwijziging</formupdate>
+        <defaultdata>Accountgegevens</defaultdata>
+        <logo>Logo</logo>
+        <title_logo>Definieer het logo, de positie, de grootte en de kleuren die op facturen moeten worden gebruikt</title_logo>
+        <logoleft>Logo X-positie</logoleft>
+        <logotop>Y</logotop>
+        <logowidth>Breedte</logowidth>
+        <logoheight>Hoog</logoheight>
+        <logofile>Huidig logobestand</logofile>
+        <logofilenew>Nieuw bestand (alleen JPEG)</logofilenew>
+        <colorline>Kleur van de lijnen</colorline>
+        <colortext1>Titels</colortext1>
+        <colortext2>Teksten</colortext2>
+        <title_facturas>Definieer bepaalde parameters die moeten worden gebruikt voor het opstellen van facturen</title_facturas>
+        <facturabool>Gebruik</facturabool>
+        <facturavalue>Standaardwaarde (alleen indien gebruikt)</facturavalue>
+        <facturapie1>Eerste lijns voet</facturapie1>
+        <facturapie2>Tweede lijns voet</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>Lijst met periodieke facturen</list>
+        <create>Nieuwe periodieke factuur</create>
+        <formview>Detail van de periodieke factuur</formview>
+        <forminsert>Registratie van een nieuwe periodieke factuur</forminsert>
+        <formupdate>Wijziging van de periodieke factuur</formupdate>
+        <defaultdata>Periodieke factuurgegevens</defaultdata>
+        <concepts_old>Concepten</concepts_old>
+        <concepts_new>Nieuwe concepten</concepts_new>
+        <products_old>Producten</products_old>
+        <products_new>Nieuwe producten</products_new>
+        <vencimientos_old>Looptijd</vencimientos_old>
+        <vencimientos_new>Nieuwe looptijden</vencimientos_new>
+        <fechavencimiento>Vervaldatum</fechavencimiento>
+        <diaemision>Uitgiftedag</diaemision>
+        <diaini>Tussen dag</diaini>
+        <dia>Dag</dia>
+        <meses>Maanden</meses>
+        <liquidar>Genereer</liquidar>
+        <totalliquidar>Totaal aantal gegenereerde facturen:</totalliquidar>
+        <msgerror>U moet de facturen selecteren die u wilt genereren in de lijst en de maand die u wilt gebruiken</msgerror>
+        <msgliquidar>Wilt u de geselecteerde facturen genereren?</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>Lijst van werknemers</list>
+        <create>Nieuwe medewerker</create>
+        <formview>Detail van de werknemer</formview>
+        <forminsert>Registratie van een nieuwe medewerker</forminsert>
+        <formupdate>Wijziging van de werknemer</formupdate>
+        <defaultdata>Informatie over werknemers</defaultdata>
+        <contactdata>Medewerkerscontacten</contactdata>
+    </empleados>
+    <productos>
+        <list>Productvermelding</list>
+        <create>Nieuw product</create>
+        <formview>Productdetail</formview>
+        <forminsert>Registratie van een nieuw product</forminsert>
+        <formupdate>Product modificatie</formupdate>
+        <defaultdata>Productgegevens</defaultdata>
+        <ref>Ref.</ref>
+        <peso>Gewicht</peso>
+        <volumen>Volume</volumen>
+        <dimensiones>Afmetingen</dimensiones>
+        <fotofile>Huidige foto</fotofile>
+        <fotofilenew>Nieuwe foto</fotofilenew>
+        <siniva eval="true">"[Zonder ".CONFIG("accounting_iva_name")."]"</siniva>
+    </productos>
+    <ivas>
+        <list eval="true">"Lijst van ".CONFIG("accounting_iva_name")</list>
+        <create eval="true">"Nieuw ".CONFIG("accounting_iva_name")</create>
+        <formview eval="true">"Detail van de ".CONFIG("accounting_iva_name")</formview>
+        <forminsert eval="true">"Nieuwe registratie ".CONFIG("accounting_iva_name")</forminsert>
+        <formupdate eval="true">"Wijziging van ".CONFIG("accounting_iva_name")</formupdate>
+        <defaultdata eval="true">"Gegevens van ".CONFIG("accounting_iva_name")</defaultdata>
+    </ivas>
+</root>

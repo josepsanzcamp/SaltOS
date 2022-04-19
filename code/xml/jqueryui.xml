@@ -72,40 +72,46 @@ __JS__
         <title eval="true">get_name_version_revision()</title>
     </metas>
     <css>
-        <include>lib/jquery/jquery.colorpicker.min.css</include>
-        <include>lib/jquery/jquery.timepicker.min.css</include>
-        <include>lib/jquery/jquery.jgrowl.min.css</include>
-        <include>lib/pdfjs/pdf_viewer.min.css</include>
-        <include>lib/codemirror/codemirror.min.css</include>
-        <include>lib/fontawesome/css/fontawesome.min.css</include>
-        <include>lib/fontawesome/css/solid.min.css</include>
-        <include>lib/handsontable/handsontable.full.min.css</include>
-        <include>lib/fileupload/jquery.fileupload.min.css</include>
-        <include eval="true">get_css_files()</include>
-        <include>css/jqueryui.css</include>
+        <cache>
+            <include>lib/jquery/jquery.colorpicker.min.css</include>
+            <include>lib/jquery/jquery.timepicker.min.css</include>
+            <include>lib/jquery/jquery.jgrowl.min.css</include>
+            <include>lib/pdfjs/pdf_viewer.min.css</include>
+            <include>lib/codemirror/codemirror.min.css</include>
+            <include>lib/fontawesome/css/fontawesome.min.css</include>
+            <include>lib/fontawesome/css/solid.min.css</include>
+            <include>lib/handsontable/handsontable.full.min.css</include>
+            <include>lib/fileupload/jquery.fileupload.min.css</include>
+            <include eval="true">get_css_files()</include>
+            <include>css/jqueryui.css</include>
+        </cache>
     </css>
     <js>
-        <include>lib/locutus/php.min.js</include>
-        <include>lib/jquery/jquery.min.js</include>
-        <include>lib/jquery/jquery.cookie.min.js</include>
-        <include>lib/jquery/jquery.form.min.js</include>
-        <include>lib/jquery/jquery-ui.min.js</include>
-        <include>lib/jquery/jquery-ui.i18n.min.js</include>
-        <include>lib/jquery/jquery.autogrow-textarea.min.js</include>
-        <include>lib/jquery/jquery.blockUI.min.js</include>
-        <include>lib/jquery/jquery.jgrowl.min.js</include>
-        <include>lib/jquery/jquery.colorpicker.min.js</include>
-        <include>lib/jquery/jquery.timepicker.min.js</include>
+        <cache>
+            <include>lib/locutus/php.min.js</include>
+            <include>lib/jquery/jquery.min.js</include>
+            <include>lib/jquery/jquery.cookie.min.js</include>
+            <include>lib/jquery/jquery.form.min.js</include>
+            <include>lib/jquery/jquery-ui.min.js</include>
+            <include>lib/jquery/jquery-ui.i18n.min.js</include>
+            <include>lib/jquery/jquery.autogrow-textarea.min.js</include>
+            <include>lib/jquery/jquery.blockUI.min.js</include>
+            <include>lib/jquery/jquery.jgrowl.min.js</include>
+            <include>lib/jquery/jquery.colorpicker.min.js</include>
+            <include>lib/jquery/jquery.timepicker.min.js</include>
+        </cache>
         <inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
-        <include>lib/ckeditor/ckeditor.js</include>
-        <include>lib/ckeditor/adapters/jquery.js</include>
-        <include>lib/pdfjs/pdf.min.js</include>
-        <include>lib/pdfjs/pdf_viewer.min.js</include>
-        <include>lib/codemirror/codemirror.min.js</include>
-        <include>lib/codemirror/codemirror.mode.min.js</include>
-        <include>lib/handsontable/handsontable.full.min.js</include>
-        <include>lib/jstree/jstree.min.js</include>
-        <include>lib/fileupload/jquery.fileupload.min.js</include>
-        <include>js/jqueryui.js</include>
+        <cache>
+            <include>lib/ckeditor/ckeditor.js</include>
+            <include>lib/ckeditor/adapters/jquery.js</include>
+            <include>lib/pdfjs/pdf.min.js</include>
+            <include>lib/pdfjs/pdf_viewer.min.js</include>
+            <include>lib/codemirror/codemirror.min.js</include>
+            <include>lib/codemirror/codemirror.mode.min.js</include>
+            <include>lib/handsontable/handsontable.full.min.js</include>
+            <include>lib/jstree/jstree.min.js</include>
+            <include>lib/fileupload/jquery.fileupload.min.js</include>
+            <include>js/jqueryui.js</include>
+        </cache>
     </js>
 </root>

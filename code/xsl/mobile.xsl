@@ -67,34 +67,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <script type="text/javascript">function <xsl:value-of select="."/></script>
             </xsl:when>
             <xsl:when test="name()='include'">
-                <script type="text/javascript" src="{.}?r={/root/info/revision}">
-                    <xsl:if test="contains(.,'?')">
-                        <xsl:attribute name="src"><xsl:value-of select="."/>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
-                    </xsl:if>
-                </script>
+                <script type="text/javascript" src="{.}?r={/root/info/revision}"></script>
             </xsl:when>
             <xsl:when test="name()='inline'">
                 <script type="text/javascript"><xsl:value-of select="."/></script>
             </xsl:when>
             <xsl:when test="name()='cache'">
-                <xsl:choose>
-                    <xsl:when test="/root/info/usejscache='true'">
-                        <xsl:if test="count(include)>0">
-                            <script type="text/javascript" src="">
-                                <xsl:attribute name="src">?action=cache&amp;files=<xsl:for-each select="include"><xsl:value-of select="."/><xsl:if test="not(position()=last())">,</xsl:if></xsl:for-each>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
-                            </script>
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:for-each select="include">
-                            <script type="text/javascript" src="{.}?r={/root/info/revision}">
-                                <xsl:if test="contains(.,'?')">
-                                    <xsl:attribute name="src"><xsl:value-of select="."/>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
-                                </xsl:if>
-                            </script>
-                        </xsl:for-each>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="count(include)>0">
+                    <script type="text/javascript" src="">
+                        <xsl:attribute name="src">?action=cache&amp;files=<xsl:for-each select="include"><xsl:value-of select="."/><xsl:if test="not(position()=last())">,</xsl:if></xsl:for-each>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
+                    </script>
+                </xsl:if>
             </xsl:when>
         </xsl:choose>
     </xsl:for-each>
@@ -104,34 +87,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <xsl:for-each select="styles/*">
         <xsl:choose>
             <xsl:when test="name()='include'">
-                <link href="{.}?r={/root/info/revision}" rel="stylesheet" type="text/css">
-                    <xsl:if test="contains(.,'?')">
-                        <xsl:attribute name="href"><xsl:value-of select="."/>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
-                    </xsl:if>
-                </link>
+                <link href="{.}?r={/root/info/revision}" rel="stylesheet" type="text/css"></link>
             </xsl:when>
             <xsl:when test="name()='inline'">
                 <style type="text/css"><xsl:value-of select="."/></style>
             </xsl:when>
             <xsl:when test="name()='cache'">
-                <xsl:choose>
-                    <xsl:when test="/root/info/usecsscache='true'">
-                        <xsl:if test="count(include)>0">
-                            <link href="" rel="stylesheet" type="text/css">
-                                <xsl:attribute name="href">?action=cache&amp;files=<xsl:for-each select="include"><xsl:value-of select="."/><xsl:if test="not(position()=last())">,</xsl:if></xsl:for-each>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
-                            </link>
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:for-each select="include">
-                            <link href="{.}?r={/root/info/revision}" rel="stylesheet" type="text/css">
-                                <xsl:if test="contains(.,'?')">
-                                    <xsl:attribute name="href"><xsl:value-of select="."/>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
-                                </xsl:if>
-                            </link>
-                        </xsl:for-each>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="count(include)>0">
+                    <link href="" rel="stylesheet" type="text/css">
+                        <xsl:attribute name="href">?action=cache&amp;files=<xsl:for-each select="include"><xsl:value-of select="."/><xsl:if test="not(position()=last())">,</xsl:if></xsl:for-each>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
+                    </link>
+                </xsl:if>
             </xsl:when>
         </xsl:choose>
     </xsl:for-each>

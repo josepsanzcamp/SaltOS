@@ -32,7 +32,7 @@ if (load_style($style)) {
     $stylepre = getDefault("stylepre");
     $stylepost = getDefault("stylepost");
     $revision = getDefault("info/revision");
-    $styles = eval_attr(xml2array("xml/styles.xml"));
+    $styles = eval_attr(xml2array(detect_apps_files("xml/common/styles2.xml")));
     $jstree = detect_light_or_dark_from_style($style);
     $jstreepre = getDefault("jstreepre");
     $jstreepost = getDefault("jstreepost");
@@ -64,13 +64,13 @@ if (load_style($style)) {
     echo str_replace(
         "APP_NAME",
         $row["label"] . " - " . getDefault("info/title") . " - " . get_name_version_revision(),
-        file_get_contents("xml/common/styles3.xml")
+        file_get_contents(detect_app_file("xml/common/styles3.xml"))
     );
     echo "</body>";
     echo "</html>";
 } else {
     $revision = getDefault("info/revision");
-    $styles = eval_attr(xml2array("xml/styles.xml"));
+    $styles = eval_attr(xml2array(detect_apps_files("xml/common/styles2.xml")));
     echo __HTML_DOCTYPE__;
     echo "<html>";
     echo "<head>";

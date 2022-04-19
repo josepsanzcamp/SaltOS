@@ -39,11 +39,11 @@ if (
 $page = getParam("page");
 $action = getParam("action");
 $id = intval(getParam("id"));
-if (file_exists("php/action/_${action}.php")) {
-    require "php/action/_${action}.php";
+if (file_exists(detect_app_file("php/action/_${action}.php"))) {
+    require detect_app_file("php/action/_${action}.php");
 }
-if (file_exists("php/action/${action}.php")) {
-    require "php/action/${action}.php";
+if (file_exists(detect_app_file("php/action/${action}.php"))) {
+    require detect_app_file("php/action/${action}.php");
 }
 
 // CONTINUE
@@ -98,6 +98,17 @@ foreach ($array["css"] as $key => $val) {
     if ($key == "inline") {
         $css[] = "<style>${val}</style>";
     }
+    if ($key == "cache") {
+        $files = array();
+        foreach ($val as $key2 => $val2) {
+            $key2 = limpiar_key($key2);
+            if ($key2 == "include") {
+                $files[] = $val2;
+            }
+        }
+        $files = implode(",", $files);
+        $css[] = "<link href='?action=cache&files=${files}&r=${rev}' rel='stylesheet'>";
+    }
 }
 $css = implode("\n", $css);
 $template = str_replace("__CSS__", $css, $template);
@@ -111,6 +122,17 @@ foreach ($array["js"] as $key => $val) {
     }
     if ($key == "inline") {
         $js[] = "<script>${val}</script>";
+    }
+    if ($key == "cache") {
+        $files = array();
+        foreach ($val as $key2 => $val2) {
+            $key2 = limpiar_key($key2);
+            if ($key2 == "include") {
+                $files[] = $val2;
+            }
+        }
+        $files = implode(",", $files);
+        $js[] = "<script src='?action=cache&files=${files}&r=${rev}'></script>";
     }
 }
 $js = implode("\n", $js);

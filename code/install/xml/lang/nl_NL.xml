@@ -91,11 +91,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <env_path>WEG</env_path>
         <env_lang>LANG</env_lang>
         <applications>Toepassingen</applications>
-        <select_layer>Selecteer profiel</select_layer>
-        <selected_layer>Geselecteerd profiel</selected_layer>
-        <layer_all>Alle toepassingen</layer_all>
-        <layer_personal>Applicaties voor persoonlijk gebruik</layer_personal>
-        <select_apps>Selecteer applicaties</select_apps>
-        <selected_apps>Geselecteerde applicaties</selected_apps>
+        <select_apps>Selecteer profiel</select_apps>
+        <selected_apps>Geselecteerd profiel</selected_apps>
+        <apps_all>Alle toepassingen</apps_all>
+        <apps_01_core>Minimale systeemtoepassingen</apps_01_core>
+        <apps_02_personal>Toepassingen voor persoonlijk gebruik</apps_02_personal>
+        <apps_03_freelance>Factureringstoepassingen</apps_03_freelance>
+        <apps_04_projects>Toepassingen voor projectmanagement</apps_04_projects>
+        <select_apps2>Selecteer applicaties</select_apps2>
+        <selected_apps2>Geselecteerde applicaties</selected_apps2>
     </common>
 </root>

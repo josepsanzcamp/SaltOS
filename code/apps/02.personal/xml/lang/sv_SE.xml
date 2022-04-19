@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <estados>Stater</estados>
+        <agenda>Dagordning och evenemang</agenda>
+        <correo>Elektronisk post</correo>
+        <tiposevento>Typer av evenemang</tiposevento>
+        <textos>Fördefinierade texter</textos>
+        <feeds>RSS-flödesläsare</feeds>
+        <favoritos>Favorit</favoritos>
+        <gestiontipos>Typ</gestiontipos>
+        <desc_agenda>Sätt på dagordningen alla besök och möten</desc_agenda>
+        <desc_estados>Definiera eventuella tillstånd för en incident, projekt, etc. ...</desc_estados>
+        <desc_correo>Läs och skicka e-postmeddelanden härifrån till dina kunder och leverantörer</desc_correo>
+        <desc_tiposevento>Definiera de typer av händelser du behöver</desc_tiposevento>
+        <desc_textos>Skapa fördefinierade texter för användning i andra applikationer</desc_textos>
+        <desc_feeds>Följ dina RSS- och Atom-flöden från den här applikationen</desc_feeds>
+        <desc_favoritos>Hantera dina favoriter härifrån</desc_favoritos>
+        <quick_correo>Post</quick_correo>
+        <quick_agenda>Dagbok</quick_agenda>
+        <quick_estados>Stater</quick_estados>
+        <quick_tiposevento>T. händelser</quick_tiposevento>
+        <quick_textos>Texter</quick_textos>
+        <quick_feeds>RSS</quick_feeds>
+        <quick_favoritos>Favorit</quick_favoritos>
+    </menu>
+    <estados>
+        <list>Lista över stater</list>
+        <create>Nytt tillstånd</create>
+        <formview>Ange detalj</formview>
+        <forminsert>Registrering av en ny stat</forminsert>
+        <formupdate>Statusändring</formupdate>
+        <defaultdata>Ange uppgifter</defaultdata>
+        <activo>Aktiv</activo>
+    </estados>
+    <agenda>
+        <list>Lista över händelser</list>
+        <create>Ny händelse</create>
+        <formview>Händelsedetalj</formview>
+        <forminsert>Registrering av ett nytt evenemang</forminsert>
+        <formupdate>Händelse modifiering</formupdate>
+        <defaultdata>Händelsedata</defaultdata>
+        <otrasfechas>Andra datum</otrasfechas>
+        <todoseventos>[Alla händelser]</todoseventos>
+        <todoayer>Gårsdagens händelser</todoayer>
+        <todohoy>Dagens händelser</todohoy>
+        <todomanana>Morgondagens händelser</todomanana>
+        <todosemana>Veckans händelser</todosemana>
+        <todomes>Månadens händelser</todomes>
+        <todoano>årets händelser</todoano>
+        <usersdata>Tilldelade användare</usersdata>
+        <asignadoa>Tilldelad till</asignadoa>
+        <notifydelay>Anmäla</notifydelay>
+        <notifysign>timme / s</notifysign>
+        <notifydstart>Startmeddelande har mottagits</notifydstart>
+        <notifydstop>Slutlig anmälan mottagen</notifydstop>
+        <notifyantes>Före</notifyantes>
+        <notifydespues>Sedan</notifydespues>
+        <notifyprev>Meddelande före händelse</notifyprev>
+        <notifypost>Händelse slutförd avisering</notifypost>
+        <notifyclear>Anmälningar</notifyclear>
+        <notifytip>Rensa aviseringar</notifytip>
+        <notifyclearok>Omstartade händelser:</notifyclearok>
+        <notifyclearko>Inga väntande händelser att starta om</notifyclearko>
+        <calendar>Händelsekalender</calendar>
+        <prevmonth>Föregående månad</prevmonth>
+        <currentmonth>Nuvarande månad</currentmonth>
+        <nextmonth>Nästa månad</nextmonth>
+        <today>I dag</today>
+        <yesterday>I går</yesterday>
+        <tomorrow>I morgon</tomorrow>
+        <continue>Fortsätt ...</continue>
+        <by>av</by>
+        <calendarinfo>Visar information hittills:</calendarinfo>
+        <add>Lägg till händelse</add>
+        <gcalendar>Google Kalender</gcalendar>
+        <gcalendartip>Synkronisera händelser mellan SaltOS och Google Kalender</gcalendartip>
+        <notgcalendaremail>Du har inte konfigurerat ditt Google Kalender-konto i inställningarna</notgcalendaremail>
+        <invalidgcalendartoken>Åtkomstdata till ditt Google Kalender-konto är felaktiga</invalidgcalendartoken>
+        <requestgcalendartoken>Klicka här för att få ett åtkomsttoken</requestgcalendartoken>
+        <insertgcalendar>SaltOS-händelser skapade i Google Kalender:</insertgcalendar>
+        <updategcalendar>SaltOS-händelser uppdaterade på Google Kalender:</updategcalendar>
+        <insertsaltos>Google Kalenderhändelser skapade i SaltOS:</insertsaltos>
+        <updatesaltos>Uppdaterade händelser i Google Kalender i SaltOS:</updatesaltos>
+        <notinsertupdate>Det finns inga händelser att uppdatera</notinsertupdate>
+        <expand>Expandera</expand>
+        <expandtip>Expandera för att visa detaljer för alla kalenderhändelser</expandtip>
+        <collapse>Kontrakt</collapse>
+        <collapsetip>Kollaps för att dölja detaljerna i alla kalenderhändelser</collapsetip>
+        <loadingsmall>Hämtar ...</loadingsmall>
+    </agenda>
+    <correo>
+        <list>E-postlista</list>
+        <create>Skicka nytt mail</create>
+        <formview>E-postdetalj</formview>
+        <forminsert>Skicka ett nytt e-postmeddelande</forminsert>
+        <formupdate>Skicka ett e-postmeddelande</formupdate>
+        <defaultdata>E-postdata</defaultdata>
+        <from>Av</from>
+        <to>Till</to>
+        <cc>CC</cc>
+        <bcc>BCC</bcc>
+        <subject>Företag</subject>
+        <attachments>Bilagor</attachments>
+        <message>Meddelande</message>
+        <recibir>Motta</recibir>
+        <recibirtip>Klicka här för att få nya e-postmeddelanden</recibirtip>
+        <enviar>Send</enviar>
+        <enviartip>Klicka här för att skicka e-postmeddelanden från utkorgen</enviartip>
+        <msgnotpop3email>Det finns inget e-postkonto konfigurerat eller aktiverat</msgnotpop3email>
+        <msgnotpop3host>POP3-servern har inte konfigurerats</msgnotpop3host>
+        <msgerrorpop3email>Följande fel har inträffat:</msgerrorpop3email>
+        <msgnewokpop3email1>Ny e-post mottagen i inkorgen</msgnewokpop3email1>
+        <msgnewokpop3email2>Nya e-postmeddelanden mottagna i inkorgen</msgnewokpop3email2>
+        <msggotoemail>gå till posten</msggotoemail>
+        <msgnewkopop3email>Det finns inga nya e-postmeddelanden</msgnewkopop3email>
+        <msgconnrefusedpop3email>Anslutning vägras av servern</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>Det går inte att ansluta till servern</msgconnerrorpop3email>
+        <msgopenerrorpop3email>Filen som innehåller meddelandet hittades inte</msgopenerrorpop3email>
+        <msgpropietario>Endast ägaren till e-postmeddelanden kan använda dessa funktioner</msgpropietario>
+        <msgnotfound>Inga valda e-postmeddelanden hittades, ändra filter</msgnotfound>
+        <msgnumsileidos>De har markerats som lästa:</msgnumsileidos>
+        <msgnumsiwait>De har markerats som väntande:</msgnumsiwait>
+        <msgnumsispam>De har markerats som skräppost:</msgnumsispam>
+        <msgnumnoleidos>De har markerats som olästa:</msgnumnoleidos>
+        <msgnumnowait>De har markerats som inte avvaktande:</msgnumnowait>
+        <msgnumnospam>De har markerats som icke-SPAM:</msgnumnospam>
+        <msgnumdelete>Följande har tagits bort:</msgnumdelete>
+        <statenew>Ny</statenew>
+        <actionnew>Ny</actionnew>
+        <stateread>Läs</stateread>
+        <statereply>Svarat</statereply>
+        <stateforward>Vidarebefordras</stateforward>
+        <statewait>Avvaktan</statewait>
+        <statespam>SPAM</statespam>
+        <statesent>Utsände</statesent>
+        <statenotsent>Skickas inte</statenotsent>
+        <stateerror>Fel</stateerror>
+        <stateall>Allt</stateall>
+        <todaslascuentas>[Alla konton]</todaslascuentas>
+        <buttonsend>Send</buttonsend>
+        <buttonsendreturnhere>Skicka och returnera hit</buttonsendreturnhere>
+        <onlynew>Bara nytt</onlynew>
+        <onlywait>Endast pågående</onlywait>
+        <hidespam>Dölj skräppost</hidespam>
+        <withfiles>Med bilagor</withfiles>
+        <onlyspam>Endast skräppost</onlyspam>
+        <withoutfiles>Utan bilagor</withoutfiles>
+        <actionwait>Avvaktan</actionwait>
+        <actionspam>SPAM</actionspam>
+        <actionreply>Svar</actionreply>
+        <actionreplyall>Svara alla</actionreplyall>
+        <actionforward>Framåt</actionforward>
+        <messageid>Id-meddelande</messageid>
+        <fulldata>Mail zoom</fulldata>
+        <sourcedata>E-postkälla</sourcedata>
+        <leidos>Läs</leidos>
+        <wait>Avvaktan</wait>
+        <spam>SPAM</spam>
+        <borrar>Radera</borrar>
+        <borrartip>Ta bort alla markerade e-postmeddelanden</borrartip>
+        <msgleidos>Vill du markera alla markerade e-postmeddelanden som lästa / olästa?</msgleidos>
+        <msgwait>Vill du markera alla markerade e-postmeddelanden som väntande / inte pågående?</msgwait>
+        <msgspam>Vill du markera alla markerade e-postmeddelanden som skräppost / icke- skräppost?</msgspam>
+        <msgdelete2>Vill du ta bort alla markerade e-postmeddelanden?</msgdelete2>
+        <msgnotsendfound>Det finns inga väntande meddelanden att skicka</msgnotsendfound>
+        <msgerrorsendmail>Följande fel har inträffat:</msgerrorsendmail>
+        <msgtotalsendmail1>E-post skickat från utkorgen</msgtotalsendmail1>
+        <msgtotalsendmail2>E-postmeddelanden skickas från utkorgen</msgtotalsendmail2>
+        <stateinbox>Tillträde</stateinbox>
+        <stateoutbox>Utgång</stateoutbox>
+        <onlyinbox>Endast förrätter</onlyinbox>
+        <onlyoutbox>Endast utgående</onlyoutbox>
+        <options>Alternativ</options>
+        <optionstip>Visa fler listalternativ</optionstip>
+        <pdfoptions>PDF-alternativ</pdfoptions>
+        <sinsubject>(inget ämne)</sinsubject>
+        <msgfromkosendmail>Konfiguration för obligatorisk Från: inte hittad</msgfromkosendmail>
+        <msgsendoksendmail>E-postmeddelandet har skickats</msgsendoksendmail>
+        <replysubject>Re:</replysubject>
+        <replyallsubject>Re:</replyallsubject>
+        <forwardsubject>Fwd:</forwardsubject>
+        <embeddedmessage># datetime #, # fromname # skrev:</embeddedmessage>
+        <actionreplytip>För att svara till avsändaren av detta meddelande</actionreplytip>
+        <actionreplyalltip>För att svara på alla meddelanden</actionreplyalltip>
+        <actionforwardtip>För att vidarebefordra detta e-postmeddelande till andra användare</actionforwardtip>
+        <noleidos>Oläst</noleidos>
+        <nowait>Inte väntar</nowait>
+        <nospam>Ingen skräppost</nospam>
+        <today>I dag</today>
+        <yesterday>I går</yesterday>
+        <week>Vecka</week>
+        <month>Månad</month>
+        <confirmreadingto>Begär bekräftelse på kvittot</confirmreadingto>
+        <marcarcorreos>Markera som</marcarcorreos>
+        <message0>Inlägg</message0>
+        <message1>Meddelande</message1>
+        <message2>Inlägg</message2>
+        <campos>Campos</campos>
+        <allcampos>[Alla fält]</allcampos>
+        <onlyemail>Endast i riktningar</onlyemail>
+        <onlysubject>Endast i saken</onlysubject>
+        <onlybody>Endast i meddelandet</onlybody>
+        <filtrarcorreos>Filtrera efter</filtrarcorreos>
+        <priority>Prioritet</priority>
+        <priorityhigh>Hög</priorityhigh>
+        <prioritynormal>Normal</prioritynormal>
+        <prioritylow>Släppa</prioritylow>
+        <sensitivity>Känslighet</sensitivity>
+        <sensitivitynormal>Normal</sensitivitynormal>
+        <sensitivitypersonal>Personal</sensitivitypersonal>
+        <sensitivityprivate>Privat</sensitivityprivate>
+        <sensitivityconfidential>Konfidentiell</sensitivityconfidential>
+        <addincidencia>Skapa incidens</addincidencia>
+        <addincidenciatip>Skapa en incident från det här e-postmeddelandet</addincidenciatip>
+        <addincidenciamsg>Vill du skapa en incident från det här e-postmeddelandet?</addincidenciamsg>
+        <addincidenciaok>Händelsen har skapats med koden:</addincidenciaok>
+        <notsupportdefined>Support e-postkonto inte definierat</notsupportdefined>
+        <notsupportfound>Detta e-postmeddelande innehåller inte support-e-postkontot</notsupportfound>
+        <incidenciaexists>Denna incident förekommer redan och har koden:</incidenciaexists>
+        <interrorsendmail>Det här e-postmeddelandet skickades inte på grund av ett internt fel</interrorsendmail>
+    </correo>
+    <tiposevento>
+        <list>Lista över händelsetyper</list>
+        <create>Ny typ av händelse</create>
+        <formview>Händelsetypdetalj</formview>
+        <forminsert>Registrering av en ny typ av evenemang</forminsert>
+        <formupdate>ändra händelsetypen</formupdate>
+        <defaultdata>Händelsetypdata</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>Lista med fördefinierade texter</list>
+        <publico>Allmänheten</publico>
+        <publico_desc>Alla kan använda den fördefinierade texten</publico_desc>
+        <create>Ny fördefinierad text</create>
+        <formview>Fördefinierad textdetalj</formview>
+        <forminsert>Lägga till en ny fördefinierad text</forminsert>
+        <formupdate>ändra den fördefinierade texten</formupdate>
+        <defaultdata>Fördefinierade textdata</defaultdata>
+        <sinaplicacion>[Utan ansökan]</sinaplicacion>
+    </textos>
+    <feeds>
+        <list>Lista över RSS-flöden</list>
+        <msgnewfeedsok1>Nytt inlägg nedladdat</msgnewfeedsok1>
+        <msgnewfeedsok2>Nya nedladdade inlägg</msgnewfeedsok2>
+        <msgnewfeedsko>Inga nya inlägg hittades</msgnewfeedsko>
+        <msgmodifiedfeedsok1>Uppdaterat inlägg</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2>Uppdaterade inlägg</msgmodifiedfeedsok2>
+        <msgnotfeeds>Det finns inget RSS-flöde konfigurerat eller aktiverat</msgnotfeeds>
+        <feed>RSS-flöde</feed>
+        <title>Titel</title>
+        <pubdate>Pub-datum</pubdate>
+        <recibir>Motta</recibir>
+        <recibirtip>Klicka här för att få nya inlägg</recibirtip>
+        <todoslosfeeds>[Alla RSS-flöden]</todoslosfeeds>
+        <defaultdata>Postdetalj</defaultdata>
+        <fulldata>Post zoom</fulldata>
+        <actionwait>Avvaktan</actionwait>
+        <statenew>Ny</statenew>
+        <actionnew>Ny</actionnew>
+        <statemodified>Modifierad</statemodified>
+        <statewait>Avvaktan</statewait>
+        <stateread>Läs</stateread>
+        <actionforward>Framåt</actionforward>
+        <actionforwardtip>För att vidarebefordra detta inlägg via e-post</actionforwardtip>
+        <formview>Postdetalj</formview>
+        <msggotofeeds>gå till RSS-flöden</msggotofeeds>
+        <onlynew>Bara nytt</onlynew>
+        <onlywait>Endast pågående</onlywait>
+        <options>Alternativ</options>
+        <optionstip>Visa fler listalternativ</optionstip>
+        <pdfoptions>PDF-alternativ</pdfoptions>
+        <stateall>Allt</stateall>
+        <today>I dag</today>
+        <yesterday>I går</yesterday>
+        <week>Vecka</week>
+        <month>Månad</month>
+        <marcarfeeds>Markera som</marcarfeeds>
+        <leidos>Läs</leidos>
+        <wait>Avvaktan</wait>
+        <borrar>Radera</borrar>
+        <borrartip>Ta bort alla valda inlägg</borrartip>
+        <noleidos>Oläst</noleidos>
+        <nowait>Inte väntar</nowait>
+        <msgleidos>Vill du markera alla valda inlägg som lästa / olästa?</msgleidos>
+        <msgwait>Vill du markera alla valda inlägg som väntande / inte pågående?</msgwait>
+        <msgdelete2>Vill du ta bort alla markerade inlägg?</msgdelete2>
+        <msgpropietario>Endast ägaren av inläggen kan använda dessa funktioner</msgpropietario>
+        <msgnotfound>Inga valda inlägg hittades, ändra filtret</msgnotfound>
+        <msgnumsileidos>De har markerats som lästa:</msgnumsileidos>
+        <msgnumsiwait>De har markerats som väntande:</msgnumsiwait>
+        <msgnumnoleidos>De har markerats som olästa:</msgnumnoleidos>
+        <msgnumnowait>De har markerats som inte avvaktande:</msgnumnowait>
+        <msgnumdelete>Följande har tagits bort:</msgnumdelete>
+        <message0>Inlägg</message0>
+        <message1>Post</message1>
+        <message2>Inlägg</message2>
+        <msgerrorfeed>Ett fel har inträffat med följande flöde:</msgerrorfeed>
+        <sintitle>Inget namn)</sintitle>
+        <post>RSS-inlägg</post>
+        <filtrarfeeds>Filtrera efter</filtrarfeeds>
+        <actioncool>Intressant</actioncool>
+        <statecool>Intressant</statecool>
+        <onlycool>Bara intressant</onlycool>
+        <cool>Intressant</cool>
+        <nocool>Inte intressant</nocool>
+        <msgcool>Vill du markera alla valda inlägg som intressanta / inte intressanta?</msgcool>
+        <msgnumsicool>De har markerats som intressanta:</msgnumsicool>
+        <msgnumnocool>De har markerats som inte intressanta:</msgnumnocool>
+        <actionfavoritos>Lägg till i favoriter</actionfavoritos>
+    </feeds>
+    <favoritos>
+        <list>Favoritlista</list>
+        <create>Ny favorit</create>
+        <url>URL</url>
+        <bookmarkexists>Den url du försöker spara finns redan som favorit.</bookmarkexists>
+        <invalidurl>Webbadressen är inte giltig, kontrollera webbadressen:</invalidurl>
+        <bookmarkadded>Webbadressen har lagts till i favoriter</bookmarkadded>
+        <previews>Miniatyrer</previews>
+    </favoritos>
+</root>

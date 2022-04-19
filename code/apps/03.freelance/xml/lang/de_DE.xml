@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <clientes>Kunden</clientes>
+        <contactos>Kontakte</contactos>
+        <documentos>Dokumente</documentos>
+        <facturas>Rechnungen</facturas>
+        <proveedores>Lieferanten</proveedores>
+        <gastos>Kosten</gastos>
+        <epigrafes>Briefköpfe</epigrafes>
+        <formaspago>Zahlungsmethoden</formaspago>
+        <cuentas>Konten</cuentas>
+        <periodicas>Wiederk. Rechnungen</periodicas>
+        <empleados>Mitarbeiter</empleados>
+        <productos>Produkte</productos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <gestioncomercial>Marketing</gestioncomercial>
+        <gestioncontabilidad>Rechnungswesen</gestioncontabilidad>
+        <desc_clientes>Verwalten Sie hier Ihre Kunden</desc_clientes>
+        <desc_contactos>Verwalten Sie hier Ihre Kontakte</desc_contactos>
+        <desc_facturas>Verwalten Sie hier Ihre Rechnungen</desc_facturas>
+        <desc_proveedores>Verwalten Sie hier Ihre Lieferanten</desc_proveedores>
+        <desc_gastos>Kontrolieren Sie hier Ihre Kosten</desc_gastos>
+        <desc_documentos>Verwalten Sie hier Ihre Dokumente</desc_documentos>
+        <desc_epigrafes>Verwalten Sie hier Ihre Briefköpfe</desc_epigrafes>
+        <desc_formaspago>Verwalten Sie hier Ihre Zahlungsmethoden</desc_formaspago>
+        <desc_cuentas>Verwalten Sie hier Ihre Konten</desc_cuentas>
+        <desc_periodicas>Verwalten Sie hier Ihre periodische Rechnungen</desc_periodicas>
+        <desc_empleados>Verwalten Sie hier Ihre Mitarbeiter</desc_empleados>
+        <desc_productos>Verwalten Sie hier Ihre Produkte</desc_productos>
+        <desc_ivas>Verwalten sie die steuern von hier aus</desc_ivas>
+        <quick_clientes>Kunden</quick_clientes>
+        <quick_contactos>Kontakte</quick_contactos>
+        <quick_documentos>Dokumente</quick_documentos>
+        <quick_facturas>Rechnungen</quick_facturas>
+        <quick_proveedores>Lieferanten</quick_proveedores>
+        <quick_gastos>Kosten</quick_gastos>
+        <quick_epigrafes>Briefköpfe</quick_epigrafes>
+        <quick_formaspago>Zahlungsarten</quick_formaspago>
+        <quick_cuentas>Konten</quick_cuentas>
+        <quick_periodicas>Wiederk. Rechnungen</quick_periodicas>
+        <quick_empleados>Mitarbeiter</quick_empleados>
+        <quick_productos>Produkte</quick_productos>
+    </menu>
+    <clientes>
+        <list>Kunden</list>
+        <create>Neuer Kunde</create>
+        <formview>Kunden Details</formview>
+        <forminsert>Neuen Kunde erstellen</forminsert>
+        <formupdate>Kunde bearbeiten</formupdate>
+        <defaultdata>Kunden Daten</defaultdata>
+        <contactdata>Kundenkontakte</contactdata>
+        <projectopen>Aktuelle Projekte</projectopen>
+        <projectclose>Abgeschlossene Projekte</projectclose>
+        <incidentopen>Offene Reklamationen</incidentopen>
+        <incidentclose>Geschlossene Reklamationen</incidentclose>
+        <partesopen>Offene Arbeitsberichte</partesopen>
+        <partesclose>Geschlossene Arbeitsberichte</partesclose>
+        <albaranes>Lieferscheine</albaranes>
+        <facturaopen>Offene Rechnungen</facturaopen>
+        <facturaclose>Bezahlte Rechnungen</facturaclose>
+        <gastosdata>Verbundene Kosten</gastosdata>
+        <documentdata>Verbundene Dokumente</documentdata>
+        <agendadata>Verbundene Termine</agendadata>
+        <actasdata>Verbundene Protokolle</actasdata>
+        <actionliquidar>Erledigt</actionliquidar>
+        <msgliquidar>Möchten Sie die ausgewählten Arbeitsberichte als erledigt markieren?</msgliquidar>
+        <cuentacorriente>Girokonto</cuentacorriente>
+        <diapago>Zahltag</diapago>
+        <cuentacontable>Sachkonto</cuentacontable>
+        <nombrecomercial>Firmenwortlaut</nombrecomercial>
+        <nombrefiscal>Juristischer Name</nombrefiscal>
+        <tipocliente>Kundentyp</tipocliente>
+        <clientefiscal>Privat</clientefiscal>
+        <clientejuridico>Firma</clientejuridico>
+        <add>Kunde hinzufügen</add>
+        <presupuestosdata>Verbundene Angebote</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>Kontakte</list>
+        <create>Neuer Kontakt</create>
+        <formview>Kontakt Details</formview>
+        <forminsert>Neuen Kontakt erstellen</forminsert>
+        <formupdate>Kontakt bearbeiten</formupdate>
+        <defaultdata>Kontakt Daten</defaultdata>
+        <add>Kontakt hinzufügen</add>
+    </contactos>
+    <documentos>
+        <list>Dokumente</list>
+        <create>Neues Dokument</create>
+        <formview>Dokumenten Details</formview>
+        <forminsert>Neues Dokument erstellen</forminsert>
+        <formupdate>Dokument bearbeiten</formupdate>
+        <defaultdata>Dokumenten Daten</defaultdata>
+    </documentos>
+    <epigrafes>
+        <list>Briefköpfe</list>
+        <create>Neuer Briefkopf</create>
+        <formview>Briefkopf Details</formview>
+        <forminsert>Neuen Briefkopf erstellten</forminsert>
+        <formupdate>Briefkopf bearbeiten</formupdate>
+        <defaultdata>Briefkopf Daten</defaultdata>
+    </epigrafes>
+    <formaspago>
+        <list>Zahlungsmethoden</list>
+        <create>Neue Zahlungsmethode</create>
+        <formview>Zahlungsmethode Details</formview>
+        <forminsert>Neue Zahlungsmethode erstellen</forminsert>
+        <formupdate>Zahlungsmethode bearbeiten</formupdate>
+        <defaultdata>Zahlungs Daten</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>Kosten</list>
+        <create>Neue Kosten</create>
+        <formview>Kosten Details</formview>
+        <forminsert>Neue Kosten erstellen</forminsert>
+        <formupdate>Kosten bearbeiten</formupdate>
+        <defaultdata>Kosten Daten</defaultdata>
+        <pagadopor>Auszahlen an</pagadopor>
+        <liquidar>Erledigt</liquidar>
+        <dateliq>Datum und Uhrzeit</dateliq>
+        <msgliquidar>Möchten Sie die ausgewählten Kosten als erledigt markieren?</msgliquidar>
+        <msgerror>Sie müssen die gewünschten Abwicklungskosten in den Prospekt</msgerror>
+        <trimestrereg>Trim. Login</trimestrereg>
+        <fechainireg>Eintrittsdatum</fechainireg>
+        <trimestreliq>Trim. beigelegt</trimestreliq>
+        <fechainiliq>Bezahlt am</fechainiliq>
+        <totalliquidar>Wurden als erledigt markiert: </totalliquidar>
+        <sinpagador>[Ohne Zahlung]</sinpagador>
+        <vencimientos_old>Fälligkeiten</vencimientos_old>
+        <vencimientos_new>Stundung</vencimientos_new>
+        <fechavencimiento>Fälligkeit</fechavencimiento>
+        <pagado>Bezahlt</pagado>
+        <fechapagado>Bezahlt am</fechapagado>
+    </gastos>
+    <facturas>
+        <list>Rechnungen</list>
+        <create>Neue Rechnung</create>
+        <formview>Rechnungs Details</formview>
+        <forminsert>Neue Rechnung erstellen</forminsert>
+        <formupdate>Rechnung bearbeiten</formupdate>
+        <defaultdata>Rechnungs Daten</defaultdata>
+        <errorfac101>Nur Sie können das letzte Rechnung</errorfac101>
+        <errorfac103>Sie können nicht löschen eine Rechnung beigefügt</errorfac103>
+        <numfacxxx>Rechnung Nr.</numfacxxx>
+        <numalbxxx>Lieferschein Nr.</numalbxxx>
+        <fechaemision>Datum</fechaemision>
+        <titular>Inhaber</titular>
+        <baseimponible>Nettosumme</baseimponible>
+        <totalapagar>Gesamtsumme</totalapagar>
+        <concepts_old>Positionen</concepts_old>
+        <concepts_new>Neue Position</concepts_new>
+        <products_old>Produkte</products_old>
+        <products_new>Neue Produkte</products_new>
+        <vencimientos_old>Fälligkeiten</vencimientos_old>
+        <vencimientos_new>Stundung</vencimientos_new>
+        <fechavencimiento>Fälligkeit</fechavencimiento>
+        <fechacobrado>Fertigstellungstermin</fechacobrado>
+        <clientdata>Kundendaten</clientdata>
+        <vencimientosfactura>Fälligkeit dieser Rechnung</vencimientosfactura>
+        <vencimientosalbaran>Fälligkeit des Lieferscheins</vencimientosalbaran>
+        <vencimientoscobrado>Das Feld wurde gesammelten Daten mit Hilfe der modifizierten Reife</vencimientoscobrado>
+    </facturas>
+    <proveedores>
+        <list>Lieferanten</list>
+        <create>Neuer Lieferant</create>
+        <formview>Lieferanten Details</formview>
+        <forminsert>Neuen Lieferant erstellen</forminsert>
+        <formupdate>Lieferant bearbeiten</formupdate>
+        <defaultdata>Lieferanten Daten</defaultdata>
+        <cuentacorriente>Girokonto</cuentacorriente>
+        <cuentacontable>Sachkonto</cuentacontable>
+        <diapago>Fälligkeit</diapago>
+        <gastosdata>Kosten im Zusammenhang mit Lieferanten finden</gastosdata>
+        <contactdata>Lieferanten Kontakte</contactdata>
+        <nombrecomercial>Firmenwortlaut</nombrecomercial>
+        <nombrefiscal>Juristischer Name</nombrefiscal>
+        <add>Lieferanten hinzufügen</add>
+    </proveedores>
+    <cuentas>
+        <list>Konten</list>
+        <create>Neues Konto</create>
+        <formview>Konto Details</formview>
+        <forminsert>Neues Konto erstellen</forminsert>
+        <formupdate>Konto bearbeiten</formupdate>
+        <defaultdata>Konto Daten</defaultdata>
+        <logo>Logo</logo>
+        <title_logo>Konfigurieren Sie das Logo, die Position und Größe sowie Farben die in PDF's verwendet werden sollen</title_logo>
+        <logoleft>X-Position</logoleft>
+        <logotop>Y-Position</logotop>
+        <logowidth>Breite</logowidth>
+        <logoheight>Höhe</logoheight>
+        <logofile>Derzeitiges Logo</logofile>
+        <logofilenew>Neue Datei (nur JPEG)</logofilenew>
+        <colorline>Linienfarbe</colorline>
+        <colortext1>Titel</colortext1>
+        <colortext2>Texte</colortext2>
+        <title_facturas>Konfigurieren Sie die Parameter die für die Abrechnung verwendet werden sollen</title_facturas>
+        <facturabool>Verwende </facturabool>
+        <facturavalue>Prozentsatz (Vorbelegung)</facturavalue>
+        <facturapie1>Erste Fußzeile</facturapie1>
+        <facturapie2>Zweite Fußzeile</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>Wiederkehrende Rechnungen</list>
+        <create>Neue wiederkehrende Rechnung</create>
+        <formview>Wiederkehrende Rechnung Details</formview>
+        <forminsert>Neue Wiederkehrende Rechnung erstellen</forminsert>
+        <formupdate>Wiederkehrende Rechnung bearbeiten</formupdate>
+        <defaultdata>Wiederkehrende Rechnungs Daten</defaultdata>
+        <concepts_old>Positionen</concepts_old>
+        <concepts_new>Neue Positionen</concepts_new>
+        <products_old>Produkte</products_old>
+        <products_new>Neue Produkte</products_new>
+        <vencimientos_old>Fälligkeiten</vencimientos_old>
+        <vencimientos_new>Stundung</vencimientos_new>
+        <fechavencimiento>Fälligkeit</fechavencimiento>
+        <diaemision>Ausstellungsdatum</diaemision>
+        <diaini>Zwischen Tag</diaini>
+        <dia>Tag</dia>
+        <meses>Monate</meses>
+        <liquidar>Generieren</liquidar>
+        <totalliquidar>Anzahl der generierten Rechnungen: </totalliquidar>
+        <msgerror>Sie müssen die Rechnungen Sie die Liste zu erzeugen und den Monat zu verwenden</msgerror>
+        <msgliquidar>Möchten Sie die ausgewählten Rechnungen generieren?</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>Mitarbeiter</list>
+        <create>Neuer Mitarbeiter</create>
+        <formview>Mitarbeiter Details</formview>
+        <forminsert>Neuen Mitarbeiter erstellen</forminsert>
+        <formupdate>Mitarbeiter bearbeiten</formupdate>
+        <defaultdata>Mitarbeiter Daten</defaultdata>
+        <contactdata>Kontaktdaten</contactdata>
+    </empleados>
+    <productos>
+        <list>Produkte</list>
+        <create>Neues Produkt</create>
+        <formview>Produkt Details</formview>
+        <forminsert>Neues Produkt erstellen</forminsert>
+        <formupdate>Produkt bearbeiten</formupdate>
+        <defaultdata>Produkt Daten</defaultdata>
+        <ref>Ref.</ref>
+        <peso>Gewicht</peso>
+        <volumen>Volumen</volumen>
+        <dimensiones>Maße</dimensiones>
+        <fotofile>Aktuelles foto</fotofile>
+        <fotofilenew>Neues foto</fotofilenew>
+        <siniva eval="true">"[Ohne".CONFIG("accounting_iva_name")."]"</siniva>
+    </productos>
+    <ivas>
+        <list eval="true">"Liste von".CONFIG("accounting_iva_name")</list>
+        <create eval="true">"Neu".CONFIG("accounting_iva_name")</create>
+        <formview eval="true">"Details der".CONFIG("accounting_iva_name")</formview>
+        <forminsert eval="true">"Neue hinzugefügt".CONFIG("accounting_iva_name")</forminsert>
+        <formupdate eval="true">"Ändern der".CONFIG("accounting_iva_name")</formupdate>
+        <defaultdata eval="true">"Daten der".CONFIG("accounting_iva_name")</defaultdata>
+    </ivas>
+</root>

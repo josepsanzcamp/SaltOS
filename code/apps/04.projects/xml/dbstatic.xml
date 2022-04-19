@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <tbl_aplicaciones>
+        <row>
+            <id>3</id>
+            <codigo>incidencias</codigo>
+            <nombre>Incidencias</nombre>
+            <tabla>tbl_incidencias</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>4</id>
+            <codigo>proyectos</codigo>
+            <nombre>Proyectos</nombre>
+            <tabla>tbl_proyectos</tabla>
+            <campo>nombre</campo>
+            <subtablas>tbl_proyectos_p(id_proyecto),tbl_proyectos_t(id_proyecto)</subtablas>
+            <islink>1</islink>
+        </row>
+        <row>
+            <id>5</id>
+            <codigo>partes</codigo>
+            <nombre>Partes</nombre>
+            <tabla>tbl_partes</tabla>
+            <campo>tarea</campo>
+        </row>
+        <row>
+            <id>16</id>
+            <codigo>prioridades</codigo>
+            <nombre>Prioridades</nombre>
+            <tabla>tbl_prioridades</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>22</id>
+            <codigo>actas</codigo>
+            <nombre>Actas</nombre>
+            <tabla>tbl_actas</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>25</id>
+            <codigo>seguimientos</codigo>
+            <nombre>Seguimientos</nombre>
+            <tabla>tbl_seguimientos</tabla>
+            <campo>comentarios</campo>
+        </row>
+        <row>
+            <id>32</id>
+            <codigo>posiblescli</codigo>
+            <nombre>Posibles clientes</nombre>
+            <tabla>tbl_posiblescli</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>34</id>
+            <codigo>presupuestos</codigo>
+            <nombre>Presupuestos</nombre>
+            <tabla>tbl_presupuestos</tabla>
+            <campo>nombre</campo>
+            <subtablas>tbl_presupuestos_p(id_presupuesto),tbl_presupuestos_t(id_presupuesto)</subtablas>
+        </row>
+        <row>
+            <id>35</id>
+            <codigo>campanyas</codigo>
+            <nombre>Campañas comerciales</nombre>
+            <tabla>tbl_campanyas</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>44</id>
+            <codigo>categorias</codigo>
+            <nombre>Categorias</nombre>
+            <tabla>tbl_categorias</tabla>
+            <campo>nombre</campo>
+        </row>
+    </tbl_aplicaciones>
+    <tbl_aplicaciones_p>
+        <row>
+            <id_aplicacion>22,3,5,16,4,25,32,34,35,44</id_aplicacion>
+            <id_permiso>10,3,1,8,4,5,11,12,13,14,2,9,6,7</id_permiso>
+        </row>
+    </tbl_aplicaciones_p>
+</root>

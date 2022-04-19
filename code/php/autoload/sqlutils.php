@@ -187,7 +187,7 @@ function preeval_update_query($table, $only = "")
 
 function preeval_dependencies_query($table, $label)
 {
-    $dbschema = xml2array("xml/dbschema.xml");
+    $dbschema = eval_attr(xml_join(xml2array(detect_apps_files("xml/dbschema.xml"))));
     if (is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
         $deps = array();
         foreach ($dbschema["tables"] as $tablespec) {
@@ -416,10 +416,10 @@ function __has_fulltext_index($table)
 {
     static $fulltext = null;
     if ($fulltext === null) {
-        $dbschema = eval_attr(__get_dbschema_with_indexing(
-            xml2array("xml/dbschema.xml"),
-            xml2array("xml/dbstatic.xml")
-        ));
+        $dbschema = __get_dbschema_with_indexing(
+            eval_attr(xml_join(xml2array(detect_apps_files("xml/dbschema.xml")))),
+            eval_attr(xml_join(xml2array(detect_apps_files("xml/dbstatic.xml"))))
+        );
         $fulltext = array();
         if (is_array($dbschema) && isset($dbschema["indexes"]) && is_array($dbschema["indexes"])) {
             foreach ($dbschema["indexes"] as $indexspec) {
@@ -748,10 +748,10 @@ function __dbschema_helper($fn, $table)
 {
     static $tables = null;
     if ($tables === null) {
-        $dbschema = eval_attr(__get_dbschema_with_indexing(
-            xml2array("xml/dbschema.xml"),
-            xml2array("xml/dbstatic.xml")
-        ));
+        $dbschema = __get_dbschema_with_indexing(
+            eval_attr(xml_join(xml2array(detect_apps_files("xml/dbschema.xml")))),
+            eval_attr(xml_join(xml2array(detect_apps_files("xml/dbstatic.xml"))))
+        );
         $tables = array();
         if (is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
             foreach ($dbschema["tables"] as $tablespec) {

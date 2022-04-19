@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <tbl_aplicaciones>
+        <row>
+            <id>1</id>
+            <codigo>clientes</codigo>
+            <nombre>Clientes</nombre>
+            <tabla>tbl_clientes</tabla>
+            <campo>nombre</campo>
+            <islink>1</islink>
+        </row>
+        <row>
+            <id>2</id>
+            <codigo>contactos</codigo>
+            <nombre>Contactos</nombre>
+            <tabla>tbl_contactos</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>6</id>
+            <codigo>documentos</codigo>
+            <nombre>Documentos</nombre>
+            <tabla>tbl_documentos</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>7</id>
+            <codigo>facturas</codigo>
+            <nombre>Facturas</nombre>
+            <tabla>tbl_facturas</tabla>
+            <campo>"CASE num WHEN '' THEN CONCAT('".LANG_ESCAPE("albaran")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) ELSE CONCAT('".LANG_ESCAPE("factura")."',' ',num,' ',nombre,CASE cobrado WHEN '1' THEN '".LANG_ESCAPE("cobrado","facturas")."' ELSE '&lt;strike&gt;".LANG_ESCAPE("cobrado","facturas")."&lt;/strike&gt;' END) END"</campo>
+            <subtablas>tbl_facturas_c(id_factura),tbl_facturas_v(id_factura)</subtablas>
+        </row>
+        <row>
+            <id>8</id>
+            <codigo>gastos</codigo>
+            <nombre>Gastos</nombre>
+            <tabla>tbl_gastos</tabla>
+            <campo>descripcion</campo>
+            <subtablas>tbl_gastos_v(id_gasto)</subtablas>
+        </row>
+        <row>
+            <id>9</id>
+            <codigo>epigrafes</codigo>
+            <nombre>Epigrafes</nombre>
+            <tabla>tbl_epigrafes</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>15</id>
+            <codigo>formaspago</codigo>
+            <nombre>Formas de pago</nombre>
+            <tabla>tbl_formaspago</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>21</id>
+            <codigo>proveedores</codigo>
+            <nombre>Proveedores</nombre>
+            <tabla>tbl_proveedores</tabla>
+            <campo>nombre</campo>
+            <islink>1</islink>
+        </row>
+        <row>
+            <id>28</id>
+            <codigo>cuentas</codigo>
+            <nombre>Cuentas</nombre>
+            <tabla>tbl_cuentas</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>29</id>
+            <codigo>periodicas</codigo>
+            <nombre>Periodicas</nombre>
+            <tabla>tbl_periodicas</tabla>
+            <campo>(SELECT nombre FROM tbl_clientes WHERE tbl_clientes.id=id_cliente)</campo>
+            <subtablas>tbl_periodicas_c(id_periodica),tbl_periodicas_v(id_periodica)</subtablas>
+        </row>
+        <row>
+            <id>31</id>
+            <codigo>empleados</codigo>
+            <nombre>Empleados</nombre>
+            <tabla>tbl_empleados</tabla>
+            <campo>nombre</campo>
+            <islink>1</islink>
+        </row>
+        <row>
+            <id>33</id>
+            <codigo>productos</codigo>
+            <nombre>Productos</nombre>
+            <tabla>tbl_productos</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>43</id>
+            <codigo>ivas</codigo>
+            <nombre>I.V.A.</nombre>
+            <tabla>tbl_ivas</tabla>
+            <campo>nombre</campo>
+        </row>
+    </tbl_aplicaciones>
+    <tbl_aplicaciones_p>
+        <row>
+            <id_aplicacion>1,2,6,9,7,15,8,21,28,29,31,33,43</id_aplicacion>
+            <id_permiso>10,3,1,8,4,5,11,12,13,14,2,9,6,7</id_permiso>
+        </row>
+    </tbl_aplicaciones_p>
+</root>

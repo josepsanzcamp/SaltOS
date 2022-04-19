@@ -91,11 +91,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <env_path>PATH</env_path>
         <env_lang>LANG</env_lang>
         <applications>Søknader</applications>
-        <select_layer>Velg profil</select_layer>
-        <selected_layer>Valgt profil</selected_layer>
-        <layer_all>Alle bruksområder</layer_all>
-        <layer_personal>Søknader til personlig bruk</layer_personal>
-        <select_apps>Velg applikasjoner</select_apps>
-        <selected_apps>Valgte applikasjoner</selected_apps>
+        <select_apps>Velg profil</select_apps>
+        <selected_apps>Valgt profil</selected_apps>
+        <apps_all>Alle applikasjoner</apps_all>
+        <apps_01_core>Minimale systemprogrammer</apps_01_core>
+        <apps_02_personal>Programmer for personlig bruk</apps_02_personal>
+        <apps_03_freelance>Faktureringsprogrammer</apps_03_freelance>
+        <apps_04_projects>Søknader om prosjektledelse</apps_04_projects>
+        <select_apps2>Velg applikasjoner</select_apps2>
+        <selected_apps2>Valgte applikasjoner</selected_apps2>
     </common>
 </root>

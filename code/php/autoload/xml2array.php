@@ -107,7 +107,7 @@ function struct2array_include($input)
                 foreach ($attr as $key => $val) {
                     $key = limpiar_key($key);
                     if ($key == "include") {
-                        $value = xml2array($val);
+                        $value = xml2array(detect_app_file($val));
                         $include = 1;
                     } elseif ($key == "replace") {
                         $replace = eval_bool($val);
@@ -470,41 +470,54 @@ function detect_recursion($fn)
     return count($temp);
 }
 
-function xml2array($file, $usecache = true)
+function xml2array($files, $usecache = true)
 {
     static $depend = array();
-    if (!file_exists($file)) {
-        xml_error("File not found: $file");
+    if (!is_array($files)) {
+        $files = array($files);
     }
-    if (!semaphore_acquire($file)) {
+    foreach ($files as $file) {
+        if (!file_exists($file)) {
+            xml_error("File not found: $file");
+        }
+    }
+    if (!semaphore_acquire($files)) {
         xml_error("Could not acquire the semaphore");
     }
     if ($usecache) {
         if (detect_recursion(__FUNCTION__) == 1) {
             $depend = array();
         }
-        $cache = get_cache_file($file, ".arr");
-        if (cache_exists($cache, $file)) {
+        $cache = get_cache_file($files, ".arr");
+        if (cache_exists($cache, $files)) {
             $array = unserialize(file_get_contents($cache));
             if (isset($array["depend"]) && isset($array["root"])) {
                 if (cache_exists($cache, $array["depend"])) {
                     $depend = array_merge($depend, $array["depend"]);
-                    semaphore_release($file);
+                    semaphore_release($files);
                     return $array["root"];
                 }
             }
         }
     }
-    $xml = file_get_contents($file);
-    $data = xml2struct($xml, $file);
+    $data=array();
+    foreach($files as $file) {
+        $xml = file_get_contents($file);
+        $data2 = xml2struct($xml, $file);
+		if (count($data) > 0) {
+			array_pop($data);
+			array_shift($data2);
+		}
+		$data = array_merge($data, $data2);
+    }
     $data = array_reverse($data);
-    $array = struct2array($data, $file);
+    $array = struct2array($data, implode(",",$files));
     $array = struct2array_include($array);
     if (detect_recursion(__FUNCTION__) == 1) {
         $array = struct2array_path($array);
     }
     if ($usecache) {
-        $depend[] = $file;
+        $depend = array_merge($depend, $files);
         $array["depend"] = array_unique($depend);
         if (file_exists($cache)) {
             unlink($cache);
@@ -512,7 +525,7 @@ function xml2array($file, $usecache = true)
         file_put_contents($cache, serialize($array));
         chmod($cache, 0666);
     }
-    semaphore_release($file);
+    semaphore_release($files);
     return $array["root"];
 }
 
@@ -833,10 +846,10 @@ function eval_attr($array)
                                 case "require":
                                     $val2 = explode(",", $val2);
                                     foreach ($val2 as $file) {
-                                        if (!file_exists($file)) {
+                                        if (!file_exists(detect_app_file($file))) {
                                             xml_error("Require '$file' not found");
                                         }
-                                        require_once $file;
+                                        require_once detect_app_file($file);
                                     }
                                     break;
                                 case "for":
@@ -1056,4 +1069,19 @@ function xml_error($error, $source = "", $count = "", $file = "")
         $array["source"] = htmlentities($source, ENT_COMPAT, "UTF-8");
     }
     show_php_error($array);
+}
+
+function xml_join($array)
+{
+    if (is_array($array)) {
+        foreach ($array as $key => $val) {
+            if (limpiar_key($key) != $key && is_array($val)) {
+                foreach ($val as $key2 => $val2) {
+                    set_array($array[limpiar_key($key)], $key2, $val2);
+                }
+                unset($array[$key]);
+            }
+        }
+    }
+    return $array;
 }

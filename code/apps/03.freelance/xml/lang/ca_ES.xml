@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <clientes>Clients</clientes>
+        <contactos>Contactes</contactos>
+        <documentos>Documents</documentos>
+        <facturas>Factures</facturas>
+        <proveedores>Proveïdors</proveedores>
+        <gastos>Despeses</gastos>
+        <epigrafes>Epígrafs</epigrafes>
+        <formaspago>Formes de pagament</formaspago>
+        <cuentas>Comptes</cuentas>
+        <periodicas>Factures periòdiques</periodicas>
+        <empleados>Empleats</empleados>
+        <productos>Productes</productos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <gestioncomercial>Comercial</gestioncomercial>
+        <gestioncontabilidad>Comptabilitat</gestioncontabilidad>
+        <desc_clientes>Gestioni els clients de la seva empresa</desc_clientes>
+        <desc_contactos>Per accedir als contactes d'un client</desc_contactos>
+        <desc_facturas>Gestioni totes les factures (albarans, cobrades, etc...)</desc_facturas>
+        <desc_proveedores>Gestioni els proveïdors de la seva empresa</desc_proveedores>
+        <desc_gastos>Controli les despeses i sàpiga si estan liquidats</desc_gastos>
+        <desc_documentos>Tingueu agrupada tota la documentació de la seva empresa</desc_documentos>
+        <desc_epigrafes>Definiu els epígrafs per a les factures i despeses</desc_epigrafes>
+        <desc_formaspago>Definiu formes de pagament per gestionar les despeses</desc_formaspago>
+        <desc_cuentas>Definiu els comptes comptables per a la comptabilitat</desc_cuentas>
+        <desc_periodicas>Programeu factures periòdiques amb dates de venciment</desc_periodicas>
+        <desc_empleados>Doneu d'alta, de baixa o modifiqui empleats</desc_empleados>
+        <desc_productos>Definiu aquí els seus productes per poder vendre'ls</desc_productos>
+        <desc_ivas>Administrar els impostos des d'aquí</desc_ivas>
+        <quick_clientes>Clients</quick_clientes>
+        <quick_contactos>Contactes</quick_contactos>
+        <quick_documentos>Documents</quick_documentos>
+        <quick_facturas>Factures</quick_facturas>
+        <quick_proveedores>Proveïdors</quick_proveedores>
+        <quick_gastos>Despeses</quick_gastos>
+        <quick_epigrafes>Epígrafs</quick_epigrafes>
+        <quick_formaspago>F.pagament</quick_formaspago>
+        <quick_cuentas>Comptes</quick_cuentas>
+        <quick_periodicas>Periòdiques</quick_periodicas>
+        <quick_empleados>Empleats</quick_empleados>
+        <quick_productos>Productes</quick_productos>
+    </menu>
+    <clientes>
+        <list>Llistat de clients</list>
+        <create>Nou client</create>
+        <formview>Detall del client</formview>
+        <forminsert>Alta d'un nou client</forminsert>
+        <formupdate>Modificació del client</formupdate>
+        <defaultdata>Dades del client</defaultdata>
+        <contactdata>Contactes del client</contactdata>
+        <projectopen>Projectes actius</projectopen>
+        <projectclose>Projectes tancats</projectclose>
+        <incidentopen>Incidències actives</incidentopen>
+        <incidentclose>Incidències tancades</incidentclose>
+        <partesopen>Fulls de feina sense liquidar</partesopen>
+        <partesclose>Fulls de feina liquidats</partesclose>
+        <albaranes>Albarans</albaranes>
+        <facturaopen>Factures no cobrades</facturaopen>
+        <facturaclose>Factures cobrades</facturaclose>
+        <gastosdata>Despeses associades al client</gastosdata>
+        <documentdata>Documents del client</documentdata>
+        <agendadata>Events del client</agendadata>
+        <actasdata>Actes del client</actasdata>
+        <actionliquidar>Liquidar fulls de feina seleccionats</actionliquidar>
+        <msgliquidar>Vol liquidar els fulls de feina seleccionats?</msgliquidar>
+        <cuentacorriente>Compte corrent</cuentacorriente>
+        <diapago>Dia de pagament</diapago>
+        <cuentacontable>Compte comptable</cuentacontable>
+        <nombrecomercial>Nom comer.</nombrecomercial>
+        <nombrefiscal>Nom fiscal</nombrefiscal>
+        <tipocliente>Tipus de client</tipocliente>
+        <clientefiscal>Fiscal</clientefiscal>
+        <clientejuridico>Jurídic</clientejuridico>
+        <add>Afegir client</add>
+        <presupuestosdata>Pressupostos del client</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>Llistat de contactes</list>
+        <create>Nou contacte</create>
+        <formview>Detall del contacte</formview>
+        <forminsert>Alta d'un nou contacte</forminsert>
+        <formupdate>Modificació del contacte</formupdate>
+        <defaultdata>Dades del contacte</defaultdata>
+        <add>Afegir contacte</add>
+    </contactos>
+    <documentos>
+        <list>Llistat de documents</list>
+        <create>Nou document</create>
+        <formview>Detall del document</formview>
+        <forminsert>Alta d'un nou document</forminsert>
+        <formupdate>Modificació del document</formupdate>
+        <defaultdata>Dades del document</defaultdata>
+    </documentos>
+    <epigrafes>
+        <list>Llistat d'epígrafs</list>
+        <create>Nou epígraf</create>
+        <formview>Detall de l'epígraf</formview>
+        <forminsert>Alta de un nou epígraf</forminsert>
+        <formupdate>Modificació de l'epígraf</formupdate>
+        <defaultdata>Dades de l'epígraf</defaultdata>
+    </epigrafes>
+    <formaspago>
+        <list>Llistat de formes de pagaments</list>
+        <create>Nova forma de pagament</create>
+        <formview>Detall de la forma de pagament</formview>
+        <forminsert>Alta d'una nova forma de pagament</forminsert>
+        <formupdate>Modificació de la forma de pagament</formupdate>
+        <defaultdata>Dades de la forma de pagament</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>Llistat de despeses</list>
+        <create>Nou despesa</create>
+        <formview>Detall de la despesa</formview>
+        <forminsert>Alta d'un nou despesa</forminsert>
+        <formupdate>Modificació de la despesa</formupdate>
+        <defaultdata>Dades de la despesa</defaultdata>
+        <pagadopor>pagador</pagadopor>
+        <liquidar>Liquidar</liquidar>
+        <dateliq>Data liq.</dateliq>
+        <msgliquidar>Vol liquidar les despeses seleccionades?</msgliquidar>
+        <msgerror>Ha de seleccionar les despeses que vol liquidar al llistat</msgerror>
+        <trimestrereg>Trim. entrada</trimestrereg>
+        <fechainireg>Data entrada</fechainireg>
+        <trimestreliq>Trim. liquidat</trimestreliq>
+        <fechainiliq>Data liquidat</fechainiliq>
+        <totalliquidar>Les despeses liquidades sumen un total de: </totalliquidar>
+        <sinpagador>[Sense pagador]</sinpagador>
+        <vencimientos_old>Venciments</vencimientos_old>
+        <vencimientos_new>Nous venciments</vencimientos_new>
+        <fechavencimiento>Data venciment</fechavencimiento>
+        <pagado>Pagat</pagado>
+        <fechapagado>Data pagat</fechapagado>
+    </gastos>
+    <facturas>
+        <list>llista de factures</list>
+        <create>Nova factura</create>
+        <formview>Detall de la factura</formview>
+        <forminsert>Alta d'una nova factura</forminsert>
+        <formupdate>Modificació de la factura</formupdate>
+        <defaultdata>Dades de la factura</defaultdata>
+        <errorfac101>Només es pot obrir l'última factura</errorfac101>
+        <errorfac103>No es pot esborrar una factura tancada</errorfac103>
+        <numfacxxx>No. de factura</numfacxxx>
+        <numalbxxx>No. d'albarà</numalbxxx>
+        <fechaemision>Data emissió</fechaemision>
+        <titular>Titular</titular>
+        <baseimponible>Base imposable</baseimponible>
+        <totalapagar>Total a pagar</totalapagar>
+        <concepts_old>Conceptes</concepts_old>
+        <concepts_new>Nous conceptes</concepts_new>
+        <products_old>Productes</products_old>
+        <products_new>Nous productes</products_new>
+        <vencimientos_old>Venciments</vencimientos_old>
+        <vencimientos_new>Nous venciments</vencimientos_new>
+        <fechavencimiento>Data venciment</fechavencimiento>
+        <fechacobrado>Data cobrament</fechacobrado>
+        <clientdata>Dades del client</clientdata>
+        <vencimientosfactura>Venciments d'aquesta factura</vencimientosfactura>
+        <vencimientosalbaran>Venciments d'aquest albarà</vencimientosalbaran>
+        <vencimientoscobrado>El camp cobrat s'ha modificat usant les dades dels venciments</vencimientoscobrado>
+    </facturas>
+    <proveedores>
+        <list>Llistat de proveïdors</list>
+        <create>Nou proveïdor</create>
+        <formview>Detall del proveïdor</formview>
+        <forminsert>Alta d'un nou proveïdor</forminsert>
+        <formupdate>Modificació del proveïdor</formupdate>
+        <defaultdata>Dades de l' proveïdor</defaultdata>
+        <cuentacorriente>Compte corrent</cuentacorriente>
+        <cuentacontable>Contactes del proveïdor</cuentacontable>
+        <diapago>Compte comptable</diapago>
+        <gastosdata>Dia de pagament</gastosdata>
+        <contactdata>Despeses associades al proveïdor</contactdata>
+        <nombrecomercial>Nom comercial</nombrecomercial>
+        <nombrefiscal>Nom fiscal</nombrefiscal>
+        <add>Afegir proveïdor</add>
+    </proveedores>
+    <cuentas>
+        <list>Llistat de comptes</list>
+        <create>Nova compte</create>
+        <formview>Detall del compte</formview>
+        <forminsert>Alta d'un nou compte</forminsert>
+        <formupdate>Modificació del compte</formupdate>
+        <defaultdata>Dades del compte</defaultdata>
+        <logo>Logotip</logo>
+        <title_logo>Definiu el logotip, posició, mida i colors que s'utilitzarà en les factures</title_logo>
+        <logoleft>Posició del logo X</logoleft>
+        <logotop>Y</logotop>
+        <logowidth>Ample</logowidth>
+        <logoheight>Alt</logoheight>
+        <logofile>Fitxer del logotip actual</logofile>
+        <logofilenew>Nou fitxer (només JPEG)</logofilenew>
+        <colorline>Color de les línies</colorline>
+        <colortext1>Títols</colortext1>
+        <colortext2>Textos</colortext2>
+        <title_facturas>Definiu certs paràmetres que es faran servir per a l'emissió de factures</title_facturas>
+        <facturabool>Utilitzar </facturabool>
+        <facturavalue>Valor per defecte (només si es fa servir)</facturavalue>
+        <facturapie1>Primera línia peu</facturapie1>
+        <facturapie2>Segona línia peu</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>Llistat de factures periòdiques</list>
+        <create>Nova factura periòdica</create>
+        <formview>Detall de la factura periòdica</formview>
+        <forminsert>Alta d'una nova factura periòdica</forminsert>
+        <formupdate>Modificació de la factura periòdica</formupdate>
+        <defaultdata>Dades de la factura periòdica</defaultdata>
+        <concepts_old>Conceptes</concepts_old>
+        <concepts_new>Nous conceptes</concepts_new>
+        <products_old>Productes</products_old>
+        <products_new>Nous productes</products_new>
+        <vencimientos_old>Venciments</vencimientos_old>
+        <vencimientos_new>Nous venciments</vencimientos_new>
+        <fechavencimiento>Data venciment</fechavencimiento>
+        <diaemision>Dia d'emissió</diaemision>
+        <diaini>Entre dia</diaini>
+        <dia>Dia</dia>
+        <meses>Mesos</meses>
+        <liquidar>Generar</liquidar>
+        <totalliquidar>Nombre de factures generades en total: </totalliquidar>
+        <msgerror>Heu de seleccionar les factures que desitgi generar en el llistat i el mes a utilitzar</msgerror>
+        <msgliquidar>Vol generar les factures seleccionades?</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>Llistat d'empleats</list>
+        <create>Nou empleat</create>
+        <formview>Detall de l'empleat</formview>
+        <forminsert>Alta d'un nou empleat</forminsert>
+        <formupdate>Modificació de l'empleat</formupdate>
+        <defaultdata>Dades de l'empleat</defaultdata>
+        <contactdata>Contactes de l'empleat</contactdata>
+    </empleados>
+    <productos>
+        <list>Llistat de productes</list>
+        <create>Nou producte</create>
+        <formview>Detall del producte</formview>
+        <forminsert>Alta d'un nou producte</forminsert>
+        <formupdate>Modificació del producte</formupdate>
+        <defaultdata>Dades del producte</defaultdata>
+        <ref>Ref.</ref>
+        <peso>Pes</peso>
+        <volumen>Volum</volumen>
+        <dimensiones>Dimensions</dimensiones>
+        <fotofile>Foto actual</fotofile>
+        <fotofilenew>Nova foto</fotofilenew>
+        <siniva eval="true">"[Sense ".CONFIG("accounting_iva_name")."]"</siniva>
+    </productos>
+    <ivas>
+        <list eval="true">"Llistat de ".CONFIG("accounting_iva_name")</list>
+        <create eval="true">"Nou ".CONFIG("accounting_iva_name")</create>
+        <formview eval="true">"Detalls del ".CONFIG("accounting_iva_name")</formview>
+        <forminsert eval="true">"Alta d'un nou ".CONFIG("accounting_iva_name")</forminsert>
+        <formupdate eval="true">"Modificació del ".CONFIG("accounting_iva_name")</formupdate>
+        <defaultdata eval="true">"Dades del ".CONFIG("accounting_iva_name")</defaultdata>
+    </ivas>
+</root>

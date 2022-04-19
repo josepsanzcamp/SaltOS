@@ -132,7 +132,7 @@ function __make_indexing_helper($tabla, $id = "")
     static $fields = null;
     static $campos = null;
     if ($tables === null) {
-        $dbschema = eval_attr(xml2array("xml/dbschema.xml"));
+        $dbschema = eval_attr(xml_join(xml2array(detect_apps_files("xml/dbschema.xml"))));
         $tables = array();
         $types = array();
         $fields = array();
@@ -158,7 +158,7 @@ function __make_indexing_helper($tabla, $id = "")
         }
     }
     if ($campos === null) {
-        $dbstatic = eval_attr(xml2array("xml/dbstatic.xml"));
+        $dbstatic = eval_attr(xml_join(xml2array(detect_apps_files("xml/dbstatic.xml"))));
         $campos = array();
         if (is_array($dbstatic) && isset($dbstatic["tbl_aplicaciones"]) && is_array($dbstatic["tbl_aplicaciones"])) {
             foreach ($dbstatic["tbl_aplicaciones"] as $row) {

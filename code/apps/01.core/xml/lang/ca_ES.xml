@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <lang>ca_ES</lang>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <nopage>Seleccioneu una aplicació per començar a treballar</nopage>
+        <nocheckuser>Usuari o clau incorrecta</nocheckuser>
+        <nochecktime>Usuari fora d'horari laboral</nochecktime>
+        <nocheckday>Usuari fora de dia laboral</nocheckday>
+        <view>Veure</view>
+        <edit>Editar</edit>
+        <copy>Copiar</copy>
+        <delete>Esborrar</delete>
+        <first>Primera plana</first>
+        <previous>Plana anterior</previous>
+        <next>Plana següent</next>
+        <last>Darrera plana</last>
+        <id>Cod.</id>
+        <codigo>Codi</codigo>
+        <cif>CIF</cif>
+        <nombre>Nom</nombre>
+        <apellidos>Cognoms</apellidos>
+        <tel_fijo>Fix</tel_fijo>
+        <tel_movil>Mòbil</tel_movil>
+        <telefono>Telèfon</telefono>
+        <fax>Fax</fax>
+        <email>Email</email>
+        <web>Web</web>
+        <filter>Opcions de filtre</filter>
+        <loadsavefilter>Carregar i desar filtres predefinits</loadsavefilter>
+        <buscar>Cercar</buscar>
+        <buscartip>Realitza la cerca amb els filtres seleccionats</buscartip>
+        <limpiar>Reset</limpiar>
+        <limpiartip>Netejar el filtre i mostrar totes les dades</limpiartip>
+        <username>Usuari</username>
+        <datetime>Data i hora</datetime>
+        <direccion>Direcció</direccion>
+        <codpostal>Codi postal</codpostal>
+        <poblacion>Població</poblacion>
+        <provincia>Província</provincia>
+        <pais>País</pais>
+        <comentarios>Comentaris</comentarios>
+        <descripcion>Descripció</descripcion>
+        <buttoncreate>Crear</buttoncreate>
+        <buttoncreatereturnhere>Crear i tornar aquí</buttoncreatereturnhere>
+        <buttonupdate>Actualitzar</buttonupdate>
+        <buttonupdatereturnhere>Actualitzar i tornar aquí</buttonupdatereturnhere>
+        <buttoncancel>Cancel·lar</buttoncancel>
+        <buttonreturn>Tornar</buttonreturn>
+        <date>Data</date>
+        <incidencia>Incidència</incidencia>
+        <estado>Estat</estado>
+        <parte>Feina</parte>
+        <tarea>Tasca</tarea>
+        <tareas>Tasques</tareas>
+        <liquidado>Liquidat</liquidado>
+        <base>Base</base>
+        <total>Total</total>
+        <cerrado>Tancat</cerrado>
+        <cobrado>Cobrat</cobrado>
+        <empresa>Empresa</empresa>
+        <msgdelete>Vol esborrar aquest registre?</msgdelete>
+        <permdenied>No te autorització per realitzar aquesta acció</permdenied>
+        <sinnombre>Sense Nom</sinnombre>
+        <deldenied>No es pot esborrar perquè està sent usat en una altra aplicació</deldenied>
+        <yes>Si</yes>
+        <no>No</no>
+        <cliente>Client</cliente>
+        <posiblecli>Possible client</posiblecli>
+        <password>Clau</password>
+        <numfac>N.Fac.</numfac>
+        <numc>NC</numc>
+        <numctip>Número de comentaris</numctip>
+        <numf>NF</numf>
+        <numftip>Número de fitxers</numftip>
+        <numt>NT</numt>
+        <numttip>Nombre de tasques</numttip>
+        <numv>NV</numv>
+        <numvtip>Número de venciments</numvtip>
+        <nums>NS</nums>
+        <numstip>Número de seguiment</numstip>
+        <nump>NP</nump>
+        <numptip>Nombre de productes</numptip>
+        <fechaini>Entre data</fechaini>
+        <fechafin>i</fechafin>
+        <commentdel>Esborrar aquest comentari</commentdel>
+        <attachments>Fitxer adjunts</attachments>
+        <shortattachments>Adjunts</shortattachments>
+        <userdatetime>Usuari, data i hora</userdatetime>
+        <fileandsize>Fitxer i mida</fileandsize>
+        <download>Descarregar</download>
+        <activar>Activar</activar>
+        <newcomment>Nou comentari</newcomment>
+        <newattachments>Nous fitxers adjunts</newattachments>
+        <proyecto>Projecte</proyecto>
+        <documento>Document</documento>
+        <hora>Hora</hora>
+        <horas>Hores</horas>
+        <minutos>Minuts</minutos>
+        <precio>Preu</precio>
+        <liq>Liq.</liq>
+        <aplicacion>Aplicació</aplicacion>
+        <rol>Rol</rol>
+        <permiso>Permís</permiso>
+        <pos>Pos.</pos>
+        <posicion>Posició</posicion>
+        <trimestre>Trimestre</trimestre>
+        <otroscampos>Altres camps</otroscampos>
+        <excel>Excel</excel>
+        <exceltip>Descarregar un fitxer Excel amb les dades actuals</exceltip>
+        <pdf>Descarregar PDF</pdf>
+        <pdftip>Descarregar un fitxer PDF amb les dades actuals</pdftip>
+        <epigrafe>Epígraf</epigrafe>
+        <campoauto>(*) Camp automàtic</campoauto>
+        <cerr>Tanc.</cerr>
+        <cobr>Cobr.</cobr>
+        <concepto>Concepte</concepto>
+        <unid>Unit.</unid>
+        <unidades>Unitats</unidades>
+        <unidadestotal>Unitats totals</unidadestotal>
+        <prun>Pr./Un.</prun>
+        <dto>Dte.</dto>
+        <importe>Import</importe>
+        <percent>Percentatge</percent>
+        <todos>[Tots]</todos>
+        <todoslosclientes>[Tots els clients]</todoslosclientes>
+        <todoslosposiblescli>[Tots els possibles clients]</todoslosposiblescli>
+        <todoslosusuarios>[Tots els usuaris]</todoslosusuarios>
+        <todoslosgrupos>[Tots els grups]</todoslosgrupos>
+        <todoslosproveedores>[Tots els proveïdors]</todoslosproveedores>
+        <mostrartodos>[Mostrar tots]</mostrartodos>
+        <sinusuario>[Sense usuari]</sinusuario>
+        <paginaspc>Plana </paginaspc>
+        <regsfrom>registres del </regsfrom>
+        <spcdespc> de </spcdespc>
+        <spcalspc> a </spcalspc>
+        <regspage>Registres per plana:</regspage>
+        <registerdata>Dades del registre</registerdata>
+        <userinsert>Creat per</userinsert>
+        <userupdate>Modificat per</userupdate>
+        <allstates>[Tots els estats]</allstates>
+        <allenabled>Tots els actius</allenabled>
+        <alldisabled>Tots els no actius</alldisabled>
+        <lastinsert>S'ha creat un registre amb el codi: </lastinsert>
+        <lastupdate>S'ha modificat el registre amb el codi: </lastupdate>
+        <lastdelete>S'ha esborrat el registre amb el codi: </lastdelete>
+        <proveedor>Proveïdor</proveedor>
+        <acta>Acta</acta>
+        <presupuesto>Pressupost</presupuesto>
+        <newfichero>Nou fitxer</newfichero>
+        <fichero>Fitxer</fichero>
+        <size>Mida</size>
+        <mime>Tipus mime</mime>
+        <grupo>Grup</grupo>
+        <ficheroactual>Fitxer actual</ficheroactual>
+        <language>Idioma</language>
+        <style>Disseny</style>
+        <nodata>Sense resultats a mostrar</nodata>
+        <nosearch>Ha d'entrar algun terme per poder fer una cerca</nosearch>
+        <prioridad>Prioritat</prioridad>
+        <sinproyecto>[Sense projecte associat]</sinproyecto>
+        <sintarea>[Sense tasca associada]</sintarea>
+        <todoslosproyectos>[Tots els projectes]</todoslosproyectos>
+        <todaslastareas>[Totes les tasques]</todaslastareas>
+        <todaslascuentas>[Totes]</todaslascuentas>
+        <mail>Enviar PDF</mail>
+        <mailtip>Envia el PDF al vostre compte de correu electrònic</mailtip>
+        <view2>Visor PDF</view2>
+        <view2tip>Vegeu el document amb el visor intern de SaltOS</view2tip>
+        <view2error>S'ha produït un error en obrir el visor PDF</view2error>
+        <view2hash>Si el problema persisteix, posi's en contacte amb el servei tècnic indicant el següent codi: </view2hash>
+        <view2opening>Obrint visor, espereu un moment...</view2opening>
+        <msgnotuseremail>No té configurada cap adreça de correu</msgnotuseremail>
+        <msgnotsmtpemail>No està configurat el servidor de correu sortint</msgnotsmtpemail>
+        <sincliente>[Sense client associat]</sincliente>
+        <sinposiblecli>[Sense possible client associat]</sinposiblecli>
+        <sinepigrafe>[Sense epígraf associat]</sinepigrafe>
+        <sinprioridad>[Sense prioritat]</sinprioridad>
+        <sinestado>[Sense estat]</sinestado>
+        <dstart>Inici</dstart>
+        <dstop>Fi</dstop>
+        <evento>Event</evento>
+        <sincuenta>[Sense compte]</sincuenta>
+        <cuenta>Compte</cuenta>
+        <sindia>[Sense dia]</sindia>
+        <sinmes>[Sense mes]</sinmes>
+        <mes>Mes</mes>
+        <factura>Factura</factura>
+        <albaran>Albarà</albaran>
+        <msglogout>Vol sortir de l'aplicació?</msglogout>
+        <mostrarcomo>Mostra com</mostrarcomo>
+        <nif>NIF</nif>
+        <vcard>Targeta de presentació electrònica</vcard>
+        <cargo>Càrrec</cargo>
+        <empleado>Empleat</empleado>
+        <sinproveedor>[Sense proveïdor associat]</sinproveedor>
+        <sinempleado>[Sense empleat associat]</sinempleado>
+        <port>Port</port>
+        <extra>Seguretat</extra>
+        <requiredfield>Camp requerit</requiredfield>
+        <sinpais>[Sense país seleccionat]</sinpais>
+        <sinprovincia>[Sense província seleccionat]</sinprovincia>
+        <sinpoblacion>[Sense població seleccionat]</sinpoblacion>
+        <sincodpostal>[Sense selecció]</sincodpostal>
+        <usedfilter>Filtre activat</usedfilter>
+        <suma>Suma</suma>
+        <average>Mitjana</average>
+        <posx>Posició X</posx>
+        <posy>Posició Y</posy>
+        <angle>Angle</angle>
+        <sinproducto>[Sense producte associat]</sinproducto>
+        <preview>Vista prèvia</preview>
+        <sortasc>Ordenar ascendentment (A-Z)</sortasc>
+        <sortdesc>Ordenar descendentment (Z-A)</sortdesc>
+        <confirm>Confirmació</confirm>
+        <alert>Atenció</alert>
+        <error>Error</error>
+        <buttonaccept>Acceptar</buttonaccept>
+        <buttoncontinue>Continuar</buttoncontinue>
+        <enero>Gener</enero>
+        <febrero>Febrer</febrero>
+        <marzo>Març</marzo>
+        <abril>Abril</abril>
+        <mayo>Maig</mayo>
+        <junio>Juny</junio>
+        <julio>Juliol</julio>
+        <agosto>Agost</agosto>
+        <setiembre>Setembre</setiembre>
+        <octubre>Octubre</octubre>
+        <noviembre>Novembre</noviembre>
+        <diciembre>Desembre</diciembre>
+        <lunes>Dilluns</lunes>
+        <martes>Dimarts</martes>
+        <miercoles>Dimecres</miercoles>
+        <jueves>Dijous</jueves>
+        <viernes>Divendres</viernes>
+        <sabado>Dissabte</sabado>
+        <domingo>Diumenge</domingo>
+        <sabadoydomingo>Dissabte i Diumenge</sabadoydomingo>
+        <sinpresupuesto>[Sense pressupost associat]</sinpresupuesto>
+        <todoslospresupuestos>[Tots els pressupostos]</todoslospresupuestos>
+        <unknownerror>S'ha produït un error de connectivitat (comproveu que funciona correctament l'accés a la xarxa i si el problema persisteix, posi's en contacte amb l'administrador de l'aplicació)</unknownerror>
+        <qrcode>QR Code</qrcode>
+        <lugar>Lloc</lugar>
+        <loading>Carregant dades, esperi un moment...</loading>
+        <sending>Enviant dades, espereu un moment...</sending>
+        <prod>Prod.</prod>
+        <addfile>Afegir fitxers</addfile>
+        <addproduct>Afegir producte</addproduct>
+        <addconcept>Afegir concepte</addconcept>
+        <addvencimiento>Afegir venciment</addvencimiento>
+        <addtarea>Afegir tasca</addtarea>
+        <send>Enviar</send>
+        <notas>Notes</notas>
+        <sincampanya>[Sense campanya associada]</sincampanya>
+        <campanya>Campanya</campanya>
+        <todaslascampanyas>[Totes les campanyes]</todaslascampanyas>
+        <numpc>NPC</numpc>
+        <numpctip>Número de possibles clients</numpctip>
+        <numcl>NCL</numcl>
+        <numcltip>Número de clients</numcltip>
+        <numag>NAG</numag>
+        <numagtip>Número d'events de l'agenda</numagtip>
+        <numpr>NPR</numpr>
+        <numprtip>Número de pressupostos</numprtip>
+        <numpy>NPY</numpy>
+        <numpytip>Número de projectes</numpytip>
+        <tipoevento>Tipus d'event</tipoevento>
+        <sintipoevento>[Sense tipus d'event]</sintipoevento>
+        <fileuploaderror>S'ha produït un error en enviar el fitxer: </fileuploaderror>
+        <postlimiterror>S'ha produït un error en enviar les dades al servidor</postlimiterror>
+        <resumeneconomico>Resum econòmic</resumeneconomico>
+        <pdf2filter_title>Filtre d'exportació PDF</pdf2filter_title>
+        <pdf2filter_message>Seleccioni les dades que vol incloure al PDF:</pdf2filter_message>
+        <view2filter_title>Filtre del visualitzador PDF</view2filter_title>
+        <view2filter_message>Seleccioni les dades que vol veure al PDF:</view2filter_message>
+        <msgerrorsemaphore>S'ha produït un error de concurrència, es cancel.la l'accés a l'acció </msgerrorsemaphore>
+        <msgnotcheckbox>Heu de seleccionar algun registre de la llista per utilitzar aquesta opció</msgnotcheckbox>
+        <gotohome>Tornar a carregar</gotohome>
+        <notifybug>Notificar error</notifybug>
+        <actioncompress>Descarregar fitxers seleccionats</actioncompress>
+        <zipformat>Format ZIP</zipformat>
+        <tarformat>TAR</tarformat>
+        <gzipformat>GZIP</gzipformat>
+        <bzipformat>BZIP2</bzipformat>
+        <temporalfiles>Arxius temporals</temporalfiles>
+        <sessionexpire>La sessió es va a tancar en </sessionexpire>
+        <sessionupdate>clic aquí per evitar que es tanqui</sessionupdate>
+        <sessionupdated>S'ha actualitzat la sessió correctament</sessionupdated>
+        <link>Enllaç</link>
+        <textos_select>Seleccioneu un text i premeu Afegir</textos_select>
+        <textos_add>Afegir</textos_add>
+        <selectall>Selecciona-ho tot</selectall>
+        <selectnone>Esborrar selecció</selectnone>
+        <addtofolder>Mostra a aquesta carpeta</addtofolder>
+        <addtofolderok>S'ha afegit aquest contingut a la carpeta</addtofolderok>
+        <delfromfolderok>S'ha ocultat aquest contingut de la carpeta</delfromfolderok>
+        <savedfilters>Filtres guardats</savedfilters>
+        <optionfilter>Seleccioneu un filtre guardat</optionfilter>
+        <newfilter>Nom del nou filtre</newfilter>
+        <loadfilter>Carregar</loadfilter>
+        <loadfiltertip>Premi aquí per carregar el criteri seleccionat</loadfiltertip>
+        <updatefilter>Actualitzar</updatefilter>
+        <updatefiltertip>Premi aquí per actualitzar el criteri seleccionat</updatefiltertip>
+        <deletefilter>Esborrar</deletefilter>
+        <deletefiltertip>Premi aquí per esborrar el criteri seleccionat</deletefiltertip>
+        <createfilter>Crea</createfilter>
+        <createfiltertip>Premi aquí per crear un nou filtre</createfiltertip>
+        <createfilterok>S'ha creat correctament el nou filtre</createfilterok>
+        <createfilterko>Falta definir el nom del filtre</createfilterko>
+        <loadfilterok>S'ha carregat el filtre correctament</loadfilterok>
+        <loadfilterko>Heu de seleccionar un filtre per poder carregar</loadfilterko>
+        <updatefilterok>S'ha actualitzat el filtre correctament</updatefilterok>
+        <updatefilterko>Heu de seleccionar un filtre per poder modificar-lo</updatefilterko>
+        <deletefilterok>S'ha esborrat el filtre</deletefilterok>
+        <deletefilterko>Heu de seleccionar un filtre per poder esborrar</deletefilterko>
+        <renamefilter>Reanomenar</renamefilter>
+        <renamefiltertip>Premi aquí per reanomenar un filtre existent</renamefiltertip>
+        <renamefilterok>S'ha reanomenat correctament el filtre existent</renamefilterok>
+        <renamefilterko1>Heu de seleccionar un filtre per poder reanomenar-lo</renamefilterko1>
+        <renamefilterko2>Falta definir el nou nom del filtre que vol reanomenar</renamefilterko2>
+        <showmenu>Mostrar menú</showmenu>
+        <hidemenu>Amagar menú</hidemenu>
+        <showtools>Mostrar eines</showtools>
+        <hidetools>Amagar eines</hidetools>
+        <inbackground>Aquesta acció s'està executant en segon pla, espereu uns instants</inbackground>
+        <sentfromsaltos>Correu enviat des del meu SaltOS</sentfromsaltos>
+        <foldersdata>Carpetes</foldersdata>
+        <loweradd>afegir</loweradd>
+        <help>Ajut</help>
+        <selectallcheckbox>Seleccionar tots els registres</selectallcheckbox>
+        <selectonecheckbox>Seleccionar aquest registre</selectonecheckbox>
+        <formapago>Forma de pagament</formapago>
+        <todaslasformasdepago>[Totes les formes de pagament]</todaslasformasdepago>
+        <sinformapago>[Sense forma de pagament]</sinformapago>
+        <actions>Accions d'aquest registre</actions>
+        <msgfilesindexed1> fitxer indexat a la base de dades</msgfilesindexed1>
+        <msgfilesindexed2> fitxers indexats a la base de dades</msgfilesindexed2>
+        <msgregistersindexed1> registre indexat a la base de dades</msgregistersindexed1>
+        <msgregistersindexed2> registres indexats a la base de dades</msgregistersindexed2>
+        <msgregisterspurged1> registre purgat a la base de dades</msgregisterspurged1>
+        <msgregisterspurged2> registres purgats a la base de dades</msgregisterspurged2>
+        <biglist>$limit registres</biglist>
+        <biglisttip>Atenció: s'estan mostrant $limit registres i pot ser que l'aplicació funcioni amb lentitud</biglisttip>
+        <activo>Actiu</activo>
+        <activo_desc>Per indicar a l'usuari actiu o al que existeix per herència</activo_desc>
+        <print>Imprimir</print>
+    </common>
+    <login>
+        <logintitle>Accés a l'aplicació</logintitle>
+        <remember>Recordar la contrasenya en aquest ordinador</remember>
+        <enter>Entrar</enter>
+        <captcha1>Codi de seguretat</captcha1>
+        <captcha2>Entri el codi aquí</captcha2>
+        <captcha3>Recarregar imatge</captcha3>
+        <mobileaccess>Accés des de dispositiu mòbil</mobileaccess>
+    </login>
+    <menu>
+        <home>Inici</home>
+        <usuarios>Usuaris</usuarios>
+        <grupos>Grups</grupos>
+        <profile>El meu perfil</profile>
+        <maincfg>Configuració</maincfg>
+        <about>Credits de SaltOS</about>
+        <support>Suport tècnic</support>
+        <logout>Tancar sessió</logout>
+        <ficheros>Fitxers adjunts</ficheros>
+        <gestiongeneral>General</gestiongeneral>
+        <gestionfiltros>Filtres</gestionfiltros>
+        <gestionadministracion>Administració</gestionadministracion>
+        <folders>Carpetes</folders>
+        <buscador>Cercador</buscador>
+        <desc_usuarios>Doneu d'alta, de baixa o modifiqui usuaris</desc_usuarios>
+        <desc_grupos>Creeu grups de treball per als usuaris</desc_grupos>
+        <desc_profile>Canvieu les preferències del seu usuari</desc_profile>
+        <desc_maincfg>Canvieu les preferències globlal de l'aplicació</desc_maincfg>
+        <desc_about>Conegui els crèdits d'aquesta aplicació</desc_about>
+        <desc_logout>Feu clic aquí quan vulgui tancar la sessió de treball</desc_logout>
+        <desc_home>Accediu a la pantalla principal de l'aplicació</desc_home>
+        <desc_support>Contacta amb el suport tècnic</desc_support>
+        <desc_ficheros>Accedeixi a tots els fitxers de tota l'aplicació</desc_ficheros>
+        <desc_buscador>Per cercar a tota la base de dades</desc_buscador>
+        <quick_home>Inici</quick_home>
+        <quick_profile>Perfil</quick_profile>
+        <quick_support>Suport</quick_support>
+        <quick_about>Credits</quick_about>
+        <quick_logout>Tancar</quick_logout>
+        <quick_usuarios>Usuaris</quick_usuarios>
+        <quick_grupos>Grups</quick_grupos>
+        <quick_maincfg>Configuració</quick_maincfg>
+        <quick_ficheros>Fitxers</quick_ficheros>
+        <quick_buscador>Cercador</quick_buscador>
+        <menu>Menú</menu>
+        <menutip>Per veure i amagar el menú d'aplicacions</menutip>
+    </menu>
+    <usuarios>
+        <list>Llistat d'usuaris</list>
+        <create>Nou usuari</create>
+        <formview>Detall de l'usuari</formview>
+        <forminsert>Alta d'un nou usuari</forminsert>
+        <formupdate>Modificació de l'usuari</formupdate>
+        <personaldata>Dades de l'usuari</personaldata>
+        <entrada>Entrada</entrada>
+        <salida>Sortida</salida>
+        <dias>Dies</dias>
+        <logged>Connectat</logged>
+        <password2>Repetiu clau</password2>
+        <errorpassword>Les claus entrades no coincideixen</errorpassword>
+        <contacto>Contacte</contacto>
+        <sincontacto>[Sense contacte associat]</sincontacto>
+        <permdata>Permisos per aplicació</permdata>
+        <allow>Permetre</allow>
+        <deny>Denegar</deny>
+        <groupsdata>Grups del usuari</groupsdata>
+        <pop3host>Servidor POP3</pop3host>
+        <pop3delete>Esborrar missatges al servidor passats</pop3delete>
+        <pop3days>dies</pop3days>
+        <smtphost>Servidor SMTP</smtphost>
+        <emailprivated>Aquest compte és privada (només jo tinc accés)</emailprivated>
+        <emaildefault>Compte per defecte (la que més ús)</emaildefault>
+        <emaildisabled>Desactivar aquest compte de correu</emaildisabled>
+        <emaildelete>Esborrar aquest compte de correu (es perdran les dades per sempre)</emaildelete>
+        <emailsignatureold>Signatura actual</emailsignatureold>
+        <emailsignaturenew>Nova signatura</emailsignaturenew>
+        <correonew>Nou correu</correonew>
+        <addmetocc>Afegir a la meva com CC en tots els emails que enviï</addmetocc>
+        <defaultcrt>Activar per defecte la sol licitud de confirmació de recepció</defaultcrt>
+        <gcalendar>Google Calendar</gcalendar>
+        <prefgcalendar>Sincronització de l'agenda amb el servei de Google Calendar</prefgcalendar>
+        <prefgcalendar2>Amb aquesta opció, vostè pot utilitzar l'agenda des de SaltOS i des de Google Calendar, mantenint les dades actualitzades de forma automàtica i sense preocupar d'haver de replicar les dades d'una agenda a l'altra</prefgcalendar2>
+        <emailgcalendar>Compte de correu de gmail</emailgcalendar>
+        <tokengcalendar>Token d'accès</tokengcalendar>
+        <feedstitle>Configuri els feeds que vol llegir des de SaltOS ( RSS 1.0, RSS 2.0 i Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>Títol</title>
+        <description>Descripció</description>
+        <image>Imatge</image>
+        <test>Provar</test>
+        <add>Afegir</add>
+        <feedslist>Llistat de feeds RSS configurats</feedslist>
+        <feeds_old>Feeds configurats</feeds_old>
+        <feeds_new>Nou feed</feeds_new>
+        <lowerdisabled>desactivat</lowerdisabled>
+        <singrupo>[Sense grup]</singrupo>
+        <sinaplicacion>[Sense aplicació]</sinaplicacion>
+        <registro>Registre</registro>
+        <sinregistro>[Sense registre]</sinregistro>
+        <showdetalles>[Veure detalls]</showdetalles>
+        <hidedetalles>[Amagar detalls]</hidedetalles>
+        <appsregsdata>Permisos per registre</appsregsdata>
+    </usuarios>
+    <grupos>
+        <list>Llistat de grups</list>
+        <create>Nou grup</create>
+        <formview>Detall del grup</formview>
+        <forminsert>Alta d'un nou grup</forminsert>
+        <formupdate>Modificació del grup</formupdate>
+        <defaultdata>Dades del grup</defaultdata>
+        <permdata>Permisos per aplicació</permdata>
+        <allow>Permetre</allow>
+        <deny>Denegar</deny>
+        <showdetalles>[Veure detalls]</showdetalles>
+        <hidedetalles>[Amagar detalls]</hidedetalles>
+    </grupos>
+    <profile>
+        <formupdate>El meu perfil</formupdate>
+        <oldpassword>Clau antiga</oldpassword>
+        <newpassword>Clau nova</newpassword>
+        <newpassword2>Repetiu clau</newpassword2>
+        <erroroldpassword>La clau antiga és incorrecta</erroroldpassword>
+        <errornewpassword>Les claus entrades no coincideixen</errornewpassword>
+        <errornewpassword2>La nova clau ha de ser més complexa</errornewpassword2>
+        <prefgeneral>Preferències generals</prefgeneral>
+        <cambioclave>Canvi de contrasenya personal</cambioclave>
+        <general>General</general>
+        <title_correo_old>Configureu el compte de correu POP3 per a la seva usuari</title_correo_old>
+        <pop3host>Servidor POP3</pop3host>
+        <pop3delete>Esborrar missatges al servidor passats</pop3delete>
+        <pop3days>dies</pop3days>
+        <smtphost>Servidor SMTP</smtphost>
+        <emailprivated>Aquest compte és privada (només jo tinc accés)</emailprivated>
+        <emaildefault>Compte per defecte (la que més ús)</emaildefault>
+        <emaildisabled>Desactivar aquest compte de correu</emaildisabled>
+        <emaildelete>Esborrar aquest compte de correu (es perdran les dades per sempre)</emaildelete>
+        <emailsignatureold>Signatura actual</emailsignatureold>
+        <emailsignaturenew>Nova signatura</emailsignaturenew>
+        <correonew>Nou correu</correonew>
+        <title_correo_new>Configureu un compte de correu POP3 per a la seva usuari</title_correo_new>
+        <gcalendar>Google Calendar</gcalendar>
+        <prefgcalendar>Sincronització de l'agenda amb el servei de Google Calendar</prefgcalendar>
+        <prefgcalendar2>Amb aquesta opció, vostè pot utilitzar l'agenda des de SaltOS i des de Google Calendar, mantenint les dades actualitzades de forma automàtica i sense preocupar d'haver de replicar les dades d'una agenda a l'altra</prefgcalendar2>
+        <emailgcalendar>Compte de correu de gmail</emailgcalendar>
+        <tokengcalendar>Token d'accès</tokengcalendar>
+        <addmetocc>Afegir a la meva com CC en tots els emails que enviï</addmetocc>
+        <defaultcrt>Activar per defecte la sol licitud de confirmació de recepció</defaultcrt>
+        <feedstitle>Configuri els feeds que vol llegir des de SaltOS (RSS 1.0, RSS 2.0 i Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>Títol</title>
+        <description>Descripció</description>
+        <image>Imatge</image>
+        <test>Provar</test>
+        <add>Afegir</add>
+        <feedslist>Llistat de feeds RSS configurats</feedslist>
+        <feeds_old>Feeds configurats</feeds_old>
+        <feeds_new>Nou feed</feeds_new>
+        <lowerdisabled>desactivat</lowerdisabled>
+        <quick>Menú ràpid</quick>
+        <prefquick>Configureu aquí el menú ràpid situat a la zona superior</prefquick>
+        <sinaplicacion>[Sense aplicació]</sinaplicacion>
+        <quick_button_f1>Primer botó (F1)</quick_button_f1>
+        <quick_button_f2>Segón botó (F2)</quick_button_f2>
+        <quick_button_f3>Tercer botó (F3)</quick_button_f3>
+        <quick_button_f4>Quart botó (F4)</quick_button_f4>
+        <quick_button_f5>Cinquè botó (F5)</quick_button_f5>
+        <quick_button_f6>Sisè botó (F6)</quick_button_f6>
+        <quick_button_f7>Setè botó (F7)</quick_button_f7>
+        <quick_button_f8>Vuitè botó (F8)</quick_button_f8>
+        <quick_button_f9>Novè botó (F9)</quick_button_f9>
+        <quick_button_f10>Desè botó (F10)</quick_button_f10>
+        <quick_button_f11>Oncè botón (F11)</quick_button_f11>
+        <quick_button_f12>Dotzè botón (F12)</quick_button_f12>
+        <folderstab>Carpetes d'usuari</folderstab>
+        <folderspref>Configureu aquí les carpetes d'usuari per després deixar el que vulgui</folderspref>
+        <newfolder>Nova carpeta d'usuari</newfolder>
+        <withoutparent>[Sense carpeta]</withoutparent>
+        <inparentfolder>y penja de la carpeta</inparentfolder>
+        <namefolder>Nom de la carpeta</namefolder>
+        <parentfolder>Penja de la carpeta</parentfolder>
+    </profile>
+    <maincfg>
+        <formupdate>Configuració</formupdate>
+        <general>General</general>
+        <title_general>Configureu alguns paràmetres generals de l'aplicació</title_general>
+        <applicationtitle>Títol de l'aplicació</applicationtitle>
+        <agendainterval>Cercar notificacions de l'agenda cada</agendainterval>
+        <inboxinterval>Cercar correus nous cada</inboxinterval>
+        <outboxinterval>Comprovar la safata de sortida cada</outboxinterval>
+        <feedsinterval>Cercar feeds nous cada</feedsinterval>
+        <feedstimeout>Oblidar feeds esborrats passats</feedstimeout>
+        <sessioninterval>Comprovar avís de tancar sessió cada</sessioninterval>
+        <sessionwarning>Adverteix el tancament de sessió abans de</sessionwarning>
+        <indexinginterval>Indexar arxius nous cada</indexinginterval>
+        <integrityinterval>Revisar integritat cada</integrityinterval>
+        <purgeinterval>Purgar dades cada</purgeinterval>
+        <emailsupport>email per al suport tècnic</emailsupport>
+        <segundos>segons</segundos>
+        <dias>dies</dias>
+        <title_logo>Definiu el logotip, posició, mida i colors que s'utilitzaran en els pdf's</title_logo>
+        <logo>Logotip</logo>
+        <logoleft>Posició del logo X</logoleft>
+        <logotop>Y</logotop>
+        <logowidth>Ample</logowidth>
+        <logoheight>Alt</logoheight>
+        <logofile>Fitxer del logotip actual</logofile>
+        <logofilenew>Nou fitxer (només JPEG)</logofilenew>
+        <colorline>Color de les línies</colorline>
+        <colortext1>Títols</colortext1>
+        <colortext2>Textos</colortext2>
+        <title_correo>Configureu alguns paràmetres globals sobre l'enviament de correus des de SaltOS</title_correo>
+        <cuentasupport>Correu sortint suport</cuentasupport>
+        <cuentaincidencias>Correu sortint incidències</cuentaincidencias>
+        <water>Marques d'aigua</water>
+        <title_water>Definiu les marques d'aigua que es faran servir en els pdf's</title_water>
+        <wateractas>Actes: Text</wateractas>
+        <waterpartes>Feines: Text</waterpartes>
+        <waterfacturas>Factures: Text</waterfacturas>
+        <wateralbaranes>Albarans: Text</wateralbaranes>
+        <waterpresupuestos>Pressupostos: Text</waterpresupuestos>
+        <waterclientes>Clients: Text</waterclientes>
+        <waterproyectos>Projectes: Text</waterproyectos>
+        <waterposiblescli>Possibles clients: Text</waterposiblescli>
+        <watercorreo>Correu: Text</watercorreo>
+        <waterfeeds>Feeds: Text</waterfeeds>
+        <emailasync>Utilitza el va enviar asíncron (més ràpid)</emailasync>
+        <accounting>Contabilitat</accounting>
+        <title_accounting>Configuri aquí les dades globals de contabilitat</title_accounting>
+        <accounting_currency>Moneda</accounting_currency>
+        <accounting_iva_name>Nom de l'impost (es suma)</accounting_iva_name>
+        <accounting_irpf_name>Nom de l'impost (es resta)</accounting_irpf_name>
+        <accounting_value>Valor per defecte (només si es fa servir)</accounting_value>
+        <applications_config>Aplicacions</applications_config>
+        <config_tabs>Configuració pestanyes</config_tabs>
+        <default_values>Valors per defecte</default_values>
+        <configuracion_presupuestos>Configuració pressupostos</configuracion_presupuestos>
+        <configuracion_agenda>Configuració agenda</configuracion_agenda>
+        <configuracion_incidencias>Configuració incidències</configuracion_incidencias>
+        <configuracion_facturas>Configuració factures</configuracion_facturas>
+        <configuracion_gastos>Configuració despeses</configuracion_gastos>
+        <show_tab_objetivos_presupuesto>Mostrar objectius</show_tab_objetivos_presupuesto>
+        <show_tab_condiciones_presupuesto>Mostrar condicions</show_tab_condiciones_presupuesto>
+        <show_tab_funcional_presupuesto>Mostrar proposta funcional</show_tab_funcional_presupuesto>
+        <show_tab_tecnica_presupuesto>Mostrar proposta tècnica</show_tab_tecnica_presupuesto>
+        <show_tab_info_adicional_presupuesto>Mostrar informació addicional</show_tab_info_adicional_presupuesto>
+        <show_tab_tareas_presupuesto>Mostrar tasques</show_tab_tareas_presupuesto>
+        <show_tab_productos_presupuesto>Mostrar productes</show_tab_productos_presupuesto>
+        <sin_configurar>[Sense configurar]</sin_configurar>
+        <filtro_grupo_usuarios_incidencias>Mostrar usuaris d'un grup en els llistats d'usuaris</filtro_grupo_usuarios_incidencias>
+        <filtro_grupo_usuarios_implicados_incidencias>Grup implicats</filtro_grupo_usuarios_implicados_incidencias>
+        <filtro_grupo_usuarios_asignados_incidencias>Grup assignats</filtro_grupo_usuarios_asignados_incidencias>
+    </maincfg>
+    <about>
+        <formupdate>Credits de SaltOS</formupdate>
+        <copyright>Aquest programari es distribueix sota els termes de la llicència GPL-3.0:</copyright>
+        <components>Aquest programari fa servir els següents components:</components>
+        <server_base>Servidor base:</server_base>
+        <php_plugins>PHP plugins:</php_plugins>
+        <javascript_base>Javascript base:</javascript_base>
+        <bootstrap_plugins>Bootstrap plugins:</bootstrap_plugins>
+        <jquery_plugins>JQuery plugins:</jquery_plugins>
+        <javascript_plugins>Javascript plugins:</javascript_plugins>
+        <other_plugins>Altres plugins:</other_plugins>
+        <server_plugins>Servidor plugins:</server_plugins>
+        <vxinfo>Nota: (*) Alguns projectes no especifiquen la versió concreta de la llicència que utilitzen</vxinfo>
+        <license>llicència </license>
+        <licensetitle>A continuació, es mostra el text legal de la llicència </licensetitle>
+        <translators>Traduccions</translators>
+        <developers>Desenvolupadors</developers>
+        <unavailable>Dades de contacte no disponibles. Contacti amb algun desenvolupador per a qualsevol dubte o suggeriment.</unavailable>
+    </about>
+    <support>
+        <formupdate>Suport tècnic</formupdate>
+        <contact>Suport tècnic</contact>
+        <subject>Assumpte</subject>
+        <msgsendemail>S'ha enviat un correu electrònic al suport tècnic</msgsendemail>
+        <msgnotemailsupport>No s'ha espeficicado cap correu per al suport tècnic</msgnotemailsupport>
+        <msgnotsubject>No s'ha entrat cap assumpte</msgnotsubject>
+        <msgnotcomments>No s'ha entrat cap comentari</msgnotcomments>
+    </support>
+    <home>
+        <formupdate>Inici</formupdate>
+        <buscar2>Cercar a tot SaltOS</buscar2>
+        <buscar3>Cercar nomès als fitxers</buscar3>
+    </home>
+    <denied>
+        <title>Accés denegat</title>
+        <short>No tens autorització per executar aquesta acció</short>
+        <large>El sistema ha bloquejat l'execució de l'aplicació en no disposar de suficients privilegis per executar aquesta part de l'aplicació. Si creu que és un error, posis en contacte amb l'administrador de l'aplicació</large>
+    </denied>
+    <ficheros>
+        <list>Llistat de fitxers adjunts</list>
+        <todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>
+    </ficheros>
+    <folders>
+        <notfound>Carpeta no trobada</notfound>
+        <todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>
+        <deleteoffolder>Esborrar d'aquesta carpeta</deleteoffolder>
+        <defaultfolder>Carpeta personal</defaultfolder>
+    </folders>
+    <buscador>
+        <list>Cercador</list>
+        <todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>
+    </buscador>
+</root>

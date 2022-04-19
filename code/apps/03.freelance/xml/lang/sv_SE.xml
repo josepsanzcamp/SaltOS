@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <clientes>Kunder</clientes>
+        <contactos>Kontakter</contactos>
+        <documentos>Dokument</documentos>
+        <facturas>Fakturor</facturas>
+        <proveedores>Leverantörer</proveedores>
+        <gastos>Kostnader</gastos>
+        <epigrafes>Epigraphs</epigrafes>
+        <formaspago>Betalningsmetoder</formaspago>
+        <cuentas>Konton</cuentas>
+        <periodicas>Periodiska fakturor</periodicas>
+        <empleados>Personal</empleados>
+        <productos>Producerar</productos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <gestioncomercial>Kommersiell</gestioncomercial>
+        <gestioncontabilidad>Redovisning</gestioncontabilidad>
+        <desc_clientes>Hantera ditt företags kunder</desc_clientes>
+        <desc_contactos>För att komma åt kundens kontakter</desc_contactos>
+        <desc_facturas>Hantera alla fakturor (leveransanmärkningar, avgifter osv ...)</desc_facturas>
+        <desc_proveedores>Hantera ditt företags leverantörer</desc_proveedores>
+        <desc_gastos>Kontrollera utgifterna och veta om de är reglerade</desc_gastos>
+        <desc_documentos>Har all dokumentation för ditt företag grupperat</desc_documentos>
+        <desc_epigrafes>Definiera rubrikerna för fakturor och utgifter</desc_epigrafes>
+        <desc_formaspago>Definiera betalningsmetoder för att hantera utgifter</desc_formaspago>
+        <desc_cuentas>Definiera bokbok för bokföring</desc_cuentas>
+        <desc_periodicas>Planera återkommande fakturor med förfallodatum</desc_periodicas>
+        <desc_empleados>Registrera, avbryt eller ändra anställda</desc_empleados>
+        <desc_productos>Definiera dina produkter här för att kunna sälja dem</desc_productos>
+        <desc_ivas>Hantera skattesatser härifrån</desc_ivas>
+        <quick_clientes>Kunder</quick_clientes>
+        <quick_contactos>Kontakter</quick_contactos>
+        <quick_documentos>Dokument</quick_documentos>
+        <quick_facturas>Fakturor</quick_facturas>
+        <quick_proveedores>Leverantörer</quick_proveedores>
+        <quick_gastos>Kostnader</quick_gastos>
+        <quick_epigrafes>Epigraphs</quick_epigrafes>
+        <quick_formaspago>F. betalning</quick_formaspago>
+        <quick_cuentas>Konton</quick_cuentas>
+        <quick_periodicas>Periodisk</quick_periodicas>
+        <quick_empleados>Personal</quick_empleados>
+        <quick_productos>Producerar</quick_productos>
+    </menu>
+    <clientes>
+        <list>Klientlista</list>
+        <create>Ny kund</create>
+        <formview>Kunddetalj</formview>
+        <forminsert>Registrering av en ny kund</forminsert>
+        <formupdate>Kundändring</formupdate>
+        <defaultdata>Kundinformation</defaultdata>
+        <contactdata>Kundkontakter</contactdata>
+        <projectopen>Aktiva projekt</projectopen>
+        <projectclose>Stängda projekt</projectclose>
+        <incidentopen>Aktiva incidenter</incidentopen>
+        <incidentclose>Stängda incidenter</incidentclose>
+        <partesopen>Oupprättade delar</partesopen>
+        <partesclose>Likviderade delar</partesclose>
+        <albaranes>Leveransmeddelanden</albaranes>
+        <facturaopen>Osamlade fakturor</facturaopen>
+        <facturaclose>Fakturor samlade in</facturaclose>
+        <gastosdata>Kostnader kopplade till klienten</gastosdata>
+        <documentdata>Kunddokument</documentdata>
+        <agendadata>Kundhändelser</agendadata>
+        <actasdata>Klientminuter</actasdata>
+        <actionliquidar>Justera valda delar</actionliquidar>
+        <msgliquidar>Vill du likvidera de valda delarna?</msgliquidar>
+        <cuentacorriente>Kontrollerar konto</cuentacorriente>
+        <diapago>Betala dag</diapago>
+        <cuentacontable>Redovisningskonto</cuentacontable>
+        <nombrecomercial>Namn äta.</nombrecomercial>
+        <nombrefiscal>Skattnamn</nombrefiscal>
+        <tipocliente>Klienttyp</tipocliente>
+        <clientefiscal>åklagare</clientefiscal>
+        <clientejuridico>Laglig</clientejuridico>
+        <add>Lägg till kund</add>
+        <presupuestosdata>Kundbudgetar</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>Kontakter lista</list>
+        <create>Ny kontakt</create>
+        <formview>Kontaktdetalj</formview>
+        <forminsert>Registrerar en ny kontakt</forminsert>
+        <formupdate>Kontaktändring</formupdate>
+        <defaultdata>Kontaktuppgifter</defaultdata>
+        <add>Lägg till kontakt</add>
+    </contactos>
+    <documentos>
+        <list>Lista över dokument</list>
+        <create>Nytt dokument</create>
+        <formview>Dokumentdetalj</formview>
+        <forminsert>Registrerar ett nytt dokument</forminsert>
+        <formupdate>Dokumentändring</formupdate>
+        <defaultdata>Dokumentdata</defaultdata>
+    </documentos>
+    <epigrafes>
+        <list>Lista över rubriker</list>
+        <create>Ny rubrik</create>
+        <formview>Detalj av rubriken</formview>
+        <forminsert>Registrering av en ny rubrik</forminsert>
+        <formupdate>ändring av rubriken</formupdate>
+        <defaultdata>Detaljer om rubriken</defaultdata>
+    </epigrafes>
+    <formaspago>
+        <list>Lista över betalningsmetoder</list>
+        <create>Ny betalningsmetod</create>
+        <formview>Betalningsmetoddetalj</formview>
+        <forminsert>Registrering av en ny betalningsmetod</forminsert>
+        <formupdate>ändring av betalningsmetoden</formupdate>
+        <defaultdata>Betalningsmetoddata</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>Lista över utgifter</list>
+        <create>Ny kostnad</create>
+        <formview>Spendera detalj</formview>
+        <forminsert>Registrering av en ny kostnad</forminsert>
+        <formupdate>Kostnadsmodifiering</formupdate>
+        <defaultdata>Spendera data</defaultdata>
+        <pagadopor>Paymaster</pagadopor>
+        <liquidar>Likvidera</liquidar>
+        <dateliq>Datum liq.</dateliq>
+        <msgliquidar>Vill du reglera de valda utgifterna?</msgliquidar>
+        <msgerror>Du måste välja utgifterna du vill reglera i listan</msgerror>
+        <trimestrereg>Trim. tillträde</trimestrereg>
+        <fechainireg>Incheckningsdatum</fechainireg>
+        <trimestreliq>Trim. avvecklas</trimestreliq>
+        <fechainiliq>Avgjort datum</fechainiliq>
+        <totalliquidar>De likviderade kostnaderna uppgår till totalt:</totalliquidar>
+        <sinpagador>[Utan betalare]</sinpagador>
+        <vencimientos_old>Löptider</vencimientos_old>
+        <vencimientos_new>Nya löptider</vencimientos_new>
+        <fechavencimiento>Utgångsdatum</fechavencimiento>
+        <pagado>Betald</pagado>
+        <fechapagado>Datum betalat</fechapagado>
+    </gastos>
+    <facturas>
+        <list>Lista över fakturor</list>
+        <create>Ny faktura</create>
+        <formview>Fakturadetalj</formview>
+        <forminsert>Registrering av en ny faktura</forminsert>
+        <formupdate>Fakturamodifiering</formupdate>
+        <defaultdata>Fakturadata</defaultdata>
+        <errorfac101>Endast den sista fakturan kan öppnas</errorfac101>
+        <errorfac103>Det går inte att ta bort en stängd faktura</errorfac103>
+        <numfacxxx>Fakturanummer</numfacxxx>
+        <numalbxxx>Leveranssedlarnummer</numalbxxx>
+        <fechaemision>Utgivningsdatum</fechaemision>
+        <titular>Rubrik</titular>
+        <baseimponible>Skattepliktig bas</baseimponible>
+        <totalapagar>Totalt att betala</totalapagar>
+        <concepts_old>Begrepp</concepts_old>
+        <concepts_new>Nya koncept</concepts_new>
+        <products_old>Producerar</products_old>
+        <products_new>Nya produkter</products_new>
+        <vencimientos_old>Löptider</vencimientos_old>
+        <vencimientos_new>Nya löptider</vencimientos_new>
+        <fechavencimiento>Utgångsdatum</fechavencimiento>
+        <fechacobrado>Insamlingsdatum</fechacobrado>
+        <clientdata>Kundinformation</clientdata>
+        <vencimientosfactura>Förfallodag för denna faktura</vencimientosfactura>
+        <vencimientosalbaran>Förfallodag för denna leveransnot</vencimientosalbaran>
+        <vencimientoscobrado>Det insamlade fältet har modifierats med hjälp av förfallsdata</vencimientoscobrado>
+    </facturas>
+    <proveedores>
+        <list>Leverantörslista</list>
+        <create>Ny leverantör</create>
+        <formview>Leverantörsdetalj</formview>
+        <forminsert>Registrering av en ny leverantör</forminsert>
+        <formupdate>Leverantörsändring</formupdate>
+        <defaultdata>Leverantörsinformation</defaultdata>
+        <cuentacorriente>Kontrollerar konto</cuentacorriente>
+        <cuentacontable>Redovisningskonto</cuentacontable>
+        <diapago>Betala dag</diapago>
+        <gastosdata>Leverantörsrelaterade kostnader</gastosdata>
+        <contactdata>Leverantörskontakter</contactdata>
+        <nombrecomercial>Handelsnamn</nombrecomercial>
+        <nombrefiscal>Skattnamn</nombrefiscal>
+        <add>Lägg till leverantör</add>
+    </proveedores>
+    <cuentas>
+        <list>Lista över konton</list>
+        <create>Nytt konto</create>
+        <formview>Kontodetalj</formview>
+        <forminsert>Registrering av ett nytt konto</forminsert>
+        <formupdate>Kontoändring</formupdate>
+        <defaultdata>Kontouppgifter</defaultdata>
+        <logo>Logo</logo>
+        <title_logo>Definiera logotyp, position, storlek och färger som ska användas på fakturor</title_logo>
+        <logoleft>Logo X-position</logoleft>
+        <logotop>OCH</logotop>
+        <logowidth>Bredd</logowidth>
+        <logoheight>Hög</logoheight>
+        <logofile>Aktuell logofil</logofile>
+        <logofilenew>Ny fil (endast JPEG)</logofilenew>
+        <colorline>Färgen på linjerna</colorline>
+        <colortext1>Värdepapper</colortext1>
+        <colortext2>Texter</colortext2>
+        <title_facturas>Definiera vissa parametrar som ska användas för att utfärda fakturor</title_facturas>
+        <facturabool>Användning</facturabool>
+        <facturavalue>Standardvärde (endast om det används)</facturavalue>
+        <facturapie1>Första linjefoten</facturapie1>
+        <facturapie2>Andra linjefoten</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>Lista med periodiska fakturor</list>
+        <create>Ny periodisk faktura</create>
+        <formview>Detalj av den periodiska fakturan</formview>
+        <forminsert>Registrering av en ny periodisk faktura</forminsert>
+        <formupdate>ändring av periodisk faktura</formupdate>
+        <defaultdata>Periodiska fakturadata</defaultdata>
+        <concepts_old>Begrepp</concepts_old>
+        <concepts_new>Nya koncept</concepts_new>
+        <products_old>Producerar</products_old>
+        <products_new>Nya produkter</products_new>
+        <vencimientos_old>Löptider</vencimientos_old>
+        <vencimientos_new>Nya löptider</vencimientos_new>
+        <fechavencimiento>Utgångsdatum</fechavencimiento>
+        <diaemision>Utgivningsdag</diaemision>
+        <diaini>Mellan dagen</diaini>
+        <dia>Dag</dia>
+        <meses>Månader</meses>
+        <liquidar>Generera</liquidar>
+        <totalliquidar>Totalt antal genererade fakturor:</totalliquidar>
+        <msgerror>Du måste välja de fakturor du vill generera i listan och vilken månad som ska användas</msgerror>
+        <msgliquidar>Vill du generera de valda fakturorna?</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>Lista över anställda</list>
+        <create>Ny anställd</create>
+        <formview>Medarbetares detalj</formview>
+        <forminsert>Registrering av en ny anställd</forminsert>
+        <formupdate>ändring av anställda</formupdate>
+        <defaultdata>Information om anställda</defaultdata>
+        <contactdata>Medarbetarkontakter</contactdata>
+    </empleados>
+    <productos>
+        <list>Produktlista</list>
+        <create>Ny produkt</create>
+        <formview>Produktdetalj</formview>
+        <forminsert>Registrering av en ny produkt</forminsert>
+        <formupdate>Produktändring</formupdate>
+        <defaultdata>Produktdata</defaultdata>
+        <ref>Ref.</ref>
+        <peso>Vikt</peso>
+        <volumen>Volym</volumen>
+        <dimensiones>Dimensioner</dimensiones>
+        <fotofile>Aktuellt foto</fotofile>
+        <fotofilenew>Nytt foto</fotofilenew>
+        <siniva eval="true">"[Utan ".CONFIG("accounting_iva_name")."]"</siniva>
+    </productos>
+    <ivas>
+        <list eval="true">"Listing of ".CONFIG("accounting_iva_name")</list>
+        <create eval="true">"Nytt ".CONFIG("accounting_iva_name")</create>
+        <formview eval="true">"Detalj av ".CONFIG("accounting_iva_name")</formview>
+        <forminsert eval="true">"Ny registrering ".CONFIG("accounting_iva_name")</forminsert>
+        <formupdate eval="true">"Modifiering av ".CONFIG("accounting_iva_name")</formupdate>
+        <defaultdata eval="true">"Data från ".CONFIG("accounting_iva_name")</defaultdata>
+    </ivas>
+</root>

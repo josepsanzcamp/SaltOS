@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <incidencias>инцидентов</incidencias>
+        <proyectos>проекты</proyectos>
+        <partes>рабочие части</partes>
+        <prioridades>приоритеты</prioridades>
+        <actas>протоколы заседаний</actas>
+        <seguimientos>отслеживание задач</seguimientos>
+        <presupuestos>бюджетов</presupuestos>
+        <posiblescli>потенциальные клиенты</posiblescli>
+        <campanyas>коммерческие кампании</campanyas>
+        <gestionproyectos>проекты</gestionproyectos>
+        <categorias>категории</categorias>
+        <desc_incidencias>управляйте инцидентами своих клиентов отсюда</desc_incidencias>
+        <desc_proyectos>следите за своими проектами с помощью этого приложения</desc_proyectos>
+        <desc_partes>регистрируйте всю работу, которую вы выполняете, с помощью расписаний</desc_partes>
+        <desc_actas>ведение записей при проведении собраний для большего контроля</desc_actas>
+        <desc_prioridades>определение приоритетов для пунктов повестки дня</desc_prioridades>
+        <desc_seguimientos>управление задачами проекта с помощью трассировок</desc_seguimientos>
+        <desc_posiblescli>контролируйте потенциальные клиенты, которые у вас могут быть</desc_posiblescli>
+        <desc_presupuestos>быстрый и простой бюджет</desc_presupuestos>
+        <desc_campanyas>проведение бизнес-кампаний с последующими действиями</desc_campanyas>
+        <desc_categorias>просмотр категорий определенных приложений</desc_categorias>
+        <quick_incidencias>инцидентов</quick_incidencias>
+        <quick_proyectos>проекты</quick_proyectos>
+        <quick_partes>комплектующие</quick_partes>
+        <quick_prioridades>приоритеты</quick_prioridades>
+        <quick_actas>протокол</quick_actas>
+        <quick_seguimientos>следы</quick_seguimientos>
+        <quick_presupuestos>бюджетов</quick_presupuestos>
+        <quick_posiblescli>п.клиенты</quick_posiblescli>
+        <quick_campanyas>кампании</quick_campanyas>
+        <quick_categorias>категории</quick_categorias>
+    </menu>
+    <incidencias>
+        <list>список инцидентов</list>
+        <create>новый инцидент</create>
+        <formview>подробности инцидента</formview>
+        <forminsert>регистрация нового инцидента</forminsert>
+        <formupdate>модификация заболеваемости</formupdate>
+        <defaultdata>данные об инцидентах</defaultdata>
+        <usersdata>пользователей</usersdata>
+        <implicados>сложный</implicados>
+        <asignadoa>назначено</asignadoa>
+        <msgsendemail>всем участникам инцидента было отправлено электронное письмо</msgsendemail>
+        <boolsendmail>отправить электронное письмо</boolsendmail>
+        <boolsendmailtip>если вы включите эту опцию, всем участникам будет отправлено электронное письмо.</boolsendmailtip>
+        <categoria>категория</categoria>
+        <sincategoria>[Без рубрики]</sincategoria>
+        <allcategorias>[Все категории]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>список проектов</list>
+        <create>новый проект</create>
+        <formview>детали проекта</formview>
+        <forminsert>регистрация нового проекта</forminsert>
+        <formupdate>внесение изменений в проект</formupdate>
+        <defaultdata>данные проекта</defaultdata>
+        <tareasproyecto>задачи проекта</tareasproyecto>
+        <desctareas>описание задач</desctareas>
+        <horastotal>всего часов</horastotal>
+        <preciomedio>средняя цена</preciomedio>
+        <preciototal>общая стоимость</preciototal>
+        <real>реальный</real>
+        <diferencia>разница</diferencia>
+        <partesopen>непогашенные детали</partesopen>
+        <partesclose>ликвидированные партии</partesclose>
+        <relatedseguimientos>соответствующие последующие меры</relatedseguimientos>
+        <relatedincidencias>связанные инциденты</relatedincidencias>
+        <actionliquidar>ликвидация выбранных деталей</actionliquidar>
+        <msgliquidar>вы хотите ликвидировать выбранные детали?</msgliquidar>
+        <agendadata>связанные события</agendadata>
+        <actasdata>связанные минуты</actasdata>
+        <contactdata>контакты для клиентов</contactdata>
+        <incidentopen>активные инциденты</incidentopen>
+        <incidentclose>закрытые инциденты</incidentclose>
+        <albaranes>счета</albaranes>
+        <facturaopen>невзысканные счета</facturaopen>
+        <facturaclose>собранные счета-фактуры</facturaclose>
+        <gastosdata>расходы, связанные с клиентом</gastosdata>
+        <documentdata>документы клиента</documentdata>
+        <productosproyecto>проектная продукция</productosproyecto>
+        <descproductos>описание продукции</descproductos>
+        <actionfacturar>счет</actionfacturar>
+        <msgfacturar>вы хотите выставить счет за проект?</msgfacturar>
+        <errorfacturar>счет-фактура для этого проекта уже существует</errorfacturar>
+        <okfacturar>проект был успешно выставлен</okfacturar>
+        <addseguimientos>слежение</addseguimientos>
+        <addactas>протокол</addactas>
+        <addcontactos>контакт</addcontactos>
+        <addagenda>событие</addagenda>
+        <resumentareasproductos>сводка задач и продуктов</resumentareasproductos>
+        <presupuestosdata>бюджеты проектов</presupuestosdata>
+    </proyectos>
+    <partes>
+        <list>список деталей</list>
+        <create>новая деталь</create>
+        <formview>деталь детали</formview>
+        <forminsert>регистрация новой детали</forminsert>
+        <formupdate>модификация детали</formupdate>
+        <defaultdata>данные о деталях</defaultdata>
+        <horasfact>часы, подлежащие оплате</horasfact>
+        <preciohora>цена/час</preciohora>
+        <liquidar>ликвидировать</liquidar>
+        <dateliq>свидание с лицом.</dateliq>
+        <msgliquidar>вы хотите ликвидировать выбранные детали?</msgliquidar>
+        <msgerror>вы должны выбрать части, которые вы хотите поселить в листинге</msgerror>
+        <fechainiliq>дата установления</fechainiliq>
+    </partes>
+    <prioridades>
+        <list>перечень приоритетов</list>
+        <create>новый приоритет</create>
+        <formview>детали приоритета</formview>
+        <forminsert>высокий новый приоритет</forminsert>
+        <formupdate>изменение приоритета</formupdate>
+        <defaultdata>данные о приоритетах</defaultdata>
+    </prioridades>
+    <actas>
+        <list>список минут</list>
+        <create>новые минуты</create>
+        <formview>подробная информация о протоколе</formview>
+        <forminsert>регистрация новых минут</forminsert>
+        <formupdate>внесение изменений в протокол</formupdate>
+        <defaultdata>подробная информация о протоколе</defaultdata>
+        <dstart>начало</dstart>
+        <dstop>конец</dstop>
+        <asistentes>присутствующий</asistentes>
+        <temas>темы</temas>
+        <aceptados>принятый</aceptados>
+        <cancelados>отменен</cancelados>
+        <pendientes>серьги</pendientes>
+        <add>добавить минуты</add>
+    </actas>
+    <seguimientos>
+        <list>список отслеживания</list>
+        <create>новые последующие действия</create>
+        <formview>детали отслеживания</formview>
+        <forminsert>регистрация нового последующего мероприятия</forminsert>
+        <formupdate>изменение отслеживания</formupdate>
+        <defaultdata>данные отслеживания</defaultdata>
+        <add>добавить отслеживание</add>
+    </seguimientos>
+    <posiblescli>
+        <list>список потенциальных клиентов</list>
+        <create>новая перспектива</create>
+        <formview>деталь потенциального клиента</formview>
+        <forminsert>регистрация нового потенциального клиента</forminsert>
+        <formupdate>модификация потенциального клиента</formupdate>
+        <defaultdata>информация о потенциальном клиенте</defaultdata>
+        <crearcliente>создать клиент</crearcliente>
+        <clientcreatedok>новый клиент успешно создан</clientcreatedok>
+        <msgcrear>вы хотите превратить потенциального клиента в клиента?</msgcrear>
+        <agendadata>перспективные события</agendadata>
+        <actasdata>протокол потенциального клиента</actasdata>
+        <presupuestosdata>котировки потенциального клиента</presupuestosdata>
+        <facturacion>выставления счетов</facturacion>
+        <iaedesc>Описание IAE</iaedesc>
+        <iaecod>Треска. МАЭ</iaecod>
+        <contacto>чел. контакт</contacto>
+        <changedenied>вы не можете деактивировать потенциального клиента, у которого есть минуты, повестка дня и/или бюджеты</changedenied>
+    </posiblescli>
+    <presupuestos>
+        <list>список бюджетов</list>
+        <create>новый бюджет</create>
+        <formview>детали бюджета</formview>
+        <forminsert>регистрация нового бюджета</forminsert>
+        <formupdate>изменение бюджета</formupdate>
+        <defaultdata>бюджетные данные</defaultdata>
+        <tareaspresupuesto>бюджетные задачи</tareaspresupuesto>
+        <desctareas>описание задач</desctareas>
+        <horastotal>всего часов</horastotal>
+        <preciomedio>средняя цена</preciomedio>
+        <preciototal>общая стоимость</preciototal>
+        <productospresupuesto>бюджетные продукты</productospresupuesto>
+        <descproductos>описание продукции</descproductos>
+        <objetivos>бюджетные цели</objetivos>
+        <funcional>функциональное предложение</funcional>
+        <tecnica>техническое предложение</tecnica>
+        <extras>дополнительная информация</extras>
+        <condiciones>бюджетные условия</condiciones>
+        <valoracion>экономическая оценка</valoracion>
+        <crearproyecto>создать проект</crearproyecto>
+        <projectexists>этот бюджет уже связан с проектом</projectexists>
+        <clientnotexists>вы должны относиться к клиенту (если вы связаны с потенциальным клиентом, сначала сделайте его клиентом)</clientnotexists>
+        <projectcreatedok>новый проект успешно создан</projectcreatedok>
+        <msgcrear>вы хотите создать проект из этого бюджета?</msgcrear>
+        <agendadata>бюджетные мероприятия</agendadata>
+        <actasdata>протокол бюджета</actasdata>
+        <resumentareasproductos>сводка задач и продуктов</resumentareasproductos>
+        <objetivospdf>цели</objetivospdf>
+        <funcionalpdf>функциональный</funcionalpdf>
+        <tecnicapdf>техника</tecnicapdf>
+        <extraspdf>информация</extraspdf>
+        <condicionespdf>условия</condicionespdf>
+        <actionfacturar>счет</actionfacturar>
+        <msgfacturar>вы хотите выставить счет за проект?</msgfacturar>
+        <errorfacturar>для этого бюджета уже есть счет-фактура</errorfacturar>
+        <okfacturar>котировка была успешно выставлена</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>список кампаний</list>
+        <create>новая кампания</create>
+        <formview>подробности кампании</formview>
+        <forminsert>регистрация новой кампании</forminsert>
+        <formupdate>модификация кампании</formupdate>
+        <defaultdata>данные кампании</defaultdata>
+        <agendadata>мероприятия кампании</agendadata>
+        <presupuestosdata>бюджеты кампаний</presupuestosdata>
+        <projectopen>активные проекты</projectopen>
+        <projectclose>закрытые проекты</projectclose>
+        <clientesdata>клиенты захвачены</clientesdata>
+        <posiblesclidata>потенциальные клиенты</posiblesclidata>
+    </campanyas>
+    <categorias>
+        <list>список категорий</list>
+        <create>новая категория</create>
+        <formview>подробная информация о категории</formview>
+        <forminsert>регистрация новой категории</forminsert>
+        <formupdate>изменение категории</formupdate>
+        <defaultdata>данные о категориях</defaultdata>
+    </categorias>
+</root>

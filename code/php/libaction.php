@@ -1056,10 +1056,10 @@ function __default_process_querytag($query, &$go, &$commit)
                         $include = $row["action_include"];
                         $include = explode(",", $include);
                         foreach ($include as $file) {
-                            if (!file_exists($file)) {
+                            if (!file_exists(detect_app_file($file))) {
                                 show_php_error(array("xmlerror" => "Include '$file' not found"));
                             }
-                            require $file;
+                            require detect_app_file($file);
                         }
                         $is_action = 1;
                     }

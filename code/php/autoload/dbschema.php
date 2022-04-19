@@ -33,14 +33,14 @@ function db_schema()
     capture_next_error();
     $hash1 = CONFIG("xml/dbschema.xml");
     get_clear_error();
-    $hash2 = md5(serialize(array(xml2array("xml/dbschema.xml"),xml2array("xml/dbstatic.xml"))));
+    $hash2 = md5(serialize(array(xml2array(detect_apps_files("xml/dbschema.xml")),xml2array(detect_apps_files("xml/dbstatic.xml")))));
     if ($hash1 != $hash2) {
         if (!semaphore_acquire(array("db_schema","db_static"), getDefault("semaphoretimeout", 100000))) {
             return;
         }
         $dbschema = __get_dbschema_with_indexing(
-            eval_attr(xml2array("xml/dbschema.xml")),
-            eval_attr(xml2array("xml/dbstatic.xml"))
+            eval_attr(xml_join(xml2array(detect_apps_files("xml/dbschema.xml")))),
+            eval_attr(xml_join(xml2array(detect_apps_files("xml/dbstatic.xml"))))
         );
         if (is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
             $tables1 = get_tables();
@@ -142,12 +142,12 @@ function db_static()
         return;
     }
     $hash1 = CONFIG("xml/dbstatic.xml");
-    $hash2 = md5(serialize(xml2array("xml/dbstatic.xml")));
+    $hash2 = md5(serialize(xml2array(detect_apps_files("xml/dbstatic.xml"))));
     if ($hash1 != $hash2) {
         if (!semaphore_acquire(array("db_schema","db_static"), getDefault("semaphoretimeout", 100000))) {
             return;
         }
-        $dbstatic = eval_attr(xml2array("xml/dbstatic.xml"));
+        $dbstatic = eval_attr(xml_join(xml2array(detect_apps_files("xml/dbstatic.xml"))));
         if (is_array($dbstatic)) {
             foreach ($dbstatic as $table => $rows) {
                 $query = "DELETE FROM ${table}";

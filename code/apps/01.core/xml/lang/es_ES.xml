@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <lang>es_ES</lang>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <nopage>Seleccione una aplicación para empezar a trabajar</nopage>
+        <nocheckuser>Usuario o clave incorrecta</nocheckuser>
+        <nochecktime>Usuario fuera de horario laboral</nochecktime>
+        <nocheckday>Usuario fuera de dia laboral</nocheckday>
+        <view>Ver</view>
+        <edit>Editar</edit>
+        <copy>Copiar</copy>
+        <delete>Borrar</delete>
+        <first>Primera página</first>
+        <previous>Página anterior</previous>
+        <next>Página siguiente</next>
+        <last>Última página</last>
+        <id>Cód.</id>
+        <codigo>Código</codigo>
+        <cif>C.I.F.</cif>
+        <nombre>Nombre</nombre>
+        <apellidos>Apellidos</apellidos>
+        <tel_fijo>Fijo</tel_fijo>
+        <tel_movil>Movil</tel_movil>
+        <telefono>Teléfono</telefono>
+        <fax>Fax</fax>
+        <email>Email</email>
+        <web>Web</web>
+        <filter>Opciones de filtro</filter>
+        <loadsavefilter>Cargar y guardar filtros predefinidos</loadsavefilter>
+        <buscar>Buscar</buscar>
+        <buscartip>Realiza la búsqueda con los filtros seleccionados</buscartip>
+        <limpiar>Reset</limpiar>
+        <limpiartip>Limpia el filtro y muestra todos los datos</limpiartip>
+        <username>Usuario</username>
+        <datetime>Fecha y hora</datetime>
+        <direccion>Dirección</direccion>
+        <codpostal>Código postal</codpostal>
+        <poblacion>Población</poblacion>
+        <provincia>Provincia</provincia>
+        <pais>País</pais>
+        <comentarios>Comentarios</comentarios>
+        <descripcion>Descripción</descripcion>
+        <buttoncreate>Crear</buttoncreate>
+        <buttoncreatereturnhere>Crear y volver aquí</buttoncreatereturnhere>
+        <buttonupdate>Actualizar</buttonupdate>
+        <buttonupdatereturnhere>Actualizar y volver aquí</buttonupdatereturnhere>
+        <buttoncancel>Cancelar</buttoncancel>
+        <buttonreturn>Volver</buttonreturn>
+        <date>Fecha</date>
+        <incidencia>Incidencia</incidencia>
+        <estado>Estado</estado>
+        <parte>Parte</parte>
+        <tarea>Tarea</tarea>
+        <tareas>Tareas</tareas>
+        <liquidado>Liquidado</liquidado>
+        <base>Base</base>
+        <total>Total</total>
+        <cerrado>Cerrado</cerrado>
+        <cobrado>Cobrado</cobrado>
+        <empresa>Empresa</empresa>
+        <msgdelete>Desea eliminar este registro?</msgdelete>
+        <permdenied>No tiene permisos para realizar esta acción</permdenied>
+        <sinnombre>Sin Nombre</sinnombre>
+        <deldenied>No se puede borrar porque está siendo usado en otra aplicación</deldenied>
+        <yes>Sí</yes>
+        <no>No</no>
+        <cliente>Cliente</cliente>
+        <posiblecli>Posible cliente</posiblecli>
+        <password>Clave</password>
+        <numfac>N.Fac.</numfac>
+        <numc>NC</numc>
+        <numctip>Número de comentarios</numctip>
+        <numf>NF</numf>
+        <numftip>Número de ficheros</numftip>
+        <numt>NT</numt>
+        <numttip>Número de tareas</numttip>
+        <numv>NV</numv>
+        <numvtip>Número de vencimientos</numvtip>
+        <nums>NS</nums>
+        <numstip>Número de seguimientos</numstip>
+        <nump>NP</nump>
+        <numptip>Número de productos</numptip>
+        <fechaini>Entre fecha</fechaini>
+        <fechafin>y</fechafin>
+        <commentdel>Borrar este comentario</commentdel>
+        <attachments>Ficheros adjuntos</attachments>
+        <shortattachments>Adjuntos</shortattachments>
+        <userdatetime>Usuario, fecha y hora</userdatetime>
+        <fileandsize>Fichero y tamaño</fileandsize>
+        <download>Descargar</download>
+        <activar>Activar</activar>
+        <newcomment>Nuevo comentario</newcomment>
+        <newattachments>Nuevos ficheros adjuntos</newattachments>
+        <proyecto>Proyecto</proyecto>
+        <documento>Documento</documento>
+        <hora>Hora</hora>
+        <horas>Horas</horas>
+        <minutos>Minutos</minutos>
+        <precio>Precio</precio>
+        <liq>Liq.</liq>
+        <aplicacion>Aplicación</aplicacion>
+        <rol>Rol</rol>
+        <permiso>Permiso</permiso>
+        <pos>Pos.</pos>
+        <posicion>Posición</posicion>
+        <trimestre>Trimestre</trimestre>
+        <otroscampos>Otros campos</otroscampos>
+        <excel>Excel</excel>
+        <exceltip>Descarguese un fichero Excel con los datos actuales</exceltip>
+        <pdf>Descargar PDF</pdf>
+        <pdftip>Descarguese un fichero PDF con los datos actuales</pdftip>
+        <epigrafe>Epígrafe</epigrafe>
+        <campoauto>(*) Campo automático</campoauto>
+        <cerr>Cerr.</cerr>
+        <cobr>Cobr.</cobr>
+        <concepto>Concepto</concepto>
+        <unid>Unid.</unid>
+        <unidades>Unids.</unidades>
+        <unidadestotal>Unidades totales</unidadestotal>
+        <prun>Pr./Un.</prun>
+        <dto>Dto.</dto>
+        <importe>Importe</importe>
+        <percent>Porcentaje</percent>
+        <todos>[Todos]</todos>
+        <todoslosclientes>[Todos los clientes]</todoslosclientes>
+        <todoslosposiblescli>[Todos los posibles clientes]</todoslosposiblescli>
+        <todoslosusuarios>[Todos los usuarios]</todoslosusuarios>
+        <todoslosgrupos>[Todos los grupos]</todoslosgrupos>
+        <todoslosproveedores>[Todos los proveedores]</todoslosproveedores>
+        <mostrartodos>[Mostrar todos]</mostrartodos>
+        <sinusuario>[Sin usuario]</sinusuario>
+        <paginaspc>Página </paginaspc>
+        <regsfrom>registros del </regsfrom>
+        <spcdespc> de </spcdespc>
+        <spcalspc> al </spcalspc>
+        <regspage>Registros por página:</regspage>
+        <registerdata>Datos del registro</registerdata>
+        <userinsert>Creado por</userinsert>
+        <userupdate>Modificado por</userupdate>
+        <allstates>[Todos los estados]</allstates>
+        <allenabled>[Todos los activos}</allenabled>
+        <alldisabled>[Todos los no activos}</alldisabled>
+        <lastinsert>Se ha creado un registro con el código: </lastinsert>
+        <lastupdate>Se ha modificado el registro con el código: </lastupdate>
+        <lastdelete>Se ha borrado el registro con el código: </lastdelete>
+        <proveedor>Proveedor</proveedor>
+        <acta>Acta</acta>
+        <presupuesto>Presupuesto</presupuesto>
+        <newfichero>Nuevo fichero</newfichero>
+        <fichero>Fichero</fichero>
+        <size>Tamaño</size>
+        <mime>Tipo mime</mime>
+        <grupo>Grupo</grupo>
+        <ficheroactual>Fichero actual</ficheroactual>
+        <language>Idioma</language>
+        <style>Diseño</style>
+        <nodata>Sin resultados a mostrar</nodata>
+        <nosearch>Debe entrar algún término para poder hacer una búsqueda</nosearch>
+        <prioridad>Prioridad</prioridad>
+        <sinproyecto>[Sin proyecto asociado]</sinproyecto>
+        <sintarea>[Sin tarea asociada]</sintarea>
+        <todoslosproyectos>[Todos los proyectos]</todoslosproyectos>
+        <todaslastareas>[Todas las tareas]</todaslastareas>
+        <todaslascuentas>[Todas]</todaslascuentas>
+        <mail>Enviar PDF</mail>
+        <mailtip>Envie el PDF a su cuenta de correo electrónico</mailtip>
+        <view2>Visor PDF</view2>
+        <view2tip>Vea el documento con el visor interno de SaltOS</view2tip>
+        <view2error>Se ha producido un error al abrir el visor PDF</view2error>
+        <view2hash>Si el problema persiste, póngase en contacto con el servicio técnico indicando el siguiente código: </view2hash>
+        <view2opening>Abriendo visor, espere un momento...</view2opening>
+        <msgnotuseremail>No tiene configurada ninguna dirección de correo</msgnotuseremail>
+        <msgnotsmtpemail>No está configurado el servidor de correo saliente</msgnotsmtpemail>
+        <sincliente>[Sin cliente asociado]</sincliente>
+        <sinposiblecli>[Sin posible cliente asociado]</sinposiblecli>
+        <sinepigrafe>[Sin epígrafe asociado]</sinepigrafe>
+        <sinprioridad>[Sin prioridad]</sinprioridad>
+        <sinestado>[Sin estado]</sinestado>
+        <dstart>Inicio</dstart>
+        <dstop>Fin</dstop>
+        <evento>Evento</evento>
+        <sincuenta>[Sin cuenta]</sincuenta>
+        <cuenta>Cuenta</cuenta>
+        <sindia>[Sin dia]</sindia>
+        <sinmes>[Sin mes]</sinmes>
+        <mes>Mes</mes>
+        <factura>Factura</factura>
+        <albaran>Albarán</albaran>
+        <msglogout>Desea salir de la aplicación?</msglogout>
+        <mostrarcomo>Mostrar como</mostrarcomo>
+        <nif>N.I.F.</nif>
+        <vcard>VCard</vcard>
+        <cargo>Cargo</cargo>
+        <empleado>Empleado</empleado>
+        <sinproveedor>[Sin proveedor asociado]</sinproveedor>
+        <sinempleado>[Sin empleado asociado]</sinempleado>
+        <port>Puerto</port>
+        <extra>Seguridad</extra>
+        <requiredfield>Campo requerido</requiredfield>
+        <sinpais>[Sin país seleccionado]</sinpais>
+        <sinprovincia>[Sin provincia seleccionada]</sinprovincia>
+        <sinpoblacion>[Sin población seleccionada]</sinpoblacion>
+        <sincodpostal>[Sin selección]</sincodpostal>
+        <usedfilter>Filtro activado</usedfilter>
+        <suma>Suma</suma>
+        <average>Media</average>
+        <posx>Posición X</posx>
+        <posy>Posición Y</posy>
+        <angle>Ángulo</angle>
+        <sinproducto>[Sin producto asociado]</sinproducto>
+        <preview>Previsualización</preview>
+        <sortasc>Ordenar ascendentemente (A-Z)</sortasc>
+        <sortdesc>Ordenar descendentemente (Z-A)</sortdesc>
+        <confirm>Confirmación</confirm>
+        <alert>Atención</alert>
+        <error>Error</error>
+        <buttonaccept>Aceptar</buttonaccept>
+        <buttoncontinue>Continuar</buttoncontinue>
+        <enero>Enero</enero>
+        <febrero>Febrero</febrero>
+        <marzo>Marzo</marzo>
+        <abril>Abril</abril>
+        <mayo>Mayo</mayo>
+        <junio>Junio</junio>
+        <julio>Julio</julio>
+        <agosto>Agosto</agosto>
+        <setiembre>Setiembre</setiembre>
+        <octubre>Octubre</octubre>
+        <noviembre>Noviembre</noviembre>
+        <diciembre>Diciembre</diciembre>
+        <lunes>Lunes</lunes>
+        <martes>Martes</martes>
+        <miercoles>Miércoles</miercoles>
+        <jueves>Jueves</jueves>
+        <viernes>Viernes</viernes>
+        <sabado>Sábado</sabado>
+        <domingo>Domingo</domingo>
+        <sabadoydomingo>Sábado y Domingo</sabadoydomingo>
+        <sinpresupuesto>[Sin presupuesto asociado]</sinpresupuesto>
+        <todoslospresupuestos>[Todos los presupuestos]</todoslospresupuestos>
+        <unknownerror>Se ha producido un error de conectividad (compruebe que funciona correctamente el acceso a la red y si el problema persiste, póngase en contacto con el administrador de la aplicación)</unknownerror>
+        <qrcode>QR Code</qrcode>
+        <lugar>Lugar</lugar>
+        <loading>Cargando datos, espere un momento...</loading>
+        <sending>Enviando datos, espere un momento...</sending>
+        <prod>Prod.</prod>
+        <addfile>Añadir fichero</addfile>
+        <addproduct>Añadir producto</addproduct>
+        <addconcept>Añadir concepto</addconcept>
+        <addvencimiento>Añadir vencimiento</addvencimiento>
+        <addtarea>Añadir tarea</addtarea>
+        <send>Enviar</send>
+        <notas>Notas</notas>
+        <sincampanya>[Sin campaña asociada]</sincampanya>
+        <campanya>Campaña</campanya>
+        <todaslascampanyas>[Todas las campañas]</todaslascampanyas>
+        <numpc>NPC</numpc>
+        <numpctip>Número de posibles clientes</numpctip>
+        <numcl>NCL</numcl>
+        <numcltip>Número de clientes</numcltip>
+        <numag>NAG</numag>
+        <numagtip>Número de eventos de la agenda</numagtip>
+        <numpr>NPR</numpr>
+        <numprtip>Número de presupuestos</numprtip>
+        <numpy>NPY</numpy>
+        <numpytip>Número de proyectos</numpytip>
+        <tipoevento>Tipo de evento</tipoevento>
+        <sintipoevento>[Sin tipo de evento]</sintipoevento>
+        <fileuploaderror>Se ha producido un error al enviar el fichero: </fileuploaderror>
+        <postlimiterror>Se ha producido un error al enviar los datos al servidor</postlimiterror>
+        <resumeneconomico>Resumen económico</resumeneconomico>
+        <pdf2filter_title>Filtro de exportación PDF</pdf2filter_title>
+        <pdf2filter_message>Seleccione los datos que desea incluir en el PDF:</pdf2filter_message>
+        <view2filter_title>Filtro del visor PDF</view2filter_title>
+        <view2filter_message>Seleccione los datos que desea ver en el PDF:</view2filter_message>
+        <msgerrorsemaphore>Se ha producido un error de concurrencia, se cancela el acceso a la acción </msgerrorsemaphore>
+        <msgnotcheckbox>Debe seleccionar algún registro del listado para usar esta opción</msgnotcheckbox>
+        <gotohome>Volver a cargar</gotohome>
+        <notifybug>Notificar fallo</notifybug>
+        <actioncompress>Descargar ficheros seleccionados</actioncompress>
+        <zipformat>Formato ZIP</zipformat>
+        <tarformat>TAR</tarformat>
+        <gzipformat>GZIP</gzipformat>
+        <bzipformat>BZIP2</bzipformat>
+        <temporalfiles>Archivos temporales</temporalfiles>
+        <sessionexpire>La sesión se va a cerrar en </sessionexpire>
+        <sessionupdate>clic aquí para evitar que se cierre</sessionupdate>
+        <sessionupdated>Se ha actualizado la sesión correctamente</sessionupdated>
+        <link>Enlace</link>
+        <textos_select>Seleccione un texto y pulse Añadir</textos_select>
+        <textos_add>Añadir</textos_add>
+        <selectall>Seleccionar todo</selectall>
+        <selectnone>Borrar selección</selectnone>
+        <addtofolder>Mostrar en esta carpeta</addtofolder>
+        <addtofolderok>Se ha añadido este contenido a la carpeta</addtofolderok>
+        <delfromfolderok>Se ha ocultado este contenido de la carpeta</delfromfolderok>
+        <savedfilters>Filtros guardados</savedfilters>
+        <optionfilter>Seleccione un filtro guardado</optionfilter>
+        <newfilter>Nombre del nuevo filtro</newfilter>
+        <loadfilter>Cargar</loadfilter>
+        <loadfiltertip>Pulse aquí para cargar el filtro seleccionado</loadfiltertip>
+        <updatefilter>Actualizar</updatefilter>
+        <updatefiltertip>Pulse aquí para actualizar el filtro seleccionado</updatefiltertip>
+        <deletefilter>Borrar</deletefilter>
+        <deletefiltertip>Pulse aquí para borrar el filtro seleccionado</deletefiltertip>
+        <createfilter>Crear</createfilter>
+        <createfiltertip>Pulse aquí para crear un nuevo filtro</createfiltertip>
+        <createfilterok>Se ha creado correctamente el nuevo filtro</createfilterok>
+        <createfilterko>Falta definir el nombre del filtro</createfilterko>
+        <loadfilterok>Se ha cargado el filtro correctamente</loadfilterok>
+        <loadfilterko>Debe seleccionar un filtro para poder cargar</loadfilterko>
+        <updatefilterok>Se ha actualizado el filtro correctamente</updatefilterok>
+        <updatefilterko>Debe seleccionar un filtro para poder modificarlo</updatefilterko>
+        <deletefilterok>Se ha borrado el filtro</deletefilterok>
+        <deletefilterko>Debe seleccionar un filtro para poder borrarlo</deletefilterko>
+        <renamefilter>Renombrar</renamefilter>
+        <renamefiltertip>Pulse aquí para renombrar un filtro existente</renamefiltertip>
+        <renamefilterok>Se ha renombrado correctamente el filtro existente</renamefilterok>
+        <renamefilterko1>Debe seleccionar un filtro para poder renombrarlo</renamefilterko1>
+        <renamefilterko2>Falta definir el nuevo nombre del filtro a renombrar</renamefilterko2>
+        <showmenu>Mostrar menú</showmenu>
+        <hidemenu>Ocultar menú</hidemenu>
+        <showtools>Mostrar herramientas</showtools>
+        <hidetools>Ocultar herramientas</hidetools>
+        <inbackground>Esta acción se esta ejecutando en segundo plano, espere unos instantes</inbackground>
+        <sentfromsaltos>Correo enviado desde mi SaltOS</sentfromsaltos>
+        <foldersdata>Carpetas</foldersdata>
+        <loweradd>añadir</loweradd>
+        <help>Ayuda</help>
+        <selectallcheckbox>Seleccionar todos los registros</selectallcheckbox>
+        <selectonecheckbox>Seleccionar este registro</selectonecheckbox>
+        <formapago>Forma de pago</formapago>
+        <todaslasformasdepago>[Todas las formas de pago]</todaslasformasdepago>
+        <sinformapago>[Sin forma de pago]</sinformapago>
+        <actions>Acciones sobre este registro</actions>
+        <msgfilesindexed1> fichero indexado en la base de datos</msgfilesindexed1>
+        <msgfilesindexed2> ficheros indexados en la base de datos</msgfilesindexed2>
+        <msgregistersindexed1> registro indexado en la base de datos</msgregistersindexed1>
+        <msgregistersindexed2> registros indexado en la base de datos</msgregistersindexed2>
+        <msgregisterspurged1> registro purgado de la base de datos</msgregisterspurged1>
+        <msgregisterspurged2> registros purgados de la base de datos</msgregisterspurged2>
+        <biglist>$limit registros</biglist>
+        <biglisttip>Atención: se estan mostrando $limit registros i puede ser que la aplicación funcione con lentitud</biglisttip>
+        <activo>Activo</activo>
+        <activo_desc>Para indicar al usuario activo o al que existe por herencia</activo_desc>
+        <print>Imprimir</print>
+    </common>
+    <login>
+        <logintitle>Acceso a la aplicación</logintitle>
+        <remember>Recordar la contraseña en este ordenador</remember>
+        <enter>Entrar</enter>
+        <captcha1>Código de seguridad</captcha1>
+        <captcha2>Entre el código aquí</captcha2>
+        <captcha3>Recargar imagen</captcha3>
+        <mobileaccess>Acceso desde dispositivo movil</mobileaccess>
+    </login>
+    <menu>
+        <home>Inicio</home>
+        <usuarios>Usuarios</usuarios>
+        <grupos>Grupos</grupos>
+        <profile>Mi perfil</profile>
+        <maincfg>Configuración</maincfg>
+        <about>Acerca de SaltOS</about>
+        <support>Soporte técnico</support>
+        <logout>Cerrar sesión</logout>
+        <ficheros>Ficheros adjuntos</ficheros>
+        <gestiongeneral>General</gestiongeneral>
+        <gestionfiltros>Filtros</gestionfiltros>
+        <gestionadministracion>Administración</gestionadministracion>
+        <folders>Carpetas</folders>
+        <buscador>Buscador</buscador>
+        <desc_usuarios>De de alta, de baja o modifique usuarios</desc_usuarios>
+        <desc_grupos>Cree grupos de trabajo para los usuarios</desc_grupos>
+        <desc_profile>Cambie sus preferencias de su usuario</desc_profile>
+        <desc_maincfg>Cambie las preferencias globlales de la aplicación</desc_maincfg>
+        <desc_about>Conozca los creditos de esta aplicación</desc_about>
+        <desc_logout>Haga clíc aquí cuando desee cerrar su sesión de trabajo</desc_logout>
+        <desc_home>Acceda a la pantalla principal de la aplicación</desc_home>
+        <desc_support>Contacte con el soporte técnico</desc_support>
+        <desc_ficheros>Acceda a todos los ficheros de toda la aplicación</desc_ficheros>
+        <desc_buscador>Para buscar en toda la base de datos</desc_buscador>
+        <quick_home>Inicio</quick_home>
+        <quick_profile>Perfil</quick_profile>
+        <quick_support>Soporte</quick_support>
+        <quick_about>Acerca</quick_about>
+        <quick_logout>Cerrar</quick_logout>
+        <quick_usuarios>Usuarios</quick_usuarios>
+        <quick_grupos>Grupos</quick_grupos>
+        <quick_maincfg>Configuración</quick_maincfg>
+        <quick_ficheros>Ficheros</quick_ficheros>
+        <quick_buscador>Buscador</quick_buscador>
+        <menu>Menú</menu>
+        <menutip>Para mostrar y ocultar el menú de aplicaciones</menutip>
+    </menu>
+    <usuarios>
+        <list>Listado de usuarios</list>
+        <create>Nuevo usuario</create>
+        <formview>Detalle del usuario</formview>
+        <forminsert>Alta de un nuevo usuario</forminsert>
+        <formupdate>Modificación del usuario</formupdate>
+        <personaldata>Datos del usuario</personaldata>
+        <entrada>Entrada</entrada>
+        <salida>Salida</salida>
+        <dias>Días</dias>
+        <logged>Conectado</logged>
+        <password2>Repita clave</password2>
+        <errorpassword>Las claves entradas no coinciden</errorpassword>
+        <contacto>Contacto</contacto>
+        <sincontacto>[Sin contacto asociado]</sincontacto>
+        <permdata>Permisos por aplicación</permdata>
+        <allow>Permitir</allow>
+        <deny>Denegar</deny>
+        <groupsdata>Grupos del usuario</groupsdata>
+        <pop3host>Servidor POP3</pop3host>
+        <pop3delete>Borrar mensajes en el servidor pasados</pop3delete>
+        <pop3days>días</pop3days>
+        <smtphost>Servidor SMTP</smtphost>
+        <emailprivated>Esta cuenta es privada (sólo yo tengo acceso)</emailprivated>
+        <emaildefault>Cuenta por defecto (la que más uso)</emaildefault>
+        <emaildisabled>Desactivar esta cuenta de correo</emaildisabled>
+        <emaildelete>Borrar esta cuenta de correo (se perderan los datos para siempre)</emaildelete>
+        <emailsignatureold>Firma actual</emailsignatureold>
+        <emailsignaturenew>Nueva firma</emailsignaturenew>
+        <correonew>Nuevo correo</correonew>
+        <addmetocc>Añadirme a mi como CC en todos los emails que envie</addmetocc>
+        <defaultcrt>Activar por defecto la solicitud de confirmación de recepción</defaultcrt>
+        <gcalendar>Google Calendar</gcalendar>
+        <prefgcalendar>Sincronización de la agenda con el servicio de Google Calendar</prefgcalendar>
+        <prefgcalendar2>Con esta opción, usted puede usar la agenda desde SaltOS y desde Google Calendar, manteniendo los datos actualizados de forma automática y sin preocuparse de tener que replicar los datos de una agenda a la otra</prefgcalendar2>
+        <emailgcalendar>Cuenta de correo de gmail</emailgcalendar>
+        <tokengcalendar>Token de acceso</tokengcalendar>
+        <feedstitle>Configure los feeds que desea leer desde SaltOS (RSS 1.0, RSS 2.0 y Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>Título</title>
+        <description>Descripción</description>
+        <image>Imagen</image>
+        <test>Probar</test>
+        <add>Añadir</add>
+        <feedslist>Listado de feeds RSS configurados</feedslist>
+        <feeds_old>Feeds configurados</feeds_old>
+        <feeds_new>Nuevo feed</feeds_new>
+        <lowerdisabled>desactivado</lowerdisabled>
+        <singrupo>[Sin grupo]</singrupo>
+        <sinaplicacion>[Sin aplicación]</sinaplicacion>
+        <registro>Registro</registro>
+        <sinregistro>[Sin registro]</sinregistro>
+        <showdetalles>[Ver detalles]</showdetalles>
+        <hidedetalles>[Ocultar detalles]</hidedetalles>
+        <appsregsdata>Permisos por registro</appsregsdata>
+    </usuarios>
+    <grupos>
+        <list>Listado de grupos</list>
+        <create>Nuevo grupo</create>
+        <formview>Detalle del grupo</formview>
+        <forminsert>Alta de un nuevo grupo</forminsert>
+        <formupdate>Modificación del grupo</formupdate>
+        <defaultdata>Datos del grupo</defaultdata>
+        <permdata>Permisos por aplicación</permdata>
+        <allow>Permitir</allow>
+        <deny>Denegar</deny>
+        <showdetalles>[Ver detalles]</showdetalles>
+        <hidedetalles>[Ocultar detalles]</hidedetalles>
+    </grupos>
+    <profile>
+        <formupdate>Mi perfil</formupdate>
+        <oldpassword>Clave antigua</oldpassword>
+        <newpassword>Clave nueva</newpassword>
+        <newpassword2>Repita clave</newpassword2>
+        <erroroldpassword>La clave antigua es incorrecta</erroroldpassword>
+        <errornewpassword>Las claves entradas no coinciden</errornewpassword>
+        <errornewpassword2>La nueva clave debe ser más compleja</errornewpassword2>
+        <prefgeneral>Preferencias generales</prefgeneral>
+        <cambioclave>Cambio de su clave personal</cambioclave>
+        <general>General</general>
+        <title_correo_old>Configure la cuenta de correo POP3 para su usuario</title_correo_old>
+        <pop3host>Servidor POP3</pop3host>
+        <pop3delete>Borrar mensajes en el servidor pasados</pop3delete>
+        <pop3days>días</pop3days>
+        <smtphost>Servidor SMTP</smtphost>
+        <emailprivated>Esta cuenta es privada (sólo yo tengo acceso)</emailprivated>
+        <emaildefault>Cuenta por defecto (la que más uso)</emaildefault>
+        <emaildisabled>Desactivar esta cuenta de correo</emaildisabled>
+        <emaildelete>Borrar esta cuenta de correo (se perderan los datos para siempre)</emaildelete>
+        <emailsignatureold>Firma actual</emailsignatureold>
+        <emailsignaturenew>Nueva firma</emailsignaturenew>
+        <correonew>Nuevo correo</correonew>
+        <title_correo_new>Configure una nueva cuenta de correo POP3 para su usuario</title_correo_new>
+        <gcalendar>Google Calendar</gcalendar>
+        <prefgcalendar>Sincronización de la agenda con el servicio de Google Calendar</prefgcalendar>
+        <prefgcalendar2>Con esta opción, usted puede usar la agenda desde SaltOS y desde Google Calendar, manteniendo los datos actualizados de forma automática y sin preocuparse de tener que replicar los datos de una agenda a la otra</prefgcalendar2>
+        <emailgcalendar>Cuenta de correo de gmail</emailgcalendar>
+        <tokengcalendar>Token de acceso</tokengcalendar>
+        <addmetocc>Añadirme a mi como CC en todos los emails que envie</addmetocc>
+        <defaultcrt>Activar por defecto la solicitud de confirmación de recepción</defaultcrt>
+        <feedstitle>Configure los feeds que desea leer desde SaltOS (RSS 1.0, RSS 2.0 y Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>Título</title>
+        <description>Descripción</description>
+        <image>Imagen</image>
+        <test>Probar</test>
+        <add>Añadir</add>
+        <feedslist>Listado de feeds RSS configurados</feedslist>
+        <feeds_old>Feeds configurados</feeds_old>
+        <feeds_new>Nuevo feed</feeds_new>
+        <lowerdisabled>desactivado</lowerdisabled>
+        <quick>Menú rápido</quick>
+        <prefquick>Configure aquí el menú rápido situado en la zona superior</prefquick>
+        <sinaplicacion>[Sin aplicación]</sinaplicacion>
+        <quick_button_f1>Primer botón (F1)</quick_button_f1>
+        <quick_button_f2>Segundo botón (F2)</quick_button_f2>
+        <quick_button_f3>Tercer botón (F3)</quick_button_f3>
+        <quick_button_f4>Cuarto botón (F4)</quick_button_f4>
+        <quick_button_f5>Quinto botón (F5)</quick_button_f5>
+        <quick_button_f6>Sexto botón (F6)</quick_button_f6>
+        <quick_button_f7>Septimo botón (F7)</quick_button_f7>
+        <quick_button_f8>Octavo botón (F8)</quick_button_f8>
+        <quick_button_f9>Noveno botón (F9)</quick_button_f9>
+        <quick_button_f10>Décimo botón (F10)</quick_button_f10>
+        <quick_button_f11>Onceavo botón (F11)</quick_button_f11>
+        <quick_button_f12>Doceavo botón (F12)</quick_button_f12>
+        <folderstab>Carpetas de usuario</folderstab>
+        <folderspref>Configure aquí las carpetas de usuario para luego dejar lo que desee</folderspref>
+        <newfolder>Nueva carpeta de usuario</newfolder>
+        <withoutparent>[Sin carpeta]</withoutparent>
+        <inparentfolder>y cuelga de la carpeta</inparentfolder>
+        <namefolder>Nombre de la carpeta</namefolder>
+        <parentfolder>Cuelga de la carpeta</parentfolder>
+    </profile>
+    <maincfg>
+        <formupdate>Configuración</formupdate>
+        <general>General</general>
+        <title_general>Configure algunos parámetros generales de la aplicación</title_general>
+        <applicationtitle>Título de la aplicación</applicationtitle>
+        <agendainterval>Buscar notificaciones de la agenda cada</agendainterval>
+        <inboxinterval>Buscar correos nuevos cada</inboxinterval>
+        <outboxinterval>Comprobar la bandeja de salida cada</outboxinterval>
+        <feedsinterval>Buscar posts nuevos cada</feedsinterval>
+        <feedstimeout>Olvidar feeds borrados pasados</feedstimeout>
+        <sessioninterval>Comprobar aviso de cerrar sesión cada</sessioninterval>
+        <sessionwarning>Avisar el cierre de sesión antes de</sessionwarning>
+        <indexinginterval>Indexar archivos nuevos cada</indexinginterval>
+        <integrityinterval>Revisar integridad cada</integrityinterval>
+        <purgeinterval>Purgar datos cada</purgeinterval>
+        <emailsupport>Email para el soporte técnico</emailsupport>
+        <segundos>segundos</segundos>
+        <dias>días</dias>
+        <title_logo>Defina el logotipo, posición, tamaño y colores que se usarán en los pdf's</title_logo>
+        <logo>Logotipo</logo>
+        <logoleft>Posicion del logo X</logoleft>
+        <logotop>Y</logotop>
+        <logowidth>Ancho</logowidth>
+        <logoheight>Alto</logoheight>
+        <logofile>Fichero del logo actual</logofile>
+        <logofilenew>Nuevo fichero (sólo JPEG)</logofilenew>
+        <colorline>Color de las líneas</colorline>
+        <colortext1>Títulos</colortext1>
+        <colortext2>Textos</colortext2>
+        <title_correo>Configure algunos parametros globales sobre el envio de correos desde SaltOS</title_correo>
+        <cuentasupport>Correo saliente soporte</cuentasupport>
+        <cuentaincidencias>Correo saliente incidencias</cuentaincidencias>
+        <water>Marcas de agua</water>
+        <title_water>Defina las marcas de agua que se usarán en los pdf's</title_water>
+        <wateractas>Actas: Texto</wateractas>
+        <waterpartes>Partes: Texto</waterpartes>
+        <waterfacturas>Facturas: Texto</waterfacturas>
+        <wateralbaranes>Albaranes: Texto</wateralbaranes>
+        <waterpresupuestos>Presupuestos: Texto</waterpresupuestos>
+        <waterclientes>Clientes: Texto</waterclientes>
+        <waterproyectos>Proyectos: Texto</waterproyectos>
+        <waterposiblescli>Posibles clientes: Texto</waterposiblescli>
+        <watercorreo>Correo: Texto</watercorreo>
+        <waterfeeds>Feeds: Texto</waterfeeds>
+        <emailasync>Usar el envió asíncrono (más rápido)</emailasync>
+        <accounting>Contabilidad</accounting>
+        <title_accounting>Configure aquí los datos globales de contabilidad</title_accounting>
+        <accounting_currency>Moneda</accounting_currency>
+        <accounting_iva_name>Nombre del impuesto (se suma)</accounting_iva_name>
+        <accounting_irpf_name>Nombre del impuesto (se resta)</accounting_irpf_name>
+        <accounting_value>Valor por defecto (sólo si se usa)</accounting_value>
+        <applications_config>Aplicaciones</applications_config>
+        <config_tabs>Configuración pestañas</config_tabs>
+        <default_values>Valores por defecto</default_values>
+        <configuracion_presupuestos>Configuración presupuestos</configuracion_presupuestos>
+        <configuracion_agenda>Configuración agenda</configuracion_agenda>
+        <configuracion_incidencias>Configuración incidencias</configuracion_incidencias>
+        <configuracion_facturas>Configuración facturas</configuracion_facturas>
+        <configuracion_gastos>Configuración gastos</configuracion_gastos>
+        <show_tab_objetivos_presupuesto>Mostrar objetivos</show_tab_objetivos_presupuesto>
+        <show_tab_condiciones_presupuesto>Mostrar condiciones</show_tab_condiciones_presupuesto>
+        <show_tab_funcional_presupuesto>Mostrar propuesta funcional</show_tab_funcional_presupuesto>
+        <show_tab_tecnica_presupuesto>Mostrar propuesta técnica</show_tab_tecnica_presupuesto>
+        <show_tab_info_adicional_presupuesto>Mostrar información adicional</show_tab_info_adicional_presupuesto>
+        <show_tab_tareas_presupuesto>Mostrar tareas</show_tab_tareas_presupuesto>
+        <show_tab_productos_presupuesto>Mostrar productos</show_tab_productos_presupuesto>
+        <sin_configurar>[Sin configurar]</sin_configurar>
+        <filtro_grupo_usuarios_incidencias>Mostrar usuarios de un grupo en los listados de usuarios</filtro_grupo_usuarios_incidencias>
+        <filtro_grupo_usuarios_implicados_incidencias>Grupo implicados</filtro_grupo_usuarios_implicados_incidencias>
+        <filtro_grupo_usuarios_asignados_incidencias>Grupo asignados</filtro_grupo_usuarios_asignados_incidencias>
+    </maincfg>
+    <about>
+        <formupdate>Acerca de SaltOS</formupdate>
+        <copyright>Este software se distribuye bajo los términos de la licencia GPL-3.0:</copyright>
+        <components>Este software usa los siguientes componentes:</components>
+        <server_base>Servidor base:</server_base>
+        <php_plugins>PHP plugins:</php_plugins>
+        <javascript_base>Javascript base:</javascript_base>
+        <bootstrap_plugins>Bootstrap plugins:</bootstrap_plugins>
+        <jquery_plugins>JQuery plugins:</jquery_plugins>
+        <javascript_plugins>Javascript plugins:</javascript_plugins>
+        <other_plugins>Otros plugins:</other_plugins>
+        <server_plugins>Servidor plugins:</server_plugins>
+        <vxinfo>Nota: (*) Algunos proyectos no especifican la versión concreta de la licencia que emplean</vxinfo>
+        <license>Licencia </license>
+        <licensetitle>A continuación, se muestra el texto legal de la licencia </licensetitle>
+        <translators>Traducciones</translators>
+        <developers>Desarrolladores</developers>
+        <unavailable>Datos de contacto no disponibles. Contacte con algún desarrollador para cualquier duda o sugerencia.</unavailable>
+    </about>
+    <support>
+        <formupdate>Soporte técnico</formupdate>
+        <contact>Soporte técnico</contact>
+        <subject>Asunto</subject>
+        <msgsendemail>Se ha enviado un correo electrónico al soporte técnico</msgsendemail>
+        <msgnotemailsupport>No se ha espeficicado ningún correo para el soporte técnico</msgnotemailsupport>
+        <msgnotsubject>No se ha entrado ningún asunto</msgnotsubject>
+        <msgnotcomments>No se ha entrado ningún comentario</msgnotcomments>
+    </support>
+    <home>
+        <formupdate>Inicio</formupdate>
+        <buscar2>Buscar en todo SaltOS</buscar2>
+        <buscar3>Buscar sólo en ficheros</buscar3>
+    </home>
+    <denied>
+        <title>Acceso denegado</title>
+        <short>No tiene permisos para ejecutar esta acción</short>
+        <large>El sistema ha bloqueado la ejecución de la aplicación al no disponer de suficientes privilegios para ejecutar esta parte de la aplicación. Si cree que es un error, pongase en contacto con el administrador de la aplicación</large>
+    </denied>
+    <ficheros>
+        <list>Listado de ficheros adjuntos</list>
+        <todaslasaplicaciones>[Todas las aplicaciones]</todaslasaplicaciones>
+    </ficheros>
+    <folders>
+        <notfound>Carpeta no encontrada</notfound>
+        <todaslasaplicaciones>[Todas las aplicaciones]</todaslasaplicaciones>
+        <deleteoffolder>Borrar de esta carpeta</deleteoffolder>
+        <defaultfolder>Carpeta personal</defaultfolder>
+    </folders>
+    <buscador>
+        <list>Buscador</list>
+        <todaslasaplicaciones>[Todas las aplicaciones]</todaslasaplicaciones>
+    </buscador>
+</root>

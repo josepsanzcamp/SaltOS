@@ -91,11 +91,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <env_path>PATH</env_path>
         <env_lang>LANG</env_lang>
         <applications>Application</applications>
-        <select_layer>Qoghdu'dajdaq wiv</select_layer>
-        <selected_layer>Wiv qoghdu'dajdaq</selected_layer>
-        <layer_all>Hoch apps</layer_all>
-        <layer_personal>Personal lo' apps</layer_personal>
-        <select_apps>Apps wiv</select_apps>
-        <selected_apps>Wiv apps</selected_apps>
+        <select_apps>Qoghdu'dajdaq wiv</select_apps>
+        <selected_apps>Wiv qoghdu'dajdaq</selected_apps>
+        <apps_all>Hoch apps</apps_all>
+        <apps_01_core>May'choh</apps_01_core>
+        <apps_02_personal>Ghot law'</apps_02_personal>
+        <apps_03_freelance>Ngabmo' ghot ponglu'</apps_03_freelance>
+        <apps_04_projects>Mipna'</apps_04_projects>
+        <select_apps2>Apps wiv</select_apps2>
+        <selected_apps2>Wiv apps</selected_apps2>
     </common>
 </root>

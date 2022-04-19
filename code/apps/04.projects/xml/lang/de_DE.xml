@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <incidencias>Reklamationen</incidencias>
+        <proyectos>Projekte</proyectos>
+        <partes>Arbeitsberichte</partes>
+        <prioridades>Prioritäten</prioridades>
+        <actas>Protokolle</actas>
+        <seguimientos>Aufgaben</seguimientos>
+        <presupuestos>Angebote</presupuestos>
+        <posiblescli>Potenzielle Kunden</posiblescli>
+        <campanyas>Kampagnen</campanyas>
+        <gestionproyectos>Projekte</gestionproyectos>
+        <categorias>Kategorien</categorias>
+        <desc_incidencias>Verwalten Sie hier Ihre Reklamationen</desc_incidencias>
+        <desc_proyectos>Verwalten Sie hier Ihre Projekte</desc_proyectos>
+        <desc_partes>Verwalten Sie hier Ihre Arbeitsberichte</desc_partes>
+        <desc_actas>Verwalten Sie hier Ihre Protokolle</desc_actas>
+        <desc_prioridades>Verwalten Sie hier Ihre Prioritäten</desc_prioridades>
+        <desc_seguimientos>Verwalten Sie hier Ihre Aufgaben</desc_seguimientos>
+        <desc_posiblescli>Verwalten Sie hier Ihre potenziellen Kunden</desc_posiblescli>
+        <desc_presupuestos>Verwalten Sie hier Ihre Angebote</desc_presupuestos>
+        <desc_campanyas>Verwalten Sie hier Ihre Kampagnen</desc_campanyas>
+        <desc_categorias>Anzeigen der kategorien bestimmter anwendungen</desc_categorias>
+        <quick_incidencias>Reklamationen</quick_incidencias>
+        <quick_proyectos>Projekte</quick_proyectos>
+        <quick_partes>Arbeitsberichte</quick_partes>
+        <quick_prioridades>Prioritäten</quick_prioridades>
+        <quick_actas>Protokolle</quick_actas>
+        <quick_seguimientos>Tracking</quick_seguimientos>
+        <quick_presupuestos>Angebote</quick_presupuestos>
+        <quick_posiblescli>Pot. Kunden</quick_posiblescli>
+        <quick_campanyas>Kampagnen</quick_campanyas>
+        <quick_categorias>Kategorien</quick_categorias>
+    </menu>
+    <incidencias>
+        <list>Reklamationen</list>
+        <create>Neue Reklamation</create>
+        <formview>Reklamations Details</formview>
+        <forminsert>Neue Reklamation erstellen</forminsert>
+        <formupdate>Reklamation bearbeiten</formupdate>
+        <defaultdata>Reklamations Daten</defaultdata>
+        <usersdata>Benutzer</usersdata>
+        <implicados>Beteiligt</implicados>
+        <asignadoa>Zugewiesen zu</asignadoa>
+        <msgsendemail>Alle der Reklamation zugewiesenen Mitarbeiter wurden per E-Mail benachrichtigt</msgsendemail>
+        <boolsendmail>E-mail senden</boolsendmail>
+        <boolsendmailtip>Wenn sie diese option aktivieren, wird eine e-mail an alle an dem fehler beteiligten benutzer gesendet</boolsendmailtip>
+        <categoria>Kategorie</categoria>
+        <sincategoria>[Ohne Kategorie]</sincategoria>
+        <allcategorias>[Alle Kategorien]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>Projekte</list>
+        <create>Neues Projekt</create>
+        <formview>Projekt Details</formview>
+        <forminsert>Neues Projekt erstellen</forminsert>
+        <formupdate>Projekt bearbeiten</formupdate>
+        <defaultdata>Projekt Daten</defaultdata>
+        <tareasproyecto>Aufgaben</tareasproyecto>
+        <desctareas>Beschreibung</desctareas>
+        <horastotal>Gesamtstunden</horastotal>
+        <preciomedio>Durchschnittlicher Preis</preciomedio>
+        <preciototal>Gesamtpreis</preciototal>
+        <real>Tatsächlich</real>
+        <diferencia>Differenz</diferencia>
+        <partesopen>Offene Arbeitsberichte</partesopen>
+        <partesclose>Geschlossene Arbeitsberichte</partesclose>
+        <relatedseguimientos>Verbundene Aufgaben</relatedseguimientos>
+        <relatedincidencias>Verbundene Reklamationen</relatedincidencias>
+        <actionliquidar>Erledigt</actionliquidar>
+        <msgliquidar>Möchten Sie die ausgewählten Arbeitsberichte als erledigt markieren?</msgliquidar>
+        <agendadata>Verbundene Ereignisse</agendadata>
+        <actasdata>Verbundene Protokolle</actasdata>
+        <contactdata>Kundenkontakte</contactdata>
+        <incidentopen>Aktive Reklamationen</incidentopen>
+        <incidentclose>Geschlossene Reklamationen</incidentclose>
+        <albaranes>Lieferscheine</albaranes>
+        <facturaopen>Offene Rechnungen</facturaopen>
+        <facturaclose>Bezahlte Rechnungen</facturaclose>
+        <gastosdata>Verbundene Rechnungen</gastosdata>
+        <documentdata>Verbundene Dokumente</documentdata>
+        <productosproyecto>Produkte</productosproyecto>
+        <descproductos>Produktübersicht</descproductos>
+        <actionfacturar>Rechnung erstellen</actionfacturar>
+        <msgfacturar>Möchten Sie ein Rechnung für das Projekt erstellen?</msgfacturar>
+        <errorfacturar>Es gibt bereits eine Rechnung für dieses Projekt.</errorfacturar>
+        <okfacturar>Die Rechnung für das Projekt wurde erfolgreich erstellt.</okfacturar>
+        <addseguimientos>Aufgabe hinzufügen</addseguimientos>
+        <addactas>Protokoll hinzufügen</addactas>
+        <addcontactos>Kontakt hinzufügen</addcontactos>
+        <addagenda>Ereignis hinzufügen</addagenda>
+        <resumentareasproductos>Zusammenfassung von Aufgaben und Produkte</resumentareasproductos>
+        <presupuestosdata>Projektkosten</presupuestosdata>
+    </proyectos>
+    <partes>
+        <list>Arbeitsberichte</list>
+        <create>Neuer Arbeitsbericht</create>
+        <formview>Arbeitsbericht Details</formview>
+        <forminsert>Neuen Arbeitsbericht erstellen</forminsert>
+        <formupdate>Arbeitsbericht bearbeiten</formupdate>
+        <defaultdata>Arbeitsberichts Daten</defaultdata>
+        <horasfact>Verrechenbare Stunden</horasfact>
+        <preciohora>Preis / Stunde</preciohora>
+        <liquidar>Erledigt</liquidar>
+        <dateliq>Erledigt am</dateliq>
+        <msgliquidar>Möchten Sie alle ausgewählten Arbeitberichte als erledigt markieren?</msgliquidar>
+        <msgerror>Sie müssen die Eintrag, die Sie in der Liste begleichen</msgerror>
+        <fechainiliq>Zeitpunkt beglichen</fechainiliq>
+    </partes>
+    <prioridades>
+        <list>Prioritäten</list>
+        <create>Neue Priorität</create>
+        <formview>Prioritäten Details</formview>
+        <forminsert>Neue Priorität erstellen</forminsert>
+        <formupdate>Priorität bearbeiten</formupdate>
+        <defaultdata>Prioritäts Daten</defaultdata>
+    </prioridades>
+    <actas>
+        <list>Protokolle</list>
+        <create>Neues Protokoll</create>
+        <formview>Protokoll Details</formview>
+        <forminsert>Neues Protokoll erstellen</forminsert>
+        <formupdate>Protokoll bearbeiten</formupdate>
+        <defaultdata>Protokoll Daten</defaultdata>
+        <dstart>Start</dstart>
+        <dstop>Ende</dstop>
+        <asistentes>Assistentinnen und Assistenten</asistentes>
+        <temas>Themen</temas>
+        <aceptados>Akzeptiert</aceptados>
+        <cancelados>Abgelehnt</cancelados>
+        <pendientes>Angehängt</pendientes>
+        <add>Protokoll hinzufügen</add>
+    </actas>
+    <seguimientos>
+        <list>Aufgaben</list>
+        <create>Neue Aufgabe</create>
+        <formview>Aufgabe Details</formview>
+        <forminsert>Eine Aufgabe erstellen</forminsert>
+        <formupdate>Aufgabe bearbeiten</formupdate>
+        <defaultdata>Aufgabe Daten</defaultdata>
+        <add>Aufgabe hinzufügen</add>
+    </seguimientos>
+    <posiblescli>
+        <list>Potenzielle Kunden</list>
+        <create>Neuer potenzieller Kunde</create>
+        <formview>Potenzielle Kunden Details</formview>
+        <forminsert>Neuen potenziellen Kunden erstellen</forminsert>
+        <formupdate>Potenziellen Kunden bearbeiten</formupdate>
+        <defaultdata>Potenzielle Kunden Daten</defaultdata>
+        <crearcliente>Kunde erstellen</crearcliente>
+        <clientcreatedok>Der potenzielle Kunde wurde erfolgreich erstellt</clientcreatedok>
+        <msgcrear>Möchten Sie den potenziellen Kunden in einen Kunden umwandeln?</msgcrear>
+        <agendadata>Ereignisse Aussicht</agendadata>
+        <actasdata>Proceedings of the potenziellen Kunden</actasdata>
+        <presupuestosdata>Budget Aussicht</presupuestosdata>
+        <facturacion>Rechnung</facturacion>
+        <iaedesc>IAE Beschreibung</iaedesc>
+        <iaecod>IAE-Nummer</iaecod>
+        <contacto>Ansprechperson</contacto>
+        <changedenied>Kann nicht ausschalten Aussicht, die Minuten, Agenda und / oder Haushalte hat</changedenied>
+    </posiblescli>
+    <presupuestos>
+        <list>Angebote</list>
+        <create>Neues Angebot</create>
+        <formview>Angebot Details</formview>
+        <forminsert>Neues Angebot erstellen</forminsert>
+        <formupdate>Angebot bearbeiten</formupdate>
+        <defaultdata>Angebots Daten</defaultdata>
+        <tareaspresupuesto>Aufgaben</tareaspresupuesto>
+        <desctareas>Beschreibung</desctareas>
+        <horastotal>Gesamtstunden</horastotal>
+        <preciomedio>Einheitspreis</preciomedio>
+        <preciototal>Gesamtpreis</preciototal>
+        <productospresupuesto>Produktkosten</productospresupuesto>
+        <descproductos>Produktübersicht</descproductos>
+        <objetivos>Budget-Ziele</objetivos>
+        <funcional>Funktioneller Vorschlag</funcional>
+        <tecnica>Technischer Vorschlag</tecnica>
+        <extras>Weitere Informationen</extras>
+        <condiciones>Konditionen</condiciones>
+        <valoracion>Ökonomische Bewertung</valoracion>
+        <crearproyecto>Projekt erstellen</crearproyecto>
+        <projectexists>Dieses Budget bezieht sich auf ein Projekt</projectexists>
+        <clientnotexists>Sollte ein Kunde in Verbindung stehen (wenn es um einen potenziellen Kunden verbunden ist, schalten Sie ihn in Client zuerst)</clientnotexists>
+        <projectcreatedok>Das Projekt wurde erfolgreich erstellt</projectcreatedok>
+        <msgcrear>Willst du ein Projekt dieser Haushalt zu schaffen?</msgcrear>
+        <agendadata>Budget Ereignisse</agendadata>
+        <actasdata>Proceedings of the Budget</actasdata>
+        <resumentareasproductos>Zusammenfassung von Aufgaben und Produkten</resumentareasproductos>
+        <objetivospdf>Ziele</objetivospdf>
+        <funcionalpdf>Funktionell</funcionalpdf>
+        <tecnicapdf>Technisch</tecnicapdf>
+        <extraspdf>Information</extraspdf>
+        <condicionespdf>Allgemein</condicionespdf>
+        <actionfacturar>Rechnung</actionfacturar>
+        <msgfacturar>Möchten sie das budget überprüfen?</msgfacturar>
+        <errorfacturar>Es gibt bereits eine rechnung dieses budgets</errorfacturar>
+        <okfacturar>Hat das budget richtig in rechnung gestellt</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>Kampagnen</list>
+        <create>Neue Kampagne</create>
+        <formview>Kampagne Details</formview>
+        <forminsert>Neue Kampagne erstellen</forminsert>
+        <formupdate>Kampagne bearbeiten</formupdate>
+        <defaultdata>Kampagnen Daten</defaultdata>
+        <agendadata>Wahlveranstaltungen</agendadata>
+        <presupuestosdata>Kampagnenbudgets</presupuestosdata>
+        <projectopen>Aktuelle Projekte</projectopen>
+        <projectclose>Abgeschlossene Projekte</projectclose>
+        <clientesdata>Kunden erfasst</clientesdata>
+        <posiblesclidata>Aussichten</posiblesclidata>
+    </campanyas>
+    <categorias>
+        <list>Liste der kategorien</list>
+        <create>Neue kategorie</create>
+        <formview>Detail der kategorie</formview>
+        <forminsert>Neue kategorie hinzugefügt</forminsert>
+        <formupdate>ändern sie die kategorie</formupdate>
+        <defaultdata>Daten der kategorie</defaultdata>
+    </categorias>
+</root>

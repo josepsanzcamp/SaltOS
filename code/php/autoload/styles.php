@@ -29,7 +29,7 @@ function load_style($style)
 {
     global $_CONFIG;
     if (!isset($_CONFIG["styles2"])) {
-        $_CONFIG["styles2"] = eval_attr(xml2array("xml/styles.xml"));
+        $_CONFIG["styles2"] = eval_attr(xml2array(detect_apps_files("xml/common/styles2.xml")));
     }
     foreach ($_CONFIG["styles2"] as $style2) {
         if ($style2["value"] == $style) {
@@ -91,7 +91,7 @@ function ICON($icon)
 {
     global $_CONFIG;
     if (!isset($_CONFIG["icons"])) {
-        $_CONFIG["icons"] = xml2array("xml/icons.xml");
+        $_CONFIG["icons"] = xml2array(detect_apps_files("xml/icons.xml"));
     }
     if (isset($_CONFIG["icons"][$icon])) {
         return $_CONFIG["icons"][$icon];

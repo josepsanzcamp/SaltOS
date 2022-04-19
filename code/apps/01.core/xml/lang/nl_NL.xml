@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <lang>nl_NL</lang>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <nopage>Selecteer een applicatie om te beginnen met werken</nopage>
+        <nocheckuser>Onjuiste gebruikersnaam of wachtwoord</nocheckuser>
+        <nochecktime>Gebruiker buiten kantooruren</nochecktime>
+        <nocheckday>Gebruiker is niet op werkdagen</nocheckday>
+        <view>Zie</view>
+        <edit>Bewerken</edit>
+        <copy>Kopieer</copy>
+        <delete>Verwijderen</delete>
+        <first>Eerste pagina</first>
+        <previous>Vorige pagina</previous>
+        <next>Volgende pagina</next>
+        <last>Laatste pagina</last>
+        <id>Code</id>
+        <codigo>Code</codigo>
+        <cif>C.I.F.</cif>
+        <nombre>Naam</nombre>
+        <apellidos>Achternaam</apellidos>
+        <tel_fijo>Opgelost</tel_fijo>
+        <tel_movil>Mobiel</tel_movil>
+        <telefono>Telefoon</telefono>
+        <fax>Fax</fax>
+        <email>E-mail</email>
+        <web>Web</web>
+        <filter>Filter opties</filter>
+        <loadsavefilter>Vooraf gedefinieerde filters laden en opslaan</loadsavefilter>
+        <buscar>Zoeken</buscar>
+        <buscartip>Zoek met de geselecteerde filters</buscartip>
+        <limpiar>Reset</limpiar>
+        <limpiartip>Maak het filter schoon en toon alle gegevens</limpiartip>
+        <username>Gebruiker</username>
+        <datetime>Datum en tijd</datetime>
+        <direccion>Adres</direccion>
+        <codpostal>Postcode</codpostal>
+        <poblacion>Bevolking</poblacion>
+        <provincia>Provincie</provincia>
+        <pais>Land</pais>
+        <comentarios>Feedback</comentarios>
+        <descripcion>Beschrijving</descripcion>
+        <buttoncreate>Creëer</buttoncreate>
+        <buttoncreatereturnhere>Maak en kom hier terug</buttoncreatereturnhere>
+        <buttonupdate>Vernieuwen</buttonupdate>
+        <buttonupdatereturnhere>Update en kom hier terug</buttonupdatereturnhere>
+        <buttoncancel>Annuleren</buttoncancel>
+        <buttonreturn>Terug</buttonreturn>
+        <date>Datum</date>
+        <incidencia>Incidentie</incidencia>
+        <estado>Staat</estado>
+        <parte>Deel</parte>
+        <tarea>Huiswerk</tarea>
+        <tareas>Taken</tareas>
+        <liquidado>Vereffend</liquidado>
+        <base>Basis</base>
+        <total>Totaal</total>
+        <cerrado>Gesloten</cerrado>
+        <cobrado>Geladen</cobrado>
+        <empresa>Bedrijf</empresa>
+        <msgdelete>Wilt u dit record verwijderen?</msgdelete>
+        <permdenied>U bent niet gemachtigd om deze actie uit te voeren</permdenied>
+        <sinnombre>Geen naam</sinnombre>
+        <deldenied>Het kan niet worden verwijderd omdat het in een andere applicatie wordt gebruikt</deldenied>
+        <yes>Ja</yes>
+        <no>Nee</no>
+        <cliente>Cliënt</cliente>
+        <posiblecli>Mogelijke klant</posiblecli>
+        <password>Sleutel</password>
+        <numfac>N.Fac.</numfac>
+        <numc>NC</numc>
+        <numctip>Aantal reacties</numctip>
+        <numf>NF</numf>
+        <numftip>Aantal bestanden</numftip>
+        <numt>NT</numt>
+        <numttip>Aantal taken</numttip>
+        <numv>NV</numv>
+        <numvtip>Aantal looptijden</numvtip>
+        <nums>NS</nums>
+        <numstip>Aantal vervolgacties</numstip>
+        <nump>NP</nump>
+        <numptip>Aantal producten</numptip>
+        <fechaini>Voer datum in</fechaini>
+        <fechafin>y</fechafin>
+        <commentdel>Deze opmerking verwijderen</commentdel>
+        <attachments>Bijgevoegde bestanden</attachments>
+        <shortattachments>Bijlagen</shortattachments>
+        <userdatetime>Gebruiker, datum en tijd</userdatetime>
+        <fileandsize>Bestand en grootte</fileandsize>
+        <download>Downloaden</download>
+        <activar>Activeer</activar>
+        <newcomment>Nieuwe opmerking</newcomment>
+        <newattachments>Nieuwe bijlagen</newattachments>
+        <proyecto>Project</proyecto>
+        <documento>Document</documento>
+        <hora>Tijd</hora>
+        <horas>Uren</horas>
+        <minutos>Minuten</minutos>
+        <precio>Prijs</precio>
+        <liq>Liq.</liq>
+        <aplicacion>Toepassing</aplicacion>
+        <rol>Rol</rol>
+        <permiso>Toestemming</permiso>
+        <pos>Pos.</pos>
+        <posicion>Positie</posicion>
+        <trimestre>Kwart</trimestre>
+        <otroscampos>Andere velden</otroscampos>
+        <excel>Excel</excel>
+        <exceltip>Download een Excel-bestand met de huidige gegevens</exceltip>
+        <pdf>Download PDF</pdf>
+        <pdftip>Download een PDF-bestand met de huidige gegevens</pdftip>
+        <epigrafe>Rubriek</epigrafe>
+        <campoauto>(*) Automatisch veld</campoauto>
+        <cerr>Gesloten.</cerr>
+        <cobr>Cobr.</cobr>
+        <concepto>Concept</concepto>
+        <unid>Unid</unid>
+        <unidades>Stuks.</unidades>
+        <unidadestotal>Totaal eenheden</unidadestotal>
+        <prun>Pr./Un.</prun>
+        <dto>Korting</dto>
+        <importe>Bedrag</importe>
+        <percent>Percentage</percent>
+        <todos>[Alle]</todos>
+        <todoslosclientes>[Alle klanten]</todoslosclientes>
+        <todoslosposiblescli>[Alle potentiële klanten]</todoslosposiblescli>
+        <todoslosusuarios>[Alle gebruikers]</todoslosusuarios>
+        <todoslosgrupos>[Alle groepen]</todoslosgrupos>
+        <todoslosproveedores>[Alle providers]</todoslosproveedores>
+        <mostrartodos>[Alles weergeven]</mostrartodos>
+        <sinusuario>[Geen gebruiker]</sinusuario>
+        <paginaspc>Pagina</paginaspc>
+        <regsfrom>verslagen van</regsfrom>
+        <spcdespc>Van</spcdespc>
+        <spcalspc>Aan</spcalspc>
+        <regspage>Records per pagina:</regspage>
+        <registerdata>Registratiegegevens</registerdata>
+        <userinsert>Gemaakt door</userinsert>
+        <userupdate>Gewijzigd door</userupdate>
+        <allstates>[Alle staten]</allstates>
+        <allenabled>[Alle items}</allenabled>
+        <alldisabled>[Allemaal niet actief}</alldisabled>
+        <lastinsert>Er is een record gemaakt met de code:</lastinsert>
+        <lastupdate>Het register is gewijzigd met de code:</lastupdate>
+        <lastdelete>Het record met de code is verwijderd:</lastdelete>
+        <proveedor>Aanbieder</proveedor>
+        <acta>Minuten</acta>
+        <presupuesto>Budget</presupuesto>
+        <newfichero>Nieuw bestand</newfichero>
+        <fichero>Bestand</fichero>
+        <size>Grootte</size>
+        <mime>Mimetype</mime>
+        <grupo>Groep</grupo>
+        <ficheroactual>Huidig bestand</ficheroactual>
+        <language>Taal</language>
+        <style>Design</style>
+        <nodata>Geen resultaten om weer te geven</nodata>
+        <nosearch>U moet een term invoeren om te kunnen zoeken</nosearch>
+        <prioridad>Prioriteit</prioridad>
+        <sinproyecto>[Zonder bijbehorend project]</sinproyecto>
+        <sintarea>[Geen bijbehorende taak]</sintarea>
+        <todoslosproyectos>[Alle projecten]</todoslosproyectos>
+        <todaslastareas>[Alle taken]</todaslastareas>
+        <todaslascuentas>[Alle]</todaslascuentas>
+        <mail>Stuur PDF</mail>
+        <mailtip>Stuur de pdf naar uw e-mailaccount</mailtip>
+        <view2>PDF-viewer</view2>
+        <view2tip>Bekijk het document met de interne SaltOS-viewer</view2tip>
+        <view2error>Er is een fout opgetreden bij het openen van de PDF-viewer</view2error>
+        <view2hash>Als het probleem zich blijft voordoen, neem dan contact op met de technische dienst met vermelding van de volgende code:</view2hash>
+        <view2opening>Vizier openen, wacht even ...</view2opening>
+        <msgnotuseremail>Je hebt geen e-mailadres geconfigureerd</msgnotuseremail>
+        <msgnotsmtpemail>Uitgaande mailserver is niet geconfigureerd</msgnotsmtpemail>
+        <sincliente>[Zonder geassocieerde klant]</sincliente>
+        <sinposiblecli>[Zonder mogelijke geassocieerde klant]</sinposiblecli>
+        <sinepigrafe>[Zonder bijbehorende kop]</sinepigrafe>
+        <sinprioridad>[Geen prioriteit]</sinprioridad>
+        <sinestado>[Staatloos]</sinestado>
+        <dstart>Home</dstart>
+        <dstop>Einde</dstop>
+        <evento>Evenement</evento>
+        <sincuenta>[Zonder account]</sincuenta>
+        <cuenta>Account</cuenta>
+        <sindia>[Geen dag]</sindia>
+        <sinmes>[Geen maand]</sinmes>
+        <mes>Maand</mes>
+        <factura>Factuur</factura>
+        <albaran>Afleverbon</albaran>
+        <msglogout>Wilt u de applicatie afsluiten?</msglogout>
+        <mostrarcomo>Toon als</mostrarcomo>
+        <nif>N.I.F.</nif>
+        <vcard>VCard</vcard>
+        <cargo>Lading</cargo>
+        <empleado>Medewerker</empleado>
+        <sinproveedor>[Zonder geassocieerde provider]</sinproveedor>
+        <sinempleado>[Geen medewerker]</sinempleado>
+        <port>Poort</port>
+        <extra>Beveiliging</extra>
+        <requiredfield>Verplicht veld</requiredfield>
+        <sinpais>[Geen land geselecteerd]</sinpais>
+        <sinprovincia>[Geen provincie geselecteerd]</sinprovincia>
+        <sinpoblacion>[Geen populatie geselecteerd]</sinpoblacion>
+        <sincodpostal>[Geen selectie]</sincodpostal>
+        <usedfilter>Filter geactiveerd</usedfilter>
+        <suma>Som</suma>
+        <average>Gemiddeld</average>
+        <posx>X-positie</posx>
+        <posy>Y-positie</posy>
+        <angle>Hoek</angle>
+        <sinproducto>[Zonder bijbehorend product]</sinproducto>
+        <preview>Voorbeeld</preview>
+        <sortasc>Oplopend sorteren (A-Z)</sortasc>
+        <sortdesc>Aflopend sorteren (Z-A)</sortdesc>
+        <confirm>Bevestiging</confirm>
+        <alert>Opgelet!</alert>
+        <error>Fout</error>
+        <buttonaccept>Accepteren</buttonaccept>
+        <buttoncontinue>Ga verder</buttoncontinue>
+        <enero>Januari</enero>
+        <febrero>Februari</febrero>
+        <marzo>Maart</marzo>
+        <abril>April</abril>
+        <mayo>Mei</mayo>
+        <junio>Juni</junio>
+        <julio>Juli</julio>
+        <agosto>Augustus</agosto>
+        <setiembre>September</setiembre>
+        <octubre>Oktober</octubre>
+        <noviembre>November</noviembre>
+        <diciembre>December</diciembre>
+        <lunes>Maandag</lunes>
+        <martes>Dinsdag</martes>
+        <miercoles>Woensdag</miercoles>
+        <jueves>Donderdag</jueves>
+        <viernes>Vrijdag</viernes>
+        <sabado>Zaterdag</sabado>
+        <domingo>Zondag</domingo>
+        <sabadoydomingo>Zaterdag en zondag</sabadoydomingo>
+        <sinpresupuesto>[Geen bijbehorend budget]</sinpresupuesto>
+        <todoslospresupuestos>[Alle budgetten]</todoslospresupuestos>
+        <unknownerror>Er is een verbindingsfout opgetreden (controleer of de netwerktoegang correct werkt en neem contact op met de toepassingsbeheerder als het probleem aanhoudt)</unknownerror>
+        <qrcode>QR-code</qrcode>
+        <lugar>Plaats</lugar>
+        <loading>Gegevens laden, wacht even ...</loading>
+        <sending>Gegevens verzenden, wacht even ...</sending>
+        <prod>Prod.</prod>
+        <addfile>Bestand toevoegen</addfile>
+        <addproduct>Product toevoegen</addproduct>
+        <addconcept>Concept toevoegen</addconcept>
+        <addvencimiento>Vervaldatum toevoegen</addvencimiento>
+        <addtarea>Taak toevoegen</addtarea>
+        <send>Verzenden</send>
+        <notas>Opmerkingen</notas>
+        <sincampanya>[Geen bijbehorende campagne]</sincampanya>
+        <campanya>Campagne</campanya>
+        <todaslascampanyas>[Alle campagnes]</todaslascampanyas>
+        <numpc>NPC</numpc>
+        <numpctip>Aantal potentiële klanten</numpctip>
+        <numcl>NCL</numcl>
+        <numcltip>Aantal klanten</numcltip>
+        <numag>NAG</numag>
+        <numagtip>Aantal evenementen op de agenda</numagtip>
+        <numpr>NPR</numpr>
+        <numprtip>Aantal budgetten</numprtip>
+        <numpy>NPY</numpy>
+        <numpytip>Aantal projecten</numpytip>
+        <tipoevento>Soort evenement</tipoevento>
+        <sintipoevento>[Zonder type evenement]</sintipoevento>
+        <fileuploaderror>Er is een fout opgetreden bij het verzenden van het bestand:</fileuploaderror>
+        <postlimiterror>Er is een fout opgetreden bij het verzenden van gegevens naar de server</postlimiterror>
+        <resumeneconomico>Economische samenvatting</resumeneconomico>
+        <pdf2filter_title>PDF-exportfilter</pdf2filter_title>
+        <pdf2filter_message>Selecteer de gegevens die u in de pdf wilt opnemen:</pdf2filter_message>
+        <view2filter_title>PDF-viewerfilter</view2filter_title>
+        <view2filter_message>Selecteer de gegevens die u in de pdf wilt zien:</view2filter_message>
+        <msgerrorsemaphore>Er is een gelijktijdigheidsfout opgetreden, de toegang tot de actie is geannuleerd</msgerrorsemaphore>
+        <msgnotcheckbox>U moet een record uit de lijst selecteren om deze optie te gebruiken</msgnotcheckbox>
+        <gotohome>Herladen</gotohome>
+        <notifybug>Mislukking melden</notifybug>
+        <actioncompress>Download geselecteerde bestanden</actioncompress>
+        <zipformat>ZIP-formaat</zipformat>
+        <tarformat>TAR</tarformat>
+        <gzipformat>GZIP</gzipformat>
+        <bzipformat>BZIP2</bzipformat>
+        <temporalfiles>Tijdelijke bestanden</temporalfiles>
+        <sessionexpire>De sessie wordt afgesloten over</sessionexpire>
+        <sessionupdate>klik hier om te voorkomen dat het sluit</sessionupdate>
+        <sessionupdated>Sessie is geüpdatet</sessionupdated>
+        <link>Link</link>
+        <textos_select>Selecteer een tekst en druk op Toevoegen</textos_select>
+        <textos_add>Toevoegen</textos_add>
+        <selectall>Alles selecteren</selectall>
+        <selectnone>Duidelijke selectie</selectnone>
+        <addtofolder>Weergeven in deze map</addtofolder>
+        <addtofolderok>Deze inhoud is toegevoegd aan de map</addtofolderok>
+        <delfromfolderok>Deze mapinhoud is verborgen</delfromfolderok>
+        <savedfilters>Opgeslagen filters</savedfilters>
+        <optionfilter>Selecteer een opgeslagen filter</optionfilter>
+        <newfilter>Naam van het nieuwe filter</newfilter>
+        <loadfilter>Laden</loadfilter>
+        <loadfiltertip>Klik hier om het geselecteerde filter te laden</loadfiltertip>
+        <updatefilter>Vernieuwen</updatefilter>
+        <updatefiltertip>Klik hier om het geselecteerde filter bij te werken</updatefiltertip>
+        <deletefilter>Verwijderen</deletefilter>
+        <deletefiltertip>Klik hier om het geselecteerde filter te verwijderen</deletefiltertip>
+        <createfilter>Creëer</createfilter>
+        <createfiltertip>Klik hier om een nieuw filter te maken</createfiltertip>
+        <createfilterok>Het nieuwe filter is met succes gemaakt</createfilterok>
+        <createfilterko>Filternaam moet worden gedefinieerd</createfilterko>
+        <loadfilterok>Filter succesvol geladen</loadfilterok>
+        <loadfilterko>U moet een filter selecteren om te kunnen laden</loadfilterko>
+        <updatefilterok>Filter is succesvol bijgewerkt</updatefilterok>
+        <updatefilterko>U moet een filter selecteren om het te kunnen wijzigen</updatefilterko>
+        <deletefilterok>Filter is verwijderd</deletefilterok>
+        <deletefilterko>U moet een filter selecteren om het te kunnen verwijderen</deletefilterko>
+        <renamefilter>Hernoemen</renamefilter>
+        <renamefiltertip>Klik hier om een bestaand filter te hernoemen</renamefiltertip>
+        <renamefilterok>De naam van het bestaande filter is gewijzigd</renamefilterok>
+        <renamefilterko1>U moet een filter selecteren om de naam te wijzigen</renamefilterko1>
+        <renamefilterko2>Rest nog om de nieuwe naam van het te hernoemen filter te definiëren</renamefilterko2>
+        <showmenu>Menu weergeven</showmenu>
+        <hidemenu>Menu verbergen</hidemenu>
+        <showtools>Tools weergeven</showtools>
+        <hidetools>Verberg tools</hidetools>
+        <inbackground>Deze actie wordt op de achtergrond uitgevoerd, wacht even</inbackground>
+        <sentfromsaltos>E-mail verzonden vanaf mijn SaltOS</sentfromsaltos>
+        <foldersdata>Mappen</foldersdata>
+        <loweradd>toevoegen</loweradd>
+        <help>Help</help>
+        <selectallcheckbox>Selecteer alle records</selectallcheckbox>
+        <selectonecheckbox>Selecteer dit record</selectonecheckbox>
+        <formapago>Betaalwijze</formapago>
+        <todaslasformasdepago>[Alle vormen van betaling]</todaslasformasdepago>
+        <sinformapago>[Zonder betaalmethode]</sinformapago>
+        <actions>Acties op dit record</actions>
+        <msgfilesindexed1>Bestand geïndexeerd in de database</msgfilesindexed1>
+        <msgfilesindexed2>Bestanden geïndexeerd in de database</msgfilesindexed2>
+        <msgregistersindexed1>Record geïndexeerd in de database</msgregistersindexed1>
+        <msgregistersindexed2>Records geïndexeerd in de database</msgregistersindexed2>
+        <msgregisterspurged1>Record verwijderd uit de database</msgregisterspurged1>
+        <msgregisterspurged2>Records verwijderd uit de database</msgregisterspurged2>
+        <biglist>$ limietrecords</biglist>
+        <biglisttip>Let op: $ limit records worden weergegeven en de applicatie werkt mogelijk langzaam</biglisttip>
+        <activo>Actief</activo>
+        <activo_desc>Om de actieve of bestaande gebruiker door overerving aan te geven</activo_desc>
+        <print>Afdrukken</print>
+    </common>
+    <login>
+        <logintitle>Toegang tot de applicatie</logintitle>
+        <remember>Onthoud het wachtwoord op deze computer</remember>
+        <enter>Log in</enter>
+        <captcha1>Beveiligingscode</captcha1>
+        <captcha2>Voer hier de code in</captcha2>
+        <captcha3>Herlaad afbeelding</captcha3>
+        <mobileaccess>Toegang vanaf mobiel apparaat</mobileaccess>
+    </login>
+    <menu>
+        <home>Home</home>
+        <usuarios>Gebruikers</usuarios>
+        <grupos>Groepen</grupos>
+        <profile>Mijn profiel</profile>
+        <maincfg>Installatie</maincfg>
+        <about>Over SaltOS</about>
+        <support>Technische ondersteuning</support>
+        <logout>Log uit</logout>
+        <ficheros>Bijgevoegde bestanden</ficheros>
+        <gestiongeneral>Algemeen</gestiongeneral>
+        <gestionfiltros>Filters</gestionfiltros>
+        <gestionadministracion>Administratie</gestionadministracion>
+        <folders>Mappen</folders>
+        <buscador>Zoekmachine</buscador>
+        <desc_usuarios>Gebruikers registreren, afmelden of wijzigen</desc_usuarios>
+        <desc_grupos>Maak werkgroepen voor gebruikers</desc_grupos>
+        <desc_profile>Wijzig uw gebruikersvoorkeuren</desc_profile>
+        <desc_maincfg>Wijzig de algemene toepassingsvoorkeuren</desc_maincfg>
+        <desc_about>Ken de credits van deze applicatie</desc_about>
+        <desc_logout>Klik hier wanneer u uw werksessie wilt beëindigen</desc_logout>
+        <desc_home>Ga naar het hoofdscherm van de applicatie</desc_home>
+        <desc_support>Neem contact op met technische ondersteuning</desc_support>
+        <desc_ficheros>Toegang tot alle bestanden van de hele applicatie</desc_ficheros>
+        <desc_buscador>Om de hele database te doorzoeken</desc_buscador>
+        <quick_home>Home</quick_home>
+        <quick_profile>Profiel</quick_profile>
+        <quick_support>Ondersteuning</quick_support>
+        <quick_about>Over</quick_about>
+        <quick_logout>Sluiten</quick_logout>
+        <quick_usuarios>Gebruikers</quick_usuarios>
+        <quick_grupos>Groepen</quick_grupos>
+        <quick_maincfg>Installatie</quick_maincfg>
+        <quick_ficheros>Bestanden</quick_ficheros>
+        <quick_buscador>Zoekmachine</quick_buscador>
+        <menu>Menu</menu>
+        <menutip>Om het toepassingsmenu te tonen en te verbergen</menutip>
+    </menu>
+    <usuarios>
+        <list>Lijst met gebruikers</list>
+        <create>Nieuwe gebruiker</create>
+        <formview>Gebruikersdetail</formview>
+        <forminsert>Registratie van een nieuwe gebruiker</forminsert>
+        <formupdate>Gebruikersaanpassing</formupdate>
+        <personaldata>Gebruikersgegevens</personaldata>
+        <entrada>Entree</entrada>
+        <salida>Vertrek</salida>
+        <dias>Dagen</dias>
+        <logged>Verbonden</logged>
+        <password2>Herhaal toets</password2>
+        <errorpassword>De ingevoerde sleutels komen niet overeen</errorpassword>
+        <contacto>Contact opnemen</contacto>
+        <sincontacto>[Geen geassocieerd contact]</sincontacto>
+        <permdata>Toestemmingen per applicatie</permdata>
+        <allow>Sta toe</allow>
+        <deny>Weigeren</deny>
+        <groupsdata>Gebruikersgroepen</groupsdata>
+        <pop3host>POP3-server</pop3host>
+        <pop3delete>Verwijder eerdere serverberichten</pop3delete>
+        <pop3days>dagen</pop3days>
+        <smtphost>SMTP-server</smtphost>
+        <emailprivated>Dit account is privé (alleen ik heb toegang)</emailprivated>
+        <emaildefault>Standaardaccount (degene die ik het meest gebruik)</emaildefault>
+        <emaildisabled>Deactiveer dit e-mailaccount</emaildisabled>
+        <emaildelete>Verwijder dit e-mailaccount (gegevens gaan voor altijd verloren)</emaildelete>
+        <emailsignatureold>Huidige handtekening</emailsignatureold>
+        <emailsignaturenew>Nieuwe handtekening</emailsignaturenew>
+        <correonew>Nieuwe mail</correonew>
+        <addmetocc>Voeg mij toe als CC in alle e-mails die ik verstuur</addmetocc>
+        <defaultcrt>Activeer standaard het bevestigingsverzoek van de receptie</defaultcrt>
+        <gcalendar>Google Agenda</gcalendar>
+        <prefgcalendar>Synchronisatie van de agenda met de Google Agenda-service</prefgcalendar>
+        <prefgcalendar2>Met deze optie kunt u de kalender van SaltOS en van Google Agenda gebruiken, waardoor de gegevens automatisch worden bijgewerkt en u zich geen zorgen hoeft te maken dat u de gegevens van de ene kalender naar de andere moet repliceren</prefgcalendar2>
+        <emailgcalendar>Gmail-e-mailaccount</emailgcalendar>
+        <tokengcalendar>Toegangstoken</tokengcalendar>
+        <feedstitle>Configureer de feeds die u uit SaltOS wilt lezen (RSS 1.0, RSS 2.0 en Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>Titel</title>
+        <description>Beschrijving</description>
+        <image>Afbeelding</image>
+        <test>Test</test>
+        <add>Toevoegen</add>
+        <feedslist>Lijst met geconfigureerde RSS-feeds</feedslist>
+        <feeds_old>Geconfigureerde feeds</feeds_old>
+        <feeds_new>Nieuwe feed</feeds_new>
+        <lowerdisabled>gedeactiveerd</lowerdisabled>
+        <singrupo>[Zonder groep]</singrupo>
+        <sinaplicacion>[Zonder aanvraag]</sinaplicacion>
+        <registro>Registratie</registro>
+        <sinregistro>[Zonder registratie]</sinregistro>
+        <showdetalles>[Zie details]</showdetalles>
+        <hidedetalles>[Verberg details]</hidedetalles>
+        <appsregsdata>Registratievergunningen</appsregsdata>
+    </usuarios>
+    <grupos>
+        <list>Groepsvermelding</list>
+        <create>Nieuwe groep</create>
+        <formview>Groepsdetail</formview>
+        <forminsert>Registratie van een nieuwe groep</forminsert>
+        <formupdate>Groepswijziging</formupdate>
+        <defaultdata>Groepsgegevens</defaultdata>
+        <permdata>Toestemmingen per applicatie</permdata>
+        <allow>Sta toe</allow>
+        <deny>Weigeren</deny>
+        <showdetalles>[Zie details]</showdetalles>
+        <hidedetalles>[Verberg details]</hidedetalles>
+    </grupos>
+    <profile>
+        <formupdate>Mijn profiel</formupdate>
+        <oldpassword>Oude sleutel</oldpassword>
+        <newpassword>Nieuw wachtwoord</newpassword>
+        <newpassword2>Herhaal toets</newpassword2>
+        <erroroldpassword>De oude sleutel is verkeerd</erroroldpassword>
+        <errornewpassword>De ingevoerde sleutels komen niet overeen</errornewpassword>
+        <errornewpassword2>De nieuwe sleutel moet complexer zijn</errornewpassword2>
+        <prefgeneral>Algemene voorkeuren</prefgeneral>
+        <cambioclave>Verander uw persoonlijk wachtwoord</cambioclave>
+        <general>Algemeen</general>
+        <title_correo_old>Stel het POP3-e-mailaccount in voor uw gebruiker</title_correo_old>
+        <pop3host>POP3-server</pop3host>
+        <pop3delete>Verwijder eerdere serverberichten</pop3delete>
+        <pop3days>dagen</pop3days>
+        <smtphost>SMTP-server</smtphost>
+        <emailprivated>Dit account is privé (alleen ik heb toegang)</emailprivated>
+        <emaildefault>Standaardaccount (degene die ik het meest gebruik)</emaildefault>
+        <emaildisabled>Deactiveer dit e-mailaccount</emaildisabled>
+        <emaildelete>Verwijder dit e-mailaccount (gegevens gaan voor altijd verloren)</emaildelete>
+        <emailsignatureold>Huidige handtekening</emailsignatureold>
+        <emailsignaturenew>Nieuwe handtekening</emailsignaturenew>
+        <correonew>Nieuwe mail</correonew>
+        <title_correo_new>Stel een nieuw POP3-e-mailaccount in voor uw gebruiker</title_correo_new>
+        <gcalendar>Google Agenda</gcalendar>
+        <prefgcalendar>Synchronisatie van de agenda met de Google Agenda-service</prefgcalendar>
+        <prefgcalendar2>Met deze optie kunt u de kalender van SaltOS en van Google Agenda gebruiken, waardoor de gegevens automatisch worden bijgewerkt en u zich geen zorgen hoeft te maken dat u de gegevens van de ene kalender naar de andere moet repliceren</prefgcalendar2>
+        <emailgcalendar>Gmail-e-mailaccount</emailgcalendar>
+        <tokengcalendar>Toegangstoken</tokengcalendar>
+        <addmetocc>Voeg mij toe als CC in alle e-mails die ik verstuur</addmetocc>
+        <defaultcrt>Activeer standaard het bevestigingsverzoek van de receptie</defaultcrt>
+        <feedstitle>Configureer de feeds die u uit SaltOS wilt lezen (RSS 1.0, RSS 2.0 en Atom 1.0)</feedstitle>
+        <url>URL</url>
+        <title>Titel</title>
+        <description>Beschrijving</description>
+        <image>Afbeelding</image>
+        <test>Test</test>
+        <add>Toevoegen</add>
+        <feedslist>Lijst met geconfigureerde RSS-feeds</feedslist>
+        <feeds_old>Geconfigureerde feeds</feeds_old>
+        <feeds_new>Nieuwe feed</feeds_new>
+        <lowerdisabled>gedeactiveerd</lowerdisabled>
+        <quick>Snel menu</quick>
+        <prefquick>Configureer hier het snelmenu in het bovenste gedeelte</prefquick>
+        <sinaplicacion>[Zonder aanvraag]</sinaplicacion>
+        <quick_button_f1>Eerste knop (F1)</quick_button_f1>
+        <quick_button_f2>Tweede knop (F2)</quick_button_f2>
+        <quick_button_f3>Derde knop (F3)</quick_button_f3>
+        <quick_button_f4>Vierde knop (F4)</quick_button_f4>
+        <quick_button_f5>Vijfde knop (F5)</quick_button_f5>
+        <quick_button_f6>Zesde knop (F6)</quick_button_f6>
+        <quick_button_f7>Zevende knop (F7)</quick_button_f7>
+        <quick_button_f8>Achtste knop (F8)</quick_button_f8>
+        <quick_button_f9>Negende knop (F9)</quick_button_f9>
+        <quick_button_f10>Tiende knop (F10)</quick_button_f10>
+        <quick_button_f11>Elfde knop (F11)</quick_button_f11>
+        <quick_button_f12>Twaalfde knop (F12)</quick_button_f12>
+        <folderstab>Gebruikersmappen</folderstab>
+        <folderspref>Stel hier gebruikersboxen in en laat dan wat u wilt</folderspref>
+        <newfolder>Nieuwe gebruikersbox</newfolder>
+        <withoutparent>[Zonder map]</withoutparent>
+        <inparentfolder>en hangt aan de map</inparentfolder>
+        <namefolder>Mapnaam</namefolder>
+        <parentfolder>Hang aan de map</parentfolder>
+    </profile>
+    <maincfg>
+        <formupdate>Installatie</formupdate>
+        <general>Algemeen</general>
+        <title_general>Configureer enkele algemene toepassingsparameters</title_general>
+        <applicationtitle>Toepassingstitel</applicationtitle>
+        <agendainterval>Zoek elke kalendermeldingen</agendainterval>
+        <inboxinterval>Controleer elke keer op nieuwe e-mails</inboxinterval>
+        <outboxinterval>Controleer de uitvoerlade elke keer</outboxinterval>
+        <feedsinterval>Zoek elke keer naar nieuwe berichten</feedsinterval>
+        <feedstimeout>Vergeet eerdere verwijderde feeds</feedstimeout>
+        <sessioninterval>Controleer elke uitlogmelding</sessioninterval>
+        <sessionwarning>Waarschuwing voor afmelden</sessionwarning>
+        <indexinginterval>Indexeer elke keer nieuwe bestanden</indexinginterval>
+        <integrityinterval>Controleer elke integriteit</integrityinterval>
+        <purgeinterval>Verwijder elke data</purgeinterval>
+        <emailsupport>E-mail voor technische ondersteuning</emailsupport>
+        <segundos>seconden</segundos>
+        <dias>dagen</dias>
+        <title_logo>Definieer het logo, de positie, de grootte en de kleuren die in de pdf's moeten worden gebruikt</title_logo>
+        <logo>Logo</logo>
+        <logoleft>Logo X-positie</logoleft>
+        <logotop>Y</logotop>
+        <logowidth>Breedte</logowidth>
+        <logoheight>Hoog</logoheight>
+        <logofile>Huidig logobestand</logofile>
+        <logofilenew>Nieuw bestand (alleen JPEG)</logofilenew>
+        <colorline>Kleur van de lijnen</colorline>
+        <colortext1>Titels</colortext1>
+        <colortext2>Teksten</colortext2>
+        <title_correo>Configureer enkele algemene parameters voor het verzenden van e-mails van SaltOS</title_correo>
+        <cuentasupport>Ondersteuning voor uitgaande e-mail</cuentasupport>
+        <cuentaincidencias>Uitgaande e-mailincidenten</cuentaincidencias>
+        <water>Watermerken</water>
+        <title_water>Definieer de te gebruiken watermerken in de pdf's</title_water>
+        <wateractas>Notulen: tekst</wateractas>
+        <waterpartes>Onderdelen: tekst</waterpartes>
+        <waterfacturas>Facturen: tekst</waterfacturas>
+        <wateralbaranes>Afleverbonnen: Tekst</wateralbaranes>
+        <waterpresupuestos>Budgetten: tekst</waterpresupuestos>
+        <waterclientes>Klanten: tekst</waterclientes>
+        <waterproyectos>Projecten: Tekst</waterproyectos>
+        <waterposiblescli>Potentiële klanten: tekst</waterposiblescli>
+        <watercorreo>E-mail: tekst</watercorreo>
+        <waterfeeds>Feeds: tekst</waterfeeds>
+        <emailasync>Gebruik asynchrone verzending (sneller)</emailasync>
+        <accounting>Boekhouding</accounting>
+        <title_accounting>Configureer hier algemene boekhoudgegevens</title_accounting>
+        <accounting_currency>Valuta</accounting_currency>
+        <accounting_iva_name>Belastingnaam (toegevoegd)</accounting_iva_name>
+        <accounting_irpf_name>Belastingnaam (afgetrokken)</accounting_irpf_name>
+        <accounting_value>Standaardwaarde (alleen indien gebruikt)</accounting_value>
+        <applications_config>Toepassingen</applications_config>
+        <config_tabs>Instellingen tabbladen</config_tabs>
+        <default_values>Standaardwaarden</default_values>
+        <configuracion_presupuestos>Configuratie van budgetten</configuracion_presupuestos>
+        <configuracion_agenda>Plan configuratie</configuracion_agenda>
+        <configuracion_incidencias>Incidentinstellingen</configuracion_incidencias>
+        <configuracion_facturas>Factuurconfiguratie</configuracion_facturas>
+        <configuracion_gastos>Onkostenconfiguratie</configuracion_gastos>
+        <show_tab_objetivos_presupuesto>Toon doelen</show_tab_objetivos_presupuesto>
+        <show_tab_condiciones_presupuesto>Toon voorwaarden</show_tab_condiciones_presupuesto>
+        <show_tab_funcional_presupuesto>Functioneel voorstel weergeven</show_tab_funcional_presupuesto>
+        <show_tab_tecnica_presupuesto>Toon technisch voorstel</show_tab_tecnica_presupuesto>
+        <show_tab_info_adicional_presupuesto>Geef aanvullende informatie weer</show_tab_info_adicional_presupuesto>
+        <show_tab_tareas_presupuesto>Taken weergeven</show_tab_tareas_presupuesto>
+        <show_tab_productos_presupuesto>Toon producten</show_tab_productos_presupuesto>
+        <sin_configurar>[Niet geconfigureerd]</sin_configurar>
+        <filtro_grupo_usuarios_incidencias>Toon gebruikers van een groep in gebruikerslijsten</filtro_grupo_usuarios_incidencias>
+        <filtro_grupo_usuarios_implicados_incidencias>Betrokken groep</filtro_grupo_usuarios_implicados_incidencias>
+        <filtro_grupo_usuarios_asignados_incidencias>Toegewezen groep</filtro_grupo_usuarios_asignados_incidencias>
+    </maincfg>
+    <about>
+        <formupdate>Over SaltOS</formupdate>
+        <copyright>Deze software wordt gedistribueerd onder de voorwaarden van de GPL-3.0- licentie:</copyright>
+        <components>Deze software gebruikt de volgende componenten:</components>
+        <server_base>Basisserver:</server_base>
+        <php_plugins>PHP-plug-ins:</php_plugins>
+        <javascript_base>Javascript-basis:</javascript_base>
+        <bootstrap_plugins>Bootstrap-plug-ins:</bootstrap_plugins>
+        <jquery_plugins>JQuery-plug-ins:</jquery_plugins>
+        <javascript_plugins>Javascript-plug-ins:</javascript_plugins>
+        <other_plugins>Andere plug-ins:</other_plugins>
+        <server_plugins>Server plug-ins:</server_plugins>
+        <vxinfo>Opmerking: (*) Sommige projecten specificeren niet de specifieke versie van de licentie die ze gebruiken</vxinfo>
+        <license>Licentie</license>
+        <licensetitle>Hieronder vindt u de juridische tekst van de licentie</licensetitle>
+        <translators>Vertalingen</translators>
+        <developers>Ontwikkelaars</developers>
+        <unavailable>Contactgegevens niet beschikbaar. Neem contact op met een ontwikkelaar voor vragen of suggesties.</unavailable>
+    </about>
+    <support>
+        <formupdate>Technische ondersteuning</formupdate>
+        <contact>Technische ondersteuning</contact>
+        <subject>Zakelijk</subject>
+        <msgsendemail>Er is een e-mail gestuurd naar technische ondersteuning</msgsendemail>
+        <msgnotemailsupport>Er is geen e-mailadres opgegeven voor technische ondersteuning</msgnotemailsupport>
+        <msgnotsubject>Er is niets ingevoerd</msgnotsubject>
+        <msgnotcomments>Er is geen commentaar ingevoerd</msgnotcomments>
+    </support>
+    <home>
+        <formupdate>Home</formupdate>
+        <buscar2>Doorzoek alle SaltOS</buscar2>
+        <buscar3>Zoek alleen in bestanden</buscar3>
+    </home>
+    <denied>
+        <title>Toegang geweigerd</title>
+        <short>U bent niet gemachtigd om deze actie uit te voeren</short>
+        <large>Het systeem heeft de toepassing geblokkeerd omdat er onvoldoende rechten zijn om dit deel van de toepassing uit te voeren. Neem contact op met de applicatiebeheerder als u denkt dat het een fout is</large>
+    </denied>
+    <ficheros>
+        <list>Lijst met bijgevoegde bestanden</list>
+        <todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>
+    </ficheros>
+    <folders>
+        <notfound>Map niet gevonden</notfound>
+        <todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>
+        <deleteoffolder>Verwijderen uit deze map</deleteoffolder>
+        <defaultfolder>Persoonlijke map</defaultfolder>
+    </folders>
+    <buscador>
+        <list>Zoekmachine</list>
+        <todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>
+    </buscador>
+</root>

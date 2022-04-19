@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <lang>ru_RU</lang>
+    <dir>ltr</dir>
+    <default>common</default>
+    <common>
+        <nopage>выберите приложение для начала работы</nopage>
+        <nocheckuser>неправильный пользователь или ключ</nocheckuser>
+        <nochecktime>пользователь в нерабочее время</nochecktime>
+        <nocheckday>пользователь вне рабочего дня</nocheckday>
+        <view>видеть</view>
+        <edit>редактировать</edit>
+        <copy>копировать</copy>
+        <delete>стереть</delete>
+        <first>первая страница</first>
+        <previous>предыдущая страница</previous>
+        <next>следующая страница</next>
+        <last>Последняя страница</last>
+        <id>код.</id>
+        <codigo>код</codigo>
+        <cif>К.И.Ф.</cif>
+        <nombre>имя</nombre>
+        <apellidos>фамилии</apellidos>
+        <tel_fijo>неподвижный</tel_fijo>
+        <tel_movil>мобильный</tel_movil>
+        <telefono>телефон</telefono>
+        <fax>факс</fax>
+        <email>отправить по электронной почте</email>
+        <web>паутина</web>
+        <filter>параметры фильтра</filter>
+        <loadsavefilter>загрузка и сохранение предопределенных фильтров</loadsavefilter>
+        <buscar>найти</buscar>
+        <buscartip>выполнение поиска с выбранными фильтрами</buscartip>
+        <limpiar>сброс</limpiar>
+        <limpiartip>очистите фильтр и отобразите все данные</limpiartip>
+        <username>пользователь</username>
+        <datetime>дата и время</datetime>
+        <direccion>адрес</direccion>
+        <codpostal>почтовый индекс</codpostal>
+        <poblacion>население</poblacion>
+        <provincia>провинция</provincia>
+        <pais>страна</pais>
+        <comentarios>обратная связь</comentarios>
+        <descripcion>описание</descripcion>
+        <buttoncreate>создавать</buttoncreate>
+        <buttoncreatereturnhere>создать и вернуть здесь</buttoncreatereturnhere>
+        <buttonupdate>обновлять</buttonupdate>
+        <buttonupdatereturnhere>обновить и вернуть здесь</buttonupdatereturnhere>
+        <buttoncancel>отмена</buttoncancel>
+        <buttonreturn>возвращать</buttonreturn>
+        <date>дата</date>
+        <incidencia>падение</incidencia>
+        <estado>государство</estado>
+        <parte>часть</parte>
+        <tarea>задача</tarea>
+        <tareas>задачи</tareas>
+        <liquidado>оседлый</liquidado>
+        <base>основа</base>
+        <total>итог</total>
+        <cerrado>закрытый</cerrado>
+        <cobrado>заряженный</cobrado>
+        <empresa>предприятие</empresa>
+        <msgdelete>вы хотите удалить эту запись?</msgdelete>
+        <permdenied>у вас нет разрешений на выполнение этого действия</permdenied>
+        <sinnombre>Безымянный</sinnombre>
+        <deldenied>не удается удалить, так как он используется в другом приложении</deldenied>
+        <yes>да</yes>
+        <no>нет</no>
+        <cliente>клиент</cliente>
+        <posiblecli>потенциальный клиент</posiblecli>
+        <password>ключ</password>
+        <numfac>Н.Кв.</numfac>
+        <numc>ЧПУ</numc>
+        <numctip>количество комментариев</numctip>
+        <numf>НФ</numf>
+        <numftip>количество файлов</numftip>
+        <numt>НТ</numt>
+        <numttip>количество задач</numttip>
+        <numv>НВ</numv>
+        <numvtip>количество сроков погашения</numvtip>
+        <nums>НС</nums>
+        <numstip>число последующих действий</numstip>
+        <nump>НП</nump>
+        <numptip>количество продуктов</numptip>
+        <fechaini>между датами</fechaini>
+        <fechafin>и</fechafin>
+        <commentdel>удалить этот комментарий</commentdel>
+        <attachments>вложения</attachments>
+        <shortattachments>вложения</shortattachments>
+        <userdatetime>пользователь, дата и время</userdatetime>
+        <fileandsize>файл и размер</fileandsize>
+        <download>загружать</download>
+        <activar>активировать</activar>
+        <newcomment>новый комментарий</newcomment>
+        <newattachments>новые вложения</newattachments>
+        <proyecto>проект</proyecto>
+        <documento>документ</documento>
+        <hora>час</hora>
+        <horas>часов</horas>
+        <minutos>протокол</minutos>
+        <precio>цена</precio>
+        <liq>лик.</liq>
+        <aplicacion>приложение</aplicacion>
+        <rol>роль</rol>
+        <permiso>разрешение</permiso>
+        <pos>поз.</pos>
+        <posicion>позиция</posicion>
+        <trimestre>четверть</trimestre>
+        <otroscampos>другие области</otroscampos>
+        <excel>превосходить</excel>
+        <exceltip>Загрузка файла Excel с текущими данными</exceltip>
+        <pdf>Скачать PDF</pdf>
+        <pdftip>Загрузка PDF-файла с текущими данными</pdftip>
+        <epigrafe>эпиграф</epigrafe>
+        <campoauto>(*) Автоматическое поле</campoauto>
+        <cerr>закрывать.</cerr>
+        <cobr>кобр.</cobr>
+        <concepto>понятие</concepto>
+        <unid>единиц.</unid>
+        <unidades>соединять.</unidades>
+        <unidadestotal>всего единиц</unidadestotal>
+        <prun>Пр./Ун.</prun>
+        <dto>диск.</dto>
+        <importe>количество</importe>
+        <percent>процент</percent>
+        <todos>[Все]</todos>
+        <todoslosclientes>[Все клиенты]</todoslosclientes>
+        <todoslosposiblescli>[Все потенциальные клиенты]</todoslosposiblescli>
+        <todoslosusuarios>[Все пользователи]</todoslosusuarios>
+        <todoslosgrupos>[Все группы]</todoslosgrupos>
+        <todoslosproveedores>[Все поставщики]</todoslosproveedores>
+        <mostrartodos>[Показать все]</mostrartodos>
+        <sinusuario>[Нет пользователя]</sinusuario>
+        <paginaspc>страница</paginaspc>
+        <regsfrom>записи</regsfrom>
+        <spcdespc>из</spcdespc>
+        <spcalspc>к</spcalspc>
+        <regspage>записей на странице:</regspage>
+        <registerdata>регистрационные данные</registerdata>
+        <userinsert>создание сайта</userinsert>
+        <userupdate>изменено</userupdate>
+        <allstates>[Все штаты]</allstates>
+        <allenabled>[Все активы}</allenabled>
+        <alldisabled>[Все неактивные}</alldisabled>
+        <lastinsert>создана запись с кодом:</lastinsert>
+        <lastupdate>реестр был изменен кодом:</lastupdate>
+        <lastdelete>запись с кодом была удалена:</lastdelete>
+        <proveedor>поставщик</proveedor>
+        <acta>протокол</acta>
+        <presupuesto>бюджет</presupuesto>
+        <newfichero>новый файл</newfichero>
+        <fichero>файл</fichero>
+        <size>размер</size>
+        <mime>тип пантомимы</mime>
+        <grupo>группа</grupo>
+        <ficheroactual>текущий файл</ficheroactual>
+        <language>язык</language>
+        <style>проектировать</style>
+        <nodata>нет результатов для показа</nodata>
+        <nosearch>вы должны ввести термин, чтобы иметь возможность выполнять поиск</nosearch>
+        <prioridad>приоритет</prioridad>
+        <sinproyecto>[Нет связанного проекта]</sinproyecto>
+        <sintarea>[Нет связанной задачи]</sintarea>
+        <todoslosproyectos>[Все проекты]</todoslosproyectos>
+        <todaslastareas>[Все задачи]</todaslastareas>
+        <todaslascuentas>[Все]</todaslascuentas>
+        <mail>Отправить PDF</mail>
+        <mailtip>Отправка PDF-файла в учетную запись электронной почты</mailtip>
+        <view2>Просмотрщик PDF</view2>
+        <view2tip>Просмотр документа с помощью внутреннего средства просмотра saltOS</view2tip>
+        <view2error>Произошла ошибка при открытии средства просмотра PDF</view2error>
+        <view2hash>если проблема не устранена, обратитесь в техническую службу, указав следующий код:</view2hash>
+        <view2opening>открывая зрителя, подождите минутку...</view2opening>
+        <msgnotuseremail>у вас не настроен адрес электронной почты</msgnotuseremail>
+        <msgnotsmtpemail>сервер исходящей почты не настроен</msgnotsmtpemail>
+        <sincliente>[Нет связанного клиента]</sincliente>
+        <sinposiblecli>[Нет потенциального клиента-партнера]</sinposiblecli>
+        <sinepigrafe>[Без соответствующего заголовка]</sinepigrafe>
+        <sinprioridad>[Нет приоритета]</sinprioridad>
+        <sinestado>[Апатрид]</sinestado>
+        <dstart>начало</dstart>
+        <dstop>конец</dstop>
+        <evento>событие</evento>
+        <sincuenta>[Нет учетной записи]</sincuenta>
+        <cuenta>счет</cuenta>
+        <sindia>[Нет дня]</sindia>
+        <sinmes>[Нет месяца]</sinmes>
+        <mes>месяц</mes>
+        <factura>накладная</factura>
+        <albaran>упаковочный лист</albaran>
+        <msglogout>вы хотите выйти из приложения?</msglogout>
+        <mostrarcomo>показать как</mostrarcomo>
+        <nif>Н.И.Ф.</nif>
+        <vcard>VCard</vcard>
+        <cargo>обвинение</cargo>
+        <empleado>служащий</empleado>
+        <sinproveedor>[Нет поставщика-партнера]</sinproveedor>
+        <sinempleado>[Нет младшего сотрудника]</sinempleado>
+        <port>порт</port>
+        <extra>безопасность</extra>
+        <requiredfield>обязательное поле</requiredfield>
+        <sinpais>[Страна не выбрана]</sinpais>
+        <sinprovincia>[Провинция не выбрана]</sinprovincia>
+        <sinpoblacion>[Население не выбрано]</sinpoblacion>
+        <sincodpostal>[Без выбора]</sincodpostal>
+        <usedfilter>фильтр активирован</usedfilter>
+        <suma>сумма</suma>
+        <average>чулок</average>
+        <posx>Позиция X</posx>
+        <posy>Позиция Y</posy>
+        <angle>Угол</angle>
+        <sinproducto>[Нет связанного продукта]</sinproducto>
+        <preview>предварительный просмотр</preview>
+        <sortasc>Сортировка по возрастанию (от А до Я)</sortasc>
+        <sortdesc>Сортировка по убыванию (Z-A)</sortdesc>
+        <confirm>подтверждение</confirm>
+        <alert>внимание</alert>
+        <error>ошибка</error>
+        <buttonaccept>принимать</buttonaccept>
+        <buttoncontinue>продолжать</buttoncontinue>
+        <enero>январь</enero>
+        <febrero>февраль</febrero>
+        <marzo>март</marzo>
+        <abril>апрель</abril>
+        <mayo>май</mayo>
+        <junio>июнь</junio>
+        <julio>июль</julio>
+        <agosto>август</agosto>
+        <setiembre>сентябрь</setiembre>
+        <octubre>октябрь</octubre>
+        <noviembre>ноябрь</noviembre>
+        <diciembre>декабрь</diciembre>
+        <lunes>понедельник</lunes>
+        <martes>вторник</martes>
+        <miercoles>среда</miercoles>
+        <jueves>четверг</jueves>
+        <viernes>пятница</viernes>
+        <sabado>суббота</sabado>
+        <domingo>воскресенье</domingo>
+        <sabadoydomingo>Суббота и воскресенье</sabadoydomingo>
+        <sinpresupuesto>[Нет сопутствующего бюджета]</sinpresupuesto>
+        <todoslospresupuestos>[Все бюджеты]</todoslospresupuestos>
+        <unknownerror>произошла ошибка подключения (убедитесь, что доступ к сети работает правильно, и если проблема не устранена, обратитесь к администратору приложения)</unknownerror>
+        <qrcode>QR-код</qrcode>
+        <lugar>место</lugar>
+        <loading>загрузка данных, подождите минутку...</loading>
+        <sending>отправка данных, подождите минутку...</sending>
+        <prod>тыкать.</prod>
+        <addfile>добавить файл</addfile>
+        <addproduct>добавить продукт</addproduct>
+        <addconcept>добавить концепцию</addconcept>
+        <addvencimiento>добавить срок действия</addvencimiento>
+        <addtarea>добавить задачу</addtarea>
+        <send>отправить</send>
+        <notas>примечания</notas>
+        <sincampanya>[Нет связанной кампании]</sincampanya>
+        <campanya>кампания</campanya>
+        <todaslascampanyas>[Все кампании]</todaslascampanyas>
+        <numpc>NPC</numpc>
+        <numpctip>количество потенциальных клиентов</numpctip>
+        <numcl>НКЛ</numcl>
+        <numcltip>количество клиентов</numcltip>
+        <numag>ПРИДИРАТЬСЯ</numag>
+        <numagtip>количество мероприятий в повестке дня</numagtip>
+        <numpr>НПР</numpr>
+        <numprtip>количество котировок</numprtip>
+        <numpy>НПИ</numpy>
+        <numpytip>количество проектов</numpytip>
+        <tipoevento>тип события</tipoevento>
+        <sintipoevento>[Нет типа события]</sintipoevento>
+        <fileuploaderror>при отправке файла произошла ошибка:</fileuploaderror>
+        <postlimiterror>произошла ошибка при отправке данных на сервер</postlimiterror>
+        <resumeneconomico>экономическая сводка</resumeneconomico>
+        <pdf2filter_title>Фильтр экспорта PDF</pdf2filter_title>
+        <pdf2filter_message>Выберите данные, которые вы хотите включить в PDF:</pdf2filter_message>
+        <view2filter_title>Фильтр просмотра PDF</view2filter_title>
+        <view2filter_message>Выберите данные, которые вы хотите просмотреть в PDF:</view2filter_message>
+        <msgerrorsemaphore>произошла ошибка параллелизма, доступ к действию отменен</msgerrorsemaphore>
+        <msgnotcheckbox>вы должны выбрать какую-либо запись из списка, чтобы использовать эту опцию</msgnotcheckbox>
+        <gotohome>перезаряжать</gotohome>
+        <notifybug>сообщение о сбое</notifybug>
+        <actioncompress>загрузка выбранных файлов</actioncompress>
+        <zipformat>Формат ZIP</zipformat>
+        <tarformat>ДЁГОТЬ</tarformat>
+        <gzipformat>ГЗИП</gzipformat>
+        <bzipformat>БЗИП2</bzipformat>
+        <temporalfiles>временные файлы</temporalfiles>
+        <sessionexpire>сессия должна быть закрыта в</sessionexpire>
+        <sessionupdate>нажмите здесь, чтобы предотвратить его закрытие</sessionupdate>
+        <sessionupdated>сеанс успешно обновлен</sessionupdated>
+        <link>связь</link>
+        <textos_select>Выделите текст и нажмите кнопку Добавить</textos_select>
+        <textos_add>добавлять</textos_add>
+        <selectall>выбрать все</selectall>
+        <selectnone>очистить выделение</selectnone>
+        <addtofolder>показать в этой папке</addtofolder>
+        <addtofolderok>это содержимое было добавлено в папку</addtofolderok>
+        <delfromfolderok>это содержимое было скрыто из папки</delfromfolderok>
+        <savedfilters>сохраненные фильтры</savedfilters>
+        <optionfilter>выберите сохраненный фильтр</optionfilter>
+        <newfilter>имя нового фильтра</newfilter>
+        <loadfilter>нести</loadfilter>
+        <loadfiltertip>нажмите здесь, чтобы загрузить выбранный фильтр</loadfiltertip>
+        <updatefilter>обновлять</updatefilter>
+        <updatefiltertip>нажмите здесь, чтобы обновить выбранный фильтр</updatefiltertip>
+        <deletefilter>стереть</deletefilter>
+        <deletefiltertip>нажмите здесь, чтобы очистить выбранный фильтр</deletefiltertip>
+        <createfilter>создавать</createfilter>
+        <createfiltertip>нажмите здесь, чтобы создать новый фильтр</createfiltertip>
+        <createfilterok>новый фильтр успешно создан</createfilterok>
+        <createfilterko>отсутствует для определения имени фильтра</createfilterko>
+        <loadfilterok>фильтр успешно загружен</loadfilterok>
+        <loadfilterko>перед загрузкой необходимо выбрать фильтр</loadfilterko>
+        <updatefilterok>фильтр успешно обновлен</updatefilterok>
+        <updatefilterko>перед его изменением необходимо выбрать фильтр</updatefilterko>
+        <deletefilterok>фильтр очищен</deletefilterok>
+        <deletefilterko>необходимо выбрать фильтр, прежде чем его можно будет удалить</deletefilterko>
+        <renamefilter>переименовать</renamefilter>
+        <renamefiltertip>нажмите здесь, чтобы переименовать существующий фильтр</renamefiltertip>
+        <renamefilterok>существующий фильтр успешно переименован</renamefilterok>
+        <renamefilterko1>необходимо выбрать фильтр, прежде чем его можно будет переименовать</renamefilterko1>
+        <renamefilterko2>необходимо определить новое имя переименовываемого фильтра</renamefilterko2>
+        <showmenu>показать меню</showmenu>
+        <hidemenu>скрыть меню</hidemenu>
+        <showtools>показать инструменты</showtools>
+        <hidetools>скрыть инструменты</hidetools>
+        <inbackground>это действие выполняется в фоновом режиме, подождите несколько мгновений</inbackground>
+        <sentfromsaltos>Почта, отправленная с моего SaltOS</sentfromsaltos>
+        <foldersdata>папки</foldersdata>
+        <loweradd>добавлять</loweradd>
+        <help>справка</help>
+        <selectallcheckbox>выберите все записи</selectallcheckbox>
+        <selectonecheckbox>выберите эту запись</selectonecheckbox>
+        <formapago>способ оплаты</formapago>
+        <todaslasformasdepago>[Все формы оплаты]</todaslasformasdepago>
+        <sinformapago>[Без способа оплаты]</sinformapago>
+        <actions>действия с этой записью</actions>
+        <msgfilesindexed1>файл, индексируемый в базе данных</msgfilesindexed1>
+        <msgfilesindexed2>файлы, индексируемые в базе данных</msgfilesindexed2>
+        <msgregistersindexed1>индексированная запись в базе данных</msgregistersindexed1>
+        <msgregistersindexed2>записи, индексируемые в базе данных</msgregistersindexed2>
+        <msgregisterspurged1>журнал удален из базы данных</msgregisterspurged1>
+        <msgregisterspurged2>записи, удаленные из базы данных</msgregisterspurged2>
+        <biglist>$limit записи</biglist>
+        <biglisttip>внимание: $limit отображаются журналы, возможно, приложение работает медленно</biglisttip>
+        <activo>активный</activo>
+        <activo_desc>указать активного пользователя или того, кто существует по наследству</activo_desc>
+        <print>печатать</print>
+    </common>
+    <login>
+        <logintitle>доступ к приложению</logintitle>
+        <remember>запомните пароль на этом компьютере</remember>
+        <enter>входить</enter>
+        <captcha1>защитный код</captcha1>
+        <captcha2>введите код здесь</captcha2>
+        <captcha3>перезагрузить изображение</captcha3>
+        <mobileaccess>доступ с мобильного устройства</mobileaccess>
+    </login>
+    <menu>
+        <home>начало</home>
+        <usuarios>пользователей</usuarios>
+        <grupos>группы</grupos>
+        <profile>мой профиль</profile>
+        <maincfg>конфигурация</maincfg>
+        <about>О компании SaltOS</about>
+        <support>техническая поддержка</support>
+        <logout>выйти из системы</logout>
+        <ficheros>вложения</ficheros>
+        <gestiongeneral>общее</gestiongeneral>
+        <gestionfiltros>фильтры</gestionfiltros>
+        <gestionadministracion>администрация</gestionadministracion>
+        <folders>папки</folders>
+        <buscador>искатель</buscador>
+        <desc_usuarios>регистрация, отмена подписки или изменение пользователей</desc_usuarios>
+        <desc_grupos>создание рабочих групп для пользователей</desc_grupos>
+        <desc_profile>изменение пользовательских настроек</desc_profile>
+        <desc_maincfg>изменение глобальных настроек приложения</desc_maincfg>
+        <desc_about>знайте кредиты этого приложения</desc_about>
+        <desc_logout>нажмите здесь, если вы хотите закрыть рабочий сеанс</desc_logout>
+        <desc_home>доступ к главному экрану приложения</desc_home>
+        <desc_support>связаться со службой технической поддержки</desc_support>
+        <desc_ficheros>доступ ко всем файлам в приложении</desc_ficheros>
+        <desc_buscador>поиск по всей базе данных</desc_buscador>
+        <quick_home>начало</quick_home>
+        <quick_profile>профиль</quick_profile>
+        <quick_support>поддержка</quick_support>
+        <quick_about>около</quick_about>
+        <quick_logout>закрывать</quick_logout>
+        <quick_usuarios>пользователей</quick_usuarios>
+        <quick_grupos>группы</quick_grupos>
+        <quick_maincfg>конфигурация</quick_maincfg>
+        <quick_ficheros>файлы</quick_ficheros>
+        <quick_buscador>искатель</quick_buscador>
+        <menu>меню</menu>
+        <menutip>отображение и скрытие меню приложения</menutip>
+    </menu>
+    <usuarios>
+        <list>список пользователей</list>
+        <create>новый пользователь</create>
+        <formview>сведения о пользователе</formview>
+        <forminsert>регистрация нового пользователя</forminsert>
+        <formupdate>модификация пользователя</formupdate>
+        <personaldata>пользовательские данные</personaldata>
+        <entrada>вход</entrada>
+        <salida>выход</salida>
+        <dias>дни недели</dias>
+        <logged>связанный</logged>
+        <password2>клавиша повтора</password2>
+        <errorpassword>клавиши записей не совпадают</errorpassword>
+        <contacto>контакт</contacto>
+        <sincontacto>[Нет связанного контакта]</sincontacto>
+        <permdata>разрешения по приложениям</permdata>
+        <allow>разрешать</allow>
+        <deny>отрицать</deny>
+        <groupsdata>группы пользователей</groupsdata>
+        <pop3host>POP3-сервер</pop3host>
+        <pop3delete>удаление прошлых сообщений сервера</pop3delete>
+        <pop3days>дни недели</pop3days>
+        <smtphost>SMTP-сервер</smtphost>
+        <emailprivated>эта учетная запись является частной (только у меня есть доступ)</emailprivated>
+        <emaildefault>учетная запись по умолчанию (та, которую я использую чаще всего)</emaildefault>
+        <emaildisabled>деактивация этой учетной записи электронной почты</emaildisabled>
+        <emaildelete>удалите эту учетную запись электронной почты (данные будут потеряны навсегда)</emaildelete>
+        <emailsignatureold>текущая подпись</emailsignatureold>
+        <emailsignaturenew>новая фирма</emailsignaturenew>
+        <correonew>новая почта</correonew>
+        <addmetocc>Добавляйте меня в качестве CC во всех электронных письмах, которые я отправляю</addmetocc>
+        <defaultcrt>активация запроса подтверждения получения по умолчанию</defaultcrt>
+        <gcalendar>Календарь Google</gcalendar>
+        <prefgcalendar>Синхронизация календаря со службой Google Календаря</prefgcalendar>
+        <prefgcalendar2>С помощью этой опции вы можете использовать календарь из SaltOS и из Google Calendar, обновляя данные автоматически и не беспокоясь о необходимости репликации данных из одной повестки дня в другую.</prefgcalendar2>
+        <emailgcalendar>учетная запись электронной почты gmail</emailgcalendar>
+        <tokengcalendar>маркер доступа</tokengcalendar>
+        <feedstitle>Настройте каналы, которые вы хотите читать из SaltOS (RSS 1.0, RSS 2.0 и Atom 1.0)</feedstitle>
+        <url>URL-АДРЕС</url>
+        <title>титул</title>
+        <description>описание</description>
+        <image>образ</image>
+        <test>попытка</test>
+        <add>добавлять</add>
+        <feedslist>Список настроенных RSS-каналов</feedslist>
+        <feeds_old>настроенные каналы</feeds_old>
+        <feeds_new>новый канал</feeds_new>
+        <lowerdisabled>отключить</lowerdisabled>
+        <singrupo>[Нет группы]</singrupo>
+        <sinaplicacion>[Нет приложения]</sinaplicacion>
+        <registro>регистрация</registro>
+        <sinregistro>[Без регистрации]</sinregistro>
+        <showdetalles>[Подробнее]</showdetalles>
+        <hidedetalles>[Скрыть подробности]</hidedetalles>
+        <appsregsdata>разрешения на регистрацию</appsregsdata>
+    </usuarios>
+    <grupos>
+        <list>список групп</list>
+        <create>новая группа</create>
+        <formview>сведения о группе</formview>
+        <forminsert>регистрация новой группы</forminsert>
+        <formupdate>изменение группы</formupdate>
+        <defaultdata>данные группы</defaultdata>
+        <permdata>разрешения по приложениям</permdata>
+        <allow>разрешать</allow>
+        <deny>отрицать</deny>
+        <showdetalles>[Подробнее]</showdetalles>
+        <hidedetalles>[Скрыть подробности]</hidedetalles>
+    </grupos>
+    <profile>
+        <formupdate>мой профиль</formupdate>
+        <oldpassword>старый ключ</oldpassword>
+        <newpassword>новый ключ</newpassword>
+        <newpassword2>клавиша повтора</newpassword2>
+        <erroroldpassword>старый ключ неверен</erroroldpassword>
+        <errornewpassword>клавиши записей не совпадают</errornewpassword>
+        <errornewpassword2>новый ключ должен быть более сложным</errornewpassword2>
+        <prefgeneral>общие настройки</prefgeneral>
+        <cambioclave>изменение личного пароля</cambioclave>
+        <general>общее</general>
+        <title_correo_old>Настройка учетной записи электронной почты POP3 для пользователя</title_correo_old>
+        <pop3host>POP3-сервер</pop3host>
+        <pop3delete>удаление прошлых сообщений сервера</pop3delete>
+        <pop3days>дни недели</pop3days>
+        <smtphost>SMTP-сервер</smtphost>
+        <emailprivated>эта учетная запись является частной (только у меня есть доступ)</emailprivated>
+        <emaildefault>учетная запись по умолчанию (та, которую я использую чаще всего)</emaildefault>
+        <emaildisabled>деактивация этой учетной записи электронной почты</emaildisabled>
+        <emaildelete>удалите эту учетную запись электронной почты (данные будут потеряны навсегда)</emaildelete>
+        <emailsignatureold>текущая подпись</emailsignatureold>
+        <emailsignaturenew>новая фирма</emailsignaturenew>
+        <correonew>новая почта</correonew>
+        <title_correo_new>Настройка новой учетной записи электронной почты POP3 для пользователя</title_correo_new>
+        <gcalendar>Календарь Google</gcalendar>
+        <prefgcalendar>Синхронизация календаря со службой Google Календаря</prefgcalendar>
+        <prefgcalendar2>С помощью этой опции вы можете использовать календарь из SaltOS и из Google Calendar, обновляя данные автоматически и не беспокоясь о необходимости репликации данных из одной повестки дня в другую.</prefgcalendar2>
+        <emailgcalendar>учетная запись электронной почты gmail</emailgcalendar>
+        <tokengcalendar>маркер доступа</tokengcalendar>
+        <addmetocc>Добавляйте меня в качестве CC во всех электронных письмах, которые я отправляю</addmetocc>
+        <defaultcrt>активация запроса подтверждения получения по умолчанию</defaultcrt>
+        <feedstitle>Настройте каналы, которые вы хотите читать из SaltOS (RSS 1.0, RSS 2.0 и Atom 1.0)</feedstitle>
+        <url>URL-АДРЕС</url>
+        <title>титул</title>
+        <description>описание</description>
+        <image>образ</image>
+        <test>попытка</test>
+        <add>добавлять</add>
+        <feedslist>Список настроенных RSS-каналов</feedslist>
+        <feeds_old>настроенные каналы</feeds_old>
+        <feeds_new>новый канал</feeds_new>
+        <lowerdisabled>отключить</lowerdisabled>
+        <quick>быстрое меню</quick>
+        <prefquick>настройте здесь быстрое меню, расположенное в верхней области</prefquick>
+        <sinaplicacion>[Нет приложения]</sinaplicacion>
+        <quick_button_f1>Первая кнопка (F1)</quick_button_f1>
+        <quick_button_f2>Вторая кнопка (F2)</quick_button_f2>
+        <quick_button_f3>Третья кнопка (F3)</quick_button_f3>
+        <quick_button_f4>Четвертая кнопка (F4)</quick_button_f4>
+        <quick_button_f5>Пятая кнопка (F5)</quick_button_f5>
+        <quick_button_f6>Шестая кнопка (F6)</quick_button_f6>
+        <quick_button_f7>Седьмая кнопка (F7)</quick_button_f7>
+        <quick_button_f8>Восьмая кнопка (F8)</quick_button_f8>
+        <quick_button_f9>Девятая кнопка (F9)</quick_button_f9>
+        <quick_button_f10>Десятая кнопка (F10)</quick_button_f10>
+        <quick_button_f11>Одиннадцатая кнопка (F11)</quick_button_f11>
+        <quick_button_f12>Двенадцатая кнопка (F12)</quick_button_f12>
+        <folderstab>пользовательские папки</folderstab>
+        <folderspref>настройте пользовательские папки здесь, а затем оставьте то, что вы хотите</folderspref>
+        <newfolder>новая папка пользователя</newfolder>
+        <withoutparent>[Нет папки]</withoutparent>
+        <inparentfolder>и зависает из папки</inparentfolder>
+        <namefolder>имя папки</namefolder>
+        <parentfolder>зависание из папки</parentfolder>
+    </profile>
+    <maincfg>
+        <formupdate>конфигурация</formupdate>
+        <general>общее</general>
+        <title_general>настройка некоторых общих параметров приложения</title_general>
+        <applicationtitle>название заявки</applicationtitle>
+        <agendainterval>поиск уведомлений календаря по каждому</agendainterval>
+        <inboxinterval>поиск новых писем каждый раз</inboxinterval>
+        <outboxinterval>проверьте выходной лоток каждый</outboxinterval>
+        <feedsinterval>поиск новых сообщений каждый раз</feedsinterval>
+        <feedstimeout>забыть прошлые удаленные каналы</feedstimeout>
+        <sessioninterval>проверяйте уведомление о выходе из системы каждый раз</sessioninterval>
+        <sessionwarning>уведомить о выходе из системы перед</sessionwarning>
+        <indexinginterval>индексируйте новые файлы каждый раз</indexinginterval>
+        <integrityinterval>проверка целостности каждого</integrityinterval>
+        <purgeinterval>очистка данных каждый раз</purgeinterval>
+        <emailsupport>электронная почта для технической поддержки</emailsupport>
+        <segundos>товары второго сорта</segundos>
+        <dias>дни недели</dias>
+        <title_logo>определите логотип, положение, размер и цвета, которые будут использоваться в pdf-файлах</title_logo>
+        <logo>лого</logo>
+        <logoleft>Положение логотипа X</logoleft>
+        <logotop>И</logotop>
+        <logowidth>широкий</logowidth>
+        <logoheight>высокий</logoheight>
+        <logofile>файл текущего логотипа</logofile>
+        <logofilenew>Новый файл (только в формате JPEG)</logofilenew>
+        <colorline>цвет линий</colorline>
+        <colortext1>названия</colortext1>
+        <colortext2>тексты</colortext2>
+        <title_correo>Настройка некоторых глобальных параметров при отправке писем с SaltOS</title_correo>
+        <cuentasupport>поддержка исходящей почты</cuentasupport>
+        <cuentaincidencias>инциденты с исходящей почтой</cuentaincidencias>
+        <water>водяные знаки</water>
+        <title_water>определение водяных знаков, которые будут использоваться в pdf-файлах</title_water>
+        <wateractas>Протокол: Текст</wateractas>
+        <waterpartes>Части: Текст</waterpartes>
+        <waterfacturas>Счета-фактуры: Текст</waterfacturas>
+        <wateralbaranes>Накладные: Текст</wateralbaranes>
+        <waterpresupuestos>Бюджеты: Текст</waterpresupuestos>
+        <waterclientes>Клиенты: Текст</waterclientes>
+        <waterproyectos>Проекты: Текст</waterproyectos>
+        <waterposiblescli>Потенциальные клиенты: Текст</waterposiblescli>
+        <watercorreo>Почта: Текст</watercorreo>
+        <waterfeeds>Каналы: Текстовые</waterfeeds>
+        <emailasync>используйте асинхронную (более быструю) доставку</emailasync>
+        <accounting>бухгалтерский учет</accounting>
+        <title_accounting>настройка глобальных учетных данных здесь</title_accounting>
+        <accounting_currency>монета</accounting_currency>
+        <accounting_iva_name>налоговое наименование (добавлено)</accounting_iva_name>
+        <accounting_irpf_name>налоговое наименование (вычитается)</accounting_irpf_name>
+        <accounting_value>значение по умолчанию (только если используется)</accounting_value>
+        <applications_config>приложений</applications_config>
+        <config_tabs>настройки вкладок</config_tabs>
+        <default_values>значения по умолчанию</default_values>
+        <configuracion_presupuestos>настройки бюджета</configuracion_presupuestos>
+        <configuracion_agenda>настройки повестки дня</configuracion_agenda>
+        <configuracion_incidencias>конфигурация инцидентов</configuracion_incidencias>
+        <configuracion_facturas>настройки счетов-фактур</configuracion_facturas>
+        <configuracion_gastos>расходы на конфигурирование</configuracion_gastos>
+        <show_tab_objetivos_presupuesto>показать цели</show_tab_objetivos_presupuesto>
+        <show_tab_condiciones_presupuesto>условия показа</show_tab_condiciones_presupuesto>
+        <show_tab_funcional_presupuesto>показать функциональное предложение</show_tab_funcional_presupuesto>
+        <show_tab_tecnica_presupuesto>показать техническое предложение</show_tab_tecnica_presupuesto>
+        <show_tab_info_adicional_presupuesto>показать дополнительную информацию</show_tab_info_adicional_presupuesto>
+        <show_tab_tareas_presupuesto>показать задачи</show_tab_tareas_presupuesto>
+        <show_tab_productos_presupuesto>показать продукты</show_tab_productos_presupuesto>
+        <sin_configurar>[Не настроено]</sin_configurar>
+        <filtro_grupo_usuarios_incidencias>отображение пользователей в группе в списках пользователей</filtro_grupo_usuarios_incidencias>
+        <filtro_grupo_usuarios_implicados_incidencias>вовлеченная группа</filtro_grupo_usuarios_implicados_incidencias>
+        <filtro_grupo_usuarios_asignados_incidencias>назначенная группа</filtro_grupo_usuarios_asignados_incidencias>
+    </maincfg>
+    <about>
+        <formupdate>О компании SaltOS</formupdate>
+        <copyright>Данное программное обеспечение распространяется на условиях лицензии GPL-3.0:</copyright>
+        <components>это программное обеспечение использует следующие компоненты:</components>
+        <server_base>базовый сервер:</server_base>
+        <php_plugins>Плагины PHP:</php_plugins>
+        <javascript_base>база javascript:</javascript_base>
+        <bootstrap_plugins>плагины bootstrap:</bootstrap_plugins>
+        <jquery_plugins>Плагины JQuery:</jquery_plugins>
+        <javascript_plugins>плагины javascript:</javascript_plugins>
+        <other_plugins>другие плагины:</other_plugins>
+        <server_plugins>серверные плагины:</server_plugins>
+        <vxinfo>Примечание: (*) В некоторых проектах не указана конкретная версия лицензии, которую они используют</vxinfo>
+        <license>лицензия</license>
+        <licensetitle>ниже приведен юридический текст лицензии</licensetitle>
+        <translators>переводы</translators>
+        <developers>разработчики</developers>
+        <unavailable>Контактные данные отсутствуют. Свяжитесь с разработчиком по любым вопросам или предложениям.</unavailable>
+    </about>
+    <support>
+        <formupdate>техническая поддержка</formupdate>
+        <contact>техническая поддержка</contact>
+        <subject>дело</subject>
+        <msgsendemail>в службу технической поддержки отправлено электронное письмо</msgsendemail>
+        <msgnotemailsupport>письма для технической поддержки не были выпущены</msgnotemailsupport>
+        <msgnotsubject>ни одна материя не была введена</msgnotsubject>
+        <msgnotcomments>комментарии не введены</msgnotcomments>
+    </support>
+    <home>
+        <formupdate>начало</formupdate>
+        <buscar2>Поиск по всей системе SaltOS</buscar2>
+        <buscar3>поиск только в файлах</buscar3>
+    </home>
+    <denied>
+        <title>отказано в доступе</title>
+        <short>у вас нет разрешений на выполнение этого действия</short>
+        <large>Система заблокировала запуск приложения, поскольку оно не имеет достаточных привилегий для запуска этой части приложения. Если вы считаете, что это ошибка, обратитесь к администратору приложения</large>
+    </denied>
+    <ficheros>
+        <list>список вложений</list>
+        <todaslasaplicaciones>[Все приложения]</todaslasaplicaciones>
+    </ficheros>
+    <folders>
+        <notfound>папка не найдена</notfound>
+        <todaslasaplicaciones>[Все приложения]</todaslasaplicaciones>
+        <deleteoffolder>удалить из этой папки</deleteoffolder>
+        <defaultfolder>личная папка</defaultfolder>
+    </folders>
+    <buscador>
+        <list>искатель</list>
+        <todaslasaplicaciones>[Все приложения]</todaslasaplicaciones>
+    </buscador>
+</root>

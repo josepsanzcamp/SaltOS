@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <estados>Staten</estados>
+        <agenda>Agenda en evenementen</agenda>
+        <correo>E-mail</correo>
+        <tiposevento>Soorten evenementen</tiposevento>
+        <textos>Voorgedefinieerde teksten</textos>
+        <feeds>RSS-feedlezer</feeds>
+        <favoritos>Favorieten</favoritos>
+        <gestiontipos>Soorten</gestiontipos>
+        <desc_agenda>Zet alle bezoeken en vergaderingen op de agenda</desc_agenda>
+        <desc_estados>Definieer de mogelijke toestanden van een incident, project, enz ...</desc_estados>
+        <desc_correo>Lees en verstuur hier e-mails naar uw klanten en leveranciers</desc_correo>
+        <desc_tiposevento>Definieer de soorten evenementen die u nodig heeft</desc_tiposevento>
+        <desc_textos>Maak vooraf gedefinieerde teksten voor gebruik in andere toepassingen</desc_textos>
+        <desc_feeds>Volg uw RSS- en Atom-feeds van deze applicatie</desc_feeds>
+        <desc_favoritos>Beheer uw favorieten vanaf hier</desc_favoritos>
+        <quick_correo>Mail</quick_correo>
+        <quick_agenda>Agenda</quick_agenda>
+        <quick_estados>Staten</quick_estados>
+        <quick_tiposevento>T. evenementen</quick_tiposevento>
+        <quick_textos>Teksten</quick_textos>
+        <quick_feeds>RSS</quick_feeds>
+        <quick_favoritos>Favorieten</quick_favoritos>
+    </menu>
+    <estados>
+        <list>Lijst van staten</list>
+        <create>Nieuwe staat</create>
+        <formview>Staat detail</formview>
+        <forminsert>Registratie van een nieuwe staat</forminsert>
+        <formupdate>Statuswijziging</formupdate>
+        <defaultdata>Staatsgegevens</defaultdata>
+        <activo>Actief</activo>
+    </estados>
+    <agenda>
+        <list>Lijst met evenementen</list>
+        <create>Nieuw evenement</create>
+        <formview>Evenementdetail</formview>
+        <forminsert>Registratie van een nieuw evenement</forminsert>
+        <formupdate>Event wijziging</formupdate>
+        <defaultdata>Gebeurtenisgegevens</defaultdata>
+        <otrasfechas>Andere data</otrasfechas>
+        <todoseventos>[Alle evenementen]</todoseventos>
+        <todoayer>Gebeurtenissen van gisteren</todoayer>
+        <todohoy>Evenementen van vandaag</todohoy>
+        <todomanana>Morgen's evenementen</todomanana>
+        <todosemana>Evenementen van de week</todosemana>
+        <todomes>Evenementen van de maand</todomes>
+        <todoano>Evenementen van het jaar</todoano>
+        <usersdata>Toegewezen gebruikers</usersdata>
+        <asignadoa>Toegewezen aan</asignadoa>
+        <notifydelay>Melden</notifydelay>
+        <notifysign>uur / s</notifysign>
+        <notifydstart>Startmelding ontvangen</notifydstart>
+        <notifydstop>Laatste melding ontvangen</notifydstop>
+        <notifyantes>Voorheen</notifyantes>
+        <notifydespues>Na</notifydespues>
+        <notifyprev>Melding voorafgaand aan de gebeurtenis</notifyprev>
+        <notifypost>Melding van voltooiing van evenement</notifypost>
+        <notifyclear>Kennisgevingen</notifyclear>
+        <notifytip>Duidelijke meldingen</notifytip>
+        <notifyclearok>Herstartte evenementen:</notifyclearok>
+        <notifyclearko>Geen openstaande gebeurtenissen om opnieuw op te starten</notifyclearko>
+        <calendar>Evenementen kalender</calendar>
+        <prevmonth>Vorige maand</prevmonth>
+        <currentmonth>Huidige maand</currentmonth>
+        <nextmonth>Volgende maand</nextmonth>
+        <today>Vandaag</today>
+        <yesterday>Gisteren</yesterday>
+        <tomorrow>Morgen</tomorrow>
+        <continue>Vervolg ...</continue>
+        <by>door</by>
+        <calendarinfo>Toont informatie tot nu toe:</calendarinfo>
+        <add>Evenement toevoegen</add>
+        <gcalendar>Google Agenda</gcalendar>
+        <gcalendartip>Synchroniseer evenementen tussen SaltOS en Google Agenda</gcalendartip>
+        <notgcalendaremail>Je hebt je Google Agenda-account niet ingesteld in voorkeuren</notgcalendaremail>
+        <invalidgcalendartoken>De toegangsgegevens tot uw Google Agenda-account zijn onjuist</invalidgcalendartoken>
+        <requestgcalendartoken>Klik hier om een toegangstoken te krijgen</requestgcalendartoken>
+        <insertgcalendar>SaltOS-evenementen gemaakt in Google Agenda:</insertgcalendar>
+        <updategcalendar>SaltOS-evenementen bijgewerkt op Google Agenda:</updategcalendar>
+        <insertsaltos>Google Agenda-evenementen gemaakt in SaltOS:</insertsaltos>
+        <updatesaltos>Bijgewerkte Google Agenda-evenementen in SaltOS:</updatesaltos>
+        <notinsertupdate>Er zijn geen evenementen om bij te werken</notinsertupdate>
+        <expand>Breid uit</expand>
+        <expandtip>Vouw uit om de details van alle agenda-afspraken weer te geven</expandtip>
+        <collapse>Samenvouwen</collapse>
+        <collapsetip>Vouw samen om de details van alle agenda-afspraken te verbergen</collapsetip>
+        <loadingsmall>Bezig met laden ...</loadingsmall>
+    </agenda>
+    <correo>
+        <list>Mailinglijst</list>
+        <create>Stuur nieuwe mail</create>
+        <formview>Mail detail</formview>
+        <forminsert>Stuur een nieuwe e-mail</forminsert>
+        <formupdate>Stuur een e-mail door</formupdate>
+        <defaultdata>Mail gegevens</defaultdata>
+        <from>Van</from>
+        <to>Aan</to>
+        <cc>CC</cc>
+        <bcc>BCC</bcc>
+        <subject>Zakelijk</subject>
+        <attachments>Bijlagen</attachments>
+        <message>Bericht</message>
+        <recibir>Ontvang</recibir>
+        <recibirtip>Klik hier om nieuwe e-mails te ontvangen</recibirtip>
+        <enviar>Verzenden</enviar>
+        <enviartip>Klik hier om e-mails te verzenden vanuit de outbox</enviartip>
+        <msgnotpop3email>Er is geen e-mailaccount geconfigureerd of geactiveerd</msgnotpop3email>
+        <msgnotpop3host>POP3-server is niet geconfigureerd</msgnotpop3host>
+        <msgerrorpop3email>De volgende fout is opgetreden:</msgerrorpop3email>
+        <msgnewokpop3email1>Nieuwe e-mail ontvangen in de inbox</msgnewokpop3email1>
+        <msgnewokpop3email2>Nieuwe e-mails ontvangen in de inbox</msgnewokpop3email2>
+        <msggotoemail>ga naar de mail</msggotoemail>
+        <msgnewkopop3email>Er zijn geen nieuwe e-mails</msgnewkopop3email>
+        <msgconnrefusedpop3email>Verbinding geweigerd door server</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>Kan geen verbinding maken met de server</msgconnerrorpop3email>
+        <msgopenerrorpop3email>Het bestand met het bericht is niet gevonden</msgopenerrorpop3email>
+        <msgpropietario>Alleen de eigenaar van de e-mails kan deze functies gebruiken</msgpropietario>
+        <msgnotfound>Geen geselecteerde e-mails gevonden, filter wijzigen</msgnotfound>
+        <msgnumsileidos>Ze zijn gemarkeerd als gelezen:</msgnumsileidos>
+        <msgnumsiwait>Ze zijn gemarkeerd als in behandeling:</msgnumsiwait>
+        <msgnumsispam>Ze zijn gemarkeerd als SPAM:</msgnumsispam>
+        <msgnumnoleidos>Ze zijn gemarkeerd als ongelezen:</msgnumnoleidos>
+        <msgnumnowait>Ze zijn gemarkeerd als niet in behandeling:</msgnumnowait>
+        <msgnumnospam>Ze zijn gemarkeerd als niet-SPAM:</msgnumnospam>
+        <msgnumdelete>Het volgende is verwijderd:</msgnumdelete>
+        <statenew>Nieuw</statenew>
+        <actionnew>Nieuw</actionnew>
+        <stateread>Lees</stateread>
+        <statereply>Beantwoord</statereply>
+        <stateforward>Doorgestuurd</stateforward>
+        <statewait>In afwachting</statewait>
+        <statespam>SPAM</statespam>
+        <statesent>Verzonden</statesent>
+        <statenotsent>Niet verzonden</statenotsent>
+        <stateerror>Fout</stateerror>
+        <stateall>Allemaal</stateall>
+        <todaslascuentas>[Alle accounts]</todaslascuentas>
+        <buttonsend>Verzenden</buttonsend>
+        <buttonsendreturnhere>Verzend en kom hier terug</buttonsendreturnhere>
+        <onlynew>Gewoon nieuw</onlynew>
+        <onlywait>Alleen in behandeling</onlywait>
+        <hidespam>SPAM verbergen</hidespam>
+        <withfiles>Met bijlagen</withfiles>
+        <onlyspam>Alleen SPAM</onlyspam>
+        <withoutfiles>Geen bijlagen</withoutfiles>
+        <actionwait>In afwachting</actionwait>
+        <actionspam>SPAM</actionspam>
+        <actionreply>Antwoord</actionreply>
+        <actionreplyall>Beantwoord iedereen</actionreplyall>
+        <actionforward>Vooruit</actionforward>
+        <messageid>Id-bericht</messageid>
+        <fulldata>Mail zoom</fulldata>
+        <sourcedata>E-mailbron</sourcedata>
+        <leidos>Lees</leidos>
+        <wait>In afwachting</wait>
+        <spam>SPAM</spam>
+        <borrar>Verwijderen</borrar>
+        <borrartip>Verwijder alle geselecteerde e-mails</borrartip>
+        <msgleidos>Wilt u alle geselecteerde e-mails markeren als gelezen / ongelezen?</msgleidos>
+        <msgwait>Wilt u alle geselecteerde e-mails markeren als in behandeling / niet in behandeling?</msgwait>
+        <msgspam>Wilt u alle geselecteerde e-mails markeren als SPAM / niet-SPAM?</msgspam>
+        <msgdelete2>Wil je alle geselecteerde e-mails verwijderen?</msgdelete2>
+        <msgnotsendfound>Er zijn geen berichten in behandeling om te verzenden</msgnotsendfound>
+        <msgerrorsendmail>De volgende fout is opgetreden:</msgerrorsendmail>
+        <msgtotalsendmail1>E-mail verzonden vanuit de outbox</msgtotalsendmail1>
+        <msgtotalsendmail2>E-mails verzonden vanuit de outbox</msgtotalsendmail2>
+        <stateinbox>Entree</stateinbox>
+        <stateoutbox>Vertrek</stateoutbox>
+        <onlyinbox>Alleen voorgerechten</onlyinbox>
+        <onlyoutbox>Alleen uitgaand</onlyoutbox>
+        <options>Opties</options>
+        <optionstip>Meer vermeldingsopties weergeven</optionstip>
+        <pdfoptions>PDF-opties</pdfoptions>
+        <sinsubject>(geen onderwerp)</sinsubject>
+        <msgfromkosendmail>Configuratie voor vereist Van: niet gevonden</msgfromkosendmail>
+        <msgsendoksendmail>E-mail is succesvol verzonden</msgsendoksendmail>
+        <replysubject>Re:</replysubject>
+        <replyallsubject>Re:</replyallsubject>
+        <forwardsubject>Vooruit:</forwardsubject>
+        <embeddedmessage>De # datetime #, # fromname # schreef:</embeddedmessage>
+        <actionreplytip>Om de afzender van dit bericht te beantwoorden</actionreplytip>
+        <actionreplyalltip>Om alle gebruikers van dit bericht te beantwoorden</actionreplyalltip>
+        <actionforwardtip>Om deze e-mail door te sturen naar andere gebruikers</actionforwardtip>
+        <noleidos>Ongelezen</noleidos>
+        <nowait>Niet in behandeling</nowait>
+        <nospam>Geen SPAM</nospam>
+        <today>Vandaag</today>
+        <yesterday>Gisteren</yesterday>
+        <week>Week</week>
+        <month>Maand</month>
+        <confirmreadingto>Vraag bevestiging van ontvangst aan</confirmreadingto>
+        <marcarcorreos>Markeren als</marcarcorreos>
+        <message0>Berichten</message0>
+        <message1>Bericht</message1>
+        <message2>Berichten</message2>
+        <campos>Velden</campos>
+        <allcampos>[Alle velden]</allcampos>
+        <onlyemail>Alleen in richtingen</onlyemail>
+        <onlysubject>Alleen in de kwestie</onlysubject>
+        <onlybody>Alleen in het bericht</onlybody>
+        <filtrarcorreos>Filteren op</filtrarcorreos>
+        <priority>Prioriteit</priority>
+        <priorityhigh>Hoog</priorityhigh>
+        <prioritynormal>Normaal</prioritynormal>
+        <prioritylow>Laag</prioritylow>
+        <sensitivity>Gevoeligheid</sensitivity>
+        <sensitivitynormal>Normaal</sensitivitynormal>
+        <sensitivitypersonal>Persoonlijk</sensitivitypersonal>
+        <sensitivityprivate>Privé</sensitivityprivate>
+        <sensitivityconfidential>Vertrouwelijk</sensitivityconfidential>
+        <addincidencia>Creëer incidentie</addincidencia>
+        <addincidenciatip>Maak een incident vanuit deze e-mail</addincidenciatip>
+        <addincidenciamsg>Wil je een incident creëren vanuit deze e-mail?</addincidenciamsg>
+        <addincidenciaok>Het incident is gemaakt met de code:</addincidenciaok>
+        <notsupportdefined>E-mailaccount voor ondersteuning niet gedefinieerd</notsupportdefined>
+        <notsupportfound>Deze e-mail bevat niet het e-mailaccount voor ondersteuning</notsupportfound>
+        <incidenciaexists>Dit incident bestaat al en heeft de code:</incidenciaexists>
+        <interrorsendmail>Deze e-mail is niet verzonden vanwege een interne fout</interrorsendmail>
+    </correo>
+    <tiposevento>
+        <list>Lijst met soorten evenementen</list>
+        <create>Nieuw type evenement</create>
+        <formview>Details van gebeurtenistype</formview>
+        <forminsert>Registratie van een nieuw type evenement</forminsert>
+        <formupdate>Het gebeurtenistype wijzigen</formupdate>
+        <defaultdata>Gegevens over het gebeurtenistype</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>Lijst met voorgedefinieerde teksten</list>
+        <publico>Openbaar</publico>
+        <publico_desc>Iedereen kan deze voorgedefinieerde tekst gebruiken</publico_desc>
+        <create>Nieuwe voorgedefinieerde tekst</create>
+        <formview>Voorgedefinieerd tekstdetail</formview>
+        <forminsert>Een nieuwe vooraf gedefinieerde tekst toevoegen</forminsert>
+        <formupdate>De vooraf gedefinieerde tekst wijzigen</formupdate>
+        <defaultdata>Voorgedefinieerde tekstgegevens</defaultdata>
+        <sinaplicacion>[Zonder aanvraag]</sinaplicacion>
+    </textos>
+    <feeds>
+        <list>Lijst met RSS-feeds</list>
+        <msgnewfeedsok1>Nieuwe post gedownload</msgnewfeedsok1>
+        <msgnewfeedsok2>Nieuwe gedownloade berichten</msgnewfeedsok2>
+        <msgnewfeedsko>Geen nieuwe berichten gevonden</msgnewfeedsko>
+        <msgmodifiedfeedsok1>Bijgewerkte post</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2>Bijgewerkte berichten</msgmodifiedfeedsok2>
+        <msgnotfeeds>Er is geen RSS-feed geconfigureerd of geactiveerd</msgnotfeeds>
+        <feed>RSS-feed</feed>
+        <title>Titel</title>
+        <pubdate>Pub datum</pubdate>
+        <recibir>Ontvang</recibir>
+        <recibirtip>Klik hier om nieuwe berichten te ontvangen</recibirtip>
+        <todoslosfeeds>[Alle RSS-feeds]</todoslosfeeds>
+        <defaultdata>Details plaatsen</defaultdata>
+        <fulldata>Zoom plaatsen</fulldata>
+        <actionwait>In afwachting</actionwait>
+        <statenew>Nieuw</statenew>
+        <actionnew>Nieuw</actionnew>
+        <statemodified>Gewijzigd</statemodified>
+        <statewait>In afwachting</statewait>
+        <stateread>Lees</stateread>
+        <actionforward>Vooruit</actionforward>
+        <actionforwardtip>Om dit bericht per e-mail door te sturen</actionforwardtip>
+        <formview>Details plaatsen</formview>
+        <msggotofeeds>ga naar RSS-feeds</msggotofeeds>
+        <onlynew>Gewoon nieuw</onlynew>
+        <onlywait>Alleen in behandeling</onlywait>
+        <options>Opties</options>
+        <optionstip>Meer vermeldingsopties weergeven</optionstip>
+        <pdfoptions>PDF-opties</pdfoptions>
+        <stateall>Allemaal</stateall>
+        <today>Vandaag</today>
+        <yesterday>Gisteren</yesterday>
+        <week>Week</week>
+        <month>Maand</month>
+        <marcarfeeds>Markeren als</marcarfeeds>
+        <leidos>Lees</leidos>
+        <wait>In afwachting</wait>
+        <borrar>Verwijderen</borrar>
+        <borrartip>Verwijder alle geselecteerde berichten</borrartip>
+        <noleidos>Ongelezen</noleidos>
+        <nowait>Niet in behandeling</nowait>
+        <msgleidos>Wil je alle geselecteerde berichten markeren als gelezen / ongelezen?</msgleidos>
+        <msgwait>Wil je alle geselecteerde berichten markeren als in behandeling / niet in behandeling?</msgwait>
+        <msgdelete2>Wil je alle geselecteerde berichten verwijderen?</msgdelete2>
+        <msgpropietario>Alleen de eigenaar van de berichten kan deze functies gebruiken</msgpropietario>
+        <msgnotfound>Geen geselecteerde berichten gevonden, pas het filter aan</msgnotfound>
+        <msgnumsileidos>Ze zijn gemarkeerd als gelezen:</msgnumsileidos>
+        <msgnumsiwait>Ze zijn gemarkeerd als in behandeling:</msgnumsiwait>
+        <msgnumnoleidos>Ze zijn gemarkeerd als ongelezen:</msgnumnoleidos>
+        <msgnumnowait>Ze zijn gemarkeerd als niet in behandeling:</msgnumnowait>
+        <msgnumdelete>Het volgende is verwijderd:</msgnumdelete>
+        <message0>Berichten</message0>
+        <message1>Bericht</message1>
+        <message2>Berichten</message2>
+        <msgerrorfeed>Er is een fout opgetreden met de volgende feed:</msgerrorfeed>
+        <sintitle>(zonder titel)</sintitle>
+        <post>RSS-bericht</post>
+        <filtrarfeeds>Filteren op</filtrarfeeds>
+        <actioncool>Interessant</actioncool>
+        <statecool>Interessant</statecool>
+        <onlycool>Gewoon interessant</onlycool>
+        <cool>Interessant</cool>
+        <nocool>Niet interessant</nocool>
+        <msgcool>Wil je alle geselecteerde berichten markeren als interessant / niet interessant?</msgcool>
+        <msgnumsicool>Ze zijn gemarkeerd als interessant:</msgnumsicool>
+        <msgnumnocool>Ze zijn gemarkeerd als niet interessant:</msgnumnocool>
+        <actionfavoritos>Toevoegen aan favorieten</actionfavoritos>
+    </feeds>
+    <favoritos>
+        <list>Favorietenlijst</list>
+        <create>Nieuwe favoriet</create>
+        <url>URL</url>
+        <bookmarkexists>De url die u probeert op te slaan, bestaat al als favoriet.</bookmarkexists>
+        <invalidurl>De url is niet geldig, controleer het webadres:</invalidurl>
+        <bookmarkadded>De url is succesvol toegevoegd aan favorieten</bookmarkadded>
+        <previews>Voorvertoningen</previews>
+    </favoritos>
+</root>

@@ -91,11 +91,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <env_path>ПУТЬ</env_path>
         <env_lang>ДАВНЫМ-ДАВНО</env_lang>
         <applications>приложений</applications>
-        <select_layer>выберите профиль</select_layer>
-        <selected_layer>выбранный профиль</selected_layer>
-        <layer_all>все приложения</layer_all>
-        <layer_personal>приложения для личного пользования</layer_personal>
-        <select_apps>выберите приложения</select_apps>
-        <selected_apps>избранные приложения</selected_apps>
+        <select_apps>выберите профиль</select_apps>
+        <selected_apps>выбранный профиль</selected_apps>
+        <apps_all>все приложения</apps_all>
+        <apps_01_core>минимальные системные приложения</apps_01_core>
+        <apps_02_personal>приложения для личного пользования</apps_02_personal>
+        <apps_03_freelance>платежные приложения</apps_03_freelance>
+        <apps_04_projects>приложения для управления проектами</apps_04_projects>
+        <select_apps2>выберите приложения</select_apps2>
+        <selected_apps2>избранные приложения</selected_apps2>
     </common>
 </root>

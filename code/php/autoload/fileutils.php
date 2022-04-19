@@ -230,36 +230,6 @@ function glob_protected($pattern)
     return is_array($array) ? $array : array();
 }
 
-function find_files($dir, $ext = "")
-{
-    $files = glob("${dir}/*");
-    $result = array();
-    foreach ($files as $file) {
-        if (is_dir($file)) {
-            $result = array_merge($result, find_files($file));
-        } elseif (is_file($file)) {
-            if (!$ext || extension($file) == $ext) {
-                $result[] = $file;
-            }
-        } else {
-            show_php_error(array("phperror" => "Unknown type of archive for '${file}'"));
-        }
-    }
-    return $result;
-}
-
-function fix_file($file)
-{
-    if (strpos($file, " ") !== false) {
-        $file2 = get_cache_file($file);
-        if (!file_exists($file2)) {
-            symlink(realpath($file), $file2);
-        }
-        $file = $file2;
-    }
-    return $file;
-}
-
 function fsockopen_protected($hostname, $port, &$errno = 0, &$errstr = "", $timeout = null)
 {
     if ($timeout == null) {
@@ -309,4 +279,16 @@ function chmod_protected($file, $mode)
     if (fileperms($file) & 0777 != $mode) {
         chmod($file, $mode);
     }
+}
+
+function detect_app_file($file)
+{
+    $files = array_merge(glob($file), glob("apps/*/${file}"), array($file));
+    return $files[0];
+}
+
+function detect_apps_files($file)
+{
+    $files = array_merge(glob($file), glob("apps/*/${file}"));
+    return $files;
 }

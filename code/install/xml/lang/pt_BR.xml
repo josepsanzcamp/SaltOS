@@ -91,11 +91,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <env_path>PATH</env_path>
         <env_lang>LANG</env_lang>
         <applications>Formulários</applications>
-        <select_layer>Selecione a camada</select_layer>
-        <selected_layer>Camada selecionada</selected_layer>
-        <layer_all>Todas as aplicações</layer_all>
-        <layer_personal>Aplicações pessoais</layer_personal>
-        <select_apps>Selecione os aplicativos</select_apps>
-        <selected_apps>Aplicativos selecionados</selected_apps>
+        <select_apps>Selecione a camada</select_apps>
+        <selected_apps>Camada selecionada</selected_apps>
+        <apps_all>Todas as aplicações</apps_all>
+        <apps_01_core>Aplicações mínimas do sistema</apps_01_core>
+        <apps_02_personal>Aplicativos para uso pessoal</apps_02_personal>
+        <apps_03_freelance>Aplicações de faturamento</apps_03_freelance>
+        <apps_04_projects>Aplicações para gerenciamento de projetos</apps_04_projects>
+        <select_apps2>Selecione os aplicativos</select_apps2>
+        <selected_apps2>Aplicativos selecionados</selected_apps2>
     </common>
 </root>

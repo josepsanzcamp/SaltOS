@@ -91,11 +91,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <env_path>PATH</env_path>
         <env_lang>LANG</env_lang>
         <applications>Sovellukset</applications>
-        <select_layer>Valitse profiili</select_layer>
-        <selected_layer>Valittu profiili</selected_layer>
-        <layer_all>Kaikki sovellukset</layer_all>
-        <layer_personal>Henkilökohtaiseen käyttöön tarkoitetut sovellukset</layer_personal>
-        <select_apps>Valitse sovellukset</select_apps>
-        <selected_apps>Valitut sovellukset</selected_apps>
+        <select_apps>Valitse profiili</select_apps>
+        <selected_apps>Valittu profiili</selected_apps>
+        <apps_all>Kaikki sovellukset</apps_all>
+        <apps_01_core>Minimaaliset järjestelmäsovellukset</apps_01_core>
+        <apps_02_personal>Henkilökohtaiseen käyttöön tarkoitetut sovellukset</apps_02_personal>
+        <apps_03_freelance>Laskutussovellukset</apps_03_freelance>
+        <apps_04_projects>Projektinhallintaa koskevat hakemukset</apps_04_projects>
+        <select_apps2>Valitse sovellukset</select_apps2>
+        <selected_apps2>Valitut sovellukset</selected_apps2>
     </common>
 </root>

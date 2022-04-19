@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <tbl_aplicaciones>
+        <row>
+            <id>12</id>
+            <codigo>estados</codigo>
+            <nombre>Estados</nombre>
+            <tabla>tbl_estados</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>17</id>
+            <codigo>agenda</codigo>
+            <nombre>Agenda</nombre>
+            <tabla>tbl_agenda</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>27</id>
+            <codigo>correo</codigo>
+            <nombre>Correo</nombre>
+            <tabla>tbl_correo</tabla>
+            <campo>"CONCAT(de,' - ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END,' (',TRIM(CONCAT(CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent","correo")." ' ELSE '' END,CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror","correo")." ' END,CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").") ' ELSE '' END,CASE state_new WHEN 1 THEN '".LANG_ESCAPE("statenew","correo")." ' ELSE '' END,CASE state_reply WHEN 1 THEN '".LANG_ESCAPE("statereply","correo")." ' ELSE '' END,CASE state_forward WHEN 1 THEN '".LANG_ESCAPE("stateforward","correo")." ' ELSE '' END,CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait","correo")." ' ELSE '' END,CASE state_spam WHEN 1 THEN '".LANG_ESCAPE("statespam","correo")." ' ELSE '' END,CASE priority WHEN -1 THEN '".LANG_ESCAPE("prioritylow","correo")." ' WHEN 1 THEN '".LANG_ESCAPE("priorityhigh","correo")." ' ELSE '' END,CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal","correo")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate","correo")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential","correo")." ' ELSE '' END,CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread","correo")." ' ELSE '' END)),')')"</campo>
+            <subtablas>tbl_correo_a(id_correo)</subtablas>
+        </row>
+        <row>
+            <id>36</id>
+            <codigo>tiposevento</codigo>
+            <nombre>Tipos de evento</nombre>
+            <tabla>tbl_tiposevento</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>37</id>
+            <codigo>textos</codigo>
+            <nombre>Textos predefinidos</nombre>
+            <tabla>tbl_textos</tabla>
+            <campo>nombre</campo>
+        </row>
+        <row>
+            <id>39</id>
+            <codigo>feeds</codigo>
+            <nombre>Feeds</nombre>
+            <tabla>tbl_feeds</tabla>
+            <campo>"CONCAT((SELECT title FROM tbl_usuarios_f WHERE tbl_usuarios_f.id=id_feed),' - ',title,' (',TRIM(CONCAT(CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew","feeds")." ' ELSE '' END,CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified","feeds")." ' ELSE '' END,CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait","feeds")." ' ELSE '' END,CASE state_cool WHEN 1 THEN '".LANG_ESCAPE("statecool","feeds")." ' ELSE '' END,CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN '".LANG_ESCAPE("stateread","feeds")." ' ELSE '' END)),')')"</campo>
+        </row>
+        <row>
+            <id>42</id>
+            <codigo>favoritos</codigo>
+            <nombre>Favoritos</nombre>
+            <tabla>tbl_favoritos</tabla>
+            <campo>CONCAT(nombre,' - ',url)</campo>
+        </row>
+    </tbl_aplicaciones>
+    <tbl_aplicaciones_p>
+        <row>
+            <id_aplicacion>12,17,36,37</id_aplicacion>
+            <id_permiso>10,3,1,8,4,5,11,12,13,14,2,9,6,7</id_permiso>
+        </row>
+        <row>
+            <id_aplicacion>27</id_aplicacion>
+            <id_permiso>10,3,1,8,5,11,12,14,2,9,7</id_permiso>
+        </row>
+        <row>
+            <id_aplicacion>39</id_aplicacion>
+            <id_permiso>10,1,8,5,11,12,14,2,9,7</id_permiso>
+        </row>
+        <row>
+            <id_aplicacion>42</id_aplicacion>
+            <id_permiso>10,3,1,11,2,5,14,7</id_permiso>
+        </row>
+    </tbl_aplicaciones_p>
+</root>

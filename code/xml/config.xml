@@ -120,8 +120,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <cachegctimeout>86400</cachegctimeout><!-- in seconds, 86400 is 1 day -->
         <cachegcprobability>1</cachegcprobability>
         <cachegcdivisor>100</cachegcdivisor>
-        <usecsscache>true</usecsscache>
-        <usejscache>true</usejscache>
         <useimginline>true</useimginline>
     </cache>
     <commands>

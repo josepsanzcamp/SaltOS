@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <estados>Estados</estados>
+        <agenda>Agenda e eventos</agenda>
+        <correo>Mensagem electrónica</correo>
+        <tiposevento>Tipos de eventos</tiposevento>
+        <textos>Textos predefinidos</textos>
+        <feeds>Leitor de feeds RSS</feeds>
+        <favoritos>Favoritos</favoritos>
+        <gestiontipos>Tipos</gestiontipos>
+        <desc_agenda>Anote na agenda todas as visitas e reuniões</desc_agenda>
+        <desc_estados>Defina os estados possiveas de incidencia, projecto, etc...</desc_estados>
+        <desc_correo>Leia e envie mensagem a partir daqui para os seus clientes e fornecedores</desc_correo>
+        <desc_tiposevento>Defina os tipos de eventos que necesite</desc_tiposevento>
+        <desc_textos>Crie textos predefinidos para usa-los en outras aplicações</desc_textos>
+        <desc_feeds>Siga os seus feeds RSS e Atom a partir desta aplicação</desc_feeds>
+        <desc_favoritos>Gerenciamento de favoritos desde aqui</desc_favoritos>
+        <quick_correo>Mensagem</quick_correo>
+        <quick_agenda>Agenda</quick_agenda>
+        <quick_estados>Estados</quick_estados>
+        <quick_tiposevento>T.eventos</quick_tiposevento>
+        <quick_textos>Textos</quick_textos>
+        <quick_feeds>RSS</quick_feeds>
+        <quick_favoritos>Favoritos</quick_favoritos>
+    </menu>
+    <estados>
+        <list>Lista de estados</list>
+        <create>Novo estado</create>
+        <formview>Detalhe do estado</formview>
+        <forminsert>Inserir novo estado</forminsert>
+        <formupdate>Modificar o estado</formupdate>
+        <defaultdata>Dados do estado</defaultdata>
+        <activo>Activo</activo>
+    </estados>
+    <agenda>
+        <list>Lista de eventos</list>
+        <create>Novo evento</create>
+        <formview>Detalhe do evento</formview>
+        <forminsert>Inserir novo evento</forminsert>
+        <formupdate>Modificar evento</formupdate>
+        <defaultdata>Dados do evento</defaultdata>
+        <otrasfechas>Outras datas</otrasfechas>
+        <todoseventos>[Todos los eventos]</todoseventos>
+        <todoayer>Eventos de ontem</todoayer>
+        <todohoy>Eventos de hoje</todohoy>
+        <todomanana>Eventos de amanha</todomanana>
+        <todosemana>Eventos da semana</todosemana>
+        <todomes>Eventos do mes</todomes>
+        <todoano>Eventos do ano</todoano>
+        <usersdata>Utilizadores assignados</usersdata>
+        <asignadoa>Assignado a</asignadoa>
+        <notifydelay>Notificar</notifydelay>
+        <notifysign>hora/s</notifysign>
+        <notifydstart>Notificacao de inicio recibida</notifydstart>
+        <notifydstop>Notificacao de final recibida</notifydstop>
+        <notifyantes>Antes</notifyantes>
+        <notifydespues>Depois</notifydespues>
+        <notifyprev>Notificacao previa ao evento</notifyprev>
+        <notifypost>Notificacao de evento finalizado</notifypost>
+        <notifyclear>Notificacoes</notifyclear>
+        <notifytip>Limpar as notificacoes</notifytip>
+        <notifyclearok>Eventos reiniciados:</notifyclearok>
+        <notifyclearko>Neo foram encontrados eventos pendentes para reiniciar</notifyclearko>
+        <calendar>Calendario de eventos</calendar>
+        <prevmonth>Mes anterior</prevmonth>
+        <currentmonth>Mes actual</currentmonth>
+        <nextmonth>Mes siguinte</nextmonth>
+        <today>Hoje</today>
+        <yesterday>Ontem</yesterday>
+        <tomorrow>Amanha</tomorrow>
+        <continue>Cont...</continue>
+        <by>por</by>
+        <calendarinfo>Mostrando informacao a data:</calendarinfo>
+        <add>Inserir evento</add>
+        <gcalendar>Calendario do Google</gcalendar>
+        <gcalendartip>Sincronizar eventos entre o SaltOS e o Calendario do Google</gcalendartip>
+        <notgcalendaremail>Não configurou a sua conta do Calendario do Google nas preferancias</notgcalendaremail>
+        <invalidgcalendartoken>Os dados de acceso a sua conta do Calendario do Google estao incorrectos</invalidgcalendartoken>
+        <requestgcalendartoken>Clique aqui para obter um token de acesso</requestgcalendartoken>
+        <insertgcalendar>Eventos de SaltOS criados Não Calendario do Google:</insertgcalendar>
+        <updategcalendar>Eventos de SaltOS actualizados Não Calendario do Google:</updategcalendar>
+        <insertsaltos>Eventos de Calendario do Google criados Não SaltOS:</insertsaltos>
+        <updatesaltos>Eventos de Calendario do Google actualizados Não SaltOS:</updatesaltos>
+        <notinsertupdate>Não existem eventos a actualizar</notinsertupdate>
+        <expand>Expandir</expand>
+        <expandtip>Expandir para mostrar o Detalhe de todos os eventos do calendario</expandtip>
+        <collapse>Contrair</collapse>
+        <collapsetip>Contrair para ocultar o Detalhe de todos os eventos do calendario</collapsetip>
+        <loadingsmall>Carregando...</loadingsmall>
+    </agenda>
+    <correo>
+        <list>Lista de mensagens</list>
+        <create>Criar novo email</create>
+        <formview>Detalhe de email</formview>
+        <forminsert>Enviar novo email</forminsert>
+        <formupdate>Reenviar email</formupdate>
+        <defaultdata>Dados do email</defaultdata>
+        <from>De</from>
+        <to>Para</to>
+        <cc>CC</cc>
+        <bcc>BCC</bcc>
+        <subject>Assunto</subject>
+        <attachments>anexos</attachments>
+        <message>Mensagem</message>
+        <recibir>Receber</recibir>
+        <recibirtip>Carregue aqui para receber novos mensagens</recibirtip>
+        <enviar>Enviar</enviar>
+        <enviartip>Carregue aqui para enviar os emailas da caixa de saada</enviartip>
+        <msgnotpop3email>Não existe nenhuma conta de mensagens configurada ou activada</msgnotpop3email>
+        <msgnotpop3host>Não foi configurado o servidor POP3</msgnotpop3host>
+        <msgerrorpop3email>Ocorreu o seguinte erro: </msgerrorpop3email>
+        <msgnewokpop3email1> nova  mensagem recebido ma caixa de entrada</msgnewokpop3email1>
+        <msgnewokpop3email2> novas  mensagens recebidas na caixa de entrada</msgnewokpop3email2>
+        <msggotoemail>ir para mensagem</msggotoemail>
+        <msgnewkopop3email>Não ha novas mensagens</msgnewkopop3email>
+        <msgconnrefusedpop3email>Ligação ao servidor imcompleta</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>Não a possivel ligar ao servidor</msgconnerrorpop3email>
+        <msgopenerrorpop3email>Não foi encontrado o ficheiro que contam a mensagem</msgopenerrorpop3email>
+        <msgpropietario>Sóo propietario dos mensagens pode utilizar os seur serviaos</msgpropietario>
+        <msgnotfound>Não foram encontrados mensagens com os critario selecionados, modifique o filtro</msgnotfound>
+        <msgnumsileidos>Marcados como lidos: </msgnumsileidos>
+        <msgnumsiwait>Marcados como pendentes: </msgnumsiwait>
+        <msgnumsispam>Marcado como Lixo - SPAM: </msgnumsispam>
+        <msgnumnoleidos>Marcados como Não lidos: </msgnumnoleidos>
+        <msgnumnowait>Marcados como Não pendentes: </msgnumnowait>
+        <msgnumnospam>Marcados como Não a Lixo - SPAM: </msgnumnospam>
+        <msgnumdelete>Apagados: </msgnumdelete>
+        <statenew>Novo</statenew>
+        <actionnew>Novo</actionnew>
+        <stateread>Lido</stateread>
+        <statereply>Respondido</statereply>
+        <stateforward>Reenviado</stateforward>
+        <statewait>Pendente</statewait>
+        <statespam>SPAM</statespam>
+        <statesent>Enviado</statesent>
+        <statenotsent>Não enviado</statenotsent>
+        <stateerror>Erro</stateerror>
+        <stateall>Tudo</stateall>
+        <todaslascuentas>[Todas as contas]</todaslascuentas>
+        <buttonsend>Enviar</buttonsend>
+        <buttonsendreturnhere>Enviar e voltar aqui</buttonsendreturnhere>
+        <onlynew>Sónovos</onlynew>
+        <onlywait>Sópendentes</onlywait>
+        <hidespam>Ocultar Lixo - SPAM</hidespam>
+        <withfiles>Com anexos</withfiles>
+        <onlyspam>SóLixo - SPAM</onlyspam>
+        <withoutfiles>Sem anexos</withoutfiles>
+        <actionwait>Pendente</actionwait>
+        <actionspam>Lixo - SPAM</actionspam>
+        <actionreply>Responder</actionreply>
+        <actionreplyall>Resp. a todos</actionreplyall>
+        <actionforward>Reenviar</actionforward>
+        <messageid>ID da mensagem</messageid>
+        <fulldata>Zoom do mensagem</fulldata>
+        <sourcedata>Fontes do mensagem</sourcedata>
+        <leidos>Lidos</leidos>
+        <wait>Pendente</wait>
+        <spam>Lixo - SPAM</spam>
+        <borrar>Apagar</borrar>
+        <borrartip>Apagar todas as mensagens selecionadas</borrartip>
+        <msgleidos>Deseja marcar como lidos / Não leidos todas as mensagens selecionadas?</msgleidos>
+        <msgwait>Deseja marcar como pendentes / Não pendentes todas as mensagens selecionadas?</msgwait>
+        <msgspam>Deseja marcar como SPAM / Não SPAM todas as mensagens selecionadas?</msgspam>
+        <msgdelete2>Deseja eliminar todas as mensagens selecionadas?</msgdelete2>
+        <msgnotsendfound>Não ha mensagens pendentes a enviar</msgnotsendfound>
+        <msgerrorsendmail>Ocorreu o seguinte erro: </msgerrorsendmail>
+        <msgtotalsendmail1> mensagem enviado de la bandeja de salida</msgtotalsendmail1>
+        <msgtotalsendmail2> mensagens enviados de la bandeja de salida</msgtotalsendmail2>
+        <stateinbox>Entrada</stateinbox>
+        <stateoutbox>Salida</stateoutbox>
+        <onlyinbox>Sóentradas</onlyinbox>
+        <onlyoutbox>Sósaadas</onlyoutbox>
+        <options>Opções</options>
+        <optionstip>Mostrar mais opções da Lista</optionstip>
+        <pdfoptions>Opções de PDF</pdfoptions>
+        <sinsubject>(sem assunto)</sinsubject>
+        <msgfromkosendmail>Não foi encontrada a configuração para o From: requerido</msgfromkosendmail>
+        <msgsendoksendmail>A mensagem foi enviada com sucesso</msgsendoksendmail>
+        <replysubject>Re: </replysubject>
+        <replyallsubject>Re: </replyallsubject>
+        <forwardsubject>Fwd: </forwardsubject>
+        <embeddedmessage>A #datetime#, #fromname# escreveu:</embeddedmessage>
+        <actionreplytip>Para responder ao remetente desta mensajem</actionreplytip>
+        <actionreplyalltip>Para responder a todos os utilizadores desta mensajem</actionreplyalltip>
+        <actionforwardtip>Para reenviar esta mensagem a outros Utilizadors</actionforwardtip>
+        <noleidos>Não lidos</noleidos>
+        <nowait>Não pendentes</nowait>
+        <nospam>Não a Lixo - SPAM</nospam>
+        <today>Hoje</today>
+        <yesterday>Ontem</yesterday>
+        <week>Semana</week>
+        <month>Mas</month>
+        <confirmreadingto>Solicitar confirmação de recepaao da mensagem</confirmreadingto>
+        <marcarcorreos>Marcar como</marcarcorreos>
+        <message0> mensagens</message0>
+        <message1> mensajem</message1>
+        <message2> mensagens</message2>
+        <campos>Campos</campos>
+        <allcampos>[Todos os campos]</allcampos>
+        <onlyemail>Sóos endereaos</onlyemail>
+        <onlysubject>Sóo assunto</onlysubject>
+        <onlybody>Sóa mensajem</onlybody>
+        <filtrarcorreos>Filtrar por</filtrarcorreos>
+        <priority>Prioridade</priority>
+        <priorityhigh>Alto</priorityhigh>
+        <prioritynormal>Normal</prioritynormal>
+        <prioritylow>Baixo</prioritylow>
+        <sensitivity>Sensibilidade</sensitivity>
+        <sensitivitynormal>Normal</sensitivitynormal>
+        <sensitivitypersonal>Pessoal</sensitivitypersonal>
+        <sensitivityprivate>Privado</sensitivityprivate>
+        <sensitivityconfidential>Confidencial</sensitivityconfidential>
+        <addincidencia>Adicionar bug</addincidencia>
+        <addincidenciatip>Crie um novo bug usando este email como relatório inicial</addincidenciatip>
+        <addincidenciamsg>Deseja criar um novo bug usando este email como relatório inicial?</addincidenciamsg>
+        <addincidenciaok>Bug criado com o código:</addincidenciaok>
+        <notsupportdefined>Conta de email de suporte não definida no SaltOS</notsupportdefined>
+        <notsupportfound>Este email não contém a conta de email de suporte</notsupportfound>
+        <incidenciaexists>Erro encontrado com o código:</incidenciaexists>
+        <interrorsendmail>Este email não foi enviado por um erro interno</interrorsendmail>
+    </correo>
+    <tiposevento>
+        <list>Lista de tipos de eventos</list>
+        <create>Novo tipo de evento</create>
+        <formview>Detalhe do tipo de evento</formview>
+        <forminsert>Inserir novo tipo de evento</forminsert>
+        <formupdate>Modificar tipo de evento</formupdate>
+        <defaultdata>Dados do tipo de evento</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>Lista de textos predefinidos</list>
+        <publico>Pablico</publico>
+        <publico_desc>Todos podem usar este texto predefinido</publico_desc>
+        <create>Novo texto predefinido</create>
+        <formview>Detalhe do texto predefinido</formview>
+        <forminsert>Inserir novo texto predefinido</forminsert>
+        <formupdate>Modificar texto predefinido</formupdate>
+        <defaultdata>Dados do texto predefinido</defaultdata>
+        <sinaplicacion>[Sem aplicação]</sinaplicacion>
+    </textos>
+    <feeds>
+        <list>Lista de feeds RSS</list>
+        <msgnewfeedsok1> novo post descarregado</msgnewfeedsok1>
+        <msgnewfeedsok2> novos posts descarregados</msgnewfeedsok2>
+        <msgnewfeedsko>Não foram encontrados novos posts</msgnewfeedsko>
+        <msgmodifiedfeedsok1> post actualizado</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2> posts actualizados</msgmodifiedfeedsok2>
+        <msgnotfeeds>Não ha nenhum feed RSS configurado o activado</msgnotfeeds>
+        <feed>Feed RSS</feed>
+        <title>Tatulo</title>
+        <pubdate>data pub.</pubdate>
+        <recibir>Receber</recibir>
+        <recibirtip>Carregue aqui para receber novos posts</recibirtip>
+        <todoslosfeeds>[Todos os feeds RSS]</todoslosfeeds>
+        <defaultdata>Detalhe do post</defaultdata>
+        <fulldata>Zoom do post</fulldata>
+        <actionwait>Pendente</actionwait>
+        <statenew>Novo</statenew>
+        <actionnew>Novo</actionnew>
+        <statemodified>Modificado</statemodified>
+        <statewait>Pendente</statewait>
+        <stateread>Lido</stateread>
+        <actionforward>Reenviar</actionforward>
+        <actionforwardtip>Para reenviar este post por mensagem electrónico</actionforwardtip>
+        <formview>Detalhe do post</formview>
+        <msggotofeeds>ir aos feeds RSS</msggotofeeds>
+        <onlynew>Sónovos</onlynew>
+        <onlywait>Só pendentes</onlywait>
+        <options>Opções</options>
+        <optionstip>Mostrar mais opções da Lista</optionstip>
+        <pdfoptions>Opções de PDF</pdfoptions>
+        <stateall>Tudo</stateall>
+        <today>Hoje</today>
+        <yesterday>Ontem</yesterday>
+        <week>Semana</week>
+        <month>Mas</month>
+        <marcarfeeds>Marcar como</marcarfeeds>
+        <leidos>Lidos</leidos>
+        <wait>Pendente</wait>
+        <borrar>Apagar</borrar>
+        <borrartip>Apagar todos os posts selecionados</borrartip>
+        <noleidos>Não lidos</noleidos>
+        <nowait>Não pendentes</nowait>
+        <msgleidos>Deseja marcar como lidos / Não lidos todos os posts selecionados?</msgleidos>
+        <msgwait>Deseja marcar como pendentes / Não pendentes todos os posts selecionados?</msgwait>
+        <msgdelete2>Deseja eliminar todos os posts selecionados?</msgdelete2>
+        <msgpropietario>Só o propietario dos posts pode uSór estes serviaos</msgpropietario>
+        <msgnotfound>Não foram encontrados posts selecionados, modifique o filtro</msgnotfound>
+        <msgnumsileidos>Marcado como lidos: </msgnumsileidos>
+        <msgnumsiwait>Marcado como pendentes: </msgnumsiwait>
+        <msgnumnoleidos>Marcado como Não lidos: </msgnumnoleidos>
+        <msgnumnowait>Marcado como Não pendentes: </msgnumnowait>
+        <msgnumdelete>Apagados: </msgnumdelete>
+        <message0> mensagens</message0>
+        <message1> mensajem</message1>
+        <message2> mensagens</message2>
+        <msgerrorfeed>Ocorreu um erro com o seguinte feed: </msgerrorfeed>
+        <sintitle>(sem tatulo)</sintitle>
+        <post>Post RSS</post>
+        <filtrarfeeds>Filtrar por</filtrarfeeds>
+        <actioncool>Interessante</actioncool>
+        <statecool>Interessante</statecool>
+        <onlycool>Somente interessante</onlycool>
+        <cool>Interessante</cool>
+        <nocool>Desinteressante</nocool>
+        <msgcool>Deseja marcar como interessante / desinteressante todas as mensagens selecionadas?</msgcool>
+        <msgnumsicool>Foram marcados como interessante: </msgnumsicool>
+        <msgnumnocool>Foram marcados como desinteressante: </msgnumnocool>
+        <actionfavoritos>Adicionar aos favoritos</actionfavoritos>
+    </feeds>
+    <favoritos>
+        <list>Listado de favoritos</list>
+        <create>Nuevo favorito</create>
+        <url>URL</url>
+        <bookmarkexists>A url que inteta salva você existe como favorito.</bookmarkexists>
+        <invalidurl>A url não é válida, verifique a direção da web:</invalidurl>
+        <bookmarkadded>O url foi adicionado com sucesso aos favoritos</bookmarkadded>
+        <previews>Show more     visualizações</previews>
+    </favoritos>
+</root>

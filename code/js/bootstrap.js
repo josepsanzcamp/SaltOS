@@ -91,26 +91,24 @@ saltos.check_required = function () {
     var field = null;
     var label = "";
     $("[isrequired=true]").each(function () {
+        // CHECK FOR VISIBILITY
+        if (!$(this).is(":visible")) {
+            return;
+        }
+        // CONTINUE
         var valor = $(this).val();
-        var campo = this;
         if ($(this).is("select")) {
             if (valor == "0") {
                 valor = "";
             }
-            campo = $(this).next().get(0);
         }
-        // CHECK FOR VISIBILITY
-        if (!$(campo).is(":visible")) {
-            return;
-        }
-        // CONTINUE
         if (!valor) {
-            $(campo).addClass("ui-state-error");
+            $(this).addClass("ui-state-error");
         } else {
-            $(campo).removeClass("ui-state-error");
+            $(this).removeClass("ui-state-error");
         }
         if (!valor && !field) {
-            field = campo;
+            field = this;
             label = $(this).attr("labeled");
         }
     });
@@ -795,6 +793,7 @@ saltos.dialog = function (title,message,buttons) {
     $(dialog2).dialog("option","buttons",buttons);
     $(dialog2).dialog("option","width","300px");
     $(dialog2).dialog("option","height","auto");
+    $(dialog2).dialog("option","minHeight","none");
     // TRICK TO HIDE TOOLTIPS
     $(dialog2).dialog("option","open",function (event,ui) {
         saltos.hide_tooltips();
@@ -941,7 +940,8 @@ saltos.isloadingcontent = function () {
 
 /* HELPERS DEL SALTOS ORIGINAL */
 saltos.toggle_menu = function () {
-    if ($(".ui-layout-west").is(":visible")) {
+    var obj = $(".ui-layout-west");
+    if ($(obj).is(":visible")) {
         $(".ui-layout-west").hide();
         $(".ui-layout-center").removeClass("col-lg-10");
         $(".ui-layout-center").addClass("col-lg-12");
@@ -1039,13 +1039,15 @@ saltos.make_hovers = function () {
             });
         }
         saltos.make_tables_pos = pos;
-    }).on("click",master,function (e) {
+    }).on("click",master,function () {
         var checkbox = $(this).prop("checked");
         $(slave).each(function () {
             if (checkbox != $(this).prop("checked")) {
                 $(this).trigger("click");
             }
         });
+    }).on("dblclick",tablas,function () {
+        $(this).parent().find(".actions1:first a").trigger("click");
     });
 };
 
@@ -1109,14 +1111,8 @@ saltos.make_contextmenu = function () {
         if ($(event.target).is("label[for]")) {
             return false;
         }
-        // FOR CANCEL IN SELECTMENU
-        if ($(event.target).is("span.ui-selectmenu-button")) {
-            return false;
-        }
-        if ($(event.target).is("span.ui-selectmenu-icon")) {
-            return false;
-        }
-        if ($(event.target).is("span.ui-selectmenu-text")) {
+        // FOR CANCEL IN SELECTS
+        if ($(event.target).is("select.ui-state-default")) {
             return false;
         }
         // FOR CANCEL IN DIALOG
@@ -1297,6 +1293,13 @@ saltos.make_abort = function () {
 };
 
 saltos.make_tables = function (obj) {
+    // SUPPORT FOR LTR AND RTL LANGS
+    var dir = $("html").attr("dir");
+    var rtl = {
+        "ltr":{"ui-corner-tl":"ui-corner-tl","ui-corner-tr":"ui-corner-tr","ui-corner-bl":"ui-corner-bl","ui-corner-br":"ui-corner-br"},
+        "rtl":{"ui-corner-tl":"ui-corner-tr","ui-corner-tr":"ui-corner-tl","ui-corner-bl":"ui-corner-br","ui-corner-br":"ui-corner-bl"}
+    };
+    // CONTINUE
     $(".tabla").each(function () {
         if ($(this).hasClass("table")) {
             return;
@@ -1304,6 +1307,7 @@ saltos.make_tables = function (obj) {
         $(this).addClass("table table-striped table-hover table-sm");
         $(".thead",this).addClass("alert-primary");
         var total = 0;
+        var row = null;
         $("tr",this).each(function () {
             if ($(".tbody",this).length) {
                 if (total % 2 == 0) {
@@ -1326,9 +1330,6 @@ saltos.make_focus = function () {
     // FOCUS THE OBJECT WITH FOCUSED ATTRIBUTE
     setTimeout(function () {
         if (saltos.make_focus_obj) {
-            if ($(saltos.make_focus_obj).is("select")) {
-                saltos.make_focus_obj = $(saltos.make_focus_obj).next();
-            }
             $(saltos.make_focus_obj).trigger("focus");
         }
         saltos.make_focus_obj = null;
@@ -1419,9 +1420,7 @@ saltos.make_enters = function () {
             for (var key in saltos.form_field_cache) {
                 var field = saltos.form_field_cache[key];
                 var valid = in_array(field.type,saltos.make_enters_list);
-                if ($("#" + field.name).is("select")) {
-                    var visible = $("#" + field.name).next().is(":visible");
-                } else if ($("#" + field.name).is(":hidden")) {
+                if ($("#" + field.name).is(":hidden")) {
                     var visible = true;
                 } else {
                     var visible = $("#" + field.name).is(":visible");
@@ -1446,9 +1445,7 @@ saltos.make_enters = function () {
                 focus = first;
             }
             if (focus != "") {
-                if (saltos.form_field_cache[focus].type == "select") {
-                    $("#" + focus + "-button").trigger("focus");
-                } else if (saltos.form_field_cache[focus].type == "datetime") {
+                if (saltos.form_field_cache[focus].type == "datetime") {
                     $("#" + focus + "_date").trigger("focus");
                     $("#" + focus + "_date").trigger("select");
                 } else {
@@ -1660,7 +1657,6 @@ saltos.make_tabs = function (array) {
             $("form",card).attr("method",array[key].method);
         }
         if (isset(array[key].help)) {
-            var uniqid = saltos.uniqid();
             $(".centertabs",card).append(`
                 <li class="help nav-item ml-auto"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" role="tab"><span class=""></span></a></li>
             `);
@@ -1757,6 +1753,8 @@ saltos.make_tabs = function (array) {
     var help = $("li.help",card);
     $("span",help).addClass(icon_help());
     $("a",help).append("&nbsp;").append(lang_help());
+    // REMOVE NONE CLASS
+    $(card).removeClass("none");
     return card;
 };
 
@@ -2062,7 +2060,7 @@ saltos.__get_filtered_field_helper = function (field,size) {
 };
 
 saltos.get_filtered_field = function (field,size) {
-    if (field.toString() == "") {
+    if (field == null || field.toString() == "") {
         field = "-";
     } else if (substr(field,0,4) == "tel:") {
         var temp = explode(":",field,2);
@@ -2894,6 +2892,7 @@ saltos.form_field_date_helper = function (td) {
     // TODO
     return;
     // CREATE THE DATEPICKERS
+    $.datepicker.setDefaults($.datepicker.regional[lang_default()]);
     $("input[isdate=true]",td).each(function () {
         $(this).datepicker({
             dateFormat:"yy-mm-dd",
@@ -3279,7 +3278,9 @@ saltos.form_field_codemirror = function (field) {
         return;
         // CREATE THE CODE MIRROR
         $("textarea[codemirror=true]",td).each(function () {
-            $(this).css("overflow","hidden"); // TRICK FOR THE FUCKED GOOGLE CHROME
+            if (saltos.is_chrome()) {
+                $(this).css("overflow","hidden");
+            }
             var width = $(this).width();
             var height = $(this).height();
             var classes = $(this).attr("class");
@@ -3402,12 +3403,18 @@ saltos.form_field_select = function (field) {
         }
         obj.push(td);
     }
+    if (intval(field.width) + "px" == field.width) {
+        field.width = (intval(field.width) + 12) + "px";
+    }
+    if (saltos.is_chrome()) {
+        field.class3 += " chrome";
+    }
     var td = $(`
         <td class="left nowrap ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
             <select name="${field.name}" id="${field.name}" style="width:${field.width}"
                 focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
                 title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"
-                original="" width2="${field.width}" dir="${field.dir}"></select></td>
+                original="" dir="${field.dir}"></select></td>
     `);
     $("select",td).attr("original",field.value);
     //~ if(field.onchange!="") $("select",td).on("change",{event:field.onchange},saltos.__form_event);
@@ -3453,9 +3460,25 @@ saltos.form_field_select = function (field) {
         }
     }
     obj.push(td);
+    // PROGRAM AUTO-WIDTH SELECT
+    saltos.form_field_select_helper(td);
     // PROGRAM LINKS OF SELECTS
     saltos.form_field_islink_helper(td);
     return obj;
+};
+
+saltos.form_field_select_helper = function (td) {
+    // PROGRAM AUTO-WIDTH SELECT
+    $("select:not([multiple])",td).each(function () {
+        if (str_replace(["width:","undefined"],"",$(this).attr("style"))) {
+            return;
+        }
+        $(this).on("change init",function () {
+            var texto = $("option:selected",this).text();
+            var bbox = saltos.get_bbox("ui-state-default",texto);
+            $(this).attr("style","width:" + (bbox.w + 26) + "px");
+        }).trigger("init");
+    });
 };
 
 saltos.form_field_multiselect = function (field) {
@@ -3478,6 +3501,9 @@ saltos.form_field_multiselect = function (field) {
     }
     var width = ((intval(field.width) - 20) / 2) + "px";
     var height = (intval(field.height) + 6) + "px";
+    if (saltos.is_chrome()) {
+        field.class3 += " chrome";
+    }
     var td = $(`
         <td class="left nowrap ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width};height:${field.height}">
             <input type="hidden" name="${field.name}" id="${field.name}" value="" ismultiselect="true" autocomplete="off"/>
@@ -3893,6 +3919,9 @@ saltos.form_field_menu = function (field) {
         `);
         obj.push(td);
     }
+    if (saltos.is_chrome()) {
+        field.class2 += " chrome";
+    }
     var td = $(`
         <td colspan="${field.colspan}" rowspan="${field.rowspan}" class="${field.class}" style="width:${field.width}">
             <select name="${field.name}" id="${field.name}" style="width:${field.width}" focused="${field.focus}"
@@ -3951,13 +3980,15 @@ saltos.form_field_menu = function (field) {
     }
     // PROGRAM SELECT MENU
     $("select[ismenu=true]",td).on("change",function () {
-        if (!$(this).find("option:eq(" + $(this).prop("selectedIndex") + ")").hasClass("ui-state-disabled")) {
+        if (!$(this).find("option:selected").hasClass("ui-state-disabled")) {
             eval($(this).val());
         }
         if ($("option:first",this).val() == "") {
-            $(this).prop("selectedIndex",0);
+            $(this).val("");
         }
     });
+    // PROGRAM AUTO-WIDTH SELECT
+    saltos.form_field_select_helper(td);
     obj.push(td);
     return obj;
 };
@@ -4157,6 +4188,24 @@ saltos.form_field_copy = function (field) {
     return obj;
 };
 
+saltos.get_bbox = function (clase,texto) {
+    // GET THE BBOX USING THIS TRICK
+    if ($("#ui-text-trick").length == 0) {
+        $("body").append("<div class='ui-widget'><span id='ui-text-trick'></span></div>");
+    }
+    $("#ui-text-trick").addClass(clase);
+    $("#ui-text-trick").html(texto);
+    var w = $("#ui-text-trick").width();
+    var h = $("#ui-text-trick").height();
+    $("#ui-text-trick").removeClass(clase);
+    $("#ui-text-trick").html("");
+    return {w:w,h:h};
+};
+
+saltos.is_chrome = function () {
+    return navigator.userAgent.indexOf("Chrome") != -1;
+};
+
 saltos.__form_event = function (obj) {
     if (typeof obj.data.event == "string") {
         eval(obj.data.event);
@@ -4222,11 +4271,13 @@ saltos.add_js = function (arg) {
                         saltos.add_js_code(arg[key][key2]);
                         break;
                     case "cache":
+                        var files = [];
                         for (var key3 in arg[key][key2]) {
                             if (saltos.limpiar_key(key3) == "include") {
-                                saltos.add_js_file(arg[key][key2][key3]);
+                                files.push(arg[key][key2][key3]);
                             }
                         }
+                        saltos.add_js_file("?action=cache&amp;files="+files.join(","));
                         break;
                 }
             }
@@ -4254,11 +4305,13 @@ saltos.add_css = function (arg) {
                         saltos.add_css_code(arg[key][key2]);
                         break;
                     case "cache":
+                        var files = [];
                         for (var key3 in arg[key][key2]) {
                             if (saltos.limpiar_key(key3) == "include") {
-                                saltos.add_css_file(arg[key][key2][key3]);
+                                files.push(arg[key][key2][key3]);
                             }
                         }
+                        saltos.add_css_file("?action=cache&amp;files="+files.join(","));
                         break;
                 }
             }
@@ -4327,6 +4380,7 @@ saltos.opencontent = function (url,callback) {
         array.page = temp.page;
         array.action = temp.action;
         array.id = temp.id;
+        hash = saltos.array2querystring(array);
     }
     if (isset(array.page) && !isset(array.action) && !isset(array.id)) {
         var temp = saltos.json_sync_request("index.php?action=default&page=" + array.page,"default");
@@ -4336,16 +4390,16 @@ saltos.opencontent = function (url,callback) {
         }
         array.action = temp.action;
         array.id = temp.id;
+        hash = saltos.array2querystring(array);
     }
-    var querystring = saltos.array2querystring(array);
     // TO FIX ERROR 414: REQUEST URI TOO LONG
-    var type = (strlen(querystring) > 1024) ? "post" : "get";
+    var type = (strlen(hash) > 1024) ? "post" : "get";
     $.ajax({
         url:"index.php",
-        data:querystring,
+        data:hash,
         type:type,
         beforeSend:function (XMLHttpRequest) {
-            saltos.addcontent(querystring);
+            saltos.addcontent(hash);
             saltos.make_abort_obj = XMLHttpRequest;
         },
         success:function (data,textStatus,XMLHttpRequest) {
@@ -4516,6 +4570,7 @@ saltos.updatecontent = function (data) {
     saltos.add_css(data.temp1);
     saltos.make_tables();
     saltos.make_focus();
+    saltos.bold_menu();
 };
 
 saltos.errorcontent = function (code,text) {
@@ -5046,6 +5101,12 @@ function toggle_menu()
 {
     //~ console.log("call to deprecated function toggle_menu");
     return saltos.toggle_menu();
+};
+
+function bold_menu()
+{
+    //~ console.log("call to deprecated function bold_menu");
+    return saltos.bold_menu();
 };
 
 function make_tabs(obj)

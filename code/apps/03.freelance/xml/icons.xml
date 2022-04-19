@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <!-- APPS -->
+    <documentos>fa fa-book</documentos>
+    <empleados>fa fa-user</empleados>
+    <productos>fa fa-archive</productos>
+    <facturas>fa fa-print</facturas>
+    <periodicas>fa fa-print</periodicas>
+    <gastos>fa fa-hotel</gastos>
+    <proveedores>fa fa-id-card</proveedores>
+    <clientes>fa fa-id-card</clientes>
+    <contactos>fa fa-id-card</contactos>
+    <cuentas>fa fa-tag</cuentas>
+    <epigrafes>fa fa-tag</epigrafes>
+    <formaspago>fa fa-tag</formaspago>
+    <ivas>fa fa-tag</ivas>
+    <categorias>fa fa-tag</categorias>
+</root>

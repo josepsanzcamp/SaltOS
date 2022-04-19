@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <estados>Estats</estados>
+        <agenda>Agenda i events</agenda>
+        <correo>Correu electrònic</correo>
+        <tiposevento>Tipus d'events</tiposevento>
+        <textos>Textos predefinits</textos>
+        <feeds>Lector de feeds RSS</feeds>
+        <favoritos>Favorits</favoritos>
+        <gestiontipos>Tipus</gestiontipos>
+        <desc_agenda>Anoteu a l'agenda totes les visites i reunions</desc_agenda>
+        <desc_estados>Definiu els estats possibles d'una incidència, projecte, etc...</desc_estados>
+        <desc_correo>Llegiu i enviï correus des d'aquí als seus clients i proveïdors</desc_correo>
+        <desc_tiposevento>Definiu els tipus d'event que necessiti</desc_tiposevento>
+        <desc_textos>Creeu textos predefinits per usar-los en altres aplicacions</desc_textos>
+        <desc_feeds>Seguiu els seus feeds RSS i Atom des d'aquesta aplicació</desc_feeds>
+        <desc_favoritos>Gestioni els seus favorits des d'aquí</desc_favoritos>
+        <quick_correo>Correu</quick_correo>
+        <quick_agenda>Agenda</quick_agenda>
+        <quick_estados>Estats</quick_estados>
+        <quick_tiposevento>T.events</quick_tiposevento>
+        <quick_textos>Textos</quick_textos>
+        <quick_feeds>RSS</quick_feeds>
+        <quick_favoritos>Favorits</quick_favoritos>
+    </menu>
+    <estados>
+        <list>Llistat d'estats</list>
+        <create>Nou estat</create>
+        <formview>Detall de l'estat</formview>
+        <forminsert>Alta d'un nou estat</forminsert>
+        <formupdate>Modificació de l'estat</formupdate>
+        <defaultdata>Dades de l'estat</defaultdata>
+        <activo>Actiu</activo>
+    </estados>
+    <agenda>
+        <list>Llistat d'events</list>
+        <create>Event nou</create>
+        <formview>Detall de l'event</formview>
+        <forminsert>Alta d'un nou event</forminsert>
+        <formupdate>Modificació de l'event</formupdate>
+        <defaultdata>Dades de l'event</defaultdata>
+        <otrasfechas>Altres dates</otrasfechas>
+        <todoseventos>[Tots els events]</todoseventos>
+        <todoayer>Events d'ahir</todoayer>
+        <todohoy>Events d'avui</todohoy>
+        <todomanana>Events de demà</todomanana>
+        <todosemana>Events de la setmana</todosemana>
+        <todomes>Events del mes</todomes>
+        <todoano>Events de l'any</todoano>
+        <usersdata>Usuaris assignats</usersdata>
+        <asignadoa>Assignat a</asignadoa>
+        <notifydelay>Notificar</notifydelay>
+        <notifysign>hora/s</notifysign>
+        <notifydstart>Notificació inici rebuda</notifydstart>
+        <notifydstop>Notificació final rebuda</notifydstop>
+        <notifyantes>Abans</notifyantes>
+        <notifydespues>Després</notifydespues>
+        <notifyprev>Notificació prèvia a l'event</notifyprev>
+        <notifypost>Notificació d'event finalitzat</notifypost>
+        <notifyclear>Notificacions</notifyclear>
+        <notifytip>Netejar les notificacions</notifytip>
+        <notifyclearok>Events reiniciats:</notifyclearok>
+        <notifyclearko>No s'han trobat events pendents per reiniciar</notifyclearko>
+        <calendar>Calendari d'events</calendar>
+        <prevmonth>Mes anterior</prevmonth>
+        <currentmonth>Mes actual</currentmonth>
+        <nextmonth>Mes següent</nextmonth>
+        <today>Avui</today>
+        <yesterday>Ahir</yesterday>
+        <tomorrow>Demà</tomorrow>
+        <continue>Cont...</continue>
+        <by>per</by>
+        <calendarinfo>Mostrant informació en data:</calendarinfo>
+        <add>Afegir event</add>
+        <gcalendar>Google Calendar</gcalendar>
+        <gcalendartip>Sincronitzar events entre SaltOS i Google Calendar</gcalendartip>
+        <notgcalendaremail>No ha configurat el seu compte de Google Calendar a les preferències</notgcalendaremail>
+        <invalidgcalendartoken>Les dades d'accés al vostre compte de Google Calendar són incorrectes</invalidgcalendartoken>
+        <requestgcalendartoken>Faci clic aquí per obtenir un token d'accès</requestgcalendartoken>
+        <insertgcalendar>Events de SaltOS creats a Google Calendar:</insertgcalendar>
+        <updategcalendar>Events de SaltOS actualitzats a Google Calendar :</updategcalendar>
+        <insertsaltos>Events de Google Calendar creats a SaltOS:</insertsaltos>
+        <updatesaltos>Events de Google Calendar actualitzats a SaltOS:</updatesaltos>
+        <notinsertupdate>No hi ha events a actualitzar</notinsertupdate>
+        <expand>Expandir</expand>
+        <expandtip>Expandir per mostrar el detall de tots els events del calendari</expandtip>
+        <collapse>Contraure</collapse>
+        <collapsetip>Contraure per ocultar el detall de tots els events del calendari</collapsetip>
+        <loadingsmall>Carregant...</loadingsmall>
+    </agenda>
+    <correo>
+        <list>Llistat de correus</list>
+        <create>Enviar nou correu</create>
+        <formview>Detall del correu</formview>
+        <forminsert>Enviar un nou correu</forminsert>
+        <formupdate>Reenvia un correu</formupdate>
+        <defaultdata>Dades del correu</defaultdata>
+        <from>De</from>
+        <to>Per</to>
+        <cc>CC</cc>
+        <bcc>BCC</bcc>
+        <subject>Assumpte</subject>
+        <attachments>Adjunts</attachments>
+        <message>Missatge</message>
+        <recibir>Rebre</recibir>
+        <recibirtip>Premi aquí per rebre nous correus</recibirtip>
+        <enviar>Enviar</enviar>
+        <enviartip>Premi aquí per enviar els correus de la safata de sortida</enviartip>
+        <msgnotpop3email>No hi ha cap compte de correu configurat o activada</msgnotpop3email>
+        <msgnotpop3host>No s'ha configurat el servidor POP3</msgnotpop3host>
+        <msgerrorpop3email>S'ha produït el següent error: </msgerrorpop3email>
+        <msgnewokpop3email1> nou correu rebut a la safata d'entrada</msgnewokpop3email1>
+        <msgnewokpop3email2> nous correus rebuts en la safata d'entrada</msgnewokpop3email2>
+        <msggotoemail>anar al correu</msggotoemail>
+        <msgnewkopop3email>No hi ha nous correus</msgnewkopop3email>
+        <msgconnrefusedpop3email>Connexió rebutjada pel servidor</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>No es pot connectar amb el servidor</msgconnerrorpop3email>
+        <msgopenerrorpop3email>No s'ha trobat el fitxer que conté el missatge</msgopenerrorpop3email>
+        <msgpropietario>Només el propietari de els correus pot usar aquestes prestacions</msgpropietario>
+        <msgnotfound>No s'han trobat correus seleccionats, modifiqui el filtre</msgnotfound>
+        <msgnumsileidos>S'han marcat com a llegits: </msgnumsileidos>
+        <msgnumsiwait>S'han marcat com a pendents: </msgnumsiwait>
+        <msgnumsispam>S'han marcat com SPAM: </msgnumsispam>
+        <msgnumnoleidos>S'han marcat com a no llegits: </msgnumnoleidos>
+        <msgnumnowait>S'han marcat com no pendents: </msgnumnowait>
+        <msgnumnospam>S'han marcat com no SPAM: </msgnumnospam>
+        <msgnumdelete>S'han esborrat: </msgnumdelete>
+        <statenew>Nou</statenew>
+        <actionnew>Nou</actionnew>
+        <stateread>Llegit</stateread>
+        <statereply>Respost</statereply>
+        <stateforward>Reenviat</stateforward>
+        <statewait>Pendent</statewait>
+        <statespam>SPAM</statespam>
+        <statesent>Enviat</statesent>
+        <statenotsent>No enviat</statenotsent>
+        <stateerror>Error</stateerror>
+        <stateall>Tot</stateall>
+        <todaslascuentas>[Tots els comptes]</todaslascuentas>
+        <buttonsend>Envia</buttonsend>
+        <buttonsendreturnhere>Enviar i tornar aquí</buttonsendreturnhere>
+        <onlynew>Només nous</onlynew>
+        <onlywait>Només pendents</onlywait>
+        <hidespam>Amaga SPAM</hidespam>
+        <withfiles>Amb adjunts</withfiles>
+        <onlyspam>Només SPAM</onlyspam>
+        <withoutfiles>Sense adjunts</withoutfiles>
+        <actionwait>Pendent</actionwait>
+        <actionspam>SPAM</actionspam>
+        <actionreply>Respondre</actionreply>
+        <actionreplyall>Resp a tots</actionreplyall>
+        <actionforward>Reenvia</actionforward>
+        <messageid>Id missatge</messageid>
+        <fulldata>Zoom del correu</fulldata>
+        <sourcedata>Font del correu</sourcedata>
+        <leidos>Llegits</leidos>
+        <wait>Pendent</wait>
+        <spam>SPAM</spam>
+        <borrar>Esborrar</borrar>
+        <borrartip>Esborrar tots els correus seleccionats</borrartip>
+        <msgleidos>Vol marcar com llegits / no llegits tots els correus seleccionats?</msgleidos>
+        <msgwait>Vol marcar com pendents / no pendents tots els correus seleccionats?</msgwait>
+        <msgspam>Vol marcar com SPAM / no SPAM tots els correus seleccionats?</msgspam>
+        <msgdelete2>Vol esborrar tots els correus seleccionats?</msgdelete2>
+        <msgnotsendfound>No hi ha missatges pendents d'enviar</msgnotsendfound>
+        <msgerrorsendmail>S'ha produït el següent error: </msgerrorsendmail>
+        <msgtotalsendmail1> correu enviat de la safata de sortida</msgtotalsendmail1>
+        <msgtotalsendmail2> correus enviats de la safata de sortida</msgtotalsendmail2>
+        <stateinbox>Entrada</stateinbox>
+        <stateoutbox>Sortida</stateoutbox>
+        <onlyinbox>Només entrants</onlyinbox>
+        <onlyoutbox>Només sortints</onlyoutbox>
+        <options>Opcions</options>
+        <optionstip>Mostra més opcions de la llista</optionstip>
+        <pdfoptions>Opcions del PDF</pdfoptions>
+        <sinsubject>(sense assumpte)</sinsubject>
+        <msgfromkosendmail>No s'ha trobat la configuració per al From: requerit</msgfromkosendmail>
+        <msgsendoksendmail>S'ha enviat correctament el correu electrònic</msgsendoksendmail>
+        <replysubject>Re: </replysubject>
+        <replyallsubject>Re: </replyallsubject>
+        <forwardsubject>Fwd: </forwardsubject>
+        <embeddedmessage>El #datetime#, #fromname# va escriure:</embeddedmessage>
+        <actionreplytip>Per respondre al remitent d'aquest missatge</actionreplytip>
+        <actionreplyalltip>Per respondre a tots els usuaris d'aquest missatge</actionreplyalltip>
+        <actionforwardtip>Per tornar a enviar aquest correu a altres usuaris</actionforwardtip>
+        <noleidos>No llegits</noleidos>
+        <nowait>No pendents</nowait>
+        <nospam>No SPAM</nospam>
+        <today>Avui</today>
+        <yesterday>Ahir</yesterday>
+        <week>Setmana</week>
+        <month>Mes</month>
+        <confirmreadingto>Demana confirmació de recepció</confirmreadingto>
+        <marcarcorreos>Marcar com a</marcarcorreos>
+        <message0> missatges</message0>
+        <message1> missatge</message1>
+        <message2> missatges</message2>
+        <campos>Camps</campos>
+        <allcampos>[Tots els camps]</allcampos>
+        <onlyemail>Només a les adreçes</onlyemail>
+        <onlysubject>Només a l'assumpte</onlysubject>
+        <onlybody>Només al missatge</onlybody>
+        <filtrarcorreos>Filtrar per</filtrarcorreos>
+        <priority>Prioritat</priority>
+        <priorityhigh>Alta</priorityhigh>
+        <prioritynormal>Normal</prioritynormal>
+        <prioritylow>Baixa</prioritylow>
+        <sensitivity>Sensibilitat</sensitivity>
+        <sensitivitynormal>Normal</sensitivitynormal>
+        <sensitivitypersonal>Personal</sensitivitypersonal>
+        <sensitivityprivate>Privat</sensitivityprivate>
+        <sensitivityconfidential>Confidencial</sensitivityconfidential>
+        <addincidencia>Crear incidencia</addincidencia>
+        <addincidenciatip>Crea una incidencia a partir d'aquest correu</addincidenciatip>
+        <addincidenciamsg>Dessitja crear una incidencia a partir d'aquest correu?</addincidenciamsg>
+        <addincidenciaok>S'ha creat la incidencia amb el códi: </addincidenciaok>
+        <notsupportdefined>No s'ha definit el compte de correu de suport</notsupportdefined>
+        <notsupportfound>Aquest correu no conte el compte de correu de suport</notsupportfound>
+        <incidenciaexists>Aquesta incidencia ja existeix i te el códi: </incidenciaexists>
+        <interrorsendmail>Aquest email no s'ha pogut enviar per un error intern</interrorsendmail>
+    </correo>
+    <tiposevento>
+        <list>Llistat de tipus d'events</list>
+        <create>Nou tipus d'event</create>
+        <formview>Detall del tipus d'event</formview>
+        <forminsert>Alta de un nou tipus d'event</forminsert>
+        <formupdate>Modificació del tipus d'event</formupdate>
+        <defaultdata>Dades del tipus d'event</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>Llistat de textos predefinits</list>
+        <publico>Públic</publico>
+        <publico_desc>Tots poden usar aquest text predefinit</publico_desc>
+        <create>Nou text predefinit</create>
+        <formview>Detall del text predefinit</formview>
+        <forminsert>Alta d'un nou text predefinit</forminsert>
+        <formupdate>Modificació del text predefinit</formupdate>
+        <defaultdata>Dades del text predefinit</defaultdata>
+        <sinaplicacion>[Sense aplicació]</sinaplicacion>
+    </textos>
+    <feeds>
+        <list>Llistat de feeds RSS</list>
+        <msgnewfeedsok1> nou post descarregat</msgnewfeedsok1>
+        <msgnewfeedsok2> nous posts descarregats</msgnewfeedsok2>
+        <msgnewfeedsko>No s'han trobat nous posts</msgnewfeedsko>
+        <msgmodifiedfeedsok1> post actualitzat</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2> posts actualitzats</msgmodifiedfeedsok2>
+        <msgnotfeeds>No hi ha cap feed RSS configurat o activat</msgnotfeeds>
+        <feed>Feed RSS</feed>
+        <title>Títol</title>
+        <pubdate>Data pub.</pubdate>
+        <recibir>Rebre</recibir>
+        <recibirtip>Premi aquí per rebre nous posts</recibirtip>
+        <todoslosfeeds>[Tots]</todoslosfeeds>
+        <defaultdata>Detall del post</defaultdata>
+        <fulldata>Zoom del post</fulldata>
+        <actionwait>Pendent</actionwait>
+        <statenew>Nou</statenew>
+        <actionnew>Nou</actionnew>
+        <statemodified>Modificat</statemodified>
+        <statewait>Pendent</statewait>
+        <stateread>Llegit</stateread>
+        <actionforward>Reenvia</actionforward>
+        <actionforwardtip>Per enviar aquest post per correu electrònic</actionforwardtip>
+        <formview>Detall del post</formview>
+        <msggotofeeds>anar als feeds RSS</msggotofeeds>
+        <onlynew>Només nous</onlynew>
+        <onlywait>Només pendents</onlywait>
+        <options>Opcions</options>
+        <optionstip>Mostra més opcions de la llista</optionstip>
+        <pdfoptions>Opcions del PDF</pdfoptions>
+        <stateall>Tot</stateall>
+        <today>Avui</today>
+        <yesterday>Ahir</yesterday>
+        <week>Setmana</week>
+        <month>Mes</month>
+        <marcarfeeds>Marcar com a</marcarfeeds>
+        <leidos>Llegits</leidos>
+        <wait>Pendent</wait>
+        <borrar>Esborrar</borrar>
+        <borrartip>Esborrar tots els post seleccionats</borrartip>
+        <noleidos>No llegits</noleidos>
+        <nowait>No pendents</nowait>
+        <msgleidos>Vol marcar com a llegits / no llegits tots els posts seleccionats?</msgleidos>
+        <msgwait>Vol marcar com pendents / no pendents tots els posts seleccionats?</msgwait>
+        <msgdelete2>Vol esborrar tots els posts seleccionats?</msgdelete2>
+        <msgpropietario>Només el propietari dels posts pot usar aquestes prestacions</msgpropietario>
+        <msgnotfound>No s'han trobat posts seleccionats, modifiqui el filtre</msgnotfound>
+        <msgnumsileidos>S'han marcat com a llegits: </msgnumsileidos>
+        <msgnumsiwait>S'han marcat com pendents: </msgnumsiwait>
+        <msgnumnoleidos>S'han marcat com a no llegits: </msgnumnoleidos>
+        <msgnumnowait>S'han marcat com no pendents: </msgnumnowait>
+        <msgnumdelete>S'han esborrat: </msgnumdelete>
+        <message0> posts</message0>
+        <message1> post</message1>
+        <message2> posts</message2>
+        <msgerrorfeed>S'ha produït un error amb el següent feed: </msgerrorfeed>
+        <sintitle>(sense títol)</sintitle>
+        <post>Post RSS</post>
+        <filtrarfeeds>Filtrar per</filtrarfeeds>
+        <actioncool>Interesant</actioncool>
+        <statecool>Interesant</statecool>
+        <onlycool>Només interesants</onlycool>
+        <cool>Interesant</cool>
+        <nocool>No interesant</nocool>
+        <msgcool>Vol marcar com interesants / no interesants tots els posts seleccionats?</msgcool>
+        <msgnumsicool>S'han marcat com interesants: </msgnumsicool>
+        <msgnumnocool>S'han marcat com no interesants: </msgnumnocool>
+        <actionfavoritos>Afegir als favorits</actionfavoritos>
+    </feeds>
+    <favoritos>
+        <list>Llistat de favorits</list>
+        <create>Nou favorit</create>
+        <url>URL</url>
+        <bookmarkexists>La URL que inteta guardar ja existeix com a favorit.</bookmarkexists>
+        <invalidurl>La URL no és vàlida, verifiqui l'adreça web: </invalidurl>
+        <bookmarkadded>La URL s'ha afegit correctament als favorits</bookmarkadded>
+        <previews>Vistes prèvies</previews>
+    </favoritos>
+</root>

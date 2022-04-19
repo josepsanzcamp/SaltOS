@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <incidencias>Incidents</incidencias>
+        <proyectos>Projects</proyectos>
+        <partes>Working Parties</partes>
+        <prioridades>Priorities</prioridades>
+        <actas>Meeting Minutes</actas>
+        <seguimientos>Tracking Task</seguimientos>
+        <presupuestos>Budgets</presupuestos>
+        <posiblescli>Potential clients</posiblescli>
+        <campanyas>Commercial Campaigns</campanyas>
+        <gestionproyectos>Projects</gestionproyectos>
+        <categorias>Categories</categorias>
+        <desc_incidencias>Manage from here the impact of its clients</desc_incidencias>
+        <desc_proyectos>Track your projects with this application</desc_proyectos>
+        <desc_partes>In high all the work done by using parts of an hour</desc_partes>
+        <desc_actas>Keep a record when make meetings more control</desc_actas>
+        <desc_prioridades>Define priorities for calendar entries</desc_prioridades>
+        <desc_seguimientos>Control tasks in a project with Tracking</desc_seguimientos>
+        <desc_posiblescli>Control your potential customers can be</desc_posiblescli>
+        <desc_presupuestos>Make budgets quickly and easily</desc_presupuestos>
+        <desc_campanyas>Click advertising campaigns with follow-up</desc_campanyas>
+        <desc_categorias>To see the categories of specific applications</desc_categorias>
+        <quick_incidencias>Incidents</quick_incidencias>
+        <quick_proyectos>Projects</quick_proyectos>
+        <quick_partes>Parties</quick_partes>
+        <quick_prioridades>Priorities</quick_prioridades>
+        <quick_actas>Papers</quick_actas>
+        <quick_seguimientos>Trackings</quick_seguimientos>
+        <quick_presupuestos>Budgets</quick_presupuestos>
+        <quick_posiblescli>P.clients</quick_posiblescli>
+        <quick_campanyas>Campaigns</quick_campanyas>
+        <quick_categorias>Categories</quick_categorias>
+    </menu>
+    <incidencias>
+        <list>List of bugs</list>
+        <create>New bug</create>
+        <formview>Details of the bug</formview>
+        <forminsert>Added a new bug</forminsert>
+        <formupdate>Change bug</formupdate>
+        <defaultdata>Data of the bug</defaultdata>
+        <usersdata>Users</usersdata>
+        <implicados>Involved</implicados>
+        <asignadoa>Assigned to</asignadoa>
+        <msgsendemail>has been sent an email to all those involved in the bug</msgsendemail>
+        <boolsendmail>Send email</boolsendmail>
+        <boolsendmailtip>If you enable this option, an email will be sent to all users involved in the bug</boolsendmailtip>
+        <categoria>Category</categoria>
+        <sincategoria>[Without category]</sincategoria>
+        <allcategorias>[All categories]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>Project list</list>
+        <create>New Project</create>
+        <formview>Details of the project</formview>
+        <forminsert>Added a new project</forminsert>
+        <formupdate>Change Project</formupdate>
+        <defaultdata>Project data</defaultdata>
+        <tareasproyecto>Project Tasks</tareasproyecto>
+        <desctareas>Description of tasks</desctareas>
+        <horastotal>Total Hours</horastotal>
+        <preciomedio>Average</preciomedio>
+        <preciototal>Total price</preciototal>
+        <real>Real</real>
+        <diferencia>Difference</diferencia>
+        <partesopen>Parts unliquidated</partesopen>
+        <partesclose>Parties settled</partesclose>
+        <relatedseguimientos>Tracking related</relatedseguimientos>
+        <relatedincidencias>Issues related</relatedincidencias>
+        <actionliquidar>Settle parties selected</actionliquidar>
+        <msgliquidar>want to clear the selected parts?</msgliquidar>
+        <agendadata>Related Events</agendadata>
+        <actasdata>Records relating</actasdata>
+        <contactdata>Customer Contacts</contactdata>
+        <incidentopen>Incidents active</incidentopen>
+        <incidentclose>Incident closed</incidentclose>
+        <albaranes>Waybills</albaranes>
+        <facturaopen>Uncollected Bills</facturaopen>
+        <facturaclose>Billing charged</facturaclose>
+        <gastosdata>Costs associated with the client</gastosdata>
+        <documentdata>Customer Documents</documentdata>
+        <productosproyecto>Project Outputs</productosproyecto>
+        <descproductos>Description of product</descproductos>
+        <actionfacturar>Bill</actionfacturar>
+        <msgfacturar>Want to check the project?</msgfacturar>
+        <errorfacturar>There is already a bill of this project</errorfacturar>
+        <okfacturar>Has billed the project properly</okfacturar>
+        <addseguimientos>Update</addseguimientos>
+        <addactas>Minutes</addactas>
+        <addcontactos>Contact</addcontactos>
+        <addagenda>Event</addagenda>
+        <resumentareasproductos>Summary of tasks and products</resumentareasproductos>
+        <presupuestosdata>Budgets of the project</presupuestosdata>
+    </proyectos>
+    <partes>
+        <list>Parts list</list>
+        <create>New in</create>
+        <formview>detail in</formview>
+        <forminsert>Registration of a new part</forminsert>
+        <formupdate>Change in</formupdate>
+        <defaultdata>Data in</defaultdata>
+        <horasfact>Hours billed</horasfact>
+        <preciohora>Price/hour</preciohora>
+        <liquidar>Settle</liquidar>
+        <dateliq>Date set.</dateliq>
+        <msgliquidar>want to clear the selected parts?</msgliquidar>
+        <msgerror>must select the parts you want to settle in the list</msgerror>
+        <fechainiliq>Date liquidated</fechainiliq>
+    </partes>
+    <prioridades>
+        <list>List of priority</list>
+        <create>New priority</create>
+        <formview>Details of the priority</formview>
+        <forminsert>Added a new priority</forminsert>
+        <formupdate>Changing the priority</formupdate>
+        <defaultdata>Dates of priority</defaultdata>
+    </prioridades>
+    <actas>
+        <list>List of records</list>
+        <create>New report</create>
+        <formview>Detailed record</formview>
+        <forminsert>Added a new report</forminsert>
+        <formupdate>Change minutes</formupdate>
+        <defaultdata>Details of the record</defaultdata>
+        <dstart>Start</dstart>
+        <dstop>End</dstop>
+        <asistentes>Wizards</asistentes>
+        <temas>Themes</temas>
+        <aceptados>Accepted</aceptados>
+        <cancelados>Cancelled</cancelados>
+        <pendientes>Earrings</pendientes>
+        <add>Add minutes</add>
+    </actas>
+    <seguimientos>
+        <list>Tracking List</list>
+        <create>New track</create>
+        <formview>Detail tracking</formview>
+        <forminsert>Added a new track</forminsert>
+        <formupdate>Change tracking</formupdate>
+        <defaultdata>Monitoring data</defaultdata>
+        <add>Add channels</add>
+    </seguimientos>
+    <posiblescli>
+        <list>List of prospective clients</list>
+        <create>New potential client</create>
+        <formview>Details of the potential client</formview>
+        <forminsert>Added a new potential client</forminsert>
+        <formupdate>Changing the potential client</formupdate>
+        <defaultdata>Data prospect</defaultdata>
+        <crearcliente>Create client</crearcliente>
+        <clientcreatedok>The new client has successfully created</clientcreatedok>
+        <msgcrear>want to convert the prospect on a client?</msgcrear>
+        <agendadata>Events prospect</agendadata>
+        <actasdata>Proceedings of the potential client</actasdata>
+        <presupuestosdata>Quotes of the potential client</presupuestosdata>
+        <facturacion>Billing</facturacion>
+        <iaedesc>Overview IAE</iaedesc>
+        <iaecod>Cod IAE</iaecod>
+        <contacto>Pers contact</contacto>
+        <changedenied>Can not turn off a prospect who has minutes, agenda and / or budgets</changedenied>
+    </posiblescli>
+    <presupuestos>
+        <list>List of budgets</list>
+        <create>New budget</create>
+        <formview>Details of the budget</formview>
+        <forminsert>Added a new budget</forminsert>
+        <formupdate>Changing the budget</formupdate>
+        <defaultdata>Information on the budget</defaultdata>
+        <tareaspresupuesto>Tasks budget</tareaspresupuesto>
+        <desctareas>Description of tasks</desctareas>
+        <horastotal>Total Hours</horastotal>
+        <preciomedio>Average</preciomedio>
+        <preciototal>Total price</preciototal>
+        <productospresupuesto>Products budget</productospresupuesto>
+        <descproductos>Overview product</descproductos>
+        <objetivos>Objectives of budget</objetivos>
+        <funcional>Proposal functional</funcional>
+        <tecnica>Technical proposal</tecnica>
+        <extras>Additional information</extras>
+        <condiciones>Terms of budget</condiciones>
+        <valoracion>Economic Valuation</valoracion>
+        <crearproyecto>Create Project</crearproyecto>
+        <projectexists>This budget and is related to a project</projectexists>
+        <clientnotexists>You must connect with a customer (if it is related to a potential client, make client-first)</clientnotexists>
+        <projectcreatedok>has been created new project properly</projectcreatedok>
+        <msgcrear>Want to create a project of this budget?</msgcrear>
+        <agendadata>Events budget</agendadata>
+        <actasdata>Proceedings of the budget</actasdata>
+        <resumentareasproductos>Summary of tasks and products</resumentareasproductos>
+        <objetivospdf>Goals</objetivospdf>
+        <funcionalpdf>Functional</funcionalpdf>
+        <tecnicapdf>Technology</tecnicapdf>
+        <extraspdf>Information</extraspdf>
+        <condicionespdf>Terms</condicionespdf>
+        <actionfacturar>Bill</actionfacturar>
+        <msgfacturar>Want to check the budget?</msgfacturar>
+        <errorfacturar>There is already a bill of this budget</errorfacturar>
+        <okfacturar>Has billed the budget properly</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>List of Campaigns</list>
+        <create>New Campaign</create>
+        <formview>Detailed campaign</formview>
+        <forminsert>Added a new campaign</forminsert>
+        <formupdate>Change Campaign</formupdate>
+        <defaultdata>Details of the campaign</defaultdata>
+        <agendadata>Events of the year</agendadata>
+        <presupuestosdata>Quotes of the year</presupuestosdata>
+        <projectopen>Active Projects</projectopen>
+        <projectclose>Closed projects</projectclose>
+        <clientesdata>Clients captured</clientesdata>
+        <posiblesclidata>Potential clients</posiblesclidata>
+    </campanyas>
+    <categorias>
+        <list>List of categories</list>
+        <create>New category</create>
+        <formview>Detail of the category</formview>
+        <forminsert>Added a new category</forminsert>
+        <formupdate>Modify the category</formupdate>
+        <defaultdata>Data of the category</defaultdata>
+    </categorias>
+</root>

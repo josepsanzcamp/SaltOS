@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <incidencias>Incidències</incidencias>
+        <proyectos>Projectes</proyectos>
+        <partes>Fulls de feina</partes>
+        <prioridades>Prioritats</prioridades>
+        <actas>Actes de reunions</actas>
+        <seguimientos>Seguiment de tasques</seguimientos>
+        <presupuestos>Pressupostos</presupuestos>
+        <posiblescli>Possibles clients</posiblescli>
+        <campanyas>Campanyes comercials</campanyas>
+        <gestionproyectos>Projectes</gestionproyectos>
+        <categorias>Categories</categorias>
+        <desc_incidencias>Gestioni des d'aquí les incidències dels seus clients</desc_incidencias>
+        <desc_proyectos>Seguiu els seus projectes amb aquesta aplicació</desc_proyectos>
+        <desc_partes>Doneu d'alta tots els treballs que realitza utilitzant fulls de feina</desc_partes>
+        <desc_actas>Deseu una acta quan faci reunions per a més control</desc_actas>
+        <desc_prioridades>Definiu les prioritats per a les entrades a l'agenda</desc_prioridades>
+        <desc_seguimientos>Controli les tasques d'un projecte amb els seguiments</desc_seguimientos>
+        <desc_posiblescli>Controli els possibles clients que pot tenir</desc_posiblescli>
+        <desc_presupuestos>Feu pressupostos de forma ràpida i fàcil</desc_presupuestos>
+        <desc_campanyas>Feu campanyes comercials amb seguiments</desc_campanyas>
+        <desc_categorias>Per veure les categories de certes aplicacions</desc_categorias>
+        <quick_incidencias>Incidències</quick_incidencias>
+        <quick_proyectos>Projectes</quick_proyectos>
+        <quick_partes>Feines</quick_partes>
+        <quick_prioridades>Prioritats</quick_prioridades>
+        <quick_actas>Actes</quick_actas>
+        <quick_seguimientos>Seguiments</quick_seguimientos>
+        <quick_presupuestos>Pressupostos</quick_presupuestos>
+        <quick_posiblescli>P.clients</quick_posiblescli>
+        <quick_campanyas>Campanyes</quick_campanyas>
+        <quick_categorias>Categories</quick_categorias>
+    </menu>
+    <incidencias>
+        <list>Llistat d'incidències</list>
+        <create>Nova incidència</create>
+        <formview>Detall de la incidència</formview>
+        <forminsert>Alta d'una nova incidència</forminsert>
+        <formupdate>Modificació de la incidència</formupdate>
+        <defaultdata>Dades de la incidència</defaultdata>
+        <usersdata>Usuaris</usersdata>
+        <implicados>Implicats</implicados>
+        <asignadoa>Assignat a</asignadoa>
+        <msgsendemail>S'ha enviat un correu electrònic a tots els implicats en la incidència</msgsendemail>
+        <boolsendmail>Enviar email</boolsendmail>
+        <boolsendmailtip>Si activa aquesta opció, s'enviarà un email a tots els implicats</boolsendmailtip>
+        <categoria>Categoria</categoria>
+        <sincategoria>[Sense categoria]</sincategoria>
+        <allcategorias>[Totes les categories]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>Llistat de projectes</list>
+        <create>Nou projecte</create>
+        <formview>Detall del projecte</formview>
+        <forminsert>Alta d'un nou projecte</forminsert>
+        <formupdate>Modificació del projecte</formupdate>
+        <defaultdata>Dades del projecte</defaultdata>
+        <tareasproyecto>Tasques del projecte</tareasproyecto>
+        <desctareas>Descripció de les tasques</desctareas>
+        <horastotal>Hores totals</horastotal>
+        <preciomedio>Preu mitjà</preciomedio>
+        <preciototal>Preu total</preciototal>
+        <real>Real</real>
+        <diferencia>Diferència</diferencia>
+        <partesopen>Fulls de feina sense liquidar</partesopen>
+        <partesclose>Fulls de feina liquidats</partesclose>
+        <relatedseguimientos>Seguiments relacionats</relatedseguimientos>
+        <relatedincidencias>Incidències relacionats</relatedincidencias>
+        <actionliquidar>Liquidar fulls de feina seleccionats</actionliquidar>
+        <msgliquidar>Vol liquidar els fulls de feina seleccionats?</msgliquidar>
+        <agendadata>Events relacionats</agendadata>
+        <actasdata>Actes relacionades</actasdata>
+        <contactdata>Contactes del client</contactdata>
+        <incidentopen>Incidències actives</incidentopen>
+        <incidentclose>Incidències tancades</incidentclose>
+        <albaranes>Albarans</albaranes>
+        <facturaopen>Factures no cobrades</facturaopen>
+        <facturaclose>Factures cobrades</facturaclose>
+        <gastosdata>Despeses associades al client</gastosdata>
+        <documentdata>Documents del client</documentdata>
+        <productosproyecto>Productes del projecte</productosproyecto>
+        <descproductos>Descripció dels productes</descproductos>
+        <actionfacturar>Facturar</actionfacturar>
+        <msgfacturar>Vol facturar el projecte?</msgfacturar>
+        <errorfacturar>Ja hi ha una factura d'aquest projecte</errorfacturar>
+        <okfacturar>S'ha facturat correctament el projecte</okfacturar>
+        <addseguimientos>Seguiment</addseguimientos>
+        <addactas>Acta</addactas>
+        <addcontactos>Contacte</addcontactos>
+        <addagenda>Event</addagenda>
+        <resumentareasproductos>Resum de tasques i productes</resumentareasproductos>
+        <presupuestosdata>Pressupostos del projecte</presupuestosdata>
+    </proyectos>
+    <partes>
+        <list>Llistat de fulls de feina</list>
+        <create>Nou full de feina</create>
+        <formview>Detall del full de feina</formview>
+        <forminsert>Alta d'un nou full de feina</forminsert>
+        <formupdate>Modificació del full de feina</formupdate>
+        <defaultdata>Dades del full de feina</defaultdata>
+        <horasfact>Hores a facturar</horasfact>
+        <preciohora>Preu/hora</preciohora>
+        <liquidar>Liquidar</liquidar>
+        <dateliq>Data liq.</dateliq>
+        <msgliquidar>Vol liquidar els fulls de feina seleccionats?</msgliquidar>
+        <msgerror>Ha de seleccionar els fulls de feina que vol liquidar al llistat</msgerror>
+        <fechainiliq>Data liquidat</fechainiliq>
+    </partes>
+    <prioridades>
+        <list>Llistat de prioritats</list>
+        <create>Nou prioritat</create>
+        <formview>Detall de l'prioritat</formview>
+        <forminsert>Alta d'un nou prioritat</forminsert>
+        <formupdate>Modificació del prioritat</formupdate>
+        <defaultdata>Dades del prioritat</defaultdata>
+    </prioridades>
+    <actas>
+        <list>Llistat d'actes</list>
+        <create>Nova acta</create>
+        <formview>Detall de l'acta</formview>
+        <forminsert>Alta d'una nova acta</forminsert>
+        <formupdate>Modificació de l'acta</formupdate>
+        <defaultdata>Dades de l'acta</defaultdata>
+        <dstart>Inici</dstart>
+        <dstop>Fi</dstop>
+        <asistentes>Assistents</asistentes>
+        <temas>Temes</temas>
+        <aceptados>Acceptats</aceptados>
+        <cancelados>Cancel.lats</cancelados>
+        <pendientes>Pendents</pendientes>
+        <add>Afegir acta</add>
+    </actas>
+    <seguimientos>
+        <list>Llistat de seguiment</list>
+        <create>Nou seguiment</create>
+        <formview>Detall del seguiment</formview>
+        <forminsert>Alta d'un nou seguiment</forminsert>
+        <formupdate>Modificació del seguiment</formupdate>
+        <defaultdata>Dades del seguiment</defaultdata>
+        <add>Afegir seguiment</add>
+    </seguimientos>
+    <posiblescli>
+        <list>Llistat de possibles clients</list>
+        <create>Nou possible client</create>
+        <formview>Detall del possible client</formview>
+        <forminsert>Alta d'un nou possible client</forminsert>
+        <formupdate>Modificació del possible client</formupdate>
+        <defaultdata>Dades del possible client</defaultdata>
+        <crearcliente>Crear client</crearcliente>
+        <clientcreatedok>S'ha creat el nou client correctament</clientcreatedok>
+        <msgcrear>Vol convertir el possible client en un client?</msgcrear>
+        <agendadata>Events del possible client</agendadata>
+        <actasdata>Actes del possible client</actasdata>
+        <presupuestosdata>Pressupostos del possible client</presupuestosdata>
+        <facturacion>Facturació</facturacion>
+        <iaedesc>Descripció IAE</iaedesc>
+        <iaecod>Cod IAE</iaecod>
+        <contacto>Pers contacte</contacto>
+        <changedenied>No es pot desactivar un possible client que té actes, agenda i/o pressupostos</changedenied>
+    </posiblescli>
+    <presupuestos>
+        <list>Llistat de pressupostos</list>
+        <create>Nou pressupost</create>
+        <formview>Detall del pressupost</formview>
+        <forminsert>Alta d'un nou pressupost</forminsert>
+        <formupdate>Modificació del pressupost</formupdate>
+        <defaultdata>Dades del pressupost</defaultdata>
+        <tareaspresupuesto>Tasques del pressupost</tareaspresupuesto>
+        <desctareas>Descripció de les tasques</desctareas>
+        <horastotal>Hores totals</horastotal>
+        <preciomedio>Preu mitjà</preciomedio>
+        <preciototal>Preu total</preciototal>
+        <productospresupuesto>Productes del pressupost</productospresupuesto>
+        <descproductos>Descripció de els productes</descproductos>
+        <objetivos>Objectius del pressupost</objetivos>
+        <funcional>Proposta funcional</funcional>
+        <tecnica>Proposta tècnica</tecnica>
+        <extras>Altres</extras>
+        <condiciones>Condicions del pressupost</condiciones>
+        <valoracion>Valoració econòmica</valoracion>
+        <crearproyecto>Crear projecte</crearproyecto>
+        <projectexists>Aquest pressupost ja està relacionat amb un projecte</projectexists>
+        <clientnotexists>S'ha de relacionar amb un client (si està relacionat amb un possible client, convertiu-la en client primer)</clientnotexists>
+        <projectcreatedok>S'ha creat el nou projecte correctament</projectcreatedok>
+        <msgcrear>Vol crear un projecte d'aquest pressupost?</msgcrear>
+        <agendadata>Events del pressupost</agendadata>
+        <actasdata>Actes del pressupost</actasdata>
+        <resumentareasproductos>Resum de tasques i productes</resumentareasproductos>
+        <objetivospdf>Objectius</objetivospdf>
+        <funcionalpdf>Funcional</funcionalpdf>
+        <tecnicapdf>Tècnica</tecnicapdf>
+        <extraspdf>Informació</extraspdf>
+        <condicionespdf>Condicions</condicionespdf>
+        <actionfacturar>Facturar</actionfacturar>
+        <msgfacturar>Vol facturar el pressupost?</msgfacturar>
+        <errorfacturar>Ja hi ha una factura d'aquest pressupost</errorfacturar>
+        <okfacturar>S'ha facturat correctament el pressupost</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>Llistat de campanyes</list>
+        <create>Nova campanya</create>
+        <formview>Detall de la campanya</formview>
+        <forminsert>Alta d'una nova campanya</forminsert>
+        <formupdate>Modificació de la campanya</formupdate>
+        <defaultdata>Dades de la campanya</defaultdata>
+        <agendadata>Events de la campanya</agendadata>
+        <presupuestosdata>Pressupostos de la campanya</presupuestosdata>
+        <projectopen>Projectes actius</projectopen>
+        <projectclose>Projectes tancats</projectclose>
+        <clientesdata>Clients captats</clientesdata>
+        <posiblesclidata>Possibles clients</posiblesclidata>
+    </campanyas>
+    <categorias>
+        <list>Llistat de categories</list>
+        <create>Nova categoria</create>
+        <formview>Detall de la categoria</formview>
+        <forminsert>Alta d'una nova categoria</forminsert>
+        <formupdate>Modificació de la categoria</formupdate>
+        <defaultdata>Dades de la categoria</defaultdata>
+    </categorias>
+</root>

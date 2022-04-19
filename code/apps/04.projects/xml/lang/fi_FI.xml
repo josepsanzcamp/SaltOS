@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <incidencias>Ilmaantuvuus</incidencias>
+        <proyectos>Hankkeet</proyectos>
+        <partes>Työosat</partes>
+        <prioridades>Prioriteetit</prioridades>
+        <actas>Kokouspöytäkirjat</actas>
+        <seguimientos>Tehtävien seuranta</seguimientos>
+        <presupuestos>Budjetit</presupuestos>
+        <posiblescli>Mahdolliset asiakkaat</posiblescli>
+        <campanyas>Kaupalliset kampanjat</campanyas>
+        <gestionproyectos>Hankkeet</gestionproyectos>
+        <categorias>Luokat</categorias>
+        <desc_incidencias>Hallitse täältä asiakkaidesi tapahtumia</desc_incidencias>
+        <desc_proyectos>Seuraa projektejasi tämän sovelluksen avulla</desc_proyectos>
+        <desc_partes>Rekisteröi kaikki tekemäsi työt aikataulukoilla</desc_partes>
+        <desc_actas>Pidä kirjaa, kun pidät kokouksia parempaa hallintaa</desc_actas>
+        <desc_prioridades>Määritä kalenterimerkintöjen prioriteetit</desc_prioridades>
+        <desc_seguimientos>Ohjaa projektitehtäviä seurannalla</desc_seguimientos>
+        <desc_posiblescli>Hallitse potentiaalisia asiakkaitasi, joita sinulla voi olla</desc_posiblescli>
+        <desc_presupuestos>Tee budjetit nopeasti ja helposti</desc_presupuestos>
+        <desc_campanyas>Tee liiketoimintaa seurannan avulla</desc_campanyas>
+        <desc_categorias>Näet tiettyjen sovellusten luokat</desc_categorias>
+        <quick_incidencias>Ilmaantuvuus</quick_incidencias>
+        <quick_proyectos>Hankkeet</quick_proyectos>
+        <quick_partes>Osat</quick_partes>
+        <quick_prioridades>Prioriteetit</quick_prioridades>
+        <quick_actas>Menettely</quick_actas>
+        <quick_seguimientos>Seurata</quick_seguimientos>
+        <quick_presupuestos>Budjetit</quick_presupuestos>
+        <quick_posiblescli>P.clientes</quick_posiblescli>
+        <quick_campanyas>Kampanjat</quick_campanyas>
+        <quick_categorias>Luokat</quick_categorias>
+    </menu>
+    <incidencias>
+        <list>Luettelo tapahtumista</list>
+        <create>Uusi esiintyvyys</create>
+        <formview>Tapahtuman yksityiskohta</formview>
+        <forminsert>Uuden tapauksen rekisteröinti</forminsert>
+        <formupdate>Ilmaantuvuuden muuttaminen</formupdate>
+        <defaultdata>Ilmaantuvuustiedot</defaultdata>
+        <usersdata>Käyttäjät</usersdata>
+        <implicados>Implicados</implicados>
+        <asignadoa>Määritetty</asignadoa>
+        <msgsendemail>Kaikille tapahtumassa mukana oleville on lähetetty sähköposti</msgsendemail>
+        <boolsendmail>Lähetä sähköpostia</boolsendmail>
+        <boolsendmailtip>Jos aktivoit tämän vaihtoehdon, kaikille osallistujille lähetetään sähköposti</boolsendmailtip>
+        <categoria>Luokka</categoria>
+        <sincategoria>[Ilman luokkaa]</sincategoria>
+        <allcategorias>[Kaikki luokat]</allcategorias>
+    </incidencias>
+    <proyectos>
+        <list>Luettelo hankkeista</list>
+        <create>Uusi projekti</create>
+        <formview>Projektin yksityiskohdat</formview>
+        <forminsert>Uuden projektin rekisteröinti</forminsert>
+        <formupdate>Hankkeen muuttaminen</formupdate>
+        <defaultdata>Projektitiedot</defaultdata>
+        <tareasproyecto>Projektitehtävät</tareasproyecto>
+        <desctareas>Tehtävien kuvaus</desctareas>
+        <horastotal>Tuntia yhteensä</horastotal>
+        <preciomedio>Keskimääräinen hinta</preciomedio>
+        <preciototal>Kokonaishinta</preciototal>
+        <real>Real</real>
+        <diferencia>Ero</diferencia>
+        <partesopen>Ratkaisemattomat osat</partesopen>
+        <partesclose>Likvidoidut osat</partesclose>
+        <relatedseguimientos>Aiheeseen liittyvät seurannat</relatedseguimientos>
+        <relatedincidencias>Liittyvät tapaukset</relatedincidencias>
+        <actionliquidar>Määritä valitut osat</actionliquidar>
+        <msgliquidar>Haluatko selvittää valitut osat?</msgliquidar>
+        <agendadata>Aiheeseen liittyvät tapahtumat</agendadata>
+        <actasdata>Aiheeseen liittyvät säädökset</actasdata>
+        <contactdata>Asiakasyhteydet</contactdata>
+        <incidentopen>Aktiiviset tapaukset</incidentopen>
+        <incidentclose>Suljetut tapaukset</incidentclose>
+        <albaranes>Toimitusilmoitukset</albaranes>
+        <facturaopen>Kerättämättömät laskut</facturaopen>
+        <facturaclose>Laskut kerätty</facturaclose>
+        <gastosdata>Asiakkaaseen liittyvät kulut</gastosdata>
+        <documentdata>Asiakirjat</documentdata>
+        <productosproyecto>Projektin tuotteet</productosproyecto>
+        <descproductos>Tuotteiden kuvaus</descproductos>
+        <actionfacturar>Lasku</actionfacturar>
+        <msgfacturar>Haluatko laskuttaa projektin?</msgfacturar>
+        <errorfacturar>Tästä projektista on jo lasku</errorfacturar>
+        <okfacturar>Projekti on laskutettu oikein</okfacturar>
+        <addseguimientos>Jäljittämisestä</addseguimientos>
+        <addactas>Ennätys</addactas>
+        <addcontactos>Kosketus</addcontactos>
+        <addagenda>Tapahtuma</addagenda>
+        <resumentareasproductos>Yhteenveto tehtävistä ja tuotteista</resumentareasproductos>
+        <presupuestosdata>Hankkeen budjetit</presupuestosdata>
+    </proyectos>
+    <partes>
+        <list>Osaluettelo</list>
+        <create>Uusi osa</create>
+        <formview>Osan yksityiskohdat</formview>
+        <forminsert>Uuden osan rekisteröinti</forminsert>
+        <formupdate>Osan muutos</formupdate>
+        <defaultdata>Osatiedot</defaultdata>
+        <horasfact>Laskutustunnit</horasfact>
+        <preciohora>Hinta / tunti</preciohora>
+        <liquidar>Likvidoida</liquidar>
+        <dateliq>Päivämäärä liq.</dateliq>
+        <msgliquidar>Haluatko selvittää valitut osat?</msgliquidar>
+        <msgerror>Sinun on valittava luettelossa osat, jotka haluat asettaa</msgerror>
+        <fechainiliq>Varattu päivämäärä</fechainiliq>
+    </partes>
+    <prioridades>
+        <list>Ensisijaisuusluettelo</list>
+        <create>Uusi prioriteetti</create>
+        <formview>Ensisijaiset yksityiskohdat</formview>
+        <forminsert>Uuden prioriteetin lisääminen</forminsert>
+        <formupdate>Prioriteettimuutos</formupdate>
+        <defaultdata>Prioriteettitiedot</defaultdata>
+    </prioridades>
+    <actas>
+        <list>Minuutin luettelo</list>
+        <create>Uusi ennätys</create>
+        <formview>Pöytäkirjan yksityiskohta</formview>
+        <forminsert>Uuden tietueen rekisteröinti</forminsert>
+        <formupdate>Pöytäkirjan muuttaminen</formupdate>
+        <defaultdata>Minuutin tiedot</defaultdata>
+        <dstart>Aloittamista</dstart>
+        <dstop>Pää</dstop>
+        <asistentes>Osallistujat</asistentes>
+        <temas>Aiheista</temas>
+        <aceptados>Hyväksytyt</aceptados>
+        <cancelados>Peruttu</cancelados>
+        <pendientes>Korvakorut</pendientes>
+        <add>Lisää minuutteja</add>
+    </actas>
+    <seguimientos>
+        <list>Seurantaluettelo</list>
+        <create>Uusi seuranta</create>
+        <formview>Seurannan yksityiskohta</formview>
+        <forminsert>Uuden seurannan rekisteröinti</forminsert>
+        <formupdate>Seurantamuutos</formupdate>
+        <defaultdata>Seurantatiedot</defaultdata>
+        <add>Lisää seuranta</add>
+    </seguimientos>
+    <posiblescli>
+        <list>Luettelo mahdollisista asiakkaista</list>
+        <create>Uusi potentiaalinen asiakas</create>
+        <formview>Yksityiskohta mahdollisesta asiakkaasta</formview>
+        <forminsert>Uuden potentiaalisen asiakkaan rekisteröinti</forminsert>
+        <formupdate>Mahdollisen asiakkaan muokkaaminen</formupdate>
+        <defaultdata>Mahdollisen asiakkaan tiedot</defaultdata>
+        <crearcliente>Luo asiakas</crearcliente>
+        <clientcreatedok>Uusi asiakas on luotu onnistuneesti</clientcreatedok>
+        <msgcrear>Haluatko muuntaa potentiaalisen asiakkaan?</msgcrear>
+        <agendadata>Mahdollisten asiakkaiden tapahtumat</agendadata>
+        <actasdata>Mahdollisen asiakkaan pöytäkirja</actasdata>
+        <presupuestosdata>Mahdollisen asiakkaan budjetit</presupuestosdata>
+        <facturacion>Laskutus</facturacion>
+        <iaedesc>Kuvaus IAE</iaedesc>
+        <iaecod>Cod. IAE</iaecod>
+        <contacto>Yhteyshenkilö</contacto>
+        <changedenied>Et voi poistaa käytöstä potentiaalista asiakasta, jolla on minuutteja, esityslistaa ja / tai budjetteja</changedenied>
+    </posiblescli>
+    <presupuestos>
+        <list>Budjettiluettelo</list>
+        <create>Uusi tarjous</create>
+        <formview>Budjettitiedot</formview>
+        <forminsert>Uuden budjetin lisääminen</forminsert>
+        <formupdate>Budjetin muuttaminen</formupdate>
+        <defaultdata>Budjettitiedot</defaultdata>
+        <tareaspresupuesto>Budjettitehtävät</tareaspresupuesto>
+        <desctareas>Tehtävien kuvaus</desctareas>
+        <horastotal>Tuntia yhteensä</horastotal>
+        <preciomedio>Keskimääräinen hinta</preciomedio>
+        <preciototal>Kokonaishinta</preciototal>
+        <productospresupuesto>Budjettituotteet</productospresupuesto>
+        <descproductos>Tuotteiden kuvaus</descproductos>
+        <objetivos>Budjettitavoitteet</objetivos>
+        <funcional>Toiminnallinen ehdotus</funcional>
+        <tecnica>Tekninen ehdotus</tecnica>
+        <extras>Lisätietoja</extras>
+        <condiciones>Budjettiehdot</condiciones>
+        <valoracion>Taloudellinen arvostus</valoracion>
+        <crearproyecto>Luo projekti</crearproyecto>
+        <projectexists>Tämä budjetti liittyy jo projektiin</projectexists>
+        <clientnotexists>Sinun on oltava yhteydessä asiakkaaseen (jos olet yhteydessä potentiaaliseen asiakkaaseen, tee heistä ensin asiakas)</clientnotexists>
+        <projectcreatedok>Uusi projekti on luotu onnistuneesti</projectcreatedok>
+        <msgcrear>Haluatko luoda projektin tästä budjetista?</msgcrear>
+        <agendadata>Budjettitapahtumat</agendadata>
+        <actasdata>Budjetin minuutit</actasdata>
+        <resumentareasproductos>Yhteenveto tehtävistä ja tuotteista</resumentareasproductos>
+        <objetivospdf>Tavoitteet</objetivospdf>
+        <funcionalpdf>Toiminnallinen</funcionalpdf>
+        <tecnicapdf>Tekniikka</tecnicapdf>
+        <extraspdf>Tiedotus</extraspdf>
+        <condicionespdf>Ehdot</condicionespdf>
+        <actionfacturar>Lasku</actionfacturar>
+        <msgfacturar>Haluatko laskuttaa projektin?</msgfacturar>
+        <errorfacturar>Tästä tarjouksesta on jo lasku</errorfacturar>
+        <okfacturar>Budjetti on laskutettu oikein</okfacturar>
+    </presupuestos>
+    <campanyas>
+        <list>Kampanjaluettelo</list>
+        <create>Uusi kampanja</create>
+        <formview>Kampanjan yksityiskohdat</formview>
+        <forminsert>Uuden kampanjan rekisteröinti</forminsert>
+        <formupdate>Kampanjan muokkaus</formupdate>
+        <defaultdata>Kampanjatiedot</defaultdata>
+        <agendadata>Kampanjatapahtumat</agendadata>
+        <presupuestosdata>Kampanjabudjetit</presupuestosdata>
+        <projectopen>Aktiiviset projektit</projectopen>
+        <projectclose>Suljetut projektit</projectclose>
+        <clientesdata>Asiakkaat rekrytoitiin</clientesdata>
+        <posiblesclidata>Mahdolliset asiakkaat</posiblesclidata>
+    </campanyas>
+    <categorias>
+        <list>Luettelo luokista</list>
+        <create>Uusi luokka</create>
+        <formview>Luokan yksityiskohdat</formview>
+        <forminsert>Uuden luokan rekisteröinti</forminsert>
+        <formupdate>Luokan muuttaminen</formupdate>
+        <defaultdata>Luokkatiedot</defaultdata>
+    </categorias>
+</root>

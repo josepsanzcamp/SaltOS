@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <clientes>Clients</clientes>
+        <contactos>Contacts</contactos>
+        <documentos>Documents</documentos>
+        <facturas>Billing</facturas>
+        <proveedores>Providers</proveedores>
+        <gastos>expenses</gastos>
+        <epigrafes>Headings</epigrafes>
+        <formaspago>Payment</formaspago>
+        <cuentas>Accounts</cuentas>
+        <periodicas>Billing periodic</periodicas>
+        <empleados>Employees</empleados>
+        <productos>Products</productos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <gestioncomercial>Sales</gestioncomercial>
+        <gestioncontabilidad>Accounting</gestioncontabilidad>
+        <desc_clientes>Manage your company's customers</desc_clientes>
+        <desc_contactos>To access a customer contacts</desc_contactos>
+        <desc_facturas>Handle all invoices (invoices, received, etc...)</desc_facturas>
+        <desc_proveedores>Manage your suppliers Company</desc_proveedores>
+        <desc_gastos>Control costs and know if they are liquidated</desc_gastos>
+        <desc_documentos>Please grouped all documentation of your company</desc_documentos>
+        <desc_epigrafes>Define the entries for invoices and expenses</desc_epigrafes>
+        <desc_formaspago>Set payment methods to manage expenses</desc_formaspago>
+        <desc_cuentas>Define the accounting ledger accounts for</desc_cuentas>
+        <desc_periodicas>Schedule periodic invoices expiration dates</desc_periodicas>
+        <desc_empleados>From high, low or modify employees</desc_empleados>
+        <desc_productos>Define here your products to sell</desc_productos>
+        <desc_ivas>Manage the taxes from here</desc_ivas>
+        <quick_clientes>Clients</quick_clientes>
+        <quick_contactos>Contacts</quick_contactos>
+        <quick_documentos>Documents</quick_documentos>
+        <quick_facturas>Billing</quick_facturas>
+        <quick_proveedores>Providers</quick_proveedores>
+        <quick_gastos>expenses</quick_gastos>
+        <quick_epigrafes>Headings</quick_epigrafes>
+        <quick_formaspago>Payment</quick_formaspago>
+        <quick_cuentas>Accounts</quick_cuentas>
+        <quick_periodicas>Periodic</quick_periodicas>
+        <quick_empleados>Employees</quick_empleados>
+        <quick_productos>Products</quick_productos>
+    </menu>
+    <clientes>
+        <list>Client List</list>
+        <create>New client</create>
+        <formview>Customer Detail</formview>
+        <forminsert>Added a new client</forminsert>
+        <formupdate>Changing the client</formupdate>
+        <defaultdata>Customer Data</defaultdata>
+        <contactdata>Customer Contacts</contactdata>
+        <projectopen>Active Projects</projectopen>
+        <projectclose>Closed projects</projectclose>
+        <incidentopen>Incidents active</incidentopen>
+        <incidentclose>Incident closed</incidentclose>
+        <partesopen>Parts unliquidated</partesopen>
+        <partesclose>Parties settled</partesclose>
+        <albaranes>Waybills</albaranes>
+        <facturaopen>Billing Uncollected</facturaopen>
+        <facturaclose>Billing charged</facturaclose>
+        <gastosdata>Costs associated with the client</gastosdata>
+        <documentdata>Customer Documents</documentdata>
+        <agendadata>Events Customer</agendadata>
+        <actasdata>Customer Minutes</actasdata>
+        <actionliquidar>Settle parties selected</actionliquidar>
+        <msgliquidar>want to clear the selected parts?</msgliquidar>
+        <cuentacorriente>Current Account</cuentacorriente>
+        <diapago>Payday</diapago>
+        <cuentacontable>Account accounting</cuentacontable>
+        <nombrecomercial>Name eat.</nombrecomercial>
+        <nombrefiscal>Name fiscal</nombrefiscal>
+        <tipocliente>Customer Type</tipocliente>
+        <clientefiscal>Tax</clientefiscal>
+        <clientejuridico>Legal</clientejuridico>
+        <add>Add Client</add>
+        <presupuestosdata>Customer budgets</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>List of contacts</list>
+        <create>New Contact</create>
+        <formview>contact details</formview>
+        <forminsert>Added a new contact</forminsert>
+        <formupdate>Change contact</formupdate>
+        <defaultdata>Contact Details</defaultdata>
+        <add>Add Contact</add>
+    </contactos>
+    <documentos>
+        <list>List of Documents</list>
+        <create>New Document</create>
+        <formview>Details of the document</formview>
+        <forminsert>Added a new document</forminsert>
+        <formupdate>Change the document</formupdate>
+        <defaultdata>Document</defaultdata>
+    </documentos>
+    <epigrafes>
+        <list>List of entries</list>
+        <create>New heading</create>
+        <formview>Detail heading</formview>
+        <forminsert>Alta a new heading</forminsert>
+        <formupdate>Changing the heading</formupdate>
+        <defaultdata>Dates of heading</defaultdata>
+    </epigrafes>
+    <formaspago>
+        <list>List of forms of payment</list>
+        <create>New form of payment</create>
+        <formview>Details of the payment</formview>
+        <forminsert>Registration of a new form of payment</forminsert>
+        <formupdate>Changing the method of payment</formupdate>
+        <defaultdata>Information about payment</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>List of expenses</list>
+        <create>New spending</create>
+        <formview>Detail spending</formview>
+        <forminsert>Added a new expense</forminsert>
+        <formupdate>Changing spending</formupdate>
+        <defaultdata>spending data</defaultdata>
+        <pagadopor>Paying</pagadopor>
+        <liquidar>Settle</liquidar>
+        <dateliq>Date liq.</dateliq>
+        <msgliquidar>Want clear expenditure selected?</msgliquidar>
+        <msgerror>must select the desired settlement costs in the list</msgerror>
+        <trimestrereg>Trim. Input</trimestrereg>
+        <fechainireg>Date entry</fechainireg>
+        <trimestreliq>Trim. liquidated</trimestreliq>
+        <fechainiliq>Date liquidated</fechainiliq>
+        <totalliquidar>liquidated expenses totaling </totalliquidar>
+        <sinpagador>[Without paying]</sinpagador>
+        <vencimientos_old>Maturity</vencimientos_old>
+        <vencimientos_new>New Maturity</vencimientos_new>
+        <fechavencimiento>Maturity date</fechavencimiento>
+        <pagado>Paid</pagado>
+        <fechapagado>Date paid</fechapagado>
+    </gastos>
+    <facturas>
+        <list>Listing invoices</list>
+        <create>New Invoice</create>
+        <formview>Detailed bill</formview>
+        <forminsert>Added a new invoice</forminsert>
+        <formupdate>Changing the invoice</formupdate>
+        <defaultdata>Data from the invoice</defaultdata>
+        <errorfac101>You can only open the last bill</errorfac101>
+        <errorfac103>You can not delete an invoice closed</errorfac103>
+        <numfacxxx>Invoice number</numfacxxx>
+        <numalbxxx>Delivery note</numalbxxx>
+        <fechaemision>Date emission</fechaemision>
+        <titular>Banner</titular>
+        <baseimponible>taxable base</baseimponible>
+        <totalapagar>Total to pay</totalapagar>
+        <concepts_old>Concepts</concepts_old>
+        <concepts_new>New concepts</concepts_new>
+        <products_old>Products</products_old>
+        <products_new>New products</products_new>
+        <vencimientos_old>Maturity</vencimientos_old>
+        <vencimientos_new>New Maturity</vencimientos_new>
+        <fechavencimiento>Maturity date</fechavencimiento>
+        <fechacobrado>Date payment</fechacobrado>
+        <clientdata>Customer Data</clientdata>
+        <vencimientosfactura>Maturity of this invoice</vencimientosfactura>
+        <vencimientosalbaran>Maturity of this delivery order</vencimientosalbaran>
+        <vencimientoscobrado>The field has become modified using data from maturities</vencimientoscobrado>
+    </facturas>
+    <proveedores>
+        <list>List of suppliers</list>
+        <create>New Supplier</create>
+        <formview>Details of the provider</formview>
+        <forminsert>Added a new supplier</forminsert>
+        <formupdate>Changing the supplier</formupdate>
+        <defaultdata>Details provider</defaultdata>
+        <cuentacorriente>Current Account</cuentacorriente>
+        <cuentacontable>Account accounting</cuentacontable>
+        <diapago>Payday</diapago>
+        <gastosdata>Costs associated with the provider</gastosdata>
+        <contactdata>Contacts provider</contactdata>
+        <nombrecomercial>Trade name</nombrecomercial>
+        <nombrefiscal>Name fiscal</nombrefiscal>
+        <add>Add Provider</add>
+    </proveedores>
+    <cuentas>
+        <list>List of accounts</list>
+        <create>New Account</create>
+        <formview>Detailed count</formview>
+        <forminsert>Register a new account</forminsert>
+        <formupdate>Change Account</formupdate>
+        <defaultdata>Account Information</defaultdata>
+        <logo>Logo</logo>
+        <title_logo>Define the logo, position, size and colors to be used on invoices</title_logo>
+        <logoleft>Position the logo X</logoleft>
+        <logotop>Y</logotop>
+        <logowidth>Width</logowidth>
+        <logoheight>High</logoheight>
+        <logofile>File current logo</logofile>
+        <logofilenew>New file (JPEG only)</logofilenew>
+        <colorline>color lines</colorline>
+        <colortext1>Titles</colortext1>
+        <colortext2>Text</colortext2>
+        <title_facturas>Set certain parameters to be used for invoicing</title_facturas>
+        <facturabool>Use </facturabool>
+        <facturavalue>Default value (if used)</facturavalue>
+        <facturapie1>Frontline foot</facturapie1>
+        <facturapie2>Second line walk</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>List of regular bills</list>
+        <create>New bill periodic</create>
+        <formview>Detailed invoice periodic</formview>
+        <forminsert>Registration of a new regular bill</forminsert>
+        <formupdate>Changing the regular bill</formupdate>
+        <defaultdata>Data from the regular bill</defaultdata>
+        <concepts_old>Concepts</concepts_old>
+        <concepts_new>New concepts</concepts_new>
+        <products_old>Products</products_old>
+        <products_new>New products</products_new>
+        <vencimientos_old>Maturity</vencimientos_old>
+        <vencimientos_new>New Maturity</vencimientos_new>
+        <fechavencimiento>Maturity date</fechavencimiento>
+        <diaemision>Dia emission</diaemision>
+        <diaini>Some day</diaini>
+        <dia>Dia</dia>
+        <meses>Months</meses>
+        <liquidar>Build</liquidar>
+        <totalliquidar>Number of invoices generated total: </totalliquidar>
+        <msgerror>must select the bills you want to generate the list and the month to use</msgerror>
+        <msgliquidar>want to generate selected invoices?</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>List of Employees</list>
+        <create>New Employee</create>
+        <formview>Employee Details</formview>
+        <forminsert>Added a new employee</forminsert>
+        <formupdate>Changing the employee</formupdate>
+        <defaultdata>Employee Information</defaultdata>
+        <contactdata>Employee Contacts</contactdata>
+    </empleados>
+    <productos>
+        <list>Shop</list>
+        <create>New product</create>
+        <formview>Product Detail</formview>
+        <forminsert>Added a new product</forminsert>
+        <formupdate>Changes in the product</formupdate>
+        <defaultdata>Product Data</defaultdata>
+        <ref>Ref.</ref>
+        <peso>Weight</peso>
+        <volumen>Volume</volumen>
+        <dimensiones>Dimensions</dimensiones>
+        <fotofile>Current photo</fotofile>
+        <fotofilenew>New photo</fotofilenew>
+        <siniva eval="true">"[Without ".CONFIG("accounting_iva_name")."]"</siniva>
+    </productos>
+    <ivas>
+        <list eval="true">"List of ".CONFIG("accounting_iva_name")</list>
+        <create eval="true">"New ".CONFIG("accounting_iva_name")</create>
+        <formview eval="true">"Details of the ".CONFIG("accounting_iva_name")</formview>
+        <forminsert eval="true">"Added a new ".CONFIG("accounting_iva_name")</forminsert>
+        <formupdate eval="true">"Changing the ".CONFIG("accounting_iva_name")</formupdate>
+        <defaultdata eval="true">"Data of the ".CONFIG("accounting_iva_name")</defaultdata>
+    </ivas>
+</root>

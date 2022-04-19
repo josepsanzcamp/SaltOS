@@ -91,11 +91,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <env_path>PERCORSO</env_path>
         <env_lang>LANG</env_lang>
         <applications>Applicazioni</applications>
-        <select_layer>Seleziona profilo</select_layer>
-        <selected_layer>Profilo selezionato</selected_layer>
-        <layer_all>Tutte le applicazioni</layer_all>
-        <layer_personal>Applicazioni per uso personale</layer_personal>
-        <select_apps>Seleziona le applicazioni</select_apps>
-        <selected_apps>Applicazioni selezionate</selected_apps>
+        <select_apps>Seleziona profilo</select_apps>
+        <selected_apps>Profilo selezionato</selected_apps>
+        <apps_all>Tutte le applicazioni</apps_all>
+        <apps_01_core>Applicazioni di sistema minime</apps_01_core>
+        <apps_02_personal>Applicazioni per uso personale</apps_02_personal>
+        <apps_03_freelance>Applicazioni di fatturazione</apps_03_freelance>
+        <apps_04_projects>Applicazioni per la gestione dei progetti</apps_04_projects>
+        <select_apps2>Seleziona le applicazioni</select_apps2>
+        <selected_apps2>Applicazioni selezionate</selected_apps2>
     </common>
 </root>

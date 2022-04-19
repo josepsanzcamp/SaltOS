@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <clientes>Asiakkaat</clientes>
+        <contactos>Yhteystiedot</contactos>
+        <documentos>Asiakirjat</documentos>
+        <facturas>Laskut</facturas>
+        <proveedores>Tarjoajat</proveedores>
+        <gastos>Kulut</gastos>
+        <epigrafes>Epigraphs</epigrafes>
+        <formaspago>Maksutavat</formaspago>
+        <cuentas>Tilit</cuentas>
+        <periodicas>Määräaikaiset laskut</periodicas>
+        <empleados>Henkilöstö</empleados>
+        <productos>Tuottaa</productos>
+        <ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+        <gestioncomercial>Kaupallinen</gestioncomercial>
+        <gestioncontabilidad>Kirjanpito</gestioncontabilidad>
+        <desc_clientes>Hallitse yrityksen asiakkaita</desc_clientes>
+        <desc_contactos>Päästäksesi asiakkaan yhteystietoihin</desc_contactos>
+        <desc_facturas>Hallinnoi kaikkia laskuja (toimituslomakkeet, maksut jne.)</desc_facturas>
+        <desc_proveedores>Hallitse yrityksen toimittajia</desc_proveedores>
+        <desc_gastos>Hallitse kuluja ja tiedä onko ne selvitetty</desc_gastos>
+        <desc_documentos>Ryhmittele kaikki yrityksesi asiakirjat</desc_documentos>
+        <desc_epigrafes>Määritä laskujen ja kulujen otsikot</desc_epigrafes>
+        <desc_formaspago>Määritä maksutavat kustannusten hallitsemiseksi</desc_formaspago>
+        <desc_cuentas>Määritä kirjanpidon pääkirjatilit</desc_cuentas>
+        <desc_periodicas>Aikatauluta toistuvat laskut eräpäivinä</desc_periodicas>
+        <desc_empleados>Rekisteröi, peruuta tai muuta työntekijöitä</desc_empleados>
+        <desc_productos>Määritä tuotteesi täällä voidaksesi myydä niitä</desc_productos>
+        <desc_ivas>Hallinnoi verokantoja täältä</desc_ivas>
+        <quick_clientes>Asiakkaat</quick_clientes>
+        <quick_contactos>Yhteystiedot</quick_contactos>
+        <quick_documentos>Asiakirjat</quick_documentos>
+        <quick_facturas>Laskut</quick_facturas>
+        <quick_proveedores>Tarjoajat</quick_proveedores>
+        <quick_gastos>Kulut</quick_gastos>
+        <quick_epigrafes>Epigraphs</quick_epigrafes>
+        <quick_formaspago>F. maksu</quick_formaspago>
+        <quick_cuentas>Tilit</quick_cuentas>
+        <quick_periodicas>Ajoittainen</quick_periodicas>
+        <quick_empleados>Henkilöstö</quick_empleados>
+        <quick_productos>Tuottaa</quick_productos>
+    </menu>
+    <clientes>
+        <list>Asiakasluettelo</list>
+        <create>Uusi asiakas</create>
+        <formview>Asiakkaan tiedot</formview>
+        <forminsert>Uuden asiakkaan rekisteröinti</forminsert>
+        <formupdate>Asiakkaan muutos</formupdate>
+        <defaultdata>Asiakastiedot</defaultdata>
+        <contactdata>Asiakasyhteydet</contactdata>
+        <projectopen>Aktiiviset projektit</projectopen>
+        <projectclose>Suljetut projektit</projectclose>
+        <incidentopen>Aktiiviset tapaukset</incidentopen>
+        <incidentclose>Suljetut tapaukset</incidentclose>
+        <partesopen>Ratkaisemattomat osat</partesopen>
+        <partesclose>Likvidoidut osat</partesclose>
+        <albaranes>Toimitusilmoitukset</albaranes>
+        <facturaopen>Kerättämättömät laskut</facturaopen>
+        <facturaclose>Laskut kerätty</facturaclose>
+        <gastosdata>Asiakkaaseen liittyvät kulut</gastosdata>
+        <documentdata>Asiakirjat</documentdata>
+        <agendadata>Asiakkaan tapahtumat</agendadata>
+        <actasdata>Asiakkaan minuutit</actasdata>
+        <actionliquidar>Määritä valitut osat</actionliquidar>
+        <msgliquidar>Haluatko selvittää valitut osat?</msgliquidar>
+        <cuentacorriente>Tili tarkistetaan</cuentacorriente>
+        <diapago>Palkkapäivä</diapago>
+        <cuentacontable>Kirjanpito-tili</cuentacontable>
+        <nombrecomercial>Nimi syö.</nombrecomercial>
+        <nombrefiscal>Verollinen nimi</nombrefiscal>
+        <tipocliente>Asiakastyyppi</tipocliente>
+        <clientefiscal>Syyttäjä</clientefiscal>
+        <clientejuridico>Oikeudellinen</clientejuridico>
+        <add>Lisää asiakas</add>
+        <presupuestosdata>Asiakasbudjetit</presupuestosdata>
+    </clientes>
+    <contactos>
+        <list>Yhteystietoluettelo</list>
+        <create>Uusi yhteyshenkilö</create>
+        <formview>Yhteystiedot</formview>
+        <forminsert>Uuden kontaktin rekisteröiminen</forminsert>
+        <formupdate>Yhteyden muutos</formupdate>
+        <defaultdata>Yhteystiedot</defaultdata>
+        <add>Lisää yhteyshenkilö</add>
+    </contactos>
+    <documentos>
+        <list>Luettelo asiakirjoista</list>
+        <create>Uusi asiakirja</create>
+        <formview>Asiakirjan yksityiskohdat</formview>
+        <forminsert>Uuden asiakirjan rekisteröiminen</forminsert>
+        <formupdate>Asiakirjan muokkaaminen</formupdate>
+        <defaultdata>Asiakirjan tiedot</defaultdata>
+    </documentos>
+    <epigrafes>
+        <list>Luettelo otsakkeista</list>
+        <create>Uusi otsikko</create>
+        <formview>Yksityiskohta otsikosta</formview>
+        <forminsert>Uuden otsikon rekisteröinti</forminsert>
+        <formupdate>Otsikon muuttaminen</formupdate>
+        <defaultdata>Yksityiskohdat otsikosta</defaultdata>
+    </epigrafes>
+    <formaspago>
+        <list>Luettelo maksutavoista</list>
+        <create>Uusi maksutapa</create>
+        <formview>Maksutavan yksityiskohdat</formview>
+        <forminsert>Uuden maksutavan rekisteröinti</forminsert>
+        <formupdate>Maksutavan muuttaminen</formupdate>
+        <defaultdata>Maksutavan tiedot</defaultdata>
+    </formaspago>
+    <gastos>
+        <list>Luettelo kustannuksista</list>
+        <create>Uusi kustannus</create>
+        <formview>Menojen yksityiskohdat</formview>
+        <forminsert>Uuden kustannuksen rekisteröinti</forminsert>
+        <formupdate>Kustannusten muuttaminen</formupdate>
+        <defaultdata>Kuluttavat tiedot</defaultdata>
+        <pagadopor>Kassanhoitaja</pagadopor>
+        <liquidar>Likvidoida</liquidar>
+        <dateliq>Päivämäärä liq.</dateliq>
+        <msgliquidar>Haluatko maksaa valitut kulut?</msgliquidar>
+        <msgerror>Sinun on valittava luettelosta kulut, jotka haluat maksaa</msgerror>
+        <trimestrereg>Leikata. merkintä</trimestrereg>
+        <fechainireg>Tulopäivä</fechainireg>
+        <trimestreliq>Leikata. selvitystilaan</trimestreliq>
+        <fechainiliq>Varattu päivämäärä</fechainiliq>
+        <totalliquidar>Maksatut kulut ovat yhteensä:</totalliquidar>
+        <sinpagador>[Ilman maksajaa]</sinpagador>
+        <vencimientos_old>Erääntyminen</vencimientos_old>
+        <vencimientos_new>Uudet maturiteetit</vencimientos_new>
+        <fechavencimiento>Viimeinen käyttöpäivämäärä</fechavencimiento>
+        <pagado>Maksettu</pagado>
+        <fechapagado>Maksupäivä</fechapagado>
+    </gastos>
+    <facturas>
+        <list>Luettelo laskuista</list>
+        <create>Uusi lasku</create>
+        <formview>Laskun yksityiskohdat</formview>
+        <forminsert>Uuden laskun rekisteröinti</forminsert>
+        <formupdate>Laskun muutos</formupdate>
+        <defaultdata>Laskutiedot</defaultdata>
+        <errorfac101>Vain viimeinen lasku voidaan avata</errorfac101>
+        <errorfac103>Suljettua laskua ei voi poistaa</errorfac103>
+        <numfacxxx>Laskun numero</numfacxxx>
+        <numalbxxx>Rahtikirjan numero</numalbxxx>
+        <fechaemision>Antopäivä</fechaemision>
+        <titular>Otsikko</titular>
+        <baseimponible>Verotettava perusta</baseimponible>
+        <totalapagar>Maksettava yhteensä</totalapagar>
+        <concepts_old>Käsitteet</concepts_old>
+        <concepts_new>Uudet käsitteet</concepts_new>
+        <products_old>Tuottaa</products_old>
+        <products_new>Uudet tuotteet</products_new>
+        <vencimientos_old>Erääntyminen</vencimientos_old>
+        <vencimientos_new>Uudet maturiteetit</vencimientos_new>
+        <fechavencimiento>Viimeinen käyttöpäivämäärä</fechavencimiento>
+        <fechacobrado>Keräyspäivä</fechacobrado>
+        <clientdata>Asiakastiedot</clientdata>
+        <vencimientosfactura>Tämän laskun eräpäivät</vencimientosfactura>
+        <vencimientosalbaran>Tämän toimitustodistuksen eräpäivät</vencimientosalbaran>
+        <vencimientoscobrado>Kerättyä kenttää on muokattu käyttämällä maturiteettitietoja</vencimientoscobrado>
+    </facturas>
+    <proveedores>
+        <list>Palveluntarjoajaluettelo</list>
+        <create>Uusi palveluntarjoaja</create>
+        <formview>Toimittajan yksityiskohdat</formview>
+        <forminsert>Uuden palveluntarjoajan rekisteröinti</forminsert>
+        <formupdate>Toimittajan muutos</formupdate>
+        <defaultdata>Toimittajan tiedot</defaultdata>
+        <cuentacorriente>Tili tarkistetaan</cuentacorriente>
+        <cuentacontable>Kirjanpito-tili</cuentacontable>
+        <diapago>Palkkapäivä</diapago>
+        <gastosdata>Palveluntarjoajiin liittyvät kulut</gastosdata>
+        <contactdata>Toimittajien yhteystiedot</contactdata>
+        <nombrecomercial>Kaupallinen nimi</nombrecomercial>
+        <nombrefiscal>Verollinen nimi</nombrefiscal>
+        <add>Lisää palveluntarjoaja</add>
+    </proveedores>
+    <cuentas>
+        <list>Tilien luettelo</list>
+        <create>Uusi tili</create>
+        <formview>Tilitiedot</formview>
+        <forminsert>Uuden tilin rekisteröinti</forminsert>
+        <formupdate>Tilin muutos</formupdate>
+        <defaultdata>Tilitiedot</defaultdata>
+        <logo>Logo</logo>
+        <title_logo>Määritä laskussa käytettävä logo, sijainti, koko ja värit</title_logo>
+        <logoleft>Logon X sijainti</logoleft>
+        <logotop>JA</logotop>
+        <logowidth>Leveys</logowidth>
+        <logoheight>Korkea</logoheight>
+        <logofile>Nykyinen logotiedosto</logofile>
+        <logofilenew>Uusi tiedosto (vain JPEG)</logofilenew>
+        <colorline>Linjojen väri</colorline>
+        <colortext1>Arvopaperit</colortext1>
+        <colortext2>Tekstien</colortext2>
+        <title_facturas>Määritä tietyt laskujen laskennassa käytettävät parametrit</title_facturas>
+        <facturabool>Käyttö</facturabool>
+        <facturavalue>Oletusarvo (vain jos sitä käytetään)</facturavalue>
+        <facturapie1>Ensimmäisen rivin jalka</facturapie1>
+        <facturapie2>Toisen rivin jalka</facturapie2>
+    </cuentas>
+    <periodicas>
+        <list>Luettelo määräaikaislaskuista</list>
+        <create>Uusi määräaikainen lasku</create>
+        <formview>Yksityiskohtainen kausittainen lasku</formview>
+        <forminsert>Uuden määräajan laskun rekisteröinti</forminsert>
+        <formupdate>Määräaikaisen laskun muuttaminen</formupdate>
+        <defaultdata>Määräaikaiset laskutiedot</defaultdata>
+        <concepts_old>Käsitteet</concepts_old>
+        <concepts_new>Uudet käsitteet</concepts_new>
+        <products_old>Tuottaa</products_old>
+        <products_new>Uudet tuotteet</products_new>
+        <vencimientos_old>Erääntyminen</vencimientos_old>
+        <vencimientos_new>Uudet maturiteetit</vencimientos_new>
+        <fechavencimiento>Viimeinen käyttöpäivämäärä</fechavencimiento>
+        <diaemision>Päiväyspäivä</diaemision>
+        <diaini>Päivän välillä</diaini>
+        <dia>Päivä</dia>
+        <meses>Kuukautta</meses>
+        <liquidar>Tuottaa</liquidar>
+        <totalliquidar>Luotujen laskujen kokonaismäärä:</totalliquidar>
+        <msgerror>Sinun on valittava luettelosta luodut laskut ja käytettävä kuukausi</msgerror>
+        <msgliquidar>Haluatko luoda valitut laskut?</msgliquidar>
+    </periodicas>
+    <empleados>
+        <list>Työntekijöiden luettelo</list>
+        <create>Uusi työntekijä</create>
+        <formview>Työntekijän tiedot</formview>
+        <forminsert>Uuden työntekijän rekisteröinti</forminsert>
+        <formupdate>Työntekijän muuttaminen</formupdate>
+        <defaultdata>Tietoa työntekijöistä</defaultdata>
+        <contactdata>Työntekijöiden yhteystiedot</contactdata>
+    </empleados>
+    <productos>
+        <list>Tuotelistaus</list>
+        <create>Uusi tuote</create>
+        <formview>Tuotetiedot</formview>
+        <forminsert>Uuden tuotteen rekisteröinti</forminsert>
+        <formupdate>Tuotteen muuntaminen</formupdate>
+        <defaultdata>Tuotetiedot</defaultdata>
+        <ref>Ref.</ref>
+        <peso>Paino</peso>
+        <volumen>Tilavuus</volumen>
+        <dimensiones>Mitat</dimensiones>
+        <fotofile>Nykyinen valokuva</fotofile>
+        <fotofilenew>Uusi kuva</fotofilenew>
+        <siniva eval="true">"[Ilman ".CONFIG("accounting_iva_name")."]"</siniva>
+    </productos>
+    <ivas>
+        <list eval="true">"Luettelointi ".CONFIG("accounting_iva_name")</list>
+        <create eval="true">"Uusi ".CONFIG("accounting_iva_name")</create>
+        <formview eval="true">"Yksityiskohta ".CONFIG("accounting_iva_name")</formview>
+        <forminsert eval="true">"Uusi rekisteröinti ".CONFIG("accounting_iva_name")</forminsert>
+        <formupdate eval="true">"Muokkaus ".CONFIG("accounting_iva_name")</formupdate>
+        <defaultdata eval="true">"Tiedot ".CONFIG("accounting_iva_name")</defaultdata>
+    </ivas>
+</root>

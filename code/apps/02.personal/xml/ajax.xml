@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <!-- FOR EMAIL APPS -->
+    <cuentas eval="true">"SELECT id,CONCAT(email_name,' &amp;lt;',email_from,'&amp;gt;') nombre
+        FROM tbl_usuarios_c
+        WHERE id_usuario='".intval(getParam("id_usuario"))."'
+            AND (
+                email_privated='0' OR
+                (TRIM(IFNULL(email_privated,0))='1' AND id_usuario='".current_user()."')
+            )
+        ORDER BY nombre"</cuentas>
+    <state eval="true">in_array(getParam("type"),array("new","wait","spam"))?
+        make_update_query("tbl_correo",array(
+            "state_new"=>0,
+            "state_".getParam("type")=>(
+                intval(getParam("value"))>-1?
+                intval(getParam("value")):
+                abs(1-execute_query("SELECT state_".getParam("type")." FROM tbl_correo WHERE id='".abs(intval(getParam("id")))."'"))
+            )
+        ),"id=(SELECT id_registro
+            FROM tbl_registros
+            WHERE id_aplicacion='".page2id("correo")."'
+                AND id_registro='".abs(intval(getParam("id")))."'
+                AND id_usuario='".current_user()."' AND first='1'
+            )"
+        ):""</state>
+    <agenda eval="true">in_array(getParam("type"),array("dstart","dstop"))?
+        make_update_query("tbl_agenda",array(
+            "notify_".getParam("type")=>1
+        ),"id=(SELECT id_registro
+            FROM tbl_registros
+            WHERE id_aplicacion='".page2id("agenda")."'
+                AND id_registro='".abs(intval(getParam("id")))."'
+                AND id_usuario='".current_user()."'
+                AND first='1')"
+        ):""</agenda>
+    <emails eval="true">"SELECT
+            CASE nombre
+                WHEN '' THEN valor
+                ELSE CONCAT(nombre,' &lt;',valor,'&gt;')
+            END label,
+            SUM(CASE
+                WHEN DATE(datetime)>=DATE('".current_date()."') THEN '20'
+                WHEN DATE(datetime)>=DATE('".current_date(-86400*7)."') THEN '10'
+                WHEN DATE(datetime)>=DATE('".current_date(-86400*30)."') THEN '5'
+                ELSE '1'
+            END) score
+        FROM tbl_correo_a a
+        LEFT JOIN tbl_correo b
+            ON a.id_correo=b.id
+            AND id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='".current_user()."')
+            AND state_spam='0'
+        WHERE b.id IS NOT NULL
+            AND id_tipo IN (1,2,3,4)
+            AND (".make_like_query("nombre,valor",getParam("term")).")
+        GROUP BY label
+        ORDER BY score DESC LIMIT 25"</emails>
+    <!-- FOR FEEDS APPS -->
+    <feeds eval="true">"SELECT id,CONCAT(title,' (',url,')') nombre
+        FROM tbl_usuarios_f
+        WHERE id_usuario='".intval(getParam("id_usuario"))."'
+            AND id IN (SELECT id_feed FROM tbl_feeds)
+        ORDER BY nombre"</feeds>
+    <state2 eval="true">in_array(getParam("type"),array("new","wait","cool"))?
+        make_update_query("tbl_feeds",array(
+            "state_new"=>0,
+            "state_".getParam("type")=>(
+                intval(getParam("value"))>-1?
+                intval(getParam("value")):
+                abs(1-execute_query("SELECT state_".getParam("type")." FROM tbl_feeds WHERE id='".abs(intval(getParam("id")))."'"))
+            )
+        ),"id=(SELECT id_registro
+            FROM tbl_registros
+            WHERE id_aplicacion='".page2id("feeds")."'
+                AND id_registro='".abs(intval(getParam("id")))."'
+                AND id_usuario='".current_user()."'
+                AND first='1')"
+        ):""</state2>
+    <feed2bookmark eval="true">"SELECT link
+        FROM tbl_feeds
+        WHERE id=(
+            SELECT id_registro
+            FROM tbl_registros
+            WHERE id_aplicacion='".page2id("feeds")."'
+                AND id_registro='".abs(intval(getParam("id")))."'
+                AND id_usuario='".current_user()."'
+                AND first='1'
+        )"</feed2bookmark>
+    <!-- FOR TEXTOS MODULE -->
+    <textos eval="true">"SELECT descripcion texto
+        FROM tbl_textos a
+        LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("textos")."' AND e.id_registro=a.id AND e.first=1
+        LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+        WHERE a.id='".intval(getParam("id"))."'
+            AND (publico='1' OR ".check_sql("textos","list").")"</textos>
+</root>

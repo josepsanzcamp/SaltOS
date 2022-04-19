@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2022 by Josep Sanz Campderrós
+More information in https://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<root>
+    <menu>
+        <estados>'ameri'qa'</estados>
+        <agenda>Agenda 'ej wani'</agenda>
+        <correo>Email</correo>
+        <tiposevento>Wani' segh</tiposevento>
+        <textos>Predefine bingdaq ghitlh leghlu'</textos>
+        <feeds>Yab potlh law' je' rss</feeds>
+        <favoritos>Favorite</favoritos>
+        <gestiontipos>Segh</gestiontipos>
+        <desc_agenda>Hoch such qep agenda ghitlh</desc_agenda>
+        <desc_estados>Qit dotlh potlh'e', jinmol, etc define.</desc_estados>
+        <desc_correo>Lad 'ej emails ngeh nadevvo' customers suppliers je</desc_correo>
+        <desc_tiposevento>Wani' bimejnis segh define</desc_tiposevento>
+        <desc_textos>Predefine bingdaq ghitlh leghlu' lo' chenmoh neh latlh applications</desc_textos>
+        <desc_feeds>Rss Atom 'ej je' tlha' vo' app</desc_feeds>
+        <desc_favoritos>Favorites vu' nadevvo'</desc_favoritos>
+        <quick_correo>Mail</quick_correo>
+        <quick_agenda>Agendum</quick_agenda>
+        <quick_estados>'ameri'qa'</quick_estados>
+        <quick_tiposevento>T.events</quick_tiposevento>
+        <quick_textos>Bingdaq ghitlh leghlu'</quick_textos>
+        <quick_feeds>RSS</quick_feeds>
+        <quick_favoritos>Favorite</quick_favoritos>
+    </menu>
+    <estados>
+        <list>Sep tetlh</list>
+        <create>Sep chu'</create>
+        <formview>Sep detail</formview>
+        <forminsert>Sep chu' discharge</forminsert>
+        <formupdate>Dotlh choh</formupdate>
+        <defaultdata>Sep de'</defaultdata>
+        <activo>Pov</activo>
+    </estados>
+    <agenda>
+        <list>Wani' tetlh</list>
+        <create>Chu' wani'</create>
+        <formview>Detail wani'</formview>
+        <forminsert>Registration wani' chu'</forminsert>
+        <formupdate>Wani' choh</formupdate>
+        <defaultdata>Wani' de'</defaultdata>
+        <otrasfechas>Latlh dates</otrasfechas>
+        <todoseventos>[Hoch wanI']</todoseventos>
+        <todoayer>Wa'hu' wani'</todoayer>
+        <todohoy>Dahjaj wani'</todohoy>
+        <todomanana>Wa'les wani'</todomanana>
+        <todosemana>Hogh wani'</todosemana>
+        <todomes>Jar wani'</todomes>
+        <todoano>Dis wani'</todoano>
+        <usersdata>Assign users</usersdata>
+        <asignadoa>Assigned</asignadoa>
+        <notifydelay>Notify</notifydelay>
+        <notifysign>rep ghap s</notifysign>
+        <notifydstart>Start notification hev</notifydstart>
+        <notifydstop>Qav notification, hev</notifydstop>
+        <notifyantes>Pa'</notifyantes>
+        <notifydespues>Qaspu'di'</notifydespues>
+        <notifyprev>Pre-wani' notification</notifyprev>
+        <notifypost>Wani' notification naq</notifypost>
+        <notifyclear>Notification</notifyclear>
+        <notifytip>Say' woddi' notifications</notifytip>
+        <notifyclearok>Wani' restarted:</notifyclearok>
+        <notifyclearko>Ghobe' tu' pending wani' restart</notifyclearko>
+        <calendar>Wani' 'isjah</calendar>
+        <prevmonth>Previous jar</prevmonth>
+        <currentmonth>Qu'mey potlh jar</currentmonth>
+        <nextmonth>Veb jar</nextmonth>
+        <today>Dahjaj</today>
+        <yesterday>Wa'hu'</yesterday>
+        <tomorrow>Po</tomorrow>
+        <continue>Contd....</continue>
+        <by>pong</by>
+        <calendarinfo>De' date cha':</calendarinfo>
+        <add>Wani' chel</add>
+        <gcalendar>Google 'ISjaH</gcalendar>
+        <gcalendartip>Sync wanI' DuqIppu'chugh saltos google 'ISjaH</gcalendartip>
+        <notgcalendaremail>Lutmeyvam cher SoH google 'ISjaH account neH preferences</notgcalendaremail>
+        <invalidgcalendartoken>Google 'ISjaH account login details incorrect</invalidgcalendartoken>
+        <requestgcalendartoken>Click nadev naw' token</requestgcalendartoken>
+        <insertgcalendar>ChenmoH saltos wanI' qaStaHvIS google 'ISjaH:</insertgcalendar>
+        <updategcalendar>Update saltos wanI' qaStaHvIS google 'ISjaH:</updategcalendar>
+        <insertsaltos>ChenmoH google 'ISjaH wanI' qaStaHvIS saltos:</insertsaltos>
+        <updatesaltos>Update google 'ISjaH wanI' qaStaHvIS saltos:</updatesaltos>
+        <notinsertupdate>Pagh wani' update</notinsertupdate>
+        <expand>Sach</expand>
+        <expandtip>Sach wani' 'isjah hoch detail cha'</expandtip>
+        <collapse>Dej</collapse>
+        <collapsetip>Dej wani' 'isjah hoch detail so'</collapsetip>
+        <loadingsmall>Loading.</loadingsmall>
+    </agenda>
+    <correo>
+        <list>Mail listing</list>
+        <create>Mail chu' ngeh</create>
+        <formview>Mail detail</formview>
+        <forminsert>Email chu' ngeh</forminsert>
+        <formupdate>Jiboqqang forward</formupdate>
+        <defaultdata>Mail de'</defaultdata>
+        <from>Jan</from>
+        <to>Meh</to>
+        <cc>CC</cc>
+        <bcc>BCC</bcc>
+        <subject>Hap</subject>
+        <attachments>Attachment</attachments>
+        <message>Qin</message>
+        <recibir>Hev</recibir>
+        <recibirtip>Click nadev chu' emails hev</recibirtip>
+        <enviar>Ngeh</enviar>
+        <enviartip>Click nadev emails ngeh vo' outbox</enviartip>
+        <msgnotpop3email>Pagh email account cher pagh chu' tu'lu'</msgnotpop3email>
+        <msgnotpop3host>Pop3 jabwI' wej configured</msgnotpop3host>
+        <msgerrorpop3email>Qas tlha' qagh:</msgerrorpop3email>
+        <msgnewokpop3email1>Chu' mail, hev neh inbox</msgnewokpop3email1>
+        <msgnewokpop3email2>Chu' emails, hev neh inbox</msgnewokpop3email2>
+        <msggotoemail>ghos post miw'e'</msggotoemail>
+        <msgnewkopop3email>Emails pagh chu'</msgnewkopop3email>
+        <msgconnrefusedpop3email>Connection lajqo' jabwi'</msgconnrefusedpop3email>
+        <msgconnerrorpop3email>Pagh rar jabwi'</msgconnerrorpop3email>
+        <msgopenerrorpop3email>Wej tu' teywi' qin ngas</msgopenerrorpop3email>
+        <msgpropietario>Chepmoh lah lo' neh owner emails</msgpropietario>
+        <msgnotfound>Found pagh wiv emails, filter modify</msgnotfound>
+        <msgnumsileidos>Ghitlhta' chah je lad:</msgnumsileidos>
+        <msgnumsiwait>Ghitlhta' chah je pending:</msgnumsiwait>
+        <msgnumsispam>GhItlh je spam:</msgnumsispam>
+        <msgnumnoleidos>Ghitlhta' chah je un lad:</msgnumnoleidos>
+        <msgnumnowait>Ghitlhta' chah je qi'yah-pending:</msgnumnowait>
+        <msgnumnospam>GhItlhta' chaH je QI'yaH-spam:</msgnumnospam>
+        <msgnumdelete>Deleted:</msgnumdelete>
+        <statenew>Chu'</statenew>
+        <actionnew>Chu'</actionnew>
+        <stateread>Lad</stateread>
+        <statereply>Jang</statereply>
+        <stateforward>Forward</stateforward>
+        <statewait>Slope</statewait>
+        <statespam>SPAM</statespam>
+        <statesent>Ngeh</statesent>
+        <statenotsent>Wej ngeh</statenotsent>
+        <stateerror>Qagh</stateerror>
+        <stateall>Hoch</stateall>
+        <todaslascuentas>[Hoch accounts]</todaslascuentas>
+        <buttonsend>Ngeh</buttonsend>
+        <buttonsendreturnhere>Ngeh 'ej nadev chegh</buttonsendreturnhere>
+        <onlynew>Neh chu'</onlynew>
+        <onlywait>Earrings neh</onlywait>
+        <hidespam>Spam So'</hidespam>
+        <withfiles>Attachments</withfiles>
+        <onlyspam>SPAM NEH</onlyspam>
+        <withoutfiles>Pagh attachments</withoutfiles>
+        <actionwait>Slope</actionwait>
+        <actionspam>SPAM</actionspam>
+        <actionreply>Jang</actionreply>
+        <actionreplyall>Resp. hoch</actionreplyall>
+        <actionforward>Forward</actionforward>
+        <messageid>Id qin</messageid>
+        <fulldata>Mail zoom</fulldata>
+        <sourcedata>Hal mail</sourcedata>
+        <leidos>Lad</leidos>
+        <wait>Slope</wait>
+        <spam>SPAM</spam>
+        <borrar>Delete</borrar>
+        <borrartip>Hoch wiv emails delete</borrartip>
+        <msgleidos>Ghitlh lad ghap wej hoch wiv emails lad daneh?</msgleidos>
+        <msgwait>Wiv hoch emails ghitlh je pending ghap qi'yah-pending daneh'a'?</msgwait>
+        <msgspam>WIv Hoch emails ghItlh je spam ghap wej SPAM DaneH'a'?</msgspam>
+        <msgdelete2>Hoch wiv emails delete daneh?</msgdelete2>
+        <msgnotsendfound>Ngeh qin pagh</msgnotsendfound>
+        <msgerrorsendmail>Qas tlha' qagh:</msgerrorsendmail>
+        <msgtotalsendmail1>Ngeh vo'--box mail</msgtotalsendmail1>
+        <msgtotalsendmail2>Emails ngeh vo' outbox</msgtotalsendmail2>
+        <stateinbox>Input</stateinbox>
+        <stateoutbox>Mej</stateoutbox>
+        <onlyinbox>Starters neh</onlyinbox>
+        <onlyoutbox>Outgoings neh</onlyoutbox>
+        <options>Duh</options>
+        <optionstip>Duh listing latlh cha'</optionstip>
+        <pdfoptions>Pdf DuH</pdfoptions>
+        <sinsubject>(hurdaq subject)</sinsubject>
+        <msgfromkosendmail>Configuration vo': poQ wej vItu'</msgfromkosendmail>
+        <msgsendoksendmail>Successfully ngeh email</msgsendoksendmail>
+        <replysubject>Re:</replysubject>
+        <replyallsubject>Re:</replyallsubject>
+        <forwardsubject>Fwd:</forwardsubject>
+        <embeddedmessage>#datetime, ghitlh #fromname:</embeddedmessage>
+        <actionreplytip>Jang qin sender</actionreplytip>
+        <actionreplyalltip>Jang hoch users qin</actionreplyalltip>
+        <actionforwardtip>Email forward users latlh</actionforwardtip>
+        <noleidos>Qo' lad</noleidos>
+        <nowait>Qo' pending</nowait>
+        <nospam>Pagh spam</nospam>
+        <today>Dahjaj</today>
+        <yesterday>Wa'hu'</yesterday>
+        <week>Hogh</week>
+        <month>Maqtagh</month>
+        <confirmreadingto>Confirmation receipt request</confirmreadingto>
+        <marcarcorreos>Ghitlh je</marcarcorreos>
+        <message0>Qin</message0>
+        <message1>Qin</message1>
+        <message2>Qin</message2>
+        <campos>Fields</campos>
+        <allcampos>[Hoch yotlh]</allcampos>
+        <onlyemail>Neh qastahvis lurgh</onlyemail>
+        <onlysubject>Neh qastahvis qas</onlysubject>
+        <onlybody>Neh choqumta'mo'</onlybody>
+        <filtrarcorreos>Filter pong</filtrarcorreos>
+        <priority>Priority</priority>
+        <priorityhigh>Jen</priorityhigh>
+        <prioritynormal>Motlh</prioritynormal>
+        <prioritylow>'es</prioritylow>
+        <sensitivity>Sensitivity</sensitivity>
+        <sensitivitynormal>Motlh</sensitivitynormal>
+        <sensitivitypersonal>Personal</sensitivitypersonal>
+        <sensitivityprivate>Private</sensitivityprivate>
+        <sensitivityconfidential>Confidential</sensitivityconfidential>
+        <addincidencia>Chenmoh potlh'e'</addincidencia>
+        <addincidenciatip>Potlh'e' chenmoh vo' email</addincidenciatip>
+        <addincidenciamsg>Potlh'e' chenmoh vo' email daneh'a'?</addincidenciamsg>
+        <addincidenciaok>Chenmoh wani'vammo' tlha' je ngoq:</addincidenciaok>
+        <notsupportdefined>Qutlh email account wej defined</notsupportdefined>
+        <notsupportfound>Ngaq email account wej sev email</notsupportfound>
+        <incidenciaexists>Chonayta' niv'e' 'op ngoq potlh'e':</incidenciaexists>
+        <interrorsendmail>Wej ngeh email qagh internal</interrorsendmail>
+    </correo>
+    <tiposevento>
+        <list>Wani' segh tetlh</list>
+        <create>Chu' segh wani'</create>
+        <formview>Detail wani' segh</formview>
+        <forminsert>Jenwi' chu' segh wani'</forminsert>
+        <formupdate>Wani' segh choh</formupdate>
+        <defaultdata>Wani' segh de'</defaultdata>
+    </tiposevento>
+    <textos>
+        <list>Predefine bingdaq ghitlh leghlu' tetlh</list>
+        <publico>Public</publico>
+        <publico_desc>Predefine bingdaq ghitlh leghlu' lah lo' hoch</publico_desc>
+        <create>Chu' predefine bingdaq ghitlh leghlu'</create>
+        <formview>Detail predefine bingdaq ghitlh leghlu'</formview>
+        <forminsert>Jenwi' chu' predefine bingdaq ghitlh leghlu'</forminsert>
+        <formupdate>Modification predefine bingdaq ghitlh leghlu'</formupdate>
+        <defaultdata>Predefine bingdaq ghitlh leghlu' de'</defaultdata>
+        <sinaplicacion>[pagh Application]</sinaplicacion>
+    </textos>
+    <feeds>
+        <list>Rss je' tetlh</list>
+        <msgnewfeedsok1>Chu' downloaded post</msgnewfeedsok1>
+        <msgnewfeedsok2>Chu' posts, downloaded</msgnewfeedsok2>
+        <msgnewfeedsko>Pagh chu' posts vitu'</msgnewfeedsko>
+        <msgmodifiedfeedsok1>Update post</msgmodifiedfeedsok1>
+        <msgmodifiedfeedsok2>Update posts</msgmodifiedfeedsok2>
+        <msgnotfeeds>Tu'lu' pagh rss je' configured pagh ghuS</msgnotfeeds>
+        <feed>Rss je'</feed>
+        <title>Title</title>
+        <pubdate>Pub date.</pubdate>
+        <recibir>Hev</recibir>
+        <recibirtip>Click nadev chu' posts hev</recibirtip>
+        <todoslosfeeds>[Hoch rss je']</todoslosfeeds>
+        <defaultdata>Post detail</defaultdata>
+        <fulldata>Post zoom</fulldata>
+        <actionwait>Slope</actionwait>
+        <statenew>Chu'</statenew>
+        <actionnew>Chu'</actionnew>
+        <statemodified>Modify</statemodified>
+        <statewait>Slope</statewait>
+        <stateread>Lad</stateread>
+        <actionforward>Forward</actionforward>
+        <actionforwardtip>Post forward pong email</actionforwardtip>
+        <formview>Post detail</formview>
+        <msggotofeeds>ha' rss je'</msggotofeeds>
+        <onlynew>Neh chu'</onlynew>
+        <onlywait>Earrings neh</onlywait>
+        <options>Duh</options>
+        <optionstip>Duh listing latlh cha'</optionstip>
+        <pdfoptions>Pdf DuH</pdfoptions>
+        <stateall>Hoch</stateall>
+        <today>Dahjaj</today>
+        <yesterday>Wa'hu'</yesterday>
+        <week>Hogh</week>
+        <month>Maqtagh</month>
+        <marcarfeeds>Ghitlh je</marcarfeeds>
+        <leidos>Lad</leidos>
+        <wait>Slope</wait>
+        <borrar>Delete</borrar>
+        <borrartip>Hoch wiv posts delete</borrartip>
+        <noleidos>Qo' lad</noleidos>
+        <nowait>Qo' pending</nowait>
+        <msgleidos>Ghitlh hoch lad ghap wej posts, lad hoch wiv daneh?</msgleidos>
+        <msgwait>Hoch wiv posts ghitlh je pending ghap qi'yah-pending daneh'a'?</msgwait>
+        <msgdelete2>Hoch wiv posts delete daneh?</msgdelete2>
+        <msgpropietario>Luchohlu'qu'pu'mo' lah lo' neh owner posts</msgpropietario>
+        <msgnotfound>Found pagh wiv posts, filter modify</msgnotfound>
+        <msgnumsileidos>Ghitlhta' chah je lad:</msgnumsileidos>
+        <msgnumsiwait>Ghitlhta' chah je pending:</msgnumsiwait>
+        <msgnumnoleidos>Ghitlhta' chah je un lad:</msgnumnoleidos>
+        <msgnumnowait>Ghitlhta' chah je qi'yah-pending:</msgnumnowait>
+        <msgnumdelete>Deleted:</msgnumdelete>
+        <message0>Post</message0>
+        <message1>Post</message1>
+        <message2>Post</message2>
+        <msgerrorfeed>Qas qagh tlha' lom nolwi'pu' je':</msgerrorfeed>
+        <sintitle>(untitled)</sintitle>
+        <post>Post rss</post>
+        <filtrarfeeds>Filter pong</filtrarfeeds>
+        <actioncool>Daj</actioncool>
+        <statecool>Daj</statecool>
+        <onlycool>Qu'vetlh daj</onlycool>
+        <cool>Daj</cool>
+        <nocool>Wej daj</nocool>
+        <msgcool>Je daj ghap wej hoch wiv posts daj ghitlh visuq vineh?</msgcool>
+        <msgnumsicool>Chah ghitlhta' je daj:</msgnumsicool>
+        <msgnumnocool>Chah ghitlhta' je un daj:</msgnumnocool>
+        <actionfavoritos>Boq favorites</actionfavoritos>
+    </feeds>
+    <favoritos>
+        <list>Favourite tetlh</list>
+        <create>Favorite chu'</create>
+        <url>URL</url>
+        <bookmarkexists>Niv'e' url chonayta' tod daneh'a' je favorite.</bookmarkexists>
+        <invalidurl>Url invalid, 'ej bebvo' soq 'ol:</invalidurl>
+        <bookmarkadded>Successfully chel url favorites</bookmarkadded>
+        <previews>Preview</previews>
+    </favoritos>
+</root>

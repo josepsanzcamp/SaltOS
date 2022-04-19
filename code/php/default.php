@@ -29,19 +29,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 $page = getParam("page", getDefault("page"));
 $action = getParam("action", getDefault("action"));
 $id = intval(getParam("id", getDefault("id")));
-if (file_exists("php/action/${action}.php")) {
-    require "php/action/${action}.php";
+if (file_exists(detect_app_file("php/action/${action}.php"))) {
+    require detect_app_file("php/action/${action}.php");
 }
 
 // DEFAULT ACTIONS
 $page = getParam("page");
-if (!file_exists("xml/${page}.xml")) {
+if (!file_exists(detect_app_file("xml/${page}.xml"))) {
     $page = "";
 }
 if (in_array($action, array("list","form"))) {
     $page = lastpage($page);
 }
-if (!file_exists("xml/${page}.xml")) {
+if (!file_exists(detect_app_file("xml/${page}.xml"))) {
     $page = getDefault("page");
 }
 
@@ -81,15 +81,15 @@ if (load_style($style)) {
 // SWITCH FOR EACH CASE
 if (!check_user()) {
     $_LANG["default"] = "login,common";
-    $_CONFIG["login"] = eval_attr(xml2array("xml/login.xml"));
+    $_CONFIG["login"] = eval_attr(xml2array(detect_app_file("xml/login.xml")));
     $_RESULT["form"] = getDefault("login/form");
     add_css_js_page($_RESULT["form"], "login");
 } elseif (check_user($page, "menu")) {
     $_LANG["default"] = "${page},menu,common";
-    $_CONFIG["menu"] = eval_attr(xml2array("xml/menu.xml"));
+    $_CONFIG["menu"] = eval_attr(xml2array(detect_apps_files("xml/menu.xml")));
     $_RESULT["menu"] = getDefault("menu");
-    if (file_exists("xml/${page}.xml")) {
-        $_CONFIG[$page] = xml2array("xml/${page}.xml");
+    if (file_exists(detect_app_file("xml/${page}.xml"))) {
+        $_CONFIG[$page] = xml2array(detect_app_file("xml/${page}.xml"));
         if (getDefault("$page/default")) {
             $_CONFIG[$page]["default"] = eval_attr(getDefault("$page/default"));
         }
@@ -100,7 +100,7 @@ if (!check_user()) {
         require_once "php/libaction.php";
         if (!getDefault("$page/$action")) {
             $_LANG["default"] = "denied,menu,common";
-            $_CONFIG["denied"] = eval_attr(xml2array("xml/denied.xml"));
+            $_CONFIG["denied"] = eval_attr(xml2array(detect_app_file("xml/denied.xml")));
             $_RESULT["form"] = getDefault("denied/form");
             add_css_js_page($_RESULT["form"], "denied");
             session_error("Unknown action '$action'");
@@ -278,21 +278,19 @@ if (!check_user()) {
                     if (isset($config["views"]["insert"]["query"])) {
                         $query = $config["views"]["insert"]["query"];
                     }
+                } elseif ($id > 0) {
+                    if (isset($config["views"]["update"]["title"])) {
+                        $_RESULT[$action]["title"] = $config["views"]["update"]["title"];
+                    }
+                    if (isset($config["views"]["update"]["query"])) {
+                        $query = $config["views"]["update"]["query"];
+                    }
                 } else {
-                    if ($id > 0) {
-                        if (isset($config["views"]["update"]["title"])) {
-                            $_RESULT[$action]["title"] = $config["views"]["update"]["title"];
-                        }
-                        if (isset($config["views"]["update"]["query"])) {
-                            $query = $config["views"]["update"]["query"];
-                        }
-                    } else {
-                        if (isset($config["views"]["view"]["title"])) {
-                            $_RESULT[$action]["title"] = $config["views"]["view"]["title"];
-                        }
-                        if (isset($config["views"]["view"]["query"])) {
-                            $query = $config["views"]["view"]["query"];
-                        }
+                    if (isset($config["views"]["view"]["title"])) {
+                        $_RESULT[$action]["title"] = $config["views"]["view"]["title"];
+                    }
+                    if (isset($config["views"]["view"]["query"])) {
+                        $query = $config["views"]["view"]["query"];
                     }
                 }
                 if (isset($query)) {
@@ -318,7 +316,7 @@ if (!check_user()) {
                     }
                 } else {
                     $_LANG["default"] = "denied,menu,common";
-                    $_CONFIG["denied"] = eval_attr(xml2array("xml/denied.xml"));
+                    $_CONFIG["denied"] = eval_attr(xml2array(detect_app_file("xml/denied.xml")));
                     $_RESULT["form"] = getDefault("denied/form");
                     add_css_js_page($_RESULT["form"], "denied");
                     session_error("Unknown action '$action'");
@@ -330,20 +328,21 @@ if (!check_user()) {
                     break;
                 }
                 $_LANG["default"] = "denied,menu,common";
-                $_CONFIG["denied"] = eval_attr(xml2array("xml/denied.xml"));
+                $_CONFIG["denied"] = eval_attr(xml2array(detect_app_file("xml/denied.xml")));
                 $_RESULT["form"] = getDefault("denied/form");
                 add_css_js_page($_RESULT["form"], "denied");
                 session_error("Unknown action '$action'");
                 break;
         }
+        // END OLD DEFAULT.PHP
     } else {
         session_error(LANG("permdenied"));
     }
 } else {
     $_LANG["default"] = "denied,menu,common";
-    $_CONFIG["menu"] = eval_attr(xml2array("xml/menu.xml"));
+    $_CONFIG["menu"] = eval_attr(xml2array(detect_apps_files("xml/menu.xml")));
     $_RESULT["menu"] = getDefault("menu");
-    $_CONFIG["denied"] = eval_attr(xml2array("xml/denied.xml"));
+    $_CONFIG["denied"] = eval_attr(xml2array(detect_app_file("xml/denied.xml")));
     $_RESULT["form"] = getDefault("denied/form");
     add_css_js_page($_RESULT["form"], "denied");
     session_error(LANG("permdenied"));
@@ -373,8 +372,6 @@ if (isset($_ERROR)) {
     $_RESULT["errors"] = $_ERROR;
 }
 $_RESULT["info"]["color"] = color_style($style);
-$_RESULT["info"]["usejscache"] = getDefault("cache/usejscache");
-$_RESULT["info"]["usecsscache"] = getDefault("cache/usecsscache");
 $_RESULT["info"]["lang"] = $lang;
 $_RESULT["info"]["dir"] = $_LANG["dir"];
 

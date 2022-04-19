@@ -38,7 +38,7 @@ if (!$page || !check_user($page, "menu")) {
 
 require_once "php/libaction.php";
 $_LANG["default"] = "${page},menu,common";
-$_CONFIG[$page] = xml2array("xml/${page}.xml");
+$_CONFIG[$page] = xml2array(detect_app_file("xml/${page}.xml"));
 $page = lastpage($page);
 
 $config = getDefault("$page/$action");
@@ -53,21 +53,19 @@ if ($id == 0) {
     if (isset($config["views"]["insert"]["query"])) {
         $query = $config["views"]["insert"]["query"];
     }
+} elseif ($id > 0) {
+    if (isset($config["views"]["update"]["title"])) {
+        $_RESULT[$action]["title"] = $config["views"]["update"]["title"];
+    }
+    if (isset($config["views"]["update"]["query"])) {
+        $query = $config["views"]["update"]["query"];
+    }
 } else {
-    if ($id > 0) {
-        if (isset($config["views"]["update"]["title"])) {
-            $_RESULT[$action]["title"] = $config["views"]["update"]["title"];
-        }
-        if (isset($config["views"]["update"]["query"])) {
-            $query = $config["views"]["update"]["query"];
-        }
-    } else {
-        if (isset($config["views"]["view"]["title"])) {
-            $_RESULT[$action]["title"] = $config["views"]["view"]["title"];
-        }
-        if (isset($config["views"]["view"]["query"])) {
-            $query = $config["views"]["view"]["query"];
-        }
+    if (isset($config["views"]["view"]["title"])) {
+        $_RESULT[$action]["title"] = $config["views"]["view"]["title"];
+    }
+    if (isset($config["views"]["view"]["query"])) {
+        $query = $config["views"]["view"]["query"];
     }
 }
 if (!isset($query)) {
