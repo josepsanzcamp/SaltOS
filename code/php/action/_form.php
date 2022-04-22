@@ -39,7 +39,6 @@ if (!$page || !check_user($page, "menu")) {
 require_once "php/libaction.php";
 $_LANG["default"] = "${page},menu,common";
 $_CONFIG[$page] = xml2array(detect_app_file("xml/${page}.xml"));
-$page = lastpage($page);
 
 $config = getDefault("$page/$action");
 $config = eval_attr($config);
