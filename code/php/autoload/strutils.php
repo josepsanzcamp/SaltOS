@@ -464,9 +464,9 @@ function ismsie($version = null)
 function html2text($html)
 {
     require_once "lib/roundcube/rcube_html2text.php";
-    $h2t = new rcube_html2text($html);
+    $obj = new rcube_html2text($html);
     capture_next_error();
-    $text = $h2t->get_text();
+    $text = $obj->get_text();
     get_clear_error();
     return $text;
 }
@@ -475,9 +475,7 @@ function html2text($html)
 function getutf8($str)
 {
     if ($str != "" && !mb_check_encoding($str, "UTF-8")) {
-        ob_start();
         $str = mb_convert_encoding($str, "UTF-8", mb_detect_order());
-        ob_get_clean();
     }
     return $str;
 }
