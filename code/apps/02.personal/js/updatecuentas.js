@@ -60,4 +60,5 @@ if (typeof __updatecuentas__ == "undefined" && typeof parent.__updatecuentas__ =
 var cuentas_defaults = "";
 
 $(function () {
-    update_cuentas(); });
+    update_cuentas();
+});

@@ -60,4 +60,5 @@ if (typeof __updateregistros__ == "undefined" && typeof parent.__updateregistros
 var registros_defaults = "";
 
 $(function () {
-    update_registros(); });
+    update_registros();
+});

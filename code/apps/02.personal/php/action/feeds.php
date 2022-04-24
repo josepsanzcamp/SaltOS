@@ -488,25 +488,15 @@ if (!getParam("ajax")) {
         $gotofeeds = " [<a href='javascript:void(0)' onclick='gotofeeds()'>" . LANG("msggotofeeds", "feeds") . "</a>]";
         $condition = "update_feeds_list()";
         if ($newfeeds > 0) {
-            javascript_alert(
-                $newfeeds . LANG("msgnewfeedsok" . min($newfeeds, 2), "feeds"),
-                $condition
-            );
-            javascript_alert(
-                $newfeeds . LANG("msgnewfeedsok" . min($newfeeds, 2), "feeds") . $gotofeeds,
-                "!($condition)"
-            );
+            javascript_alert($newfeeds . LANG("msgnewfeedsok" . min($newfeeds, 2), "feeds"), $condition);
+            javascript_alert($newfeeds . LANG("msgnewfeedsok" . min($newfeeds, 2), "feeds") . $gotofeeds, "!($condition)");
         }
         if ($modifiedfeeds > 0) {
-            javascript_alert(
-                $modifiedfeeds . LANG("msgmodifiedfeedsok" . min($modifiedfeeds, 2), "feeds"),
-                $condition
-            );
-            javascript_alert(
-                $modifiedfeeds . LANG("msgmodifiedfeedsok" . min($modifiedfeeds, 2), "feeds") . $gotofeeds,
-                "!($condition)"
-            );
+            javascript_alert($modifiedfeeds . LANG("msgmodifiedfeedsok" . min($modifiedfeeds, 2), "feeds"), $condition);
+            javascript_alert($modifiedfeeds . LANG("msgmodifiedfeedsok" . min($modifiedfeeds, 2), "feeds") . $gotofeeds, "!($condition)");
         }
+        javascript_template("update_numbers('feeds',${newfeeds});");
+        javascript_template("update_favicon(${newfeeds});");
         javascript_history(0, $condition);
     }
 }

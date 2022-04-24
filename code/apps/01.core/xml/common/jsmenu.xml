@@ -97,6 +97,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <include ifeval="eval_bool(getDefault('enableindexing'))">js/checkindexing.js</include>
         <include ifeval="eval_bool(getDefault('enableintegrity'))">js/checkintegrity.js</include>
         <include ifeval="eval_bool(getDefault('enablepurge'))">js/checkpurge.js</include>
+        <include>js/favicon.js</include>
+        <include>js/numbers.js</include>
         <include>js/folders.js</include>
     </cache>
 </root>

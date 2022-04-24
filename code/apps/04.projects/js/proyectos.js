@@ -251,4 +251,5 @@ if (typeof __proyectos__ == "undefined" && typeof parent.__proyectos__ == "undef
 
 "use strict";
 $(function () {
-    update_totales_proyecto(); });
+    update_totales_proyecto();
+});

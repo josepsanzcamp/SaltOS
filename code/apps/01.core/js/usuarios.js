@@ -190,4 +190,5 @@ if (typeof __usuarios__ == "undefined" && typeof parent.__usuarios__ == "undefin
 
 "use strict";
 $(function () {
-    make_usuarios(); });
+    make_usuarios();
+});

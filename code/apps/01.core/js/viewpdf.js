@@ -101,7 +101,8 @@ if (typeof __viewpdf__ == "undefined" && typeof parent.__viewpdf__ == "undefined
                         $(dialog2).dialog("option","resizeStop",function () {});
                         $(dialog2).dialog("option","close",function () {});
                         $("*",dialog2).each(function () {
-                            $(this).remove(); });
+                            $(this).remove();
+                        });
                         document.removeEventListener("pagesinit",fn1);
                         document.removeEventListener("annotationlayerrendered",fn2);
                         unmake_focus();

@@ -117,6 +117,7 @@ $query = "SELECT 'dstart' type,
         AND UNIX_TIMESTAMP('" . current_datetime() . "') > UNIX_TIMESTAMP(dstop)
     ORDER BY dstart ASC";
 $result = db_query($query);
+$newagenda = 0;
 while ($row = db_fetch_row($result)) {
     $unix = strtotime($row["dstart"]);
     $current = date("Y-m-d", $unix);
@@ -170,12 +171,18 @@ while ($row = db_fetch_row($result)) {
         $title = str_replace("'", "", $title);
         $msg = str_replace(array("'","\n","\r"), " ", $msg);
         javascript_template("notice('$title','$msg',true,function() { $.ajax({ url:'$urlrecv' }); },'ui-state-highlight id_$id hash_$hash');");
+        $newagenda++;
     }
 }
 db_free($result);
 // OCULTAR NO ENCONTRADOS
 foreach ($id_hash as $key => $val) {
     javascript_template("$('.id_${val[0]}').remove()");
+}
+// NOTIFICACIONES EXTRAS
+if ($newagenda > 0) {
+    javascript_template("update_numbers('agenda',${newagenda});");
+    javascript_template("update_favicon(${newagenda});");
 }
 javascript_headers();
 die();

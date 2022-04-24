@@ -99,6 +99,7 @@ __JS__
             <include>lib/jquery/jquery.jgrowl.min.js</include>
             <include>lib/jquery/jquery.colorpicker.min.js</include>
             <include>lib/jquery/jquery.timepicker.min.js</include>
+            <include>lib/jquery/jquery.favicon.min.js</include>
         </cache>
         <inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
         <cache>

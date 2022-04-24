@@ -48,4 +48,5 @@ if (typeof __agenda__ == "undefined" && typeof parent.__agenda__ == "undefined")
 
 "use strict";
 $(function () {
-    update_tabs(); });
+    update_tabs();
+});

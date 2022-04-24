@@ -67,4 +67,5 @@ var proyectos_defaults = "";
 var proyectos_init = 0;
 
 $(function () {
-    update_proyectos(); });
+    update_proyectos();
+});

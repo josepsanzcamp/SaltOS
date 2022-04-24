@@ -70,4 +70,5 @@ if (typeof __updatetareas__ == "undefined" && typeof parent.__updatetareas__ == 
 var tareas_defaults = "";
 
 $(function () {
-    update_tareas(); });
+    update_tareas();
+});

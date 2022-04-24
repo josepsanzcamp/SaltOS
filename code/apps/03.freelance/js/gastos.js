@@ -85,4 +85,5 @@ if (typeof __gastos__ == "undefined" && typeof parent.__gastos__ == "undefined")
 var proveedores_defaults = "";
 
 $(function () {
-    search_proveedor(); });
+    search_proveedor();
+});

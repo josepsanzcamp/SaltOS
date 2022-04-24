@@ -110,4 +110,5 @@ if (typeof __calendar__ == "undefined" && typeof parent.__calendar__ == "undefin
 
 "use strict";
 $(function () {
-    update_calendar(); });
+    update_calendar();
+});

@@ -83,4 +83,5 @@ if (typeof __additem__ == "undefined" && typeof parent.__additem__ == "undefined
 
 "use strict";
 $(function () {
-    init_additem(); });
+    init_additem();
+});

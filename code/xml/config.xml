@@ -207,6 +207,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <include>lib/jquery/jquery.jgrowl.min.js</include>
             <include>lib/jquery/jquery.colorpicker.min.js</include>
             <include>lib/jquery/jquery.timepicker.min.js</include>
+            <include>lib/jquery/jquery.favicon.min.js</include>
         </cache>
         <inline ifeval="!ismobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
         <cache ifeval="!ismobile()">

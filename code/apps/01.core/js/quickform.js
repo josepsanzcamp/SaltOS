@@ -70,4 +70,5 @@ if (typeof __quickform__ == "undefined" && typeof parent.__quickform__ == "undef
 
 "use strict";
 $(function () {
-    update_quickform(); });
+    update_quickform();
+});

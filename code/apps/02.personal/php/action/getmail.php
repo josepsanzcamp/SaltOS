@@ -610,14 +610,10 @@ if (getParam("action") == "getmail") {
         if ($newemail > 0) {
             $gotoemail = " [<a href='javascript:void(0)' onclick='gotoemail()'>" . LANG("msggotoemail", "correo") . "</a>]";
             $condition = "update_correo_list()";
-            javascript_alert(
-                $newemail . LANG("msgnewokpop3email" . min($newemail, 2), "correo"),
-                $condition
-            );
-            javascript_alert(
-                $newemail . LANG("msgnewokpop3email" . min($newemail, 2), "correo") . $gotoemail,
-                "!($condition)"
-            );
+            javascript_alert($newemail . LANG("msgnewokpop3email" . min($newemail, 2), "correo"), $condition);
+            javascript_alert($newemail . LANG("msgnewokpop3email" . min($newemail, 2), "correo") . $gotoemail, "!($condition)");
+            javascript_template("update_numbers('correo',${newemail});");
+            javascript_template("update_favicon(${newemail});");
             javascript_history(0, $condition);
         }
     }

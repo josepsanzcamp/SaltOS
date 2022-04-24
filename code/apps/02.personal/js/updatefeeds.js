@@ -62,4 +62,5 @@ if (typeof __updatefeeds__ == "undefined" && typeof parent.__updatefeeds__ == "u
 var feeds_defaults = "";
 
 $(function () {
-    update_feeds(); });
+    update_feeds();
+});

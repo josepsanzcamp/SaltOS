@@ -61,4 +61,5 @@ if (typeof __updatepresupuestos__ == "undefined" && typeof parent.__updatepresup
 var presupuestos_defaults = "";
 
 $(function () {
-    update_presupuestos(); });
+    update_presupuestos();
+});

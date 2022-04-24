@@ -112,6 +112,7 @@ __JS__
         <include>lib/bootstrap/js/bootstrap.bundle.min.js</include>
         <include>lib/jquery/jquery.autogrow-textarea.min.js</include>
         <include>lib/bootbox/bootbox.min.js</include>
+        <include>lib/jquery/jquery.favicon.min.js</include>
         <inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
         <include>lib/ckeditor/ckeditor.js</include>
         <include>lib/ckeditor/adapters/jquery.js</include>

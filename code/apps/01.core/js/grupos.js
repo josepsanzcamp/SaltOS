@@ -217,4 +217,5 @@ if (typeof __grupos__ == "undefined" && typeof parent.__grupos__ == "undefined")
 
 "use strict";
 $(function () {
-    make_grupos(); });
+    make_grupos();
+});
