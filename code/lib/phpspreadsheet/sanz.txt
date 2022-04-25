@@ -1,0 +1,10 @@
+
+# Use composer to get the library:
+
+# composer require phpoffice/phpspreadsheet
+
+# To fix the permissions in files and directories, use it:
+
+# find vendor -type d | gawk '{print "\""$0"\""}' | xargs chmod 0775
+# find vendor -type f | gawk '{print "\""$0"\""}' | xargs chmod 0664
+
