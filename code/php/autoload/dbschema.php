@@ -33,7 +33,10 @@ function db_schema()
     capture_next_error();
     $hash1 = CONFIG("xml/dbschema.xml");
     get_clear_error();
-    $hash2 = md5(serialize(array(xml2array(detect_apps_files("xml/dbschema.xml")),xml2array(detect_apps_files("xml/dbstatic.xml")))));
+    $hash2 = md5(serialize(array(
+        xml2array(detect_apps_files("xml/dbschema.xml")),
+        xml2array(detect_apps_files("xml/dbstatic.xml"))
+    )));
     if ($hash1 != $hash2) {
         if (!semaphore_acquire(array("db_schema","db_static"), getDefault("semaphoretimeout", 100000))) {
             return;

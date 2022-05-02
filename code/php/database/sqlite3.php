@@ -59,6 +59,7 @@ class database_sqlite3
             show_php_error(array("dberror" => $e->getMessage() . " (code " . $e->getCode() . ")"));
         }
         if ($this->link) {
+            $this->link->enableExceptions(true);
             $this->link->busyTimeout(0);
             $this->db_query("PRAGMA cache_size=2000");
             $this->db_query("PRAGMA synchronous=OFF");

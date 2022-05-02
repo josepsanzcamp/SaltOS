@@ -500,18 +500,18 @@ function xml2array($files, $usecache = true)
             }
         }
     }
-    $data=array();
-    foreach($files as $file) {
+    $data = array();
+    foreach ($files as $file) {
         $xml = file_get_contents($file);
         $data2 = xml2struct($xml, $file);
-		if (count($data) > 0) {
-			array_pop($data);
-			array_shift($data2);
-		}
-		$data = array_merge($data, $data2);
+        if (count($data) > 0) {
+            array_pop($data);
+            array_shift($data2);
+        }
+        $data = array_merge($data, $data2);
     }
     $data = array_reverse($data);
-    $array = struct2array($data, implode(",",$files));
+    $array = struct2array($data, implode(",", $files));
     $array = struct2array_include($array);
     if (detect_recursion(__FUNCTION__) == 1) {
         $array = struct2array_path($array);

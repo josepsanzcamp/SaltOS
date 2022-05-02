@@ -258,16 +258,14 @@ define("__USER__", 1);
                                     $error = get_clear_error(); ?>
                                     <?php if ($error == "") { ?>
                                     <option value="pdo_mysql">MariaDB &amp; MySQL (PDO)<?php echo LANG("select_prefered"); ?></option>
-                                    <option value="mysqli">MariaDB &amp; MySQL (improved extension)</option>
-                                    <option value="mysql">MariaDB &amp; MySQL (obsolete extension)</option>
+                                    <option value="mysqli">MariaDB &amp; MySQL (extension)</option>
                                     <option value="pdo_sqlite">SQLite3 (PDO)</option>
                                     <option value="sqlite3">SQLite3 (extension)</option>
                                     <?php } else { ?>
                                     <option value="pdo_sqlite">SQLite3 (PDO)<?php echo LANG("select_prefered"); ?></option>
                                     <option value="sqlite3">SQLite3 (extension)</option>
                                     <option value="pdo_mysql">MariaDB &amp; MySQL (PDO)</option>
-                                    <option value="mysqli">MariaDB &amp; MySQL (improved extension)</option>
-                                    <option value="mysql">MariaDB &amp; MySQL (obsolete extension)</option>
+                                    <option value="mysqli">MariaDB &amp; MySQL (extension)</option>
                                     <?php } ?>
                                 </select>
                             <?php } elseif (in_array(getParam("dbtype"), array("pdo_sqlite","sqlite3"))) { ?>
@@ -312,11 +310,10 @@ define("__USER__", 1);
                                     echo $count == 0 ? __YES__ : __NO__;
                                     echo __BR__;
                                 }
-                            } elseif (in_array(getParam("dbtype"), array("pdo_mysql","mysql","mysqli"))) {
+                            } elseif (in_array(getParam("dbtype"), array("pdo_mysql","mysqli"))) {
                                 $dbtypes = array(
                                     "pdo_mysql" => "MariaDB &amp; MySQL (PDO)",
-                                    "mysql" => "MariaDB &amp; MySQL (extension)",
-                                    "mysqli" => "MariaDB &amp; MySQL (improved extension)"
+                                    "mysqli" => "MariaDB &amp; MySQL (extension)"
                                 );
                                 echo LANG("selected_dbtype");
                                 echo ": ";
@@ -597,11 +594,10 @@ define("__USER__", 1);
                                 echo LANG("selected_dbtype") . ": " . __GREEN__ . $dbtypes[getParam("dbtype", getDefault("db/type"))] . __COLOR__ . __BR__;
                                 $dbfile = getDefault("db/file");
                                 echo LANG("dbfile") . ": " . __GREEN__ . $dbfile . __COLOR__ . __BR__;
-                            } elseif (in_array(getParam("dbtype", getDefault("db/type")), array("pdo_mysql","mysql","mysqli"))) {
+                            } elseif (in_array(getParam("dbtype", getDefault("db/type")), array("pdo_mysql","mysqli"))) {
                                 $dbtypes = array(
                                     "pdo_mysql" => "MariaDB &amp; MySQL (PDO)",
-                                    "mysql" => "MariaDB &amp; MySQL (extension)",
-                                    "mysqli" => "MariaDB &amp; MySQL (improved extension)"
+                                    "mysqli" => "MariaDB &amp; MySQL (extension)"
                                 );
                                 echo LANG("selected_dbtype") . ": " . __GREEN__ . $dbtypes[getParam("dbtype", getDefault("db/type"))] . __COLOR__ . __BR__;
                                 echo LANG("dbhost") . ": " . __GREEN__ . getParam("dbhost", getDefault("db/host")) . __COLOR__ . __BR__;

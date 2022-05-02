@@ -44,7 +44,7 @@ class database_pdo_mssql
         }
         try {
             $this->link = new PDO(
-                "dblib:host=" . $args["host"] . ":" . $args["port"] . ";dbname=" . $args["name"],
+                "dblib:host=" . $args["host"] . ":" . $args["port"] . ";dbname=" . $args["name"] . ";charset=UTF-8",
                 $args["user"],
                 $args["pass"]
             );
@@ -64,7 +64,6 @@ class database_pdo_mssql
             return $result;
         }
         // DO QUERY
-        $query = utf8_decode($query);
         try {
             $stmt = $this->link->query($query);
         } catch (PDOException $e) {
@@ -78,11 +77,6 @@ class database_pdo_mssql
             }
             if ($fetch == "query") {
                 $result["rows"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($result["rows"] as $key => $val) {
-                    foreach ($val as $key2 => $val2) {
-                        $result["rows"][$key][$key2] = utf8_encode($val2);
-                    }
-                }
                 $result["total"] = count($result["rows"]);
                 if ($result["total"] > 0) {
                     $result["header"] = array_keys($result["rows"][0]);
@@ -90,9 +84,6 @@ class database_pdo_mssql
             }
             if ($fetch == "column") {
                 $result["rows"] = $stmt->fetchAll(PDO::FETCH_COLUMN);
-                foreach ($result["rows"] as $key => $val) {
-                    $result["rows"][$key] = utf8_encode($val);
-                }
                 $result["total"] = count($result["rows"]);
                 $result["header"] = array("column");
             }
@@ -102,9 +93,6 @@ class database_pdo_mssql
                 }
                 while ($row = $stmt->fetch(PDO::FETCH_COLUMN)) {
                     $result["rows"][0] .= "," . $row;
-                }
-                foreach ($result["rows"] as $key => $val) {
-                    $result["rows"][$key] = utf8_encode($val);
                 }
                 $result["total"] = count($result["rows"]);
                 $result["header"] = array("concat");
