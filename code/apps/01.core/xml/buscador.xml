@@ -76,41 +76,33 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <field>
                 <name>id2</name>
                 <label lang="true">id</label>
-                <sort>true</sort>
-                <order>id</order>
             </field>
             <field>
                 <name>aplicacion</name>
                 <label lang="true">aplicacion</label>
-                <sort>true</sort>
             </field>
             <field>
                 <name>nombre</name>
                 <label lang="true">nombre</label>
-                <sort>true</sort>
                 <size>80</size>
             </field>
             <field>
                 <name>usuario</name>
                 <label lang="true">username</label>
-                <sort>true</sort>
             </field>
             <field>
                 <name>datetime</name>
                 <label lang="true">datetime</label>
-                <sort>true</sort>
             </field>
             <field>
                 <name>comments</name>
                 <label lang="true">numc</label>
                 <tip lang="true">numctip</tip>
-                <sort>false</sort>
             </field>
             <field>
                 <name>files</name>
                 <label lang="true">numf</label>
                 <tip lang="true">numftip</tip>
-                <sort>false</sort>
             </field>
         </fields>
         <javascript>
@@ -315,14 +307,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
         WHERE first=1
         AND ".($filtro!=""?make_fulltext_query4($filtro):"(1=1)")."
+        AND ".($id_usuario.$id_aplicacion.$filtro.$fecha1.$fecha2!=""?"1=1":"1=0")."
         AND ".($id_aplicacion?"(a.id_aplicacion='$id_aplicacion')":"(1=1)")."
         AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
         AND (id_cuenta IS NULL OR id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'))
         AND ".($fecha1?"(DATE(a.datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
         AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(a.datetime))":"(1=1)")."
         AND ".check_sql2("list","a.id_aplicacion","a.id_usuario","d.id_grupo")</query>
-        <order global="order" eval="true">$order</order>
         <limit global="limit" eval="true">$limit</limit>
         <offset global="offset" eval="true">$offset</offset>
+        <nodata path="nodata/label" replace="true">
+            <label eval="true">LANG(check_filter(array('id_usuario'=>'','id_aplicacion'=>'','filtro'=>'','fecha1'=>'','fecha2'=>''))?"nodata":"nosearch")</label>
+        </nodata>
     </list>
 </root>

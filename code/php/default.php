@@ -220,7 +220,7 @@ if (!check_user()) {
                 $_RESULT[$action] = $config;
                 add_css_js_page($_RESULT[$action], $page);
                 // GET AND REMOVE THE NEEDED XML NODES
-                foreach (array("query","order","limit","offset") as $node) {
+                foreach (array("query","limit","offset") as $node) {
                     if (!isset($config[$node])) {
                         show_php_error(array("xmlerror" => "&lt;$node&gt; not found for &lt;$action&gt;"));
                     }
@@ -229,26 +229,30 @@ if (!check_user()) {
                 $query0 = $config["query"];
                 $limit = $config["limit"];
                 $offset = $config["offset"];
-                // CHECK ORDER
-                list($order,$array) = list_check_order($config["order"], $config["fields"]);
-                // MARK THE SELECTED ORDER FIELD
-                foreach ($_RESULT[$action]["fields"] as $key => $val) {
-                    $selected = 0;
-                    if (isset($val["name"]) && $val["name"] == $array[0][0]) {
-                        $selected = 1;
-                    }
-                    if (isset($val["order"]) && $val["order"] == $array[0][0]) {
-                        $selected = 1;
-                    }
-                    if (isset($val["order" . $array[0][1]]) && $val["order" . $array[0][1]] == $array[0][0]) {
-                        $selected = 1;
-                    }
-                    if ($selected) {
-                        $_RESULT[$action]["fields"][$key]["selected"] = $array[0][1];
+                $order0 = "";
+                if (isset($config["order"])) {
+                    // CHECK ORDER
+                    list($order,$array) = list_check_order($config["order"], $config["fields"]);
+                    $order0 = "ORDER BY ${order}";
+                    // MARK THE SELECTED ORDER FIELD
+                    foreach ($_RESULT[$action]["fields"] as $key => $val) {
+                        $selected = 0;
+                        if (isset($val["name"]) && $val["name"] == $array[0][0]) {
+                            $selected = 1;
+                        }
+                        if (isset($val["order"]) && $val["order"] == $array[0][0]) {
+                            $selected = 1;
+                        }
+                        if (isset($val["order" . $array[0][1]]) && $val["order" . $array[0][1]] == $array[0][0]) {
+                            $selected = 1;
+                        }
+                        if ($selected) {
+                            $_RESULT[$action]["fields"][$key]["selected"] = $array[0][1];
+                        }
                     }
                 }
                 // EXECUTE THE QUERY TO GET THE ROWS WITH LIMIT AND OFFSET
-                $query = "$query0 ORDER BY $order LIMIT $offset,$limit";
+                $query = "${query0} ${order0} LIMIT ${offset},${limit}";
                 $result = db_query($query);
                 $count = 0;
                 while ($row = db_fetch_row($result)) {
