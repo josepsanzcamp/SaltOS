@@ -77,36 +77,4 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     ),"id_usuario='".current_user()."'
         AND id_aplicacion='".page2id(getParam("page"))."'
         AND id='".intval(getParam("id"))."'")</renamefilter>
-    <!-- FOR FOLDERS MODULE -->
-    <addregfolder eval="true">execute_query("SELECT COUNT(*)=1
-        FROM tbl_folders
-        WHERE ".make_where_query(array(
-            "id"=>intval(getParam("id_folder")),
-            "id_usuario"=>current_user()
-        )))*execute_query("SELECT COUNT(*)=0
-        FROM tbl_folders_a
-        WHERE ".make_where_query(array(
-            "id_folder"=>intval(getParam("id_folder")),
-            "id_aplicacion"=>page2id(getParam("page")),
-            "id_registro"=>abs(intval(getParam("id_registro")))
-        )))?make_insert_query("tbl_folders_a",array(
-            "id_folder"=>intval(getParam("id_folder")),
-            "id_aplicacion"=>page2id(getParam("page")),
-            "id_registro"=>abs(intval(getParam("id_registro")))
-        )):""</addregfolder>
-    <delregfolder eval="true">"DELETE FROM tbl_folders_a
-        WHERE ".make_where_query(array(
-            "id_folder"=>intval(getParam("id_folder")),
-            "id_aplicacion"=>page2id(getParam("page")),
-            "id_registro"=>abs(intval(getParam("id_registro")))
-        ))." AND id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')"</delregfolder>
-    <delappfolder eval="true">"DELETE FROM tbl_folders_a
-        WHERE ".make_where_query(array(
-            "id_folder"=>intval(getParam("id_folder")),
-            "id_aplicacion"=>page2id(getParam("page"))
-        ))." AND id_folder IN (
-            SELECT id
-            FROM tbl_folders
-            WHERE id_usuario='".current_user()."'
-        )"</delappfolder>
 </root>

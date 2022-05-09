@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>إضافة</textos_add>
         <selectall>تحديد الكل</selectall>
         <selectnone>حذف المحدد</selectnone>
-        <addtofolder>عرض علي هذا الدليل</addtofolder>
-        <addtofolderok>هذه المحتويات تمت اضافتها لهذا الدليل</addtofolderok>
-        <delfromfolderok>هذا المحتويات تم اخفائها من هذا الدليل</delfromfolderok>
         <savedfilters>تم حفظ المرشحات</savedfilters>
         <optionfilter>اختر مرشح محفوظ</optionfilter>
         <newfilter>اكتب اسم المرشح الجديد</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>اخفاء الادوات</hidetools>
         <inbackground>هذا الحدث يتم اجرائه في الخلفية ,انتظر قليلا</inbackground>
         <sentfromsaltos>لقد تم ارسال الاميل من SaltOS</sentfromsaltos>
-        <foldersdata>الادلة</foldersdata>
         <loweradd>إضافة</loweradd>
         <help>مساعدة</help>
         <selectallcheckbox>تحديد جميع السجلات</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>عام</gestiongeneral>
         <gestionfiltros>عوامل التصفيه</gestionfiltros>
         <gestionadministracion>إدارة</gestionadministracion>
-        <folders>الأدلة</folders>
         <buscador>بحث</buscador>
         <desc_usuarios>رفع ,خفض او تعديل المستخدمين</desc_usuarios>
         <desc_grupos>انشاء مجموعات عمل للمستخدمين </desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>الزر العاشر (F10)</quick_button_f10>
         <quick_button_f11>الزر الحادي عشر (F11)</quick_button_f11>
         <quick_button_f12>الزر الثاني عشر (F12)</quick_button_f12>
-        <folderstab>مجلدات المستخدم</folderstab>
-        <folderspref>قم بتهيئة مجلدات المستخدم هنا ثم اترك ما تريد</folderspref>
-        <newfolder>مجلد مستخدم جديد</newfolder>
-        <withoutparent>[بدون مجلد]</withoutparent>
-        <inparentfolder>ومعلقة في المجلد</inparentfolder>
-        <namefolder>اسم المجلد</namefolder>
-        <parentfolder>معلقة في المجلد</parentfolder>
     </profile>
     <maincfg>
         <formupdate>الاعدادات</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>قائمة المرفقات</list>
         <todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>الدليل غير موجود</notfound>
-        <todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>
-        <deleteoffolder>حذف هذا الدليل</deleteoffolder>
-        <defaultfolder>الدليل الشخصي</defaultfolder>
-    </folders>
     <buscador>
         <list>بحث</list>
         <todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>

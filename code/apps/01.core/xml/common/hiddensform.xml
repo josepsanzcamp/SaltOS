@@ -50,11 +50,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <value eval="true">getParam("returnback")</value>
     </field>
     <field>
-        <name>id_folder</name>
-        <type>hidden</type>
-        <value global="id_folder" eval="true">$id_folder=intval(getParam("id_folder"))</value>
-    </field>
-    <field>
         <name>is_fichero</name>
         <type>hidden</type>
         <value global="is_fichero" eval="true">$is_fichero=intval(getParam("is_fichero"))</value>

@@ -28,8 +28,6 @@ En el llistat de projectes podrà trobar les columnes més importants de cada re
 
 (*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
 
-**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
-
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
@@ -52,7 +50,7 @@ En aquesta pestanya podreu veure les estadístiques sobre quants projectes té e
 
 ==Formulari de projectes==
 
-Aquesta és l'aplicació de projecte, amb ella podrà afegir, modificar i visionar totes les dades del projecte classificats en diferents pestanyes: dades principals, objectius del projecte, tasques del projecte, productes del projecte, fitxer adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+Aquesta és l'aplicació de projecte, amb ella podrà afegir, modificar i visionar totes les dades del projecte classificats en diferents pestanyes: dades principals, objectius del projecte, tasques del projecte, productes del projecte, fitxer adjunts, dades sobre les modificacions del registre, ...
 
 ===Pestanya Dades del projecte===
 
@@ -113,7 +111,3 @@ Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda ge
 ===Pestanya Dades del registre===
 
 Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestanya Carpetes===
-
-Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

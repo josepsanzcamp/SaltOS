@@ -104,11 +104,6 @@ if (getParam("action2")) {
                 // BORRAR REGISTRO DE LOS POSTS
                 make_control(page2id("feeds"), $ids);
                 make_indexing(page2id("feeds"), $ids);
-                // BORRAR FOLDERS RELACIONADOS
-                $query = "DELETE FROM tbl_folders_a
-                    WHERE id_registro IN (${ids})
-                        AND id_aplicacion='" . page2id("correo") . "'";
-                db_query($query);
                 // MOSTRAR RESULTADO
                 session_alert(
                     LANG("msgnumdelete", "feeds") . $numids . LANG("message" . min($numids, 2), "feeds")

@@ -25,8 +25,6 @@ En el llistat de factures podrà trobar les columnes més importants del registr
 
 (*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
 
-**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
-
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
@@ -57,7 +55,7 @@ En aquesta pestanya trobar les estadístiques de facturació de l'últim any i d
 
 ==Formulari de factures==
 
-Aquesta és l'aplicació de facturació, amb ella podrà afegir, modificar i visionar totes les dades dels diferents albarans i factures classificats en diferents pestanyes: dades principals, conceptes, productes, venciments, dades sobre les modificacions del registre i assignacions a carpetes.
+Aquesta és l'aplicació de facturació, amb ella podrà afegir, modificar i visionar totes les dades dels diferents albarans i factures classificats en diferents pestanyes: dades principals, conceptes, productes, venciments, dades sobre les modificacions del registre, ...
 
 ===Pestanya Dades de l'albarà o factura===
 
@@ -113,8 +111,4 @@ En aquesta pestanya podrà crear diferents venciments per a la factura.
 ===Pestanya Dades del registre===
 
 Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestanya Carpetes===
-
-Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.
 

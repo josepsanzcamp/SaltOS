@@ -30,8 +30,6 @@ En aquesta vista pot crear un nou esdeveniment fent clic al botó corresponent a
 - **Estat:** Estat en què es troba l'esdeveniment (Programada, Pendent de confirmar, Acabada, Cancel·lat).
 
 
-**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
-
 ===Opcions del llistat===
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
@@ -57,7 +55,7 @@ Per sincronitzar l'agenda amb //Google Calendar//, Feu clic al botó corresponen
 
 ==Formulari de l'esdeveniment==
 
-Aquesta és l'aplicació d'esdeveniments, amb ella podrà afegir, modificar i visionar totes les dades dels diferents esdeveniments que es realitzen a l'entitat, la informació està classificada en diferents pestanyes: dades principals, usuaris assignats, comentaris, fitxer adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+Aquesta és l'aplicació d'esdeveniments, amb ella podrà afegir, modificar i visionar totes les dades dels diferents esdeveniments que es realitzen a l'entitat, la informació està classificada en diferents pestanyes: dades principals, usuaris assignats, comentaris, fitxer adjunts, dades sobre les modificacions del registre, ...
 
 ===Pestanya Dades de l'esdeveniment===
 
@@ -134,7 +132,3 @@ Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda ge
 ===Pestanya Dades del registre===
 
 Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestanya Carpetes===
-
-Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

@@ -24,8 +24,6 @@ The list will show the most important parameters of the different file folders o
 - **NF:** File number added.
 
 
-**Remember**: The documents can be arranged by dragging them to the user folder you want.
-
 ===Listing Options===
 
 On each record you can perform a series of actions that are represented by the following icons:
@@ -39,7 +37,7 @@ For more information about the filter options listed in the **[ayuda general htt
 
 ==Form documents==
 
-This is the application documents with it can add, modify, view and download documents. The document data are classified in different tabs. Main data, comments, file attachments, data on the registry modifications and assignments to folders.
+This is the application documents with it can add, modify, view and download documents. The document data are classified in different tabs. Main data, comments, file attachments, data on the registry modifications, ...
 
 ===Document Info Tab===
 
@@ -99,7 +97,3 @@ For more information about the filter options listed in the **[ayuda general htt
 ===Registry Data Tab===
 
 For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
-
-===Tab Folders===
-
-For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

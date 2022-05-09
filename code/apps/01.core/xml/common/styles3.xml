@@ -49,8 +49,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </ul></div>
 </div>
 <div class="menu ui-accordion ui-widget ui-helper-reset"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
-<span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>Folders</h3></div>
-<div class="menu ui-accordion ui-widget ui-helper-reset"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
 <span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>Customers</h3></div>
 <div class="menu ui-accordion ui-widget ui-helper-reset"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
 <span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>Projects</h3></div>

@@ -158,10 +158,6 @@ if ($page == "correo") {
                 // BORRAR REGISTRO DE LOS CORREOS
                 make_control(page2id("correo"), $ids);
                 make_indexing(page2id("correo"), $ids);
-                // BORRAR FOLDERS RELACIONADOS
-                $query = "DELETE FROM tbl_folders_a WHERE id_registro IN (${ids})
-                    AND id_aplicacion='" . page2id("correo") . "'";
-                db_query($query);
                 // MOSTRAR RESULTADO
                 session_alert(
                     LANG("msgnumdelete", "correo") . $numids . LANG("message" . min($numids, 2), "correo")

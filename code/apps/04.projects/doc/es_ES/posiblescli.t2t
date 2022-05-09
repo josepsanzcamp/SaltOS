@@ -22,8 +22,6 @@ En el listado de posibles clientes podrá encontrar las columnas mas importantes
 - **NF:** Número de ficheros vinculados con este posible cliente.
 
 
-**Recuerde**: Los eventos se pueden organizar arrastrandolos a la carpeta de usuario que desee.
-
 ===Opciones del listado===
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
@@ -46,7 +44,7 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ==Formulario posibles clientes==
 
-Esta es la aplicación de posibles clientes, con ella podrá añadir, modificar y visionar todos los datos del posible cliente clasificados en diferentes pestañas: datos principales, comentarios, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+Esta es la aplicación de posibles clientes, con ella podrá añadir, modificar y visionar todos los datos del posible cliente clasificados en diferentes pestañas: datos principales, comentarios, fichero adjuntos, datos sobre las modificaciones del registro, ...
 
 ===Pestaña Datos del posible cliente===
 
@@ -105,8 +103,3 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 ===Pestaña Datos del registro===
 
 Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestaña Carpetas===
-
-Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.
-

@@ -32,7 +32,7 @@ if (typeof __quickform__ == "undefined" && typeof parent.__quickform__ == "undef
         if (!$("#selectquick").length) {
             return;
         }
-        var data = "action=quickform&page=" + getParam("page") + "&id=" + getParam("id") + "&id_folder=" + getParam("id_folder") + "&is_fichero=" + getParam("is_fichero") + "&is_buscador=" + getParam("is_buscador");
+        var data = "action=quickform&page=" + getParam("page") + "&id=" + getParam("id") + "&is_fichero=" + getParam("is_fichero") + "&is_buscador=" + getParam("is_buscador");
         $.ajax({
             url:"index.php",
             data:data,

@@ -27,8 +27,6 @@ In the list of budgets you will find the most important pillars of registration:
 
 (*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
 
-**Remember**: The events can be arranged by dragging them to the user folder you want.
-
 ===Listing Options===
 
 On each record. You can perform a series of actions that are represented by the following icons:
@@ -59,7 +57,7 @@ In this tab you can view statistics about how many budget is in every state, can
 
 ==Form budgets==
 
-This is the implementation of budget, it may add, modify and view all budget data classified in different tabs: main data, budget objectives, functional proposal, technical proposal, additional information, tasks, budget, budget items, budget conditions, file attachments, data on the registry modifications and assignments to folders.
+This is the implementation of budget, it may add, modify and view all budget data classified in different tabs: main data, budget objectives, functional proposal, technical proposal, additional information, tasks, budget, budget items, budget conditions, file attachments, data on the registry modifications, ...
 
 [presupuestos-formulario.png]
 
@@ -144,8 +142,3 @@ In this tab you can describe the conditions subject to which this budget. You ca
 ===Registry Data Tab===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
-
-===Tab Folders===
-
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
-

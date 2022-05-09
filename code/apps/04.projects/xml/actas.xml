@@ -325,7 +325,6 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
                     <query include="xml/common/qpermview.xml" replace="true" />
                     <query include="xml/common/qdefaultview.xml" replace="true" />
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </view>
             <insert>
@@ -333,7 +332,6 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
                 <query>
                     <query include="xml/common/qpermcreate.xml" replace="true" />
                     <default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop FROM tbl_actas WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_posiblecli"))."' id_posiblecli,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_campanya"))."' id_campanya"</default>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </insert>
             <update>
@@ -342,7 +340,6 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
                     <query include="xml/common/qpermupdate.xml" replace="true" />
                     <query include="xml/common/qdefaultview.xml" replace="true" />
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </update>
         </views>
@@ -643,7 +640,6 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
                 </fieldset>
             </default>
             <control include="xml/common/control.xml" />
-            <folders include="xml/common/folders.xml" />
         </fields>
         <quick include="xml/common/quickform.xml" />
         <buttons include="xml/common/buttonsform.xml" />
@@ -661,19 +657,16 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
         <query include="xml/common/autonombre.xml" replace="true"/>
         <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
-        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
     </insert>
     <update>
         <query include="xml/common/qpermupdate.xml" replace="true"/>
         <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
     </update>
     <delete>
         <query include="xml/common/qpermdelete.xml" replace="true"/>
         <query include="xml/common/qdelete.xml" replace="true" />
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
-        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
     </delete>
     <pdf>
         <constructor>"P","mm","A4"</constructor>

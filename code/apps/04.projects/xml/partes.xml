@@ -379,7 +379,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <comments_old include="xml/common/qcommentsold.xml" />
                     <files_old include="xml/common/qfilesold.xml" />
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </view>
             <insert>
@@ -390,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     SELECT *,'0' id,'".current_date()."' fecha,'0' liquidado,'".current_date()."' fecha2 FROM tbl_partes WHERE id='".substr(getParam("id"),7)."'":"
                     SELECT '0' id,'0' id_cliente,'0' id_proyecto,'".current_date()."' fecha,'0.00' horas,'0.00' precio,'0.00' total,'".current_date()."' fecha2"</default>
                     <files_new include="xml/common/qfilesnew.xml" replace="true"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </insert>
             <update>
@@ -403,7 +401,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <comments_new include="xml/common/qcommentnew.xml" replace="true"/>
                     <files_new include="xml/common/qfilesnew.xml" replace="true"/>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </update>
         </views>
@@ -555,7 +552,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <comments_new include="xml/common/commentnew.xml"/>
             <files_new include="xml/common/filesnew.xml"/>
             <control include="xml/common/control.xml" />
-            <folders include="xml/common/folders.xml" />
         </fields>
         <quick include="xml/common/quickform.xml" />
         <buttons include="xml/common/buttonsform.xml" />
@@ -572,7 +568,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
         <query include="xml/common/qfilesinsert.xml" replace="true"/>
-        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
     </insert>
     <update>
         <query include="xml/common/qpermupdate.xml" replace="true"/>
@@ -582,7 +577,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query include="xml/common/qfilesupdate.xml" replace="true"/>
         <query include="xml/common/qcommentsdelete.xml" replace="true" />
         <query include="xml/common/qcommentsinsert.xml" replace="true" />
-        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
     </update>
     <delete>
         <query include="xml/common/qpermdelete.xml" replace="true"/>
@@ -590,7 +584,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query include="xml/common/qdeletecomments.xml" replace="true" />
         <query include="xml/common/qdeletefiles.xml" replace="true" />
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
-        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
     </delete>
     <pdf>
         <constructor>"P","mm","A4"</constructor>

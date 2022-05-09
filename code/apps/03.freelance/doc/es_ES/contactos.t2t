@@ -20,8 +20,6 @@ En el listado de contactos podrá encontrar las columnas mas importantes del reg
 - **Cuenta de correo:** Cuenta de correo principal para ponernos en contacto.
 
 
-**Recuerde**: Los eventos se pueden organizar arrastrandolos a la carpeta de usuario que desee.
-
 ===Opciones del listado===
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
@@ -37,7 +35,7 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ==Formulario de contactos==
 
-Esta es la aplicación de contactos, con ella podrá añadir, modificar y visionar todos los datos del contacto clasificados en diferentes pestañas. Datos principales, comentarios, fichero adjuntos, gráficas y estadísticas sobre las compras realizadas, datos sobre las modificaciones del registro y asignaciones a carpetas.
+Esta es la aplicación de contactos, con ella podrá añadir, modificar y visionar todos los datos del contacto clasificados en diferentes pestañas. Datos principales, comentarios, fichero adjuntos, gráficas y estadísticas sobre las compras realizadas, datos sobre las modificaciones del registro, ...
 
 ===Pestaña Datos del contacto===
 
@@ -72,8 +70,3 @@ En esta pestaña podrá visualizar y modificar los principales datos de contacto
 ===Pestaña Datos del registro===
 
 Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestaña Carpetas===
-
-Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.
-

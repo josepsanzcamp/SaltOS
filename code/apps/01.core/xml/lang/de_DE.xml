@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Hinzufügen</textos_add>
         <selectall>Alle auswählen</selectall>
         <selectnone>Auswahl löschen</selectnone>
-        <addtofolder>Dem Ordner hinzufügen</addtofolder>
-        <addtofolderok>Der Inhalt wurde dem Ordner erfolgreich hinzugefügt</addtofolderok>
-        <delfromfolderok>Der Inhalt wurde aus dem Ordner entfernt</delfromfolderok>
         <savedfilters>Gespeicherte Filter</savedfilters>
         <optionfilter>Wählen Sie einen gespeicherten Filter</optionfilter>
         <newfilter>Name des Filters</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Tools verstecken</hidetools>
         <inbackground>Diese Aktion wird im Hintergrund ausgeführt, einen Moment bitte ...</inbackground>
         <sentfromsaltos>E-Mail wurde mit SaltOS versandt</sentfromsaltos>
-        <foldersdata>Ordner</foldersdata>
         <loweradd>hinzufügen</loweradd>
         <help>Hilfe</help>
         <selectallcheckbox>Alle auswählen</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>Allgemeines</gestiongeneral>
         <gestionfiltros>Show more     filter</gestionfiltros>
         <gestionadministracion>Verwaltung</gestionadministracion>
-        <folders>Ordner</folders>
         <buscador>Suche</buscador>
         <desc_usuarios>Verwalten Sie hier Ihre Benutzer</desc_usuarios>
         <desc_grupos>Verwalten Sie hier Ihre Benutzergruppen</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Zehnte Schaltfläche (F10)</quick_button_f10>
         <quick_button_f11>Elfte Schaltfläche (F11)</quick_button_f11>
         <quick_button_f12>Zwölfte Schaltfläche (F12)</quick_button_f12>
-        <folderstab>Benutzer-Ordner</folderstab>
-        <folderspref>Konfigurieren Sie Ihre Benutzer-Ordner</folderspref>
-        <newfolder>Neuer Benutzer-Ordner</newfolder>
-        <withoutparent>[Ohne Ordner]</withoutparent>
-        <inparentfolder>und hängt im ordner</inparentfolder>
-        <namefolder>Name des ordners</namefolder>
-        <parentfolder>Im ordner hängen</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Konfiguration bearbeiten</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Anhänge</list>
         <todaslasaplicaciones>[Alle Anwendungen]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Ordner nicht gefunden</notfound>
-        <todaslasaplicaciones>[Alle Anwendungen]</todaslasaplicaciones>
-        <deleteoffolder>Aus dem Ordner entfernen</deleteoffolder>
-        <defaultfolder>Persönlicher Ordner</defaultfolder>
-    </folders>
     <buscador>
         <list>Suche</list>
         <todaslasaplicaciones>[Alle Anwendungen]</todaslasaplicaciones>

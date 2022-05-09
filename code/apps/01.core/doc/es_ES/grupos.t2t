@@ -29,7 +29,7 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ==Formulario de grupos==
 
-Esta es la aplicación de grupos, con ella podrá añadir, modificar y visionar todos los datos de los grupos clasificados en diferentes pestañas: datos principales, permisos por aplicación, datos sobre las modificaciones del registro y asignaciones a carpetas.
+Esta es la aplicación de grupos, con ella podrá añadir, modificar y visionar todos los datos de los grupos clasificados en diferentes pestañas: datos principales, permisos por aplicación, datos sobre las modificaciones del registro, ...
 
 ===Pestaña Datos del grupo===
 
@@ -52,7 +52,3 @@ En esta pestaña podrá aplicar los permisos al grupo.
 ===Pestaña Datos del registro===
 
 Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestaña Carpetas===
-
-Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

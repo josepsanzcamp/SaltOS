@@ -188,7 +188,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query global="page,id_usuario,id_aplicacion,filtro,fecha1,fecha2" eval="true">"
         SELECT a.id id,
         LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
-        a.datetime,a.fichero,a.id_aplicacion,a.id_registro,d.id id_usuario,d.id_grupo id_grupo,
+        a.id_registro id_registro,
+        a.id_aplicacion id_aplicacion,
+        d.id id_usuario,
+        d.id_grupo id_grupo,
+        a.datetime,a.fichero,
         CONCAT('link:download2(\"',a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro,'\"):',a.fichero) fichero2,
         CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
         (SELECT  CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre)  FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
@@ -212,7 +216,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         AND ".($id_usuario.$id_aplicacion.$filtro.$fecha1.$fecha2!=""?"1=1":"1=0")."
         AND ".($id_aplicacion?"(a.id_aplicacion='$id_aplicacion')":"(1=1)")."
         AND ".($id_usuario?"(a.id_usuario='$id_usuario')":"(1=1)")."
-        AND (id_cuenta IS NULL OR id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'))
+        AND (id_cuenta IS NULL OR id_cuenta NOT IN (".check_ids(execute_query_array("SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'"))."))
         AND ".($fecha1?"(DATE(a.datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
         AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(a.datetime))":"(1=1)")."
         AND ".check_sql2("list","e.id_aplicacion","e.id_usuario","d.id_grupo")</query>

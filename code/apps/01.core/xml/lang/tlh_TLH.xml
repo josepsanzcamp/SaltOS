@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Boq</textos_add>
         <selectall>Hoch wiv</selectall>
         <selectnone>Huvchoh selection</selectnone>
-        <addtofolder>Qastahvis folder cha'</addtofolder>
-        <addtofolderok>Chel 'a ghih folder</addtofolderok>
-        <delfromfolderok>So' qabdaq 'a ghih folder</delfromfolderok>
         <savedfilters>Filters pol</savedfilters>
         <optionfilter>Tod filter wiv</optionfilter>
         <newfilter>Chu' filter pong</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Tools so'</hidetools>
         <inbackground>Qet action neh patmey lulo'ta', pus ghomchoh los</inbackground>
         <sentfromsaltos>NgeH vo' saltos email</sentfromsaltos>
-        <foldersdata>Folder</foldersdata>
         <loweradd>boq</loweradd>
         <help>Qah</help>
         <selectallcheckbox>Hoch ta wiv</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>Sa'</gestiongeneral>
         <gestionfiltros>Filter</gestionfiltros>
         <gestionadministracion>Loh</gestionadministracion>
-        <folders>Folder</folders>
         <buscador>Seeker</buscador>
         <desc_usuarios>Vo' jen, unsubscribe pagh users modify</desc_usuarios>
         <desc_grupos>Workgroups users chenmoh</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Tenth (f10) button</quick_button_f10>
         <quick_button_f11>Eleventh button (f11)</quick_button_f11>
         <quick_button_f12>Twelveth button (f12)</quick_button_f12>
-        <folderstab>User folders</folderstab>
-        <folderspref>Cher nadev user folders 'ej vaj nuq daneh'a' mej</folderspref>
-        <newfolder>Folder user chu'</newfolder>
-        <withoutparent>[pagh Folder]</withoutparent>
-        <inparentfolder>'ej dir vo' folder</inparentfolder>
-        <namefolder>Folder pong</namefolder>
-        <parentfolder>Tera'vo' folder hus</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Configuration</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Attachments tetlh</list>
         <todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Folder wej vitu'</notfound>
-        <todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>
-        <deleteoffolder>Delete vo' folder</deleteoffolder>
-        <defaultfolder>Personal folder</defaultfolder>
-    </folders>
     <buscador>
         <list>Seeker</list>
         <todaslasaplicaciones>[Hoch applications]</todaslasaplicaciones>

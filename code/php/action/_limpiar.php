@@ -30,7 +30,6 @@ if (!check_user()) {
 }
 
 $id_usuario = current_user();
-$id_folder = intval(getParam("id_folder"));
 $arguments = array("page=$page","limpiar=1");
 if ($page == "correo") {
     $arguments[] = "id_usuario=$id_usuario";
@@ -40,9 +39,6 @@ if ($page == "agenda") {
 }
 if ($page == "feeds") {
     $arguments[] = "id_usuario=$id_usuario";
-}
-if ($page == "folders") {
-    $arguments[] = "id_folder=$id_folder";
 }
 $arguments = implode("&", $arguments);
 _javascript_opencontent($arguments);

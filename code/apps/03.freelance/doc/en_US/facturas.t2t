@@ -25,8 +25,6 @@ In the list of invoices you will find the most important pillars of registration
 
 (*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
 
-**Remember**: The events can be arranged by dragging them to the user folder you want.
-
 ===Listing Options===
 
 On each record. You can perform a series of actions that are represented by the following icons:
@@ -57,7 +55,7 @@ In this tab to find statistics turnover last year and the top 10 active customer
 
 ==Form invoices==
 
-This is the billing application, with it you can add, modify and view all data of different notes and invoices classified in different tabs: main data, concepts, products, maturities, data on the registry modifications and assignments to folders.
+This is the billing application, with it you can add, modify and view all data of different notes and invoices classified in different tabs: main data, concepts, products, maturities, data on the registry modifications, ...
 
 ===Data tab of the delivery note or invoice===
 
@@ -113,8 +111,4 @@ In this tab you can create different maturities for the bill.
 ===Registry Data Tab===
 
 For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
-
-===Tab Folders===
-
-For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.
 

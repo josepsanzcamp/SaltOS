@@ -24,8 +24,6 @@ El llistat mostrarà els paràmetres més important de les diferents carpetes o 
 - **NF:** Nombre de fitxers afegits.
 
 
-**Recordeu**: Els documents es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
-
 ===Opcions del llistat===
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
@@ -39,7 +37,7 @@ Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda ge
 
 ==Formulari de documents==
 
-Aquesta és l'aplicació de documents amb ella podrà afegir, modificar, visionar i descarregar els documents. Les dades del document estan classificats en diferents pestanyes. Dades principals, comentaris, fitxer adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+Aquesta és l'aplicació de documents amb ella podrà afegir, modificar, visionar i descarregar els documents. Les dades del document estan classificats en diferents pestanyes. Dades principals, comentaris, fitxer adjunts, dades sobre les modificacions del registre, ...
 
 ===Pestanya Dades del document===
 
@@ -99,7 +97,3 @@ Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda ge
 ===Pestanya Dades del registre===
 
 Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestanya Carpetes===
-
-Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

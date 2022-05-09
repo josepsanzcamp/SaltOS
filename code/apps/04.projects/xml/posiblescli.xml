@@ -282,7 +282,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         <actas global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'actas\',',-id,'):',nombre) nombre,CONCAT('actas(',-id,')') link_view,CONCAT('pdfacta(',id,')') link_pdf,CONCAT('viewacta(',id,')') link_view2,CONCAT('mailacta(',id,')') link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_posiblecli=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
                     </actas>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </view>
             <insert>
@@ -291,7 +290,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <query include="xml/common/qpermcreate.xml" replace="true" />
                     <default>SELECT '0' id,'0' id_campanya,'0' id_estado</default>
                     <files_new include="xml/common/qfilesnew.xml" replace="true"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </insert>
             <update>
@@ -304,7 +302,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <comments_new include="xml/common/qcommentnew.xml" replace="true"/>
                     <files_new include="xml/common/qfilesnew.xml" replace="true"/>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </update>
         </views>
@@ -590,7 +587,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <presupuestos include="xml/common/relatedpresupuestos.xml" replace="true" />
             <actas include="xml/common/relatedactas.xml" replace="true" />
             <control include="xml/common/control.xml" />
-            <folders include="xml/common/folders.xml" />
         </fields>
         <quick include="xml/common/quickform.xml" />
         <buttons include="xml/common/buttonsform.xml" />
@@ -634,7 +630,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
         <query include="xml/common/qfilesinsert.xml" replace="true"/>
-        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
     </insert>
     <update>
         <query include="xml/common/qpermupdate.xml" replace="true"/>
@@ -658,7 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query include="xml/common/qfilesupdate.xml" replace="true"/>
         <query include="xml/common/qcommentsdelete.xml" replace="true" />
         <query include="xml/common/qcommentsinsert.xml" replace="true" />
-        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
     </update>
     <delete>
         <query include="xml/common/qpermdelete.xml" replace="true"/>
@@ -666,7 +660,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query include="xml/common/qdeletecomments.xml" replace="true" />
         <query include="xml/common/qdeletefiles.xml" replace="true" />
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
-        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
     </delete>
     <excel>
         <query require="php/listsim.php" global="page" eval="true">"SELECT

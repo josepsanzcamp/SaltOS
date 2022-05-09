@@ -234,7 +234,6 @@ FROM tbl_contactos a
 WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados")."') AND (".check_sql("contactos","view").") ORDER BY a.nombre ASC"</contactos>
                     </contactos>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </view>
             <insert>
@@ -243,7 +242,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
                     <query include="xml/common/qpermcreate.xml" replace="true" />
                     <default>SELECT '0' id</default>
                     <files_new include="xml/common/qfilesnew.xml" replace="true"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </insert>
             <update>
@@ -256,7 +254,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
                     <comments_new include="xml/common/qcommentnew.xml" replace="true"/>
                     <files_new include="xml/common/qfilesnew.xml" replace="true"/>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </update>
         </views>
@@ -510,7 +507,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
             <comments_new include="xml/common/commentnew.xml"/>
             <files_new include="xml/common/filesnew.xml"/>
             <control include="xml/common/control.xml" />
-            <folders include="xml/common/folders.xml" />
         </fields>
         <quick include="xml/common/quickform.xml" />
         <buttons include="xml/common/buttonsform.xml" />
@@ -538,7 +534,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
         <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
         <query include="xml/common/qfilesinsert.xml" replace="true"/>
-        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
     </insert>
     <update>
         <query include="xml/common/qpermupdate.xml" replace="true"/>
@@ -548,7 +543,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
         <query include="xml/common/qfilesupdate.xml" replace="true"/>
         <query include="xml/common/qcommentsdelete.xml" replace="true"/>
         <query include="xml/common/qcommentsinsert.xml" replace="true"/>
-        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
     </update>
     <delete>
         <query include="xml/common/qpermdelete.xml" replace="true"/>
@@ -556,7 +550,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
         <query include="xml/common/qdeletecomments.xml" replace="true"/>
         <query include="xml/common/qdeletefiles.xml" replace="true"/>
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
-        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
     </delete>
     <excel>
         <query require="php/listsim.php" global="page" eval="true">list_simulator($page,"excel")</query>

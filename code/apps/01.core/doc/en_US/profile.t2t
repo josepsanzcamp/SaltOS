@@ -6,7 +6,6 @@
 SaltOS allows you to customize and configure various aspects of the application:
 
 - General Preferences (language, appearance, password, etc.)
-- User Boxes
 - Quick Menu
 - Google Calendar
 - RSS Feeds
@@ -40,12 +39,6 @@ After making any changes on this tab click 'Update'.
 In this section you can add and remove buttons from fast to the top bar of SaltOS access.
 
 To add a new button, select the application you want to access directly to the corresponding dropdown button.
-
-==  User Boxes ==
-
-[profile-carpetas.png]
-
-From this tab, you can rename the folders as desired, create new folders or delete folders that do not use. These options allow you to have the necessary folders so you can organize your information in the best way.
 
 ==  Google Calendar ==
 

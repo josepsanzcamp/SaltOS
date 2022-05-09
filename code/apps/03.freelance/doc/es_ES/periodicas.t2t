@@ -25,8 +25,6 @@ En el listado de facturas podrá encontrar las columnas mas importantes del regi
 
 (*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
 
-**Recuerde**: Los eventos se pueden organizar arrastrándolos a la carpeta de usuario que desee.
-
 ===Opciones del listado===
 
 Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
@@ -47,7 +45,7 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ==Formulario de facturas==
 
-Esta es la aplicación de facturación, con ella podrá añadir, modificar y visionar todos los datos de los diferentes albaranes y facturas clasificados en diferentes pestañas: datos principales, conceptos, productos, vencimientos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+Esta es la aplicación de facturación, con ella podrá añadir, modificar y visionar todos los datos de los diferentes albaranes y facturas clasificados en diferentes pestañas: datos principales, conceptos, productos, vencimientos, datos sobre las modificaciones del registro, ...
 
 ===Pestaña Datos del albarán o factura===
 
@@ -92,7 +90,3 @@ En esta pestaña podrá crear diferentes vencimientos para la factura.
 ===Pestaña Datos del registro===
 
 Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestaña Carpetas===
-
-Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

@@ -34,11 +34,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <title lang="true">formupdate</title>
                 <query>
                     <default eval="true">"SELECT '0' id FROM tbl_usuarios WHERE id='".current_user()."'"</default>
-                    <folders eval="true">"SELECT '0' id FROM tbl_usuarios WHERE id='".current_user()."'"</folders>
-                    <folders_old>
-                        <folders_old eval="true">"SELECT * FROM tbl_folders WHERE id_usuario='".current_user()."' ORDER BY pos ASC"</folders_old>
-                    </folders_old>
-                    <folders_new eval="true">"SELECT '0' id,'0' id_parent FROM tbl_usuarios WHERE id='".current_user()."'"</folders_new>
                     <gcalendar ifeval="check_user('profile','gcalendar')" eval="true">"SELECT g.* FROM tbl_usuarios u LEFT JOIN tbl_gcalendar g ON g.id_usuario=u.id WHERE u.id='".current_user()."'"</gcalendar>
                     <feeds_old ifeval="check_user('profile','feeds')">
                         <feeds_old eval="true">"SELECT id,id_usuario,CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".current_user()."' ORDER BY title2 ASC,id ASC"</feeds_old>
@@ -183,106 +178,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                 </fieldset>
             </default>
-            <folders>
-                <fieldset>
-                    <title lang="true">folderstab</title>
-                    <icon eval="true">ICON("files")</icon>
-                    <width>500px</width>
-                    <row>
-                        <field>
-                            <type>label</type>
-                            <label lang="true">folderspref</label>
-                            <class>center bold</class>
-                        </field>
-                    </row>
-                </fieldset>
-            </folders>
-            <folders_old>
-                <fieldset>
-                    <width>500px</width>
-                    <head>
-                        <field>
-                            <type>label</type>
-                            <label lang="true">namefolder</label>
-                            <class>thead</class>
-                        </field>
-                        <field>
-                            <type>label</type>
-                            <label lang="true">parentfolder</label>
-                            <class>thead</class>
-                        </field>
-                        <field>
-                            <type>separator</type>
-                            <class>thead</class>
-                            <colspan>100</colspan>
-                        </field>
-                    </head>
-                    <row>
-                        <field>
-                            <name>id</name>
-                            <type>hidden</type>
-                        </field>
-                        <field>
-                            <name>name</name>
-                            <type>text</type>
-                            <width>240px</width>
-                            <class>tbody</class>
-                            </field>
-                        <field>
-                            <name>id_parent</name>
-                            <type>select</type>
-                            <class>tbody</class>
-                            <query eval="true">"SELECT '".LANG_ESCAPE("withoutparent")."' label, '0' value UNION SELECT name label,id value FROM tbl_folders WHERE id_usuario='".current_user()."'"</query>
-                            <width>240px</width>
-                        </field>
-                        <field>
-                            <type>checkbox</type>
-                            <label lang="true">delete</label>
-                            <name>folders_del</name>
-                            <value>1</value>
-                            <width>1px</width>
-                            <width2>1px</width2>
-                            <icon eval="true">ICON("delete")</icon>
-                            <class>tbody</class>
-                            <class2>tbody</class2>
-                        </field>
-                    </row>
-                </fieldset>
-            </folders_old>
-            <folders_new>
-                <fieldset>
-                    <width>500px</width>
-                    <buttons>true</buttons>
-                    <row>
-                        <field>
-                            <name>name</name>
-                            <label lang="true">newfolder</label>
-                            <type>text</type>
-                            <width>240px</width>
-                            <onchange>$("#folders_new_0_add").removeClass("ui-state-disabled")</onchange>
-                            </field>
-                    </row>
-                    <row>
-                        <field>
-                            <name>id_parent</name>
-                            <label lang="true">inparentfolder</label>
-                            <type>select</type>
-                            <class>tbody</class>
-                            <query eval="true">"SELECT '".LANG_ESCAPE("withoutparent")."' label, '0' value UNION SELECT name label,id value FROM tbl_folders WHERE id_usuario='".current_user()."'"</query>
-                            <width>240px</width>
-                        </field>
-                        <field>
-                            <name>add</name>
-                            <type>button</type>
-                            <value lang="true">add</value>
-                            <icon eval="true">ICON("reset")</icon>
-                            <class>nowrap</class>
-                            <class2>disabled</class2>
-                            <onclick>if(!is_disabled(this)) submit1()</onclick>
-                        </field>
-                    </row>
-                </fieldset>
-            </folders_new>
             <gcalendar ifeval="check_user('profile','gcalendar')">
                 <include include="xml/common/gcalendar.xml" replace="true" />
             </gcalendar>
@@ -393,21 +288,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             "button"=>"f${i}",
             "codigo"=>getParam("quick_button_f${i}")
         ))</query>
-        <query match="folders_old" prefix="true" eval="true">intval(getParam("id"))!=intval(getParam("id_parent")) &amp;&amp; !execute_query("SELECT id FROM tbl_folders WHERE id!='".intval(getParam("id"))."' AND id_parent='".intval(getParam("id_parent"))."' AND id_usuario='".current_user()."' AND name='".getParam("name")."'")?make_update_query("tbl_folders",array(
-            "id_parent"=>intval(getParam("id_parent")),
-            "name"=>getParam("name")
-        ),make_where_query(array(
-            "id"=>intval(getParam("id")),
-            "id_usuario"=>current_user()
-        ))):""</query>
-        <query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders_a WHERE id_folder='".intval(getParam("id"))."' AND '".current_user()."'=(SELECT id_usuario FROM tbl_folders WHERE id='".intval(getParam("id"))."')":""</query>
-        <query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders WHERE id='".intval(getParam("id"))."' AND id_usuario='".current_user()."'":""</query>
-        <query match="folders_new" prefix="true" eval="true">getParam("name") &amp;&amp; !execute_query("SELECT id FROM tbl_folders WHERE id_parent='".intval(getParam("id_parent"))."' AND id_usuario='".current_user()."' AND name='".getParam("name")."'")?make_insert_query("tbl_folders",array(
-            "id_parent"=>intval(getParam("id_parent")),
-            "id_usuario"=>current_user(),
-            "name"=>getParam("name")
-        )):""</query>
-        <query match="folders_new" prefix="true">SELECT 'php/action/folders.php' action_include</query>
         <query ifeval="check_user('profile','gcalendar')" match="gcalendar" prefix="true" eval="true">execute_query("SELECT COUNT(*) FROM tbl_gcalendar WHERE id_usuario='".current_user()."'")?make_update_query("tbl_gcalendar",array(
             "email"=>getParam("email"),
             "token"=>getParam("token")

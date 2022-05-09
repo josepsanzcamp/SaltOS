@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Legge</textos_add>
         <selectall>Velg alle</selectall>
         <selectnone>Fjern valg</selectnone>
-        <addtofolder>Vis i denne mappen</addtofolder>
-        <addtofolderok>Dette innholdet er lagt til i mappen</addtofolderok>
-        <delfromfolderok>Dette mappeinnholdet er skjult</delfromfolderok>
         <savedfilters>Lagrede filtre</savedfilters>
         <optionfilter>Velg et lagret filter</optionfilter>
         <newfilter>Navnet på det nye filteret</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Skjul verktøy</hidetools>
         <inbackground>Denne handlingen kjører i bakgrunnen, vent noen øyeblikk</inbackground>
         <sentfromsaltos>E-post sendt fra SaltOS</sentfromsaltos>
-        <foldersdata>Mapper</foldersdata>
         <loweradd>legge</loweradd>
         <help>Hjelp</help>
         <selectallcheckbox>Velg alle poster</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>General</gestiongeneral>
         <gestionfiltros>Filtre</gestionfiltros>
         <gestionadministracion>Administrasjon</gestionadministracion>
-        <folders>Mapper</folders>
         <buscador>Søkemotor</buscador>
         <desc_usuarios>Registrer, avslett abonnement eller endre brukere</desc_usuarios>
         <desc_grupos>Lag arbeidsgrupper for brukere</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Tiende knapp (F10)</quick_button_f10>
         <quick_button_f11>Ellevte knapp (F11)</quick_button_f11>
         <quick_button_f12>Tolvte knapp (F12)</quick_button_f12>
-        <folderstab>Brukermapper</folderstab>
-        <folderspref>Sett opp brukerbokser her, og legg deretter igjen det du vil</folderspref>
-        <newfolder>Ny brukerboks</newfolder>
-        <withoutparent>[Uten mappe]</withoutparent>
-        <inparentfolder>og henger fra mappen</inparentfolder>
-        <namefolder>Mappenavn</namefolder>
-        <parentfolder>Heng fra mappen</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Konfigurasjon</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Liste over vedlagte filer</list>
         <todaslasaplicaciones>[Alle applikasjoner]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Mappen ikke funnet</notfound>
-        <todaslasaplicaciones>[Alle applikasjoner]</todaslasaplicaciones>
-        <deleteoffolder>Slett fra denne mappen</deleteoffolder>
-        <defaultfolder>Personlig mappe</defaultfolder>
-    </folders>
     <buscador>
         <list>Søkemotor</list>
         <todaslasaplicaciones>[Alle applikasjoner]</todaslasaplicaciones>

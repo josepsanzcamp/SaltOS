@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Lägga till</textos_add>
         <selectall>Välj alla</selectall>
         <selectnone>Rensa val</selectnone>
-        <addtofolder>Visa i den här mappen</addtofolder>
-        <addtofolderok>Detta innehåll har lagts till i mappen</addtofolderok>
-        <delfromfolderok>Detta mappinnehåll har gömts</delfromfolderok>
         <savedfilters>Sparade filter</savedfilters>
         <optionfilter>Välj ett sparat filter</optionfilter>
         <newfilter>Namnet på det nya filtret</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Dölj verktyg</hidetools>
         <inbackground>Den här åtgärden körs i bakgrunden, vänta några ögonblick</inbackground>
         <sentfromsaltos>E-post skickat från min SaltOS</sentfromsaltos>
-        <foldersdata>Mappar</foldersdata>
         <loweradd>lägga till</loweradd>
         <help>Hjälp</help>
         <selectallcheckbox>Välj alla poster</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>Allmänna</gestiongeneral>
         <gestionfiltros>Filter</gestionfiltros>
         <gestionadministracion>Administration</gestionadministracion>
-        <folders>Mappar</folders>
         <buscador>Sökmotor</buscador>
         <desc_usuarios>Registrera, avsluta prenumerationen eller ändra användare</desc_usuarios>
         <desc_grupos>Skapa arbetsgrupper för användare</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Tionde knapp (F10)</quick_button_f10>
         <quick_button_f11>Elfte knapp (F11)</quick_button_f11>
         <quick_button_f12>Tolfte knapp (F12)</quick_button_f12>
-        <folderstab>Användarmappar</folderstab>
-        <folderspref>Ställ in användarboxar här och lämna sedan vad du vill</folderspref>
-        <newfolder>Ny användarbox</newfolder>
-        <withoutparent>[Utan mapp]</withoutparent>
-        <inparentfolder>och hänger från mappen</inparentfolder>
-        <namefolder>Mappnamn</namefolder>
-        <parentfolder>Häng i mappen</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Konfiguration</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Lista över bifogade filer</list>
         <todaslasaplicaciones>[Alla applikationer]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Mappen hittades inte</notfound>
-        <todaslasaplicaciones>[Alla applikationer]</todaslasaplicaciones>
-        <deleteoffolder>Ta bort från den här mappen</deleteoffolder>
-        <defaultfolder>Personlig mapp</defaultfolder>
-    </folders>
     <buscador>
         <list>Sökmotor</list>
         <todaslasaplicaciones>[Alla applikationer]</todaslasaplicaciones>

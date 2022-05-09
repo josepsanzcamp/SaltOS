@@ -201,7 +201,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         ORDER BY aplicacion,pos"</permisos>
                     </permisos>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </view>
             <insert>
@@ -246,7 +245,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         LEFT JOIN tbl_permisos b ON b.id=ap.id_permiso
                         ORDER BY aplicacion,pos"</permisos>
                     </permisos>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </insert>
             <update>
@@ -293,7 +291,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         ORDER BY aplicacion,pos"</permisos>
                     </permisos>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </update>
         </views>
@@ -409,7 +406,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 </fieldset>
             </permisos>
             <control include="xml/common/control.xml" />
-            <folders include="xml/common/folders.xml" />
         </fields>
         <quick include="xml/common/quickform.xml" />
         <buttons include="xml/common/buttonsform.xml" />
@@ -426,7 +422,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             "deny"=>intval(getParam("deny")),
             "id_grupo"=>execute_query("SELECT MAX(id) FROM tbl_grupos"),
         )):""</query>
-        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
     </insert>
     <update>
         <query include="xml/common/qpermupdate.xml" replace="true"/>
@@ -440,14 +435,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             "deny"=>intval(getParam("deny"))
         )):""</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
     </update>
     <delete>
         <query include="xml/common/qpermdelete.xml" replace="true"/>
         <query include="xml/common/qdelete.xml" replace="true" />
         <query global="id" eval="true">"DELETE FROM tbl_grupos_p WHERE ".make_where_query(array("id_grupo"=>abs($id)))</query>
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
-        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
     </delete>
     <excel>
         <query require="php/listsim.php" global="page" eval="true">list_simulator($page,"excel")</query>

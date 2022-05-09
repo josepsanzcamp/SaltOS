@@ -423,7 +423,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         <vencimientos_old global="id" eval="true">"SELECT * FROM tbl_gastos_v WHERE id_gasto=".abs($id)</vencimientos_old>
                     </vencimientos_old>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </view>
             <insert>
@@ -452,7 +451,6 @@ SELECT 'i' id,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'j' id,'' fecha,'0.00' percent,'0.00' importe
                         "</vencimientos_new>
                     </vencimientos_new>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </insert>
             <update>
@@ -480,7 +478,6 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
                         "</vencimientos_new>
                     </vencimientos_new>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </update>
         </views>
@@ -940,7 +937,6 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
                 </fieldset>
             </vencimientos_new>
             <control include="xml/common/control.xml" />
-            <folders include="xml/common/folders.xml" />
         </fields>
         <quick include="xml/common/quickform.xml" />
         <buttons include="xml/common/buttonsform.xml" />
@@ -985,7 +981,6 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
             "id"=>intval(getParam("id"))
         )))</query>
         <query eval="true">"SELECT CONCAT('".LANG_ESCAPE("lastinsert")."',LPAD((SELECT MAX(id) FROM tbl_gastos),".intval(CONFIG("zero_padding_digits")).",0)) action_alert"</query>
-        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
     </insert>
     <update>
         <query include="xml/common/qpermupdate.xml" replace="true"/>
@@ -1017,7 +1012,6 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
             "id"=>intval(getParam("id"))
         )))</query>
         <query eval="true">"SELECT CONCAT('".LANG_ESCAPE("lastupdate")."',LPAD(".getParam("id").",".intval(CONFIG("zero_padding_digits")).",0)) action_alert"</query>
-        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
     </update>
     <delete>
         <query include="xml/common/qpermdelete.xml" replace="true"/>
@@ -1026,7 +1020,6 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
         <query global="id" eval="true">"DELETE FROM tbl_gastos_v WHERE ".make_where_query(array("id_gasto"=>$id))</query>
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
         <query global="id" eval="true">"SELECT CONCAT('".LANG_ESCAPE("lastdelete")."',LPAD('$id',".intval(CONFIG("zero_padding_digits")).",0)) action_alert"</query>
-        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
     </delete>
     <excel>
         <query require="php/listsim.php" global="page" eval="true">"SELECT CONCAT('\'',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) '".LANG_ESCAPE("codigo")."',usuario '".LANG_ESCAPE("username")."',datetime '".LANG_ESCAPE("datetime")."',CASE id_epigrafe WHEN '0' THEN '".LANG_ESCAPE("sinepigrafe")."' ELSE (SELECT CONCAT('(',codigo,') ',nombre) FROM tbl_epigrafes WHERE id_epigrafe=tbl_epigrafes.id) END '".LANG_ESCAPE("epigrafe")."',

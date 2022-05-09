@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Adicionar</textos_add>
         <selectall>Seleccionar tudo</selectall>
         <selectnone>Apagar seleçao</selectnone>
-        <addtofolder>Mostrar nesta pasta</addtofolder>
-        <addtofolderok>Este conteúdo foi adicionado a esta pasta</addtofolderok>
-        <delfromfolderok>Este conteúdo foi escondida a partir desta pasta</delfromfolderok>
         <savedfilters>Filtros guardados</savedfilters>
         <optionfilter>Seleccione um filtro guardado</optionfilter>
         <newfilter>Nome do novo filtro</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Ferramentas de esconder</hidetools>
         <inbackground>Esta ação é executada em segundo plano, aguarde um momento</inbackground>
         <sentfromsaltos>Mensagem enviado do meu SaltOS</sentfromsaltos>
-        <foldersdata>Pastas</foldersdata>
         <loweradd>adicionar</loweradd>
         <help>Ajuda</help>
         <selectallcheckbox>Selecionar todos os registros</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>Geral</gestiongeneral>
         <gestionfiltros>Show more     filtros</gestionfiltros>
         <gestionadministracion>Administração</gestionadministracion>
-        <folders>Pastas</folders>
         <buscador>Pesquisador</buscador>
         <desc_usuarios>Introduza, elimine ou modifique Utilizadors</desc_usuarios>
         <desc_grupos>Crie grupos de trabajo para os Utilizadores</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Décimo botón (F10)</quick_button_f10>
         <quick_button_f11>Décimo primeiro botão (F11)</quick_button_f11>
         <quick_button_f12>Botão de Reis (F12)</quick_button_f12>
-        <folderstab>Pastas de usuário</folderstab>
-        <folderspref>Caixas de configurar um utilizador aqui e deixe o que você quer</folderspref>
-        <newfolder>Nova pasta de usuário</newfolder>
-        <withoutparent>[Sem pasta]</withoutparent>
-        <inparentfolder>e está pendurado na pasta</inparentfolder>
-        <namefolder>Nome da pasta</namefolder>
-        <parentfolder>Pendurado na pasta</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Configuração</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Lista de ficheiros anexos</list>
         <todaslasaplicaciones>[Todas as aplicações]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Pasta não encontrada</notfound>
-        <todaslasaplicaciones>[Todas as candidaturas]</todaslasaplicaciones>
-        <deleteoffolder>Remover desta pasta</deleteoffolder>
-        <defaultfolder>Pasta pessoal</defaultfolder>
-    </folders>
     <buscador>
         <list>Pesquisa</list>
         <todaslasaplicaciones>[Todas as aplicações]</todaslasaplicaciones>

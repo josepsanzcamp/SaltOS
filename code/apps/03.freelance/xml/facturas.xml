@@ -359,7 +359,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         <vencimientos_old global="id" eval="true">"SELECT * FROM tbl_facturas_v WHERE id_factura=".abs($id)</vencimientos_old>
                     </vencimientos_old>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </view>
             <insert>
@@ -432,7 +431,6 @@ SELECT 'i' id,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'j' id,'' fecha,'0.00' percent,'0.00' importe
                         "</vencimientos_new>
                     </vencimientos_new>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </insert>
             <update>
@@ -493,7 +491,6 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
                         "</vencimientos_new>
                     </vencimientos_new>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </update>
         </views>
@@ -1543,7 +1540,6 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
                 </fieldset>
             </vencimientos_new>
             <control include="xml/common/control.xml" />
-            <folders include="xml/common/folders.xml" />
         </fields>
         <quick include="xml/common/quickform.xml" />
         <buttons include="xml/common/buttonsform.xml" />
@@ -1631,7 +1627,6 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
         ),make_where_query(array(
             "id"=>intval(getParam("id"))
         )))</query>
-        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
     </insert>
     <update>
         <query include="xml/common/qpermupdate.xml" replace="true"/>
@@ -1757,7 +1752,6 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
             "id"=>intval(getParam("id"))
         )))</query>
         <query match="default" prefix="true" eval="true">"SELECT '".LANG_ESCAPE("vencimientoscobrado")."' action_alert FROM tbl_facturas WHERE cobrado!='".intval(getParam("cobrado"))."' AND id='".intval(getParam("id"))."'"</query>
-        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
     </update>
     <delete>
         <query include="xml/common/qpermdelete.xml" replace="true"/>
@@ -1766,7 +1760,6 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
         <query global="id" eval="true">"DELETE FROM tbl_facturas_c WHERE ".make_where_query(array("id_factura"=>intval($id)))</query>
         <query global="id" eval="true">"DELETE FROM tbl_facturas_v WHERE ".make_where_query(array("id_factura"=>intval($id)))</query>
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
-        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
     </delete>
     <excel>
         <query require="php/listsim.php" global="page" eval="true">"SELECT

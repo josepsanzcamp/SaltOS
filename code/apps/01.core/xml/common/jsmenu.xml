@@ -65,9 +65,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <function>updatesession() { check_session("update"); }</function>
     <!-- FOR CKEDITOR LANG -->
     <function global="lang" eval="true">"lang_default() { return '".substr($lang,0,2)."'; }"</function>
-    <!-- FOR FOLDERS MODULE -->
-    <function eval="true">"lang_addtofolderok() { return '".LANG_ESCAPE("addtofolderok")."'; }"</function>
-    <function eval="true">"lang_delfromfolderok() { return '".LANG_ESCAPE("delfromfolderok")."'; }"</function>
     <!-- FOR SELECT ALL CHECKBOX FEATURE -->
     <function eval="true">"lang_selectallcheckbox() { return '".LANG_ESCAPE("selectallcheckbox")."'; }"</function>
     <function eval="true">"lang_selectonecheckbox() { return '".LANG_ESCAPE("selectonecheckbox")."'; }"</function>
@@ -99,6 +96,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <include ifeval="eval_bool(getDefault('enablepurge'))">js/checkpurge.js</include>
         <include>js/favicon.js</include>
         <include>js/numbers.js</include>
-        <include>js/folders.js</include>
     </cache>
 </root>

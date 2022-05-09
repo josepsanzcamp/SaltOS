@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Afegir</textos_add>
         <selectall>Selecciona-ho tot</selectall>
         <selectnone>Esborrar selecció</selectnone>
-        <addtofolder>Mostra a aquesta carpeta</addtofolder>
-        <addtofolderok>S'ha afegit aquest contingut a la carpeta</addtofolderok>
-        <delfromfolderok>S'ha ocultat aquest contingut de la carpeta</delfromfolderok>
         <savedfilters>Filtres guardats</savedfilters>
         <optionfilter>Seleccioneu un filtre guardat</optionfilter>
         <newfilter>Nom del nou filtre</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Amagar eines</hidetools>
         <inbackground>Aquesta acció s'està executant en segon pla, espereu uns instants</inbackground>
         <sentfromsaltos>Correu enviat des del meu SaltOS</sentfromsaltos>
-        <foldersdata>Carpetes</foldersdata>
         <loweradd>afegir</loweradd>
         <help>Ajut</help>
         <selectallcheckbox>Seleccionar tots els registres</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>General</gestiongeneral>
         <gestionfiltros>Filtres</gestionfiltros>
         <gestionadministracion>Administració</gestionadministracion>
-        <folders>Carpetes</folders>
         <buscador>Cercador</buscador>
         <desc_usuarios>Doneu d'alta, de baixa o modifiqui usuaris</desc_usuarios>
         <desc_grupos>Creeu grups de treball per als usuaris</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Desè botó (F10)</quick_button_f10>
         <quick_button_f11>Oncè botón (F11)</quick_button_f11>
         <quick_button_f12>Dotzè botón (F12)</quick_button_f12>
-        <folderstab>Carpetes d'usuari</folderstab>
-        <folderspref>Configureu aquí les carpetes d'usuari per després deixar el que vulgui</folderspref>
-        <newfolder>Nova carpeta d'usuari</newfolder>
-        <withoutparent>[Sense carpeta]</withoutparent>
-        <inparentfolder>y penja de la carpeta</inparentfolder>
-        <namefolder>Nom de la carpeta</namefolder>
-        <parentfolder>Penja de la carpeta</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Configuració</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Llistat de fitxers adjunts</list>
         <todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Carpeta no trobada</notfound>
-        <todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>
-        <deleteoffolder>Esborrar d'aquesta carpeta</deleteoffolder>
-        <defaultfolder>Carpeta personal</defaultfolder>
-    </folders>
     <buscador>
         <list>Cercador</list>
         <todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>

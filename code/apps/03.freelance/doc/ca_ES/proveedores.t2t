@@ -19,8 +19,6 @@ En el llistat de proveïdors podrà trobar les columnes més importants del regi
 - **Compte de correu:** Compte de correu principal per posar-nos en contacte.
 
 
-**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
-
 ===Opcions del llistat===
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
@@ -36,7 +34,7 @@ Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda ge
 
 ==Formulari de proveïdors==
 
-Aquesta és l'aplicació de proveïdors amb ella podrà afegir, modificar i visionar totes les dades del proveïdor classificats en diferents pestanyes. Dades principals, comentaris, fitxer adjunts, gràfiques i estadístiques sobre les compres realitzades, dades sobre les modificacions del registre i assignacions a carpetes.
+Aquesta és l'aplicació de proveïdors amb ella podrà afegir, modificar i visionar totes les dades del proveïdor classificats en diferents pestanyes. Dades principals, comentaris, fitxer adjunts, gràfiques i estadístiques sobre les compres realitzades, dades sobre les modificacions del registre, ...
 
 ===Pestanya Dades del proveïdor===
 
@@ -80,7 +78,3 @@ En aquesta pestanya podreu veure les gràfiques i estadístiques de despeses rea
 ===Pestanya Dades del registre===
 
 Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestanya Carpetes===
-
-Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

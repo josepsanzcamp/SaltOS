@@ -6,7 +6,6 @@
 SaltOS li permetrà personalitzar i configurar diversos aspectes de l'aplicació:
 
 - Preferències generals (idioma, aspecte, contrasenya, etc.)
-- Carpetes d'usuari
 - Menú ràpid
 - Google Calendar
 - Feeds RSS
@@ -40,12 +39,6 @@ Després de realitzar qualsevol canvi en aquesta pestanya feu clic a 'Actualitza
 En aquest apartat podrà afegir i treure botons d'accés ràpid a la barra superior de SaltOS.
 
 Per afegir un nou botó, seleccioneu l'aplicació a la vol accedir de manera directa en el desplegable corresponent al botó.
-
-==  Carpetes d'usuari ==
-
-[profile-carpetas.png]
-
-Des d'aquesta pestanya, podrà canviar les carpetes segons ho desitgi, crear noves carpetes o esborrar carpetes que no faci servir. Aquestes opcions permetran que disposi de les carpetes necessàries perquè pugui organitzar la seva informació de la millor manera.
 
 ==  Google Calendar ==
 

@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Ajouter</textos_add>
         <selectall>Sélectionner tout</selectall>
         <selectnone>Supprimer la sélection</selectnone>
-        <addtofolder>Voir dans ce dossier</addtofolder>
-        <addtofolderok>Ce contenu a été ajouté à ce dossier</addtofolderok>
-        <delfromfolderok>Ce contenu a été caché de ce dossier</delfromfolderok>
         <savedfilters>Choix de filtres</savedfilters>
         <optionfilter>Sélectionnez un filtre enregistré</optionfilter>
         <newfilter>Nom du nouveau filtre</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Cacher les outils</hidetools>
         <inbackground>Cette action est en arrière-plan, attendez un instant</inbackground>
         <sentfromsaltos>Courriel envoyer de mon SaltOS</sentfromsaltos>
-        <foldersdata>Dossier</foldersdata>
         <loweradd>Ajouter</loweradd>
         <help>Aide</help>
         <selectallcheckbox>Sélectionner tous les enregistrements</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>Général</gestiongeneral>
         <gestionfiltros>Show more     filtres</gestionfiltros>
         <gestionadministracion>Gestion administration</gestionadministracion>
-        <folders>Dossiers</folders>
         <buscador>Recherche</buscador>
         <desc_usuarios>Le haute, basse ou modifier des utilisateurs</desc_usuarios>
         <desc_grupos>Créer des groupes de travail pour les utilisateurs</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Dixième bouton (F10)</quick_button_f10>
         <quick_button_f11>Onzième bouton (F11)</quick_button_f11>
         <quick_button_f12>Douzième bouton (F12)</quick_button_f12>
-        <folderstab>Dossier utilisateur</folderstab>
-        <folderspref>Configurer les dossiers utilisateur ici, puis inscrivez ce que vous semble pertinent</folderspref>
-        <newfolder>Nouveau dossier utilisateur</newfolder>
-        <withoutparent>[Sans dossier]</withoutparent>
-        <inparentfolder>et est suspendu dans le dossier</inparentfolder>
-        <namefolder>Nom du dossier</namefolder>
-        <parentfolder>Accrocher dans le dossier</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Paramètres</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Liste des pièces jointes</list>
         <todaslasaplicaciones>[Toutes les demandes]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Dossier non trouvé</notfound>
-        <todaslasaplicaciones>[Toutes les applications]</todaslasaplicaciones>
-        <deleteoffolder>Supprimer ce dossier</deleteoffolder>
-        <defaultfolder>Dossier Personnel</defaultfolder>
-    </folders>
     <buscador>
         <list>Rechercher</list>
         <todaslasaplicaciones>[Toutes les demandes]</todaslasaplicaciones>

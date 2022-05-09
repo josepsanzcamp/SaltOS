@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Toevoegen</textos_add>
         <selectall>Alles selecteren</selectall>
         <selectnone>Duidelijke selectie</selectnone>
-        <addtofolder>Weergeven in deze map</addtofolder>
-        <addtofolderok>Deze inhoud is toegevoegd aan de map</addtofolderok>
-        <delfromfolderok>Deze mapinhoud is verborgen</delfromfolderok>
         <savedfilters>Opgeslagen filters</savedfilters>
         <optionfilter>Selecteer een opgeslagen filter</optionfilter>
         <newfilter>Naam van het nieuwe filter</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Verberg tools</hidetools>
         <inbackground>Deze actie wordt op de achtergrond uitgevoerd, wacht even</inbackground>
         <sentfromsaltos>E-mail verzonden vanaf mijn SaltOS</sentfromsaltos>
-        <foldersdata>Mappen</foldersdata>
         <loweradd>toevoegen</loweradd>
         <help>Help</help>
         <selectallcheckbox>Selecteer alle records</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>Algemeen</gestiongeneral>
         <gestionfiltros>Filters</gestionfiltros>
         <gestionadministracion>Administratie</gestionadministracion>
-        <folders>Mappen</folders>
         <buscador>Zoekmachine</buscador>
         <desc_usuarios>Gebruikers registreren, afmelden of wijzigen</desc_usuarios>
         <desc_grupos>Maak werkgroepen voor gebruikers</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Tiende knop (F10)</quick_button_f10>
         <quick_button_f11>Elfde knop (F11)</quick_button_f11>
         <quick_button_f12>Twaalfde knop (F12)</quick_button_f12>
-        <folderstab>Gebruikersmappen</folderstab>
-        <folderspref>Stel hier gebruikersboxen in en laat dan wat u wilt</folderspref>
-        <newfolder>Nieuwe gebruikersbox</newfolder>
-        <withoutparent>[Zonder map]</withoutparent>
-        <inparentfolder>en hangt aan de map</inparentfolder>
-        <namefolder>Mapnaam</namefolder>
-        <parentfolder>Hang aan de map</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Installatie</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Lijst met bijgevoegde bestanden</list>
         <todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Map niet gevonden</notfound>
-        <todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>
-        <deleteoffolder>Verwijderen uit deze map</deleteoffolder>
-        <defaultfolder>Persoonlijke map</defaultfolder>
-    </folders>
     <buscador>
         <list>Zoekmachine</list>
         <todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>

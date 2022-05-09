@@ -245,19 +245,6 @@ if (getParam("action") == "sendmail") {
                 }
                 __getmail_update($campo, 1, $id_extra[2]);
             }
-            // ADD TO THE SELECTED FOLDERS
-            $query = "SELECT id FROM tbl_folders WHERE id_usuario='" . current_user() . "'";
-            $result = execute_query_array($query);
-            foreach ($result as $id_folder) {
-                if (getParam("folders_${id_folder}_activado")) {
-                    $query = make_insert_query("tbl_folders_a", array(
-                        "id_folder" => $id_folder,
-                        "id_aplicacion" => page2id("correo"),
-                        "id_registro" => $last_id
-                    ));
-                    db_query($query);
-                }
-            }
             // FINISH THE ACTION
             session_alert(LANG("msgsendoksendmail", "correo"));
             $go = eval_bool(intval(getParam("returnhere")) ? "true" : "false") ? 0 : -1;

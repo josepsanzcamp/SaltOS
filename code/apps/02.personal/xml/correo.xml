@@ -643,7 +643,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
                 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
         ) z
-        WHERE ".make_like_query($campos_array[$campos],$filtro)."
+        WHERE 1=1
+        AND ".($campos_array[$campos]!=""?make_like_query($campos_array[$campos],$filtro):"(1=1)")."
         AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
         AND ".($id_usuario!=""?"id_cuenta IN (".check_ids(execute_query_array("SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id_usuario'")).")":"(1=1)")."
         AND ".($id_cuenta!=""?"id_cuenta='$id_cuenta'":"(1=1)")."
@@ -699,7 +700,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <full global="id" eval="true">"SELECT '".abs($id)."' id"</full>
                     <source global="id" eval="true">"SELECT '".abs($id)."' id"</source>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </view>
             <insert>
@@ -711,7 +711,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         <files_old>SELECT 'php/action/getmail.php' action_include</files_old>
                     </files_old>
                     <files_new include="xml/common/qfilesnew.xml" replace="true"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </insert>
         </views>
@@ -1053,7 +1052,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 </fieldset>
             </source>
             <control include="xml/common/control.xml" />
-            <folders include="xml/common/folders.xml" />
         </fields>
         <quick include="xml/common/quickform.xml" />
         <buttons>
@@ -1175,7 +1173,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query include="xml/common/qdeletefiles.xml" replace="true" />
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
         <query eval="true">"SELECT '".LANG_ESCAPE("msgnumdelete")."1".LANG_ESCAPE("message1")."' action_alert"</query>
-        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
     </delete>
     <pdf>
         <constructor>"P","mm","A4"</constructor>

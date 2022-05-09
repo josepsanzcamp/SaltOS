@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Lisätä</textos_add>
         <selectall>Valitse kaikki</selectall>
         <selectnone>Tyhjennä valinta</selectnone>
-        <addtofolder>Näytä tässä kansiossa</addtofolder>
-        <addtofolderok>Tämä sisältö on lisätty kansioon</addtofolderok>
-        <delfromfolderok>Tämän kansion sisältö on piilotettu</delfromfolderok>
         <savedfilters>Tallennetut suodattimet</savedfilters>
         <optionfilter>Valitse tallennettu suodatin</optionfilter>
         <newfilter>Uuden suodattimen nimi</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Piilota työkalut</hidetools>
         <inbackground>Tämä toiminto on käynnissä taustalla, odota hetki</inbackground>
         <sentfromsaltos>Posti lähetetty SaltOS-laitteistani</sentfromsaltos>
-        <foldersdata>Kansiot</foldersdata>
         <loweradd>lisätä</loweradd>
         <help>Help</help>
         <selectallcheckbox>Valitse kaikki tietueet</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>Yleinen</gestiongeneral>
         <gestionfiltros>Suodattimet</gestionfiltros>
         <gestionadministracion>Antaminen</gestionadministracion>
-        <folders>Kansiot</folders>
         <buscador>Hakukone</buscador>
         <desc_usuarios>Rekisteröi, peruuta tilaukset tai muokkaa käyttäjiä</desc_usuarios>
         <desc_grupos>Luo käyttäjille työryhmiä</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Kymmenes painike (F10)</quick_button_f10>
         <quick_button_f11>Yhdestoista painike (F11)</quick_button_f11>
         <quick_button_f12>Kahdestoista painike (F12)</quick_button_f12>
-        <folderstab>Käyttäjäkansiot</folderstab>
-        <folderspref>Asenna käyttäjälaatikot tähän ja jätä sitten haluamasi</folderspref>
-        <newfolder>Uusi käyttäjälaatikko</newfolder>
-        <withoutparent>[Ilman kansiota]</withoutparent>
-        <inparentfolder>ja roikkuu kansiosta</inparentfolder>
-        <namefolder>Kansion nimi</namefolder>
-        <parentfolder>Ripusta kansiosta</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Kokoonpano</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Luettelo liitteistä</list>
         <todaslasaplicaciones>[Kaikki sovellukset]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Kansiota ei löytynyt</notfound>
-        <todaslasaplicaciones>[Kaikki sovellukset]</todaslasaplicaciones>
-        <deleteoffolder>Poista tästä kansiosta</deleteoffolder>
-        <defaultfolder>Henkilökohtainen kansio</defaultfolder>
-    </folders>
     <buscador>
         <list>Hakukone</list>
         <todaslasaplicaciones>[Kaikki sovellukset]</todaslasaplicaciones>

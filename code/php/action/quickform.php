@@ -37,12 +37,6 @@ if (getParam("is_fichero")) {
 if (getParam("is_buscador")) {
     $pagesim = "buscador";
 }
-if (getParam("id_folder")) {
-    $pagesim = "folders";
-}
-if (getParam("id_folder")) {
-    lastfolder(getParam("id_folder"));
-}
 $ids = list_simulator($pagesim);
 if ($ids === null) {
     action_denied();

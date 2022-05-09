@@ -748,27 +748,6 @@ function __feeds_fetchitems($array)
     return $items;
 }
 
-function __folders_update_tree($id_usuario, $id_parent = 0, &$pos = 0, $depth = 0)
-{
-    $query = "SELECT id
-        FROM tbl_folders
-        WHERE id_usuario='${id_usuario}'
-            AND id_parent='${id_parent}'
-        ORDER BY name ASC";
-    $result = db_query($query);
-    while ($row = db_fetch_row($result)) {
-        $id = $row["id"];
-        $query = make_update_query("tbl_folders", array(
-            "pos" => $pos,
-            "depth" => $depth
-        ), "id_usuario='${id_usuario}' AND id=${id}");
-        db_query($query);
-        $pos++;
-        __folders_update_tree($id_usuario, $row["id"], $pos, $depth + 1);
-    }
-    db_free($result);
-}
-
 // FUNCTIONS FOR THE NEW API V3
 function __gcalendar_requesttoken($client)
 {

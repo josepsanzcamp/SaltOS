@@ -28,8 +28,6 @@ In the list of projects you will find the most important columns of each record:
 
 (*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
 
-**Remember**: The events can be arranged by dragging them to the user folder you want.
-
 ===Listing Options===
 
 On each record. You can perform a series of actions that are represented by the following icons:
@@ -52,7 +50,7 @@ In this tab you can view statistics on how many projects have in each state can 
 
 ==Projects form==
 
-This is the application of project, it may add, modify and view all project data classified in different tabs: main data, project objectives, project tasks, project outputs, file attachments, data on the registry modifications and assignments to folders.
+This is the application of project, it may add, modify and view all project data classified in different tabs: main data, project objectives, project tasks, project outputs, file attachments, data on the registry modifications, ...
 
 ===Project data tab===
 
@@ -113,7 +111,3 @@ For more information about the filter options listed in the **[ayuda general htt
 ===Registry Data Tab===
 
 For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
-
-===Tab Folders===
-
-For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

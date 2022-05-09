@@ -30,8 +30,6 @@ In this view you can create a new event by clicking the corresponding button in 
 - **State:** State where you will find the event (Scheduled, TBC, Finished, Cancelled).
 
 
-**Remember**: The events can be arranged by dragging them to the user folder you want.
-
 ===Listing Options===
 
 On each record you can perform a series of actions that are represented by the following icons:
@@ -57,7 +55,7 @@ To synchronize the calendar with //Google Calendar//Click the appropriate button
 
 ==Event Form==
 
-This is the application of events, with it you can add, modify and view all data from the various events held in the state, the information is classified in different tabs: main data, assigned users, comments, file attachments, data on the registry modifications and assignments to folders.
+This is the application of events, with it you can add, modify and view all data from the various events held in the state, the information is classified in different tabs: main data, assigned users, comments, file attachments, data on the registry modifications, ...
 
 ===Event Info tab===
 
@@ -134,7 +132,3 @@ For more information about the filter options listed in the **[ayuda general htt
 ===Registry Data Tab===
 
 For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
-
-===Tab Folders===
-
-For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

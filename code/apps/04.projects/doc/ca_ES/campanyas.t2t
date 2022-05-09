@@ -25,8 +25,6 @@ En el llistat de campanyes comercials. podrà trobar les columnes més important
 - **NF:** Nombre de fitxers vinculats amb aquesta campanya.
 
 
-**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
-
 ===Opcions del llistat===
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
@@ -42,7 +40,7 @@ Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda ge
 
 ==Formulari de campanyes comercials==
 
-Aquesta és l'aplicació de campanyes comercials, amb ella podrà afegir, modificar i visionar totes les dades de les diferents campanyes comercials que es realitzen a l'entitat, la informació està classificada en diferents pestanyes: dades principals, comentaris, fitxer adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+Aquesta és l'aplicació de campanyes comercials, amb ella podrà afegir, modificar i visionar totes les dades de les diferents campanyes comercials que es realitzen a l'entitat, la informació està classificada en diferents pestanyes: dades principals, comentaris, fitxer adjunts, dades sobre les modificacions del registre, ...
 
 ===Pestanya Dades de la campanya===
 
@@ -78,8 +76,4 @@ Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda ge
 ===Pestanya Dades del registre===
 
 Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestanya Carpetes===
-
-Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.
 

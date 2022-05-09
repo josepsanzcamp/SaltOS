@@ -35,41 +35,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <onclick>view3('ID')</onclick>
                 <icon eval="true">ICON("view")</icon>
             </view3>
-            <pdf4>
-                <label lang="true">pdf</label>
-                <onclick>pdf4('ID')</onclick>
-                <icon eval="true">ICON("pdf")</icon>
-            </pdf4>
-            <view4 ifeval="!ismobile()">
-                <label lang="true">view2</label>
-                <onclick>view4('ID')</onclick>
-                <icon eval="true">ICON("viewpdf")</icon>
-            </view4>
             <edit2>
                 <label lang="true">edit</label>
                 <onclick>edit2('ID')</onclick>
                 <icon eval="true">ICON("edit")</icon>
             </edit2>
-            <copy2>
-                <label lang="true">copy</label>
-                <onclick>copy2('ID')</onclick>
-                <icon eval="true">ICON("copy")</icon>
-            </copy2>
-            <reply2>
-                <label eval="true">LANG("actionreply","correo")</label>
-                <onclick>reply2('ID')</onclick>
-                <icon eval="true">ICON("reply")</icon>
-            </reply2>
-            <replyall2>
-                <label eval="true">LANG("actionreplyall","correo")</label>
-                <onclick>replyall2('ID')</onclick>
-                <icon eval="true">ICON("replyall")</icon>
-            </replyall2>
-            <forward2>
-                <label eval="true">LANG("actionforward","correo")</label>
-                <onclick>forward2('ID')</onclick>
-                <icon eval="true">ICON("forward")</icon>
-            </forward2>
         </actions>
         <width>100%</width>
         <fields>
@@ -108,13 +78,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <javascript>
             <javascript include="xml/common/jslist.xml" replace="true"/>
             <function>view3(cid) { cid=explode("_",cid); setParam("page",cid[1]); setParam("action","form"); setParam("id",-cid[2]); submit1(); }</function>
-            <function>pdf4(cid) { cid=explode("_",cid); openurl("?page="+cid[1]+"&amp;action=pdf&amp;id="+cid[2]); }</function>
-            <function>view4(cid) { cid=explode("_",cid); viewpdf("page="+cid[1]+"&amp;id="+cid[2]); }</function>
             <function>edit2(cid) { cid=explode("_",cid); setParam("page",cid[1]); setParam("action","form"); setParam("id",cid[2]); submit1(); }</function>
-            <function>copy2(cid) { cid=explode("_",cid); setParam("page",cid[1]); setParam("action","form"); setParam("id","0_copy_"+cid[2]); submit1(); }</function>
-            <function>reply2(cid) { cid=explode("_",cid); setParam("page","correo"); setParam("action","form"); setParam("id","0_reply_"+cid[2]); submit1(); }</function>
-            <function>replyall2(cid) { cid=explode("_",cid); setParam("page","correo"); setParam("action","form"); setParam("id","0_replyall_"+cid[2]); submit1(); }</function>
-            <function>forward2(cid) { cid=explode("_",cid); setParam("page","correo"); setParam("action","form"); var action=(cid[1]=="feeds")?"feed":"forward"; setParam("id","0_"+action+"_"+cid[2]); submit1(); }</function>
         </javascript>
         <form>
             <name>list</name>
@@ -238,70 +202,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         c.id_cuenta id_cuenta,
         ".make_linktitle_query("a.")." nombre,
         ".make_actiontitle_query("a.")."  action_title,
-        CASE a.id_aplicacion
-            WHEN '".page2id("favoritos")."' THEN 'false'
-            ELSE 'true'
-        END action_view3,
-        CASE a.id_aplicacion
-            WHEN '".page2id("actas")."' THEN 'true'
-            WHEN '".page2id("campanyas")."' THEN 'true'
-            WHEN '".page2id("clientes")."' THEN 'true'
-            WHEN '".page2id("correo")."' THEN 'true'
-            WHEN '".page2id("facturas")."' THEN 'true'
-            WHEN '".page2id("feeds")."' THEN 'true'
-            WHEN '".page2id("partes")."' THEN 'true'
-            WHEN '".page2id("posiblescli")."' THEN 'true'
-            WHEN '".page2id("presupuestos")."' THEN 'true'
-            WHEN '".page2id("proyectos")."' THEN 'true'
-            ELSE 'false'
-        END action_pdf4,
-        CASE a.id_aplicacion
-            WHEN '".page2id("actas")."' THEN 'true'
-            WHEN '".page2id("campanyas")."' THEN 'true'
-            WHEN '".page2id("clientes")."' THEN 'true'
-            WHEN '".page2id("correo")."' THEN 'true'
-            WHEN '".page2id("facturas")."' THEN 'true'
-            WHEN '".page2id("feeds")."' THEN 'true'
-            WHEN '".page2id("partes")."' THEN 'true'
-            WHEN '".page2id("posiblescli")."' THEN 'true'
-            WHEN '".page2id("presupuestos")."' THEN 'true'
-            WHEN '".page2id("proyectos")."' THEN 'true'
-            ELSE 'false'
-        END action_view4,
-        CASE a.id_aplicacion
-            WHEN '".page2id("correo")."' THEN 'false'
-            WHEN '".page2id("feeds")."' THEN 'false'
-            WHEN '".page2id("favoritos")."' THEN 'false'
-            ELSE 'true'
-        END action_edit2,
-        CASE a.id_aplicacion
-            WHEN '".page2id("actas")."' THEN 'true'
-            WHEN '".page2id("agenda")."' THEN 'true'
-            WHEN '".page2id("facturas")."' THEN 'true'
-            WHEN '".page2id("gastos")."' THEN 'true'
-            WHEN '".page2id("partes")."' THEN 'true'
-            WHEN '".page2id("periodicas")."' THEN 'true'
-            WHEN '".page2id("presupuestos")."' THEN 'true'
-            WHEN '".page2id("proyectos")."' THEN 'true'
-            WHEN '".page2id("seguimientos")."' THEN 'true'
-            ELSE 'false'
-        END action_copy2,
-        CASE a.id_aplicacion
-            WHEN '".page2id("correo")."' THEN CASE (SELECT is_outbox FROM tbl_correo WHERE id=a.id_registro) WHEN 0 THEN 'true' ELSE 'false' END
-            ELSE 'false'
-        END action_reply2,
-        CASE a.id_aplicacion
-            WHEN '".page2id("correo")."' THEN CASE (SELECT is_outbox FROM tbl_correo WHERE id=a.id_registro) WHEN 0 THEN CASE WHEN (SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo=a.id_registro AND id_tipo IN (2,3))&gt;1 THEN 'true' ELSE 'false' END ELSE 'false' END
-            ELSE 'false'
-        END action_replyall2,
-        CASE a.id_aplicacion
-            WHEN '".page2id("correo")."' THEN 'true'
-            WHEN '".page2id("feeds")."' THEN 'true'
-            ELSE 'false'
-        END action_forward2,
-        CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN a.id_registro WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=a.id_registro) ELSE '0' END id_cliente,
-        CASE a.id_aplicacion WHEN '".page2id("proyectos")."' THEN a.id_registro ELSE '0' END id_proyecto,
-        CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN a.id_registro ELSE '0' END id_proveedor
+        'true' action_view3,
+        'true' action_edit2
         FROM tbl_registros a
         LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id
         LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
@@ -310,7 +212,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         AND ".($id_usuario.$id_aplicacion.$filtro.$fecha1.$fecha2!=""?"1=1":"1=0")."
         AND ".($id_aplicacion?"(a.id_aplicacion='$id_aplicacion')":"(1=1)")."
         AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
-        AND (id_cuenta IS NULL OR id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'))
+        AND (id_cuenta IS NULL OR id_cuenta NOT IN (".check_ids(execute_query_array("SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'"))."))
         AND ".($fecha1?"(DATE(a.datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
         AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(a.datetime))":"(1=1)")."
         AND ".check_sql2("list","a.id_aplicacion","a.id_usuario","d.id_grupo")</query>

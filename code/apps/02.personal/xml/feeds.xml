@@ -461,7 +461,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <default global="id" eval="true">"SELECT *,(SELECT CONCAT('openwin(\"',link,'\")') FROM tbl_usuarios_f WHERE id=id_feed) link2,CONCAT('openwin(\"',link,'\")') link,CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END title FROM tbl_feeds WHERE id=".abs($id)</default>
                     <full global="id" eval="true">"SELECT '".abs($id)."' id"</full>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </view>
         </views>
@@ -596,7 +595,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 </fieldset>
             </full>
             <control include="xml/common/control.xml" />
-            <folders include="xml/common/folders.xml" />
         </fields>
         <quick include="xml/common/quickform.xml" />
         <buttons>
@@ -651,7 +649,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query include="xml/common/qdelete.xml" replace="true" />
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
         <query eval="true">"SELECT '".LANG_ESCAPE("msgnumdelete")."1".LANG_ESCAPE("message1")."' action_alert"</query>
-        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
     </delete>
     <pdf>
         <constructor>"P","mm","A4"</constructor>

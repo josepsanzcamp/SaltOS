@@ -26,8 +26,6 @@ En el llistat dels seus correus electrònics trobarà tant els enviats per vost�
   - //Spam//: Vermell.
 
 
-**Recordeu**: Els correus es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
-
 ===Opcions del llistat===
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
@@ -63,7 +61,7 @@ Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda ge
 
 ==Formulari de correu==
 
-Aquesta és l'aplicació de correu, amb ella podrà llegir i enviar correus, les dades estan classificats en diferents pestanyes. Dades principals, fitxer adjunts i assignacions a carpetes.
+Aquesta és l'aplicació de correu, amb ella podrà llegir i enviar correus, les dades estan classificats en diferents pestanyes. Dades principals, fitxer adjunts, ...
 
 [correo-formulario.png]
 
@@ -105,8 +103,3 @@ En la manera consulta del correu pot fer les mateixes funcions que en llistat: r
 Podeu veure el correu sencer a la pestanya //Zoom del correu//.
 
 Si el correu tingués fitxers adjunts, podrà veure i descarregar-los en la pestanya //Adjunts//. Per realitzar una descàrrega de diversos fitxers alhora, seleccioneu i feu clic a //Descarregar fitxers seleccionats//.
-
-
-===Pestanya Carpetes===
-
-Trobareu més informació sobre carpetes a la **[ayuda general http://viewpdf/page=home]**.

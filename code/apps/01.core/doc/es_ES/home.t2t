@@ -29,7 +29,6 @@ SaltOS está compuesto por una serie de aplicaciones o módulos. Cada aplicació
     - **[Mi perfil http://viewpdf/page=profile]**, cambie sus preferencias de su usuario.
     - **[Soporte técnico http://viewpdf/page=support]**, contacte con el soporte técnico.
     - **Acerca del proyecto SaltOS**, conozca los créditos, formatos soportado por el visor interno, las licencias y otros proyectos incluidos en SaltOS. Ademas puede jugar al Legend of The Bouncing Beholder [+ http://marijnhaverbeke.nl/js1k/], ganador del 2010 de la competición JS1k [+ http://js1k.com/] (The JavaScript code golfing competition).
-  - Carpetas del usuario
   - Gestión Comercial
     - **[Campañas comerciales http://viewpdf/page=campanyas]**, haga campañas comerciales con seguimientos.
     - **[Posibles clientes http://viewpdf/page=posiblescli]**, controle los posibles clientes que puede tener.

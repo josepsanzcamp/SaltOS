@@ -27,8 +27,6 @@ En el llistat de pressupostos podrà trobar les columnes més importants del reg
 
 (*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
 
-**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
-
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
@@ -59,7 +57,7 @@ En aquesta pestanya podreu veure les estadístiques sobre quants pressupost té 
 
 ==Formulari de pressupostos==
 
-Aquesta és l'aplicació de pressupost, amb ella podrà afegir, modificar i visionar totes les dades del pressupost classificats en diferents pestanyes: dades principals, objectius del pressupost, proposta funcional, proposta tècnica, informació addicional, tasques del pressupost, productes del pressupost, condicions del pressupost, fitxer adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+Aquesta és l'aplicació de pressupost, amb ella podrà afegir, modificar i visionar totes les dades del pressupost classificats en diferents pestanyes: dades principals, objectius del pressupost, proposta funcional, proposta tècnica, informació addicional, tasques del pressupost, productes del pressupost, condicions del pressupost, fitxer adjunts, dades sobre les modificacions del registre, ...
 
 [presupuestos-formulario.png]
 
@@ -144,8 +142,3 @@ En aquesta pestanya podrà descriure les condicions a què està subjecte el pre
 ===Pestanya Dades del registre===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
-
-===Pestanya Carpetes===
-
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
-

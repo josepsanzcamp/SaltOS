@@ -79,9 +79,6 @@ function load_history($id_usuario, $id_aplicacion)
         if (isset($items[""])) {
             unset($items[""]);
         }
-        if (isset($items["id_folder"])) {
-            unset($items["id_folder"]);
-        }
         if (isset($items["is_fichero"])) {
             unset($items["is_fichero"]);
         }
@@ -124,39 +121,4 @@ function lastpage($page)
         $page = getDefault("page");
     }
     return $page;
-}
-
-function lastfolder($id_folder)
-{
-    $id_usuario = current_user();
-    if (!$id_usuario) {
-        return "";
-    }
-    $query = "SELECT id_folder FROM tbl_lastfolder WHERE id_usuario='$id_usuario'";
-    $lastfolder = execute_query($query);
-    if (!$id_folder) {
-        $id_folder = $lastfolder;
-    } else {
-        if ($id_folder != $lastfolder) {
-            if (!$lastfolder) {
-                $query = make_insert_query("tbl_lastfolder", array(
-                    "id_usuario" => $id_usuario,
-                    "id_folder" => $id_folder
-                ));
-                db_query($query);
-            } else {
-                $query = make_update_query("tbl_lastfolder", array(
-                    "id_folder" => $id_folder
-                ), make_where_query(array(
-                    "id_usuario" => $id_usuario
-                )));
-                db_query($query);
-            }
-        }
-    }
-    if (!$id_folder) {
-        $query = "SELECT id FROM tbl_folders WHERE id_usuario='$id_usuario' ORDER BY name ASC LIMIT 1";
-        $id_folder = execute_query($query);
-    }
-    return $id_folder;
 }

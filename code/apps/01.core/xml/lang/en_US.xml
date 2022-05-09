@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Add</textos_add>
         <selectall>Select All</selectall>
         <selectnone>Delete Selected</selectnone>
-        <addtofolder>Show in this folder</addtofolder>
-        <addtofolderok>This content has been added to this folder</addtofolderok>
-        <delfromfolderok>This content has been hidden from this folder</delfromfolderok>
         <savedfilters>Filters saved</savedfilters>
         <optionfilter>Select a saved filter</optionfilter>
         <newfilter>Name the new filter</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Hide tools</hidetools>
         <inbackground>This action is running in the background, wait a moment</inbackground>
         <sentfromsaltos>Email sent from my SaltOS</sentfromsaltos>
-        <foldersdata>Folders</foldersdata>
         <loweradd>add</loweradd>
         <help>Help</help>
         <selectallcheckbox>Select all records</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>General</gestiongeneral>
         <gestionfiltros>Filters</gestionfiltros>
         <gestionadministracion>Administration</gestionadministracion>
-        <folders>Folders</folders>
         <buscador>Search</buscador>
         <desc_usuarios>The high, low or modify users</desc_usuarios>
         <desc_grupos>Create working groups for users</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Tenth button (F10)</quick_button_f10>
         <quick_button_f11>Eleventh button (F11)</quick_button_f11>
         <quick_button_f12>Twelfth button (F12)</quick_button_f12>
-        <folderstab>User folders</folderstab>
-        <folderspref>Configure the user folders here and then leave what you want</folderspref>
-        <newfolder>New user folder</newfolder>
-        <withoutparent>[Without folder]</withoutparent>
-        <inparentfolder>and is hanging in the folder</inparentfolder>
-        <namefolder>Name of the folder</namefolder>
-        <parentfolder>Hanging in the folder</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Settings</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>List of attachments</list>
         <todaslasaplicaciones>[All applications]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Folder not found</notfound>
-        <todaslasaplicaciones>[All applications]</todaslasaplicaciones>
-        <deleteoffolder>Remove of this folder</deleteoffolder>
-        <defaultfolder>Personal folder</defaultfolder>
-    </folders>
     <buscador>
         <list>Search</list>
         <todaslasaplicaciones>[All applications]</todaslasaplicaciones>

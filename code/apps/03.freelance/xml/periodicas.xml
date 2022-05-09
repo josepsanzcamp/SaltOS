@@ -295,7 +295,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         <vencimientos_old global="id" eval="true">"SELECT * FROM tbl_periodicas_v WHERE id_periodica=".abs($id)</vencimientos_old>
                     </vencimientos_old>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </view>
             <insert>
@@ -368,7 +367,6 @@ SELECT 'i' id,'' fecha,'0.00' percent,'0.00' importe UNION
 SELECT 'j' id,'' fecha,'0.00' percent,'0.00' importe
                         "</vencimientos_new>
                     </vencimientos_new>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </insert>
             <update>
@@ -429,7 +427,6 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
                         "</vencimientos_new>
                     </vencimientos_new>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </update>
         </views>
@@ -1358,7 +1355,6 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
                 </fieldset>
             </vencimientos_new>
             <control include="xml/common/control.xml" />
-            <folders include="xml/common/folders.xml" />
         </fields>
         <quick include="xml/common/quickform.xml" />
         <buttons include="xml/common/buttonsform.xml" />
@@ -1406,7 +1402,6 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
             "percent"=>getParam("percent"),
             "importe"=>getParam("importe")
         )):""</query>
-        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
     </insert>
     <update>
         <query include="xml/common/qpermupdate.xml" replace="true"/>
@@ -1467,7 +1462,6 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
             "percent"=>getParam("percent"),
             "importe"=>getParam("importe")
         )):""</query>
-        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
     </update>
     <delete>
         <query include="xml/common/qpermdelete.xml" replace="true"/>
@@ -1475,6 +1469,5 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
         <query eval="true">"DELETE FROM tbl_periodicas_c WHERE ".make_where_query(array("id_periodica"=>abs(intval(getParam("id")))))</query>
         <query eval="true">"DELETE FROM tbl_periodicas_v WHERE ".make_where_query(array("id_periodica"=>abs(intval(getParam("id")))))</query>
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
-        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
     </delete>
 </root>

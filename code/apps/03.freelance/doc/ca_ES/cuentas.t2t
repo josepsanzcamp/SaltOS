@@ -29,7 +29,7 @@ Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda ge
 
 ==Formulari de comptes==
 
-Aquesta és l'aplicació de comptes, amb ella podrà afegir, modificar i visionar totes les dades de les diferents comptes classificats en diferents pestanyes: dades principals, logotip, factures, dades sobre les modificacions del registre i assignacions a carpetes.
+Aquesta és l'aplicació de comptes, amb ella podrà afegir, modificar i visionar totes les dades de les diferents comptes classificats en diferents pestanyes: dades principals, logotip, factures, dades sobre les modificacions del registre, ...
 
 ===Pestanya Dades del compte===
 
@@ -84,7 +84,3 @@ En aquesta pestanya podreu visualitzar i modificar la configuració de les factu
 ===Pestanya Dades del registre===
 
 Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestanya Carpetes===
-
-Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

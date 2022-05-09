@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Aggiungere</textos_add>
         <selectall>Seleziona tutto</selectall>
         <selectnone>Cancella selezione</selectnone>
-        <addtofolder>Mostra in questa cartella</addtofolder>
-        <addtofolderok>Questo contenuto è stato aggiunto alla cartella</addtofolderok>
-        <delfromfolderok>Il contenuto di questa cartella è stato nascosto</delfromfolderok>
         <savedfilters>Filtri salvati</savedfilters>
         <optionfilter>Seleziona un filtro salvato</optionfilter>
         <newfilter>Nome del nuovo filtro</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Nascondi strumenti</hidetools>
         <inbackground>Questa azione è in esecuzione in background, attendi qualche istante</inbackground>
         <sentfromsaltos>Posta inviata dal mio SaltOS</sentfromsaltos>
-        <foldersdata>Cartelle</foldersdata>
         <loweradd>aggiungere</loweradd>
         <help>Aiuto</help>
         <selectallcheckbox>Seleziona tutti i record</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>Generale</gestiongeneral>
         <gestionfiltros>Filtri</gestionfiltros>
         <gestionadministracion>Amministrazione</gestionadministracion>
-        <folders>Cartelle</folders>
         <buscador>Motore di ricerca</buscador>
         <desc_usuarios>Registrare, annullare l'iscrizione o modificare gli utenti</desc_usuarios>
         <desc_grupos>Crea gruppi di lavoro per gli utenti</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Decimo pulsante (F10)</quick_button_f10>
         <quick_button_f11>Undicesimo pulsante (F11)</quick_button_f11>
         <quick_button_f12>Dodicesimo pulsante (F12)</quick_button_f12>
-        <folderstab>Cartelle utente</folderstab>
-        <folderspref>Imposta qui le caselle utente e poi lascia quello che vuoi</folderspref>
-        <newfolder>Nuova casella utente</newfolder>
-        <withoutparent>[Senza cartella]</withoutparent>
-        <inparentfolder>e si blocca dalla cartella</inparentfolder>
-        <namefolder>Nome della cartella</namefolder>
-        <parentfolder>Appendi dalla cartella</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Configurazione</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Elenco dei file allegati</list>
         <todaslasaplicaciones>[Tutte le applicazioni]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Cartella non trovata</notfound>
-        <todaslasaplicaciones>[Tutte le applicazioni]</todaslasaplicaciones>
-        <deleteoffolder>Elimina da questa cartella</deleteoffolder>
-        <defaultfolder>Cartella personale</defaultfolder>
-    </folders>
     <buscador>
         <list>Motore di ricerca</list>
         <todaslasaplicaciones>[Tutte le applicazioni]</todaslasaplicaciones>

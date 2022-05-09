@@ -36,7 +36,7 @@ Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda ge
 
 ==Formulari d'usuaris==
 
-Aquesta és l'aplicació d'usuaris, amb ella podrà afegir, modificar i visionar totes les dades dels usuaris classificats en diferents pestanyes: dades principals, permisos per aplicació, grup del usuari, permisos per registre, Google calendar, informació subscrits, comptes de correu, dades sobre les modificacions del registre i assignacions a carpetes.
+Aquesta és l'aplicació d'usuaris, amb ella podrà afegir, modificar i visionar totes les dades dels usuaris classificats en diferents pestanyes: dades principals, permisos per aplicació, grup del usuari, permisos per registre, Google calendar, informació subscrits, comptes de correu, dades sobre les modificacions del registre, ...
 
 ===Pestanya Dades de l'usuari===
 
@@ -97,7 +97,3 @@ Amb aquesta pestanya podrà afegir tots els comptes de correu que hagi de gestio
 ===Pestanya Dades del registre===
 
 Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
-
-===Pestanya Carpetes===
-
-Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

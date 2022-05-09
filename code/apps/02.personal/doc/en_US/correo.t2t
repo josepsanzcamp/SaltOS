@@ -26,8 +26,6 @@ In the list of emails find both submitted by you as received.
   - //Spam//: Red.
 
 
-**Remember**: The emails can be arranged by dragging them to the user folder you want.
-
 ===Listing Options===
 
 On each record you can perform a series of actions that are represented by the following icons:
@@ -63,7 +61,7 @@ For more information about the filter options listed in the **[ayuda general htt
 
 ==Form E==
 
-This is the mail application, with it you can read and send mail, the data are classified in different tabs. Main data, file attachments and assignments to folders.
+This is the mail application, with it you can read and send mail, the data are classified in different tabs. Main data, file attachments, ...
 
 [correo-formulario.png]
 
@@ -105,8 +103,3 @@ In query mode mail you can perform the same functions as in list: reply to the s
 You can see the entire mail tab //Zoom mail//.
 
 If mail has attachments, you can view and download the tab //Attachments//. To perform a download multiple files at once, select them and click //Download selected files//.
-
-
-===Tab Folders===
-
-For more information about folders in the **[ayuda general http://viewpdf/page=home]**.

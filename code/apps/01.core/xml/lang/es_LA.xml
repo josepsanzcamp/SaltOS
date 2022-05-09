@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>Añadir</textos_add>
         <selectall>Seleccionar todo</selectall>
         <selectnone>Borrar selección</selectnone>
-        <addtofolder>Mostrar en esta carpeta</addtofolder>
-        <addtofolderok>Se ha añadido este contenido a la carpeta</addtofolderok>
-        <delfromfolderok>Se ha ocultado este contenido de la carpeta</delfromfolderok>
         <savedfilters>Filtros guardados</savedfilters>
         <optionfilter>Seleccione un filtro guardado</optionfilter>
         <newfilter>Nombre del nuevo filtro</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>Ocultar herramientas</hidetools>
         <inbackground>Esta acción se esta ejecutando en segundo plano, espere unos instantes</inbackground>
         <sentfromsaltos>Correo enviado desde mi SaltOS</sentfromsaltos>
-        <foldersdata>Carpetas</foldersdata>
         <loweradd>añadir</loweradd>
         <help>Ayuda</help>
         <selectallcheckbox>Seleccionar todos los registros</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>General</gestiongeneral>
         <gestionfiltros>Filtros</gestionfiltros>
         <gestionadministracion>Administración</gestionadministracion>
-        <folders>Carpetas</folders>
         <buscador>Buscador</buscador>
         <desc_usuarios>De de alta, de baja o modifique usuarios</desc_usuarios>
         <desc_grupos>Cree grupos de trabajo para los usuarios</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Décimo botón (F10)</quick_button_f10>
         <quick_button_f11>Onceavo botón (F11)</quick_button_f11>
         <quick_button_f12>Doceavo botón (F12)</quick_button_f12>
-        <folderstab>Carpetas de usuario</folderstab>
-        <folderspref>Configure aquí las carpetas de usuario para luego dejar lo que desee</folderspref>
-        <newfolder>Nueva carpeta de usuario</newfolder>
-        <withoutparent>[Sin carpeta]</withoutparent>
-        <inparentfolder>y cuelga de la carpeta</inparentfolder>
-        <namefolder>Nombre de la carpeta</namefolder>
-        <parentfolder>Cuelga de la carpeta</parentfolder>
     </profile>
     <maincfg>
         <formupdate>Configuración</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>Listado de ficheros adjuntos</list>
         <todaslasaplicaciones>[Todas las aplicaciones]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>Carpeta no encontrada</notfound>
-        <todaslasaplicaciones>[Todas las aplicaciones]</todaslasaplicaciones>
-        <deleteoffolder>Borrar de esta carpeta</deleteoffolder>
-        <defaultfolder>Carpeta personal</defaultfolder>
-    </folders>
     <buscador>
         <list>Buscador</list>
         <todaslasaplicaciones>[Todas las aplicaciones]</todaslasaplicaciones>

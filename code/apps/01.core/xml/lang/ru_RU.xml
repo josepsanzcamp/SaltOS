@@ -317,9 +317,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <textos_add>добавлять</textos_add>
         <selectall>выбрать все</selectall>
         <selectnone>очистить выделение</selectnone>
-        <addtofolder>показать в этой папке</addtofolder>
-        <addtofolderok>это содержимое было добавлено в папку</addtofolderok>
-        <delfromfolderok>это содержимое было скрыто из папки</delfromfolderok>
         <savedfilters>сохраненные фильтры</savedfilters>
         <optionfilter>выберите сохраненный фильтр</optionfilter>
         <newfilter>имя нового фильтра</newfilter>
@@ -350,7 +347,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <hidetools>скрыть инструменты</hidetools>
         <inbackground>это действие выполняется в фоновом режиме, подождите несколько мгновений</inbackground>
         <sentfromsaltos>Почта, отправленная с моего SaltOS</sentfromsaltos>
-        <foldersdata>папки</foldersdata>
         <loweradd>добавлять</loweradd>
         <help>справка</help>
         <selectallcheckbox>выберите все записи</selectallcheckbox>
@@ -393,7 +389,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <gestiongeneral>общее</gestiongeneral>
         <gestionfiltros>фильтры</gestionfiltros>
         <gestionadministracion>администрация</gestionadministracion>
-        <folders>папки</folders>
         <buscador>искатель</buscador>
         <desc_usuarios>регистрация, отмена подписки или изменение пользователей</desc_usuarios>
         <desc_grupos>создание рабочих групп для пользователей</desc_grupos>
@@ -544,13 +539,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <quick_button_f10>Десятая кнопка (F10)</quick_button_f10>
         <quick_button_f11>Одиннадцатая кнопка (F11)</quick_button_f11>
         <quick_button_f12>Двенадцатая кнопка (F12)</quick_button_f12>
-        <folderstab>пользовательские папки</folderstab>
-        <folderspref>настройте пользовательские папки здесь, а затем оставьте то, что вы хотите</folderspref>
-        <newfolder>новая папка пользователя</newfolder>
-        <withoutparent>[Нет папки]</withoutparent>
-        <inparentfolder>и зависает из папки</inparentfolder>
-        <namefolder>имя папки</namefolder>
-        <parentfolder>зависание из папки</parentfolder>
     </profile>
     <maincfg>
         <formupdate>конфигурация</formupdate>
@@ -665,12 +653,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <list>список вложений</list>
         <todaslasaplicaciones>[Все приложения]</todaslasaplicaciones>
     </ficheros>
-    <folders>
-        <notfound>папка не найдена</notfound>
-        <todaslasaplicaciones>[Все приложения]</todaslasaplicaciones>
-        <deleteoffolder>удалить из этой папки</deleteoffolder>
-        <defaultfolder>личная папка</defaultfolder>
-    </folders>
     <buscador>
         <list>искатель</list>
         <todaslasaplicaciones>[Все приложения]</todaslasaplicaciones>

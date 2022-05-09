@@ -306,7 +306,6 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
                     </feeds_old>
                     <correo_old global="id" eval="true">"SELECT *,CONCAT('?action=signature&amp;id=',id) email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </view>
             <insert>
@@ -363,7 +362,6 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
                     <gcalendar>SELECT '0' id</gcalendar>
                     <feeds_new>SELECT '0' id</feeds_new>
                     <correo_new>SELECT '0' id,'0' pop3_days,'?action=signature&amp;id=0' email_signature</correo_new>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </insert>
             <update>
@@ -435,7 +433,6 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
                     <correo_old global="id" eval="true">"SELECT *,CONCAT('?action=signature&amp;id=',id) email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
                     <correo_new global="id" eval="true">"SELECT '0' id,'".abs($id)."' id_usuario,'0' pop3_days,'?action=signature&amp;id=0' email_signature"</correo_new>
                     <control include="xml/common/qcontrol.xml"/>
-                    <folders include="xml/common/qfolders.xml" />
                 </query>
             </update>
         </views>
@@ -835,7 +832,6 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
                 </fieldset>
             </correo_new>
             <control include="xml/common/control.xml" />
-            <folders include="xml/common/folders.xml" />
         </fields>
         <quick include="xml/common/quickform.xml" />
         <buttons include="xml/common/buttonsform.xml" />
@@ -918,7 +914,6 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
         ))</query>
         <query global="page" match="default" prefix="true" eval="true">make_control(page2id($page))?"":""</query>
         <query global="page" match="default" prefix="true" eval="true">make_indexing(page2id($page))?"":""</query>
-        <query include="xml/common/qfoldersinsert.xml" replace="true"/>
     </insert>
     <update>
         <query include="xml/common/qpermupdate.xml" replace="true"/>
@@ -1048,7 +1043,6 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
             "email_crt"=>intval(getParam("email_crt"))
         )):""</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-        <query include="xml/common/qfoldersupdate.xml" replace="true"/>
     </update>
     <delete>
         <query include="xml/common/qpermdelete.xml" replace="true"/>
@@ -1070,12 +1064,9 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
         <query global="id" eval="true">"DELETE FROM tbl_usuarios_f WHERE ".make_where_query(array("id_usuario"=>intval($id)))</query>
         <query global="id" eval="true">"DELETE FROM tbl_gcalendar WHERE ".make_where_query(array("id_usuario"=>intval($id)))</query>
         <query include="xml/common/qcontroldelete.xml" replace="true"/>
-        <query include="xml/common/qfoldersdelete.xml" replace="true"/>
         <query global="id" eval="true">"DELETE FROM tbl_cookies WHERE ".make_where_query(array("id_usuario"=>intval($id)))</query>
         <query global="id" eval="true">"DELETE FROM tbl_filters WHERE ".make_where_query(array("id_usuario"=>intval($id)))</query>
-        <query global="id" eval="true">"DELETE FROM tbl_folders WHERE ".make_where_query(array("id_usuario"=>intval($id)))</query>
         <query global="id" eval="true">"DELETE FROM tbl_history WHERE ".make_where_query(array("id_usuario"=>intval($id)))</query>
-        <query global="id" eval="true">"DELETE FROM tbl_lastfolder WHERE ".make_where_query(array("id_usuario"=>intval($id)))</query>
         <query global="id" eval="true">"DELETE FROM tbl_lastpage WHERE ".make_where_query(array("id_usuario"=>intval($id)))</query>
         <query global="id" eval="true">"DELETE FROM tbl_quick WHERE ".make_where_query(array("id_usuario"=>intval($id)))</query>
     </delete>

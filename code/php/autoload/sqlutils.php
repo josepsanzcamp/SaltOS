@@ -544,7 +544,7 @@ function sql_drop_index($index, $table)
     return $query;
 }
 
-function make_like_query($keys, $values, $minsize = 3)
+function make_like_query($keys, $values, $minsize = 3, $default = "1=0")
 {
     $keys = explode(",", $keys);
     foreach ($keys as $key => $val) {
@@ -556,7 +556,7 @@ function make_like_query($keys, $values, $minsize = 3)
         }
     }
     if (!count($keys)) {
-        return "1=1";
+        return $default;
     }
     $values = explode(" ", encode_bad_chars($values, " ", "+-"));
     $types = array();
@@ -573,7 +573,7 @@ function make_like_query($keys, $values, $minsize = 3)
         }
     }
     if (!count($values)) {
-        return "1=1";
+        return $default;
     }
     $query = array();
     foreach ($values as $key => $val) {
@@ -824,7 +824,7 @@ function make_insert_from_select_query($table, $table2, $array, $where2)
     return $query;
 }
 
-function make_fulltext_query2($values, $minsize = 3)
+function make_fulltext_query2($values, $minsize = 3, $default = "1=0")
 {
     $values = explode(" ", encode_bad_chars($values, " ", "+-"));
     foreach ($values as $key => $val) {
@@ -840,28 +840,28 @@ function make_fulltext_query2($values, $minsize = 3)
         }
     }
     if (!count($values)) {
-        return "1=1";
+        return $default;
     }
     $query = "MATCH(search) AGAINST('+(" . implode(" ", $values) . ")' IN BOOLEAN MODE)";
     return $query;
 }
 
-function make_fulltext_query3($values, $page, $prefix = "", $minsize = 3)
+function make_fulltext_query3($values, $page, $prefix = "", $minsize = 3, $default = "1=0")
 {
     $engine = strtolower(get_engine("idx_${page}"));
     if ($engine == "mroonga") {
-        $where = make_fulltext_query2($values, $minsize);
+        $where = make_fulltext_query2($values, $minsize, $default);
     } else {
-        $where = make_like_query("search", $values, $minsize);
+        $where = make_like_query("search", $values, $minsize, $default);
     }
-    if ($where == "1=1") {
+    if ($where == $default) {
         return $where;
     }
     $query = "${prefix}id IN (SELECT id FROM idx_${page} WHERE ${where})";
     return $query;
 }
 
-function make_fulltext_query4($values)
+function make_fulltext_query4($values, $minsize = 3, $default = "1=0")
 {
     $apps = execute_query("SELECT id,codigo FROM tbl_aplicaciones WHERE tabla!=''");
     $query = array();
@@ -870,11 +870,11 @@ function make_fulltext_query4($values)
         $page = $app["codigo"];
         $engine = strtolower(get_engine("idx_${page}"));
         if ($engine == "mroonga") {
-            $where = make_fulltext_query2($values);
+            $where = make_fulltext_query2($values, $minsize, $default);
         } else {
-            $where = make_like_query("search", $values);
+            $where = make_like_query("search", $values, $minsize, $default);
         }
-        if ($where == "1=1") {
+        if ($where == $default) {
             return $where;
         }
         $count = execute_query("SELECT COUNT(*) FROM idx_${page} WHERE ${where}");
@@ -883,7 +883,7 @@ function make_fulltext_query4($values)
         }
     }
     if (!count($query)) {
-        return "1=0";
+        return $default;
     }
     $query = "((" . implode(") OR (", $query) . "))";
     return $query;
