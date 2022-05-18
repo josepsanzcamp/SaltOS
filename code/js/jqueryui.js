@@ -4413,7 +4413,7 @@ saltos.add_js = function (arg) {
                                 files.push(arg[key][key2][key3]);
                             }
                         }
-                        saltos.add_js_file("?action=cache&amp;files="+files.join(","));
+                        saltos.add_js_file("?action=cache&amp;files=" + files.join(","));
                         break;
                 }
             }
@@ -4447,7 +4447,7 @@ saltos.add_css = function (arg) {
                                 files.push(arg[key][key2][key3]);
                             }
                         }
-                        saltos.add_css_file("?action=cache&amp;files="+files.join(","));
+                        saltos.add_css_file("?action=cache&amp;files=" + files.join(","));
                         break;
                 }
             }

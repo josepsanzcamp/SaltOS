@@ -577,7 +577,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
                         </field>
                         <field>
-                            <label>CKEditor 4.18.0 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+                            <label>CKEditor 4.19.0 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://ckeditor.com/")</onclick>
