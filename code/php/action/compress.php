@@ -50,7 +50,7 @@ if (!$id_registro) {
     }
 }
 $info[0] = encode_bad_chars($info[0], " ");
-$info[0] = intelligence_cut($info[0], 50, "");
+$info[0] = intelligence_cut($info[0], 32, "");
 $info[0] = encode_bad_chars($info[0]);
 $cids = getParam("cid");
 if (!$cids) {
@@ -61,10 +61,12 @@ $files = array();
 require_once "php/libaction.php";
 foreach ($cids as $cid) {
     $result = __download($id_aplicacion, $id_registro, $cid);
-    if (getParam("format") == "zip") {
-        // FIX ONLY FOR ZIP FORMAT
-        $result["name"] = utf8_decode($result["name"]);
-    }
+    $ext = extension($result["name"]);
+    $result["name"] = pathinfo($result["name"], PATHINFO_FILENAME);
+    $result["name"] = encode_bad_chars($result["name"], " ");
+    $result["name"] = intelligence_cut($result["name"], 32, "");
+    $result["name"] = encode_bad_chars($result["name"]);
+    $result["name"] = $result["name"] . "." . $ext;
     $files[] = array(
         "file" => $result["file"],
         "name" => $result["name"]
