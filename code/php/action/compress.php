@@ -49,9 +49,6 @@ if (!$id_registro) {
         $info[0] = substr($info[0], 0, -3);
     }
 }
-$info[0] = encode_bad_chars($info[0], " ");
-$info[0] = intelligence_cut($info[0], 32, "");
-$info[0] = encode_bad_chars($info[0]);
 $cids = getParam("cid");
 if (!$cids) {
     show_php_error(array("phperror" => "Unknown files"));
@@ -61,12 +58,10 @@ $files = array();
 require_once "php/libaction.php";
 foreach ($cids as $cid) {
     $result = __download($id_aplicacion, $id_registro, $cid);
-    $ext = extension($result["name"]);
-    $result["name"] = pathinfo($result["name"], PATHINFO_FILENAME);
-    $result["name"] = encode_bad_chars($result["name"], " ");
-    $result["name"] = intelligence_cut($result["name"], 32, "");
-    $result["name"] = encode_bad_chars($result["name"]);
-    $result["name"] = $result["name"] . "." . $ext;
+    if (getParam("format") == "zip") {
+        // FIX ONLY FOR ZIP FORMAT
+        $result["name"] = utf8_decode($result["name"]);
+    }
     $files[] = array(
         "file" => $result["file"],
         "name" => $result["name"]
@@ -97,12 +92,11 @@ switch ($format) {
 $archive->set_options(array(
     "inmemory" => 1,
     "storepaths" => 0,
-    "prepend" => $info[0],
     "followlinks" => 1
 ));
-foreach ($files as $index => $temp) {
-    $archive->add_files($temp["file"]);
-    $archive->files[$index]["name2"] = dirname($archive->files[0]["name2"]) . "/" . $temp["name"];
+foreach ($files as $key => $val) {
+    $archive->add_files($val["file"]);
+    $archive->files[$key]["name2"] = $val["name"];
 }
 $archive->create_archive();
 ob_start();
