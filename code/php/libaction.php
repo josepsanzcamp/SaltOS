@@ -308,7 +308,8 @@ function __matrix2dump($matrix, $file, $title)
     if (substr($file, -5, 5) == ".xlsx") {
         $file = substr($file, 0, -5);
     }
-    if (count($matrix) <= 10000) {
+    if (count($matrix) <= 10000 + 1) {
+        // NOTA: EL + 1 ES PARA TENER EN CUENTA EL HEADER
         __excel_dump($matrix, $file . ".xlsx", $title);
     } else {
         __csv_dump($matrix, $file . ".csv");

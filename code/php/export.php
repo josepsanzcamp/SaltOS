@@ -25,6 +25,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+// phpcs:disable Generic.Files.LineLength
+
 /*
     Name:
         export_file
@@ -191,10 +193,10 @@ function __export_file_csv(
                 $has_ret = strpos($val2, "\r") !== false ? 1 : 0;
                 $has_tab = strpos($val2, "\t") !== false ? 1 : 0;
                 if ($has_sep + $has_new + $has_ret + $has_tab) {
-                    $val2 = $escape["char"] . $val2 . $escape["char"];
+                    $val2 = $escape["char"] . str_replace($escape["char"], $escape["char"] . $escape["char"], $val2) . $escape["char"];
                 }
             } elseif (eval_bool($escape["mode"])) {
-                $val2 = $escape["char"] . $val2 . $escape["char"];
+                $val2 = $escape["char"] . str_replace($escape["char"], $escape["char"] . $escape["char"], $val2) . $escape["char"];
             }
             $val[$key2] = $val2;
         }
