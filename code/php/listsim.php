@@ -59,7 +59,7 @@ function list_simulator($newpage, $ids = "concat")
     }
     // EXECUTE THE QUERY TO GET THE REQUESTED DATA
     if ($ids == "count") {
-        $query = "SELECT COUNT(*) FROM ($query0) __a__";
+        $query = "/*MYSQL SET STATEMENT max_statement_time=10 FOR */ SELECT COUNT(*) FROM ($query0) __a__";
         $count = execute_query($query);
         $result = array("count" => $count,"limit" => $limit,"offset" => $offset);
     } elseif ($ids == "concat") {
