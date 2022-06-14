@@ -58,9 +58,10 @@ class database_mysqli
             return $result;
         }
         // DO QUERY
-        $stmt = mysqli_query($this->link, $query);
-        if ($stmt === false) {
-            show_php_error(array("dberror" => mysqli_error($this->link),"query" => $query));
+        try {
+            $stmt = mysqli_query($this->link, $query);
+        } catch (Exception $e) {
+            show_php_error(array("dberror" => $e->getMessage(),"query" => $query));
         }
         unset($query); // TRICK TO RELEASE MEMORY
         // DUMP RESULT TO MATRIX

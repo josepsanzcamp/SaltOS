@@ -118,8 +118,7 @@ function do_message_error($array, $format)
         }
     }
     foreach ($msg as $key => $item) {
-        $msg[$key] =
-            $dict[$format][0][0] . $item[0] . $dict[$format][0][1] . $dict[$format][1][0] . $item[1] . $dict[$format][1][1];
+        $msg[$key] = $dict[$format][0][0] . $item[0] . $dict[$format][0][1] . $dict[$format][1][0] . $item[1] . $dict[$format][1][1];
     }
     $msg = implode($msg);
     return $msg;
