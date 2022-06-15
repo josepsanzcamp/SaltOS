@@ -364,7 +364,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             "id_usuario"=>current_user()
         )))</query>
         <query ifeval="check_user('profile','correo')" global="correo_new" match="correo_new" prefix="true" eval="true">($correo_new=getParam("email_name")||getParam("email_from")||getParam("email_signature_new")||getParam("pop3_host")||getParam("pop3_port")||getParam("pop3_extra")||getParam("pop3_user")||getParam("pop3_pass")||getParam("pop3_delete")||getParam("pop3_days")||getParam("smtp_host")||getParam("smtp_port")||getParam("smtp_extra")||getParam("smtp_user")||getParam("smtp_pass")||intval(getParam("email_disabled"))||intval(getParam("email_privated"))||intval(getParam("email_default"))||intval(getParam("email_addmetocc"))||intval(getParam("email_crt")))?"":""</query>
-        <query ifeval="check_user('profile','correo')" global="correo_new" match="correo_new" prefix="true" eval="true">$correo_new?"SELECT 'php/action/correo.php' action_include":""</query>
+        <query ifeval="check_user('profile','correo')" global="correo_new" match="correo_new" prefix="true" eval="true">$correo_new?"SELECT 'apps/02.personal/php/action/correo.php' action_include":""</query>
         <query ifeval="check_user('profile','correo')" global="correo_new" match="correo_new" prefix="true" eval="true">$correo_new?make_insert_query("tbl_usuarios_c",array(
             "id_usuario"=>current_user(),
             "email_name"=>getParam("email_name"),

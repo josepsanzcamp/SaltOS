@@ -695,7 +695,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     LEFT JOIN tbl_usuarios_c uc ON a.id_cuenta=uc.id
                     WHERE a.id='".abs($id)."'"</default>
                     <files_old>
-                        <files_old>SELECT 'php/action/getmail.php' action_include</files_old>
+                        <files_old>SELECT 'apps/02.personal/php/action/getmail.php' action_include</files_old>
                     </files_old>
                     <full global="id" eval="true">"SELECT '".abs($id)."' id"</full>
                     <source global="id" eval="true">"SELECT '".abs($id)."' id"</source>
@@ -706,9 +706,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <title lang="true">forminsert</title>
                 <query>
                     <query include="xml/common/qpermcreate.xml" replace="true" />
-                    <default>SELECT 'php/action/sendmail.php' action_include</default>
+                    <default>SELECT 'apps/02.personal/php/action/sendmail.php' action_include</default>
                     <files_old>
-                        <files_old>SELECT 'php/action/getmail.php' action_include</files_old>
+                        <files_old>SELECT 'apps/02.personal/php/action/getmail.php' action_include</files_old>
                     </files_old>
                     <files_new include="xml/common/qfilesnew.xml" replace="true"/>
                 </query>
@@ -1061,7 +1061,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <value lang="true">addincidencia</value>
                     <tip lang="true">addincidenciatip</tip>
                     <onclick>addincidencia()</onclick>
-                    <disabled global="page,action,id,ok" require="php/action/incidencias.php" eval="true">$ok?"false":"true"</disabled>
+                    <disabled global="page,action,id,ok" require="apps/04.projects/php/action/incidencias.php" eval="true">$ok?"false":"true"</disabled>
                     <class>nowrap contextmenu</class>
                     <icon eval="true">ICON("incidencias")</icon>
                 </field>
