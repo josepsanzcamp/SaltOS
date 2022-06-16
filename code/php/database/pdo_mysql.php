@@ -71,7 +71,8 @@ class database_pdo_mysql
         try {
             $stmt = $this->link->query($query);
         } catch (PDOException $e) {
-            show_php_error(array("dberror" => $e->getMessage(),"query" => $query));
+            $type = words_exists("query execution was interrupted max_statement_time exceeded", $e->getMessage()) ? "dbwarning" : "dberror";
+            show_php_error(array($type => $e->getMessage(),"query" => $query));
         }
         //~ unset($query); // TRICK TO RELEASE MEMORY
         // DUMP RESULT TO MATRIX
@@ -83,7 +84,8 @@ class database_pdo_mysql
                 try {
                     $result["rows"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 } catch (PDOException $e) {
-                    show_php_error(array("dberror" => $e->getMessage(),"query" => $query));
+                    $type = words_exists("query execution was interrupted max_statement_time exceeded", $e->getMessage()) ? "dbwarning" : "dberror";
+                    show_php_error(array($type => $e->getMessage(),"query" => $query));
                 }
                 $result["total"] = count($result["rows"]);
                 if ($result["total"] > 0) {
@@ -94,7 +96,8 @@ class database_pdo_mysql
                 try {
                     $result["rows"] = $stmt->fetchAll(PDO::FETCH_COLUMN);
                 } catch (PDOException $e) {
-                    show_php_error(array("dberror" => $e->getMessage(),"query" => $query));
+                    $type = words_exists("query execution was interrupted max_statement_time exceeded", $e->getMessage()) ? "dbwarning" : "dberror";
+                    show_php_error(array($type => $e->getMessage(),"query" => $query));
                 }
                 $result["total"] = count($result["rows"]);
                 $result["header"] = array("column");
@@ -108,7 +111,8 @@ class database_pdo_mysql
                         $result["rows"][0] .= "," . $row;
                     }
                 } catch (PDOException $e) {
-                    show_php_error(array("dberror" => $e->getMessage(),"query" => $query));
+                    $type = words_exists("query execution was interrupted max_statement_time exceeded", $e->getMessage()) ? "dbwarning" : "dberror";
+                    show_php_error(array($type => $e->getMessage(),"query" => $query));
                 }
                 $result["total"] = count($result["rows"]);
                 $result["header"] = array("concat");
