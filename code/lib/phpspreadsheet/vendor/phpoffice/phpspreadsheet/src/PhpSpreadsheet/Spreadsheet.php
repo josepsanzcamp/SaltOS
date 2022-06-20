@@ -313,7 +313,7 @@ class Spreadsheet
                 break;
             case 'target':
             case 'data':
-                if (is_array($this->ribbonXMLData)) {
+                if (is_array($this->ribbonXMLData) && isset($this->ribbonXMLData[$what])) {
                     $returnData = $this->ribbonXMLData[$what];
                 }
 
@@ -608,7 +608,7 @@ class Spreadsheet
     /**
      * Add sheet.
      *
-     * @param Worksheet $worksheet The worksheet to add
+     * @param Worksheet $worksheet The worskeet to add
      * @param null|int $sheetIndex Index where sheet should go (0,1,..., or null for last)
      *
      * @return Worksheet
@@ -867,19 +867,6 @@ class Spreadsheet
         foreach ($worksheet->getCoordinates(false) as $coordinate) {
             $cell = $worksheet->getCell($coordinate);
             $cell->setXfIndex($cell->getXfIndex() + $countCellXfs);
-        }
-
-        // update the column dimensions Xfs
-        foreach ($worksheet->getColumnDimensions() as $columnDimension) {
-            $columnDimension->setXfIndex($columnDimension->getXfIndex() + $countCellXfs);
-        }
-
-        // update the row dimensions Xfs
-        foreach ($worksheet->getRowDimensions() as $rowDimension) {
-            $xfIndex = $rowDimension->getXfIndex();
-            if ($xfIndex !== null) {
-                $rowDimension->setXfIndex($xfIndex + $countCellXfs);
-            }
         }
 
         return $this->addSheet($worksheet, $sheetIndex);
@@ -1614,15 +1601,5 @@ class Spreadsheet
                 $filter->showHideRows();
             }
         }
-    }
-
-    /**
-     * Silliness to mollify Scrutinizer.
-     *
-     * @codeCoverageIgnore
-     */
-    public function getSharedComponent(): Style
-    {
-        return new Style();
     }
 }

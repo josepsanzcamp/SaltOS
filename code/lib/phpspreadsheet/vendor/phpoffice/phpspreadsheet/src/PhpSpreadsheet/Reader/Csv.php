@@ -2,14 +2,12 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader;
 
-use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
 use PhpOffice\PhpSpreadsheet\Cell\Cell;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Reader\Csv\Delimiter;
 use PhpOffice\PhpSpreadsheet\Reader\Exception as ReaderException;
 use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class Csv extends BaseReader
 {
@@ -85,23 +83,6 @@ class Csv extends BaseReader
      * @var ?callable
      */
     private static $constructorCallback;
-
-    /**
-     * Attempt autodetect line endings (deprecated after PHP8.1)?
-     *
-     * @var bool
-     */
-    private $testAutodetect = true;
-
-    /**
-     * @var bool
-     */
-    protected $castFormattedNumberToNumeric = false;
-
-    /**
-     * @var bool
-     */
-    protected $preserveNumericFormatting = false;
 
     /**
      * Create a new CSV Reader instance.
@@ -255,9 +236,13 @@ class Csv extends BaseReader
 
     /**
      * Loads Spreadsheet from file.
+     *
+     * @return Spreadsheet
      */
-    protected function loadSpreadsheetFromFile(string $filename): Spreadsheet
+    public function load(string $filename, int $flags = 0)
     {
+        $this->processFlags($flags);
+
         // Create new Spreadsheet
         $spreadsheet = new Spreadsheet();
 
@@ -288,15 +273,10 @@ class Csv extends BaseReader
         }
     }
 
-    public function setTestAutoDetect(bool $value): void
-    {
-        $this->testAutodetect = $value;
-    }
-
-    private function setAutoDetect(?string $value): ?string
+    private static function setAutoDetect(?string $value): ?string
     {
         $retVal = null;
-        if ($value !== null && $this->testAutodetect) {
+        if ($value !== null) {
             $retVal2 = @ini_set('auto_detect_line_endings', $value);
             if (is_string($retVal2)) {
                 $retVal = $retVal2;
@@ -306,21 +286,13 @@ class Csv extends BaseReader
         return $retVal;
     }
 
-    public function castFormattedNumberToNumeric(
-        bool $castFormattedNumberToNumeric,
-        bool $preserveNumericFormatting = false
-    ): void {
-        $this->castFormattedNumberToNumeric = $castFormattedNumberToNumeric;
-        $this->preserveNumericFormatting = $preserveNumericFormatting;
-    }
-
     /**
      * Loads PhpSpreadsheet from file into PhpSpreadsheet instance.
      */
     public function loadIntoExisting(string $filename, Spreadsheet $spreadsheet): Spreadsheet
     {
         // Deprecated in Php8.1
-        $iniset = $this->setAutoDetect('1');
+        $iniset = self::setAutoDetect('1');
 
         // Open file
         $this->openFileOrMemory($filename);
@@ -350,7 +322,6 @@ class Csv extends BaseReader
             $columnLetter = 'A';
             foreach ($rowData as $rowDatum) {
                 $this->convertBoolean($rowDatum, $preserveBooleanString);
-                $numberFormatMask = $this->convertFormattedNumber($rowDatum);
                 if ($rowDatum !== '' && $this->readFilter->readCell($columnLetter, $currentRow)) {
                     if ($this->contiguous) {
                         if ($noOutputYet) {
@@ -360,10 +331,6 @@ class Csv extends BaseReader
                     } else {
                         $outRow = $currentRow;
                     }
-                    // Set basic styling for the value (Note that this could be overloaded by styling in a value binder)
-                    $sheet->getCell($columnLetter . $outRow)->getStyle()
-                        ->getNumberFormat()
-                        ->setFormatCode($numberFormatMask);
                     // Set cell value
                     $sheet->getCell($columnLetter . $outRow)->setValue($rowDatum);
                 }
@@ -376,7 +343,7 @@ class Csv extends BaseReader
         // Close file
         fclose($fileHandle);
 
-        $this->setAutoDetect($iniset);
+        self::setAutoDetect($iniset);
 
         // Return
         return $spreadsheet;
@@ -390,47 +357,14 @@ class Csv extends BaseReader
     private function convertBoolean(&$rowDatum, bool $preserveBooleanString): void
     {
         if (is_string($rowDatum) && !$preserveBooleanString) {
-            if (strcasecmp(Calculation::getTRUE(), $rowDatum) === 0 || strcasecmp('true', $rowDatum) === 0) {
+            if (strcasecmp('true', $rowDatum) === 0) {
                 $rowDatum = true;
-            } elseif (strcasecmp(Calculation::getFALSE(), $rowDatum) === 0 || strcasecmp('false', $rowDatum) === 0) {
+            } elseif (strcasecmp('false', $rowDatum) === 0) {
                 $rowDatum = false;
             }
         } elseif ($rowDatum === null) {
             $rowDatum = '';
         }
-    }
-
-    /**
-     * Convert numeric strings to int or float values.
-     *
-     * @param mixed $rowDatum
-     */
-    private function convertFormattedNumber(&$rowDatum): string
-    {
-        $numberFormatMask = NumberFormat::FORMAT_GENERAL;
-        if ($this->castFormattedNumberToNumeric === true && is_string($rowDatum)) {
-            $numeric = str_replace(
-                [StringHelper::getThousandsSeparator(), StringHelper::getDecimalSeparator()],
-                ['', '.'],
-                $rowDatum
-            );
-
-            if (is_numeric($numeric)) {
-                $decimalPos = strpos($rowDatum, StringHelper::getDecimalSeparator());
-                if ($this->preserveNumericFormatting === true) {
-                    $numberFormatMask = (strpos($rowDatum, StringHelper::getThousandsSeparator()) !== false)
-                        ? '#,##0' : '0';
-                    if ($decimalPos !== false) {
-                        $decimals = strlen($rowDatum) - $decimalPos - 1;
-                        $numberFormatMask .= '.' . str_repeat('0', min($decimals, 6));
-                    }
-                }
-
-                $rowDatum = ($decimalPos !== false) ? (float) $numeric : (int) $numeric;
-            }
-        }
-
-        return $numberFormatMask;
     }
 
     public function getDelimiter(): ?string

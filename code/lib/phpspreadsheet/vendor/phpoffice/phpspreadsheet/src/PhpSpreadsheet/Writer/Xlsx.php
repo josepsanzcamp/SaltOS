@@ -25,7 +25,6 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx\RelsRibbon;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\RelsVBA;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\StringTable;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Style;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Table;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Theme;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Workbook;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Worksheet;
@@ -169,11 +168,6 @@ class Xlsx extends BaseWriter
     private $writerPartTheme;
 
     /**
-     * @var Table
-     */
-    private $writerPartTable;
-
-    /**
      * @var Workbook
      */
     private $writerPartWorkbook;
@@ -202,7 +196,6 @@ class Xlsx extends BaseWriter
         $this->writerPartStringTable = new StringTable($this);
         $this->writerPartStyle = new Style($this);
         $this->writerPartTheme = new Theme($this);
-        $this->writerPartTable = new Table($this);
         $this->writerPartWorkbook = new Workbook($this);
         $this->writerPartWorksheet = new Worksheet($this);
 
@@ -276,11 +269,6 @@ class Xlsx extends BaseWriter
     public function getWriterPartTheme(): Theme
     {
         return $this->writerPartTheme;
-    }
-
-    public function getWriterPartTable(): Table
-    {
-        return $this->writerPartTable;
     }
 
     public function getWriterPartWorkbook(): Workbook
@@ -401,11 +389,10 @@ class Xlsx extends BaseWriter
         }
 
         $chartRef1 = 0;
-        $tableRef1 = 1;
         // Add worksheet relationships (drawings, ...)
         for ($i = 0; $i < $this->spreadSheet->getSheetCount(); ++$i) {
             // Add relationships
-            $zipContent['xl/worksheets/_rels/sheet' . ($i + 1) . '.xml.rels'] = $this->getWriterPartRels()->writeWorksheetRelationships($this->spreadSheet->getSheet($i), ($i + 1), $this->includeCharts, $tableRef1);
+            $zipContent['xl/worksheets/_rels/sheet' . ($i + 1) . '.xml.rels'] = $this->getWriterPartRels()->writeWorksheetRelationships($this->spreadSheet->getSheet($i), ($i + 1), $this->includeCharts);
 
             // Add unparsedLoadedData
             $sheetCodeName = $this->spreadSheet->getSheet($i)->getCodeName();
@@ -491,12 +478,6 @@ class Xlsx extends BaseWriter
                     $zipContent['xl/media/' . $image->getIndexedFilename()] = file_get_contents($image->getPath());
                 }
             }
-
-            // Add Table parts
-            $tables = $this->spreadSheet->getSheet($i)->getTableCollection();
-            foreach ($tables as $table) {
-                $zipContent['xl/tables/table' . $tableRef1 . '.xml'] = $this->getWriterPartTable()->writeTable($table, $tableRef1++);
-            }
         }
 
         // Add media
@@ -520,10 +501,8 @@ class Xlsx extends BaseWriter
                 $zipContent['xl/media/' . $this->getDrawingHashTable()->getByIndex($i)->getIndexedFilename()] = $imageContents;
             } elseif ($this->getDrawingHashTable()->getByIndex($i) instanceof MemoryDrawing) {
                 ob_start();
-                /** @var callable */
-                $callable = $this->getDrawingHashTable()->getByIndex($i)->getRenderingFunction();
                 call_user_func(
-                    $callable,
+                    $this->getDrawingHashTable()->getByIndex($i)->getRenderingFunction(),
                     $this->getDrawingHashTable()->getByIndex($i)->getImageResource()
                 );
                 $imageContents = ob_get_contents();

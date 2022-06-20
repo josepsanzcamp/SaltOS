@@ -7,11 +7,8 @@ use DateTimeInterface;
 use DateTimeZone;
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel;
 use PhpOffice\PhpSpreadsheet\Calculation\Functions;
-use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 use PhpOffice\PhpSpreadsheet\Cell\Cell;
-use PhpOffice\PhpSpreadsheet\Exception;
 use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use PhpOffice\PhpSpreadsheet\Shared\Date as SharedDate;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class Date
@@ -161,36 +158,6 @@ class Date
     }
 
     /**
-     * @param mixed $value
-     *
-     * @return float|int
-     */
-    public static function convertIsoDate($value)
-    {
-        if (!is_string($value)) {
-            throw new Exception('Non-string value supplied for Iso Date conversion');
-        }
-
-        $date = new DateTime($value);
-        $dateErrors = DateTime::getLastErrors();
-
-        if (is_array($dateErrors) && ($dateErrors['warning_count'] > 0 || $dateErrors['error_count'] > 0)) {
-            throw new Exception("Invalid string $value supplied for datatype Date");
-        }
-
-        $newValue = SharedDate::PHPToExcel($date);
-        if ($newValue === false) {
-            throw new Exception("Invalid string $value supplied for datatype Date");
-        }
-
-        if (preg_match('/^\\d\\d:\\d\\d:\\d\\d/', $value) == 1) {
-            $newValue = fmod($newValue, 1.0);
-        }
-
-        return $newValue;
-    }
-
-    /**
      * Convert a MS serialized datetime value from Excel to a PHP Date/Time object.
      *
      * @param float|int $excelTimestamp MS Excel serialized date/time value
@@ -261,7 +228,7 @@ class Date
      * @param mixed $dateValue PHP DateTime object or a string - Unix timestamp is also permitted, but discouraged;
      *    not Y2038-safe on a 32-bit system, and no timezone info
      *
-     * @return false|float Excel date/time value
+     * @return bool|float Excel date/time value
      *                                  or boolean FALSE on failure
      */
     public static function PHPToExcel($dateValue)
@@ -487,13 +454,13 @@ class Date
 
         $dateValueNew = DateTimeExcel\DateValue::fromString($dateValue);
 
-        if ($dateValueNew === ExcelError::VALUE()) {
+        if ($dateValueNew === Functions::VALUE()) {
             return false;
         }
 
         if (strpos($dateValue, ':') !== false) {
             $timeValue = DateTimeExcel\TimeValue::fromString($dateValue);
-            if ($timeValue === ExcelError::VALUE()) {
+            if ($timeValue === Functions::VALUE()) {
                 return false;
             }
             $dateValueNew += $timeValue;

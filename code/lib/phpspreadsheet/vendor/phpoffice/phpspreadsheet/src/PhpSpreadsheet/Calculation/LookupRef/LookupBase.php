@@ -3,30 +3,20 @@
 namespace PhpOffice\PhpSpreadsheet\Calculation\LookupRef;
 
 use PhpOffice\PhpSpreadsheet\Calculation\Exception;
-use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
 
 abstract class LookupBase
 {
-    /**
-     * @param mixed $lookup_array
-     */
-    protected static function validateLookupArray($lookup_array): void
-    {
-        if (!is_array($lookup_array)) {
-            throw new Exception(ExcelError::REF());
-        }
-    }
-
-    protected static function validateIndexLookup(array $lookup_array, $index_number): int
+    protected static function validateIndexLookup($lookup_array, $index_number)
     {
         // index_number must be a number greater than or equal to 1
         if (!is_numeric($index_number) || $index_number < 1) {
-            throw new Exception(ExcelError::VALUE());
+            throw new Exception(Functions::VALUE());
         }
 
         // index_number must be less than or equal to the number of columns in lookup_array
         if ((!is_array($lookup_array)) || (empty($lookup_array))) {
-            throw new Exception(ExcelError::REF());
+            throw new Exception(Functions::REF());
         }
 
         return (int) $index_number;
@@ -35,7 +25,7 @@ abstract class LookupBase
     protected static function checkMatch(
         bool $bothNumeric,
         bool $bothNotNumeric,
-        bool $notExactMatch,
+        $notExactMatch,
         int $rowKey,
         string $cellDataLower,
         string $lookupLower,

@@ -5,7 +5,6 @@ namespace PhpOffice\PhpSpreadsheet\Calculation\TextData;
 use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
 use PhpOffice\PhpSpreadsheet\Calculation\Exception as CalcExp;
 use PhpOffice\PhpSpreadsheet\Calculation\Functions;
-use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 
 class Helpers
 {
@@ -23,6 +22,7 @@ class Helpers
      */
     public static function extractString($value): string
     {
+        $value = Functions::flattenSingleValue($value);
         if (is_bool($value)) {
             return self::convertBooleanValue($value);
         }
@@ -35,6 +35,7 @@ class Helpers
      */
     public static function extractInt($value, int $minValue, int $gnumericNull = 0, bool $ooBoolOk = false): int
     {
+        $value = Functions::flattenSingleValue($value);
         if ($value === null) {
             // usually 0, but sometimes 1 for Gnumeric
             $value = (Functions::getCompatibilityMode() === Functions::COMPATIBILITY_GNUMERIC) ? $gnumericNull : 0;
@@ -43,11 +44,11 @@ class Helpers
             $value = (int) $value;
         }
         if (!is_numeric($value)) {
-            throw new CalcExp(ExcelError::VALUE());
+            throw new CalcExp(Functions::VALUE());
         }
         $value = (int) $value;
         if ($value < $minValue) {
-            throw new CalcExp(ExcelError::VALUE());
+            throw new CalcExp(Functions::VALUE());
         }
 
         return (int) $value;
@@ -58,6 +59,7 @@ class Helpers
      */
     public static function extractFloat($value): float
     {
+        $value = Functions::flattenSingleValue($value);
         if ($value === null) {
             $value = 0.0;
         }
@@ -65,7 +67,7 @@ class Helpers
             $value = (float) $value;
         }
         if (!is_numeric($value)) {
-            throw new CalcExp(ExcelError::VALUE());
+            throw new CalcExp(Functions::VALUE());
         }
 
         return (float) $value;
@@ -76,6 +78,7 @@ class Helpers
      */
     public static function validateInt($value): int
     {
+        $value = Functions::flattenSingleValue($value);
         if ($value === null) {
             $value = 0;
         } elseif (is_bool($value)) {

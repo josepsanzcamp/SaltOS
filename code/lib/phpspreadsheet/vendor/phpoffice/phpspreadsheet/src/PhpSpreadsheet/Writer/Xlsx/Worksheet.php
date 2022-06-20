@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-use PhpOffice\PhpSpreadsheet\Calculation\Information\ErrorValue;
-use PhpOffice\PhpSpreadsheet\Calculation\Information\Value;
 use PhpOffice\PhpSpreadsheet\Cell\Cell;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\RichText\RichText;
@@ -120,9 +118,6 @@ class Worksheet extends WriterPart
         // AlternateContent
         $this->writeAlternateContent($objWriter, $worksheet);
 
-        // Table
-        $this->writeTable($objWriter, $worksheet);
-
         // ConditionalFormattingRuleExtensionList
         // (Must be inserted last. Not insert last, an Excel parse error will occur)
         $this->writeExtLst($objWriter, $worksheet);
@@ -210,10 +205,10 @@ class Worksheet extends WriterPart
 
         // Zoom scales
         if ($worksheet->getSheetView()->getZoomScale() != 100) {
-            $objWriter->writeAttribute('zoomScale', (string) $worksheet->getSheetView()->getZoomScale());
+            $objWriter->writeAttribute('zoomScale', $worksheet->getSheetView()->getZoomScale());
         }
         if ($worksheet->getSheetView()->getZoomScaleNormal() != 100) {
-            $objWriter->writeAttribute('zoomScaleNormal', (string) $worksheet->getSheetView()->getZoomScaleNormal());
+            $objWriter->writeAttribute('zoomScaleNormal', $worksheet->getSheetView()->getZoomScaleNormal());
         }
 
         // Show zeros (Excel also writes this attribute only if set to false)
@@ -473,66 +468,21 @@ class Worksheet extends WriterPart
 
     private static function writeOtherCondElements(XMLWriter $objWriter, Conditional $conditional, string $cellCoordinate): void
     {
-        $conditions = $conditional->getConditions();
         if (
             $conditional->getConditionType() == Conditional::CONDITION_CELLIS
+            || $conditional->getConditionType() == Conditional::CONDITION_CONTAINSTEXT
             || $conditional->getConditionType() == Conditional::CONDITION_EXPRESSION
-            || !empty($conditions)
         ) {
-            foreach ($conditions as $formula) {
+            foreach ($conditional->getConditions() as $formula) {
                 // Formula
-                if (is_bool($formula)) {
-                    $formula = $formula ? 'TRUE' : 'FALSE';
-                }
-                $objWriter->writeElement('formula', Xlfn::addXlfn("$formula"));
+                $objWriter->writeElement('formula', Xlfn::addXlfn($formula));
             }
-        } else {
-            if ($conditional->getConditionType() == Conditional::CONDITION_CONTAINSBLANKS) {
-                // formula copied from ms xlsx xml source file
-                $objWriter->writeElement('formula', 'LEN(TRIM(' . $cellCoordinate . '))=0');
-            } elseif ($conditional->getConditionType() == Conditional::CONDITION_NOTCONTAINSBLANKS) {
-                // formula copied from ms xlsx xml source file
-                $objWriter->writeElement('formula', 'LEN(TRIM(' . $cellCoordinate . '))>0');
-            } elseif ($conditional->getConditionType() == Conditional::CONDITION_CONTAINSERRORS) {
-                // formula copied from ms xlsx xml source file
-                $objWriter->writeElement('formula', 'ISERROR(' . $cellCoordinate . ')');
-            } elseif ($conditional->getConditionType() == Conditional::CONDITION_NOTCONTAINSERRORS) {
-                // formula copied from ms xlsx xml source file
-                $objWriter->writeElement('formula', 'NOT(ISERROR(' . $cellCoordinate . '))');
-            }
-        }
-    }
-
-    private static function writeTimePeriodCondElements(XMLWriter $objWriter, Conditional $conditional, string $cellCoordinate): void
-    {
-        $txt = $conditional->getText();
-        if ($txt !== null) {
-            $objWriter->writeAttribute('timePeriod', $txt);
-            if (empty($conditional->getConditions())) {
-                if ($conditional->getOperatorType() == Conditional::TIMEPERIOD_TODAY) {
-                    $objWriter->writeElement('formula', 'FLOOR(' . $cellCoordinate . ')=TODAY()');
-                } elseif ($conditional->getOperatorType() == Conditional::TIMEPERIOD_TOMORROW) {
-                    $objWriter->writeElement('formula', 'FLOOR(' . $cellCoordinate . ')=TODAY()+1');
-                } elseif ($conditional->getOperatorType() == Conditional::TIMEPERIOD_YESTERDAY) {
-                    $objWriter->writeElement('formula', 'FLOOR(' . $cellCoordinate . ')=TODAY()-1');
-                } elseif ($conditional->getOperatorType() == Conditional::TIMEPERIOD_LAST_7_DAYS) {
-                    $objWriter->writeElement('formula', 'AND(TODAY()-FLOOR(' . $cellCoordinate . ',1)<=6,FLOOR(' . $cellCoordinate . ',1)<=TODAY())');
-                } elseif ($conditional->getOperatorType() == Conditional::TIMEPERIOD_LAST_WEEK) {
-                    $objWriter->writeElement('formula', 'AND(TODAY()-ROUNDDOWN(' . $cellCoordinate . ',0)>=(WEEKDAY(TODAY())),TODAY()-ROUNDDOWN(' . $cellCoordinate . ',0)<(WEEKDAY(TODAY())+7))');
-                } elseif ($conditional->getOperatorType() == Conditional::TIMEPERIOD_THIS_WEEK) {
-                    $objWriter->writeElement('formula', 'AND(TODAY()-ROUNDDOWN(' . $cellCoordinate . ',0)<=WEEKDAY(TODAY())-1,ROUNDDOWN(' . $cellCoordinate . ',0)-TODAY()<=7-WEEKDAY(TODAY()))');
-                } elseif ($conditional->getOperatorType() == Conditional::TIMEPERIOD_NEXT_WEEK) {
-                    $objWriter->writeElement('formula', 'AND(ROUNDDOWN(' . $cellCoordinate . ',0)-TODAY()>(7-WEEKDAY(TODAY())),ROUNDDOWN(' . $cellCoordinate . ',0)-TODAY()<(15-WEEKDAY(TODAY())))');
-                } elseif ($conditional->getOperatorType() == Conditional::TIMEPERIOD_LAST_MONTH) {
-                    $objWriter->writeElement('formula', 'AND(MONTH(' . $cellCoordinate . ')=MONTH(EDATE(TODAY(),0-1)),YEAR(' . $cellCoordinate . ')=YEAR(EDATE(TODAY(),0-1)))');
-                } elseif ($conditional->getOperatorType() == Conditional::TIMEPERIOD_THIS_MONTH) {
-                    $objWriter->writeElement('formula', 'AND(MONTH(' . $cellCoordinate . ')=MONTH(TODAY()),YEAR(' . $cellCoordinate . ')=YEAR(TODAY()))');
-                } elseif ($conditional->getOperatorType() == Conditional::TIMEPERIOD_NEXT_MONTH) {
-                    $objWriter->writeElement('formula', 'AND(MONTH(' . $cellCoordinate . ')=MONTH(EDATE(TODAY(),0+1)),YEAR(' . $cellCoordinate . ')=YEAR(EDATE(TODAY(),0+1)))');
-                }
-            } else {
-                $objWriter->writeElement('formula', (string) ($conditional->getConditions()[0]));
-            }
+        } elseif ($conditional->getConditionType() == Conditional::CONDITION_CONTAINSBLANKS) {
+            // formula copied from ms xlsx xml source file
+            $objWriter->writeElement('formula', 'LEN(TRIM(' . $cellCoordinate . '))=0');
+        } elseif ($conditional->getConditionType() == Conditional::CONDITION_NOTCONTAINSBLANKS) {
+            // formula copied from ms xlsx xml source file
+            $objWriter->writeElement('formula', 'LEN(TRIM(' . $cellCoordinate . '))>0');
         }
     }
 
@@ -541,18 +491,14 @@ class Worksheet extends WriterPart
         $txt = $conditional->getText();
         if ($txt !== null) {
             $objWriter->writeAttribute('text', $txt);
-            if (empty($conditional->getConditions())) {
-                if ($conditional->getOperatorType() == Conditional::OPERATOR_CONTAINSTEXT) {
-                    $objWriter->writeElement('formula', 'NOT(ISERROR(SEARCH("' . $txt . '",' . $cellCoordinate . ')))');
-                } elseif ($conditional->getOperatorType() == Conditional::OPERATOR_BEGINSWITH) {
-                    $objWriter->writeElement('formula', 'LEFT(' . $cellCoordinate . ',LEN("' . $txt . '"))="' . $txt . '"');
-                } elseif ($conditional->getOperatorType() == Conditional::OPERATOR_ENDSWITH) {
-                    $objWriter->writeElement('formula', 'RIGHT(' . $cellCoordinate . ',LEN("' . $txt . '"))="' . $txt . '"');
-                } elseif ($conditional->getOperatorType() == Conditional::OPERATOR_NOTCONTAINS) {
-                    $objWriter->writeElement('formula', 'ISERROR(SEARCH("' . $txt . '",' . $cellCoordinate . '))');
-                }
-            } else {
-                $objWriter->writeElement('formula', (string) ($conditional->getConditions()[0]));
+            if ($conditional->getOperatorType() == Conditional::OPERATOR_CONTAINSTEXT) {
+                $objWriter->writeElement('formula', 'NOT(ISERROR(SEARCH("' . $txt . '",' . $cellCoordinate . ')))');
+            } elseif ($conditional->getOperatorType() == Conditional::OPERATOR_BEGINSWITH) {
+                $objWriter->writeElement('formula', 'LEFT(' . $cellCoordinate . ',' . strlen($txt) . ')="' . $txt . '"');
+            } elseif ($conditional->getOperatorType() == Conditional::OPERATOR_ENDSWITH) {
+                $objWriter->writeElement('formula', 'RIGHT(' . $cellCoordinate . ',' . strlen($txt) . ')="' . $txt . '"');
+            } elseif ($conditional->getOperatorType() == Conditional::OPERATOR_NOTCONTAINS) {
+                $objWriter->writeElement('formula', 'ISERROR(SEARCH("' . $txt . '",' . $cellCoordinate . '))');
             }
         }
     }
@@ -655,63 +601,57 @@ class Worksheet extends WriterPart
 
         // Loop through styles in the current worksheet
         foreach ($worksheet->getConditionalStylesCollection() as $cellCoordinate => $conditionalStyles) {
-            $objWriter->startElement('conditionalFormatting');
-            $objWriter->writeAttribute('sqref', $cellCoordinate);
-
             foreach ($conditionalStyles as $conditional) {
                 // WHY was this again?
                 // if ($this->getParentWriter()->getStylesConditionalHashTable()->getIndexForHashCode($conditional->getHashCode()) == '') {
                 //    continue;
                 // }
-                // cfRule
-                $objWriter->startElement('cfRule');
-                $objWriter->writeAttribute('type', $conditional->getConditionType());
-                self::writeAttributeIf(
-                    $objWriter,
-                    ($conditional->getConditionType() != Conditional::CONDITION_DATABAR),
-                    'dxfId',
-                    (string) $this->getParentWriter()->getStylesConditionalHashTable()->getIndexForHashCode($conditional->getHashCode())
-                );
-                $objWriter->writeAttribute('priority', $id++);
+                if ($conditional->getConditionType() != Conditional::CONDITION_NONE) {
+                    // conditionalFormatting
+                    $objWriter->startElement('conditionalFormatting');
+                    $objWriter->writeAttribute('sqref', $cellCoordinate);
 
-                self::writeAttributeif(
-                    $objWriter,
-                    (
-                        $conditional->getConditionType() === Conditional::CONDITION_CELLIS
-                        || $conditional->getConditionType() === Conditional::CONDITION_CONTAINSTEXT
+                    // cfRule
+                    $objWriter->startElement('cfRule');
+                    $objWriter->writeAttribute('type', $conditional->getConditionType());
+                    self::writeAttributeIf(
+                        $objWriter,
+                        ($conditional->getConditionType() != Conditional::CONDITION_DATABAR),
+                        'dxfId',
+                        (string) $this->getParentWriter()->getStylesConditionalHashTable()->getIndexForHashCode($conditional->getHashCode())
+                    );
+                    $objWriter->writeAttribute('priority', $id++);
+
+                    self::writeAttributeif(
+                        $objWriter,
+                        (
+                            $conditional->getConditionType() === Conditional::CONDITION_CELLIS
+                            || $conditional->getConditionType() === Conditional::CONDITION_CONTAINSTEXT
+                            || $conditional->getConditionType() === Conditional::CONDITION_NOTCONTAINSTEXT
+                        ) && $conditional->getOperatorType() !== Conditional::OPERATOR_NONE,
+                        'operator',
+                        $conditional->getOperatorType()
+                    );
+
+                    self::writeAttributeIf($objWriter, $conditional->getStopIfTrue(), 'stopIfTrue', '1');
+
+                    if (
+                        $conditional->getConditionType() === Conditional::CONDITION_CONTAINSTEXT
                         || $conditional->getConditionType() === Conditional::CONDITION_NOTCONTAINSTEXT
-                        || $conditional->getConditionType() === Conditional::CONDITION_BEGINSWITH
-                        || $conditional->getConditionType() === Conditional::CONDITION_ENDSWITH
-                    ) && $conditional->getOperatorType() !== Conditional::OPERATOR_NONE,
-                    'operator',
-                    $conditional->getOperatorType()
-                );
+                    ) {
+                        self::writeTextCondElements($objWriter, $conditional, $cellCoordinate);
+                    } else {
+                        self::writeOtherCondElements($objWriter, $conditional, $cellCoordinate);
+                    }
 
-                self::writeAttributeIf($objWriter, $conditional->getStopIfTrue(), 'stopIfTrue', '1');
+                    //<dataBar>
+                    self::writeDataBarElements($objWriter, $conditional->getDataBar());
 
-                $cellRange = Coordinate::splitRange(str_replace('$', '', strtoupper($cellCoordinate)));
-                [$topLeftCell] = $cellRange[0];
+                    $objWriter->endElement(); //end cfRule
 
-                if (
-                    $conditional->getConditionType() === Conditional::CONDITION_CONTAINSTEXT
-                    || $conditional->getConditionType() === Conditional::CONDITION_NOTCONTAINSTEXT
-                    || $conditional->getConditionType() === Conditional::CONDITION_BEGINSWITH
-                    || $conditional->getConditionType() === Conditional::CONDITION_ENDSWITH
-                ) {
-                    self::writeTextCondElements($objWriter, $conditional, $topLeftCell);
-                } elseif ($conditional->getConditionType() === Conditional::CONDITION_TIMEPERIOD) {
-                    self::writeTimePeriodCondElements($objWriter, $conditional, $topLeftCell);
-                } else {
-                    self::writeOtherCondElements($objWriter, $conditional, $topLeftCell);
+                    $objWriter->endElement();
                 }
-
-                //<dataBar>
-                self::writeDataBarElements($objWriter, $conditional->getDataBar());
-
-                $objWriter->endElement(); //end cfRule
             }
-
-            $objWriter->endElement(); //end conditionalFormatting
         }
     }
 
@@ -997,25 +937,6 @@ class Worksheet extends WriterPart
     }
 
     /**
-     * Write Table.
-     */
-    private function writeTable(XMLWriter $objWriter, PhpspreadsheetWorksheet $worksheet): void
-    {
-        $tableCount = $worksheet->getTableCollection()->count();
-
-        $objWriter->startElement('tableParts');
-        $objWriter->writeAttribute('count', (string) $tableCount);
-
-        for ($t = 1; $t <= $tableCount; ++$t) {
-            $objWriter->startElement('tablePart');
-            $objWriter->writeAttribute('r:id', 'rId_table_' . $t);
-            $objWriter->endElement();
-        }
-
-        $objWriter->endElement();
-    }
-
-    /**
      * Write PageSetup.
      */
     private function writePageSetup(XMLWriter $objWriter, PhpspreadsheetWorksheet $worksheet): void
@@ -1216,12 +1137,10 @@ class Worksheet extends WriterPart
     {
         $objWriter->writeAttribute('t', $mappedType);
         if (!$cellValue instanceof RichText) {
-            $objWriter->startElement('is');
             $objWriter->writeElement(
                 't',
                 StringHelper::controlCharacterPHP2OOXML(htmlspecialchars($cellValue, Settings::htmlEntityFlags()))
             );
-            $objWriter->endElement();
         } elseif ($cellValue instanceof RichText) {
             $objWriter->startElement('is');
             $this->getParentWriter()->getWriterPartstringtable()->writeRichText($objWriter, $cellValue);
@@ -1277,7 +1196,7 @@ class Worksheet extends WriterPart
     {
         $calculatedValue = $this->getParentWriter()->getPreCalculateFormulas() ? $cell->getCalculatedValue() : $cellValue;
         if (is_string($calculatedValue)) {
-            if (ErrorValue::isError($calculatedValue)) {
+            if (\PhpOffice\PhpSpreadsheet\Calculation\Functions::isError($calculatedValue)) {
                 $this->writeCellError($objWriter, 'e', $cellValue, $calculatedValue);
 
                 return;
@@ -1304,7 +1223,7 @@ class Worksheet extends WriterPart
                 $objWriter,
                 $this->getParentWriter()->getOffice2003Compatibility() === false,
                 'v',
-                ($this->getParentWriter()->getPreCalculateFormulas() && !is_array($calculatedValue) && substr($calculatedValue ?? '', 0, 1) !== '#')
+                ($this->getParentWriter()->getPreCalculateFormulas() && !is_array($calculatedValue) && substr($calculatedValue, 0, 1) !== '#')
                     ? StringHelper::formatNumber($calculatedValue) : '0'
             );
         }

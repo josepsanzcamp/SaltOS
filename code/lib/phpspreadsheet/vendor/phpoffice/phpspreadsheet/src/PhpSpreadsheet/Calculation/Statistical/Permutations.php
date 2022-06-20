@@ -2,16 +2,13 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Statistical;
 
-use PhpOffice\PhpSpreadsheet\Calculation\ArrayEnabled;
 use PhpOffice\PhpSpreadsheet\Calculation\Exception;
-use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig;
 use PhpOffice\PhpSpreadsheet\Shared\IntOrFloat;
 
 class Permutations
 {
-    use ArrayEnabled;
-
     /**
      * PERMUT.
      *
@@ -22,19 +19,14 @@ class Permutations
      *        for lottery-style probability calculations.
      *
      * @param mixed $numObjs Integer number of different objects
-     *                      Or can be an array of values
      * @param mixed $numInSet Integer number of objects in each permutation
-     *                      Or can be an array of values
      *
-     * @return array|float|int|string Number of permutations, or a string containing an error
-     *         If an array of numbers is passed as an argument, then the returned result will also be an array
-     *            with the same dimensions
+     * @return float|int|string Number of permutations, or a string containing an error
      */
     public static function PERMUT($numObjs, $numInSet)
     {
-        if (is_array($numObjs) || is_array($numInSet)) {
-            return self::evaluateArrayArguments([self::class, __FUNCTION__], $numObjs, $numInSet);
-        }
+        $numObjs = Functions::flattenSingleValue($numObjs);
+        $numInSet = Functions::flattenSingleValue($numInSet);
 
         try {
             $numObjs = StatisticalValidations::validateInt($numObjs);
@@ -44,7 +36,7 @@ class Permutations
         }
 
         if ($numObjs < $numInSet) {
-            return ExcelError::NAN();
+            return Functions::NAN();
         }
         $result = round(MathTrig\Factorial::fact($numObjs) / MathTrig\Factorial::fact($numObjs - $numInSet));
 
@@ -58,19 +50,14 @@ class Permutations
      *     that can be selected from the total objects.
      *
      * @param mixed $numObjs Integer number of different objects
-     *                      Or can be an array of values
      * @param mixed $numInSet Integer number of objects in each permutation
-     *                      Or can be an array of values
      *
-     * @return array|float|int|string Number of permutations, or a string containing an error
-     *         If an array of numbers is passed as an argument, then the returned result will also be an array
-     *            with the same dimensions
+     * @return float|int|string Number of permutations, or a string containing an error
      */
     public static function PERMUTATIONA($numObjs, $numInSet)
     {
-        if (is_array($numObjs) || is_array($numInSet)) {
-            return self::evaluateArrayArguments([self::class, __FUNCTION__], $numObjs, $numInSet);
-        }
+        $numObjs = Functions::flattenSingleValue($numObjs);
+        $numInSet = Functions::flattenSingleValue($numInSet);
 
         try {
             $numObjs = StatisticalValidations::validateInt($numObjs);
@@ -80,7 +67,7 @@ class Permutations
         }
 
         if ($numObjs < 0 || $numInSet < 0) {
-            return ExcelError::NAN();
+            return Functions::NAN();
         }
 
         $result = $numObjs ** $numInSet;

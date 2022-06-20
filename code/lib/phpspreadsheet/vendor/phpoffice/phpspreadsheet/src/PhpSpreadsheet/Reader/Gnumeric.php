@@ -227,9 +227,13 @@ class Gnumeric extends BaseReader
 
     /**
      * Loads Spreadsheet from file.
+     *
+     * @return Spreadsheet
      */
-    protected function loadSpreadsheetFromFile(string $filename): Spreadsheet
+    public function load(string $filename, int $flags = 0)
     {
+        $this->processFlags($flags);
+
         // Create new Spreadsheet
         $spreadsheet = new Spreadsheet();
         $spreadsheet->removeSheetByIndex(0);
@@ -284,8 +288,12 @@ class Gnumeric extends BaseReader
                 $row = (int) $cellAttributes->Row + 1;
                 $column = (int) $cellAttributes->Col;
 
-                $maxRow = max($maxRow, $row);
-                $maxCol = max($maxCol, $column);
+                if ($row > $maxRow) {
+                    $maxRow = $row;
+                }
+                if ($column > $maxCol) {
+                    $maxCol = $column;
+                }
 
                 $column = Coordinate::stringFromColumnIndex($column + 1);
 
@@ -296,7 +304,38 @@ class Gnumeric extends BaseReader
                     }
                 }
 
-                $this->loadCell($cell, $worksheetName, $cellAttributes, $column, $row);
+                $ValueType = $cellAttributes->ValueType;
+                $ExprID = (string) $cellAttributes->ExprID;
+                $type = DataType::TYPE_FORMULA;
+                if ($ExprID > '') {
+                    if (((string) $cell) > '') {
+                        $this->expressions[$ExprID] = [
+                            'column' => $cellAttributes->Col,
+                            'row' => $cellAttributes->Row,
+                            'formula' => (string) $cell,
+                        ];
+                    } else {
+                        $expression = $this->expressions[$ExprID];
+
+                        $cell = $this->referenceHelper->updateFormulaReferences(
+                            $expression['formula'],
+                            'A1',
+                            $cellAttributes->Col - $expression['column'],
+                            $cellAttributes->Row - $expression['row'],
+                            $worksheetName
+                        );
+                    }
+                    $type = DataType::TYPE_FORMULA;
+                } else {
+                    $vtype = (string) $ValueType;
+                    if (array_key_exists($vtype, self::$mappings['dataType'])) {
+                        $type = self::$mappings['dataType'][$vtype];
+                    }
+                    if ($vtype === '20') {        //    Boolean
+                        $cell = $cell == 'TRUE';
+                    }
+                }
+                $this->spreadsheet->getActiveSheet()->getCell($column . $row)->setValueExplicit((string) $cell, $type);
             }
 
             if ($sheet->Styles !== null) {
@@ -309,47 +348,13 @@ class Gnumeric extends BaseReader
             $this->processMergedCells($sheet);
             $this->processAutofilter($sheet);
 
-            $this->setSelectedCells($sheet);
             ++$worksheetID;
         }
 
         $this->processDefinedNames($gnmXML);
 
-        $this->setSelectedSheet($gnmXML);
-
         // Return
         return $this->spreadsheet;
-    }
-
-    private function setSelectedSheet(SimpleXMLElement $gnmXML): void
-    {
-        if (isset($gnmXML->UIData)) {
-            $attributes = self::testSimpleXml($gnmXML->UIData->attributes());
-            $selectedSheet = (int) $attributes['SelectedTab'];
-            $this->spreadsheet->setActiveSheetIndex($selectedSheet);
-        }
-    }
-
-    private function setSelectedCells(?SimpleXMLElement $sheet): void
-    {
-        if ($sheet !== null && isset($sheet->Selections)) {
-            foreach ($sheet->Selections as $selection) {
-                $startCol = (int) ($selection->StartCol ?? 0);
-                $startRow = (int) ($selection->StartRow ?? 0) + 1;
-                $endCol = (int) ($selection->EndCol ?? $startCol);
-                $endRow = (int) ($selection->endRow ?? 0) + 1;
-
-                $startColumn = Coordinate::stringFromColumnIndex($startCol + 1);
-                $endColumn = Coordinate::stringFromColumnIndex($endCol + 1);
-
-                $startCell = "{$startColumn}{$startRow}";
-                $endCell = "{$endColumn}{$endRow}";
-                $selectedRange = $startCell . (($endCell !== $startCell) ? ':' . $endCell : '');
-                $this->spreadsheet->getActiveSheet()->setSelectedCell($selectedRange);
-
-                break;
-            }
-        }
     }
 
     private function processMergedCells(?SimpleXMLElement $sheet): void
@@ -380,8 +385,7 @@ class Gnumeric extends BaseReader
 
     private function setColumnWidth(int $whichColumn, float $defaultWidth): void
     {
-        $columnDimension = $this->spreadsheet->getActiveSheet()
-            ->getColumnDimension(Coordinate::stringFromColumnIndex($whichColumn + 1));
+        $columnDimension = $this->spreadsheet->getActiveSheet()->getColumnDimension(Coordinate::stringFromColumnIndex($whichColumn + 1));
         if ($columnDimension !== null) {
             $columnDimension->setWidth($defaultWidth);
         }
@@ -389,8 +393,7 @@ class Gnumeric extends BaseReader
 
     private function setColumnInvisible(int $whichColumn): void
     {
-        $columnDimension = $this->spreadsheet->getActiveSheet()
-            ->getColumnDimension(Coordinate::stringFromColumnIndex($whichColumn + 1));
+        $columnDimension = $this->spreadsheet->getActiveSheet()->getColumnDimension(Coordinate::stringFromColumnIndex($whichColumn + 1));
         if ($columnDimension !== null) {
             $columnDimension->setVisible(false);
         }
@@ -530,52 +533,5 @@ class Gnumeric extends BaseReader
         $value->createText($is);
 
         return $value;
-    }
-
-    private function loadCell(
-        SimpleXMLElement $cell,
-        string $worksheetName,
-        SimpleXMLElement $cellAttributes,
-        string $column,
-        int $row
-    ): void {
-        $ValueType = $cellAttributes->ValueType;
-        $ExprID = (string) $cellAttributes->ExprID;
-        $type = DataType::TYPE_FORMULA;
-        if ($ExprID > '') {
-            if (((string) $cell) > '') {
-                $this->expressions[$ExprID] = [
-                    'column' => $cellAttributes->Col,
-                    'row' => $cellAttributes->Row,
-                    'formula' => (string) $cell,
-                ];
-            } else {
-                $expression = $this->expressions[$ExprID];
-
-                $cell = $this->referenceHelper->updateFormulaReferences(
-                    $expression['formula'],
-                    'A1',
-                    $cellAttributes->Col - $expression['column'],
-                    $cellAttributes->Row - $expression['row'],
-                    $worksheetName
-                );
-            }
-            $type = DataType::TYPE_FORMULA;
-        } else {
-            $vtype = (string) $ValueType;
-            if (array_key_exists($vtype, self::$mappings['dataType'])) {
-                $type = self::$mappings['dataType'][$vtype];
-            }
-            if ($vtype === '20') {        //    Boolean
-                $cell = $cell == 'TRUE';
-            }
-        }
-
-        $this->spreadsheet->getActiveSheet()->getCell($column . $row)->setValueExplicit((string) $cell, $type);
-        if (isset($cellAttributes->ValueFormat)) {
-            $this->spreadsheet->getActiveSheet()->getCell($column . $row)
-                ->getStyle()->getNumberFormat()
-                ->setFormatCode((string) $cellAttributes->ValueFormat);
-        }
     }
 }

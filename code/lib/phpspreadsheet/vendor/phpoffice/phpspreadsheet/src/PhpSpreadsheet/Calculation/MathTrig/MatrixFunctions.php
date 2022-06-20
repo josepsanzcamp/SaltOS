@@ -7,12 +7,12 @@ use Matrix\Div0Exception as MatrixDiv0Exception;
 use Matrix\Exception as MatrixException;
 use Matrix\Matrix;
 use PhpOffice\PhpSpreadsheet\Calculation\Exception;
-use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
 
 class MatrixFunctions
 {
     /**
-     * Convert parameter to Matrix.
+     * Convert parameter to matrix.
      *
      * @param mixed $matrixValues A matrix of values
      */
@@ -31,7 +31,7 @@ class MatrixFunctions
             $column = 0;
             foreach ($matrixRow as $matrixCell) {
                 if ((is_string($matrixCell)) || ($matrixCell === null)) {
-                    throw new Exception(ExcelError::VALUE());
+                    throw new Exception(Functions::VALUE());
                 }
                 $matrixData[$row][$column] = $matrixCell;
                 ++$column;
@@ -40,47 +40,6 @@ class MatrixFunctions
         }
 
         return new Matrix($matrixData);
-    }
-
-    /**
-     * SEQUENCE.
-     *
-     * Generates a list of sequential numbers in an array.
-     *
-     * Excel Function:
-     *      SEQUENCE(rows,[columns],[start],[step])
-     *
-     * @param mixed $rows the number of rows to return, defaults to 1
-     * @param mixed $columns the number of columns to return, defaults to 1
-     * @param mixed $start the first number in the sequence, defaults to 1
-     * @param mixed $step the amount to increment each subsequent value in the array, defaults to 1
-     *
-     * @return array|string The resulting array, or a string containing an error
-     */
-    public static function sequence($rows = 1, $columns = 1, $start = 1, $step = 1)
-    {
-        try {
-            $rows = (int) Helpers::validateNumericNullSubstitution($rows, 1);
-            Helpers::validatePositive($rows);
-            $columns = (int) Helpers::validateNumericNullSubstitution($columns, 1);
-            Helpers::validatePositive($columns);
-            $start = Helpers::validateNumericNullSubstitution($start, 1);
-            $step = Helpers::validateNumericNullSubstitution($step, 1);
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
-
-        if ($step === 0) {
-            return array_chunk(
-                array_fill(0, $rows * $columns, $start),
-                max($columns, 1)
-            );
-        }
-
-        return array_chunk(
-            range($start, $start + (($rows * $columns - 1) * $step), $step),
-            max($columns, 1)
-        );
     }
 
     /**
@@ -102,7 +61,7 @@ class MatrixFunctions
 
             return $matrix->determinant();
         } catch (MatrixException $ex) {
-            return ExcelError::VALUE();
+            return Functions::VALUE();
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -127,9 +86,9 @@ class MatrixFunctions
 
             return $matrix->inverse()->toArray();
         } catch (MatrixDiv0Exception $e) {
-            return ExcelError::NAN();
+            return Functions::NAN();
         } catch (MatrixException $e) {
-            return ExcelError::VALUE();
+            return Functions::VALUE();
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -151,7 +110,7 @@ class MatrixFunctions
 
             return $matrixA->multiply($matrixB)->toArray();
         } catch (MatrixException $ex) {
-            return ExcelError::VALUE();
+            return Functions::VALUE();
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -168,7 +127,7 @@ class MatrixFunctions
     {
         try {
             $dimension = (int) Helpers::validateNumericNullBool($dimension);
-            Helpers::validatePositive($dimension, ExcelError::VALUE());
+            Helpers::validatePositive($dimension, Functions::VALUE());
             $matrix = Builder::createIdentityMatrix($dimension, 0)->toArray();
 
             return $matrix;

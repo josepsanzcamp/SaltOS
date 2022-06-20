@@ -54,9 +54,7 @@ class XMLWriter extends \XMLWriter
     public function __destruct()
     {
         // Unlink temporary files
-        // There is nothing reasonable to do if unlink fails.
         if ($this->tempFileName != '') {
-            /** @scrutinizer ignore-unhandled */
             @unlink($this->tempFileName);
         }
     }

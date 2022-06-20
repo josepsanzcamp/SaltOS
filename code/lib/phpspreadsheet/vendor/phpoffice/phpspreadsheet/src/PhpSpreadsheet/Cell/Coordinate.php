@@ -92,7 +92,6 @@ abstract class Coordinate
         }
 
         // Create absolute coordinate
-        $cellAddress = "$cellAddress";
         if (ctype_digit($cellAddress)) {
             return $worksheet . '$' . $cellAddress;
         } elseif (ctype_alpha($cellAddress)) {
@@ -148,7 +147,6 @@ abstract class Coordinate
         $exploded = explode(',', $range);
         $counter = count($exploded);
         for ($i = 0; $i < $counter; ++$i) {
-            // @phpstan-ignore-next-line
             $exploded[$i] = explode(':', $exploded[$i]);
         }
 
@@ -383,7 +381,7 @@ abstract class Coordinate
         //    Sort the result by column and row
         $sortKeys = [];
         foreach ($cellList as $coord) {
-            sscanf($coord, '%[A-Z]%d', $column, $row);
+            [$column, $row] = sscanf($coord, '%[A-Z]%d');
             $sortKeys[sprintf('%3s%09d', $column, $row)] = $coord;
         }
         ksort($sortKeys);
@@ -545,7 +543,7 @@ abstract class Coordinate
 
         // split range sets on intersection (space) or union (,) operators
         $tokens = preg_split('/([ ,])/', $rangeString, -1, PREG_SPLIT_DELIM_CAPTURE);
-        /** @phpstan-ignore-next-line */
+        // separate the range sets and the operators into arrays
         $split = array_chunk($tokens, 2);
         $ranges = array_column($split, 0);
         $operators = array_column($split, 1);

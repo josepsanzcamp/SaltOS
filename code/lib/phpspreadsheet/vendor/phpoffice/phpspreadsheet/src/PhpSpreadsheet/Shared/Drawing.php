@@ -164,15 +164,11 @@ class Drawing
     {
         //    Load the image into a string
         $file = fopen($bmpFilename, 'rb');
-        /** @phpstan-ignore-next-line */
         $read = fread($file, 10);
-        // @phpstan-ignore-next-line
         while (!feof($file) && ($read != '')) {
-            // @phpstan-ignore-next-line
             $read .= fread($file, 1024);
         }
 
-        /** @phpstan-ignore-next-line */
         $temp = unpack('H*', $read);
         $hex = $temp[1];
         $header = substr($hex, 0, 108);
@@ -200,8 +196,6 @@ class Drawing
         $y = 1;
 
         //    Create newimage
-
-        /** @phpstan-ignore-next-line */
         $image = imagecreatetruecolor($width, $height);
 
         //    Grab the body from the image
@@ -247,10 +241,7 @@ class Drawing
             $b = hexdec($body[$i_pos] . $body[$i_pos + 1]);
 
             // Calculate and draw the pixel
-
-            /** @phpstan-ignore-next-line */
             $color = imagecolorallocate($image, $r, $g, $b);
-            // @phpstan-ignore-next-line
             imagesetpixel($image, $x, $height - $y, $color);
 
             // Raise the horizontal position
@@ -261,7 +252,6 @@ class Drawing
         unset($body);
 
         //    Return image-object
-        // @phpstan-ignore-next-line
         return $image;
     }
 }

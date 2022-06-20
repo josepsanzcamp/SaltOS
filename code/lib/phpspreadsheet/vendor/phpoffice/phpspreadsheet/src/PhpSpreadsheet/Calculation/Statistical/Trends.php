@@ -2,16 +2,12 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Statistical;
 
-use PhpOffice\PhpSpreadsheet\Calculation\ArrayEnabled;
 use PhpOffice\PhpSpreadsheet\Calculation\Exception;
 use PhpOffice\PhpSpreadsheet\Calculation\Functions;
-use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 use PhpOffice\PhpSpreadsheet\Shared\Trend\Trend;
 
 class Trends
 {
-    use ArrayEnabled;
-
     private static function filterTrendValues(array &$array1, array &$array2): void
     {
         foreach ($array1 as $key => $value) {
@@ -47,9 +43,9 @@ class Trends
         $xValueCount = count($xValues);
 
         if (($yValueCount === 0) || ($yValueCount !== $xValueCount)) {
-            throw new Exception(ExcelError::NA());
+            throw new Exception(Functions::NA());
         } elseif ($yValueCount === 1) {
-            throw new Exception(ExcelError::DIV0());
+            throw new Exception(Functions::DIV0());
         }
     }
 
@@ -66,7 +62,7 @@ class Trends
     public static function CORREL($yValues, $xValues = null)
     {
         if (($xValues === null) || (!is_array($yValues)) || (!is_array($xValues))) {
-            return ExcelError::VALUE();
+            return Functions::VALUE();
         }
 
         try {
@@ -112,19 +108,14 @@ class Trends
      * The predicted value is a y-value for a given x-value.
      *
      * @param mixed $xValue Float value of X for which we want to find Y
-     *                      Or can be an array of values
      * @param mixed $yValues array of mixed Data Series Y
      * @param mixed $xValues of mixed Data Series X
      *
-     * @return array|bool|float|string
-     *         If an array of numbers is passed as an argument, then the returned result will also be an array
-     *            with the same dimensions
+     * @return bool|float|string
      */
     public static function FORECAST($xValue, $yValues, $xValues)
     {
-        if (is_array($xValue)) {
-            return self::evaluateArrayArgumentsSubset([self::class, __FUNCTION__], 1, $xValue, $yValues, $xValues);
-        }
+        $xValue = Functions::flattenSingleValue($xValue);
 
         try {
             $xValue = StatisticalValidations::validateFloat($xValue);
@@ -233,7 +224,7 @@ class Trends
                 ],
                 [
                     $bestFitLinear->getSlopeSE(),
-                    ($const === false) ? ExcelError::NA() : $bestFitLinear->getIntersectSE(),
+                    ($const === false) ? Functions::NA() : $bestFitLinear->getIntersectSE(),
                 ],
                 [
                     $bestFitLinear->getGoodnessOfFit(),
@@ -286,7 +277,7 @@ class Trends
 
         foreach ($yValues as $value) {
             if ($value < 0.0) {
-                return ExcelError::NAN();
+                return Functions::NAN();
             }
         }
 
@@ -300,7 +291,7 @@ class Trends
                 ],
                 [
                     $bestFitExponential->getSlopeSE(),
-                    ($const === false) ? ExcelError::NA() : $bestFitExponential->getIntersectSE(),
+                    ($const === false) ? Functions::NA() : $bestFitExponential->getIntersectSE(),
                 ],
                 [
                     $bestFitExponential->getGoodnessOfFit(),

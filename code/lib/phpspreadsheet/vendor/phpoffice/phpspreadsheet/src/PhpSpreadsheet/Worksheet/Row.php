@@ -35,7 +35,8 @@ class Row
      */
     public function __destruct()
     {
-        $this->worksheet = null; // @phpstan-ignore-line
+        // @phpstan-ignore-next-line
+        $this->worksheet = null;
     }
 
     /**

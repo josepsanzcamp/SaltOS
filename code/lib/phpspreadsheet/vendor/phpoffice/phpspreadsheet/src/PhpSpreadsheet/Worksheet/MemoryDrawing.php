@@ -47,9 +47,6 @@ class MemoryDrawing extends BaseDrawing
      */
     private $uniqueName;
 
-    /** @var null|resource */
-    private $alwaysNull;
-
     /**
      * Create a new MemoryDrawing.
      */
@@ -59,7 +56,6 @@ class MemoryDrawing extends BaseDrawing
         $this->renderingFunction = self::RENDERING_DEFAULT;
         $this->mimeType = self::MIMETYPE_DEFAULT;
         $this->uniqueName = md5(mt_rand(0, 9999) . time() . mt_rand(0, 9999));
-        $this->alwaysNull = null;
 
         // Initialize parent
         parent::__construct();
@@ -68,9 +64,8 @@ class MemoryDrawing extends BaseDrawing
     public function __destruct()
     {
         if ($this->imageResource) {
-            $rslt = @imagedestroy($this->imageResource);
-            // "Fix" for Scrutinizer
-            $this->imageResource = $rslt ? null : $this->alwaysNull;
+            imagedestroy($this->imageResource);
+            $this->imageResource = null;
         }
     }
 

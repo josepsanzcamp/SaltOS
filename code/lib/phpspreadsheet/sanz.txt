@@ -1,7 +1,7 @@
 
 # Use composer to get the library:
 
-# composer require phpoffice/phpspreadsheet
+# composer require phpoffice/phpspreadsheet:1.21
 
 # To fix the permissions in files and directories, use it:
 

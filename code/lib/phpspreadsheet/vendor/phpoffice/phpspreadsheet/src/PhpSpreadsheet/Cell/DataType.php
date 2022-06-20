@@ -16,7 +16,6 @@ class DataType
     const TYPE_NULL = 'null';
     const TYPE_INLINE = 'inlineStr';
     const TYPE_ERROR = 'e';
-    const TYPE_ISO_DATE = 'd';
 
     /**
      * List of error codes.
