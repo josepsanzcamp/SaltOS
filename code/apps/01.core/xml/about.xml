@@ -304,7 +304,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://www.tcpdf.org")</onclick>
                         </field>
                         <field>
-                            <label>PHPMailer 6.6.2 (LGPL-2.1)</label>
+                            <label>PHPMailer 6.6.3 (LGPL-2.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
@@ -583,7 +583,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://ckeditor.com/")</onclick>
                         </field>
                         <field>
-                            <label>CodeMirror v5.65.5 (MIT)</label>
+                            <label>CodeMirror v5.65.6 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://codemirror.net/")</onclick>
