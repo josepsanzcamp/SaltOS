@@ -71,7 +71,8 @@ class database_pdo_mysql
         try {
             $stmt = $this->link->query($query);
         } catch (PDOException $e) {
-            $type = words_exists("query execution was interrupted max_statement_time exceeded", $e->getMessage()) ? "dbwarning" : "dberror";
+            $bool = words_exists("query execution interrupted max_statement_time exceeded", $e->getMessage());
+            $type = $bool ? "dbwarning" : "dberror";
             show_php_error(array($type => $e->getMessage(),"query" => $query));
         }
         //~ unset($query); // TRICK TO RELEASE MEMORY
@@ -84,7 +85,8 @@ class database_pdo_mysql
                 try {
                     $result["rows"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 } catch (PDOException $e) {
-                    $type = words_exists("query execution was interrupted max_statement_time exceeded", $e->getMessage()) ? "dbwarning" : "dberror";
+                    $bool = words_exists("query execution interrupted max_statement_time exceeded", $e->getMessage());
+                    $type = $bool ? "dbwarning" : "dberror";
                     show_php_error(array($type => $e->getMessage(),"query" => $query));
                 }
                 $result["total"] = count($result["rows"]);
@@ -96,7 +98,8 @@ class database_pdo_mysql
                 try {
                     $result["rows"] = $stmt->fetchAll(PDO::FETCH_COLUMN);
                 } catch (PDOException $e) {
-                    $type = words_exists("query execution was interrupted max_statement_time exceeded", $e->getMessage()) ? "dbwarning" : "dberror";
+                    $bool = words_exists("query execution interrupted max_statement_time exceeded", $e->getMessage());
+                    $type = $bool ? "dbwarning" : "dberror";
                     show_php_error(array($type => $e->getMessage(),"query" => $query));
                 }
                 $result["total"] = count($result["rows"]);
@@ -111,7 +114,8 @@ class database_pdo_mysql
                         $result["rows"][0] .= "," . $row;
                     }
                 } catch (PDOException $e) {
-                    $type = words_exists("query execution was interrupted max_statement_time exceeded", $e->getMessage()) ? "dbwarning" : "dberror";
+                    $bool = words_exists("query execution interrupted max_statement_time exceeded", $e->getMessage());
+                    $type = $bool ? "dbwarning" : "dberror";
                     show_php_error(array($type => $e->getMessage(),"query" => $query));
                 }
                 $result["total"] = count($result["rows"]);

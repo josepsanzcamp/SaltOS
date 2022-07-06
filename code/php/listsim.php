@@ -60,7 +60,8 @@ function list_simulator($newpage, $ids = "concat")
     // EXECUTE THE QUERY TO GET THE REQUESTED DATA
     if ($ids == "count") {
         $max_statement_time = floatval(getDefault("db/max_statement_time")) / 1000;
-        $query = "/*MYSQL SET STATEMENT max_statement_time=${max_statement_time} FOR */ SELECT COUNT(*) FROM ($query0) __a__";
+        $query = "/*MYSQL SET STATEMENT max_statement_time=${max_statement_time} FOR */
+            SELECT COUNT(*) FROM ($query0) __a__";
         $count = execute_query($query);
         $result = array("count" => $count,"limit" => $limit,"offset" => $offset);
     } elseif ($ids == "concat") {

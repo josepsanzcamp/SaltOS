@@ -61,7 +61,8 @@ class database_mysqli
         try {
             $stmt = mysqli_query($this->link, $query);
         } catch (Exception $e) {
-            $type = words_exists("query execution was interrupted max_statement_time exceeded", $e->getMessage()) ? "dbwarning" : "dberror";
+            $bool = words_exists("query execution interrupted max_statement_time exceeded", $e->getMessage());
+            $type = $bool ? "dbwarning" : "dberror";
             show_php_error(array($type => $e->getMessage(),"query" => $query));
         }
         unset($query); // TRICK TO RELEASE MEMORY

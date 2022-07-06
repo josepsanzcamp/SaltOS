@@ -275,11 +275,11 @@ function __import_struct2array(&$data)
     Name:
         __import_getnode
     Abstract:
-        TODO
+        This function is a helper used to get a node in a xml structure
     Input:
-        TODO
+        A path of the desired node and the array with nodes of the xml structure
     Output:
-        TODO
+        The contents of the node of the specified path
 */
 function __import_getnode($path, $array)
 {
@@ -300,11 +300,11 @@ function __import_getnode($path, $array)
     Name:
         __import_getvalue
     Abstract:
-        TODO
+        This function is a helper used to get a value if exists of a node structure
     Input:
-        TODO
+        An array
     Output:
-        TODO
+        The value if exists, otherwise the same input
 */
 function __import_getvalue($array)
 {
@@ -313,13 +313,32 @@ function __import_getvalue($array)
 
 /*
     Name:
+        __import_getattr
+    Abstract:
+        This function is a helper used to get a attr element if exists of a node structure
+    Input:
+        A string representing an element and an array containing the node
+    Output:
+        The attr if exists, otherwise null
+*/
+function __import_getattr($elem, $array)
+{
+    if (!is_array($array) || !isset($array["#attr"]) || !is_array($array["#attr"]) || !isset($array["#attr"][$elem])) {
+        return null;
+    }
+    return $array["#attr"][$elem];
+}
+
+/*
+    Name:
         __import_setnode
     Abstract:
-        TODO
+        This function is used to set data into a xml structure
     Input:
-        TODO
+        The desired path where do you want to put the data, the array with the xml structure
+        and the value that do you want to put
     Output:
-        TODO
+        true if the function can set the value, false otherwise
 */
 function __import_setnode($path, &$array, $value)
 {
@@ -345,11 +364,11 @@ function __import_setnode($path, &$array, $value)
     Name:
         __import_delnode
     Abstract:
-        TODO
+        This function is used to remove data of the xml structure
     Input:
-        TODO
+        The desired path where do you want to remove and the array with the xml structure
     Output:
-        TODO
+        true if the function can remove the path, false otherwise
 */
 function __import_delnode($path, &$array)
 {
@@ -375,11 +394,12 @@ function __import_delnode($path, &$array)
     Name:
         __import_addnode
     Abstract:
-        TODO
+        This function is used to add data into a xml structure
     Input:
-        TODO
+        The desired path where do you want to add the data, the array with the xml structure
+        and the value that do you want to add
     Output:
-        TODO
+        true if the function can add the data, false otherwise
 */
 function __import_addnode($path, &$array, $value)
 {
@@ -405,11 +425,11 @@ function __import_addnode($path, &$array, $value)
     Name:
         __import_specialchars
     Abstract:
-        TODO
+        This function is a helper used by the csv2array function
     Input:
-        TODO
+        A string or array
     Output:
-        TODO
+        The input with the expected replacements
 */
 function __import_specialchars($arg)
 {
@@ -450,11 +470,15 @@ function __import_csv2array($file, $sep)
     Name:
         __import_xls2array
     Abstract:
-        TODO
+        This fuction can convert an excel file into a matrix structure, it has some additional features as:
+        - If the file exceds the 1Mbyte and the server has the xlsx2csv executable, it tries to convert the xslx
+          to an excel to use less memory
+        - Do some internals trics to solve some knowed issues
     Input:
-        TODO
+        The filename and the sheet that do you want to retrieve
+        The second parameter can be a number or a sheet name
     Output:
-        TODO
+        A matrix with the contents
 */
 function __import_xls2array($file, $sheet)
 {
