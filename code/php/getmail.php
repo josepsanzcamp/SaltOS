@@ -108,7 +108,7 @@ function __getmail_checkperm($id)
 // RETURN THE ORIGINAL RFC822 MESSAGE
 function __getmail_getsource($id, $max = 0)
 {
-    $query = "SELECT * FROM tbl_correo WHERE id='$id'";
+    $query = "SELECT id_cuenta,uidl,is_outbox FROM tbl_correo WHERE id='$id'";
     $row = execute_query($query);
     if (!$row) {
         return "";
@@ -149,7 +149,7 @@ function __getmail_mime_decode_protected($input)
 // RETURN THE DECODED MIME STRUCTURE BY ID
 function __getmail_getmime($id)
 {
-    $query = "SELECT * FROM tbl_correo WHERE id='$id'";
+    $query = "SELECT id_cuenta,uidl,is_outbox FROM tbl_correo WHERE id='$id'";
     $row = execute_query($query);
     if (!$row) {
         return "";
@@ -157,11 +157,7 @@ function __getmail_getmime($id)
     $email = "${row["id_cuenta"]}/${row["uidl"]}";
     $cache = get_cache_file($row, ".eml");
     if (!file_exists($cache)) {
-        $file = (
-            $row["is_outbox"] ?
-                get_directory("dirs/outboxdir") :
-                get_directory("dirs/inboxdir")
-        ) . $email . ".eml.gz";
+        $file = ($row["is_outbox"] ? get_directory("dirs/outboxdir") : get_directory("dirs/inboxdir")) . $email . ".eml.gz";
         if (!file_exists($file)) {
             return "";
         }
