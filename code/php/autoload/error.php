@@ -128,6 +128,18 @@ function show_php_error($array = null)
 {
     global $_ERROR_HANDLER;
     static $backup = null;
+    // FOR DEBUG PURPOSES ONLY
+    //~ addlog(str_repeat("*",80));
+    //~ addlog("ERROR HANDLER");
+    //~ addlog(sprintr($_ERROR_HANDLER));
+    //~ addlog("ARRAY");
+    //~ addlog(sprintr($array));
+    //~ addlog("BACKUP");
+    //~ addlog(sprintr($backup));
+    //~ addlog("BACKTRACE");
+    //~ addlog(sprintr(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)));
+    //~ addlog("DEBUG");
+    //~ addlog(sprintr(session_backtrace()));
     // TRICK FOR EXHAUSTED MEMORY ERROR
     if (
         isset($array["phperror"]) &&
@@ -166,6 +178,10 @@ function show_php_error($array = null)
         }
         return;
     }
+    // CHECK FOR RESET_ERROR_HANDLER PARAM
+    if (isset($array["reset_error_handler"]) && eval_bool($array["reset_error_handler"])) {
+        $_ERROR_HANDLER = array("level" => 0,"msg" => array());
+    }
     // CHECK IF CAPTURE ERROR WAS ACTIVE
     if ($_ERROR_HANDLER["level"] > 0) {
         $old = array_pop($_ERROR_HANDLER["msg"]);
@@ -190,7 +206,7 @@ function show_php_error($array = null)
         );
         foreach ($types as $type) {
             if (isset($array[$type[0]])) {
-                $file = getDefault($type[1], $type[2]);
+                $file = isset($array["file"]) ? $array["file"] : getDefault($type[1], $type[2]);
                 break;
             }
         }
@@ -296,17 +312,14 @@ function __exception_handler($e)
 
 function __shutdown_handler()
 {
-    global $_ERROR_HANDLER;
-    if ($_ERROR_HANDLER["level"] > 0) {
-        show_php_error();
-    }
     $error = error_get_last();
     $types = array(E_ERROR,E_PARSE,E_CORE_ERROR,E_COMPILE_ERROR,E_USER_ERROR,E_RECOVERABLE_ERROR);
     if (is_array($error) && isset($error["type"]) && in_array($error["type"], $types)) {
         show_php_error(array(
             "phperror" => "${error["message"]}",
             "details" => "Error on file " . basename($error["file"]) . ":" . $error["line"],
-            "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
+            "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
+            "reset_error_handler" => true
         ));
     }
     semaphore_shutdown();

@@ -247,28 +247,44 @@ function sendmail($id_cuenta, $to, $subject, $body, $files = "")
         show_php_error(array("phperror" => "Could not acquire the semaphore"));
     }
     $messageid = __sendmail_messageid($id_cuenta, $mail->From);
-    $file = __sendmail_emlsaver($mail->GetSentMIMEMessage(), $messageid);
-    $last_id = __getmail_insert($file, $messageid, 0, 0, 0, 0, 0, 1, 1, "");
+    $file1 = __sendmail_emlsaver($mail->GetSentMIMEMessage(), $messageid);
+    $file2 = __sendmail_objsaver($mail, $messageid);
+    $last_id = __getmail_insert($file1, $messageid, 0, 0, 0, 0, 0, 1, 1, "");
     semaphore_release(__FUNCTION__);
     if (count($bcc)) {
         __getmail_add_bcc($last_id, $bcc); // BCC DOESN'T APPEAR IN THE RFC822 SOMETIMES
     }
     if (CONFIG("email_async")) {
-        __sendmail_objsaver($mail, $messageid);
         __getmail_update("state_sent", 0, $last_id);
         __getmail_update("state_error", "", $last_id);
         return "";
     }
     capture_next_error();
     $current = $mail->PostSend();
-    get_clear_error();
+    $error = get_clear_error();
+    if (words_exists("PostSend non-object", $error)) {
+        __getmail_update("state_sent", 1, $last_id);
+        __getmail_update("state_error", LANG("interrorsendmail", "correo"), $last_id);
+        unlink($file2);
+        return LANG("interrorsendmail", "correo");
+    }
     if (!$current) {
+        if (words_exists("connection refused", $error)) {
+            $error = LANG("msgconnrefusedpop3email", "correo");
+        } elseif (words_exists("unable to connect", $error)) {
+            $error = LANG("msgconnerrorpop3email", "correo");
+        } else {
+            $orig = array("\n","\r","'","\"");
+            $dest = array(" ","","","");
+            $error = str_replace($orig, $dest, $mail->ErrorInfo);
+        }
         __getmail_update("state_sent", 0, $last_id);
-        __getmail_update("state_error", $mail->ErrorInfo, $last_id);
-        return $mail->ErrorInfo;
+        __getmail_update("state_error", $error, $last_id);
+        return $error;
     }
     __getmail_update("state_sent", 1, $last_id);
     __getmail_update("state_error", "", $last_id);
+    unlink($file2);
     return "";
 }
 
@@ -329,4 +345,5 @@ function __sendmail_objsaver($mail, $messageid)
     $file = $prefix . ".obj";
     file_put_contents($file, serialize($mail));
     chmod($file, 0666);
+    return $file;
 }

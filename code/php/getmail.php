@@ -410,11 +410,7 @@ function __getmail_getinfo($array)
     // RETURN THE RESULT
     if (eval_bool(getDefault("debug/getmaildebug"))) {
         $result["body"] = __getmail_gettextbody($array);
-    }
-    if (eval_bool(getDefault("debug/getmaildebug"))) {
         echo "<pre>" . sprintr($result) . "</pre>";
-    }
-    if (eval_bool(getDefault("debug/getmaildebug"))) {
         die();
     }
     return $result;

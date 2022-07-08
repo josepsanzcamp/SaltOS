@@ -753,9 +753,9 @@ if (getParam("page") == "correo") {
                 }
             }
             $body_extra = $body_extra . __HTML_NEWLINE__ . __HTML_NEWLINE__ . $oldhead . __HTML_NEWLINE__ . __HTML_NEWLINE__ . __BLOCKQUOTE_OPEN__ . $oldbody . __BLOCKQUOTE_CLOSE__;
-            unset($oldhead);
-            unset($oldbody);
-            unset($decoded);
+            unset($oldhead); // TRICK TO RELEASE MEMORY
+            unset($oldbody); // TRICK TO RELEASE MEMORY
+            unset($decoded); // TRICK TO RELEASE MEMORY
         }
     }
     if (isset($id_extra[1]) && $id_extra[1] == "session") {
@@ -823,8 +823,8 @@ if (getParam("page") == "correo") {
             $oldbody .= $row2["description"];
             $oldbody .= __HTML_TEXT_CLOSE__;
             $body_extra = $body_extra . __HTML_NEWLINE__ . __HTML_NEWLINE__ . $oldhead . __HTML_NEWLINE__ . __HTML_NEWLINE__ . __BLOCKQUOTE_OPEN__ . $oldbody . __BLOCKQUOTE_CLOSE__;
-            unset($oldhead);
-            unset($oldbody);
+            unset($oldhead); // TRICK TO RELEASE MEMORY
+            unset($oldbody); // TRICK TO RELEASE MEMORY
         }
     }
     // CHECK FOR MOBILE DEVICES
