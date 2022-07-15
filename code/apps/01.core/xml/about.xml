@@ -421,7 +421,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://www.jquery.com/")</onclick>
                         </field>
                         <field>
-                            <label>JQuery UI 1.13.1 (MIT)</label>
+                            <label>JQuery UI 1.13.2 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.jqueryui.com/")</onclick>
