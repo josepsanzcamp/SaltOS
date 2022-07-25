@@ -33,7 +33,9 @@ $length = getDefault("captcha/length", 5);
 init_random();
 // DEFINE THE CODE AND REAL CAPTCHA
 if ($type == "number") {
-    $code = str_pad(rand(0, pow(10, $length) - 1), $length, "0", STR_PAD_LEFT);
+    do {
+        $code = str_pad(rand(0, pow(10, $length) - 1), $length, "0", STR_PAD_LEFT);
+    } while (!__captcha_isprime($code));
     sess_init();
     setSession($id, $code);
     sess_close();
