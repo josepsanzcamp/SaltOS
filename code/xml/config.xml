@@ -64,7 +64,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <dbfield>id_registro</dbfield>
             <dbfield>id_permiso</dbfield>
         </dbfields>
-        <max_statement_time>10000</max_statement_time><!-- in milliseconds, only for listsim -->
     </db>
     <sess>
         <save_path>saltos</save_path>
