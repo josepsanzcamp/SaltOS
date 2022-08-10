@@ -1,6 +1,6 @@
 {
     "require": {
-        "google/apiclient": "^2.11"
+        "google/apiclient": "^2.12"
     },
     "scripts": {
         "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
