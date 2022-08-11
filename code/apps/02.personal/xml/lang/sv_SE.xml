@@ -112,6 +112,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <collapse>Kontrakt</collapse>
         <collapsetip>Kollaps för att dölja detaljerna i alla kalenderhändelser</collapsetip>
         <loadingsmall>Hämtar ...</loadingsmall>
+        <closewindowgcalendartoken>Du kan nu stänga det här fönstret</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>E-postlista</list>

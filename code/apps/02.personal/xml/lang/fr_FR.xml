@@ -112,6 +112,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <collapse>Diminuer</collapse>
         <collapsetip>Réduire pour masquer les détails de tous les événements du calendrier</collapsetip>
         <loadingsmall> Chargement...</loadingsmall>
+        <closewindowgcalendartoken>Vous pouvez maintenant fermer cette fenêtre</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Liste d'envoi par courriel</list>

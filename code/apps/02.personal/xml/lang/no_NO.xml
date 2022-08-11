@@ -112,6 +112,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <collapse>Kontrakt</collapse>
         <collapsetip>Skjul for å skjule detaljene for alle kalenderhendelser</collapsetip>
         <loadingsmall>Laster inn ...</loadingsmall>
+        <closewindowgcalendartoken>Du kan nå lukke dette vinduet</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Postliste</list>

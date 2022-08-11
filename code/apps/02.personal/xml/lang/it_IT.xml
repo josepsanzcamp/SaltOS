@@ -112,6 +112,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <collapse>Contratto</collapse>
         <collapsetip>Comprimi per nascondere i dettagli di tutti gli eventi del calendario</collapsetip>
         <loadingsmall>Caricamento in corso ...</loadingsmall>
+        <closewindowgcalendartoken>Ora puoi chiudere questa finestra</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Mailing list</list>

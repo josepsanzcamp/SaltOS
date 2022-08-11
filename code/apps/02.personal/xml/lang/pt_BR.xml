@@ -112,6 +112,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <collapse>Contrair</collapse>
         <collapsetip>Contrair para ocultar o detalhe de todos os eventos do calendário</collapsetip>
         <loadingsmall>Carregando...</loadingsmall>
+        <closewindowgcalendartoken>Agora você pode fechar esta janela</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Lista de mensagens</list>

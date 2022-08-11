@@ -25,11 +25,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+
 function sendmail($id_cuenta, $to, $subject, $body, $files = "")
 {
-    set_include_path("lib/phpmailer" . PATH_SEPARATOR . get_include_path());
-    require_once "src/PHPMailer.php";
-    require_once "src/SMTP.php";
+    require_once "lib/phpmailer/vendor/autoload.php";
     require_once "php/getmail.php";
     // CHECK FOR SPECIAL ID_CUENTA CASE
     if (is_array($id_cuenta)) {
@@ -73,7 +74,7 @@ function sendmail($id_cuenta, $to, $subject, $body, $files = "")
             return $mail->ErrorInfo;
         }
     }
-    if (!$mail->SetLanguage("es", "lib/phpmailer/language/")) {
+    if (!$mail->SetLanguage("es")) {
         return $mail->ErrorInfo;
     }
     if (!$mail->set("CharSet", "UTF-8")) {

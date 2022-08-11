@@ -112,6 +112,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <collapse>Contraer</collapse>
         <collapsetip>Contraer para ocultar el detalle de todos los eventos del calendario</collapsetip>
         <loadingsmall>Cargando...</loadingsmall>
+        <closewindowgcalendartoken>Ya puede cerrar esta ventana</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Listado de correos</list>

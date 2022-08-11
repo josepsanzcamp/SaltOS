@@ -112,6 +112,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <collapse>Collapse</collapse>
         <collapsetip>Collapse to hide the details of all events calendar</collapsetip>
         <loadingsmall>Loading...</loadingsmall>
+        <closewindowgcalendartoken>You can now close this window</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Mailing List</list>

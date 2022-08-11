@@ -112,6 +112,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <collapse>Einklappen</collapse>
         <collapsetip>Einklappen um die Details aller Termine zu verbergen</collapsetip>
         <loadingsmall>Bitte warten ...</loadingsmall>
+        <closewindowgcalendartoken>Sie können dieses fenster nun schließen</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>E-Mails</list>

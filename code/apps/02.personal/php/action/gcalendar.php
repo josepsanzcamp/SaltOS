@@ -33,11 +33,22 @@ if (!check_user()) {
 require_once "lib/google/vendor/autoload.php";
 require_once "php/libaction.php";
 
+if (getParam("error")) {
+    echo LANG("closewindowgcalendartoken", "agenda");
+    die();
+}
+
+if (getParam("code") && getParam("scope")) {
+    __gcalendar_updatetokens(getParam("code"), "");
+    echo LANG("closewindowgcalendartoken", "agenda");
+    die();
+}
+
 // GET GOOGLE CALENDAR USER ACCOUNT
 $query = "SELECT * FROM tbl_gcalendar WHERE id_usuario='" . current_user() . "'";
 $result = execute_query($query);
 if (!is_array($result)) {
-    session_error(LANG("notgcalendaremail", $page));
+    session_error(LANG("notgcalendaremail", "agenda"));
     javascript_history(-1);
     die();
 }
@@ -45,7 +56,7 @@ $email = $result["email"];
 $token = $result["token"];
 $token2 = unserialize(base64_decode($result["token2"]));
 if ($email == "") {
-    session_error(LANG("notgcalendaremail", $page));
+    session_error(LANG("notgcalendaremail", "agenda"));
     javascript_history(-1);
     die();
 }
@@ -54,9 +65,8 @@ if ($email == "") {
 $client = new Google_Client();
 $client->setApplicationName(get_name_version_revision());
 $client->setAccessType("offline");
-$client->setClientId("467364534451-o3pvr9vfepjr68ktrq0k94kpjgnvvp4b.apps.googleusercontent.com");
-$client->setClientSecret("-zpxbyQEE07HKIvggynOFs4y");
-$client->setRedirectUri("urn:ietf:wg:oauth:2.0:oob");
+$client->setAuthConfig("lib/google/gcalendar.json");
+$client->setRedirectUri(get_base() . "?action=gcalendar");
 $client->addScope("https://www.googleapis.com/auth/calendar.events");
 
 //~ Array
@@ -198,10 +208,10 @@ foreach ($sevents as $skey => $sevent) {
     }
 }
 if ($count_insert_gcalendar) {
-    session_alert(LANG("insertgcalendar", $page) . " " . $count_insert_gcalendar);
+    session_alert(LANG("insertgcalendar", "agenda") . " " . $count_insert_gcalendar);
 }
 if ($count_update_gcalendar) {
-    session_alert(LANG("updategcalendar", $page) . " " . $count_update_gcalendar);
+    session_alert(LANG("updategcalendar", "agenda") . " " . $count_update_gcalendar);
 }
 
 // BEGIN THE SYNCHRONIZATION FROM GOOGLE CALENDAR TO SALTOS
@@ -248,13 +258,13 @@ foreach ($gevents as $gkey => $gevent) {
     }
 }
 if ($count_insert_saltos) {
-    session_alert(LANG("insertsaltos", $page) . " " . $count_insert_saltos);
+    session_alert(LANG("insertsaltos", "agenda") . " " . $count_insert_saltos);
 }
 if ($count_update_saltos) {
-    session_alert(LANG("updatesaltos", $page) . " " . $count_update_saltos);
+    session_alert(LANG("updatesaltos", "agenda") . " " . $count_update_saltos);
 }
 if ($count_insert_gcalendar + $count_update_gcalendar + $count_insert_saltos + $count_update_saltos == 0) {
-    session_alert(LANG("notinsertupdate", $page));
+    session_alert(LANG("notinsertupdate", "agenda"));
 }
 
 // GO BACK

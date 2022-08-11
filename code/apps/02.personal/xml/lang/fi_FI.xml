@@ -112,6 +112,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <collapse>Sopimus</collapse>
         <collapsetip>Pienennä piilottaaksesi kalenteritapahtumien yksityiskohdat</collapsetip>
         <loadingsmall>Ladataan ...</loadingsmall>
+        <closewindowgcalendartoken>Voit nyt sulkea tämän ikkunan</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Postituslista</list>

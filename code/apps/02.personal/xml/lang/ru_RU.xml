@@ -112,6 +112,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <collapse>контракт</collapse>
         <collapsetip>свернуть, чтобы скрыть сведения обо всех событиях календаря</collapsetip>
         <loadingsmall>погрузка...</loadingsmall>
+        <closewindowgcalendartoken>теперь вы можете закрыть это окно</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>список рассылки</list>

@@ -27,6 +27,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 // phpcs:disable Generic.Files.LineLength
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+
 if (!check_user()) {
     action_denied();
 }
@@ -287,9 +290,7 @@ if (getParam("action") == "sendmail") {
         javascript_headers();
         die();
     }
-    set_include_path("lib/phpmailer" . PATH_SEPARATOR . get_include_path());
-    require_once "src/PHPMailer.php";
-    require_once "src/SMTP.php";
+    require_once "lib/phpmailer/vendor/autoload.php";
     require_once "php/getmail.php";
     $sended = 0;
     $haserror = 0;
