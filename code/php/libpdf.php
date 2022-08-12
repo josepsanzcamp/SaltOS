@@ -29,7 +29,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 // phpcs:disable PSR1.Classes.ClassDeclaration
 // phpcs:disable PSR1.Methods.CamelCapsMethodName
 
-require_once "lib/tcpdf/tcpdf.php";
+require_once "lib/tcpdf/vendor/autoload.php";
 
 class PDF extends TCPDF
 {

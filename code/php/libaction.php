@@ -1115,7 +1115,7 @@ function __pdfview_output_handler($_RESULT)
 */
 function __barcode($msg, $w, $h, $m, $s, $t)
 {
-    require_once "lib/tcpdf/tcpdf_barcodes_1d.php";
+    require_once "lib/tcpdf/vendor/autoload.php";
     $barcode = new TCPDFBarcode($msg, $t);
     $array = $barcode->getBarcodeArray();
     if (!isset($array["maxw"])) {
@@ -1172,7 +1172,7 @@ function __barcode($msg, $w, $h, $m, $s, $t)
 */
 function __qrcode($msg, $s, $m)
 {
-    require_once "lib/tcpdf/tcpdf_barcodes_2d.php";
+    require_once "lib/tcpdf/vendor/autoload.php";
     $levels = array("L","M","Q","H");
     $factors = array(0.07,0.15,0.25,0.30);
     for ($i = 0; $i < 4; $i++) {

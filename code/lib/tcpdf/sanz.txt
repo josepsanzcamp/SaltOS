@@ -1,11 +1,5 @@
 
-I removed for security reasons the follow directories:
-- tests
-- tools
-- scripts
-- examples
-
-Fixed a php8.1 deprecation adding a intval calls when defines the $col variable:
+In file vendor/tecnickcom/tcpdf/include/barcodes/qrcode.php, I have fixed a php8.1 deprecation adding a intval calls when defines the $col variable:
 
 	/**
 	 * Return Reed-Solomon block code.
