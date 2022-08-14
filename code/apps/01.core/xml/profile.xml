@@ -34,7 +34,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <title lang="true">formupdate</title>
                 <query>
                     <default eval="true">"SELECT '0' id FROM tbl_usuarios WHERE id='".current_user()."'"</default>
-                    <gcalendar ifeval="check_user('profile','gcalendar')" eval="true">"SELECT g.* FROM tbl_usuarios u LEFT JOIN tbl_gcalendar g ON g.id_usuario=u.id WHERE u.id='".current_user()."'"</gcalendar>
                     <feeds_old ifeval="check_user('profile','feeds')">
                         <feeds_old eval="true">"SELECT id,id_usuario,CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".current_user()."' ORDER BY title2 ASC,id ASC"</feeds_old>
                     </feeds_old>
@@ -178,9 +177,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                 </fieldset>
             </default>
-            <gcalendar ifeval="check_user('profile','gcalendar')">
-                <include include="xml/common/gcalendar.xml" replace="true" />
-            </gcalendar>
             <feeds ifeval="check_user('profile','feeds')" include="xml/common/feedstest.xml" replace="true" />
             <correo_old ifeval="check_user('profile','correo')">
                 <fieldset>
@@ -287,16 +283,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             "id_usuario"=>current_user(),
             "button"=>"f${i}",
             "codigo"=>getParam("quick_button_f${i}")
-        ))</query>
-        <query ifeval="check_user('profile','gcalendar')" match="gcalendar" prefix="true" eval="true">execute_query("SELECT COUNT(*) FROM tbl_gcalendar WHERE id_usuario='".current_user()."'")?make_update_query("tbl_gcalendar",array(
-            "email"=>getParam("email"),
-            "token"=>getParam("token")
-        ),make_where_query(array(
-            "id_usuario"=>current_user()
-        ))):make_insert_query("tbl_gcalendar",array(
-            "id_usuario"=>current_user(),
-            "email"=>getParam("email"),
-            "token"=>getParam("token")
         ))</query>
         <query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_registros WHERE id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."') AND id_aplicacion='".page2id("feeds")."'":""</query>
         <query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."'":""</query>

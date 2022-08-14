@@ -97,22 +97,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <by>بواسطة </by>
         <calendarinfo>اظهار المعلومات الي التاريخ:</calendarinfo>
         <add>إضافة حدث</add>
-        <gcalendar>تقويم Google </gcalendar>
-        <gcalendartip>مزامنة التقويم بين تقويم Google و تقويم SaltOS</gcalendartip>
-        <notgcalendaremail>لم تقم بتهيئة حساب الافضليات لتقويم Google</notgcalendaremail>
-        <invalidgcalendartoken>البيانات الواصلة لحسابتقويم قوقل لديك غير صحيحة</invalidgcalendartoken>
-        <requestgcalendartoken>انقر هنا للحصول على رمز وصول</requestgcalendartoken>
-        <insertgcalendar>أحداث SaltOS المنشئة علي تقويم Google :</insertgcalendar>
-        <updategcalendar>أحداث SaltOS المحدثة علي تقويم Google :</updategcalendar>
-        <insertsaltos>أحداث تقويم Google التي تم إنشائها علي SaltOS:</insertsaltos>
-        <updatesaltos>أحداث تقويم Google التي تم تحديثها علي SaltOS:</updatesaltos>
-        <notinsertupdate>لا يوجد أحداث لليتم تحديثها</notinsertupdate>
         <expand>توسيع</expand>
         <expandtip>قم بالتوسيع لاظهارالتفاصل لجميع الاحداث علي التقويم</expandtip>
         <collapse>تضييق</collapse>
         <collapsetip>التضييق لاخفاء التفاصيل لجميع الأحداث علي التقويم</collapsetip>
         <loadingsmall>جاري التحميل...</loadingsmall>
-        <closewindowgcalendartoken>يمكنك الآن إغلاق هذه النافذة</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>قائمة البريد</list>

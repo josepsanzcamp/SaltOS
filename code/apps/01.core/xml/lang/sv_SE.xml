@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>Ny post</correonew>
         <addmetocc>Lägg till mig som CC i alla e-postmeddelanden jag skickar</addmetocc>
         <defaultcrt>Aktivera som standard mottagningsbekräftelsen</defaultcrt>
-        <gcalendar>Google Kalender</gcalendar>
-        <prefgcalendar>Synkronisering av kalendern med tjänsten Google Kalender</prefgcalendar>
-        <prefgcalendar2>Med det här alternativet kan du använda kalendern från SaltOS och från Google Kalender, hålla data uppdaterade automatiskt och utan att oroa dig för att behöva kopiera data från en kalender till den andra</prefgcalendar2>
-        <emailgcalendar>Gmail-e-postkonto</emailgcalendar>
-        <tokengcalendar>åtkomsttoken</tokengcalendar>
         <feedstitle>Konfigurera flödena du vill läsa från SaltOS (RSS 1.0, RSS 2.0 och Atom 1.0)</feedstitle>
         <url>URL</url>
         <title>Titel</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>Ny signatur</emailsignaturenew>
         <correonew>Ny post</correonew>
         <title_correo_new>Ställ in ett nytt POP3-e-postkonto för din användare</title_correo_new>
-        <gcalendar>Google Kalender</gcalendar>
-        <prefgcalendar>Synkronisering av kalendern med tjänsten Google Kalender</prefgcalendar>
-        <prefgcalendar2>Med det här alternativet kan du använda kalendern från SaltOS och från Google Kalender, hålla data uppdaterade automatiskt och utan att oroa dig för att behöva kopiera data från en kalender till den andra</prefgcalendar2>
-        <emailgcalendar>Gmail-e-postkonto</emailgcalendar>
-        <tokengcalendar>åtkomsttoken</tokengcalendar>
         <addmetocc>Lägg till mig som CC i alla e-postmeddelanden jag skickar</addmetocc>
         <defaultcrt>Aktivera som standard mottagningsbekräftelsen</defaultcrt>
         <feedstitle>Konfigurera flödena du vill läsa från SaltOS (RSS 1.0, RSS 2.0 och Atom 1.0)</feedstitle>

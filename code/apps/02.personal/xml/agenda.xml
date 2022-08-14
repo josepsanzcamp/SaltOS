@@ -91,7 +91,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <include>js/calendar.js</include>
             </cache>
             <function>notify_clear() { setParam("page","agenda"); setParam("action","clear"); submit1(); }</function>
-            <function>google_calendar() { setParam("page","agenda"); setParam("action","gcalendar"); submit1(); }</function>
         </javascript>
         <styles>
             <cache>
@@ -313,15 +312,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 </field>
                 <field>
                     <type>button</type>
-                    <value lang="true">gcalendar</value>
-                    <onclick>google_calendar()</onclick>
-                    <icon eval="true">ICON("upload")</icon>
-                    <tip lang="true">gcalendartip</tip>
-                    <class>nowrap contextmenu</class>
-                    <width>1px</width>
-                </field>
-                <field>
-                    <type>button</type>
                     <value lang="true">notifyclear</value>
                     <onclick>notify_clear()</onclick>
                     <icon eval="true">ICON("reset")</icon>
@@ -411,7 +401,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <title lang="true">forminsert</title>
                 <query>
                     <query include="xml/common/qpermcreate.xml" replace="true" />
-                    <default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop,'".current_user()."' ids_asignados,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop,'' id_gcalendar,'' sync_gcalendar FROM tbl_agenda WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_posiblecli"))."' id_posiblecli,'".intval(getParam("id_presupuesto"))."' id_presupuesto,'".getParam("dstart",current_datetime())."' dstart,'".getParam("dstop",current_datetime())."' dstop,'".current_user()."' ids_asignados,'".CONFIG('df_tipo_evento_agenda')."' id_tipoevento,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop,'".intval(getParam("id_campanya"))."' id_campanya"</default>
+                    <default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop,'".current_user()."' ids_asignados,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop FROM tbl_agenda WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_posiblecli"))."' id_posiblecli,'".intval(getParam("id_presupuesto"))."' id_presupuesto,'".getParam("dstart",current_datetime())."' dstart,'".getParam("dstop",current_datetime())."' dstop,'".current_user()."' ids_asignados,'".CONFIG('df_tipo_evento_agenda')."' id_tipoevento,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop,'".intval(getParam("id_campanya"))."' id_campanya"</default>
                     <files_new include="xml/common/qfilesnew.xml" replace="true"/>
                 </query>
             </insert>
@@ -443,10 +433,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <row>
                         <field>
                             <name>id</name>
-                            <type>hidden</type>
-                        </field>
-                        <field>
-                            <name>id_gcalendar</name>
                             <type>hidden</type>
                         </field>
                         <field>

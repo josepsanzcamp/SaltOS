@@ -97,22 +97,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <by>par</by>
         <calendarinfo>Calendrier information:</calendarinfo>
         <add>Ajouter un évènement </add>
-        <gcalendar>Google Agenda</gcalendar>
-        <gcalendartip>des événements de synchronisation entre Google Agenda et Saltos</gcalendartip>
-        <notgcalendaremail>Vous n'avez pas configuré les préférences de compte Google Agenda</notgcalendaremail>
-        <invalidgcalendartoken>Données accéder à votre compte Google Agenda est incorrect</invalidgcalendartoken>
-        <requestgcalendartoken>Cliquez ici pour obtenir un jeton d'accès</requestgcalendartoken>
-        <insertgcalendar>évènements Saltos créé dans Google Agenda:</insertgcalendar>
-        <updategcalendar>évènements Saltos à jour dans Google Agenda:</updategcalendar>
-        <insertsaltos>Google événements de calendrier créé en Saltos:</insertsaltos>
-        <updatesaltos>Google événements de calendrier mis à jour en Saltos:</updatesaltos>
-        <notinsertupdate>Il n'y a pas d'événements pour mettre à jour</notinsertupdate>
         <expand>Développer</expand>
         <expandtip>Expension</expandtip>
         <collapse>Diminuer</collapse>
         <collapsetip>Réduire pour masquer les détails de tous les événements du calendrier</collapsetip>
         <loadingsmall> Chargement...</loadingsmall>
-        <closewindowgcalendartoken>Vous pouvez maintenant fermer cette fenêtre</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Liste d'envoi par courriel</list>

@@ -219,12 +219,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <nombre>Eliminar todos los registros</nombre>
         </row>
         <row>
-            <id>17</id>
-            <codigo>gcalendar</codigo>
-            <pos>53</pos>
-            <nombre>Google Calendar</nombre>
-        </row>
-        <row>
             <id>18</id>
             <codigo>feeds</codigo>
             <pos>54</pos>

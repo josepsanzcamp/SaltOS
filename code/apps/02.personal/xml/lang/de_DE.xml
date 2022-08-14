@@ -97,22 +97,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <by>durch</by>
         <calendarinfo>Anzeigen von Informationen auf dem Laufenden: </calendarinfo>
         <add>Termin hinzufügen</add>
-        <gcalendar>Google Kalender</gcalendar>
-        <gcalendartip>Wechseln Sync Ereignisse zwischen Google Kalender und</gcalendartip>
-        <notgcalendaremail>Nicht Ihr Google Kalender-Konto Vorlieben eingestellt</notgcalendaremail>
-        <invalidgcalendartoken>Datenzugriff auf Ihrem Google Kalender-Konto ist falsch</invalidgcalendartoken>
-        <requestgcalendartoken>Klicken sie hier, um ein zugriffstoken zu erhalten</requestgcalendartoken>
-        <insertgcalendar>SaltOS Termine in Google Kalender erstellt: </insertgcalendar>
-        <updategcalendar>Gehe zu Datum Termine in Google Kalender: </updategcalendar>
-        <insertsaltos>Google Termine in SaltOS Kalender erstellt: </insertsaltos>
-        <updatesaltos>Google Kalender Ereignisse in Salt Datum: </updatesaltos>
-        <notinsertupdate>Es gibt keine Termine zu aktualisieren</notinsertupdate>
         <expand>Ausklappen</expand>
         <expandtip>Ausklappen um die Details aller Termine anzuzeigen</expandtip>
         <collapse>Einklappen</collapse>
         <collapsetip>Einklappen um die Details aller Termine zu verbergen</collapsetip>
         <loadingsmall>Bitte warten ...</loadingsmall>
-        <closewindowgcalendartoken>Sie können dieses fenster nun schließen</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>E-Mails</list>

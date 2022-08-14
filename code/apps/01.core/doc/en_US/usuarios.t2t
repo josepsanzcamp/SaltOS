@@ -36,7 +36,7 @@ For more information about the filter options listed in the **[ayuda general htt
 
 ==Users Form==
 
-This is the application of users, it may add, modify and view all user data classified in different tabs: main data, application permissions, group user permissions record, Google calendar, subscribed feeds, email accounts, data on the registry modifications, ...
+This is the application of users, it may add, modify and view all user data classified in different tabs: main data, application permissions, group user permissions record, subscribed feeds, email accounts, data on the registry modifications, ...
 
 ===Data Tab User===
 
@@ -75,12 +75,6 @@ In this tab you can assign specific user groups.
 In this tab you can block specific records relevant to confidentiality.
 
 [usuarios-formulario-permisos-registro.png]
-
-===Google calendar tab===
-
-In this tab you can set up synchronization with your Google calendars
-
-[usuarios-formulario-google-calendar.png]
 
 ===Feeds tab configured===
 

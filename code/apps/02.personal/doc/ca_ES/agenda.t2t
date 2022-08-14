@@ -5,7 +5,7 @@
 
 L'agenda de SaltOS li permetrà gestionar fàcilment les seves reunions i esdeveniments. Pot relacionar les entrades a l'agenda amb un client, projecte, pressupost, etc. a més de assignar a diversos usuaris.
 
-SaltOS li recordarà automàticament els propers esdeveniments i, si això no és suficient, podrà sincronitzar l'agenda de SaltOS amb //Google Calendar//.
+SaltOS li recordarà automàticament els propers esdeveniments.
 
 ==Les dues vistes de l'agenda==
 
@@ -50,8 +50,6 @@ La vista //Calendari//  li mostrarà el mes actual en forma de graella, amb un 
 [agenda-calendario.png]
 
 Per expandir o contraure el detall de tots els esdeveniments mostrats, feu clic al botó corresponent a la cantonada superior dreta. També pot reiniciar les notificacions fent clic al botó //Notificacions//.
-
-Per sincronitzar l'agenda amb //Google Calendar//, Feu clic al botó corresponent a la part superior. Tingueu en compte que heu d'haver definit prèviament el seu compte de Google a l'aplicació //El meu perfil//. El procés de sincronització pot trigar uns instants, depenent de la velocitat de connexió, l'estat del servei de Google i la quantitat d'esdeveniments a sincronitzar.
 
 ==Formulari de l'esdeveniment==
 

@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>Neues E-Mail Konto</correonew>
         <addmetocc>Mich als CC zu allen E-Mail hinzufügen die versandt werden</addmetocc>
         <defaultcrt>Empfangsbestätigung standardmäßig anfordern</defaultcrt>
-        <gcalendar>Google Kalender</gcalendar>
-        <prefgcalendar>Synchronisation mit Google Kalender</prefgcalendar>
-        <prefgcalendar2>Mit dieser Option können Sie den SaltOS Kalender über Google Kalender verwenden. Die Daten werden automatisch syncronisiert um beide aktuell zu halten.</prefgcalendar2>
-        <emailgcalendar>Google Konto</emailgcalendar>
-        <tokengcalendar>Zugangstoken</tokengcalendar>
         <feedstitle>Fügen Sie den RSS-Feed hinzu den Sie in SaltOS lesen wollen (RSS 1.0, RSS 2.0 und Atom 1.0)</feedstitle>
         <url>URL</url>
         <title>Titel</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>Neue Signatur</emailsignaturenew>
         <correonew>Neues E-Mail Konto</correonew>
         <title_correo_new>Konfigurieren Sie hier Ihr neues E-Mail Konto</title_correo_new>
-        <gcalendar>Google Kalender</gcalendar>
-        <prefgcalendar>Synchronisation mit Google Kalender</prefgcalendar>
-        <prefgcalendar2>Mit dieser Option können Sie den SaltOS Kalender über Google Kalender verwenden. Die Daten werden automatisch syncronisiert um beide aktuell zu halten.</prefgcalendar2>
-        <emailgcalendar>Google Konto</emailgcalendar>
-        <tokengcalendar>Zugangstoken</tokengcalendar>
         <addmetocc>Mich als CC zu allen E-Mail hinzufügen die versandt werden</addmetocc>
         <defaultcrt>Empfangsbestätigung standardmäßig anfordern</defaultcrt>
         <feedstitle>Fügen Sie den RSS-Feed hinzu den Sie in SaltOS lesen wollen (RSS 1.0, RSS 2.0 und Atom 1.0)</feedstitle>

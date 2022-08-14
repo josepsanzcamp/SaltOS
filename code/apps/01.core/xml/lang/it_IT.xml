@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>Nuova posta</correonew>
         <addmetocc>Aggiungimi come CC in tutte le email che invio</addmetocc>
         <defaultcrt>Attiva per impostazione predefinita la richiesta di conferma della ricezione</defaultcrt>
-        <gcalendar>Google Calendar</gcalendar>
-        <prefgcalendar>Sincronizzazione del calendario con il servizio Google Calendar</prefgcalendar>
-        <prefgcalendar2>Con questa opzione, puoi utilizzare il calendario di SaltOS e di Google Calendar, mantenendo i dati aggiornati automaticamente e senza preoccuparti di dover replicare i dati da un calendario all'altro</prefgcalendar2>
-        <emailgcalendar>Account di posta elettronica gmail</emailgcalendar>
-        <tokengcalendar>Token di accesso</tokengcalendar>
         <feedstitle>Configura i feed che vuoi leggere da SaltOS (RSS 1.0, RSS 2.0 e Atom 1.0)</feedstitle>
         <url>URL</url>
         <title>Titolo</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>Nuova firma</emailsignaturenew>
         <correonew>Nuova posta</correonew>
         <title_correo_new>Imposta un nuovo account e-mail POP3 per il tuo utente</title_correo_new>
-        <gcalendar>Google Calendar</gcalendar>
-        <prefgcalendar>Sincronizzazione del calendario con il servizio Google Calendar</prefgcalendar>
-        <prefgcalendar2>Con questa opzione, puoi utilizzare il calendario di SaltOS e di Google Calendar, mantenendo i dati aggiornati automaticamente e senza preoccuparti di dover replicare i dati da un calendario all'altro</prefgcalendar2>
-        <emailgcalendar>Account di posta elettronica gmail</emailgcalendar>
-        <tokengcalendar>Token di accesso</tokengcalendar>
         <addmetocc>Aggiungimi come CC in tutte le email che invio</addmetocc>
         <defaultcrt>Attiva per impostazione predefinita la richiesta di conferma della ricezione</defaultcrt>
         <feedstitle>Configura i feed che vuoi leggere da SaltOS (RSS 1.0, RSS 2.0 e Atom 1.0)</feedstitle>

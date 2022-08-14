@@ -97,22 +97,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <by>door</by>
         <calendarinfo>Toont informatie tot nu toe:</calendarinfo>
         <add>Evenement toevoegen</add>
-        <gcalendar>Google Agenda</gcalendar>
-        <gcalendartip>Synchroniseer evenementen tussen SaltOS en Google Agenda</gcalendartip>
-        <notgcalendaremail>Je hebt je Google Agenda-account niet ingesteld in voorkeuren</notgcalendaremail>
-        <invalidgcalendartoken>De toegangsgegevens tot uw Google Agenda-account zijn onjuist</invalidgcalendartoken>
-        <requestgcalendartoken>Klik hier om een toegangstoken te krijgen</requestgcalendartoken>
-        <insertgcalendar>SaltOS-evenementen gemaakt in Google Agenda:</insertgcalendar>
-        <updategcalendar>SaltOS-evenementen bijgewerkt op Google Agenda:</updategcalendar>
-        <insertsaltos>Google Agenda-evenementen gemaakt in SaltOS:</insertsaltos>
-        <updatesaltos>Bijgewerkte Google Agenda-evenementen in SaltOS:</updatesaltos>
-        <notinsertupdate>Er zijn geen evenementen om bij te werken</notinsertupdate>
         <expand>Breid uit</expand>
         <expandtip>Vouw uit om de details van alle agenda-afspraken weer te geven</expandtip>
         <collapse>Samenvouwen</collapse>
         <collapsetip>Vouw samen om de details van alle agenda-afspraken te verbergen</collapsetip>
         <loadingsmall>Bezig met laden ...</loadingsmall>
-        <closewindowgcalendartoken>U kunt dit venster nu sluiten</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Mailinglijst</list>

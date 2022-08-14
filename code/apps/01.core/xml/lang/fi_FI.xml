@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>Uusi posti</correonew>
         <addmetocc>Lisää minut CC: ksi kaikkiin lähettämiin sähköposteihin</addmetocc>
         <defaultcrt>Aktivoi oletuksena vastaanoton vahvistuspyyntö</defaultcrt>
-        <gcalendar>Google-kalenteri</gcalendar>
-        <prefgcalendar>Kalenterin synkronointi Google-kalenteripalvelun kanssa</prefgcalendar>
-        <prefgcalendar2>Tämän vaihtoehdon avulla voit käyttää SaltOS: n ja Google-kalenterin kalenteria pitämällä tiedot päivitettyinä automaattisesti ja huolehtimatta siitä, että sinun on kopioitava tietoja kalenterista toiseen</prefgcalendar2>
-        <emailgcalendar>Gmail-sähköpostitili</emailgcalendar>
-        <tokengcalendar>Käyttöoikeus</tokengcalendar>
         <feedstitle>Määritä syötteet, jotka haluat lukea SaltOSista (RSS 1.0, RSS 2.0 ja Atom 1.0)</feedstitle>
         <url>URL-</url>
         <title>Otsikko</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>Uusi allekirjoitus</emailsignaturenew>
         <correonew>Uusi posti</correonew>
         <title_correo_new>Asenna käyttäjällesi uusi POP3-sähköpostitili</title_correo_new>
-        <gcalendar>Google-kalenteri</gcalendar>
-        <prefgcalendar>Kalenterin synkronointi Google-kalenteripalvelun kanssa</prefgcalendar>
-        <prefgcalendar2>Tämän vaihtoehdon avulla voit käyttää SaltOS: n ja Google-kalenterin kalenteria pitämällä tiedot päivitettyinä automaattisesti ja huolehtimatta siitä, että sinun on kopioitava tietoja kalenterista toiseen</prefgcalendar2>
-        <emailgcalendar>Gmail-sähköpostitili</emailgcalendar>
-        <tokengcalendar>Käyttöoikeus</tokengcalendar>
         <addmetocc>Lisää minut CC: ksi kaikkiin lähettämiin sähköposteihin</addmetocc>
         <defaultcrt>Aktivoi oletuksena vastaanoton vahvistuspyyntö</defaultcrt>
         <feedstitle>Määritä syötteet, jotka haluat lukea SaltOSista (RSS 1.0, RSS 2.0 ja Atom 1.0)</feedstitle>

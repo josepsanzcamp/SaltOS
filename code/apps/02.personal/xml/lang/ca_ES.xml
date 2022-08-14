@@ -97,22 +97,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <by>per</by>
         <calendarinfo>Mostrant informació en data:</calendarinfo>
         <add>Afegir event</add>
-        <gcalendar>Google Calendar</gcalendar>
-        <gcalendartip>Sincronitzar events entre SaltOS i Google Calendar</gcalendartip>
-        <notgcalendaremail>No ha configurat el seu compte de Google Calendar a les preferències</notgcalendaremail>
-        <invalidgcalendartoken>Les dades d'accés al vostre compte de Google Calendar són incorrectes</invalidgcalendartoken>
-        <requestgcalendartoken>Faci clic aquí per obtenir un token d'accès</requestgcalendartoken>
-        <insertgcalendar>Events de SaltOS creats a Google Calendar:</insertgcalendar>
-        <updategcalendar>Events de SaltOS actualitzats a Google Calendar :</updategcalendar>
-        <insertsaltos>Events de Google Calendar creats a SaltOS:</insertsaltos>
-        <updatesaltos>Events de Google Calendar actualitzats a SaltOS:</updatesaltos>
-        <notinsertupdate>No hi ha events a actualitzar</notinsertupdate>
         <expand>Expandir</expand>
         <expandtip>Expandir per mostrar el detall de tots els events del calendari</expandtip>
         <collapse>Contraure</collapse>
         <collapsetip>Contraure per ocultar el detall de tots els events del calendari</collapsetip>
         <loadingsmall>Carregant...</loadingsmall>
-        <closewindowgcalendartoken>Ja pot tancar aquesta finestra</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Llistat de correus</list>

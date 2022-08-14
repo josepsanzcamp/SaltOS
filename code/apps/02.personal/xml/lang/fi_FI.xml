@@ -97,22 +97,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <by>mennessä</by>
         <calendarinfo>Näytetään tiedot tähän mennessä:</calendarinfo>
         <add>Lisää tapahtuma</add>
-        <gcalendar>Google-kalenteri</gcalendar>
-        <gcalendartip>Synkronoi tapahtumat SaltOS: n ja Google-kalenterin välillä</gcalendartip>
-        <notgcalendaremail>Et ole määrittänyt Google-kalenteritiliäsi asetuksissa</notgcalendaremail>
-        <invalidgcalendartoken>Google-kalenteritilisi käyttöoikeustiedot ovat vääriä</invalidgcalendartoken>
-        <requestgcalendartoken>Napsauta tätä saadaksesi käyttöoikeustunnuksen</requestgcalendartoken>
-        <insertgcalendar>Google-kalenteriin luodut SaltOS-tapahtumat:</insertgcalendar>
-        <updategcalendar>SaltOS-tapahtumat päivitettiin Google-kalenterissa:</updategcalendar>
-        <insertsaltos>SaltOSissa luodut Google-kalenteritapahtumat:</insertsaltos>
-        <updatesaltos>Päivitetyt Google-kalenteritapahtumat SaltOS: ssa:</updatesaltos>
-        <notinsertupdate>Päivitettäviä tapahtumia ei ole</notinsertupdate>
         <expand>Laajentaa</expand>
         <expandtip>Laajenna näyttääksesi kalenteritapahtumien yksityiskohdat</expandtip>
         <collapse>Sopimus</collapse>
         <collapsetip>Pienennä piilottaaksesi kalenteritapahtumien yksityiskohdat</collapsetip>
         <loadingsmall>Ladataan ...</loadingsmall>
-        <closewindowgcalendartoken>Voit nyt sulkea tämän ikkunan</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Postituslista</list>

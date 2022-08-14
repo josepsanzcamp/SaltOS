@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>Mail chu'</correonew>
         <addmetocc>JIHvaD chel je CC qaStaHvIS Hoch emails vIngeHlI'</addmetocc>
         <defaultcrt>Receipt confirmation request enable pong default</defaultcrt>
-        <gcalendar>Google 'ISjaH</gcalendar>
-        <prefgcalendar>Agenda synchronizing google 'ISjaH chavmoH</prefgcalendar>
-        <prefgcalendar2>Je DuH 'ISjaH vo' saltos 'ej google 'ISjaH, De' updated automatically pol je Hutlh yIDaQo' vIHtaHbogh vay' De' replicate vo' 'ISjaH wa' latlh laH lo' SoH</prefgcalendar2>
-        <emailgcalendar>Gmail email account</emailgcalendar>
-        <tokengcalendar>Naw' token</tokengcalendar>
         <feedstitle>Je' laD vo' saltos (rss 1.0, rss 2.0, 'ej Atom 1.0) DaneH'a' configure</feedstitle>
         <url>URL</url>
         <title>Title</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>Signature chu'</emailsignaturenew>
         <correonew>Mail chu'</correonew>
         <title_correo_new>Cher chu' pop3 email account user</title_correo_new>
-        <gcalendar>Google 'ISjaH</gcalendar>
-        <prefgcalendar>Agenda synchronizing google 'ISjaH chavmoH</prefgcalendar>
-        <prefgcalendar2>Je DuH 'ISjaH vo' saltos 'ej google 'ISjaH, De' updated automatically pol je Hutlh yIDaQo' vIHtaHbogh vay' De' replicate vo' 'ISjaH wa' latlh laH lo' SoH</prefgcalendar2>
-        <emailgcalendar>Gmail email account</emailgcalendar>
-        <tokengcalendar>Naw' token</tokengcalendar>
         <addmetocc>JIHvaD chel je CC qaStaHvIS Hoch emails vIngeHlI'</addmetocc>
         <defaultcrt>Receipt confirmation request enable pong default</defaultcrt>
         <feedstitle>Je' laD vo' saltos (rss 1.0, rss 2.0, 'ej Atom 1.0) DaneH'a' configure</feedstitle>

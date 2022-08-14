@@ -290,34 +290,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </fields>
         </table>
         <table>
-            <name>tbl_gcalendar</name>
-            <fields>
-                <field>
-                    <name>id</name>
-                    <type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
-                    <pkey>true</pkey>
-                </field>
-                <field>
-                    <name>id_usuario</name>
-                    <type>INT(11)</type>
-                    <fkey>tbl_usuarios</fkey>
-                    <fcheck>false</fcheck>
-                </field>
-                <field>
-                    <name>email</name>
-                    <type>VARCHAR(255)</type>
-                </field>
-                <field>
-                    <name>token</name>
-                    <type>VARCHAR(255)</type>
-                </field>
-                <field>
-                    <name>token2</name>
-                    <type>TEXT</type>
-                </field>
-            </fields>
-        </table>
-        <table>
             <name>tbl_grupos</name>
             <fields>
                 <field>

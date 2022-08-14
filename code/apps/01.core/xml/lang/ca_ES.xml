@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>Nou correu</correonew>
         <addmetocc>Afegir a la meva com CC en tots els emails que enviï</addmetocc>
         <defaultcrt>Activar per defecte la sol licitud de confirmació de recepció</defaultcrt>
-        <gcalendar>Google Calendar</gcalendar>
-        <prefgcalendar>Sincronització de l'agenda amb el servei de Google Calendar</prefgcalendar>
-        <prefgcalendar2>Amb aquesta opció, vostè pot utilitzar l'agenda des de SaltOS i des de Google Calendar, mantenint les dades actualitzades de forma automàtica i sense preocupar d'haver de replicar les dades d'una agenda a l'altra</prefgcalendar2>
-        <emailgcalendar>Compte de correu de gmail</emailgcalendar>
-        <tokengcalendar>Token d'accès</tokengcalendar>
         <feedstitle>Configuri els feeds que vol llegir des de SaltOS ( RSS 1.0, RSS 2.0 i Atom 1.0)</feedstitle>
         <url>URL</url>
         <title>Títol</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>Nova signatura</emailsignaturenew>
         <correonew>Nou correu</correonew>
         <title_correo_new>Configureu un compte de correu POP3 per a la seva usuari</title_correo_new>
-        <gcalendar>Google Calendar</gcalendar>
-        <prefgcalendar>Sincronització de l'agenda amb el servei de Google Calendar</prefgcalendar>
-        <prefgcalendar2>Amb aquesta opció, vostè pot utilitzar l'agenda des de SaltOS i des de Google Calendar, mantenint les dades actualitzades de forma automàtica i sense preocupar d'haver de replicar les dades d'una agenda a l'altra</prefgcalendar2>
-        <emailgcalendar>Compte de correu de gmail</emailgcalendar>
-        <tokengcalendar>Token d'accès</tokengcalendar>
         <addmetocc>Afegir a la meva com CC en tots els emails que enviï</addmetocc>
         <defaultcrt>Activar per defecte la sol licitud de confirmació de recepció</defaultcrt>
         <feedstitle>Configuri els feeds que vol llegir des de SaltOS (RSS 1.0, RSS 2.0 i Atom 1.0)</feedstitle>

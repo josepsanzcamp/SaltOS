@@ -97,22 +97,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <by>av</by>
         <calendarinfo>Viser informasjon til dags dato:</calendarinfo>
         <add>Legg til arrangement</add>
-        <gcalendar>Google Kalender</gcalendar>
-        <gcalendartip>Synkroniser hendelser mellom SaltOS og Google Kalender</gcalendartip>
-        <notgcalendaremail>Du har ikke konfigurert Google Kalender-kontoen i innstillinger</notgcalendaremail>
-        <invalidgcalendartoken>Tilgangsdataene til Google Kalender-kontoen din er feil</invalidgcalendartoken>
-        <requestgcalendartoken>Klikk her for å få et tilgangstoken</requestgcalendartoken>
-        <insertgcalendar>SaltOS-hendelser opprettet i Google Kalender:</insertgcalendar>
-        <updategcalendar>SaltOS-hendelser oppdatert på Google Kalender:</updategcalendar>
-        <insertsaltos>Google Kalender-hendelser opprettet i SaltOS:</insertsaltos>
-        <updatesaltos>Oppdaterte Google Kalender-hendelser i SaltOS:</updatesaltos>
-        <notinsertupdate>Det er ingen hendelser å oppdatere</notinsertupdate>
         <expand>Utvide</expand>
         <expandtip>Utvid for å vise detaljer om alle kalenderhendelser</expandtip>
         <collapse>Kontrakt</collapse>
         <collapsetip>Skjul for å skjule detaljene for alle kalenderhendelser</collapsetip>
         <loadingsmall>Laster inn ...</loadingsmall>
-        <closewindowgcalendartoken>Du kan nå lukke dette vinduet</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Postliste</list>

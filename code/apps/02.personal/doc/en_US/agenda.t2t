@@ -5,7 +5,7 @@
 
 The agenda of SaltOS allows you to easily manage your meetings and events. You can relate the phonebook entries with a client, project, budget, etc. well as assign them to multiple users.
 
-SaltOS will automatically remind the upcoming events and if this is not enough, synchronize the calendar with SaltOS //Google Calendar//.
+SaltOS will automatically remind the upcoming events.
 
 ==The two calendar views==
 
@@ -50,8 +50,6 @@ The view //Calendar//  will display the current month as a grid, with one day p
 [agenda-calendario.png]
 
 To expand or collapse the detail of all the events listed, click the corresponding button in the upper right corner. You can also restart notifications by clicking the button //Notifications//.
-
-To synchronize the calendar with //Google Calendar//Click the appropriate button at the top. Note that you must have previously set up your Google account in the application //My Profile//. The synchronization process may take a while, depending on the connection speed, the service status of Google and the number of events to be synchronized.
 
 ==Event Form==
 

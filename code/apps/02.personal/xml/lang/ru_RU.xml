@@ -97,22 +97,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <by>около</by>
         <calendarinfo>отображение информации на сегодняшний день:</calendarinfo>
         <add>добавить событие</add>
-        <gcalendar>Календарь Google</gcalendar>
-        <gcalendartip>Синхронизация событий между SaltOS и Календарем Google</gcalendartip>
-        <notgcalendaremail>Вы не настроили аккаунт Google Календаря в настройках</notgcalendaremail>
-        <invalidgcalendartoken>Неверные данные для входа в аккаунт Google Календаря</invalidgcalendartoken>
-        <requestgcalendartoken>нажмите здесь, чтобы получить маркер доступа</requestgcalendartoken>
-        <insertgcalendar>События SaltOS, созданные в Календаре Google:</insertgcalendar>
-        <updategcalendar>Обновлены события SaltOS в Календаре Google:</updategcalendar>
-        <insertsaltos>События Календаря Google, созданные в SaltOS:</insertsaltos>
-        <updatesaltos>Обновлены события Календаря Google в SaltOS:</updatesaltos>
-        <notinsertupdate>нет событий для обновления</notinsertupdate>
         <expand>расширять</expand>
         <expandtip>развернуть, чтобы отобразить сведения обо всех событиях календаря</expandtip>
         <collapse>контракт</collapse>
         <collapsetip>свернуть, чтобы скрыть сведения обо всех событиях календаря</collapsetip>
         <loadingsmall>погрузка...</loadingsmall>
-        <closewindowgcalendartoken>теперь вы можете закрыть это окно</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>список рассылки</list>

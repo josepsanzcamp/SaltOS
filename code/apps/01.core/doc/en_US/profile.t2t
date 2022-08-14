@@ -7,7 +7,6 @@ SaltOS allows you to customize and configure various aspects of the application:
 
 - General Preferences (language, appearance, password, etc.)
 - Quick Menu
-- Google Calendar
 - RSS Feeds
 - Email Accounts
 
@@ -39,12 +38,6 @@ After making any changes on this tab click 'Update'.
 In this section you can add and remove buttons from fast to the top bar of SaltOS access.
 
 To add a new button, select the application you want to access directly to the corresponding dropdown button.
-
-==  Google Calendar ==
-
-[profile-google-calendar.png]
-
-To synchronize your personal calendar with your Google account, enter your Google username (usually your Gmail account) and password of it here.
 
 ==  RSS Feeds ==
 

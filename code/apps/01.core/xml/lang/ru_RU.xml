@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>новая почта</correonew>
         <addmetocc>Добавляйте меня в качестве CC во всех электронных письмах, которые я отправляю</addmetocc>
         <defaultcrt>активация запроса подтверждения получения по умолчанию</defaultcrt>
-        <gcalendar>Календарь Google</gcalendar>
-        <prefgcalendar>Синхронизация календаря со службой Google Календаря</prefgcalendar>
-        <prefgcalendar2>С помощью этой опции вы можете использовать календарь из SaltOS и из Google Calendar, обновляя данные автоматически и не беспокоясь о необходимости репликации данных из одной повестки дня в другую.</prefgcalendar2>
-        <emailgcalendar>учетная запись электронной почты gmail</emailgcalendar>
-        <tokengcalendar>маркер доступа</tokengcalendar>
         <feedstitle>Настройте каналы, которые вы хотите читать из SaltOS (RSS 1.0, RSS 2.0 и Atom 1.0)</feedstitle>
         <url>URL-АДРЕС</url>
         <title>титул</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>новая фирма</emailsignaturenew>
         <correonew>новая почта</correonew>
         <title_correo_new>Настройка новой учетной записи электронной почты POP3 для пользователя</title_correo_new>
-        <gcalendar>Календарь Google</gcalendar>
-        <prefgcalendar>Синхронизация календаря со службой Google Календаря</prefgcalendar>
-        <prefgcalendar2>С помощью этой опции вы можете использовать календарь из SaltOS и из Google Calendar, обновляя данные автоматически и не беспокоясь о необходимости репликации данных из одной повестки дня в другую.</prefgcalendar2>
-        <emailgcalendar>учетная запись электронной почты gmail</emailgcalendar>
-        <tokengcalendar>маркер доступа</tokengcalendar>
         <addmetocc>Добавляйте меня в качестве CC во всех электронных письмах, которые я отправляю</addmetocc>
         <defaultcrt>активация запроса подтверждения получения по умолчанию</defaultcrt>
         <feedstitle>Настройте каналы, которые вы хотите читать из SaltOS (RSS 1.0, RSS 2.0 и Atom 1.0)</feedstitle>

@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>بريد جديد</correonew>
         <addmetocc>اضف الي CC جميع الرسائل التي قمت بارسالها</addmetocc>
         <defaultcrt>تشغيل تطبيق تاكيد الاستلام</defaultcrt>
-        <gcalendar>تقويم Google </gcalendar>
-        <prefgcalendar>خدمة مزامنة التقويم مع تقويم Google </prefgcalendar>
-        <prefgcalendar2>مع هذا الخيار، يمكنك استخدام التقويم من تقويم Google من SaltOS، والحفاظ على البيانات المحدثة تلقائيا دون الحاجة إلى القلق حول الحاجة إلى تكرار البيانات من التقويم إلى أخر</prefgcalendar2>
-        <emailgcalendar>حساب بريد gmail</emailgcalendar>
-        <tokengcalendar>رمز الوصول</tokengcalendar>
         <feedstitle>قم بتهيئة التغذيات التي تود قرائتها من SaltOS ( RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
         <url>URL</url>
         <title>العنوان</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>توقيع جديد</emailsignaturenew>
         <correonew>ايميل جديد</correonew>
         <title_correo_new>تهيئة حساب بريد POP3 جديد للمستخدم</title_correo_new>
-        <gcalendar>تقويم قوقل</gcalendar>
-        <prefgcalendar>مزامنة التقويم مع خدمة تقويم قوقل</prefgcalendar>
-        <prefgcalendar2>بهذا الخيار يمكنك استخدام التقويم من Google  و SaltOS لمعالجة التحديثات تلقائيا بدون الانزعاج بتكرار البيانات من تقويم لاخر </prefgcalendar2>
-        <emailgcalendar>حساب بريدي علي gmail </emailgcalendar>
-        <tokengcalendar>رمز الوصول</tokengcalendar>
         <addmetocc>اضف الي الCC الخاص بي جميع رسائل البريد المرسلة</addmetocc>
         <defaultcrt>افتح المعرف الخاص بالتطبيق الافتراضي</defaultcrt>
         <feedstitle>اضبط التغذيات التي تود قرائتها من  SaltOS (RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>

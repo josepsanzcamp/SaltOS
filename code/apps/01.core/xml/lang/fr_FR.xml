@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>Nouveau e-mail</correonew>
         <addmetocc>Ajouter à mon CC tous les courriels que j'envoie</addmetocc>
         <defaultcrt>Sur l'application par défaut pour la confirmation de réception</defaultcrt>
-        <gcalendar>Google Agenda</gcalendar>
-        <prefgcalendar>Sync calendrier avec Google Calendar service</prefgcalendar>
-        <prefgcalendar2>Avec cette option, vous pouvez utiliser le calendrier à partir de Google Agenda Saltos, le maintien des données mises à jour automatiquement sans vous soucier d'avoir à dupliquer les données d'un calendrier à l'autre</prefgcalendar2>
-        <emailgcalendar>compte de messagerie Gmail</emailgcalendar>
-        <tokengcalendar>Jeton d'accès</tokengcalendar>
         <feedstitle>Configurez le flux que vous voulez lire de Saltos (RSS 1.0, RSS 2.0 et Atom 1.0)</feedstitle>
         <url>URL</url>
         <title>Titre</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>Nouvelle signature</emailsignaturenew>
         <correonew>Nouveau courriel</correonew>
         <title_correo_new>Configurer un nouveau compte de messagerie POP3 pour les utilisateurs</title_correo_new>
-        <gcalendar>Google Agenda</gcalendar>
-        <prefgcalendar>Sync calendrier avec Google Calendar service</prefgcalendar>
-        <prefgcalendar2>Avec cette option, vous pouvez utiliser le calendrier de Google Agenda et Saltos de maintenir les données mises à jour automatiquement sans vous soucier d'avoir à dupliquer les données d'un calendrier à l'autre</prefgcalendar2>
-        <emailgcalendar>compte de messagerie Gmail</emailgcalendar>
-        <tokengcalendar>Jeton d'accès</tokengcalendar>
         <addmetocc>Ajouter à mon CC tous les emails que j'envoie</addmetocc>
         <defaultcrt>Sur la reconnaissance d'application par défaut</defaultcrt>
         <feedstitle>Configurez le flux que vous voulez lire de Saltos (RSS 1.0, RSS 2.0 et Atom 1.0)</feedstitle>

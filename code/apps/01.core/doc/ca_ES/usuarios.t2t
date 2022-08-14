@@ -36,7 +36,7 @@ Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda ge
 
 ==Formulari d'usuaris==
 
-Aquesta és l'aplicació d'usuaris, amb ella podrà afegir, modificar i visionar totes les dades dels usuaris classificats en diferents pestanyes: dades principals, permisos per aplicació, grup del usuari, permisos per registre, Google calendar, informació subscrits, comptes de correu, dades sobre les modificacions del registre, ...
+Aquesta és l'aplicació d'usuaris, amb ella podrà afegir, modificar i visionar totes les dades dels usuaris classificats en diferents pestanyes: dades principals, permisos per aplicació, grup del usuari, permisos per registre, informació subscrits, comptes de correu, dades sobre les modificacions del registre, ...
 
 ===Pestanya Dades de l'usuari===
 
@@ -75,12 +75,6 @@ En aquesta pestanya es pot assignar a grups a usuaris específics.
 En aquesta pestanya podrà bloquejar registres específics en rellevància amb la confidencialitat.
 
 [usuarios-formulario-permisos-registro.png]
-
-===Pestanya Google calendar===
-
-En aquesta pestanya podreu configurar la sincronització amb els seus calendaris de Google
-
-[usuarios-formulario-google-calendar.png]
 
 ===Pestanya Feeds configurats===
 

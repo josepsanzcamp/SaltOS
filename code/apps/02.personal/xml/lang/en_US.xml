@@ -97,22 +97,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <by>by</by>
         <calendarinfo>Showing information to date:</calendarinfo>
         <add>Add Event</add>
-        <gcalendar>Google Calendar</gcalendar>
-        <gcalendartip>Sync events between Google Calendar and SaltOS</gcalendartip>
-        <notgcalendaremail>You have not configured Google Calendar account preferences</notgcalendaremail>
-        <invalidgcalendartoken>Data access your Google Calendar account is incorrect</invalidgcalendartoken>
-        <requestgcalendartoken>Click here to obtain an access token</requestgcalendartoken>
-        <insertgcalendar>SaltOS events created in Google Calendar:</insertgcalendar>
-        <updategcalendar>SaltOS events updated in Google Calendar:</updategcalendar>
-        <insertsaltos>Google Calendar events created in SaltOS:</insertsaltos>
-        <updatesaltos>Google Calendar events updated in SaltOS:</updatesaltos>
-        <notinsertupdate>There are no events to update</notinsertupdate>
         <expand>Expand</expand>
         <expandtip>Expand to show detail of all calendar events</expandtip>
         <collapse>Collapse</collapse>
         <collapsetip>Collapse to hide the details of all events calendar</collapsetip>
         <loadingsmall>Loading...</loadingsmall>
-        <closewindowgcalendartoken>You can now close this window</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Mailing List</list>

@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>Nieuwe mail</correonew>
         <addmetocc>Voeg mij toe als CC in alle e-mails die ik verstuur</addmetocc>
         <defaultcrt>Activeer standaard het bevestigingsverzoek van de receptie</defaultcrt>
-        <gcalendar>Google Agenda</gcalendar>
-        <prefgcalendar>Synchronisatie van de agenda met de Google Agenda-service</prefgcalendar>
-        <prefgcalendar2>Met deze optie kunt u de kalender van SaltOS en van Google Agenda gebruiken, waardoor de gegevens automatisch worden bijgewerkt en u zich geen zorgen hoeft te maken dat u de gegevens van de ene kalender naar de andere moet repliceren</prefgcalendar2>
-        <emailgcalendar>Gmail-e-mailaccount</emailgcalendar>
-        <tokengcalendar>Toegangstoken</tokengcalendar>
         <feedstitle>Configureer de feeds die u uit SaltOS wilt lezen (RSS 1.0, RSS 2.0 en Atom 1.0)</feedstitle>
         <url>URL</url>
         <title>Titel</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>Nieuwe handtekening</emailsignaturenew>
         <correonew>Nieuwe mail</correonew>
         <title_correo_new>Stel een nieuw POP3-e-mailaccount in voor uw gebruiker</title_correo_new>
-        <gcalendar>Google Agenda</gcalendar>
-        <prefgcalendar>Synchronisatie van de agenda met de Google Agenda-service</prefgcalendar>
-        <prefgcalendar2>Met deze optie kunt u de kalender van SaltOS en van Google Agenda gebruiken, waardoor de gegevens automatisch worden bijgewerkt en u zich geen zorgen hoeft te maken dat u de gegevens van de ene kalender naar de andere moet repliceren</prefgcalendar2>
-        <emailgcalendar>Gmail-e-mailaccount</emailgcalendar>
-        <tokengcalendar>Toegangstoken</tokengcalendar>
         <addmetocc>Voeg mij toe als CC in alle e-mails die ik verstuur</addmetocc>
         <defaultcrt>Activeer standaard het bevestigingsverzoek van de receptie</defaultcrt>
         <feedstitle>Configureer de feeds die u uit SaltOS wilt lezen (RSS 1.0, RSS 2.0 en Atom 1.0)</feedstitle>

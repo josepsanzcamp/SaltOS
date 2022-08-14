@@ -97,22 +97,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <by>pong</by>
         <calendarinfo>De' date cha':</calendarinfo>
         <add>Wani' chel</add>
-        <gcalendar>Google 'ISjaH</gcalendar>
-        <gcalendartip>Sync wanI' DuqIppu'chugh saltos google 'ISjaH</gcalendartip>
-        <notgcalendaremail>Lutmeyvam cher SoH google 'ISjaH account neH preferences</notgcalendaremail>
-        <invalidgcalendartoken>Google 'ISjaH account login details incorrect</invalidgcalendartoken>
-        <requestgcalendartoken>Click nadev naw' token</requestgcalendartoken>
-        <insertgcalendar>ChenmoH saltos wanI' qaStaHvIS google 'ISjaH:</insertgcalendar>
-        <updategcalendar>Update saltos wanI' qaStaHvIS google 'ISjaH:</updategcalendar>
-        <insertsaltos>ChenmoH google 'ISjaH wanI' qaStaHvIS saltos:</insertsaltos>
-        <updatesaltos>Update google 'ISjaH wanI' qaStaHvIS saltos:</updatesaltos>
-        <notinsertupdate>Pagh wani' update</notinsertupdate>
         <expand>Sach</expand>
         <expandtip>Sach wani' 'isjah hoch detail cha'</expandtip>
         <collapse>Dej</collapse>
         <collapsetip>Dej wani' 'isjah hoch detail so'</collapsetip>
         <loadingsmall>Loading.</loadingsmall>
-        <closewindowgcalendartoken>Tuq dah qo' dachaw'rup</closewindowgcalendartoken>
     </agenda>
     <correo>
         <list>Mail listing</list>

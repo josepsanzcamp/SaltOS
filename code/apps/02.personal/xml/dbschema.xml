@@ -105,14 +105,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <type>INT(11)</type>
                 </field>
                 <field>
-                    <name>id_gcalendar</name>
-                    <type>VARCHAR(255)</type>
-                </field>
-                <field>
-                    <name>sync_gcalendar</name>
-                    <type>INT(11)</type>
-                </field>
-                <field>
                     <name>ids_asignados</name>
                     <type>VARCHAR(250)</type>
                     <fkey>tbl_usuarios</fkey>

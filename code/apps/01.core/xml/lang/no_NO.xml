@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>Ny mail</correonew>
         <addmetocc>Legg til meg som CC i alle e-postmeldinger jeg sender</addmetocc>
         <defaultcrt>Aktiver som standard mottaksbekreftelsesforespørselen</defaultcrt>
-        <gcalendar>Google Kalender</gcalendar>
-        <prefgcalendar>Synkronisering av kalenderen med Google Kalender-tjenesten</prefgcalendar>
-        <prefgcalendar2>Med dette alternativet kan du bruke kalenderen fra SaltOS og fra Google Kalender, holde dataene oppdatert automatisk og uten å bekymre deg for å måtte kopiere dataene fra den ene kalenderen til den andre.</prefgcalendar2>
-        <emailgcalendar>Gmail-e-postkonto</emailgcalendar>
-        <tokengcalendar>Tilgangstoken</tokengcalendar>
         <feedstitle>Konfigurer innmatingene du vil lese fra SaltOS (RSS 1.0, RSS 2.0 og Atom 1.0)</feedstitle>
         <url>URL</url>
         <title>Tittel</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>Ny signatur</emailsignaturenew>
         <correonew>Ny mail</correonew>
         <title_correo_new>Sett opp en ny POP3-e-postkonto for brukeren din</title_correo_new>
-        <gcalendar>Google Kalender</gcalendar>
-        <prefgcalendar>Synkronisering av kalenderen med Google Kalender-tjenesten</prefgcalendar>
-        <prefgcalendar2>Med dette alternativet kan du bruke kalenderen fra SaltOS og fra Google Kalender, holde dataene oppdatert automatisk og uten å bekymre deg for å måtte kopiere dataene fra den ene kalenderen til den andre.</prefgcalendar2>
-        <emailgcalendar>Gmail-e-postkonto</emailgcalendar>
-        <tokengcalendar>Tilgangstoken</tokengcalendar>
         <addmetocc>Legg til meg som CC i alle e-postmeldinger jeg sender</addmetocc>
         <defaultcrt>Aktiver som standard mottaksbekreftelsesforespørselen</defaultcrt>
         <feedstitle>Konfigurer innmatingene du vil lese fra SaltOS (RSS 1.0, RSS 2.0 og Atom 1.0)</feedstitle>

@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>Nova mensagem</correonew>
         <addmetocc>Receber uma cópia de todos os emails que enviar</addmetocc>
         <defaultcrt>Ativar por padrão confirmação de leitura dos emails</defaultcrt>
-        <gcalendar>Calendário do Google</gcalendar>
-        <prefgcalendar>Sincronização da agenda com o serviço de Calendário do Google</prefgcalendar>
-        <prefgcalendar2>Com esta opção, você pode usar a agenda do SaltOS e do Google Calendar, mantendo os dados atualizados de forma automática, sem ter que se preocupar em replicar os dados de uma agenda para outra.</prefgcalendar2>
-        <emailgcalendar>Conta de mensagem de gmail</emailgcalendar>
-        <tokengcalendar>Token de acesso</tokengcalendar>
         <feedstitle>Configure os feeds que Deseja ler desde o SaltOS (RSS 1.0, RSS 2.0 e Atom 1.0)</feedstitle>
         <url>URL</url>
         <title>Título</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>Novo Email</emailsignaturenew>
         <correonew>Novo correio</correonew>
         <title_correo_new>Configure uma nova conta de correio (POP3) para seu usuário</title_correo_new>
-        <gcalendar>Calendário Google</gcalendar>
-        <prefgcalendar>Sincronização da agenda com o serviço do Google Calendar</prefgcalendar>
-        <prefgcalendar2>Com esta opção, você pode usar a agenda do SaltOS e do Google Calendar, mantendo os dados atualizados de forma automática, sem ter que se preocupar em replicar os dados de uma agenda para outra.</prefgcalendar2>
-        <emailgcalendar>Conta de correio do Gmail</emailgcalendar>
-        <tokengcalendar>Token de acesso</tokengcalendar>
         <addmetocc>Me inclua como CC em todos os emails à enviar</addmetocc>
         <defaultcrt>Ativar por padrão a confirmação de recebimento</defaultcrt>
         <feedstitle>Configure os feeds que deseja ler desde SaltOS (RSS 1.0, RSS 2.0 y Atom 1.0)</feedstitle>

@@ -7,7 +7,6 @@ SaltOS le permitirá personalizar y configurar varios aspectos de la aplicación
 
 - Preferencias Generales (idioma, aspecto, contraseña, etc.)
 - Menú rápido
-- Google Calendar
 - Feeds RSS
 - Cuentas de correo electrónico
 
@@ -39,12 +38,6 @@ Después de realizar cualquier cambio en esta pestaña haga clic en 'Actualizar'
 En este apartado podrá añadir y quitar botones de acceso rápido a la barra superior de SaltOS.
 
 Para añadir un nuevo botón, seleccione la aplicación a la quiere acceder de manera directa en el desplegable correspondiente al botón.
-
-== Google Calendar ==
-
-[profile-google-calendar.png]
-
-Para sincronizar su agenda personal con su cuenta de Google, introduzca aquí su nombre de usuario de Google (normalmente su cuenta de Gmail) y la contraseña de la misma.
 
 == Feeds RSS ==
 

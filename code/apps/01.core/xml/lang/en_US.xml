@@ -445,11 +445,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <correonew>New email</correonew>
         <addmetocc>Add to my CC all emails I send</addmetocc>
         <defaultcrt>On the default application for confirmation of receipt</defaultcrt>
-        <gcalendar>Google Calendar</gcalendar>
-        <prefgcalendar>Sync calendar with Google Calendar service</prefgcalendar>
-        <prefgcalendar2>With this option, you can use the calendar from SaltOS from Google Calendar, maintaining updated data automatically without worrying about having to replicate data from one calendar to the other</prefgcalendar2>
-        <emailgcalendar>GMail email account</emailgcalendar>
-        <tokengcalendar>Access token</tokengcalendar>
         <feedstitle>Configure the feeds you want to read from SaltOS ( RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
         <url>URL</url>
         <title>Title</title>
@@ -506,11 +501,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <emailsignaturenew>New signing</emailsignaturenew>
         <correonew>New email</correonew>
         <title_correo_new>Configure a new POP3 mail account for user</title_correo_new>
-        <gcalendar>Google Calendar</gcalendar>
-        <prefgcalendar>Sync calendar with Google Calendar service</prefgcalendar>
-        <prefgcalendar2>With this option, you can use calendar from Google Calendar and SaltOS from maintaining the updated data automatically without worrying about having to replicate data from one calendar to the other</prefgcalendar2>
-        <emailgcalendar>GMail email account</emailgcalendar>
-        <tokengcalendar>Access token</tokengcalendar>
         <addmetocc>Add to my CC all emails I send</addmetocc>
         <defaultcrt>On the default application acknowledgment</defaultcrt>
         <feedstitle>Configure the feeds you want to read from SaltOS (RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
