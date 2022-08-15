@@ -436,7 +436,7 @@ function __has_engine($engine)
 {
     static $engines = null;
     if ($engines === null) {
-        $engines = false;
+        $engines = array();
         if (getDefault("db/obj")) {
             $query = "/*MYSQL SHOW ENGINES */";
             $result = db_query($query);
