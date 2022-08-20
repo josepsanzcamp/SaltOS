@@ -582,7 +582,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://ckeditor.com/")</onclick>
                         </field>
                         <field>
-                            <label>CodeMirror v5.65.7 (MIT)</label>
+                            <label>CodeMirror v5.65.8 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://codemirror.net/")</onclick>
