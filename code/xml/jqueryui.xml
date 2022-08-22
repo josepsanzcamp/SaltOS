@@ -87,6 +87,7 @@ __JS__
         </cache>
     </css>
     <js>
+        <inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
         <cache>
             <include>lib/locutus/php.min.js</include>
             <include>lib/jquery/jquery.min.js</include>
@@ -100,9 +101,6 @@ __JS__
             <include>lib/jquery/jquery.colorpicker.min.js</include>
             <include>lib/jquery/jquery.timepicker.min.js</include>
             <include>lib/jquery/jquery.favicon.min.js</include>
-        </cache>
-        <inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
-        <cache>
             <include>lib/ckeditor/ckeditor.js</include>
             <include>lib/ckeditor/adapters/jquery.js</include>
             <include>lib/pdfjs/pdf.min.js</include>
@@ -112,6 +110,7 @@ __JS__
             <include>lib/handsontable/handsontable.full.min.js</include>
             <include>lib/jstree/jstree.min.js</include>
             <include>lib/fileupload/jquery.fileupload.min.js</include>
+            <include>js/core.js</include>
             <include>js/jqueryui.js</include>
         </cache>
     </js>
