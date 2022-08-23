@@ -20,9 +20,9 @@
             'dev_requirement' => false,
         ),
         'phpmailer/phpmailer' => array(
-            'pretty_version' => 'v6.6.3',
-            'version' => '6.6.3.0',
-            'reference' => '9400f305a898f194caff5521f64e5dfa926626f3',
+            'pretty_version' => 'v6.6.4',
+            'version' => '6.6.4.0',
+            'reference' => 'a94fdebaea6bd17f51be0c2373ab80d3d681269b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpmailer/phpmailer',
             'aliases' => array(),
