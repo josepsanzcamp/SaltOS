@@ -387,7 +387,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <logout>اغلاق الجلسة</logout>
         <ficheros>المرفقات</ficheros>
         <gestiongeneral>عام</gestiongeneral>
-        <gestionfiltros>عوامل التصفيه</gestionfiltros>
         <gestionadministracion>إدارة</gestionadministracion>
         <buscador>بحث</buscador>
         <desc_usuarios>رفع ,خفض او تعديل المستخدمين</desc_usuarios>

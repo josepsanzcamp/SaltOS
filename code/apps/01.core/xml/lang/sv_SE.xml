@@ -387,7 +387,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <logout>Logga ut</logout>
         <ficheros>Bifogade filer</ficheros>
         <gestiongeneral>Allmänna</gestiongeneral>
-        <gestionfiltros>Filter</gestionfiltros>
         <gestionadministracion>Administration</gestionadministracion>
         <buscador>Sökmotor</buscador>
         <desc_usuarios>Registrera, avsluta prenumerationen eller ändra användare</desc_usuarios>

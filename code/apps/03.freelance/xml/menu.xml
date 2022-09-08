@@ -32,7 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
         <option include="xml/common/menuoptionsreset.xml" replace="true"/>
     </group>
-    <group path="group[name=gestionfiltros]" after="true">
+    <group path="group[name=gestiongeneral]" after="true">
         <group ifeval="(
             check_user('clientes','menu') ||
             check_user('contactos','menu'))">

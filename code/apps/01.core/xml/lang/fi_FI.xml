@@ -387,7 +387,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <logout>Kirjaudu ulos</logout>
         <ficheros>Liitetyt tiedostot</ficheros>
         <gestiongeneral>Yleinen</gestiongeneral>
-        <gestionfiltros>Suodattimet</gestionfiltros>
         <gestionadministracion>Antaminen</gestionadministracion>
         <buscador>Hakukone</buscador>
         <desc_usuarios>Rekisteröi, peruuta tilaukset tai muokkaa käyttäjiä</desc_usuarios>

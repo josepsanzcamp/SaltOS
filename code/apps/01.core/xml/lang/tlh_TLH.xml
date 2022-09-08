@@ -387,7 +387,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <logout>Logout</logout>
         <ficheros>Attachment</ficheros>
         <gestiongeneral>Sa'</gestiongeneral>
-        <gestionfiltros>Filter</gestionfiltros>
         <gestionadministracion>Loh</gestionadministracion>
         <buscador>Seeker</buscador>
         <desc_usuarios>Vo' jen, unsubscribe pagh users modify</desc_usuarios>

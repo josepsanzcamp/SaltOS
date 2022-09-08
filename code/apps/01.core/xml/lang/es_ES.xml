@@ -387,7 +387,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <logout>Cerrar sesión</logout>
         <ficheros>Ficheros adjuntos</ficheros>
         <gestiongeneral>General</gestiongeneral>
-        <gestionfiltros>Filtros</gestionfiltros>
         <gestionadministracion>Administración</gestionadministracion>
         <buscador>Buscador</buscador>
         <desc_usuarios>De de alta, de baja o modifique usuarios</desc_usuarios>

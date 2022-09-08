@@ -72,20 +72,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <temp global="temp" eval="true">$temp="logout"</temp>
         <option include="xml/common/menuoptionslist.xml" replace="true"/>
     </group>
-    <temp global="temp" eval="true">$temp=execute_query("SELECT COUNT(*) FROM tbl_filters WHERE id_usuario='".current_user()."'")</temp>
-    <group global="temp" ifeval="$temp">
-        <label lang="true">gestionfiltros</label>
-        <name>gestionfiltros</name>
-        <class>menu</class>
-        <temp global="temps" eval="true">$temps=execute_query_array("SELECT codigo FROM tbl_aplicaciones WHERE id IN (SELECT id_aplicacion FROM tbl_filters WHERE id_usuario='".current_user()."') ORDER BY id")</temp>
-        <temp global="temps,temp" ifeval="count($temps)>0" foreach="temps" replace="true" as="temp">
-            <option include="xml/common/menuoptionslist.xml" replace="true"/>
-            <option include="xml/common/menuoptionsquery.xml" replace="true"/>
-            <option include="xml/common/menuoptionscreate.xml" replace="true"/>
-            <option include="xml/common/menuoptionsfilter.xml" replace="true"/>
-            <option include="xml/common/menuoptionsreset.xml" replace="true"/>
-        </temp>
-    </group>
     <group ifeval="(
         check_user('usuarios','menu') ||
         check_user('grupos','menu') ||

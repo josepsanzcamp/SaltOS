@@ -387,7 +387,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <logout>выйти из системы</logout>
         <ficheros>вложения</ficheros>
         <gestiongeneral>общее</gestiongeneral>
-        <gestionfiltros>фильтры</gestionfiltros>
         <gestionadministracion>администрация</gestionadministracion>
         <buscador>искатель</buscador>
         <desc_usuarios>регистрация, отмена подписки или изменение пользователей</desc_usuarios>

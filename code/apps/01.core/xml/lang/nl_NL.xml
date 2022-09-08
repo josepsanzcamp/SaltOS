@@ -387,7 +387,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <logout>Log uit</logout>
         <ficheros>Bijgevoegde bestanden</ficheros>
         <gestiongeneral>Algemeen</gestiongeneral>
-        <gestionfiltros>Filters</gestionfiltros>
         <gestionadministracion>Administratie</gestionadministracion>
         <buscador>Zoekmachine</buscador>
         <desc_usuarios>Gebruikers registreren, afmelden of wijzigen</desc_usuarios>
