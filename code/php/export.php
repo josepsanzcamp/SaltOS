@@ -241,6 +241,23 @@ function __export_file_excel($matrix, $title = "", $type = "Xlsx")
     if ($title != "") {
         $objPHPExcel->getActiveSheet()->setTitle(substr($title, 0, 31));
     }
+    // CONVERT ALL LONG NUMBERS TO STRING
+    foreach ($matrix as $key => $val) {
+        foreach ($val as $key2 => $val2) {
+            if (is_numeric($val2)) {
+                if (strlen($val2) > 15) {
+                    if (substr($val2, 0, 1) != "0") {
+                        $objPHPExcel->getActiveSheet()->setCellValueExplicit(
+                            __import_col2name($key2) . strval($key + 1),
+                            $val2,
+                            \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING
+                        );
+                    }
+                }
+            }
+        }
+    }
+    // CONTINUE
     $objWriter = PhpOffice\PhpSpreadsheet\IOFactory::createWriter($objPHPExcel, $type);
     ob_start();
     $objWriter->save("php://output");
@@ -262,7 +279,7 @@ function __export_file_excel($matrix, $title = "", $type = "Xlsx")
 */
 function __export_file_edi($matrix, $wrap = false)
 {
-    // CONVERT ALL ITEMS IN STRING
+    // CONVERT ALL ITEMS TO STRING
     foreach ($matrix as $key => $line) {
         foreach ($line as $key2 => $field) {
             if (is_array($field)) {
