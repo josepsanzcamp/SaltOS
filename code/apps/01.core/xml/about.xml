@@ -497,7 +497,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/jaz303/jquery-grab-bag/blob/master/javascripts/jquery.autogrow-textarea.js")</onclick>
                         </field>
                         <field>
-                            <label>Timepicker Plugin for jQuery 1.13.10 (MIT)</label>
+                            <label>Timepicker Plugin for jQuery 1.13.19 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/jonthornton/jquery-timepicker")</onclick>
