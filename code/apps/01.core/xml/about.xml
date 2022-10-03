@@ -432,7 +432,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://jquerymobile.com/")</onclick>
                         </field>
                         <field>
-                            <label>Bootstrap 5.2.1 (MIT)</label>
+                            <label>Bootstrap 5.2.2 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://getbootstrap.com/")</onclick>
