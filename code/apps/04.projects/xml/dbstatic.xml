@@ -31,6 +31,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <nombre>Incidencias</nombre>
             <tabla>tbl_incidencias</tabla>
             <campo>nombre</campo>
+            <istext>1</istext>
         </row>
         <row>
             <id>4</id>
@@ -61,6 +62,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <nombre>Actas</nombre>
             <tabla>tbl_actas</tabla>
             <campo>nombre</campo>
+            <istext>1</istext>
         </row>
         <row>
             <id>25</id>
@@ -83,6 +85,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <tabla>tbl_presupuestos</tabla>
             <campo>nombre</campo>
             <subtablas>tbl_presupuestos_p(id_presupuesto),tbl_presupuestos_t(id_presupuesto)</subtablas>
+            <istext>1</istext>
         </row>
         <row>
             <id>35</id>
