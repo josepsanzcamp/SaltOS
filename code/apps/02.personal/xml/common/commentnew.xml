@@ -48,5 +48,27 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <class2>thead</class2>
             </field>
         </row>
+        <temp global="page,enable" eval="true">$enable=execute_query("SELECT id FROM tbl_aplicaciones WHERE istext=1 AND id='".page2id($page)."'")</temp>
+        <row global="enable" ifeval="$enable">
+            <field ifeval="!ismobile()">
+                <name>textos_comentarios</name>
+                <label lang="true">textos</label>
+                <type>select</type>
+                <width>240px</width>
+                <query include="xml/common/qtextos.xml" replace="true"/>
+                <value></value>
+            </field>
+            <field>
+                <type>button</type>
+                <value lang="true">textos_add</value>
+                <icon eval="true">ICON("add")</icon>
+                <onclick>add_textos_textarea('textos_comentarios','comentarios')</onclick>
+                <class>nowrap</class>
+            </field>
+            <field>
+                <type>separator</type>
+                <width>100%</width>
+            </field>
+        </row>
     </fieldset>
 </root>
