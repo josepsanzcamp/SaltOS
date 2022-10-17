@@ -2,7 +2,7 @@
 /*
  * pop3.php
  *
- * @(#) $Header: /opt2/ena/metal/pop3/pop3.php,v 1.24 2014/01/27 10:46:48 mlemos Exp $
+ * @(#) $Header: /opt2/ena/metal/pop3/pop3.php,v 1.25 2022/10/03 08:47:39 mlemos Exp $
  *
  */
 
@@ -16,6 +16,8 @@ class pop3_class
 	var $authentication_mechanism="USER";
 	var $realm="";
 	var $workstation="";
+	var $token="";
+	
 	var $join_continuation_header_lines=1;
 
 	/* Private variables - DO NOT ACCESS */
@@ -260,6 +262,8 @@ class pop3_class
 					$sasl->SetCredential("realm",$this->realm);
 				if(strlen($this->workstation))
 					$sasl->SetCredential("workstation",$this->workstation);
+				if(strlen($this->token))
+					$sasl->SetCredential("token",$this->token);
 				do
 				{
 					$status=$sasl->Start($mechanisms,$message,$interactions);
@@ -320,6 +324,9 @@ class pop3_class
 									default:
 										return($this->SetError("Authentication error: ".$this->Tokenize("\r\n")));
 								}
+								break;
+							case SASL_OK:
+								$authenticated = 1;
 								break;
 							default:
 								return($this->SetError("Could not process the SASL authentication step: ".$sasl->error));

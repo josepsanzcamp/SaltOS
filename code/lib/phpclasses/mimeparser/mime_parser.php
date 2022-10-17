@@ -2,7 +2,7 @@
 /*
  * mime_parser.php
  *
- * @(#) $Id: mime_parser.php,v 1.96 2021/06/06 10:51:03 mlemos Exp $
+ * @(#) $Id: mime_parser.php,v 1.98 2022/01/23 08:18:14 mlemos Exp $
  *
  */
 
@@ -30,7 +30,7 @@ define('MIME_ADDRESS_FIRST',            2);
 
 	<package>net.manuellemos.mimeparser</package>
 
-	<version>@(#) $Id: mime_parser.php,v 1.96 2021/06/06 10:51:03 mlemos Exp $</version>
+	<version>@(#) $Id: mime_parser.php,v 1.98 2022/01/23 08:18:14 mlemos Exp $</version>
 	<copyright>Copyright (C) Manuel Lemos 2006 - 2020</copyright>
 	<title>MIME parser</title>
 	<author>Manuel Lemos</author>
@@ -460,21 +460,38 @@ class mime_parser_class
 		{
 			$parameter = trim(strtolower($this->Tokenize($p, '=')));
 			$remaining = trim($this->Tokenize(''));
+			$is_quoted = false;
 			if(strlen($remaining)
-			&& !strcmp($remaining[0], '"')
-			&& (GetType($quote = strpos($remaining, '"', 1)) == 'integer'))
+			&& !strcmp($remaining[0], '"'))
 			{
-				$value = substr($remaining, 1, $quote - 1);
-				$p = trim(substr($remaining, $quote + 1));
-				if(strlen($p) > 0
-				&& !strcmp($p[0], ';'))
-					$p = substr($p, 1);
+				for($position = 1; $position < strlen($remaining);)
+				{
+					if(GetType($quote = strpos($remaining, '"', $position)) !== 'integer')
+						break;
+					if($quote === 2
+					|| $remaining[$quote - 1] !== '\\')
+					{
+						$is_quoted = true;
+						break;
+					}
+					$position = $quote + 1;
+				}
+				if($is_quoted)
+				{
+					$value = substr($remaining, 1, $quote - 1);
+					$p = trim(substr($remaining, $quote + 1));
+					if(strlen($p) > 0
+					&& !strcmp($p[0], ';'))
+						$p = substr($p, 1);
+				}
 			}
-			else
+			if(!$is_quoted)
 			{
 				$value = trim($this->Tokenize($remaining, ';'));
 				$p = trim($this->Tokenize(''));
 			}
+			if(strpos($value, '\\') !== 0)
+				$value = preg_replace('/(\\\\)(.)/', '\\2', $value);
 			if(($l=strlen($parameter))
 			&& !strcmp($parameter[$l - 1],'*'))
 			{
