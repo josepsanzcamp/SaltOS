@@ -112,7 +112,7 @@ function db_num_fields($result)
 function db_field_name($result, $index)
 {
     if (!isset($result["header"][$index])) {
-        show_php_error(array("phperror" => "Unknown field name at position ${index}"));
+        show_php_error(array("phperror" => "Unknown field name at position {$index}"));
     }
     return $result["header"][$index];
 }

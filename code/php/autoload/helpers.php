@@ -58,7 +58,7 @@ function check_filter($array)
 
 function add_css_page(&$result, $page)
 {
-    $file = "css/${page}.css";
+    $file = "css/{$page}.css";
     if (!file_exists(detect_app_file($file))) {
         $file = $page;
     }
@@ -84,7 +84,7 @@ function add_css_page(&$result, $page)
 
 function add_js_page(&$result, $page)
 {
-    $file = "js/${page}.js";
+    $file = "js/{$page}.js";
     if (!file_exists(detect_app_file($file))) {
         $file = $page;
     }

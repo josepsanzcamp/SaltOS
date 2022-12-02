@@ -50,7 +50,7 @@ if ($page == "agenda") {
         $id = $row["id"];
         $query = make_update_query("tbl_agenda", array(
             "notify_dstart" => 0
-        ), "id='${id}'");
+        ), "id='{$id}'");
         db_query($query);
         $restarted++;
     }
@@ -71,7 +71,7 @@ if ($page == "agenda") {
         $id = $row["id"];
         $query = make_update_query("tbl_agenda", array(
             "notify_dstop" => 0
-        ), "id='${id}'");
+        ), "id='{$id}'");
         db_query($query);
         $restarted++;
     }

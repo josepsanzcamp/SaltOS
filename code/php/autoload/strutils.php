@@ -322,7 +322,7 @@ function output_handler($array)
     $die = isset($array["die"]) ? $array["die"] : true;
     if ($file != "") {
         if (!file_exists($file) || !is_file($file)) {
-            show_php_error(array("phperror" => "file ${file} not found"));
+            show_php_error(array("phperror" => "file {$file} not found"));
         }
         if ($data == "" && filesize($file) < memory_get_free(true) / 3) {
             $data = file_get_contents($file);
@@ -374,7 +374,7 @@ function output_handler($array)
         header("Expires: " . gmdate("D, d M Y H:i:s", time() + getDefault("cache/cachegctimeout")) . " GMT");
         header("Cache-Control: max-age=" . getDefault("cache/cachegctimeout") . ", no-transform");
         header("Pragma: public");
-        header("ETag: ${hash2}");
+        header("ETag: {$hash2}");
     } else {
         header("Expires: -1");
         header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0, no-transform");
@@ -389,10 +389,10 @@ function output_handler($array)
         }
     }
     // CONTINUE
-    header("Content-Type: ${type}");
-    header("Content-Length: ${size}");
+    header("Content-Type: {$type}");
+    header("Content-Length: {$size}");
     if ($name != "") {
-        header("Content-disposition: attachment; filename=\"${name}\"");
+        header("Content-disposition: attachment; filename=\"{$name}\"");
     }
     foreach ($extra as $temp) {
         header($temp, false);
@@ -449,10 +449,10 @@ function ismsie($version = null)
     if ($version === null) {
         return strpos($useragent, "MSIE") !== false;
     } elseif (is_string($version)) {
-        return strpos($useragent, "MSIE ${version}") !== false;
+        return strpos($useragent, "MSIE {$version}") !== false;
     } elseif (is_array($version)) {
         foreach ($version as $v) {
-            if (strpos($useragent, "MSIE ${v}") !== false) {
+            if (strpos($useragent, "MSIE {$v}") !== false) {
                 return true;
             }
         }

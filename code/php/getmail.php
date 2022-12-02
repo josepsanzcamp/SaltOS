@@ -113,7 +113,7 @@ function __getmail_getsource($id, $max = 0)
     if (!$row) {
         return "";
     }
-    $email = "${row["id_cuenta"]}/${row["uidl"]}";
+    $email = "{$row["id_cuenta"]}/{$row["uidl"]}";
     $file = ($row["is_outbox"] ? get_directory("dirs/outboxdir") : get_directory("dirs/inboxdir")) . $email . ".eml.gz";
     if (!file_exists($file)) {
         return "";
@@ -154,7 +154,7 @@ function __getmail_getmime($id)
     if (!$row) {
         return "";
     }
-    $email = "${row["id_cuenta"]}/${row["uidl"]}";
+    $email = "{$row["id_cuenta"]}/{$row["uidl"]}";
     $cache = get_cache_file($row, ".eml");
     if (!file_exists($cache)) {
         $file = ($row["is_outbox"] ? get_directory("dirs/outboxdir") : get_directory("dirs/inboxdir")) . $email . ".eml.gz";
@@ -304,7 +304,7 @@ function __getmail_getfiles($array, $level = 0)
                     if (__getmail_processfile($disp2, $type2)) {
                         $cid2 = $node2["cid"];
                         if ($cid2 != "") {
-                            if (strpos($temp, "cid:${cid2}") !== false) {
+                            if (strpos($temp, "cid:{$cid2}") !== false) {
                                 unset($result[$index2]);
                             }
                         }
@@ -344,7 +344,7 @@ function __getmail_getinfo($array)
     $lista = array(1 => "from",2 => "to",3 => "cc",4 => "bcc",
         5 => "return-path",6 => "reply-to",7 => "disposition-notification-to");
     foreach ($lista as $key => $val) {
-        $addresses = __getmail_getnode("ExtractedAddresses/${val}:", $array);
+        $addresses = __getmail_getnode("ExtractedAddresses/{$val}:", $array);
         if ($addresses) {
             $temp = array();
             foreach ($addresses as $a) {
@@ -717,8 +717,8 @@ function __getmail_insert(
     // GET LAST_ID
     $query = "SELECT id
         FROM tbl_correo
-        WHERE id_cuenta='${id_cuenta}'
-            AND is_outbox='${is_outbox}'
+        WHERE id_cuenta='{$id_cuenta}'
+            AND is_outbox='{$is_outbox}'
         ORDER BY id DESC
         LIMIT 1";
     $last_id = execute_query($query);

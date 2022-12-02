@@ -154,18 +154,18 @@ foreach ($rows as $row) {
             WHERE
                 a.first=1 AND
                 (a.id_aplicacion='" . $row["id_aplicacion"] . "' OR ''='" . $row["id_aplicacion"] . "') AND
-                (a.id_usuario='${row["id_usuario"]}' OR ''='${row["id_usuario"]}') AND
+                (a.id_usuario='{$row["id_usuario"]}' OR ''='{$row["id_usuario"]}') AND
                 (
                     (
                         a.id_aplicacion='" . page2id("correo") . "' AND
-                        a.id_registro IN (SELECT id FROM tbl_correo c WHERE c.id_cuenta='${row["id_cuenta"]}')
-                    ) OR ''='${row["id_cuenta"]}'
+                        a.id_registro IN (SELECT id FROM tbl_correo c WHERE c.id_cuenta='{$row["id_cuenta"]}')
+                    ) OR ''='{$row["id_cuenta"]}'
                 ) AND
                 (
                     (
                         a.id_aplicacion='" . page2id("feeds") . "' AND
-                        a.id_registro IN (SELECT id FROM tbl_feeds d WHERE d.id_feed='${row["id_feed"]}')
-                    ) OR ''='${row["id_feed"]}'
+                        a.id_registro IN (SELECT id FROM tbl_feeds d WHERE d.id_feed='{$row["id_feed"]}')
+                    ) OR ''='{$row["id_feed"]}'
                 )
             GROUP BY id_aplicacion,id_registro
             HAVING
@@ -187,17 +187,17 @@ foreach ($rows as $row) {
                 $query = "
                 SELECT CONCAT('" . get_directory("dirs/inboxdir") . "',id_cuenta,'/',uidl,'.eml.gz') action_delete
                 FROM tbl_correo
-                WHERE id='${row2["id_registro"]}'
+                WHERE id='{$row2["id_registro"]}'
                     AND is_outbox='0'
                 UNION
                 SELECT CONCAT('" . get_directory("dirs/outboxdir") . "',id_cuenta,'/',uidl,'.eml.gz') action_delete
                 FROM tbl_correo
-                WHERE id='${row2["id_registro"]}'
+                WHERE id='{$row2["id_registro"]}'
                     AND is_outbox='1'
                 UNION
                 SELECT CONCAT('" . get_directory("dirs/outboxdir") . "',id_cuenta,'/',uidl,'.obj') action_delete
                 FROM tbl_correo
-                WHERE id='${row2["id_registro"]}'
+                WHERE id='{$row2["id_registro"]}'
                     AND is_outbox='1'";
                 $rows3 = execute_query_array($query);
                 foreach ($rows3 as $delete) {
@@ -216,7 +216,7 @@ foreach ($rows as $row) {
                 foreach (explode(",", $subtablas) as $subtabla) {
                     $tabla = strtok($subtabla, "(");
                     $campo = strtok(")");
-                    $query = "DELETE FROM $tabla WHERE ${campo}='" . $row2["id_registro"] . "'";
+                    $query = "DELETE FROM $tabla WHERE {$campo}='" . $row2["id_registro"] . "'";
                     db_query($query);
                 }
             }
@@ -243,7 +243,7 @@ foreach ($rows as $row) {
             }
             // BORRAR DATOS DE LAS TABLAS INDEXACION
             $page = id2page($row2["id_aplicacion"]);
-            $query = "DELETE FROM idx_${page} WHERE id='" . $row2["id_registro"] . "'";
+            $query = "DELETE FROM idx_{$page} WHERE id='" . $row2["id_registro"] . "'";
             db_query($query);
             // CONTINUE
             $total_apps++;

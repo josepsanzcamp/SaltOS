@@ -265,7 +265,7 @@ while ($row = db_fetch_row($result)) {
             }
         }
         $href_style = "href='javascript:void(0)' style='text-decoration:none'";
-        $data = "<a ${href_style} onclick='openclose_calendar(this)'>";
+        $data = "<a {$href_style} onclick='openclose_calendar(this)'>";
         $data .= "<span class='$class2'>[+]</span>";
         $data .= $horario;
         if (!$propietario && $usuario) {
@@ -277,9 +277,9 @@ while ($row = db_fetch_row($result)) {
             $data .= ", <span title='$lugar'>$lugar2</span>";
         }
         $data .= "</a>";
-        $data .= " [<a ${href_style} onclick='$urlview'>" . LANG("view") . "</a>]";
-        $data .= " [<a ${href_style} onclick='$urledit'>" . LANG("edit") . "</a>]";
-        $data .= " [<a ${href_style} onclick='$urlcopy'>" . LANG("copy") . "</a>]";
+        $data .= " [<a {$href_style} onclick='$urlview'>" . LANG("view") . "</a>]";
+        $data .= " [<a {$href_style} onclick='$urledit'>" . LANG("edit") . "</a>]";
+        $data .= " [<a {$href_style} onclick='$urlcopy'>" . LANG("copy") . "</a>]";
         set_array($_RESULT["rows"], "row", array(
             "cell" => $cell,
             "data" => $data,

@@ -34,8 +34,8 @@ function svnversion($dir = ".")
         $dir = "../code";
     }
     // USING REGULAR FILE
-    if (file_exists("${dir}/svnversion")) {
-        return intval(file_get_contents("${dir}/svnversion"));
+    if (file_exists("{$dir}/svnversion")) {
+        return intval(file_get_contents("{$dir}/svnversion"));
     }
     // USING SVNVERSION
     if (check_commands(getDefault("commands/svnversion", "svnversion"), getDefault("default/commandexpires", 60))) {
@@ -55,8 +55,8 @@ function gitversion($dir = ".")
         $dir = "../code";
     }
     // USING REGULAR FILE
-    if (file_exists("${dir}/gitversion")) {
-        return intval(file_get_contents("${dir}/gitversion"));
+    if (file_exists("{$dir}/gitversion")) {
+        return intval(file_get_contents("{$dir}/gitversion"));
     }
     // USING GIT
     if (check_commands(getDefault("commands/gitversion", "git"), getDefault("default/commandexpires", 60))) {

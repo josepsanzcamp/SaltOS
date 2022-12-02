@@ -55,13 +55,13 @@ if ($page == "correo") {
                 $query = "SELECT COUNT(*)
                     FROM tbl_correo
                     WHERE id IN ($ids)
-                        AND state_new!='${action2[1]}'
+                        AND state_new!='{$action2[1]}'
                         AND is_outbox='0'";
                 $numids = execute_query($query);
                 // PONER STATE_NEW=0 EN LOS CORREOS SELECCIONADOS
                 $query = make_update_query("tbl_correo", array(
                     "state_new" => $action2[1]
-                ), "id IN (${ids}) AND state_new!='${action2[1]}' AND is_outbox='0'");
+                ), "id IN ({$ids}) AND state_new!='{$action2[1]}' AND is_outbox='0'");
                 db_query($query);
                 // MOSTRAR RESULTADO
                 session_alert(
@@ -72,13 +72,13 @@ if ($page == "correo") {
                 $query = "SELECT COUNT(*)
                     FROM tbl_correo
                     WHERE id IN ($ids)
-                        AND state_wait!='${action2[1]}'";
+                        AND state_wait!='{$action2[1]}'";
                 $numids = execute_query($query);
                 // PONER STATE_WAIT=1 EN LOS CORREOS SELECCIONADOS
                 $query = make_update_query("tbl_correo", array(
                     "state_new" => "0",
                     "state_wait" => $action2[1]
-                ), "id IN (${ids}) AND state_wait!='${action2[1]}'");
+                ), "id IN ({$ids}) AND state_wait!='{$action2[1]}'");
                 db_query($query);
                 // MOSTRAR RESULTADO
                 session_alert(
@@ -89,15 +89,15 @@ if ($page == "correo") {
                 $query = "SELECT COUNT(*)
                     FROM tbl_correo
                     WHERE id IN ($ids)
-                        AND state_spam!='${action2[1]}'
+                        AND state_spam!='{$action2[1]}'
                         AND is_outbox='0'";
                 $numids = execute_query($query);
                 // PONER STATE_SPAM=1 EN LOS CORREOS SELECCIONADOS
                 $query = make_update_query("tbl_correo", array(
                     "state_new" => "0",
                     "state_spam" => $action2[1]
-                ), "id IN (${ids})
-                    AND state_spam!='${action2[1]}'
+                ), "id IN ({$ids})
+                    AND state_spam!='{$action2[1]}'
                     AND is_outbox='0'");
                 db_query($query);
                 // MOSTRAR RESULTADO
@@ -109,7 +109,7 @@ if ($page == "correo") {
                 $query = "INSERT INTO tbl_correo_d(id_cuenta,uidl,datetime)
                     SELECT id_cuenta,uidl,datetime
                     FROM tbl_correo
-                    WHERE id IN (${ids})
+                    WHERE id IN ({$ids})
                         AND is_outbox=0";
                 db_query($query);
                 // BORRAR FICHEROS .EML.GZ DEL INBOX
@@ -146,13 +146,13 @@ if ($page == "correo") {
                     }
                 }
                 // BORRAR CORREOS
-                $query = "DELETE FROM tbl_correo WHERE id IN (${ids})";
+                $query = "DELETE FROM tbl_correo WHERE id IN ({$ids})";
                 db_query($query);
                 // BORRAR DIRECCIONES DE LOS CORREOS
-                $query = "DELETE FROM tbl_correo_a WHERE id_correo IN (${ids})";
+                $query = "DELETE FROM tbl_correo_a WHERE id_correo IN ({$ids})";
                 db_query($query);
                 // BORRAR FICHEROS ADJUNTOS DE LOS CORREOS
-                $query = "DELETE FROM tbl_ficheros WHERE id_registro IN (${ids})
+                $query = "DELETE FROM tbl_ficheros WHERE id_registro IN ({$ids})
                     AND id_aplicacion='" . page2id("correo") . "'";
                 db_query($query);
                 // BORRAR REGISTRO DE LOS CORREOS

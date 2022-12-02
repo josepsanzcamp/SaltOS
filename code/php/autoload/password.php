@@ -54,7 +54,7 @@ function password_remake($user, $pass)
                 $pass = password_hash($pass, PASSWORD_BCRYPT);
                 $query = make_update_query("tbl_usuarios", array(
                     "password" => $pass
-                ), "activo='1' AND login='${user}'");
+                ), "activo='1' AND login='{$user}'");
                 db_query($query);
             }
         }

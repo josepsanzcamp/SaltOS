@@ -44,12 +44,12 @@ if ($ids === null) {
 // FIND IF ID EXISTS IN THE LIST
 $id_abs = abs($id);
 if (strpos($ids, "_") !== false) {
-    $pos = strpos(",${ids},", "_${page}_${id_abs},");
+    $pos = strpos(",{$ids},", "_{$page}_{$id_abs},");
     if ($pos !== false) {
-        $pos = strrpos(",${ids},", ",", $pos - strlen($ids));
+        $pos = strrpos(",{$ids},", ",", $pos - strlen($ids));
     }
 } else {
-    $pos = strpos(",${ids},", ",${id_abs},");
+    $pos = strpos(",{$ids},", ",{$id_abs},");
 }
 if ($pos !== false) {
     $index = substr_count($ids, ",", 0, $pos);

@@ -27,13 +27,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 function _javascript_location($url, $cond = "")
 {
-    javascript_template("window.location.href='${url}';", $cond);
+    javascript_template("window.location.href='{$url}';", $cond);
 }
 
 function _javascript_history($go, $cond = "")
 {
     if ($go) {
-        javascript_template("history.go(${go})", $cond);
+        javascript_template("history.go({$go})", $cond);
     } else {
         javascript_template("addcontent('reload')", $cond);
     }
@@ -41,10 +41,10 @@ function _javascript_history($go, $cond = "")
 
 function _javascript_opencontent($url, $cond = "")
 {
-    javascript_template("saltos.opencontent('${url}');", $cond);
+    javascript_template("saltos.opencontent('{$url}');", $cond);
 }
 
 function _javascript_addcontent($url, $cond = "")
 {
-    javascript_template("saltos.addcontent('${url}');", $cond);
+    javascript_template("saltos.addcontent('{$url}');", $cond);
 }

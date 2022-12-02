@@ -54,7 +54,7 @@ if (getParam("action") == "sendmail") {
         $query = "SELECT CONCAT(email_name,' <',email_from,'>') email
             FROM tbl_usuarios_c
             WHERE id_usuario='" . current_user() . "'
-                AND id='${id_cuenta}'";
+                AND id='{$id_cuenta}'";
         $de = execute_query($query);
         if (!$de) {
             javascript_error(LANG("msgfromkosendmail", "correo"));
@@ -82,7 +82,7 @@ if (getParam("action") == "sendmail") {
             $cid = md5($file["data"]);
             $prehash = md5($body);
             $file["src"] = str_replace("&", "&amp;", $file["src"]); // CKEDITOR CORRECTION
-            $body = str_replace($file["src"], "cid:${cid}", $body);
+            $body = str_replace($file["src"], "cid:{$cid}", $body);
             $posthash = md5($body);
             if ($prehash != $posthash) {
                 $inlines[] = array(
@@ -109,12 +109,12 @@ if (getParam("action") == "sendmail") {
                         $prehash = md5($body);
                         if ($useimginline) {
                             $data = base64_encode($node2["body"]);
-                            $data = "data:image/png;base64,${data}";
-                            $body = str_replace($data, "cid:${cid2}", $body);
+                            $data = "data:image/png;base64,{$data}";
+                            $body = str_replace($data, "cid:{$cid2}", $body);
                         } else {
-                            $url = "?action=getmail&id=${id_extra[2]}&cid=${chash2}";
+                            $url = "?action=getmail&id={$id_extra[2]}&cid={$chash2}";
                             $url = str_replace("&", "&amp;", $url); // CKEDITOR CORRECTION
-                            $body = str_replace($url, "cid:${cid2}", $body);
+                            $body = str_replace($url, "cid:{$cid2}", $body);
                         }
                         $posthash = md5($body);
                         if ($prehash != $posthash) {
@@ -126,7 +126,7 @@ if (getParam("action") == "sendmail") {
                     $cname2 = $node2["cname"];
                     if ($cname2 != "") {
                         $chash2 = $node2["chash"];
-                        $delete = "files_old_${chash2}_fichero_del";
+                        $delete = "files_old_{$chash2}_fichero_del";
                         if (!getParam($delete)) {
                             $attachs[] = __getmail_getcid(__getmail_getnode("0", $decoded), $chash2);
                         }
@@ -143,7 +143,7 @@ if (getParam("action") == "sendmail") {
                 $session["files"] = array();
             }
             foreach ($session["files"] as $key => $file) {
-                $delete = "files_old_${key}_fichero_del";
+                $delete = "files_old_{$key}_fichero_del";
                 if (!getParam($delete)) {
                     $attachs[] = array(
                         "body" => file_get_contents($file["file"]),
@@ -232,7 +232,7 @@ if (getParam("action") == "sendmail") {
         // DO THE SEND ACTION
         $send = sendmail($id_cuenta, $recipients, $subject, $body, $files);
         if ($send == "") {
-            $query = "SELECT MAX(id) FROM tbl_correo WHERE id_cuenta='${id_cuenta}' AND is_outbox='1'";
+            $query = "SELECT MAX(id) FROM tbl_correo WHERE id_cuenta='{$id_cuenta}' AND is_outbox='1'";
             $last_id = execute_query($query);
             // SOME UPDATES
             if (isset($id_extra[1]) && in_array($id_extra[1], array("reply","replyall","forward"))) {
@@ -463,7 +463,7 @@ if (getParam("page") == "correo") {
     $subject_extra = "";
     $body_extra = "";
     if (isset($id_extra[1]) && in_array($id_extra[1], array("reply","replyall","forward"))) {
-        $query = "SELECT id_cuenta FROM tbl_correo WHERE id='${id_extra[2]}'";
+        $query = "SELECT id_cuenta FROM tbl_correo WHERE id='{$id_extra[2]}'";
         $result2 = execute_query($query);
         if ($result2 && $id_cuenta != $result2) {
             $id_cuenta = $result2;
@@ -489,7 +489,7 @@ if (getParam("page") == "correo") {
         $body_extra = "<br/><br/><signature>" . ($file ? $file["auto"] : "") . "</signature>";
     }
     if (isset($id_extra[1]) && in_array($id_extra[1], array("reply","replyall"))) {
-        $query = "SELECT * FROM tbl_correo_a WHERE id_correo='${id_extra[2]}'";
+        $query = "SELECT * FROM tbl_correo_a WHERE id_correo='{$id_extra[2]}'";
         $result2 = execute_query_array($query);
         foreach ($result2 as $addr) {
             if ($addr["id_tipo"] == 6) {
@@ -552,7 +552,7 @@ if (getParam("page") == "correo") {
         }
     }
     if (isset($id_extra[1]) && $id_extra[1] == "forward") {
-        $query = "SELECT * FROM tbl_correo_a WHERE id_correo='${id_extra[2]}'";
+        $query = "SELECT * FROM tbl_correo_a WHERE id_correo='{$id_extra[2]}'";
         $result2 = execute_query_array($query);
         foreach ($result2 as $addr) {
             if ($addr["id_tipo"] == 1) {
@@ -562,7 +562,7 @@ if (getParam("page") == "correo") {
     }
     if (isset($id_extra[1]) && in_array($id_extra[1], array("reply","replyall","forward"))) {
         require_once "php/getmail.php";
-        $query = "SELECT * FROM tbl_correo WHERE id='${id_extra[2]}'";
+        $query = "SELECT * FROM tbl_correo WHERE id='{$id_extra[2]}'";
         $row2 = execute_query($query);
         if ($row2 && isset($row2["subject"])) {
             $subject_extra = $row2["subject"];
@@ -592,7 +592,7 @@ if (getParam("page") == "correo") {
                 }
                 foreach ($result2["emails"] as $email) {
                     if ($email["nombre"] != "") {
-                        $email["valor"] = "${email["nombre"]} <${email["valor"]}>";
+                        $email["valor"] = "{$email["nombre"]} <{$email["valor"]}>";
                     }
                     if (!isset($result2[$email["tipo"]])) {
                         $result2[$email["tipo"]] = array();
@@ -609,7 +609,7 @@ if (getParam("page") == "correo") {
                         WHERE id=(
                             SELECT id_cuenta
                             FROM tbl_correo
-                            WHERE id='${id_extra[2]}')";
+                            WHERE id='{$id_extra[2]}')";
                     $result2["to"] = str_replace("<>", "<" . execute_query($query) . ">", $result2["to"]);
                 }
                 if (!isset($result2["to"])) {
@@ -620,7 +620,7 @@ if (getParam("page") == "correo") {
                             WHERE id=(
                                 SELECT id_cuenta
                                 FROM tbl_correo
-                                WHERE id='${id_extra[2]}'
+                                WHERE id='{$id_extra[2]}'
                             )
                         )=''
                         THEN (
@@ -629,7 +629,7 @@ if (getParam("page") == "correo") {
                             WHERE id=(
                                 SELECT id_cuenta
                                 FROM tbl_correo
-                                WHERE id='${id_extra[2]}'
+                                WHERE id='{$id_extra[2]}'
                             )
                         )
                         ELSE (
@@ -638,7 +638,7 @@ if (getParam("page") == "correo") {
                             WHERE id=(
                                 SELECT id_cuenta
                                 FROM tbl_correo
-                                WHERE id='${id_extra[2]}'
+                                WHERE id='{$id_extra[2]}'
                             )
                         ) END";
                     $result2["to"] = execute_query($query);
@@ -690,7 +690,7 @@ if (getParam("page") == "correo") {
                     } else {
                         $oldbody .= " | ";
                     }
-                    $oldbody .= "<b>${cname}</b> (${hsize})";
+                    $oldbody .= "<b>{$cname}</b> ({$hsize})";
                     $first = 0;
                 }
                 if (!$first) {
@@ -732,11 +732,11 @@ if (getParam("page") == "correo") {
                                 $chash2 = $node2["chash"];
                                 if ($useimginline) {
                                     $data = base64_encode($node2["body"]);
-                                    $data = "data:image/png;base64,${data}";
-                                    $temp = str_replace("cid:${cid2}", $data, $temp);
+                                    $data = "data:image/png;base64,{$data}";
+                                    $temp = str_replace("cid:{$cid2}", $data, $temp);
                                 } else {
-                                    $url = "?action=getmail&id=${id_extra[2]}&cid=${chash2}";
-                                    $temp = str_replace("cid:${cid2}", $url, $temp);
+                                    $url = "?action=getmail&id={$id_extra[2]}&cid={$chash2}";
+                                    $temp = str_replace("cid:{$cid2}", $url, $temp);
                                 }
                             }
                         }
@@ -788,7 +788,7 @@ if (getParam("page") == "correo") {
             (SELECT title FROM tbl_usuarios_f WHERE id=id_feed) feed,
             (SELECT link FROM tbl_usuarios_f WHERE id=id_feed) link2
             FROM tbl_feeds
-            WHERE id='${id_extra[2]}'";
+            WHERE id='{$id_extra[2]}'";
         $row2 = execute_query($query);
         if ($row2) {
             $subject_extra = LANG("forwardsubject") . $row2["title"];

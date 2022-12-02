@@ -29,19 +29,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 $page = getParam("page", getDefault("page"));
 $action = getParam("action", getDefault("action"));
 $id = intval(getParam("id", getDefault("id")));
-if (file_exists(detect_app_file("php/action/${action}.php"))) {
-    require detect_app_file("php/action/${action}.php");
+if (file_exists(detect_app_file("php/action/{$action}.php"))) {
+    require detect_app_file("php/action/{$action}.php");
 }
 
 // DEFAULT ACTIONS
 $page = getParam("page");
-if (!file_exists(detect_app_file("xml/${page}.xml"))) {
+if (!file_exists(detect_app_file("xml/{$page}.xml"))) {
     $page = "";
 }
 if (in_array($action, array("list","form"))) {
     $page = lastpage($page);
 }
-if (!file_exists(detect_app_file("xml/${page}.xml"))) {
+if (!file_exists(detect_app_file("xml/{$page}.xml"))) {
     $page = getDefault("page");
 }
 
@@ -85,11 +85,11 @@ if (!check_user()) {
     $_RESULT["form"] = getDefault("login/form");
     add_css_js_page($_RESULT["form"], "login");
 } elseif (check_user($page, "menu")) {
-    $_LANG["default"] = "${page},menu,common";
+    $_LANG["default"] = "{$page},menu,common";
     $_CONFIG["menu"] = eval_attr(xml2array(detect_apps_files("xml/menu.xml")));
     $_RESULT["menu"] = getDefault("menu");
-    if (file_exists(detect_app_file("xml/${page}.xml"))) {
-        $_CONFIG[$page] = xml2array(detect_app_file("xml/${page}.xml"));
+    if (file_exists(detect_app_file("xml/{$page}.xml"))) {
+        $_CONFIG[$page] = xml2array(detect_app_file("xml/{$page}.xml"));
         if (getDefault("$page/default")) {
             $_CONFIG[$page]["default"] = eval_attr(getDefault("$page/default"));
         }
@@ -233,7 +233,7 @@ if (!check_user()) {
                 if (isset($config["order"])) {
                     // CHECK ORDER
                     list($order,$array) = list_check_order($config["order"], $config["fields"]);
-                    $order0 = "ORDER BY ${order}";
+                    $order0 = "ORDER BY {$order}";
                     // MARK THE SELECTED ORDER FIELD
                     foreach ($_RESULT[$action]["fields"] as $key => $val) {
                         $selected = 0;
@@ -252,7 +252,7 @@ if (!check_user()) {
                     }
                 }
                 // EXECUTE THE QUERY TO GET THE ROWS WITH LIMIT AND OFFSET
-                $query = "${query0} ${order0} LIMIT ${offset},${limit}";
+                $query = "{$query0} {$order0} LIMIT {$offset},{$limit}";
                 $result = db_query($query);
                 $count = 0;
                 while ($row = db_fetch_row($result)) {
@@ -382,7 +382,7 @@ $_RESULT["info"]["dir"] = $_LANG["dir"];
 // THE XSLT PROCESSOR CODE
 $xsl = getDefault("forcexsl", "default");
 $buffer = __XML_HEADER__ . array2xml($_RESULT);
-$buffer = __HTML_DOCTYPE__ . xml2html($buffer, "xsl/${xsl}.xsl");
+$buffer = __HTML_DOCTYPE__ . xml2html($buffer, "xsl/{$xsl}.xsl");
 
 // FLUSH THE OUTPUT NOW
 output_handler(array(

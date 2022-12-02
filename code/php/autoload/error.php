@@ -105,7 +105,7 @@ function do_message_error($array, $format)
             case "debug":
                 if (is_array($data)) {
                     foreach ($data as $key => $item) {
-                        $data[$key] = "${key} => ${item}";
+                        $data[$key] = "{$key} => {$item}";
                     }
                     $data = implode($dict[$format][2], $data);
                 } else {
@@ -174,7 +174,7 @@ function show_php_error($array = null)
             if (checklog($hash, $file)) {
                 $msg_text = "";
             }
-            addlog("${msg_text}***** ${hash} *****", $file);
+            addlog("{$msg_text}***** {$hash} *****", $file);
         }
         return;
     }
@@ -213,7 +213,7 @@ function show_php_error($array = null)
         if (checklog($hash, $file)) {
             $msg_text = "";
         }
-        addlog("${msg_text}***** ${hash} *****", $file);
+        addlog("{$msg_text}***** {$hash} *****", $file);
     }
     // CHECK FOR CANCEL_DIE
     if (isset($array["cancel"]) && eval_bool($array["cancel"])) {
@@ -282,12 +282,12 @@ function pretty_html_error($msg)
 function __pretty_html_error_helper($action, $hiddens, $submit)
 {
     $html = "";
-    $html .= "<form action='${action}' method='post'>";
+    $html .= "<form action='{$action}' method='post'>";
     foreach ($hiddens as $key => $val) {
         $val = htmlentities($val, ENT_COMPAT, "UTF-8");
-        $html .= "<input type=\"hidden\" name=\"${key}\" value=\"${val}\"/>";
+        $html .= "<input type=\"hidden\" name=\"{$key}\" value=\"{$val}\"/>";
     }
-    $html .= "<input type='submit' value='${submit}'/>";
+    $html .= "<input type='submit' value='{$submit}'/>";
     $html .= "</form>";
     return $html;
 }
@@ -295,7 +295,7 @@ function __pretty_html_error_helper($action, $hiddens, $submit)
 function __error_handler($type, $message, $file, $line)
 {
     show_php_error(array(
-        "phperror" => "${message} (code ${type})",
+        "phperror" => "{$message} (code {$type})",
         "details" => "Error on file " . basename($file) . ":" . $line,
         "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
     ));
@@ -316,7 +316,7 @@ function __shutdown_handler()
     $types = array(E_ERROR,E_PARSE,E_CORE_ERROR,E_COMPILE_ERROR,E_USER_ERROR,E_RECOVERABLE_ERROR);
     if (is_array($error) && isset($error["type"]) && in_array($error["type"], $types)) {
         show_php_error(array(
-            "phperror" => "${error["message"]}",
+            "phperror" => "{$error["message"]}",
             "details" => "Error on file " . basename($error["file"]) . ":" . $error["line"],
             "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
             "reset_error_handler" => true

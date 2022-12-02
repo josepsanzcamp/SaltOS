@@ -34,7 +34,7 @@ function CONFIG_LOADED()
 function CONFIG($key)
 {
     $row = array();
-    $query = "SELECT valor FROM tbl_configuracion WHERE clave='${key}'";
+    $query = "SELECT valor FROM tbl_configuracion WHERE clave='{$key}'";
     capture_next_error();
     $config = execute_query($query);
     $error = get_clear_error();
@@ -51,7 +51,7 @@ function CONFIG($key)
 
 function setConfig($key, $val)
 {
-    $query = "SELECT valor FROM tbl_configuracion WHERE clave='${key}'";
+    $query = "SELECT valor FROM tbl_configuracion WHERE clave='{$key}'";
     $config = execute_query($query);
     if ($config === null) {
         $query = make_insert_query("tbl_configuracion", array(

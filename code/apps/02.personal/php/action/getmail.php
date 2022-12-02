@@ -51,8 +51,8 @@ if (getParam("action") == "getmail") {
                 }
                 $name = $file["name"];
                 $size = __getmail_gethumansize($file["size"]);
-                $buffer .= "<a href='javascript:void(0)' onclick='download2(\"correo\",\"session\",\"${key}\")'>";
-                $buffer .= "<b>${name}</b></a> (${size})";
+                $buffer .= "<a href='javascript:void(0)' onclick='download2(\"correo\",\"session\",\"{$key}\")'>";
+                $buffer .= "<b>{$name}</b></a> ({$size})";
                 $first = 0;
             }
             output_handler(array(
@@ -121,7 +121,7 @@ if (getParam("action") == "getmail") {
             ), "id=(SELECT id_registro
                 FROM tbl_registros
                 WHERE id_aplicacion='" . page2id("correo") . "'
-                    AND id_registro='${id}'
+                    AND id_registro='{$id}'
                     AND first=1
                     AND id_usuario='" . current_user() . "')");
             db_query($query);
@@ -163,11 +163,11 @@ if (getParam("action") == "getmail") {
                                 $chash2 = $node2["chash"];
                                 if ($useimginline) {
                                     $data = base64_encode($node2["body"]);
-                                    $data = "data:image/png;base64,${data}";
-                                    $temp = str_replace("cid:${cid2}", $data, $temp);
+                                    $data = "data:image/png;base64,{$data}";
+                                    $temp = str_replace("cid:{$cid2}", $data, $temp);
                                 } else {
-                                    $url = "?action=getmail&id=${id}&cid=${chash2}";
-                                    $temp = str_replace("cid:${cid2}", $url, $temp);
+                                    $url = "?action=getmail&id={$id}&cid={$chash2}";
+                                    $temp = str_replace("cid:{$cid2}", $url, $temp);
                                 }
                             }
                         }
@@ -202,8 +202,8 @@ if (getParam("action") == "getmail") {
                 if (!$first) {
                     $buffer .= " | ";
                 }
-                $buffer .= "<a href='javascript:void(0)' onclick='download2(\"correo\",\"${id}\",\"${chash}\")'>";
-                $buffer .= "<b>${cname}</b></a> (${hsize})";
+                $buffer .= "<a href='javascript:void(0)' onclick='download2(\"correo\",\"{$id}\",\"{$chash}\")'>";
+                $buffer .= "<b>{$cname}</b></a> ({$hsize})";
                 $first = 0;
             }
             output_handler(array(
@@ -221,7 +221,7 @@ if (getParam("action") == "getmail") {
             $buffer = "";
             foreach ($result["emails"] as $email) {
                 if ($email["nombre"] != "") {
-                    $email["valor"] = "${email["nombre"]} <${email["valor"]}>";
+                    $email["valor"] = "{$email["nombre"]} <{$email["valor"]}>";
                 }
                 if (!isset($result[$email["tipo"]])) {
                     $result[$email["tipo"]] = array();
@@ -238,7 +238,7 @@ if (getParam("action") == "getmail") {
                     WHERE id=(
                         SELECT id_cuenta
                         FROM tbl_correo
-                        WHERE id='${id}')";
+                        WHERE id='{$id}')";
                 $result["to"] = str_replace("<>", "<" . execute_query($query) . ">", $result["to"]);
             }
             if (!isset($result["to"])) {
@@ -249,7 +249,7 @@ if (getParam("action") == "getmail") {
                         WHERE id=(
                             SELECT id_cuenta
                             FROM tbl_correo
-                            WHERE id='${id}'
+                            WHERE id='{$id}'
                         )
                     )=''
                     THEN (
@@ -258,7 +258,7 @@ if (getParam("action") == "getmail") {
                         WHERE id=(
                             SELECT id_cuenta
                             FROM tbl_correo
-                            WHERE id='${id}'
+                            WHERE id='{$id}'
                         )
                     )
                     ELSE (
@@ -267,7 +267,7 @@ if (getParam("action") == "getmail") {
                         WHERE id=(
                             SELECT id_cuenta
                             FROM tbl_correo
-                            WHERE id='${id}')) END";
+                            WHERE id='{$id}')) END";
                 $result["to"] = execute_query($query);
             }
             if (isset($result["cc"])) {
@@ -319,8 +319,8 @@ if (getParam("action") == "getmail") {
                 } else {
                     $buffer .= " | ";
                 }
-                $buffer .= "<a href='?action=download&page=correo&id=${id}&cid=${chash}'>";
-                $buffer .= "<b>${cname}</b></a> (${hsize})";
+                $buffer .= "<a href='?action=download&page=correo&id={$id}&cid={$chash}'>";
+                $buffer .= "<b>{$cname}</b></a> ({$hsize})";
                 $first = 0;
             }
             if (!$first) {
@@ -360,11 +360,11 @@ if (getParam("action") == "getmail") {
                                 $chash2 = $node2["chash"];
                                 if ($useimginline) {
                                     $data = base64_encode($node2["body"]);
-                                    $data = "data:image/png;base64,${data}";
-                                    $temp = str_replace("cid:${cid2}", $data, $temp);
+                                    $data = "data:image/png;base64,{$data}";
+                                    $temp = str_replace("cid:{$cid2}", $data, $temp);
                                 } else {
-                                    $url = "?action=getmail&id=${id}&cid=${chash2}";
-                                    $temp = str_replace("cid:${cid2}", $url, $temp);
+                                    $url = "?action=getmail&id={$id}&cid={$chash2}";
+                                    $temp = str_replace("cid:{$cid2}", $url, $temp);
                                 }
                             }
                         }
@@ -465,9 +465,9 @@ if (getParam("action") == "getmail") {
                 chmod($prefix, 0777);
             }
             // DB code
-            $query = "SELECT uidl FROM tbl_correo WHERE id_cuenta='${id_cuenta}'";
+            $query = "SELECT uidl FROM tbl_correo WHERE id_cuenta='{$id_cuenta}'";
             $olduidls = execute_query_array($query);
-            $query = "SELECT uidl FROM tbl_correo_d WHERE id_cuenta='${id_cuenta}'";
+            $query = "SELECT uidl FROM tbl_correo_d WHERE id_cuenta='{$id_cuenta}'";
             $olduidls_d = execute_query_array($query);
             $olduidls = array_merge($olduidls, $olduidls_d);
             // POP3 code
@@ -558,12 +558,12 @@ if (getParam("action") == "getmail") {
             $query = "SELECT uidl,datetime FROM (
                 SELECT uidl,datetime
                 FROM tbl_correo
-                WHERE id_cuenta='${id_cuenta}'
+                WHERE id_cuenta='{$id_cuenta}'
                     AND uidl IN ($delete)
                 UNION
                 SELECT uidl,datetime
                 FROM tbl_correo_d
-                WHERE id_cuenta='${id_cuenta}'
+                WHERE id_cuenta='{$id_cuenta}'
                     AND uidl IN ($delete)) a";
             $result2 = execute_query_array($query);
             $time1 = strtotime(current_datetime());
@@ -586,7 +586,7 @@ if (getParam("action") == "getmail") {
             // REMOVE ALL UNUSED UIDLS
             $delete = array_diff($olduidls_d, $uidls);
             $delete = "'" . implode("','", $delete) . "'";
-            $query = "DELETE FROM tbl_correo_d WHERE id_cuenta='${id_cuenta}' AND uidl IN (${delete})";
+            $query = "DELETE FROM tbl_correo_d WHERE id_cuenta='{$id_cuenta}' AND uidl IN ({$delete})";
             db_query($query);
         }
         if ($error != "") {
@@ -612,8 +612,8 @@ if (getParam("action") == "getmail") {
             $condition = "update_correo_list()";
             javascript_alert($newemail . LANG("msgnewokpop3email" . min($newemail, 2), "correo"), $condition);
             javascript_alert($newemail . LANG("msgnewokpop3email" . min($newemail, 2), "correo") . $gotoemail, "!($condition)");
-            javascript_template("update_numbers('correo',${newemail});");
-            javascript_template("update_favicon(${newemail});");
+            javascript_template("update_numbers('correo',{$newemail});");
+            javascript_template("update_favicon({$newemail});");
             javascript_history(0, $condition);
         }
     }
@@ -636,7 +636,7 @@ if (getParam("page") == "correo") {
             WHERE id=(
                 SELECT id_usuario
                 FROM tbl_registros
-                WHERE id_registro='${id_correo}'
+                WHERE id_registro='{$id_correo}'
                     AND id_aplicacion='" . page2id("correo") . "'
                     AND first=1)";
         $usuario = execute_query($query);
@@ -649,12 +649,12 @@ if (getParam("page") == "correo") {
                 WHERE id=(
                     SELECT id_usuario
                     FROM tbl_registros
-                    WHERE id_registro='${id_correo}'
+                    WHERE id_registro='{$id_correo}'
                         AND id_aplicacion='" . page2id("correo") . "'
                         AND first=1))";
         $grupo = execute_query($query);
         // BUSCAR DATETIME DEL CORREO
-        $query = "SELECT datetime FROM tbl_correo WHERE id='${id_correo}'";
+        $query = "SELECT datetime FROM tbl_correo WHERE id='{$id_correo}'";
         $datetime = execute_query($query);
         // PROCESAR CORREO
         require_once "php/getmail.php";
@@ -672,8 +672,8 @@ if (getParam("page") == "correo") {
             $fichero = $file["cname"];
             $size = $file["hsize"];
             $chash = $file["chash"];
-            $download = "download2('correo','${id_correo}','${chash}')";
-            $viewpdf = "viewpdf2('correo','${id_correo}','${chash}')";
+            $download = "download2('correo','{$id_correo}','{$chash}')";
+            $viewpdf = "viewpdf2('correo','{$id_correo}','{$chash}')";
             set_array($rows[$key], "row", array(
                 "id" => $chash,
                 "usuario" => $usuario,
@@ -709,8 +709,8 @@ if (getParam("page") == "correo") {
         foreach ($session["files"] as $key2 => $file) {
             $fichero = $file["name"];
             $size = __getmail_gethumansize($file["size"]);
-            $download = "download2('correo','session','${key2}')";
-            $viewpdf = "viewpdf2('correo','session','${key2}')";
+            $download = "download2('correo','session','{$key2}')";
+            $viewpdf = "viewpdf2('correo','session','{$key2}')";
             set_array($rows[$key], "row", array(
                 "id" => $key2,
                 "usuario" => $usuario,

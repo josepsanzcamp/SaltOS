@@ -1164,7 +1164,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </form>
     <delete>
         <query include="xml/common/qpermdelete.xml" replace="true"/>
-        <query global="id" eval="true">"INSERT INTO tbl_correo_d(id_cuenta,uidl,datetime) SELECT id_cuenta,uidl,datetime FROM tbl_correo WHERE id='${id}' AND is_outbox=0"</query>
+        <query global="id" eval="true">"INSERT INTO tbl_correo_d(id_cuenta,uidl,datetime) SELECT id_cuenta,uidl,datetime FROM tbl_correo WHERE id='{$id}' AND is_outbox=0"</query>
         <query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='0'"</query>
         <query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>
         <query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.obj') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>

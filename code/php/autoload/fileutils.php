@@ -283,12 +283,12 @@ function chmod_protected($file, $mode)
 
 function detect_app_file($file)
 {
-    $files = array_merge(glob($file), glob("apps/*/${file}"), array($file));
+    $files = array_merge(glob($file), glob("apps/*/{$file}"), array($file));
     return $files[0];
 }
 
 function detect_apps_files($file)
 {
-    $files = array_merge(glob($file), glob("apps/*/${file}"));
+    $files = array_merge(glob($file), glob("apps/*/{$file}"));
     return $files;
 }

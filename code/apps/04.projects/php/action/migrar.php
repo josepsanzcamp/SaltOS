@@ -108,7 +108,7 @@ if ($page == "presupuestos") {
     // RELACIONAR PRESUPUESTO CON EL PROYECTO
     $query = make_update_query("tbl_presupuestos", array(
         "id_proyecto" => $id_proyecto
-    ), "id='${id_presupuesto}'");
+    ), "id='{$id_presupuesto}'");
     db_query($query);
     // VOLVER
     session_alert(LANG("projectcreatedok", "presupuestos"));
@@ -176,10 +176,10 @@ if ($page == "posiblescli") {
     $query = make_update_query("tbl_registros", array(
         "id_aplicacion" => $id_aplicacion,
         "id_registro" => $id_cliente
-    ), "id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
+    ), "id_aplicacion='{$id_aplicacion3}' AND id_registro='{$id_posiblecli}'");
     db_query($query);
     // BORRAR EL POSIBLE CLIENTE
-    $query = "DELETE FROM tbl_posiblescli WHERE id='${id_posiblecli}'";
+    $query = "DELETE FROM tbl_posiblescli WHERE id='{$id_posiblecli}'";
     db_query($query);
     // AÑADIR CONTROL DEL REGISTRO
     $id_aplicacion = page2id("clientes");
@@ -225,32 +225,32 @@ if ($page == "posiblescli") {
     $query = make_update_query("tbl_agenda", array(
         "id_posiblecli" => 0,
         "id_cliente" => $id_cliente
-    ), "id_posiblecli='${id_posiblecli}'");
+    ), "id_posiblecli='{$id_posiblecli}'");
     db_query($query);
     // RELACIONAR PRESUPUESTOS DEL POSIBLE CLIENTE CON EL NUEVO CLIENTE
     $query = make_update_query("tbl_presupuestos", array(
         "id_posiblecli" => 0,
         "id_cliente" => $id_cliente
-    ), "id_posiblecli='${id_posiblecli}'");
+    ), "id_posiblecli='{$id_posiblecli}'");
     db_query($query);
     // RELACIONAR ACTAS DEL POSIBLE CLIENTE CON EL NUEVO CLIENTE
     $query = make_update_query("tbl_actas", array(
         "id_posiblecli" => 0,
         "id_cliente" => $id_cliente
-    ), "id_posiblecli='${id_posiblecli}'");
+    ), "id_posiblecli='{$id_posiblecli}'");
     db_query($query);
     // RELACIONAR FICHEROS DEL POSIBLE CLIENTE CON EL NUEVO CLIENTE
     $id_aplicacion3 = page2id("posiblescli");
     $query = make_update_query("tbl_ficheros", array(
         "id_aplicacion" => $id_aplicacion,
         "id_registro" => $id_cliente
-    ), "id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
+    ), "id_aplicacion='{$id_aplicacion3}' AND id_registro='{$id_posiblecli}'");
     db_query($query);
     // RELACIONAR COMENTARIOS DEL POSIBLE CLIENTE CON EL NUEVO CLIENTE
     $query = make_update_query("tbl_comentarios", array(
         "id_aplicacion" => $id_aplicacion,
         "id_registro" => $id_cliente
-    ), "id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
+    ), "id_aplicacion='{$id_aplicacion3}' AND id_registro='{$id_posiblecli}'");
     db_query($query);
     // VOLVER
     session_alert(LANG("clientcreatedok", "posiblescli"));

@@ -37,7 +37,7 @@ function make_indexing($id_aplicacion = null, $id_registro = null)
     }
     $subtablas = id2subtables($id_aplicacion);
     if ($id_registro === null) {
-        $id_registro = execute_query("SELECT MAX(id) FROM ${tabla}");
+        $id_registro = execute_query("SELECT MAX(id) FROM {$tabla}");
     }
     if (is_string($id_registro) && strpos($id_registro, ",") !== false) {
         $id_registro = explode(",", $id_registro);
@@ -51,14 +51,14 @@ function make_indexing($id_aplicacion = null, $id_registro = null)
     }
     // BUSCAR SI EXISTE INDEXACION
     $page = id2page($id_aplicacion);
-    $query = "SELECT id FROM idx_${page} WHERE id='${id_registro}'";
+    $query = "SELECT id FROM idx_{$page} WHERE id='{$id_registro}'";
     $id_indexing = execute_query($query);
     // BUSCAR SI EXISTEN DATOS DE LA TABLA PRINCIPAL
-    $query = "SELECT id FROM ${tabla} WHERE id='${id_registro}'";
+    $query = "SELECT id FROM {$tabla} WHERE id='{$id_registro}'";
     $id_data = execute_query($query);
     if (!$id_data) {
         if ($id_indexing) {
-            $query = "DELETE FROM idx_${page} WHERE id='${id_indexing}'";
+            $query = "DELETE FROM idx_{$page} WHERE id='{$id_indexing}'";
             db_query($query);
             return 3;
         } else {
@@ -70,10 +70,10 @@ function make_indexing($id_aplicacion = null, $id_registro = null)
     // OBTENER DATOS DE LA TABLA PRINCIPAL
     $campos = __make_indexing_helper($tabla, $id_registro);
     foreach ($campos as $key => $val) {
-        $campos[$key] = "IFNULL((${val}),'')";
+        $campos[$key] = "IFNULL(({$val}),'')";
     }
     $campos = "CONCAT(" . implode(",' ',", $campos) . ")";
-    $query = "SELECT ${campos} FROM ${tabla} WHERE id='${id_registro}'";
+    $query = "SELECT {$campos} FROM {$tabla} WHERE id='{$id_registro}'";
     $queries[] = $query;
     // OBTENER DATOS DE LAS SUBTABLAS
     if ($subtablas != "") {
@@ -82,10 +82,10 @@ function make_indexing($id_aplicacion = null, $id_registro = null)
             $campo = strtok(")");
             $campos = __make_indexing_helper($tabla);
             foreach ($campos as $key => $val) {
-                $campos[$key] = "IFNULL((${val}),'')";
+                $campos[$key] = "IFNULL(({$val}),'')";
             }
             $campos = "GROUP_CONCAT(CONCAT(" . implode(",' ',", $campos) . "))";
-            $query = "SELECT ${campos} FROM ${tabla} WHERE ${campo}='${id_registro}'";
+            $query = "SELECT {$campos} FROM {$tabla} WHERE {$campo}='{$id_registro}'";
             $queries[] = $query;
         }
     }
@@ -94,27 +94,27 @@ function make_indexing($id_aplicacion = null, $id_registro = null)
     foreach ($tablas as $tabla) {
         $campos = __make_indexing_helper($tabla);
         foreach ($campos as $key => $val) {
-            $campos[$key] = "IFNULL((${val}),'')";
+            $campos[$key] = "IFNULL(({$val}),'')";
         }
         $campos = "GROUP_CONCAT(CONCAT(" . implode(",' ',", $campos) . "))";
-        $query = "SELECT ${campos}
-            FROM ${tabla}
-            WHERE id_aplicacion='${id_aplicacion}'
-                AND id_registro='${id_registro}'";
+        $query = "SELECT {$campos}
+            FROM {$tabla}
+            WHERE id_aplicacion='{$id_aplicacion}'
+                AND id_registro='{$id_registro}'";
         $queries[] = $query;
     }
     // PREPARAR QUERY PRINCIPAL
     foreach ($queries as $key => $val) {
-        $queries[$key] = "IFNULL((${val}),'')";
+        $queries[$key] = "IFNULL(({$val}),'')";
     }
     $search = "CONCAT(" . implode(",' ',", $queries) . ")";
     // AÑADIR A LA TABLA INDEXING
     if ($id_indexing) {
-        $query = "UPDATE idx_${page} SET search=${search} WHERE id=${id_indexing}";
+        $query = "UPDATE idx_{$page} SET search={$search} WHERE id={$id_indexing}";
         db_query_protected($query);
         return 2;
     } else {
-        $query = "REPLACE INTO idx_${page}(id,search) VALUES(${id_registro},${search})";
+        $query = "REPLACE INTO idx_{$page}(id,search) VALUES({$id_registro},{$search})";
         db_query_protected($query);
         return 1;
     }
@@ -194,22 +194,22 @@ function __make_indexing_helper($tabla, $id = "")
             $type = $types[$tabla][$key];
             if ($type == "int") {
                 if ($id == "") {
-                    $where = "${val}.id=${key}";
+                    $where = "{$val}.id={$key}";
                 } else {
-                    $where = "${val}.id=(SELECT ${key} FROM ${tabla} WHERE id=${id})";
+                    $where = "{$val}.id=(SELECT {$key} FROM {$tabla} WHERE id={$id})";
                 }
             } elseif ($type == "string") {
                 if ($id == "") {
-                    $where = "FIND_IN_SET(${val}.id,${key})";
+                    $where = "FIND_IN_SET({$val}.id,{$key})";
                 } else {
-                    $where = "FIND_IN_SET(${val}.id,(SELECT ${key} FROM ${tabla} WHERE id=${id}))";
+                    $where = "FIND_IN_SET({$val}.id,(SELECT {$key} FROM {$tabla} WHERE id={$id}))";
                 }
-                $campo = "GROUP_CONCAT(${campo})";
+                $campo = "GROUP_CONCAT({$campo})";
             } else {
                 $where = "";
             }
             if ($campo != "" && $where != "") {
-                $result[] = "(SELECT ${campo} FROM ${val} WHERE ${where})";
+                $result[] = "(SELECT {$campo} FROM {$val} WHERE {$where})";
             }
         }
     }

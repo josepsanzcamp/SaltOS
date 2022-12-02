@@ -33,10 +33,10 @@ function use_table_cookies($name, $value = "", $default = "")
             if ($value == "null") {
                 $value = "";
             }
-            $query = "SELECT COUNT(*) FROM tbl_cookies WHERE id_usuario='${uid}' AND clave='${name}'";
+            $query = "SELECT COUNT(*) FROM tbl_cookies WHERE id_usuario='{$uid}' AND clave='{$name}'";
             $count = execute_query($query);
             if ($count > 1) {
-                $query = "DELETE FROM tbl_cookies WHERE id_usuario='${uid}' AND clave='${name}'";
+                $query = "DELETE FROM tbl_cookies WHERE id_usuario='{$uid}' AND clave='{$name}'";
                 db_query($query);
                 $count = 0;
             }
@@ -50,7 +50,7 @@ function use_table_cookies($name, $value = "", $default = "")
             } else {
                 $query = make_update_query("tbl_cookies", array(
                     "valor" => $value
-                ), "id_usuario='${uid}' AND clave='${name}'");
+                ), "id_usuario='{$uid}' AND clave='{$name}'");
                 db_query($query);
             }
         } else {

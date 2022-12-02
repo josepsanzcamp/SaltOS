@@ -36,8 +36,8 @@ if (!$page || !check_user($page, "menu")) {
 }
 
 require_once "php/libaction.php";
-$_LANG["default"] = "${page},menu,common";
-$_CONFIG[$page] = xml2array(detect_app_file("xml/${page}.xml"));
+$_LANG["default"] = "{$page},menu,common";
+$_CONFIG[$page] = xml2array(detect_app_file("xml/{$page}.xml"));
 lastpage($page);
 history($page);
 
@@ -60,7 +60,7 @@ $order0 = "";
 if (isset($config["order"])) {
     // CHECK ORDER
     list($order,$array) = list_check_order($config["order"], $config["fields"]);
-    $order0 = "ORDER BY ${order}";
+    $order0 = "ORDER BY {$order}";
     // MARK THE SELECTED ORDER FIELD
     foreach ($_RESULT[$action]["fields"] as $key => $val) {
         $selected = 0;
@@ -79,7 +79,7 @@ if (isset($config["order"])) {
     }
 }
 // EXECUTE THE QUERY TO GET THE ROWS WITH LIMIT AND OFFSET
-$query = "${query0} ${order0} LIMIT ${offset},${limit}";
+$query = "{$query0} {$order0} LIMIT {$offset},{$limit}";
 $result = db_query($query);
 $count = 0;
 while ($row = db_fetch_row($result)) {

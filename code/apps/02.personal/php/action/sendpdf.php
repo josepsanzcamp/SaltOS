@@ -93,7 +93,7 @@ if (in_array($page, array("facturas","actas","partes","presupuestos"))) {
         // PDF FACTURA/ACTA/PARTE/PRESUPUESTO
         require_once "php/libpdf.php";
         $_LANG["default"] = "$page,menu,common";
-        $config = xml2array(detect_app_file("xml/${page}.xml"));
+        $config = xml2array(detect_app_file("xml/{$page}.xml"));
         $config = $config["pdf"];
         $config = eval_attr($config);
         $pdf = __pdf_eval_pdftag($config);
@@ -104,7 +104,7 @@ if (in_array($page, array("facturas","actas","partes","presupuestos"))) {
         $name = encode_bad_chars_file($name);
         $mime = "application/pdf";
         $size = strlen($pdf["data"]);
-        $files["pdf_${key}"] = array("file" => $file,"name" => $name,"mime" => $mime,"size" => $size);
+        $files["pdf_{$key}"] = array("file" => $file,"name" => $name,"mime" => $mime,"size" => $size);
     }
     $body = implode("<br/>", $body);
     //require_once "php/getmail.php";

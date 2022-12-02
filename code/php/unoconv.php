@@ -213,7 +213,7 @@ function __unoconv_pdf2ocr($pdf)
     }
     // EXTRACT ALL IMAGES FROM PDF
     $root = get_directory("dirs/cachedir") . md5_file($pdf);
-    $files = glob("${root}-*");
+    $files = glob("{$root}-*");
     //~ foreach($files as $file) unlink(array_pop($files));
     if (!count($files)) {
         ob_passthru(str_replace_assoc(array(
@@ -222,7 +222,7 @@ function __unoconv_pdf2ocr($pdf)
         ), getDefault("commands/__pdftoppm__")));
     }
     // EXTRACT ALL TEXT FROM TIFF
-    $files = glob("${root}-*");
+    $files = glob("{$root}-*");
     $result = array();
     foreach ($files as $file) {
         $result[] = __unoconv_img2ocr($file);

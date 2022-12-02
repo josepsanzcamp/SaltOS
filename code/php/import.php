@@ -103,7 +103,7 @@ function import_file($args)
         $args["postfn"] = "";
     }
     if (!file_exists($args["file"])) {
-        return "Error: File '${args["file"]}' not found";
+        return "Error: File '{$args["file"]}' not found";
     }
     // CONTINUE
     switch ($args["type"]) {
@@ -137,7 +137,7 @@ function import_file($args)
             $array = __import_json2array($args["file"]);
             break;
         default:
-            return "Error: Unknown type '${args["type"]}' for file '${args["file"]}'";
+            return "Error: Unknown type '{$args["type"]}' for file '{$args["file"]}'";
     }
     if (!is_array($array)) {
         return $array;
@@ -494,7 +494,7 @@ function __import_xls2array($file, $sheet)
     libxml_use_internal_errors(false); // TRICK
     if (is_numeric($sheet)) {
         if (!isset($sheets[$sheet])) {
-            return "Error: Sheet number '${sheet}' not found";
+            return "Error: Sheet number '{$sheet}' not found";
         }
     } else {
         foreach ($sheets as $key => $val) {
@@ -504,7 +504,7 @@ function __import_xls2array($file, $sheet)
             }
         }
         if (!is_numeric($sheet)) {
-            return "Error: Sheet named '${sheet}' not found";
+            return "Error: Sheet named '{$sheet}' not found";
         }
     }
     // TRICK FOR A BIG FILES
@@ -674,7 +674,7 @@ function __import_json2array($file)
     if (!is_array($array)) {
         $code = json_last_error();
         $msg = json_last_error_msg();
-        return "Error: ${msg} (${code})";
+        return "Error: {$msg} ({$code})";
     }
     return $array;
 }
@@ -1166,7 +1166,7 @@ function __import_make_table($array)
                         $cornertl = ($first && $col == 0) ? "ui-corner-tl" : "";
                         $cornertr = ($first && $col == $last) ? "ui-corner-tr" : "";
                         $result .= "<td class='thead ui-widget-header center ";
-                        $result .= "${noright} ${notop} ${cornertl} ${cornertr}'>";
+                        $result .= "{$noright} {$notop} {$cornertl} {$cornertr}'>";
                         $result .= __import_col2name($col);
                         $result .= "</td>\n";
                         $col++;
@@ -1187,13 +1187,13 @@ function __import_make_table($array)
                         $cornertl = ($first && $col == 0) ? "ui-corner-tl" : "";
                         $cornertr = ($first && $col == $last) ? "ui-corner-tr" : "";
                         $result .= "<td class='tbody ui-widget-content center ";
-                        $result .= "${noright} ${notop} ${cornertl} ${cornertr}'>";
-                        $result .= "<select class='ui-state-default ui-corner-all' name='${name}' ";
+                        $result .= "{$noright} {$notop} {$cornertl} {$cornertr}'>";
+                        $result .= "<select class='ui-state-default ui-corner-all' name='{$name}' ";
                         $result .= __import_make_table_width($col, $width, 12) . ">\n";
                         $result .= "<option value=''></option>\n";
                         foreach ($val as $index => $option) {
                             $selected = (isset($head[$index]) && $head[$index] == $option) ? "selected" : "";
-                            $result .= "<option value='${option}' ${selected}>${option}</option>\n";
+                            $result .= "<option value='{$option}' {$selected}>{$option}</option>\n";
                         }
                         $result .= "</select>";
                         $result .= "</td>\n";
@@ -1213,7 +1213,7 @@ function __import_make_table($array)
                         $cornertl = ($first && $col == 0) ? "ui-corner-tl" : "";
                         $cornertr = ($first && $col == $last) ? "ui-corner-tr" : "";
                         $result .= "<td class='thead ui-widget-header center ";
-                        $result .= "${noright} ${notop} ${cornertl} ${cornertr}'>";
+                        $result .= "{$noright} {$notop} {$cornertl} {$cornertr}'>";
                         $result .= limpiar_key($field);
                         $result .= "</td>\n";
                     }
@@ -1391,38 +1391,38 @@ function __import_make_table_row($row, $class, $rowspan, $depth, $last, $edit, $
         $noright = ($depth + $col < $last) ? "noright" : "";
         $cornerbl = ($depth + $col == 0) ? "ui-corner-bl-disabled" : "";
         $cornerbr = ($depth + $col == $last) ? "ui-corner-br-disabled" : "";
-        $result .= "<td class='tbody ${class} ${noright} notop nowrap ${cornerbl} ${cornerbr}' rowspan='${rowspan}' ";
+        $result .= "<td class='tbody {$class} {$noright} notop nowrap {$cornerbl} {$cornerbr}' rowspan='{$rowspan}' ";
         $result .= __import_make_table_width($depth + $col, $width) . ">";
         if (isset($edit[$depth + $col])) {
             $name = $path . "/col/" . $col;
             $options = $edit[$depth + $col];
             if (is_array($options)) {
-                $result .= "<select class='ui-state-default ui-corner-all importsave' name='${name}' ";
+                $result .= "<select class='ui-state-default ui-corner-all importsave' name='{$name}' ";
                 $result .= __import_make_table_width($depth + $col, $width, 12) . ">";
                 foreach ($options as $value => $label) {
-                    $result .= "<option value='${value}' ";
+                    $result .= "<option value='{$value}' ";
                     $result .= ($value == $field ? "selected='true'" : "");
-                    $result .= ">${label}</option>";
+                    $result .= ">{$label}</option>";
                 }
                 $result .= "</select>";
             } else {
                 $result .= "<input type='text' class='ui-state-default ui-corner-all importsave' ";
-                $result .= "name='${name}' value='${field}' ";
+                $result .= "name='{$name}' value='{$field}' ";
                 $result .= __import_make_table_width($depth + $col, $width) . "/>";
             }
         } else {
             if (substr($field, 0, 4) == "tel:") {
                 $temp = explode(":", $field, 2);
-                $result .= "<a href='javascript:void(0)' onclick='qrcode2(\"${temp[1]}\")'>${temp[1]}</a>";
+                $result .= "<a href='javascript:void(0)' onclick='qrcode2(\"{$temp[1]}\")'>{$temp[1]}</a>";
             } elseif (substr($field, 0, 7) == "mailto:") {
                 $temp = explode(":", $field, 2);
-                $result .= "<a href='javascript:void(0)' onclick='mailto(\"${temp[1]}\")'>${temp[1]}</a>";
+                $result .= "<a href='javascript:void(0)' onclick='mailto(\"{$temp[1]}\")'>{$temp[1]}</a>";
             } elseif (substr($field, 0, 5) == "href:") {
                 $temp = explode(":", $field, 2);
-                $result .= "<a href='javascript:void(0)' onclick='openwin(\"${temp[1]}\")'>${temp[1]}</a>";
+                $result .= "<a href='javascript:void(0)' onclick='openwin(\"{$temp[1]}\")'>{$temp[1]}</a>";
             } elseif (substr($field, 0, 5) == "link:") {
                 $temp = explode(":", $field, 3);
-                $result .= "<a href='javascript:void(0)' onclick='${temp[1]}'>${temp[2]}</a>";
+                $result .= "<a href='javascript:void(0)' onclick='{$temp[1]}'>{$temp[2]}</a>";
             } else {
                 $result .= $field;
             }
@@ -1557,7 +1557,7 @@ function __import_apply_patch_rec(&$array, $key, $val)
         } elseif (isset($array[$key1])) {
             __import_apply_patch_rec($array[$key1], $key, $val);
         } else {
-            show_php_error(array("phperror" => "Path '${key0}' for '${key1}' not found"));
+            show_php_error(array("phperror" => "Path '{$key0}' for '{$key1}' not found"));
         }
     } elseif ($key0 == "col") {
         if (isset($array["row"]) && isset($array["rows"])) {
@@ -1578,7 +1578,7 @@ function __import_apply_patch_rec(&$array, $key, $val)
             }
         }
     } else {
-        show_php_error(array("phperror" => "Unknown '${key0}' for '${key1}'"));
+        show_php_error(array("phperror" => "Unknown '{$key0}' for '{$key1}'"));
     }
 }
 

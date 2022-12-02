@@ -64,6 +64,6 @@ setCookie2("lang", $lang);
 setCookie2("style", $style);
 $querystring = getParam("querystring");
 $querystring = html_entity_decode($querystring, ENT_COMPAT, "UTF-8");
-$querystring = $querystring ? "?${querystring}" : "";
+$querystring = $querystring ? "?{$querystring}" : "";
 javascript_location_base($querystring);
 die();

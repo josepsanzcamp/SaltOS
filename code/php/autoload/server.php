@@ -57,7 +57,7 @@ function force_ssl()
         $querystring = "?" . str_replace("+", "%20", $querystring);
     }
     if ($porthttps != 443) {
-        $addedport = ":${porthttps}";
+        $addedport = ":{$porthttps}";
     }
     // CONTINUE
     $url = $protocol . $servername . $addedport . $scriptname . $querystring;

@@ -118,7 +118,7 @@ function export_file($args)
             $buffer = __export_file_json($args["data"], $args["indent"]);
             break;
         default:
-            show_php_error(array("phperror" => "Unknown type '${args["type"]}' for file '${args["file"]}'"));
+            show_php_error(array("phperror" => "Unknown type '{$args["type"]}' for file '{$args["file"]}'"));
     }
     if ($args["file"] != "") {
         if ($args["ext"] == "") {

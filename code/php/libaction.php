@@ -525,7 +525,7 @@ function __feeds_fetchmain($array)
                 $alternate = __import_getnode("#attr/href", $link);
             }
             $count++;
-            $link = __import_getnode("feed/link#${count}", $array);
+            $link = __import_getnode("feed/link#{$count}", $array);
         }
         if (!$link && isset($alternate)) {
             $link = $alternate;
@@ -591,7 +591,7 @@ function __feeds_fetchitems($array)
                 );
             }
             $count++;
-            $item = __import_getvalue(__import_getnode("rdf:RDF/item#${count}", $array));
+            $item = __import_getvalue(__import_getnode("rdf:RDF/item#{$count}", $array));
         }
     } elseif ($type == "rss2") {
         $item = __import_getvalue(__import_getnode("rss/channel/item", $array));
@@ -635,7 +635,7 @@ function __feeds_fetchitems($array)
                 );
             }
             $count++;
-            $item = __import_getvalue(__import_getnode("rss/channel/item#${count}", $array));
+            $item = __import_getvalue(__import_getnode("rss/channel/item#{$count}", $array));
         }
     } elseif ($type == "atom") {
         $item = __import_getvalue(__import_getnode("feed/entry", $array));
@@ -662,7 +662,7 @@ function __feeds_fetchitems($array)
                     $alternate = __import_getnode("#attr/href", $link);
                 }
                 $count2++;
-                $link = __import_getnode("link#${count2}", $item);
+                $link = __import_getnode("link#{$count2}", $item);
             }
             if (!$link && isset($alternate)) {
                 $link = $alternate;
@@ -738,7 +738,7 @@ function __feeds_fetchitems($array)
                 );
             }
             $count++;
-            $item = __import_getvalue(__import_getnode("feed/entry#${count}", $array));
+            $item = __import_getvalue(__import_getnode("feed/entry#{$count}", $array));
         }
     }
     foreach ($items as $key => $val) {
@@ -789,7 +789,7 @@ function __phpthumb_imagecreatefromtiff($src)
         $im2->destroy();
     } else {
         $file = get_temp_file(".png");
-        ob_passthru("convert ${src} ${file}");
+        ob_passthru("convert {$src} {$file}");
         if (!file_exists($file)) {
             show_php_error(array("phperror" => "ImageMagick failed using convert command line"));
         }
@@ -851,13 +851,13 @@ function __signature_getauto($file)
     } elseif (substr($file["type"], 0, 6) == "image/") {
         if (eval_bool(getDefault("cache/useimginline"))) {
             $data = base64_encode($file["data"]);
-            $file["src"] = "data:image/png;base64,${data}";
+            $file["src"] = "data:image/png;base64,{$data}";
         } else {
-            $file["src"] = "?action=signature&id=${file["id"]}";
+            $file["src"] = "?action=signature&id={$file["id"]}";
         }
-        $file["auto"] = "<img alt=\"${file["alt"]}\" border=\"0\" src=\"${file["src"]}\" />";
+        $file["auto"] = "<img alt=\"{$file["alt"]}\" border=\"0\" src=\"{$file["src"]}\" />";
     } else {
-        $file["auto"] = "Name: ${file["name"]}<br/>Type: ${file["type"]}<br/>Size: ${file["size"]}";
+        $file["auto"] = "Name: {$file["name"]}<br/>Type: {$file["type"]}<br/>Size: {$file["size"]}";
     }
     require_once "php/getmail.php";
     $file["auto"] = __SIGNATURE_OPEN__ . "--" . __HTML_NEWLINE__ . $file["auto"] . __SIGNATURE_CLOSE__;
@@ -1197,9 +1197,9 @@ function __download($id_aplicacion, $id_registro, $cid)
             if (strlen($cid) != 32) {
                 $query = "SELECT fichero_hash
                     FROM tbl_ficheros
-                    WHERE id='${cid}'
-                        AND id_aplicacion='${id_aplicacion}'
-                        AND id_registro='${id_registro}'";
+                    WHERE id='{$cid}'
+                        AND id_aplicacion='{$id_aplicacion}'
+                        AND id_registro='{$id_registro}'";
                 $cid = execute_query($query);
                 if (!$cid) {
                     show_php_error(array("phperror" => "Unknown file"));
@@ -1222,9 +1222,9 @@ function __download($id_aplicacion, $id_registro, $cid)
     } else {
         $query = "SELECT *
             FROM tbl_ficheros
-            WHERE id='${cid}'
-                AND id_aplicacion='${id_aplicacion}'
-                AND id_registro='${id_registro}'";
+            WHERE id='{$cid}'
+                AND id_aplicacion='{$id_aplicacion}'
+                AND id_registro='{$id_registro}'";
         $result = execute_query($query);
         if (!$result) {
             show_php_error(array("phperror" => "File not found"));
@@ -1253,7 +1253,7 @@ function __vcard($page, $id, $type)
     if (!in_array($type, array("full","small"))) {
         return "";
     }
-    $where = "WHERE id='${id}'";
+    $where = "WHERE id='{$id}'";
     $id_aplicacion = page2id($page);
     if ($page == "contactos") {
         $query = "SELECT * FROM tbl_contactos $where";

@@ -48,7 +48,7 @@ while ($row = db_fetch_row($result)) {
     }
     $id_aplicacion = $row["id"];
     $tabla = $row["tabla"];
-    $range = execute_query("SELECT MAX(id) maxim, MIN(id) minim FROM ${tabla}");
+    $range = execute_query("SELECT MAX(id) maxim, MIN(id) minim FROM {$tabla}");
     for ($i = $range["minim"]; $i < $range["maxim"]; $i += 100000) {
         for (;;) {
             if (time_get_usage() > getDefault("server/percentstop")) {
@@ -56,9 +56,9 @@ while ($row = db_fetch_row($result)) {
             }
             // SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DOESN'T EXISTS ON THE REGISTER TABLE
             $query = "SELECT a.id
-                FROM ${tabla} a
+                FROM {$tabla} a
                 LEFT JOIN tbl_registros b ON a.id=b.id_registro
-                    AND b.id_aplicacion=${id_aplicacion}
+                    AND b.id_aplicacion={$id_aplicacion}
                     AND b.first=1
                 WHERE b.id IS NULL
                     AND a.id>=$i
@@ -77,7 +77,7 @@ while ($row = db_fetch_row($result)) {
     }
     $range = execute_query("SELECT MAX(id_registro) maxim, MIN(id_registro) minim
         FROM tbl_registros
-        WHERE id_aplicacion=${id_aplicacion}
+        WHERE id_aplicacion={$id_aplicacion}
             AND first=1");
     for ($i = $range["minim"]; $i < $range["maxim"]; $i += 100000) {
         for (;;) {
@@ -87,8 +87,8 @@ while ($row = db_fetch_row($result)) {
             // SEARCH IDS OF THE REGISTER TABLE, THAT DOESN'T EXISTS ON THE MAIN APPLICATION TABLE
             $query = "SELECT a.id_registro
                 FROM tbl_registros a
-                LEFT JOIN ${tabla} b ON b.id=a.id_registro
-                WHERE a.id_aplicacion=${id_aplicacion}
+                LEFT JOIN {$tabla} b ON b.id=a.id_registro
+                WHERE a.id_aplicacion={$id_aplicacion}
                     AND a.first=1
                     AND b.id IS NULL
                     AND a.id_registro>=$i
@@ -134,7 +134,7 @@ for (;;) {
         $temp = execute_query_array($query);
         array_shift($temp);
         $temp = implode(",", $temp);
-        $query = "DELETE FROM tbl_registros WHERE id IN (${temp})";
+        $query = "DELETE FROM tbl_registros WHERE id IN ({$temp})";
         db_query($query);
     }
     $total += count($ids);
@@ -161,7 +161,7 @@ for (;;) {
         break;
     }
     $temp = implode(",", $ids);
-    $query = "DELETE FROM tbl_registros WHERE id IN (${temp})";
+    $query = "DELETE FROM tbl_registros WHERE id IN ({$temp})";
     db_query($query);
     $total += count($ids);
     if (count($ids) < 1000) {
@@ -230,11 +230,11 @@ foreach ($checks as $check) {
             break;
         }
         // SEARCH FILES THAT DON'T CONTAIN ANY DIRECTORY SEPARATOR
-        $query = "SELECT id,${check[1]}
-            FROM ${check[0]}
-            WHERE ${check[1]}!=''
-                AND ${check[1]} NOT LIKE '%/%'
-                AND ${check[3]}
+        $query = "SELECT id,{$check[1]}
+            FROM {$check[0]}
+            WHERE {$check[1]}!=''
+                AND {$check[1]} NOT LIKE '%/%'
+                AND {$check[3]}
             LIMIT 1000";
         $rows = execute_query_array($query);
         if (!count($rows)) {

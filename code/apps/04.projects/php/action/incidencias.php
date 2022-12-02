@@ -196,7 +196,7 @@ if ($page == "correo") {
             die();
         }
         // CHECK SI EXISTE LA INCIDENCIA
-        $query = "SELECT id FROM tbl_incidencias WHERE id_correo='${id_correo}'";
+        $query = "SELECT id FROM tbl_incidencias WHERE id_correo='{$id_correo}'";
         $id_incidencia = execute_query($query);
         if ($id_incidencia) {
             session_error(LANG("incidenciaexists", "correo") . __incidencias_codigo($id_incidencia));
@@ -248,7 +248,7 @@ if ($page == "correo") {
         // AÑADIR PDF CON CORREO ORIGINAL
         require_once "php/libpdf.php";
         $_LANG["default"] = "$page,menu,common";
-        $config = xml2array(detect_app_file("xml/${page}.xml"));
+        $config = xml2array(detect_app_file("xml/{$page}.xml"));
         $config = $config["pdf"];
         $config = eval_attr($config);
         setParam("id", $id_correo);

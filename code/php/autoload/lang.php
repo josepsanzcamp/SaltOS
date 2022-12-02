@@ -61,7 +61,7 @@ function LANG_ENCODE($key, $page = "")
 
 function load_lang($lang)
 {
-    return file_exists(detect_app_file("xml/lang/${lang}.xml"));
+    return file_exists(detect_app_file("xml/lang/{$lang}.xml"));
 }
 
 function get_lang()

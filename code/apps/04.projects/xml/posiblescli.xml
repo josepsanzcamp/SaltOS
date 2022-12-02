@@ -636,17 +636,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query match="default" prefix="true" global="id" eval="true">"SELECT '".LANG_ESCAPE("changedenied")."' action_error
             FROM (SELECT 1) a
             WHERE 1=1
-            AND (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='${id}')
-                +(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='${id}')
-                +(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='${id}')>0
+            AND (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='{$id}')
+                +(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='{$id}')
+                +(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='{$id}')>0
             AND '".intval(getParam("activo"))."'='0'"</query>
         <query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query match="default" prefix="true" global="id" eval="true">make_update_query("tbl_posiblescli",array(
             "activo"=>1
-        ),"id='${id}'
-            AND (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='${id}')
-                +(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='${id}')
-                +(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='${id}')>0
+        ),"id='{$id}'
+            AND (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='{$id}')
+                +(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='{$id}')
+                +(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='{$id}')>0
             AND '".intval(getParam("activo"))."'='0'")</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
         <query include="xml/common/qfilesdelete.xml" replace="true" />

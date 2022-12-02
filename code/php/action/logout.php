@@ -44,6 +44,6 @@ if (eval_bool(getDefault("security/allowremember"))) {
 }
 $querystring = getParam("querystring");
 $querystring = html_entity_decode($querystring, ENT_COMPAT, "UTF-8");
-$querystring = $querystring ? "?${querystring}" : "";
+$querystring = $querystring ? "?{$querystring}" : "";
 javascript_location_base($querystring);
 die();

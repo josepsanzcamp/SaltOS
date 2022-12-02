@@ -68,7 +68,7 @@ $format_output = getParam("f", getParam("amp;f", "png"));
 // PREPARE CACHE FILENAME
 $temp = get_directory("dirs/cachedir");
 $hash = md5(serialize(array($src,$width,$height)));
-$cache = "${temp}${hash}.${format_output}";
+$cache = "{$temp}{$hash}.{$format_output}";
 // FOR DEBUG PURPOSES
 //~ if(file_exists($cache)) unlink($cache);
 // CREATE IF NOT EXISTS
@@ -94,7 +94,7 @@ if (!cache_exists($cache, $src)) {
             $im = imagecreatefromwebp($src);
             break;
         default:
-            show_php_error(array("phperror" => "Unsupported input format: ${format_input}"));
+            show_php_error(array("phperror" => "Unsupported input format: {$format_input}"));
     }
     // CALCULATE SIZE
     if ($width !== null && $height !== null && (imagesx($im) > $width || imagesy($im) > $height)) {
@@ -155,7 +155,7 @@ if (!cache_exists($cache, $src)) {
             imagewebp($im2, $cache);
             break;
         default:
-            show_php_error(array("phperror" => "Unsupported output format: ${format_output}"));
+            show_php_error(array("phperror" => "Unsupported output format: {$format_output}"));
     }
     imagedestroy($im2);
     chmod($cache, 0666);

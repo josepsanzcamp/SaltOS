@@ -37,7 +37,7 @@ if (check_user()) {
     $page = "login";
 }
 
-$_CONFIG[$page] = xml2array(detect_app_file("xml/${page}.xml"));
+$_CONFIG[$page] = xml2array(detect_app_file("xml/{$page}.xml"));
 $action = "list";
 if (getDefault("$page/default")) {
     $config = getDefault("$page/default");

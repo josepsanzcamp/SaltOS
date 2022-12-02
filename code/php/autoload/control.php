@@ -36,7 +36,7 @@ function make_control($id_aplicacion = null, $id_registro = null, $id_usuario = 
         return -1;
     }
     if ($id_registro === null) {
-        $id_registro = execute_query("SELECT MAX(id) FROM ${tabla}");
+        $id_registro = execute_query("SELECT MAX(id) FROM {$tabla}");
     }
     if ($id_usuario === null) {
         $id_usuario = current_user();
@@ -57,8 +57,8 @@ function make_control($id_aplicacion = null, $id_registro = null, $id_usuario = 
     // BUSCAR SI EXISTE REGISTRO DE CONTROL
     $query = "SELECT id
         FROM tbl_registros
-        WHERE id_aplicacion='${id_aplicacion}'
-            AND id_registro='${id_registro}'
+        WHERE id_aplicacion='{$id_aplicacion}'
+            AND id_registro='{$id_registro}'
             AND first='1'";
     $id_control = execute_query($query);
     // SOME CHECKS
@@ -66,18 +66,18 @@ function make_control($id_aplicacion = null, $id_registro = null, $id_usuario = 
         $temp = $id_control;
         $id_control = array_pop($temp);
         foreach ($temp as $temp2) {
-            $query = "DELETE FROM tbl_registros WHERE id='${temp2}'";
+            $query = "DELETE FROM tbl_registros WHERE id='{$temp2}'";
             db_query($query);
         }
     }
     // BUSCAR SI EXISTEN DATOS DE LA TABLA PRINCIPAL
-    $query = "SELECT id FROM ${tabla} WHERE id='${id_registro}'";
+    $query = "SELECT id FROM {$tabla} WHERE id='{$id_registro}'";
     $id_data = execute_query($query);
     if (!$id_data) {
         if ($id_control) {
             $query = "DELETE FROM tbl_registros
-                WHERE id_aplicacion='${id_aplicacion}'
-                    AND id_registro='${id_registro}'";
+                WHERE id_aplicacion='{$id_aplicacion}'
+                    AND id_registro='{$id_registro}'";
             db_query($query);
             return 3;
         } else {
@@ -110,8 +110,8 @@ function make_control($id_aplicacion = null, $id_registro = null, $id_usuario = 
 function get_id_control($id_aplicacion, $id_registro)
 {
     $query = "SELECT id FROM tbl_registros
-        WHERE id_aplicacion='${id_aplicacion}'
-            AND id_registro='${id_registro}'
+        WHERE id_aplicacion='{$id_aplicacion}'
+            AND id_registro='{$id_registro}'
             AND first='1'";
     $id_control = execute_query($query);
     return $id_control;

@@ -55,7 +55,7 @@ function list_simulator($newpage, $ids = "concat")
     if (isset($config["order"])) {
         // CHECK ORDER
         list($order,$array) = list_check_order($config["order"], $config["fields"]);
-        $order0 = "ORDER BY ${order}";
+        $order0 = "ORDER BY {$order}";
     }
     // EXECUTE THE QUERY TO GET THE REQUESTED DATA
     if ($ids == "count") {
@@ -63,7 +63,7 @@ function list_simulator($newpage, $ids = "concat")
         $count = execute_query($query);
         $result = array("count" => $count,"limit" => $limit,"offset" => $offset);
     } elseif ($ids == "concat") {
-        $query = "SELECT action_id FROM (${query0}) __a__ ${order0}";
+        $query = "SELECT action_id FROM ({$query0}) __a__ {$order0}";
         $temp = db_query($query, "concat");
         $result = db_fetch_row($temp);
         db_free($temp);
@@ -86,13 +86,13 @@ function list_simulator($newpage, $ids = "concat")
             if (isset($fields[$label])) {
                 $label = $label . " (" . $numbers[$label] . ")";
             }
-            $fields[$label] = "${name} '${label}'";
+            $fields[$label] = "{$name} '{$label}'";
         }
         $fields = implode(",", $fields);
-        $result = "SELECT ${fields} FROM (${query0}) __a__ ${order0}";
+        $result = "SELECT {$fields} FROM ({$query0}) __a__ {$order0}";
     } else {
         $ids = check_ids($ids);
-        $query = "SELECT action_title FROM (${query0}) __a__ WHERE action_id IN (${ids}) ${order0}";
+        $query = "SELECT action_title FROM ({$query0}) __a__ WHERE action_id IN ({$ids}) {$order0}";
         $result = execute_query_array($query);
     }
     // RESTORE THE SAVED CONTEXT

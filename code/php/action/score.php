@@ -44,7 +44,7 @@ $minscore = intval(getDefault("security/minscore"));
 // PREPARE CACHE FILENAME
 $temp = get_directory("dirs/cachedir");
 $hash = md5(serialize(array($pass,$format,$width,$height,$size,$minscore)));
-$cache = "${temp}${hash}.${format}";
+$cache = "{$temp}{$hash}.{$format}";
 // FOR DEBUG PURPOSES
 //if(file_exists($cache)) unlink($cache);
 // CREATE IF NOT EXISTS
@@ -62,7 +62,7 @@ if (!file_exists($cache)) {
         require_once "php/libaction.php";
         $buffer = __score_image($score, $width, $height, $size);
         $data = base64_encode($buffer);
-        $data = "data:image/png;base64,${data}";
+        $data = "data:image/png;base64,{$data}";
         $valid = ($score >= $minscore) ? 1 : 0;
         $_RESULT = array("image" => $data,"score" => $score . "%","valid" => $valid);
         $buffer = json_encode($_RESULT);

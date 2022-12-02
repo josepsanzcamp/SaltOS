@@ -160,11 +160,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row global="i" for="i" from="1" to="12">
                         <field>
-                            <name global="i" eval="true">"quick_button_f${i}"</name>
-                            <label global="i" eval="true">LANG("quick_button_f${i}")</label>
+                            <name global="i" eval="true">"quick_button_f{$i}"</name>
+                            <label global="i" eval="true">LANG("quick_button_f{$i}")</label>
                             <type>select</type>
                             <query eval="true">"SELECT codigo value,nombre label,0 pos FROM tbl_aplicaciones UNION SELECT '' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-                            <value global="i,temp" eval="true">!is_null($temp=execute_query("SELECT codigo FROM tbl_quick WHERE id_usuario='".current_user()."' AND button='f${i}'"))?$temp:CONFIG("quick_button_f${i}")</value>
+                            <value global="i,temp" eval="true">!is_null($temp=execute_query("SELECT codigo FROM tbl_quick WHERE id_usuario='".current_user()."' AND button='f{$i}'"))?$temp:CONFIG("quick_button_f{$i}")</value>
                             <width>240px</width>
                         </field>
                         <field>
@@ -281,8 +281,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <query ifeval="!ismobile()" match="default" prefix="true" eval="true">"DELETE FROM tbl_quick WHERE id_usuario='".current_user()."'"</query>
         <query ifeval="!ismobile()" global="i" for="i" from="1" to="12" match="default" prefix="true" eval="true">make_insert_query("tbl_quick",array(
             "id_usuario"=>current_user(),
-            "button"=>"f${i}",
-            "codigo"=>getParam("quick_button_f${i}")
+            "button"=>"f{$i}",
+            "codigo"=>getParam("quick_button_f{$i}")
         ))</query>
         <query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_registros WHERE id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."') AND id_aplicacion='".page2id("feeds")."'":""</query>
         <query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."'":""</query>

@@ -75,21 +75,21 @@ function post_datauser()
                     UNION
                     SELECT gp.id_aplicacion id_aplicacion,gp.id_permiso id_permiso,gp.allow allow,gp.deny deny
                     FROM tbl_grupos_p gp,tbl_usuarios u,tbl_aplicaciones_p ap
-                    WHERE u.id='${_USER["id"]}'
+                    WHERE u.id='{$_USER["id"]}'
                         AND u.id_grupo=gp.id_grupo
                         AND gp.id_aplicacion=ap.id_aplicacion
                         AND gp.id_permiso=ap.id_permiso
                     UNION
                     SELECT gp.id_aplicacion id_aplicacion,gp.id_permiso id_permiso,gp.allow allow,gp.deny deny
                     FROM tbl_grupos_p gp,tbl_usuarios_g ug,tbl_aplicaciones_p ap
-                    WHERE ug.id_usuario='${_USER["id"]}'
+                    WHERE ug.id_usuario='{$_USER["id"]}'
                         AND ug.id_grupo=gp.id_grupo
                         AND gp.id_aplicacion=ap.id_aplicacion
                         AND gp.id_permiso=ap.id_permiso
                     UNION
                     SELECT up.id_aplicacion id_aplicacion,up.id_permiso id_permiso,up.allow allow,up.deny deny
                     FROM tbl_usuarios_p up,tbl_aplicaciones_p ap
-                    WHERE up.id_usuario='${_USER["id"]}'
+                    WHERE up.id_usuario='{$_USER["id"]}'
                         AND up.id_aplicacion=ap.id_aplicacion
                         AND up.id_permiso=ap.id_permiso
                 ) x
@@ -173,13 +173,13 @@ function check_sql($aplicacion, $permiso, $id_usuario = "id_usuario", $id_grupo 
     // CHECK FOR USER/GROUP/ALL PERMISSIONS
     $sql = array();
     $sql["all"] = "1=1";
-    $sql["group"] = "${id_grupo} IN (" . check_ids(
+    $sql["group"] = "{$id_grupo} IN (" . check_ids(
         $_USER["id_grupo"],
         execute_query_array("SELECT id_grupo FROM tbl_usuarios_g WHERE id_usuario='" . $_USER["id"] . "'")
     ) . ")";
-    $sql["user"] = "${id_usuario}='" . $_USER["id"] . "'";
+    $sql["user"] = "{$id_usuario}='" . $_USER["id"] . "'";
     foreach ($sql as $key => $val) {
-        if (check_user($aplicacion, "${key}_${permiso}")) {
+        if (check_user($aplicacion, "{$key}_{$permiso}")) {
             return $val;
         }
     }
@@ -193,7 +193,7 @@ function check_sql2($permiso, $id_aplicacion = "id_aplicacion", $id_usuario = "i
     $cases = array();
     while ($row = db_fetch_row($result)) {
         $cases[] = "(
-            ${id_aplicacion}='${row["id"]}' AND
+            {$id_aplicacion}='{$row["id"]}' AND
             (" . check_sql($row["codigo"], $permiso, $id_usuario, $id_grupo) . ")
         )";
     }
@@ -323,10 +323,10 @@ function check_security($action = "")
     $id_usuario = current_user();
     $remote_addr = getServer("REMOTE_ADDR");
     // BUSCAR ID_SECURITY
-    $query = "SELECT id FROM tbl_security WHERE id_session='${id_session}'";
+    $query = "SELECT id FROM tbl_security WHERE id_session='{$id_session}'";
     $id_security = execute_query($query);
     if (is_array($id_security)) {
-        $query = "DELETE FROM tbl_security WHERE id_session='${id_session}'";
+        $query = "DELETE FROM tbl_security WHERE id_session='{$id_session}'";
         db_query($query);
         $id_security = 0;
     }
@@ -337,14 +337,14 @@ function check_security($action = "")
             "logout" => 0
         ));
         db_query($query);
-        $query = "SELECT id FROM tbl_security WHERE id_session='${id_session}'";
+        $query = "SELECT id FROM tbl_security WHERE id_session='{$id_session}'";
         $id_security = execute_query($query);
     }
     // BUSCAR ID_SECURITY_IP
-    $query = "SELECT id FROM tbl_security_ip WHERE id_session='${id_session}' AND remote_addr='${remote_addr}'";
+    $query = "SELECT id FROM tbl_security_ip WHERE id_session='{$id_session}' AND remote_addr='{$remote_addr}'";
     $id_security_ip = execute_query($query);
     if (is_array($id_security_ip)) {
-        $query = "DELETE FROM tbl_security_ip WHERE id_session='${id_session}' AND remote_addr='${remote_addr}'";
+        $query = "DELETE FROM tbl_security_ip WHERE id_session='{$id_session}' AND remote_addr='{$remote_addr}'";
         db_query($query);
         $id_security_ip = 0;
     }
@@ -354,7 +354,7 @@ function check_security($action = "")
             "remote_addr" => $remote_addr
         ));
         db_query($query);
-        $query = "SELECT id FROM tbl_security_ip WHERE id_session='${id_session}' AND remote_addr='${remote_addr}'";
+        $query = "SELECT id FROM tbl_security_ip WHERE id_session='{$id_session}' AND remote_addr='{$remote_addr}'";
         $id_security_ip = execute_query($query);
     }
     // BORRAR REGISTROS CADUCADOS
@@ -368,24 +368,24 @@ function check_security($action = "")
             // MARCAR REGISTROS DEL ID_USUARIO PARA LOGOUT
             $query = make_update_query("tbl_security", array(
                 "logout" => "1"
-            ), "id_usuario='${id_usuario}'");
+            ), "id_usuario='{$id_usuario}'");
             db_query($query);
             // LIMPIAR RETRIES DEL MISMO REMOTE_ADDR
             $query = make_update_query("tbl_security_ip", array(
                 "retries" => "0"
-            ), "id_session='${id_session}' OR remote_addr='${remote_addr}'");
+            ), "id_session='{$id_session}' OR remote_addr='{$remote_addr}'");
             db_query($query);
             // PONER ID_USUARIO Y RESETEAR LOGOUT EN EL REGISTRO ACTUAL
             $query = make_update_query("tbl_security", array(
                 "id_usuario" => $id_usuario,
                 "logout" => 0
-            ), "id='${id_security}'");
+            ), "id='{$id_security}'");
             db_query($query);
         } else {
             // INCREMENTAR RETRIES EN EL REGISTRO ACTUAL
             $query = make_update_query("tbl_security_ip", array(
-                "retries" => execute_query("SELECT retries+1 FROM tbl_security_ip WHERE id='${id_security_ip}'"),
-            ), "id='${id_security_ip}'");
+                "retries" => execute_query("SELECT retries+1 FROM tbl_security_ip WHERE id='{$id_security_ip}'"),
+            ), "id='{$id_security_ip}'");
             db_query($query);
         }
     } elseif ($action == "logout") {
@@ -393,15 +393,15 @@ function check_security($action = "")
         $query = make_update_query("tbl_security", array(
             "id_usuario" => 0,
             "logout" => 0
-        ), "id='${id_security}'");
+        ), "id='{$id_security}'");
         db_query($query);
     } elseif ($action == "main") {
         if ($id_usuario) {
             // BUSCAR LOGOUT EN EL REGISTRO ACTUAL
-            $query = "SELECT logout,id_usuario FROM tbl_security WHERE id='${id_security}'";
+            $query = "SELECT logout,id_usuario FROM tbl_security WHERE id='{$id_security}'";
             $result = execute_query($query);
             // BUSCAR COUNT DEL ID_USUARIO EN TODOS LOS REGISTROS DONDE LOGOUT=0
-            $query = "SELECT COUNT(*) FROM tbl_security WHERE id_usuario='${id_usuario}' AND logout='0'";
+            $query = "SELECT COUNT(*) FROM tbl_security WHERE id_usuario='{$id_usuario}' AND logout='0'";
             $count = execute_query($query);
             // HACER LOGOUT SI ES NECESARIO
             if ($result["logout"] || !$result["id_usuario"] || $count != 1) {
@@ -413,19 +413,19 @@ function check_security($action = "")
         // BUSCAR SUM(RETRIES) PARA TODOS LOS REGISTROS_IP DEL ID_SESSION O DEL REMOTE_ADDR
         $query = "SELECT SUM(retries)
             FROM tbl_security_ip
-            WHERE id_session='${id_session}'
-                OR remote_addr='${remote_addr}'";
+            WHERE id_session='{$id_session}'
+                OR remote_addr='{$remote_addr}'";
         $retries = execute_query($query);
         return $retries < getDefault("security/maxretries");
     } elseif ($action == "logouts") {
         // BUSCAR LOGOUT EN EL REGISTRO ACTUAL
-        $query = "SELECT logout FROM tbl_security WHERE id='${id_security}'";
+        $query = "SELECT logout FROM tbl_security WHERE id='{$id_security}'";
         $logout = execute_query($query);
         return !$logout;
     } elseif ($action == "captcha") {
         $query = make_update_query("tbl_security_ip", array(
             "retries" => 0
-        ), "id='${id_security_ip}'");
+        ), "id='{$id_security_ip}'");
         db_query($query);
     } else {
         show_php_error(array("phperror" => "Unknown action='$action' in check_security"));

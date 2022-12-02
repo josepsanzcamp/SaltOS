@@ -65,13 +65,13 @@ function db_schema()
             foreach ($tables1 as $table) {
                 $isbackup = (substr($table, 0, 2) == "__" && substr($table, -2, 2) == "__");
                 if (!$isbackup && !in_array($table, $tables2)) {
-                    $backup = "__${table}__";
+                    $backup = "__{$table}__";
                     db_query(sql_alter_table($table, $backup));
                 }
             }
             foreach ($dbschema["tables"] as $tablespec) {
                 $table = $tablespec["name"];
-                $backup = "__${table}__";
+                $backup = "__{$table}__";
                 if (in_array($table, $tables1)) {
                     $fields1 = get_fields($table);
                     $fields2 = get_fields_from_dbschema($table);
@@ -153,7 +153,7 @@ function db_static()
         $dbstatic = eval_attr(xml_join(xml2array(detect_apps_files("xml/dbstatic.xml"))));
         if (is_array($dbstatic)) {
             foreach ($dbstatic as $table => $rows) {
-                $query = "DELETE FROM ${table}";
+                $query = "DELETE FROM {$table}";
                 db_query($query);
                 foreach ($rows as $row) {
                     __db_static_helper($table, $row);
@@ -252,7 +252,7 @@ function __get_dbschema_with_indexing($dbschema, $dbstatic)
         if (isset($row["tabla"]) && $row["tabla"] != "") {
             $codigo = $row["codigo"];
             set_array($dbschema["tables"], "table", array(
-                "name" => "idx_${codigo}",
+                "name" => "idx_{$codigo}",
                 "fields" => array(
                     "field" => array(
                         "name" => "id",
@@ -266,7 +266,7 @@ function __get_dbschema_with_indexing($dbschema, $dbstatic)
                 )
             ));
             set_array($dbschema["indexes"], "index", array(
-                "table" => "idx_${codigo}",
+                "table" => "idx_{$codigo}",
                 "fulltext" => "true",
                 "fields" => array(
                     "field" => array(

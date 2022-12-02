@@ -135,7 +135,7 @@ function preeval_insert_query($table, $only = "")
         } elseif ($type2 == "string") {
             $list2[] = "'\".addslashes(substr(getParam(\"" . $field["name"] . "\"),0,$size2)).\"'";
         } else {
-            show_php_error(array("phperror" => "Unknown type '${type}' in " . __FUNCTION__));
+            show_php_error(array("phperror" => "Unknown type '{$type}' in " . __FUNCTION__));
         }
     }
     $list1 = implode(",", $list1);
@@ -177,7 +177,7 @@ function preeval_update_query($table, $only = "")
         } elseif ($type2 == "string") {
             $list[] = $field["name"] . "='\".addslashes(substr(getParam(\"" . $field["name"] . "\"),0,$size2)).\"'";
         } else {
-            show_php_error(array("phperror" => "Unknown type '${type}' in " . __FUNCTION__));
+            show_php_error(array("phperror" => "Unknown type '{$type}' in " . __FUNCTION__));
         }
     }
     $list = implode(",", $list);
@@ -285,11 +285,11 @@ function get_indexes($table)
 {
     $indexes = array();
     // FOR SQLITE
-    $query = "/*SQLITE PRAGMA INDEX_LIST(${table}) */";
+    $query = "/*SQLITE PRAGMA INDEX_LIST({$table}) */";
     $result = db_query($query);
     while ($row = db_fetch_row($result)) {
         $index = $row["name"];
-        $query2 = "/*SQLITE PRAGMA INDEX_INFO(${index}) */";
+        $query2 = "/*SQLITE PRAGMA INDEX_INFO({$index}) */";
         $result2 = db_query($query2);
         $fields = array();
         while ($row2 = db_fetch_row($result2)) {
@@ -300,7 +300,7 @@ function get_indexes($table)
     }
     db_free($result);
     // FOR MYSQL
-    $query = "/*MYSQL SHOW INDEXES FROM ${table} */";
+    $query = "/*MYSQL SHOW INDEXES FROM {$table} */";
     $result = db_query($query);
     while ($row = db_fetch_row($result)) {
         $index = $row["Key_name"];
@@ -345,7 +345,7 @@ function get_field_type($type)
             return $key;
         }
     }
-    show_php_error(array("phperror" => "Unknown type '${type}' in " . __FUNCTION__));
+    show_php_error(array("phperror" => "Unknown type '{$type}' in " . __FUNCTION__));
 }
 
 function get_field_size($type)
@@ -383,20 +383,20 @@ function sql_create_table($tablespec)
         } elseif ($type2 == "string") {
             $def = "";
         } else {
-            show_php_error(array("phperror" => "Unknown type '${type}' in " . __FUNCTION__));
+            show_php_error(array("phperror" => "Unknown type '{$type}' in " . __FUNCTION__));
         }
-        $extra = "NOT NULL DEFAULT '${def}'";
+        $extra = "NOT NULL DEFAULT '{$def}'";
         if (isset($field["pkey"]) && eval_bool($field["pkey"])) {
             $extra = "PRIMARY KEY /*MYSQL AUTO_INCREMENT *//*SQLITE AUTOINCREMENT */";
         }
-        $fields[] = "${name} ${type} ${extra}";
+        $fields[] = "{$name} {$type} {$extra}";
     }
     //~ foreach($tablespec["fields"] as $field) {
         //~ if(isset($field["fkey"])) {
             //~ $fkey=$field["fkey"];
             //~ if($fkey!="") {
                 //~ $name=$field["name"];
-                //~ $fields[]="FOREIGN KEY (${name}) REFERENCES ${fkey} (id)";
+                //~ $fields[]="FOREIGN KEY ({$name}) REFERENCES {$fkey} (id)";
             //~ }
         //~ }
     //~ }
@@ -408,7 +408,7 @@ function sql_create_table($tablespec)
     } else {
         $post = "/*MYSQL ENGINE=MyISAM CHARSET=utf8mb4 */";
     }
-    $query = "CREATE TABLE ${table} (${fields}) ${post}";
+    $query = "CREATE TABLE {$table} ({$fields}) {$post}";
     return $query;
 }
 
@@ -453,7 +453,7 @@ function __has_engine($engine)
 
 function get_engine($table)
 {
-    $query = "/*MYSQL SHOW TABLE STATUS WHERE Name='${table}' */";
+    $query = "/*MYSQL SHOW TABLE STATUS WHERE Name='{$table}' */";
     $result = db_query($query);
     $engine = "";
     while ($row = db_fetch_row($result)) {
@@ -465,7 +465,7 @@ function get_engine($table)
 
 function sql_alter_table($orig, $dest)
 {
-    $query = "ALTER TABLE ${orig} RENAME TO ${dest}";
+    $query = "ALTER TABLE {$orig} RENAME TO {$dest}";
     return $query;
 }
 
@@ -498,25 +498,25 @@ function sql_insert_from_select($dest, $orig)
         } elseif ($type2 == "string") {
             $defs[] = "";
         } else {
-            show_php_error(array("phperror" => "Unknown type '${type}' in " . __FUNCTION__));
+            show_php_error(array("phperror" => "Unknown type '{$type}' in " . __FUNCTION__));
         }
     }
     $keys = array();
     $vals = array();
     foreach ($ldest as $key => $l) {
         $def = $defs[$key];
-        $keys[] = "${l}";
-        $vals[] = in_array($l, $lorig) ? "${l}" : "'${def}'";
+        $keys[] = "{$l}";
+        $vals[] = in_array($l, $lorig) ? "{$l}" : "'{$def}'";
     }
     $keys = implode(",", $keys);
     $vals = implode(",", $vals);
-    $query = "INSERT INTO ${dest}(${keys}) SELECT ${vals} FROM ${orig}";
+    $query = "INSERT INTO {$dest}({$keys}) SELECT {$vals} FROM {$orig}";
     return $query;
 }
 
 function sql_drop_table($table)
 {
-    $query = "DROP TABLE ${table}";
+    $query = "DROP TABLE {$table}";
     return $query;
 }
 
@@ -534,13 +534,13 @@ function sql_create_index($indexspec)
     } else {
         $pre = "";
     }
-    $query = "CREATE ${pre} INDEX ${name} ON $table (${fields})";
+    $query = "CREATE {$pre} INDEX {$name} ON $table ({$fields})";
     return $query;
 }
 
 function sql_drop_index($index, $table)
 {
-    $query = "/*MYSQL DROP INDEX ${index} ON ${table} *//*SQLITE DROP INDEX ${index} */";
+    $query = "/*MYSQL DROP INDEX {$index} ON {$table} *//*SQLITE DROP INDEX {$index} */";
     return $query;
 }
 
@@ -580,13 +580,13 @@ function make_like_query($keys, $values, $minsize = 3, $default = "1=0")
         if ($types[$key] == "+") {
             $query2 = array();
             foreach ($keys as $key2) {
-                $query2[] = "${key2} LIKE '%${val}%'";
+                $query2[] = "{$key2} LIKE '%{$val}%'";
             }
             $query[] = "(" . implode(" OR ", $query2) . ")";
         } else {
             $query2 = array();
             foreach ($keys as $key2) {
-                $query2[] = "${key2} NOT LIKE '%${val}%'";
+                $query2[] = "{$key2} NOT LIKE '%{$val}%'";
             }
             $query[] = "(" . implode(" AND ", $query2) . ")";
         }
@@ -598,7 +598,7 @@ function make_like_query($keys, $values, $minsize = 3, $default = "1=0")
 function make_extra_query_with_login($prefix = "")
 {
     $query = make_extra_query($prefix);
-    $query = "CONCAT(${prefix}login,REPLACE(CONCAT(' (',$query,')'),' ()',''))";
+    $query = "CONCAT({$prefix}login,REPLACE(CONCAT(' (',$query,')'),' ()',''))";
     return $query;
 }
 
@@ -610,12 +610,12 @@ function make_extra_query($prefix = "")
         $query = "SELECT * FROM tbl_aplicaciones WHERE islink=1";
         $rows = execute_query_array($query);
         if (count($rows) > 0) {
-            $cases = array("CASE ${prefix}id_aplicacion");
+            $cases = array("CASE {$prefix}id_aplicacion");
             foreach ($rows as $row) {
-                $cases[] = "WHEN '${row["id"]}' THEN (
-                    SELECT ${row["campo"]}
-                    FROM ${row["tabla"]}
-                    WHERE id=${prefix}id_registro)";
+                $cases[] = "WHEN '{$row["id"]}' THEN (
+                    SELECT {$row["campo"]}
+                    FROM {$row["tabla"]}
+                    WHERE id={$prefix}id_registro)";
             }
             $cases[] = "ELSE ''";
             $cases[] = "END";
@@ -635,17 +635,17 @@ function make_extra_query_with_field($field, $prefix = "")
         $query = "SELECT * FROM tbl_aplicaciones WHERE islink=1";
         $rows = execute_query_array($query);
         if (count($rows) > 0) {
-            $cases = array("CASE ${prefix}id_aplicacion");
+            $cases = array("CASE {$prefix}id_aplicacion");
             foreach ($rows as $row) {
                 $fields = get_fields_from_dbschema($row["tabla"]);
                 foreach ($fields as $key => $val) {
                     $fields[$key] = $val["name"];
                 }
                 if (in_array($field, $fields)) {
-                    $cases[] = "WHEN '${row["id"]}' THEN (
-                        SELECT ${field}
-                        FROM ${row["tabla"]}
-                        WHERE id=${prefix}id_registro)";
+                    $cases[] = "WHEN '{$row["id"]}' THEN (
+                        SELECT {$field}
+                        FROM {$row["tabla"]}
+                        WHERE id={$prefix}id_registro)";
                 }
             }
             $cases[] = "ELSE ''";
@@ -665,27 +665,27 @@ function make_select_appsregs($id = 0)
     if (count($rows) > 0) {
         $subquery = array();
         foreach ($rows as $row) {
-            $subquery[] = "SELECT CONCAT('${row["id"]}','_','-2') id,
-                '${row["id"]}' id_aplicacion,-2 id_registro,
-                '${row["nombre"]}' aplicacion,'link:appreg_details(this):" . LANG_ESCAPE("showdetalles") . "' registro,
+            $subquery[] = "SELECT CONCAT('{$row["id"]}','_','-2') id,
+                '{$row["id"]}' id_aplicacion,-2 id_registro,
+                '{$row["nombre"]}' aplicacion,'link:appreg_details(this):" . LANG_ESCAPE("showdetalles") . "' registro,
                 '0' activado,-2 pos
                 FROM (SELECT 1) a
-                WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
-            $subquery[] = "SELECT CONCAT('${row["id"]}','_','-1') id,
-                '${row["id"]}' id_aplicacion,-1 id_registro,
-                '${row["nombre"]}' aplicacion,'link:appreg_details(this):" . LANG_ESCAPE("hidedetalles") . "' registro,
+                WHERE (SELECT COUNT(*) FROM {$row["tabla"]})>0";
+            $subquery[] = "SELECT CONCAT('{$row["id"]}','_','-1') id,
+                '{$row["id"]}' id_aplicacion,-1 id_registro,
+                '{$row["nombre"]}' aplicacion,'link:appreg_details(this):" . LANG_ESCAPE("hidedetalles") . "' registro,
                 '0' activado,-1 pos
                 FROM (SELECT 1) a
-                WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
-            $subquery[] = "SELECT CONCAT('${row["id"]}','_',a.id) id,
-                '${row["id"]}' id_aplicacion,a.id id_registro,
-                '${row["nombre"]}' aplicacion,nombre registro,
+                WHERE (SELECT COUNT(*) FROM {$row["tabla"]})>0";
+            $subquery[] = "SELECT CONCAT('{$row["id"]}','_',a.id) id,
+                '{$row["id"]}' id_aplicacion,a.id id_registro,
+                '{$row["nombre"]}' aplicacion,nombre registro,
                 CASE WHEN ur.id IS NULL THEN 0 ELSE 1 END activado,0 pos
-                FROM ${row["tabla"]} a
-                LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='${row["id"]}'
+                FROM {$row["tabla"]} a
+                LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='{$row["id"]}'
                     AND ur.id_registro=a.id
                     AND ur.id_usuario='" . abs($id) . "'
-                WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
+                WHERE (SELECT COUNT(*) FROM {$row["tabla"]})>0";
         }
         $query = implode(" UNION ", $subquery) . " ORDER BY aplicacion,pos,registro";
     } else {
@@ -785,7 +785,7 @@ function make_insert_query($table, $array)
     }
     $list1 = implode(",", $list1);
     $list2 = implode(",", $list2);
-    $query = "INSERT INTO ${table}(${list1}) VALUES(${list2})";
+    $query = "INSERT INTO {$table}({$list1}) VALUES({$list2})";
     return $query;
 }
 
@@ -796,7 +796,7 @@ function make_update_query($table, $array, $where)
         $list1[] = $key . "='" . addslashes(null2string($val)) . "'";
     }
     $list1 = implode(",", $list1);
-    $query = "UPDATE ${table} SET ${list1} WHERE ${where}";
+    $query = "UPDATE {$table} SET {$list1} WHERE {$where}";
     return $query;
 }
 
@@ -820,7 +820,7 @@ function make_insert_from_select_query($table, $table2, $array, $where2)
     }
     $list1 = implode(",", $list1);
     $list2 = implode(",", $list2);
-    $query = "INSERT INTO ${table}(${list1}) SELECT ${list2} FROM ${table2} WHERE ${where2}";
+    $query = "INSERT INTO {$table}({$list1}) SELECT {$list2} FROM {$table2} WHERE {$where2}";
     return $query;
 }
 
@@ -848,7 +848,7 @@ function make_fulltext_query2($values, $minsize = 3, $default = "1=0")
 
 function make_fulltext_query3($values, $page, $prefix = "", $minsize = 3, $default = "1=0")
 {
-    $engine = strtolower(get_engine("idx_${page}"));
+    $engine = strtolower(get_engine("idx_{$page}"));
     if ($engine == "mroonga") {
         $where = make_fulltext_query2($values, $minsize, $default);
     } else {
@@ -857,7 +857,7 @@ function make_fulltext_query3($values, $page, $prefix = "", $minsize = 3, $defau
     if ($where == $default) {
         return $where;
     }
-    $query = "${prefix}id IN (SELECT id FROM idx_${page} WHERE ${where})";
+    $query = "{$prefix}id IN (SELECT id FROM idx_{$page} WHERE {$where})";
     return $query;
 }
 
@@ -868,7 +868,7 @@ function make_fulltext_query4($values, $minsize = 3, $default = "1=0")
     foreach ($apps as $app) {
         $id = $app["id"];
         $page = $app["codigo"];
-        $engine = strtolower(get_engine("idx_${page}"));
+        $engine = strtolower(get_engine("idx_{$page}"));
         if ($engine == "mroonga") {
             $where = make_fulltext_query2($values, $minsize, $default);
         } else {
@@ -877,9 +877,9 @@ function make_fulltext_query4($values, $minsize = 3, $default = "1=0")
         if ($where == $default) {
             return $where;
         }
-        $count = execute_query("SELECT COUNT(*) FROM idx_${page} WHERE ${where}");
+        $count = execute_query("SELECT COUNT(*) FROM idx_{$page} WHERE {$where}");
         if ($count) {
-            $query[] = "a.id_aplicacion=${id} AND a.id_registro IN (SELECT id FROM idx_${page} WHERE ${where})";
+            $query[] = "a.id_aplicacion={$id} AND a.id_registro IN (SELECT id FROM idx_{$page} WHERE {$where})";
         }
     }
     if (!count($query)) {
@@ -903,22 +903,22 @@ function __make_helper_query($fn, $prefix = "")
 {
     $query = "SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND campo!=''";
     $result = db_query($query);
-    $cases = array("CASE ${prefix}id_aplicacion");
+    $cases = array("CASE {$prefix}id_aplicacion");
     while ($row = db_fetch_row($result)) {
         if (substr($row["campo"], 0, 1) == '"' && substr($row["campo"], -1, 1) == '"') {
             $row["campo"] = eval_protected($row["campo"]);
         }
         if (stripos($fn, "linktitle") !== false) {
-            $cases[] = "WHEN '${row["id"]}' THEN (
-                SELECT CONCAT('link:openapp(\'${row["codigo"]}\',',-${prefix}id_registro,'):',${row["campo"]})
-                FROM ${row["tabla"]}
-                WHERE id=${prefix}id_registro)";
+            $cases[] = "WHEN '{$row["id"]}' THEN (
+                SELECT CONCAT('link:openapp(\'{$row["codigo"]}\',',-{$prefix}id_registro,'):',{$row["campo"]})
+                FROM {$row["tabla"]}
+                WHERE id={$prefix}id_registro)";
         }
         if (stripos($fn, "actiontitle") !== false) {
-            $cases[] = "WHEN '${row["id"]}' THEN (
-                SELECT CONCAT(LPAD(id," . intval(CONFIG("zero_padding_digits")) . ",0),' - ',${row["campo"]})
-                FROM ${row["tabla"]}
-                WHERE id=${prefix}id_registro)";
+            $cases[] = "WHEN '{$row["id"]}' THEN (
+                SELECT CONCAT(LPAD(id," . intval(CONFIG("zero_padding_digits")) . ",0),' - ',{$row["campo"]})
+                FROM {$row["tabla"]}
+                WHERE id={$prefix}id_registro)";
         }
     }
     db_free($result);

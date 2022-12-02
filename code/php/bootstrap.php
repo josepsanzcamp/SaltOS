@@ -39,11 +39,11 @@ if (
 $page = getParam("page");
 $action = getParam("action");
 $id = intval(getParam("id"));
-if (file_exists(detect_app_file("php/action/_${action}.php"))) {
-    require detect_app_file("php/action/_${action}.php");
+if (file_exists(detect_app_file("php/action/_{$action}.php"))) {
+    require detect_app_file("php/action/_{$action}.php");
 }
-if (file_exists(detect_app_file("php/action/${action}.php"))) {
-    require detect_app_file("php/action/${action}.php");
+if (file_exists(detect_app_file("php/action/{$action}.php"))) {
+    require detect_app_file("php/action/{$action}.php");
 }
 
 // CONTINUE
@@ -79,10 +79,10 @@ foreach ($array["metas"] as $key => $val) {
         $metas[] = "<meta " . $val . ">";
     }
     if ($key == "icon") {
-        $metas[] = "<link href='${val}' rel='icon'>";
+        $metas[] = "<link href='{$val}' rel='icon'>";
     }
     if ($key == "title") {
-        $metas[] = "<title>${val}</title>";
+        $metas[] = "<title>{$val}</title>";
     }
 }
 $metas = implode("\n", $metas);
@@ -93,10 +93,10 @@ $css = array();
 foreach ($array["css"] as $key => $val) {
     $key = limpiar_key($key);
     if ($key == "include") {
-        $css[] = "<link href='${val}?r=${rev}' rel='stylesheet'>";
+        $css[] = "<link href='{$val}?r={$rev}' rel='stylesheet'>";
     }
     if ($key == "inline") {
-        $css[] = "<style>${val}</style>";
+        $css[] = "<style>{$val}</style>";
     }
     if ($key == "cache") {
         $files = array();
@@ -107,7 +107,7 @@ foreach ($array["css"] as $key => $val) {
             }
         }
         $files = implode(",", $files);
-        $css[] = "<link href='?action=cache&files=${files}&r=${rev}' rel='stylesheet'>";
+        $css[] = "<link href='?action=cache&files={$files}&r={$rev}' rel='stylesheet'>";
     }
 }
 $css = implode("\n", $css);
@@ -118,10 +118,10 @@ $js = array();
 foreach ($array["js"] as $key => $val) {
     $key = limpiar_key($key);
     if ($key == "include") {
-        $js[] = "<script src='${val}?r=${rev}'></script>";
+        $js[] = "<script src='{$val}?r={$rev}'></script>";
     }
     if ($key == "inline") {
-        $js[] = "<script>${val}</script>";
+        $js[] = "<script>{$val}</script>";
     }
     if ($key == "cache") {
         $files = array();
@@ -132,7 +132,7 @@ foreach ($array["js"] as $key => $val) {
             }
         }
         $files = implode(",", $files);
-        $js[] = "<script src='?action=cache&files=${files}&r=${rev}'></script>";
+        $js[] = "<script src='?action=cache&files={$files}&r={$rev}'></script>";
     }
 }
 $js = implode("\n", $js);

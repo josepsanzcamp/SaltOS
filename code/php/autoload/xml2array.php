@@ -684,7 +684,7 @@ function __xml_parse_into_struct_array($key, $op, $val = "")
     //~ static $xml_option_skip_white=null;
     //~ if($xml_option_skip_white===null) {
         //~ $test="1\n2";
-        //~ $xml="<root>${test}</root>";
+        //~ $xml="<root>{$test}</root>";
         //~ $parser=xml_parser_create();
         //~ xml_parser_set_option($parser,XML_OPTION_CASE_FOLDING,0);
         //~ xml_parser_set_option($parser,XML_OPTION_SKIP_WHITE,1);
@@ -887,7 +887,7 @@ function eval_attr($array)
                                     break;
                                 case "foreach":
                                     if (!isset($$val2)) {
-                                        xml_error("Foreach variable '${val2}' not found");
+                                        xml_error("Foreach variable '{$val2}' not found");
                                     }
                                     if (!is_array($$val2)) {
                                         xml_error("The 'foreach' attr requires a rows array");
@@ -931,10 +931,10 @@ function eval_attr($array)
                                     $stack["for_step"] = 1;
                                 }
                                 if (!$stack["for_step"]) {
-                                    xml_error("Error sequence FOR - FROM(${stack["for_from"]}) - STEP(${stack["for_step"]}) - TO(${stack["for_to"]})");
+                                    xml_error("Error sequence FOR - FROM({$stack["for_from"]}) - STEP({$stack["for_step"]}) - TO({$stack["for_to"]})");
                                 }
                                 if (sign($stack["for_to"] - $stack["for_from"]) != sign($stack["for_step"])) {
-                                    xml_error("Error sequence FOR - FROM(${stack["for_from"]}) - STEP(${stack["for_step"]}) - TO(${stack["for_to"]})");
+                                    xml_error("Error sequence FOR - FROM({$stack["for_from"]}) - STEP({$stack["for_step"]}) - TO({$stack["for_to"]})");
                                 }
                                 // CONTINUE
                                 $attr = array_slice($attr, $count);

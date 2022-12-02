@@ -34,15 +34,15 @@ if (!check_user()) {
 
 if (getParam("page") && !getParam("id") && !getParam("cid")) {
     // CREATE REPORT FROM HELP
-    $file = detect_app_file("doc/${lang}/${page}.pdf");
+    $file = detect_app_file("doc/{$lang}/{$page}.pdf");
     if (!file_exists($file)) {
-        $files = detect_apps_files("doc/*/${page}.pdf");
+        $files = detect_apps_files("doc/*/{$page}.pdf");
         if (isset($files[0])) {
             $file = $files[0];
         }
     }
     if (!file_exists($file)) {
-        $files = detect_apps_files("doc/${lang}/404.pdf");
+        $files = detect_apps_files("doc/{$lang}/404.pdf");
         if (isset($files[0])) {
             $file = $files[0];
         }
@@ -62,7 +62,7 @@ if (getParam("page") && !getParam("id") && !getParam("cid")) {
 } elseif (getParam("page") && getParam("id") && !getParam("cid")) {
     require_once "php/libpdf.php";
     $_LANG["default"] = "$page,menu,common";
-    $config = xml2array(detect_app_file("xml/${page}.xml"));
+    $config = xml2array(detect_app_file("xml/{$page}.xml"));
     $config = $config["pdf"];
     $config = eval_attr($config);
     $pdf = __pdf_eval_pdftag($config);

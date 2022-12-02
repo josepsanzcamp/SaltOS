@@ -56,7 +56,7 @@ if ($page == "clientes") {
                 "cif" => "cif",
                 "fecha" => "'" . current_date() . "'",
                 "fecha2" => "'" . current_date() . "'",
-            ), "id=${id_cliente}");
+            ), "id={$id_cliente}");
         } else {
             $query = make_insert_query("tbl_facturas", array(
                 "fecha" => current_date(),
@@ -97,7 +97,7 @@ if ($page == "clientes") {
         $query = make_update_query("tbl_partes", array(
             "liquidado" => 1,
             "fecha2" => current_date()
-        ), "id='${id}'");
+        ), "id='{$id}'");
         db_query($query);
     }
     javascript_history(-1);
@@ -140,7 +140,7 @@ if ($page == "partes") {
                         "cif" => "cif",
                         "fecha" => "'" . current_date() . "'",
                         "fecha2" => "'" . current_date() . "'",
-                    ), "id=${id_cliente}");
+                    ), "id={$id_cliente}");
                 } else {
                     $query = make_insert_query("tbl_facturas", array(
                         "fecha" => current_date(),
@@ -181,7 +181,7 @@ if ($page == "partes") {
                 $query = make_update_query("tbl_partes", array(
                     "liquidado" => 1,
                     "fecha2" => current_date()
-                ), "id='${id}'");
+                ), "id='{$id}'");
                 db_query($query);
             }
             db_free($result);
@@ -208,7 +208,7 @@ if ($page == "gastos") {
             $query2 = make_update_query("tbl_gastos", array(
                 "liquidado" => 1,
                 "fecha2" => current_date()
-            ), "id='${id_gasto}'");
+            ), "id='{$id_gasto}'");
             db_query($query2);
         }
         db_free($result);
@@ -249,7 +249,7 @@ if ($page == "proyectos" && getParam("extra") == "partes") {
                 "fecha" => "'" . current_date() . "'",
                 "fecha2" => "'" . current_date() . "'",
                 "id_proyecto" => "'" . $id_proyecto . "'",
-            ), "id=${id_cliente}");
+            ), "id={$id_cliente}");
         } else {
             $query = make_insert_query("tbl_facturas", array(
                 "id_cliente" => $id_cliente,
@@ -292,7 +292,7 @@ if ($page == "proyectos" && getParam("extra") == "partes") {
         $query = make_update_query("tbl_partes", array(
             "liquidado" => 1,
             "fecha2" => current_date()
-        ), "id='${id}'");
+        ), "id='{$id}'");
         db_query($query);
     }
     javascript_history(-1);
@@ -335,10 +335,10 @@ if ($page == "proyectos" && getParam("extra") == "facturas") {
         $ids_productos = count($ids) ? implode(",", $ids) : 0;
         // CHECK WHEN USER DONT SELECT NOTHING!!!
         if ($ids_tareas == "0" && $ids_productos == "0") {
-            $query2 = "SELECT id FROM tbl_proyectos_t WHERE id_proyecto='${id_proyecto}'";
+            $query2 = "SELECT id FROM tbl_proyectos_t WHERE id_proyecto='{$id_proyecto}'";
             $ids = execute_query_array($query2);
             $ids_tareas = count($ids) ? implode(",", $ids) : 0;
-            $query2 = "SELECT id FROM tbl_proyectos_p WHERE id_proyecto='${id_proyecto}'";
+            $query2 = "SELECT id FROM tbl_proyectos_p WHERE id_proyecto='{$id_proyecto}'";
             $ids = execute_query_array($query2);
             $ids_productos = count($ids) ? implode(",", $ids) : 0;
         }
@@ -369,7 +369,7 @@ if ($page == "proyectos" && getParam("extra") == "facturas") {
                     "fecha" => "'" . current_date() . "'",
                     "fecha2" => "'" . current_date() . "'",
                     "id_proyecto" => "'" . $id_proyecto . "'",
-                ), "id=${id_cliente}");
+                ), "id={$id_cliente}");
             } else {
                 $query = make_insert_query("tbl_facturas", array(
                     "id_cliente" => $id_cliente,
@@ -463,7 +463,7 @@ if ($page == "periodicas") {
                         "id_periodica" => "'" . $id_periodica . "'",
                         "meses" => "'" . $meses . "'",
                         "id_formapago" => "'" . $id_formapago . "'",
-                    ), "id=${id_cliente}");
+                    ), "id={$id_cliente}");
                 } else {
                     $query = make_insert_query("tbl_facturas", array(
                         "id_cliente" => $id_cliente,
@@ -491,7 +491,7 @@ if ($page == "periodicas") {
                     "unidades" => "unidades",
                     "descuento" => "descuento",
                     "precio" => "precio",
-                ), "id=${id_concepto}");
+                ), "id={$id_concepto}");
                 db_query($query);
             }
             db_free($result2);
@@ -542,10 +542,10 @@ if ($page == "presupuestos") {
         $ids_productos = count($ids) ? implode(",", $ids) : 0;
         // CHECK WHEN USER DONT SELECT NOTHING!!!
         if ($ids_tareas == "0" && $ids_productos == "0") {
-            $query2 = "SELECT id FROM tbl_presupuestos_t WHERE id_presupuesto='${id_presupuesto}'";
+            $query2 = "SELECT id FROM tbl_presupuestos_t WHERE id_presupuesto='{$id_presupuesto}'";
             $ids = execute_query_array($query2);
             $ids_tareas = count($ids) ? implode(",", $ids) : 0;
-            $query2 = "SELECT id FROM tbl_presupuestos_p WHERE id_presupuesto='${id_presupuesto}'";
+            $query2 = "SELECT id FROM tbl_presupuestos_p WHERE id_presupuesto='{$id_presupuesto}'";
             $ids = execute_query_array($query2);
             $ids_productos = count($ids) ? implode(",", $ids) : 0;
         }
@@ -576,7 +576,7 @@ if ($page == "presupuestos") {
                     "fecha" => "'" . current_date() . "'",
                     "fecha2" => "'" . current_date() . "'",
                     "id_presupuesto" => "'" . $id_presupuesto . "'",
-                ), "id=${id_cliente}");
+                ), "id={$id_cliente}");
             } else {
                 $query = make_insert_query("tbl_facturas", array(
                     "id_cliente" => $id_cliente,

@@ -44,13 +44,13 @@ if (load_style($style)) {
     echo __HTML_DOCTYPE__;
     echo "<html>";
     echo "<head>";
-    echo "<link href='${stylepre}${style}${stylepost}?r=${revision}' rel='stylesheet' type='text/css'>";
-    echo "<link href='css/default.css?r=${revision}' rel='stylesheet' type='text/css'>";
-    echo "<link href='css/correo.css?r=${revision}' rel='stylesheet' type='text/css'>";
-    echo "<link href='lib/fontawesome/css/fontawesome.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
-    echo "<link href='lib/fontawesome/css/solid.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
-    echo "<link href='${jstreepre}${jstree}${jstreepost}?r=${revision}' rel='stylesheet' type='text/css'>";
-    echo "<script src='lib/jquery/jquery.min.js?r=${revision}'></script>";
+    echo "<link href='{$stylepre}{$style}{$stylepost}?r={$revision}' rel='stylesheet' type='text/css'>";
+    echo "<link href='css/default.css?r={$revision}' rel='stylesheet' type='text/css'>";
+    echo "<link href='css/correo.css?r={$revision}' rel='stylesheet' type='text/css'>";
+    echo "<link href='lib/fontawesome/css/fontawesome.min.css?r={$revision}' rel='stylesheet' type='text/css'>";
+    echo "<link href='lib/fontawesome/css/solid.min.css?r={$revision}' rel='stylesheet' type='text/css'>";
+    echo "<link href='{$jstreepre}{$jstree}{$jstreepost}?r={$revision}' rel='stylesheet' type='text/css'>";
+    echo "<script src='lib/jquery/jquery.min.js?r={$revision}'></script>";
     echo "<script>";
     echo "var inputs='a.ui-state-default,input.ui-state-default,li.ui-state-default,h3.ui-state-default';";
     echo "$(document).on('mouseover',inputs,function() { $(this).addClass('ui-state-hover'); });";
@@ -74,7 +74,7 @@ if (load_style($style)) {
     echo __HTML_DOCTYPE__;
     echo "<html>";
     echo "<head>";
-    echo "<link href='css/default.css?r=${revision}' rel='stylesheet' type='text/css'>";
+    echo "<link href='css/default.css?r={$revision}' rel='stylesheet' type='text/css'>";
     echo "<style>";
     echo "iframe{width:900px; height:600px; margin:10px; border:1px solid #333;}";
     echo "</style>";
@@ -99,7 +99,7 @@ if (load_style($style)) {
         }
     }
     foreach ($styles as $row) {
-        echo "<iframe src='?action=styles&amp;style=${row["value"]}' frameborder='0'></iframe>";
+        echo "<iframe src='?action=styles&amp;style={$row["value"]}' frameborder='0'></iframe>";
     }
     echo "</body>";
     echo "</html>";

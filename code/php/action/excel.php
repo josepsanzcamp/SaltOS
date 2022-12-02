@@ -31,10 +31,10 @@ if (!check_user()) {
 
 require_once "php/libaction.php";
 $_LANG["default"] = "$page,menu,common";
-if (!file_exists(detect_app_file("xml/${page}.xml"))) {
+if (!file_exists(detect_app_file("xml/{$page}.xml"))) {
     action_denied();
 }
-$config = xml2array(detect_app_file("xml/${page}.xml"));
+$config = xml2array(detect_app_file("xml/{$page}.xml"));
 if (!isset($config[$action])) {
     action_denied();
 }
@@ -50,7 +50,7 @@ $query = $config["query"];
 max_memory_limit();
 $total = execute_query("SELECT COUNT(*) FROM ($query) __b__");
 if ($total <= 100000) {
-    __matrix2dump(__query2matrix($query), "${page}.xlsx", ucfirst($page));
+    __matrix2dump(__query2matrix($query), "{$page}.xlsx", ucfirst($page));
 } else {
-    __query2dump($query, "${page}.csv", ucfirst($page));
+    __query2dump($query, "{$page}.csv", ucfirst($page));
 }

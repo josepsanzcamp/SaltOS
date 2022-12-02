@@ -144,10 +144,10 @@ while ($row = db_fetch_row($result)) {
         $fecha .= "-" . $horafin;
     }
     if ($lugar) {
-        $lugar = ", ${lugar}";
+        $lugar = ", {$lugar}";
     }
     $hash = md5(serialize(array($id,$type,$title,$nombre,$lugar,$descripcion,$fecha)));
-    $msg = intelligence_cut("<b>${nombre}</b> (${fecha}${lugar}) ${descripcion}", 90);
+    $msg = intelligence_cut("<b>{$nombre}</b> ({$fecha}{$lugar}) {$descripcion}", 90);
     $urlview = "opencontent(\"?page=agenda&action=form&id=-$id\")";
     $urledit = "opencontent(\"?page=agenda&action=form&id=$id\")";
     $urlcopy = "opencontent(\"?page=agenda&action=form&id=0_copy_$id\")";
@@ -177,12 +177,12 @@ while ($row = db_fetch_row($result)) {
 db_free($result);
 // OCULTAR NO ENCONTRADOS
 foreach ($id_hash as $key => $val) {
-    javascript_template("$('.id_${val[0]}').remove()");
+    javascript_template("$('.id_{$val[0]}').remove()");
 }
 // NOTIFICACIONES EXTRAS
 if ($newagenda > 0) {
-    javascript_template("update_numbers('agenda',${newagenda});");
-    javascript_template("update_favicon(${newagenda});");
+    javascript_template("update_numbers('agenda',{$newagenda});");
+    javascript_template("update_favicon({$newagenda});");
 }
 javascript_headers();
 die();
