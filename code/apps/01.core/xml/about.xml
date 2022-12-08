@@ -240,7 +240,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://httpd.apache.org")</onclick>
                         </field>
                         <field>
-                            <label>PHP 5.2-8.1 (PHP-3.01)</label>
+                            <label>PHP 7.0-8.2 (PHP-3.01)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.php.net")</onclick>
@@ -298,13 +298,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>TCPDF 6.5.0 (LGPL-3.0)</label>
+                            <label>TCPDF 6.6.0 (LGPL-3.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.tcpdf.org")</onclick>
                         </field>
                         <field>
-                            <label>PHPMailer 6.6.5 (LGPL-2.1)</label>
+                            <label>PHPMailer 6.7.1 (LGPL-2.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
@@ -316,7 +316,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
                         </field>
                         <field>
-                            <label>PHP Mobile Detect 2.8.36 (MIT)</label>
+                            <label>PHP Mobile Detect 3.74.0 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
@@ -576,7 +576,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
                         </field>
                         <field>
-                            <label>CKEditor 4.20.0 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+                            <label>CKEditor 4.20.1 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://ckeditor.com/")</onclick>
