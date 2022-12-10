@@ -453,7 +453,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>Bootswatch 5.2.2 (MIT)</label>
+                            <label>Bootswatch 5.2.3 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://bootswatch.com/")</onclick>
