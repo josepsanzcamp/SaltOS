@@ -261,14 +261,14 @@ function ismobile($forcemobile = null)
         $ismobile = $forcemobile;
     }
     if ($ismobile === null) {
-        require "lib/mobiledetect/MobileDetect.php";
+        require "lib/mobiledetect/vendor/autoload.php";
         if (!isset($_SERVER["HTTP_ACCEPT"])) {
             $_SERVER["HTTP_ACCEPT"] = "x";
         }
         if (!isset($_SERVER["HTTP_USER_AGENT"])) {
             $_SERVER["HTTP_USER_AGENT"] = "x";
         }
-        $detect = new \Detection\MobileDetect;
+        $detect = new Mobile_Detect();
         $ismobile = $detect->isMobile();
     }
     return $ismobile;

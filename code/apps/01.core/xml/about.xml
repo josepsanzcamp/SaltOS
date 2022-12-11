@@ -240,7 +240,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://httpd.apache.org")</onclick>
                         </field>
                         <field>
-                            <label>PHP 7.0-8.2 (PHP-3.01)</label>
+                            <label>PHP 5.6-8.2 (PHP-3.01)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.php.net")</onclick>
@@ -316,7 +316,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
                         </field>
                         <field>
-                            <label>PHP Mobile Detect 3.74.0 (MIT)</label>
+                            <label>PHP Mobile Detect 2.8.41 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
