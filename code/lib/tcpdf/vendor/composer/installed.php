@@ -20,9 +20,9 @@
             'dev_requirement' => false,
         ),
         'tecnickcom/tcpdf' => array(
-            'pretty_version' => '6.6.0',
-            'version' => '6.6.0.0',
-            'reference' => '154bba45ffc9c2a049aa9e21501d02472b24deb4',
+            'pretty_version' => '6.6.1',
+            'version' => '6.6.1.0',
+            'reference' => 'a336b531f6f6b5487fca0caf034a671d4e60df5c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../tecnickcom/tcpdf',
             'aliases' => array(),
