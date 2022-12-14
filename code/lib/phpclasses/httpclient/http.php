@@ -81,6 +81,7 @@ class http_class
 	var $use_curl=0;
 	var $connection=0;
 	var $content_length=0;
+	var $content_length_set=0; // ADDED BY SANZ TO PREVENT THE DEPRECATION MESSAGE IN PHP 8.2
 	var $response="";
 	var $read_response=0;
 	var $read_length=0;
