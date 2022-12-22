@@ -78,9 +78,7 @@ class Style extends Supervisor
      * @see Style::applyFromArray()
      * @see Style::getHashCode()
      *
-     * @phpstan-var null|array{styleByHash: array<string, Style>, hashByObjId: array<int, string>}
-     *
-     * @var array<string, array>
+     * @var null|array<string, array>
      */
     private static $cachedStyles;
 
@@ -423,8 +421,10 @@ class Style extends Supervisor
                         // Handle bug in PHPStan, see https://github.com/phpstan/phpstan/issues/5805
                         // $newStyle should always be defined.
                         // This block might not be needed in the future
+                        // @codeCoverageIgnoreStart
                         $newStyle = clone $style;
                         $newStyle->applyFromArray($styleArray);
+                        // @codeCoverageIgnoreEnd
                     }
 
                     // we don't have such a cell Xf, need to add
@@ -461,7 +461,7 @@ class Style extends Supervisor
                 case 'CELL':
                     for ($col = $rangeStartIndexes[0]; $col <= $rangeEndIndexes[0]; ++$col) {
                         for ($row = $rangeStartIndexes[1]; $row <= $rangeEndIndexes[1]; ++$row) {
-                            $cell = $this->getActiveSheet()->getCellByColumnAndRow($col, $row);
+                            $cell = $this->getActiveSheet()->getCell([$col, $row]);
                             $oldXfIndex = $cell->getXfIndex();
                             $cell->setXfIndex($newXfIndexes[$oldXfIndex]);
                         }
@@ -538,7 +538,7 @@ class Style extends Supervisor
             case 'CELL':
                 for ($col = $rangeStart[0]; $col <= $rangeEnd[0]; ++$col) {
                     for ($row = $rangeStart[1]; $row <= $rangeEnd[1]; ++$row) {
-                        $oldXfIndexes[$this->getActiveSheet()->getCellByColumnAndRow($col, $row)->getXfIndex()] = true;
+                        $oldXfIndexes[$this->getActiveSheet()->getCell([$col, $row])->getXfIndex()] = true;
                     }
                 }
 

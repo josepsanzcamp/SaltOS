@@ -298,7 +298,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>TCPDF 6.6.1 (LGPL-3.0)</label>
+                            <label>TCPDF 6.6.2 (LGPL-3.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -310,7 +310,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
                         </field>
                         <field>
-                            <label>PHPSpreadsheet 1.21 (LGPL-2.1)</label>
+                            <label>PHPSpreadsheet 1.26.0 (LGPL-2.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
@@ -414,7 +414,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>JQuery 3.6.2 (MIT)</label>
+                            <label>JQuery 3.6.3 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.jquery.com/")</onclick>
@@ -582,7 +582,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://ckeditor.com/")</onclick>
                         </field>
                         <field>
-                            <label>CodeMirror v5.65.10 (MIT)</label>
+                            <label>CodeMirror v5.65.11 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://codemirror.net/")</onclick>
