@@ -260,7 +260,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>MariaDB 5.5-10.6 (GPL-2.0)</label>
+                            <label>MariaDB 5.5-10.10 (GPL-2.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://mariadb.org")</onclick>
