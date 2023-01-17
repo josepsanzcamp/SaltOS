@@ -543,7 +543,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/handsontable/handsontable/tree/6.2.2")</onclick>
                         </field>
                         <field>
-                            <label>jsTree 3.3.12 (MIT)</label>
+                            <label>jsTree 3.3.14 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://www.jstree.com/")</onclick>
