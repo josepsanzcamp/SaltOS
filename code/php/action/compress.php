@@ -60,7 +60,7 @@ foreach ($cids as $cid) {
     $result = __download($id_aplicacion, $id_registro, $cid);
     if (getParam("format") == "zip") {
         // FIX ONLY FOR ZIP FORMAT
-        $result["name"] = utf8_decode($result["name"]);
+        $result["name"] = mb_convert_encoding($result["name"], "ISO-8859-1", "UTF-8");
     }
     $files[] = array(
         "file" => $result["file"],

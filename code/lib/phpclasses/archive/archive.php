@@ -14,6 +14,13 @@
 
 class archive
 {
+	public $options;
+	public $files;
+	public $exclude;
+	public $storeonly;
+	public $error;
+	public $archive;
+
 	function __construct($name)
 	{
 		$this->options = array (
