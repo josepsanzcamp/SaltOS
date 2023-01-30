@@ -393,6 +393,10 @@ span.number {
     height: 100%;
 }
 
+#viewerContainer .canvasWrapper {
+    box-shadow:0 0 4px 4px rgba(0,0,0,0.1)!important;
+}
+
 /* FOR HELP */
 .tabs .help {
     float:right!important;

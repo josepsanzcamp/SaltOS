@@ -1,0 +1,14 @@
+# https://cdnjs.com/libraries/pdf.js
+
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/annotation-check.svg
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/annotation-comment.svg
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/annotation-help.svg
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/annotation-insert.svg
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/annotation-key.svg
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/annotation-newparagraph.svg
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/annotation-noicon.svg
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/annotation-note.svg
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/annotation-paperclip.svg
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/annotation-paragraph.svg
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/annotation-pushpin.svg
+wget https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/images/loading-icon.gif
