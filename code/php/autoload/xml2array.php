@@ -700,334 +700,332 @@ function __xml_parse_into_struct_array($key, $op, $val = "")
 
 function eval_attr($array)
 {
-    if (is_array($array)) {
-        if (isset($array["value"]) && isset($array["#attr"])) {
-            return eval_attr(array("inline" => $array));
-        } else {
-            $result = array();
-            foreach ($array as $key => $val) {
-                if (is_array($val)) {
-                    if (isset($val["value"]) && isset($val["#attr"])) {
-                        $stack = array();
-                        $global = "";
-                        $value = $val["value"];
-                        $attr = $val["#attr"];
-                        $count = 0;
-                        foreach ($attr as $key2 => $val2) {
-                            $key2 = limpiar_key($key2);
-                            switch ($key2) {
-                                case "global":
-                                    $global = $val2;
-                                    foreach (explode(",", $global) as $var) {
-                                        global $$var;
-                                    }
-                                    break;
-                                case "eval":
-                                    if (eval_bool($val2)) {
-                                        if (!$value) {
-                                            xml_error("Evaluation error: void expression");
-                                        }
-                                        if (!isset($stack["prefix"])) {
-                                            $value = eval_protected($value, $global);
-                                        } else {
-                                            $old_value = $value;
-                                            $value = array();
-                                            foreach ($stack["prefix"] as $p) {
-                                                $temp_value = $old_value;
-                                                $temp_value = str_replace("getParam(\"", "getParam(\"$p", $temp_value);
-                                                $temp_value = str_replace("setParam(\"", "setParam(\"$p", $temp_value);
-                                                $value[] = eval_protected($temp_value, $global, $old_value);
-                                            }
-                                        }
-                                    }
-                                    break;
-                                case "preeval":
-                                    if (eval_bool($val2)) {
-                                        $preevals = getDefault("parser/preevals");
-                                        while (1) {
-                                            foreach ($preevals as $preeval) {
-                                                $pos = strpos($value, $preeval);
-                                                if ($pos !== false) {
-                                                    break;
-                                                }
-                                            }
-                                            if ($pos === false) {
-                                                break;
-                                            }
-                                            $len = strlen($value);
-                                            $parent = 0;
-                                            $exist = 0;
-                                            for ($i = $pos; $i < $len; $i++) {
-                                                $letter = $value[$i];
-                                                if ($letter == "(") {
-                                                    $parent++;
-                                                }
-                                                if ($parent > 0) {
-                                                    $exist = 1;
-                                                }
-                                                if ($letter == ")") {
-                                                    $parent--;
-                                                }
-                                                if ($exist && !$parent) {
-                                                    break;
-                                                }
-                                            }
-                                            $temp_value = substr($value, $pos, $i - $pos + 1);
-                                            $temp_value = eval_protected($temp_value, $global);
-                                            $value = substr_replace($value, $temp_value, $pos, $i + 1 - $pos);
-                                        }
-                                    }
-                                    break;
-                                case "match":
-                                    $stack["match"] = $val2;
-                                    break;
-                                case "nomatch":
-                                    $stack["nomatch"] = $val2;
-                                    break;
-                                case "prefix":
-                                    if (eval_bool($val2)) {
-                                        $stack["prefix"] = array();
-                                        foreach (array_merge($_POST, $_GET) as $key3 => $val3) {
-                                            if (substr($key3, 0, 7) == "prefix_") {
-                                                $ok = 1;
-                                                if (
-                                                    isset($stack["match"]) &&
-                                                    strpos($val3, $stack["match"]) === false
-                                                ) {
-                                                    $ok = 0;
-                                                }
-                                                if (
-                                                    isset($stack["nomatch"]) &&
-                                                    strpos($val3, $stack["nomatch"]) !== false
-                                                ) {
-                                                    $ok = 0;
-                                                }
-                                                if ($ok) {
-                                                    $stack["prefix"][] = $val3;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    break;
-                                case "lang":
-                                    if (eval_bool($val2)) {
-                                        if (LANG_LOADED()) {
-                                            $value = LANG($value);
-                                        } else {
-                                            $stack["cancel"] = 1;
-                                        }
-                                    }
-                                    break;
-                                case "config":
-                                    if (eval_bool($val2)) {
-                                        if (CONFIG_LOADED()) {
-                                            $newvalue = CONFIG($value);
-                                            if ($newvalue === null) {
-                                                xml_error("Configuration '$value' not found");
-                                            }
-                                            $value = $newvalue;
-                                        } else {
-                                            $stack["cancel"] = 1;
-                                        }
-                                    }
-                                    break;
-                                case "ifeval":
-                                    $val2 = eval_protected($val2, $global);
-                                    if (!$val2) {
-                                        $stack["remove"] = 1;
-                                    }
-                                    break;
-                                case "ifpreeval":
-                                    $val2 = eval_protected($val2, $global);
-                                    if (!$val2) {
-                                        $stack["cancel"] = 1;
-                                    }
-                                    break;
-                                case "require":
-                                    $val2 = explode(",", $val2);
-                                    foreach ($val2 as $file) {
-                                        if (!file_exists(detect_app_file($file))) {
-                                            xml_error("Require '$file' not found");
-                                        }
-                                        require_once detect_app_file($file);
-                                    }
-                                    break;
-                                case "for":
-                                    if (!$val2 || is_numeric($val2)) {
-                                        xml_error("The 'for' attr requires a variable name");
-                                    }
-                                    $stack["for_var"] = $val2;
-                                    break;
-                                case "from":
-                                    if (!is_numeric($val2)) {
-                                        $val2 = eval_protected($val2, $global);
-                                    }
-                                    if (!is_numeric($val2)) {
-                                        xml_error("The 'from' attr requires an integer");
-                                    }
-                                    $stack["for_from"] = $val2;
-                                    break;
-                                case "step":
-                                    if (!is_numeric($val2)) {
-                                        $val2 = eval_protected($val2, $global);
-                                    }
-                                    if (!is_numeric($val2)) {
-                                        xml_error("The 'step' attr requires an integer");
-                                    }
-                                    $stack["for_step"] = $val2;
-                                    break;
-                                case "to":
-                                    if (!is_numeric($val2)) {
-                                        $val2 = eval_protected($val2, $global);
-                                    }
-                                    if (!is_numeric($val2)) {
-                                        xml_error("The 'to' attr requires an integer");
-                                    }
-                                    $stack["for_to"] = $val2;
-                                    break;
-                                case "foreach":
-                                    if (!isset($$val2)) {
-                                        xml_error("Foreach variable '{$val2}' not found");
-                                    }
-                                    if (!is_array($$val2)) {
-                                        xml_error("The 'foreach' attr requires a rows array");
-                                    }
-                                    $stack["foreach_rows"] = $val2;
-                                    break;
-                                case "as":
-                                    if (!$val2) {
-                                        xml_error("The 'as' attr requires a row array");
-                                    }
-                                    $stack["foreach_as"] = $val2;
-                                    break;
-                                case "translated":
-                                    if (!eval_bool($val2)) {
-                                        $value = $value . " (not translated)";
-                                    }
-                                    break;
-                                case "revised":
-                                    if (!eval_bool($val2)) {
-                                        $value = $value . " (not revised)";
-                                    }
-                                    break;
-                                case "replace":
-                                    if (eval_bool($val2)) {
-                                        $stack["replace"] = 1;
-                                    }
-                                    break;
-                                default:
-                                    xml_error("Unknown attr '$key2' with value '$val2'");
-                            }
-                            $count++;
-                            if (isset($stack["cancel"]) || isset($stack["remove"])) {
-                                break;
-                            } elseif (
-                                isset($stack["for_var"]) &&
-                                isset($stack["for_from"]) &&
-                                isset($stack["for_to"])
-                            ) {
-                                // CHECK SOME DOMAIN ERRORS
-                                if (!isset($stack["for_step"])) {
-                                    $stack["for_step"] = 1;
-                                }
-                                if (!$stack["for_step"]) {
-                                    xml_error("Error sequence FOR - FROM({$stack["for_from"]}) - STEP({$stack["for_step"]}) - TO({$stack["for_to"]})");
-                                }
-                                if (sign($stack["for_to"] - $stack["for_from"]) != sign($stack["for_step"])) {
-                                    xml_error("Error sequence FOR - FROM({$stack["for_from"]}) - STEP({$stack["for_step"]}) - TO({$stack["for_to"]})");
-                                }
-                                // CONTINUE
-                                $attr = array_slice($attr, $count);
-                                if ($global) {
-                                    $attr = array_merge(array("global" => $global), $attr);
-                                }
-                                $old_value = $value;
-                                $value = array();
-                                $temp1 = $stack["for_var"]; // TO PREVENT SOME MEMORY LEAKS
-                                for (
-                                    $$temp1 = $stack["for_from"];
-                                    $$temp1 <= $stack["for_to"];
-                                    $$temp1 += $stack["for_step"]
-                                ) {
-                                    $temp_value = eval_attr(array("inline" => array(
-                                        "value" => $old_value,
-                                        "#attr" => $attr
-                                    )));
-                                    if (isset($temp_value["inline"])) {
-                                        $value[] = $temp_value["inline"];
-                                    }
-                                }
-                                unset($stack["for_var"]);
-                                unset($stack["for_from"]);
-                                unset($stack["for_step"]);
-                                unset($stack["for_to"]);
-                                $val["value"] = "__TRICK__";
-                                break;
-                            } elseif (isset($stack["foreach_rows"]) && isset($stack["foreach_as"])) {
-                                $attr = array_slice($attr, $count);
-                                if ($global) {
-                                    $attr = array_merge(array("global" => $global), $attr);
-                                }
-                                $old_value = $value;
-                                $value = array();
-                                $temp1 = $stack["foreach_rows"]; // TO PREVENT SOME MEMORY LEAKS
-                                $temp2 = $stack["foreach_as"]; // TO PREVENT SOME MEMORY LEAKS
-                                foreach ($$temp1 as $$temp2) {
-                                    $temp_value = eval_attr(array("inline" => array(
-                                        "value" => $old_value,
-                                        "#attr" => $attr
-                                    )));
-                                    if (isset($temp_value["inline"])) {
-                                        $value[] = $temp_value["inline"];
-                                    }
-                                }
-                                unset($stack["foreach_rows"]);
-                                unset($stack["foreach_as"]);
-                                $val["value"] = "__TRICK__";
-                                break;
-                            }
-                        }
-                        if (
-                            isset($stack["for_var"]) ||
-                            isset($stack["for_from"]) ||
-                            isset($stack["for_step"]) ||
-                            isset($stack["for_to"])
-                        ) {
-                            xml_error("Incomplete sequence FOR - FROM - STEP - TO");
-                        } elseif (isset($stack["foreach_rows"]) || isset($stack["foreach_as"])) {
-                            xml_error("Incomplete sequence FOREACH - AS");
-                        }
-                        if (isset($stack["cancel"])) {
-                            $result[$key] = $val;
-                        } elseif (isset($stack["remove"])) {
-                            // NOTHING TO DO
-                        } elseif (isset($stack["replace"])) {
-                            foreach ($value as $v) {
-                                foreach ($v as $key2 => $val2) {
-                                    set_array($result, $key2, $val2);
-                                }
-                            }
-                        } elseif (!is_array($value)) {
-                            $result[$key] = $value;
-                        } elseif (!is_array($val["value"])) {
-                            foreach ($value as $v) {
-                                set_array($result, $key, $v);
-                            }
-                        } else {
-                            $result[$key] = eval_attr($value);
-                        }
-                    } else {
-                        $result[$key] = eval_attr($val);
-                    }
-                } else {
-                    $result[$key] = $val;
-                }
-            }
-            return $result;
-        }
-    } else {
+    if (!is_array($array)) {
         return eval_attr(array("inline" => $array));
     }
+    if (isset($array["value"]) && isset($array["#attr"])) {
+        return eval_attr(array("inline" => $array));
+    }
+    $result = array();
+    foreach ($array as $key => $val) {
+        if (is_array($val)) {
+            if (isset($val["value"]) && isset($val["#attr"])) {
+                $stack = array();
+                $global = "";
+                $value = $val["value"];
+                $attr = $val["#attr"];
+                $count = 0;
+                foreach ($attr as $key2 => $val2) {
+                    $key2 = limpiar_key($key2);
+                    switch ($key2) {
+                        case "global":
+                            $global = $val2;
+                            foreach (explode(",", $global) as $var) {
+                                global $$var;
+                            }
+                            break;
+                        case "eval":
+                            if (eval_bool($val2)) {
+                                if (!$value) {
+                                    xml_error("Evaluation error: void expression");
+                                }
+                                if (!isset($stack["prefix"])) {
+                                    $value = eval_protected($value, $global);
+                                } else {
+                                    $old_value = $value;
+                                    $value = array();
+                                    foreach ($stack["prefix"] as $p) {
+                                        $temp_value = $old_value;
+                                        $temp_value = str_replace("getParam(\"", "getParam(\"$p", $temp_value);
+                                        $temp_value = str_replace("setParam(\"", "setParam(\"$p", $temp_value);
+                                        $value[] = eval_protected($temp_value, $global, $old_value);
+                                    }
+                                }
+                            }
+                            break;
+                        case "preeval":
+                            if (eval_bool($val2)) {
+                                $preevals = getDefault("parser/preevals");
+                                while (1) {
+                                    foreach ($preevals as $preeval) {
+                                        $pos = strpos($value, $preeval);
+                                        if ($pos !== false) {
+                                            break;
+                                        }
+                                    }
+                                    if ($pos === false) {
+                                        break;
+                                    }
+                                    $len = strlen($value);
+                                    $parent = 0;
+                                    $exist = 0;
+                                    for ($i = $pos; $i < $len; $i++) {
+                                        $letter = $value[$i];
+                                        if ($letter == "(") {
+                                            $parent++;
+                                        }
+                                        if ($parent > 0) {
+                                            $exist = 1;
+                                        }
+                                        if ($letter == ")") {
+                                            $parent--;
+                                        }
+                                        if ($exist && !$parent) {
+                                            break;
+                                        }
+                                    }
+                                    $temp_value = substr($value, $pos, $i - $pos + 1);
+                                    $temp_value = eval_protected($temp_value, $global);
+                                    $value = substr_replace($value, $temp_value, $pos, $i + 1 - $pos);
+                                }
+                            }
+                            break;
+                        case "match":
+                            $stack["match"] = $val2;
+                            break;
+                        case "nomatch":
+                            $stack["nomatch"] = $val2;
+                            break;
+                        case "prefix":
+                            if (eval_bool($val2)) {
+                                $stack["prefix"] = array();
+                                foreach (array_merge($_POST, $_GET) as $key3 => $val3) {
+                                    if (substr($key3, 0, 7) == "prefix_") {
+                                        $ok = 1;
+                                        if (
+                                            isset($stack["match"]) &&
+                                            strpos($val3, $stack["match"]) === false
+                                        ) {
+                                            $ok = 0;
+                                        }
+                                        if (
+                                            isset($stack["nomatch"]) &&
+                                            strpos($val3, $stack["nomatch"]) !== false
+                                        ) {
+                                            $ok = 0;
+                                        }
+                                        if ($ok) {
+                                            $stack["prefix"][] = $val3;
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        case "lang":
+                            if (eval_bool($val2)) {
+                                if (LANG_LOADED()) {
+                                    $value = LANG($value);
+                                } else {
+                                    $stack["cancel"] = 1;
+                                }
+                            }
+                            break;
+                        case "config":
+                            if (eval_bool($val2)) {
+                                if (CONFIG_LOADED()) {
+                                    $newvalue = CONFIG($value);
+                                    if ($newvalue === null) {
+                                        xml_error("Configuration '$value' not found");
+                                    }
+                                    $value = $newvalue;
+                                } else {
+                                    $stack["cancel"] = 1;
+                                }
+                            }
+                            break;
+                        case "ifeval":
+                            $val2 = eval_protected($val2, $global);
+                            if (!$val2) {
+                                $stack["remove"] = 1;
+                            }
+                            break;
+                        case "ifpreeval":
+                            $val2 = eval_protected($val2, $global);
+                            if (!$val2) {
+                                $stack["cancel"] = 1;
+                            }
+                            break;
+                        case "require":
+                            $val2 = explode(",", $val2);
+                            foreach ($val2 as $file) {
+                                if (!file_exists(detect_app_file($file))) {
+                                    xml_error("Require '$file' not found");
+                                }
+                                require_once detect_app_file($file);
+                            }
+                            break;
+                        case "for":
+                            if (!$val2 || is_numeric($val2)) {
+                                xml_error("The 'for' attr requires a variable name");
+                            }
+                            $stack["for_var"] = $val2;
+                            break;
+                        case "from":
+                            if (!is_numeric($val2)) {
+                                $val2 = eval_protected($val2, $global);
+                            }
+                            if (!is_numeric($val2)) {
+                                xml_error("The 'from' attr requires an integer");
+                            }
+                            $stack["for_from"] = $val2;
+                            break;
+                        case "step":
+                            if (!is_numeric($val2)) {
+                                $val2 = eval_protected($val2, $global);
+                            }
+                            if (!is_numeric($val2)) {
+                                xml_error("The 'step' attr requires an integer");
+                            }
+                            $stack["for_step"] = $val2;
+                            break;
+                        case "to":
+                            if (!is_numeric($val2)) {
+                                $val2 = eval_protected($val2, $global);
+                            }
+                            if (!is_numeric($val2)) {
+                                xml_error("The 'to' attr requires an integer");
+                            }
+                            $stack["for_to"] = $val2;
+                            break;
+                        case "foreach":
+                            if (!isset($$val2)) {
+                                xml_error("Foreach variable '{$val2}' not found");
+                            }
+                            if (!is_array($$val2)) {
+                                xml_error("The 'foreach' attr requires a rows array");
+                            }
+                            $stack["foreach_rows"] = $val2;
+                            break;
+                        case "as":
+                            if (!$val2) {
+                                xml_error("The 'as' attr requires a row array");
+                            }
+                            $stack["foreach_as"] = $val2;
+                            break;
+                        case "translated":
+                            if (!eval_bool($val2)) {
+                                $value = $value . " (not translated)";
+                            }
+                            break;
+                        case "revised":
+                            if (!eval_bool($val2)) {
+                                $value = $value . " (not revised)";
+                            }
+                            break;
+                        case "replace":
+                            if (eval_bool($val2)) {
+                                $stack["replace"] = 1;
+                            }
+                            break;
+                        default:
+                            xml_error("Unknown attr '$key2' with value '$val2'");
+                    }
+                    $count++;
+                    if (isset($stack["cancel"]) || isset($stack["remove"])) {
+                        break;
+                    } elseif (
+                        isset($stack["for_var"]) &&
+                        isset($stack["for_from"]) &&
+                        isset($stack["for_to"])
+                    ) {
+                        // CHECK SOME DOMAIN ERRORS
+                        if (!isset($stack["for_step"])) {
+                            $stack["for_step"] = 1;
+                        }
+                        if (!$stack["for_step"]) {
+                            xml_error("Error sequence FOR - FROM({$stack["for_from"]}) - STEP({$stack["for_step"]}) - TO({$stack["for_to"]})");
+                        }
+                        if (sign($stack["for_to"] - $stack["for_from"]) != sign($stack["for_step"])) {
+                            xml_error("Error sequence FOR - FROM({$stack["for_from"]}) - STEP({$stack["for_step"]}) - TO({$stack["for_to"]})");
+                        }
+                        // CONTINUE
+                        $attr = array_slice($attr, $count);
+                        if ($global) {
+                            $attr = array_merge(array("global" => $global), $attr);
+                        }
+                        $old_value = $value;
+                        $value = array();
+                        $temp1 = $stack["for_var"]; // TO PREVENT SOME MEMORY LEAKS
+                        for (
+                            $$temp1 = $stack["for_from"];
+                            $$temp1 <= $stack["for_to"];
+                            $$temp1 += $stack["for_step"]
+                        ) {
+                            $temp_value = eval_attr(array("inline" => array(
+                                "value" => $old_value,
+                                "#attr" => $attr
+                            )));
+                            if (isset($temp_value["inline"])) {
+                                $value[] = $temp_value["inline"];
+                            }
+                        }
+                        unset($stack["for_var"]);
+                        unset($stack["for_from"]);
+                        unset($stack["for_step"]);
+                        unset($stack["for_to"]);
+                        $val["value"] = "__TRICK__";
+                        break;
+                    } elseif (isset($stack["foreach_rows"]) && isset($stack["foreach_as"])) {
+                        $attr = array_slice($attr, $count);
+                        if ($global) {
+                            $attr = array_merge(array("global" => $global), $attr);
+                        }
+                        $old_value = $value;
+                        $value = array();
+                        $temp1 = $stack["foreach_rows"]; // TO PREVENT SOME MEMORY LEAKS
+                        $temp2 = $stack["foreach_as"]; // TO PREVENT SOME MEMORY LEAKS
+                        foreach ($$temp1 as $$temp2) {
+                            $temp_value = eval_attr(array("inline" => array(
+                                "value" => $old_value,
+                                "#attr" => $attr
+                            )));
+                            if (isset($temp_value["inline"])) {
+                                $value[] = $temp_value["inline"];
+                            }
+                        }
+                        unset($stack["foreach_rows"]);
+                        unset($stack["foreach_as"]);
+                        $val["value"] = "__TRICK__";
+                        break;
+                    }
+                }
+                if (
+                    isset($stack["for_var"]) ||
+                    isset($stack["for_from"]) ||
+                    isset($stack["for_step"]) ||
+                    isset($stack["for_to"])
+                ) {
+                    xml_error("Incomplete sequence FOR - FROM - STEP - TO");
+                } elseif (isset($stack["foreach_rows"]) || isset($stack["foreach_as"])) {
+                    xml_error("Incomplete sequence FOREACH - AS");
+                }
+                if (isset($stack["cancel"])) {
+                    $result[$key] = $val;
+                } elseif (isset($stack["remove"])) {
+                    // NOTHING TO DO
+                } elseif (isset($stack["replace"])) {
+                    foreach ($value as $v) {
+                        foreach ($v as $key2 => $val2) {
+                            set_array($result, $key2, $val2);
+                        }
+                    }
+                } elseif (!is_array($value)) {
+                    $result[$key] = $value;
+                } elseif (!is_array($val["value"])) {
+                    foreach ($value as $v) {
+                        set_array($result, $key, $v);
+                    }
+                } else {
+                    $result[$key] = eval_attr($value);
+                }
+            } else {
+                $result[$key] = eval_attr($val);
+            }
+        } else {
+            $result[$key] = $val;
+        }
+    }
+    return $result;
 }
 
 function eval_bool($arg)
