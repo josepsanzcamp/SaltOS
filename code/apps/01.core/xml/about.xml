@@ -272,7 +272,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/facebook/hhvm")</onclick>
                         </field>
                         <field>
-                            <label>Mroonga 4.06-11.10 (LGPL-2.1)</label>
+                            <label>Mroonga 4.06-13.00 (LGPL-2.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://mroonga.org/")</onclick>
@@ -310,7 +310,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
                         </field>
                         <field>
-                            <label>PHPSpreadsheet 1.27.0 (LGPL-2.1)</label>
+                            <label>PHPSpreadsheet 1.27.1 (LGPL-2.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
