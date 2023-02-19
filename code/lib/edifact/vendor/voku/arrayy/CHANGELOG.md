@@ -1,5 +1,32 @@
 # Changelog
 
+### 7.9.6 (2022-12-27)
+
+- "Json"-Mapper: support objects in "Arrayy"-collections
+
+### 7.9.5 (2022-10-13)
+
+- try to optimize autocompletion for PhpStorm
+
+### 7.9.4 (2022-09-06)
+
+- try to fix phpstan (1.8.4) reported issues
+
+### 7.9.3 (2022-07-06)
+
+- "Collection" -> fix phpstan check for offset
+
+### 7.9.2 (2022-07-05)
+
+- optimize some phpdocs (phpstan)
+- simplify some code
+
+### 7.9.1 (2022-03-08)
+
+- "To people of Russia": There is a war in Ukraine right now. The forces of the Russian Federation are attacking civilians.
+- fix phpdocs for "chunk()"
+- try to optimize support for PhpStorm auto-completion
+
 ### 7.9.0 (2022-02-15)
 
 - remove "gitbook" from "dev-dependencies"

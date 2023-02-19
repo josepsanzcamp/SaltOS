@@ -7,7 +7,6 @@ namespace Composer\Autoload;
 class ComposerStaticInit95a1541958b605ba1857b9a0c384ba7a
 {
     public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '65380ab4d81167209b0a4fac46641984' => __DIR__ . '/..' . '/voku/arrayy/src/Create.php',
     );
@@ -24,7 +23,6 @@ class ComposerStaticInit95a1541958b605ba1857b9a0c384ba7a
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Polyfill\\Ctype\\' => 23,
         ),
         'E' => 
         array (
@@ -40,8 +38,8 @@ class ComposerStaticInit95a1541958b605ba1857b9a0c384ba7a
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -50,10 +48,6 @@ class ComposerStaticInit95a1541958b605ba1857b9a0c384ba7a
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Polyfill\\Ctype\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
         'EDI\\' => 
         array (
