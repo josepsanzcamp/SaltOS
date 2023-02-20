@@ -543,7 +543,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/handsontable/handsontable/tree/6.2.2")</onclick>
                         </field>
                         <field>
-                            <label>jsTree 3.3.14 (MIT)</label>
+                            <label>jsTree 3.3.15 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://www.jstree.com/")</onclick>
@@ -582,7 +582,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://ckeditor.com/")</onclick>
                         </field>
                         <field>
-                            <label>CodeMirror v5.65.11 (MIT)</label>
+                            <label>CodeMirror v5.65.12 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://codemirror.net/")</onclick>
