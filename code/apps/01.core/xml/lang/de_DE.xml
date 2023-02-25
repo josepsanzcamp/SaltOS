@@ -301,8 +301,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <view2filter_message>Bitte wählen Sie die Dateien die Sie im PDF-Viewer lesen möchten: </view2filter_message>
         <msgerrorsemaphore>Es gab einen internen Fehler, die Ausführung dieser Aktion wurde abgebrochen</msgerrorsemaphore>
         <msgnotcheckbox>Wählen Sie einen Datensatz aus der Liste aus um diese Funktion zu nutzen</msgnotcheckbox>
-        <gotohome>Aktualisieren</gotohome>
-        <notifybug>Fehler melden</notifybug>
         <actioncompress>Ausgewählte Dateien herunterladen</actioncompress>
         <zipformat>ZIP</zipformat>
         <tarformat>TAR</tarformat>

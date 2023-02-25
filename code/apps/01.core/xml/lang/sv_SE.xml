@@ -301,8 +301,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <view2filter_message>Välj de data du vill se i PDF: n:</view2filter_message>
         <msgerrorsemaphore>Ett samtidighetsfel har inträffat, åtkomsten till åtgärden avbryts</msgerrorsemaphore>
         <msgnotcheckbox>Du måste välja en post från listan för att använda detta alternativ</msgnotcheckbox>
-        <gotohome>Reload</gotohome>
-        <notifybug>Rapportera misslyckande</notifybug>
         <actioncompress>Ladda ner valda filer</actioncompress>
         <zipformat>ZIP-format</zipformat>
         <tarformat>TJÄRA</tarformat>

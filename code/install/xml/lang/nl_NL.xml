@@ -82,8 +82,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>Importeer generieke gegevens</defaultdata>
         <permissiondata>Maak machtigingen voor de beheerdersgroep</permissiondata>
         <finish>Einde installatie</finish>
-        <gotohome>Herladen</gotohome>
-        <notifybug>Mislukking melden</notifybug>
         <step>Stap</step>
         <lang>Taal</lang>
         <style>Design</style>

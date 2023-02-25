@@ -301,8 +301,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <view2filter_message>Seleccioni les dades que vol veure al PDF:</view2filter_message>
         <msgerrorsemaphore>S'ha produït un error de concurrència, es cancel.la l'accés a l'acció </msgerrorsemaphore>
         <msgnotcheckbox>Heu de seleccionar algun registre de la llista per utilitzar aquesta opció</msgnotcheckbox>
-        <gotohome>Tornar a carregar</gotohome>
-        <notifybug>Notificar error</notifybug>
         <actioncompress>Descarregar fitxers seleccionats</actioncompress>
         <zipformat>Format ZIP</zipformat>
         <tarformat>TAR</tarformat>

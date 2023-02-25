@@ -301,8 +301,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <view2filter_message>اختر البيانات التي تود عرضها علي PDF:</view2filter_message>
         <msgerrorsemaphore> هناك خطأ متزامن قم بالغاء الوصول للاجراء </msgerrorsemaphore>
         <msgnotcheckbox>يجب ان تختار سجل من القائمة  لاستخدام هذه الخاصية</msgnotcheckbox>
-        <gotohome>اعادة تحميل الصفحة</gotohome>
-        <notifybug>الابلاغ عن خطأ</notifybug>
         <actioncompress>تنزيل الملفات المحددة</actioncompress>
         <zipformat>صيغة ZIP</zipformat>
         <tarformat>القطران</tarformat>

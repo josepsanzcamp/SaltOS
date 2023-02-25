@@ -82,8 +82,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>Tuo yleinen tieto</defaultdata>
         <permissiondata>Luo käyttöoikeudet järjestelmänvalvojaryhmälle</permissiondata>
         <finish>Asennuksen loppu</finish>
-        <gotohome>Lataa</gotohome>
-        <notifybug>Ilmoita virheestä</notifybug>
         <step>Vaihe</step>
         <lang>Kieli</lang>
         <style>Suunnittelu</style>

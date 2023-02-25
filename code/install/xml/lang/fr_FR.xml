@@ -82,8 +82,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>Importer des données génériques</defaultdata>
         <permissiondata>Créer administrer les permissions pour les groupes administer</permissiondata>
         <finish>Installation Complété</finish>
-        <gotohome>Rafraîchir la page</gotohome>
-        <notifybug>Rapporter un bug</notifybug>
         <step>Étape</step>
         <lang>Langue</lang>
         <style>Conception</style>

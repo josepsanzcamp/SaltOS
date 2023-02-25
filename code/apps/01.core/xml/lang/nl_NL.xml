@@ -301,8 +301,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <view2filter_message>Selecteer de gegevens die u in de pdf wilt zien:</view2filter_message>
         <msgerrorsemaphore>Er is een gelijktijdigheidsfout opgetreden, de toegang tot de actie is geannuleerd</msgerrorsemaphore>
         <msgnotcheckbox>U moet een record uit de lijst selecteren om deze optie te gebruiken</msgnotcheckbox>
-        <gotohome>Herladen</gotohome>
-        <notifybug>Mislukking melden</notifybug>
         <actioncompress>Download geselecteerde bestanden</actioncompress>
         <zipformat>ZIP-formaat</zipformat>
         <tarformat>TAR</tarformat>

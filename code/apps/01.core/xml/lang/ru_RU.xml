@@ -301,8 +301,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <view2filter_message>Выберите данные, которые вы хотите просмотреть в PDF:</view2filter_message>
         <msgerrorsemaphore>произошла ошибка параллелизма, доступ к действию отменен</msgerrorsemaphore>
         <msgnotcheckbox>вы должны выбрать какую-либо запись из списка, чтобы использовать эту опцию</msgnotcheckbox>
-        <gotohome>перезаряжать</gotohome>
-        <notifybug>сообщение о сбое</notifybug>
         <actioncompress>загрузка выбранных файлов</actioncompress>
         <zipformat>Формат ZIP</zipformat>
         <tarformat>ДЁГОТЬ</tarformat>

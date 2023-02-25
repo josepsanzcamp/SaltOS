@@ -301,8 +301,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <view2filter_message>Valitse tiedot, jotka haluat nähdä PDF-tiedostossa:</view2filter_message>
         <msgerrorsemaphore>Samanaikaisuusvirhe on tapahtunut, pääsy toimintaan peruutetaan</msgerrorsemaphore>
         <msgnotcheckbox>Sinun on valittava tietue luettelosta käyttääksesi tätä vaihtoehtoa</msgnotcheckbox>
-        <gotohome>Lataa</gotohome>
-        <notifybug>Ilmoita virheestä</notifybug>
         <actioncompress>Lataa valitut tiedostot</actioncompress>
         <zipformat>ZIP-muoto</zipformat>
         <tarformat>TAR</tarformat>

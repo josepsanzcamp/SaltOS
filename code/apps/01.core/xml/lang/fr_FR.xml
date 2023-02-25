@@ -301,8 +301,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <view2filter_message>Sélectionnez les données que vous souhaitez visualiser PDF:</view2filter_message>
         <msgerrorsemaphore>Il y avait une erreur d'accès concurrentiel est annulé accès à l'action</msgerrorsemaphore>
         <msgnotcheckbox>Vous devez sélectionner un enregistrement de la liste pour utiliser cette fonctionnalité</msgnotcheckbox>
-        <gotohome>Recharger la page</gotohome>
-        <notifybug>Rapporter bogue</notifybug>
         <actioncompress>Télécharger les fichiers sélectionnés</actioncompress>
         <zipformat>Format ZIP</zipformat>
         <tarformat>TAR</tarformat>

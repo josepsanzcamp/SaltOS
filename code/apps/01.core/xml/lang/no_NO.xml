@@ -301,8 +301,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <view2filter_message>Velg dataene du vil se i PDF:</view2filter_message>
         <msgerrorsemaphore>Det har oppstått en samtidighetsfeil, tilgangen til handlingen er kansellert</msgerrorsemaphore>
         <msgnotcheckbox>Du må velge en post fra listen for å bruke dette alternativet</msgnotcheckbox>
-        <gotohome>Reload</gotohome>
-        <notifybug>Rapporter feil</notifybug>
         <actioncompress>Last ned valgte filer</actioncompress>
         <zipformat>ZIP-format</zipformat>
         <tarformat>TAR</tarformat>

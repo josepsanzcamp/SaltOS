@@ -82,8 +82,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <defaultdata>импорт общих данных</defaultdata>
         <permissiondata>создание разрешений для группы администраторов</permissiondata>
         <finish>окончание установки</finish>
-        <gotohome>перезаряжать</gotohome>
-        <notifybug>сообщение о сбое</notifybug>
         <step>шаг</step>
         <lang>язык</lang>
         <style>проектировать</style>

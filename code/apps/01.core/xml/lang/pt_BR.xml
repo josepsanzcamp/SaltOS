@@ -301,8 +301,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <view2filter_message>Selecione os dados que deseja ver no PDF:</view2filter_message>
         <msgerrorsemaphore>Ocorreu um erro de concorrência, ação cancelada</msgerrorsemaphore>
         <msgnotcheckbox>Deve selecionar algum registo da lista para usar esta opção</msgnotcheckbox>
-        <gotohome>Recarregar</gotohome>
-        <notifybug>Reportar falha</notifybug>
         <actioncompress>Descarregar Arquivos selecionados</actioncompress>
         <zipformat>Formato ZIP</zipformat>
         <tarformat>TAR</tarformat>
