@@ -24,9 +24,17 @@ class ComposerStaticInit95a1541958b605ba1857b9a0c384ba7a
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
         ),
+        'P' => 
+        array (
+            'PHPStan\\PhpDocParser\\' => 21,
+        ),
         'E' => 
         array (
             'EDI\\' => 4,
+        ),
+        'D' => 
+        array (
+            'Doctrine\\Deprecations\\' => 22,
         ),
         'A' => 
         array (
@@ -49,9 +57,17 @@ class ComposerStaticInit95a1541958b605ba1857b9a0c384ba7a
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
+        'PHPStan\\PhpDocParser\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src',
+        ),
         'EDI\\' => 
         array (
             0 => __DIR__ . '/..' . '/sabas/edifact/src/EDI',
+        ),
+        'Doctrine\\Deprecations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/deprecations/lib/Doctrine/Deprecations',
         ),
         'Arrayy\\' => 
         array (
