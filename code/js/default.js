@@ -2058,11 +2058,11 @@ if (typeof __default__ == "undefined" && typeof parent.__default__ == "undefined
             $(this).ckeditor({
                 title:"",
                 skin:"moono-lisa",
-                extraPlugins:"autogrow",
+                extraPlugins:"autogrow,codesnippet",
                 removePlugins:"elementspath",
                 enterMode:CKEDITOR.ENTER_BR,
                 shiftEnterMode:CKEDITOR.ENTER_BR,
-                toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","HorizontalRule"]],
+                toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","CodeSnippet","HorizontalRule"]],
                 language:lang_default(),
                 autoGrow_onStartup:true,
                 autoGrow_minHeight:$(this).height() - 25,
