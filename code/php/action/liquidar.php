@@ -461,7 +461,7 @@ if ($page == "periodicas") {
                         "id_cuenta" => "'" . $id_cuenta . "'",
                         "fecha2" => "'" . current_date() . "'",
                         "id_periodica" => "'" . $id_periodica . "'",
-                        "meses" => "'" . $meses . "'",
+                        "mes_periodica" => "'" . $meses . "'",
                         "id_formapago" => "'" . $id_formapago . "'",
                     ), "id={$id_cliente}");
                 } else {
