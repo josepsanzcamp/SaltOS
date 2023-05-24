@@ -464,8 +464,8 @@ saltos.limpiar_key = function (arg) {
     if (is_array(arg)) {
         for (var key in arg) {
             arg[key] = saltos.limpiar_key(arg[key])
-            return arg;
         }
+        return arg;
     }
     var pos = strpos(arg,"#");
     if (pos !== false) {
