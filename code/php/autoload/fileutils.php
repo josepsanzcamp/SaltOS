@@ -276,7 +276,7 @@ function realpath_protected($path)
 
 function chmod_protected($file, $mode)
 {
-    if (fileperms($file) & 0777 != $mode) {
+    if ((fileperms($file) & 0777) != $mode) {
         chmod($file, $mode);
     }
 }
