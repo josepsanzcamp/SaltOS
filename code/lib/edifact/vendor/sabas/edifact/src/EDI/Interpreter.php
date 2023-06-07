@@ -80,6 +80,11 @@ class Interpreter
     private $serviceSeg;
 
     /**
+     * @var array
+     */
+    private $codes;
+ 
+    /**
      * @var callable
      */
     private $comparisonFunction;
@@ -88,6 +93,11 @@ class Interpreter
      * @var string
      */
     private $outputKey = 'name';
+
+    /**
+     * @var string
+     */
+    private $currentGroup = '';
 
     /**
      * Split multiple messages and process
@@ -168,6 +178,19 @@ class Interpreter
     {
         $this->groupTemplates = $groupTemplates;
     }
+
+    /**
+     * Set the data parsed from the xml list of codes
+     *
+     * @param array $codes An array with codes from the chosen directory
+     *
+     * @return void
+     */
+    public function setCodes(array $codes)
+    {
+        $this->codes = $codes;
+    }
+
 
     /**
      * Split multiple messages and process
@@ -473,6 +496,8 @@ class Interpreter
                 }
             }
 
+            $this->currentGroup = $elm['id']->__toString();
+
             foreach ($elm->children() as $elm2) {
                 if ($elm2->getName() == 'group') {
                     $this->processXmlGroup($elm2, $message, $segmentIdx, $grouptemp, $errors);
@@ -587,7 +612,7 @@ class Interpreter
             $attributes = $xmlMap[$id]['attributes'];
             $details_desc = $xmlMap[$id]['details'];
 
-            $jsonelements = ['segmentIdx' => $segmentIdx, 'segmentCode' => $id];
+            $jsonelements = ['segmentIdx' => $segmentIdx, 'segmentCode' => $id, 'segmentGroup' => $this->currentGroup];
             foreach ($segment as $idx => $detail) {
                 $n = $idx - 1;
                 if ($idx == 0) {
@@ -614,6 +639,7 @@ class Interpreter
                     isset($details_desc[$n]['details'])
                 ) {
                     $sub_details_desc = $details_desc[$n]['details'];
+
                     if (\is_array($detail)) {
                         foreach ($detail as $d_n => $d_detail) {
                             if (!isset($sub_details_desc[$d_n])) {
@@ -628,6 +654,13 @@ class Interpreter
                             }
 
                             $d_sub_desc_attr = $sub_details_desc[$d_n]['attributes'];
+
+                            if ($this->codes !== null && $this->codes[$d_sub_desc_attr['id']] !== null) { //if codes is set enable translation of the value
+                                if ($this->codes[$d_sub_desc_attr['id']][$d_detail]) {
+                                    $d_detail = $this->codes[$d_sub_desc_attr['id']][$d_detail];
+                                }
+                            }
+
                             if (!isset($jsoncomposite[$d_sub_desc_attr[$this->outputKey]])) { //New
                                 $jsoncomposite[$d_sub_desc_attr[$this->outputKey]] = $d_detail;
                             } elseif (\is_string($jsoncomposite[$d_sub_desc_attr[$this->outputKey]])) { // More data than one string
@@ -641,9 +674,20 @@ class Interpreter
                         }
                     } else {
                         $d_sub_desc_attr = $sub_details_desc[0]['attributes'];
+
+                        if ($this->codes !== null && $this->codes[$d_sub_desc_attr['id']] !== null) { //if codes is set enable translation of the value
+                            if ($this->codes[$d_sub_desc_attr['id']][$detail]) {
+                                $detail = $this->codes[$d_sub_desc_attr['id']][$detail];
+                            }
+                        }
                         $jsoncomposite[$d_sub_desc_attr[$this->outputKey]] = $detail;
                     }
                 } else {
+                    if ($this->codes !== null && $this->codes[$d_desc_attr['id']] !== null) { //if codes is set enable translation of the value
+                        if ($this->codes[$d_desc_attr['id']][$detail]) {
+                            $detail = $this->codes[$d_desc_attr['id']][$detail];
+                        }
+                    }
                     $jsoncomposite = $detail;
                 }
 

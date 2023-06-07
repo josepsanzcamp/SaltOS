@@ -1,5 +1,5 @@
 {
     "require": {
-        "sabas/edifact": "^0.5.1"
+        "sabas/edifact": "^0.6.0"
     }
 }
