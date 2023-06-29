@@ -605,7 +605,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_base>Server di base:</server_base>
         <php_plugins>Plugin PHP:</php_plugins>
         <javascript_base>Base javascript:</javascript_base>
-        <bootstrap_plugins>Plugin bootstrap:</bootstrap_plugins>
         <jquery_plugins>Plugin JQuery:</jquery_plugins>
         <javascript_plugins>Plugin javascript:</javascript_plugins>
         <other_plugins>Altri plugin:</other_plugins>

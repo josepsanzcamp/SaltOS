@@ -605,7 +605,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_base>Tukipalvelin:</server_base>
         <php_plugins>PHP-laajennukset:</php_plugins>
         <javascript_base>Javascript-pohja:</javascript_base>
-        <bootstrap_plugins>Bootstrap-laajennukset:</bootstrap_plugins>
         <jquery_plugins>JQuery-laajennukset:</jquery_plugins>
         <javascript_plugins>Javascript-laajennukset:</javascript_plugins>
         <other_plugins>Muut laajennukset:</other_plugins>

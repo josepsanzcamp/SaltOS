@@ -605,7 +605,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <server_base>базовый сервер:</server_base>
         <php_plugins>Плагины PHP:</php_plugins>
         <javascript_base>база javascript:</javascript_base>
-        <bootstrap_plugins>плагины bootstrap:</bootstrap_plugins>
         <jquery_plugins>Плагины JQuery:</jquery_plugins>
         <javascript_plugins>плагины javascript:</javascript_plugins>
         <other_plugins>другие плагины:</other_plugins>
