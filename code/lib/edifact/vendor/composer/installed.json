@@ -2,17 +2,17 @@
     "packages": [
         {
             "name": "sabas/edifact",
-            "version": "0.6.1",
-            "version_normalized": "0.6.1.0",
+            "version": "0.7.0",
+            "version_normalized": "0.7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-edifact/edifact.git",
-                "reference": "9afd2247f73cb97cbe850490961dd9fdfe20ff12"
+                "reference": "c5771837df6904dbaf5e3b315ba87b076245209b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-edifact/edifact/zipball/9afd2247f73cb97cbe850490961dd9fdfe20ff12",
-                "reference": "9afd2247f73cb97cbe850490961dd9fdfe20ff12",
+                "url": "https://api.github.com/repos/php-edifact/edifact/zipball/c5771837df6904dbaf5e3b315ba87b076245209b",
+                "reference": "c5771837df6904dbaf5e3b315ba87b076245209b",
                 "shasum": ""
             },
             "require": {
@@ -25,7 +25,7 @@
                 "phpunit/phpunit": "~9.0",
                 "voku/arrayy": "~7.1"
             },
-            "time": "2023-06-19T09:31:51+00:00",
+            "time": "2023-08-06T17:14:43+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -63,7 +63,7 @@
             ],
             "support": {
                 "issues": "https://github.com/php-edifact/edifact/issues",
-                "source": "https://github.com/php-edifact/edifact/tree/0.6.1"
+                "source": "https://github.com/php-edifact/edifact/tree/0.7.0"
             },
             "install-path": "../sabas/edifact"
         }

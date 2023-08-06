@@ -96,12 +96,18 @@ class Parser
     private $messageDirectory;
 
     /**
+     * @var string : message number
+     */
+    private $messageNumber;
+
+    /**
      * @var array<string,string>
      */
     private static $encodingToStripChars = [
         'UNOA' => "/[\x01-\x1F\x80-\xFF]/", // not as restrictive as it should be
         'UNOB' => "/[\x01-\x1F\x80-\xFF]/",
         'UNOC' => "/[\x01-\x1F\x7F-\x9F]/",
+        'UNOE' => "/[\x20-\x7E]\xA0-\xFF/"
     ];
 
     /**
@@ -399,6 +405,15 @@ class Parser
     }
 
     /**
+     * @return string|null
+     */
+    public function getMessageNumber()
+    {
+        return $this->messageNumber;
+    }
+
+
+    /**
      * Reset UNA's characters definition
      *
      * @return void
@@ -461,8 +476,12 @@ class Parser
             );
         }
 
+        if (preg_match_all("/[A-Z0-9]+[\r\n]+/i", $string, $matches, PREG_OFFSET_CAPTURE) > 0) {
+            $this->errors[] = "This file contains some segments without terminators";
+        }
+
         $string = (string) \preg_replace(
-            '/(([^' . $this->symbRel . ']' . $this->symbRel . '{2})+|[^' . $this->symbRel . '])' . $this->symbEnd . '/',
+            '/(([^' . $this->symbRel . ']' . $this->symbRel . '{2})+|[^' . $this->symbRel . '])' . $this->symbEnd . '|[\r\n]+/',
             '$1' . $this->stringSafe,
             $string
         );

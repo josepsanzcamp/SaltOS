@@ -43,6 +43,12 @@ class Interpreter
     private $patchFiles = true;
 
     /**
+     * @var bool
+     */
+    private $forceArrayWhenRepeatable = false;
+
+
+    /**
      * @var \SimpleXMLElement
      */
     private $xmlMsg;
@@ -81,7 +87,7 @@ class Interpreter
      * @var array
      */
     private $codes;
- 
+
     /**
      * @var callable
      */
@@ -139,6 +145,16 @@ class Interpreter
     public function togglePatching(bool $flag)
     {
         $this->patchFiles = $flag;
+    }
+
+    /**
+     * @param bool $flag
+     *
+     * @return void
+     */
+    public function forceArrayWhenRepeatable(bool $flag)
+    {
+        $this->forceArrayWhenRepeatable = $flag;
     }
 
     /**
@@ -525,7 +541,7 @@ class Interpreter
             if (\call_user_func($this->comparisonFunction, $message[$segmentIdx], $elm)) {
                 $jsonMessage = $this->processSegment($message[$segmentIdx], $this->xmlSeg, $segmentIdx, $errors);
                 $segmentVisited = true;
-                $this->doAddArray($array, $jsonMessage);
+                $this->doAddArray($array, $jsonMessage, (int)$elm['maxrepeat']);
                 ++$segmentIdx;
             } else {
                 if (!$segmentVisited && isset($elm['required'])) {
@@ -540,7 +556,7 @@ class Interpreter
                     if ($this->patchFiles && isset($this->segmentTemplates[$elmType])) {
                         $jsonMessage = $this->processSegment($this->segmentTemplates[$elmType], $this->xmlSeg, $segmentIdx, $errors);
                         $fixed = true;
-                        $this->doAddArray($array, $jsonMessage);
+                        $this->doAddArray($array, $jsonMessage, (int)$elm['maxrepeat']);
                     }
 
                     $errors[] = [
@@ -563,7 +579,7 @@ class Interpreter
      *
      * @return void
      */
-    private function doAddArray(array &$array, array &$jsonMessage)
+    private function doAddArray(array &$array, array &$jsonMessage, $maxRepeat = 1)
     {
         if (isset($array[$jsonMessage['key']])) {
             if (
@@ -578,6 +594,12 @@ class Interpreter
             $array[$jsonMessage['key']][] = $jsonMessage['value'];
         } else {
             $array[$jsonMessage['key']] = $jsonMessage['value'];
+            // if segment can be repeated then the flag forces to be an array also
+            // if there's only one segment
+            if ($maxRepeat > 1 && $this->forceArrayWhenRepeatable) {
+                d('lol', $jsonMessage, $maxRepeat);
+                $array[$jsonMessage['key']] = [$jsonMessage['value']];
+            }
         }
     }
 
@@ -643,8 +665,8 @@ class Interpreter
 
                             $d_sub_desc_attr = $sub_details_desc[$d_n]['attributes'];
 
-                            if ($this->codes !== null && $this->codes[$d_sub_desc_attr['id']] !== null) { //if codes is set enable translation of the value
-                                if ($this->codes[$d_sub_desc_attr['id']][$d_detail]) {
+                            if ($this->codes !== null && isset($this->codes[$d_sub_desc_attr['id']]) && is_array($this->codes[$d_sub_desc_attr['id']])) { //if codes is set enable translation of the value
+                                if (isset($this->codes[$d_sub_desc_attr['id']][$d_detail])) {
                                     $d_detail = $this->codes[$d_sub_desc_attr['id']][$d_detail];
                                 }
                             }
@@ -663,16 +685,16 @@ class Interpreter
                     } else {
                         $d_sub_desc_attr = $sub_details_desc[0]['attributes'];
 
-                        if ($this->codes !== null && $this->codes[$d_sub_desc_attr['id']] !== null) { //if codes is set enable translation of the value
-                            if ($this->codes[$d_sub_desc_attr['id']][$detail]) {
+                        if ($this->codes !== null &&  isset($this->codes[$d_sub_desc_attr['id']]) && is_array($this->codes[$d_sub_desc_attr['id']])) { //if codes is set enable translation of the value
+                            if (isset($this->codes[$d_sub_desc_attr['id']][$detail]) && $this->codes[$d_sub_desc_attr['id']][$detail]) {
                                 $detail = $this->codes[$d_sub_desc_attr['id']][$detail];
                             }
                         }
                         $jsoncomposite[$d_sub_desc_attr[$this->outputKey]] = $detail;
                     }
                 } else {
-                    if ($this->codes !== null && $this->codes[$d_desc_attr['id']] !== null) { //if codes is set enable translation of the value
-                        if ($this->codes[$d_desc_attr['id']][$detail]) {
+                    if ($this->codes !== null && isset($this->codes[$d_desc_attr['id']]) &&  is_array($this->codes[$d_desc_attr['id']])) { //if codes is set enable translation of the value
+                        if (isset($this->codes[$d_desc_attr['id']][$detail]) && $this->codes[$d_desc_attr['id']][$detail]) {
                             $detail = $this->codes[$d_desc_attr['id']][$detail];
                         }
                     }
