@@ -414,7 +414,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>JQuery 3.7.0 (MIT)</label>
+                            <label>JQuery 3.7.1 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.jquery.com/")</onclick>
@@ -543,7 +543,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>Mozilla pdf.js v3.9.179 (ASL-2.0)</label>
+                            <label>Mozilla pdf.js v3.10.111 (ASL-2.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
