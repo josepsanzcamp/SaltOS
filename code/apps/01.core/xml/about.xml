@@ -625,7 +625,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://www.imagemagick.org/")</onclick>
                         </field>
                         <field>
-                            <label>Tesseract OCR 3.04 (ASL-2.0)</label>
+                            <label>Tesseract OCR 5.3.0 (ASL-2.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/tesseract-ocr/tesseract")</onclick>

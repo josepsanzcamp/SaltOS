@@ -135,7 +135,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <convert>convert</convert><!-- for ocr module included in unoconv -->
         <__convert__>convert __INPUT__ -quality 100 __OUTPUT__</__convert__>
         <tesseract>tesseract</tesseract><!-- for ocr module included in unoconv -->
-        <__tesseract__>tesseract __INPUT__ __OUTPUT__ -psm 1 hocr</__tesseract__>
+        <__tesseract__>tesseract __INPUT__ __OUTPUT__ --psm 1 hocr</__tesseract__>
         <timeout>timeout</timeout><!-- for ocr module -->
         <__timeout__>timeout __TIMEOUT__ __COMMAND__</__timeout__>
         <preview>wkhtmltoimage</preview><!-- for favoritos application -->
