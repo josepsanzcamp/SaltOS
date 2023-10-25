@@ -11,19 +11,19 @@ namespace EDI;
 class Parser
 {
     /**
-     * @var array|string[]|null
+     * @var array|string[]
      */
-    private $rawSegments;
+    private $rawSegments = [];
 
     /**
      * @var array
      */
-    private $parsedfile;
+    private $parsedfile = [];
 
     /**
      * @var array
      */
-    private $errors;
+    private $errors = [];
 
     /**
      * @var string
@@ -36,67 +36,67 @@ class Parser
     private static $DELIMITER = '/';
 
     /**
-     * @var string|null : component separator character (default \:)
+     * @var string Component separator character
      */
-    private $sepComp;
+    private $sepComp = "\:";
 
     /**
-     * @var string|null : component separator character (default :)
+     * @var string Component separator character
      */
-    private $sepUnescapedComp;
+    private $sepUnescapedComp = ':';
 
     /**
-     * @var string|null : data separator character (default \+)
+     * @var string Data separator character
      */
-    private $sepData;
+    private $sepData = "\+";
 
     /**
-     * @var string|null : dec separator character (no use but here) (default .)
+     * @var string Dec separator character (no use but here)
      */
-    private $sepDec;
+    private $sepDec = '.';
 
     /**
-     * @var string|null : release character (default \?)
+     * @var string Release character
      */
-    private $symbRel;
+    private $symbRel = "\?";
 
     /**
-     * @var string|null (default ?)
+     * @var string (default ?)
      */
-    private $symbUnescapedRel;
+    private $symbUnescapedRel = '?';
 
     /**
-     * @var string|null : repetition character (no use but here) (default *)
+     * @var string Repetition character (no use but here)
      */
-    private $symbRep;
+    private $symbRep = '*';
 
     /**
-     * @var string|null : end character (default ')
+     * @var string End character
      */
-    private $symbEnd;
+    private $symbEnd = "'";
 
     /**
-     * @var string|null : safe string (default §SS§)
+     * @var string Safe string
      */
-    private $stringSafe;
+    private $stringSafe = '§SS§';
 
     /**
-     * @var string|null : encoding (default UNOB)
+     * @var string|null Syntax identifier
      */
-    private $encoding;
+    private $syntaxID = 'UNOB';
 
     /**
-     * @var string|null : message format from UNH
+     * @var string|null Message format from UNH
      */
     private $messageFormat;
 
     /**
-     * @var string : message directory
+     * @var string Message directory
      */
     private $messageDirectory;
 
     /**
-     * @var string : message number
+     * @var string Message number
      */
     private $messageNumber;
 
@@ -107,92 +107,49 @@ class Parser
         'UNOA' => "/[\x01-\x1F\x80-\xFF]/", // not as restrictive as it should be
         'UNOB' => "/[\x01-\x1F\x80-\xFF]/",
         'UNOC' => "/[\x01-\x1F\x7F-\x9F]/",
-        'UNOE' => "/[\x20-\x7E]\xA0-\xFF/"
+        'UNOE' => "/[\x20-\x7E]\xA0-\xFF/",
+    ];
+
+    private static $charsets = [
+        // ISO 646, except lower case letters, alternative graphic chars, national or application-oriented graphic chars
+        'UNOA' => 'ASCII',
+        // ISO 646, except alternative graphic chars and national or application-oriented graphic chars
+        'UNOB' => 'ASCII',
+        'UNOC' => 'ISO-8859-1',
+        'UNOD' => 'ISO-8859-2',
+        'UNOE' => 'ISO-8859-5',
+        'UNOF' => 'ISO-8859-7',
     ];
 
     /**
-     * @var bool : TRUE when UNA's characters are known, FALSE when they are not. NULL means no initialization
+     * @var bool TRUE when UNA characters are known.
      */
-    private $unaChecked;
+    private $unaChecked = false;
 
     /**
-     * @var bool : TRUE when UNB encoding is known, FALSE when it's not. NULL means no initialization
+     * @var bool TRUE when UNB encoding is known.
      */
-    private $unbChecked;
+    private $unbChecked = false;
 
     /**
-     * Parser constructor.
-     *
-     * @param string|string[]|null $url
+     * Parse EDI array.
      */
-    public function __construct($url = null)
-    {
-        if ($this->unaChecked !== false) {
-            $this->resetUNA();
-        }
-
-        if ($this->unbChecked !== false) {
-            $this->resetUNB();
-        }
-
-        $this->errors = [];
-        $this->parsedfile = [];
-
-        if ($url === null) {
-            return;
-        }
-
-        if (\is_array($url)) {
-
-            //
-            // Object constructed with an array as argument
-            //
-            if (\count($url) === 1) {
-                $url = $this->unwrap($url[0]);
-            }
-            $this->rawSegments = $url;
-            /** @noinspection UnusedFunctionResultInspection */
-            $this->parse($url);
-        } elseif (\file_exists($url)) {
-
-            //
-            // Object constructed with a path to a file as argument
-            //
-            /** @noinspection UnusedFunctionResultInspection */
-            $this->load($url);
-        } else {
-
-            //
-            // Object constructed with a string as argument
-            //
-            /** @noinspection UnusedFunctionResultInspection */
-            $this->loadString($url);
-        }
-    }
-
-    /**
-     * Parse edi array
-     *
-     * @param array $file2
-     *
-     * @return array
-     */
-    public function parse(array &$file2): array
+    public function parse(): self
     {
         $i = 0;
-        foreach ($file2 as &$line) {
-            ++$i;
+        foreach ($this->getRawSegments() as $line) {
+            $i++;
 
             // Null byte and carriage return removal. (CR+LF)
             $line = \str_replace(["\x00", "\r", "\n"], '', $line);
 
-            // Basic sanitization, remove non printable chars.
+            // Basic sanitization, remove non-printable chars.
             $lineTrim = \trim($line);
             $line = (string) \preg_replace($this->stripChars, '', $lineTrim);
             $line_bytes = \strlen($line);
 
             if ($line_bytes !== \strlen($lineTrim)) {
-                $this->errors[] = "There's a not printable character on line " . $i . ': ' . $lineTrim;
+                $this->errors[] = 'Non-printable character on line '.$i.': '.$lineTrim;
             }
 
             if ($line_bytes < 2) {
@@ -201,14 +158,14 @@ class Parser
 
             switch (\substr($line, 0, 3)) {
                 case 'UNA':
-                    if (!$this->unaChecked) {
+                    if (! $this->unaChecked) {
                         $this->analyseUNA(\substr($line, 4, 6));
                     }
 
                     break;
                 case 'UNB':
                     $line = $this->splitSegment($line);
-                    if (!$this->unbChecked) {
+                    if (! $this->unbChecked) {
                         $this->analyseUNB($line[1]);
                     }
                     $this->parsedfile[] = $line;
@@ -228,14 +185,13 @@ class Parser
             }
         }
 
-        return $this->parsedfile;
+        return $this;
     }
 
     /**
-     * Read UNA's characters definition
+     * Read UNA's characters definition.
      *
-     * @param string $line : UNA definition line (without UNA tag). Example : :+.? '
-     *
+     * @param string $line UNA definition line (without UNA tag). Example : :+.? '
      * @return void
      */
     public function analyseUNA(string $line)
@@ -265,45 +221,43 @@ class Parser
     }
 
     /**
-     * UNB line analysis
+     * UNB line analysis.
      *
-     * @param string|string[] $encoding UNB definition line (without UNB tag). Example UNOA:2
-     *
-     * @return void
+     * @param string|string[] $line UNB definition line (without UNB tag). Example UNOA:2
      */
-    public function analyseUNB($encoding)
+    public function analyseUNB($line): void
     {
-        if (\is_array($encoding)) {
-            $encoding = $encoding[0];
+        if (\is_array($line)) {
+            $line = $line[0];
         }
 
-        $this->encoding = $encoding;
+        $this->syntaxID = $line;
 
         // If there's a regex defined for this character set, use it.
         /** @noinspection OffsetOperationsInspection */
-        if (isset(self::$encodingToStripChars[$encoding])) {
+        if (isset(self::$encodingToStripChars[$line])) {
             /** @noinspection OffsetOperationsInspection */
-            $this->setStripRegex(self::$encodingToStripChars[$encoding]);
+            $this->setStripRegex(self::$encodingToStripChars[$line]);
         }
 
         $this->unbChecked = true;
     }
 
     /**
-     * Identify message type
+     * Identify message type.
      *
      * @param array<mixed|string> $line UNH segment
-     *
-     * @return void
      */
-    public function analyseUNH(array $line)
+    public function analyseUNH(array $line): void
     {
         if (\count($line) < 3) {
             return;
         }
 
+        $this->messageNumber = $line[1];
+
         $lineElement = $line[2];
-        if (!\is_array($lineElement)) {
+        if (! \is_array($lineElement)) {
             $this->messageFormat = $lineElement;
 
             return;
@@ -314,9 +268,25 @@ class Parser
     }
 
     /**
-     * Get errors
+     * Check if the encoding of the text actually matches the one declared by the UNB syntax identifier.
      *
-     * @return array
+     * @throws \RuntimeException
+     */
+    public function checkEncoding(): bool
+    {
+        if (empty($this->parsedfile)) {
+            throw new \RuntimeException('No text has been parsed yet');
+        }
+
+        if (! isset(self::$charsets[$this->syntaxID])) {
+            throw new \RuntimeException('Unsupported syntax identifier');
+        }
+
+        return mb_check_encoding($this->parsedfile, self::$charsets[$this->syntaxID]);
+    }
+
+    /**
+     * Get errors.
      */
     public function errors(): array
     {
@@ -324,21 +294,23 @@ class Parser
     }
 
     /**
-     * Get result
-     *
-     * @return array
+     * Get parsed lines/segments.
      */
     public function get(): array
     {
+        if (empty($this->parsedfile)) {
+            $this->parse();
+        }
+
         return $this->parsedfile;
     }
 
     /**
-     * Get raw segments array
+     * Get raw segments array.
      *
-     * @return array|string[]|null
+     * @return array|string[]
      */
-    public function getRawSegments()
+    public function getRawSegments(): array
     {
         return $this->rawSegments;
     }
@@ -346,49 +318,67 @@ class Parser
     /**
      * Load the message from file.
      *
-     * @param string $url
-     *
-     * @return array|false
+     * @param string $location Either a local file path or a URL
      */
-    public function load($url)
+    public function load(string $location): self
     {
-        $file = \file_get_contents($url);
-        if ($file === false) {
-            return false;
+        $contents = \file_get_contents($location);
+        if ($contents === false) {
+            throw new \RuntimeException('File could not be retrieved');
         }
 
-        return $this->loadString($file);
+        $this->loadString($contents);
+
+        return $this;
     }
 
     /**
      * Load the message from a string.
-     *
-     * @param string $string
-     *
-     * @return array
      */
-    public function loadString(&$string): array
+    public function loadString(string $txt): self
     {
-        /** @noinspection CallableParameterUseCaseInTypeContextInspection */
-        $string = $this->unwrap($string);
-        $this->rawSegments = $string;
+        $this->resetUNA();
+        $this->resetUNB();
+        $this->rawSegments = $this->unwrap($txt);
 
-        return $this->parse($string);
+        return $this;
+    }
+
+    /**
+     * Load a raw or parsed message from an array of strings.
+     *
+     * @param bool  $raw If the data hasn't been parsed yet
+     */
+    public function loadArray(array $lines, bool $raw = true): self
+    {
+        if ($raw) {
+            $this->resetUNA();
+            $this->resetUNB();
+            $this->rawSegments = $lines;
+            if (\count($lines) === 1) {
+                $this->loadString($lines[0]);
+            }
+        } else {
+            $this->rawSegments = [];
+            $this->parsedfile = $lines;
+        }
+
+        return $this;
     }
 
     /**
      * Change the default regex used for stripping invalid characters.
      *
-     * @param string $regex
-     *
      * @return void
      */
-    public function setStripRegex($regex)
+    public function setStripRegex(string $regex)
     {
         $this->stripChars = $regex;
     }
 
     /**
+     * Get the message type ID.
+     *
      * @return string|null
      */
     public function getMessageFormat()
@@ -397,6 +387,8 @@ class Parser
     }
 
     /**
+     * Get the message type release number.
+     *
      * @return string|null
      */
     public function getMessageDirectory()
@@ -412,13 +404,10 @@ class Parser
         return $this->messageNumber;
     }
 
-
     /**
-     * Reset UNA's characters definition
-     *
-     * @return void
+     * Reset UNA character definition to defaults.
      */
-    private function resetUNA()
+    private function resetUNA(): void
     {
         $this->sepComp = "\:";
         $this->sepUnescapedComp = ':';
@@ -433,27 +422,23 @@ class Parser
     }
 
     /**
-     * Reset UNB's encoding definition
-     *
-     * @return void
+     * Reset UNB encoding definition to defaults.
      */
-    private function resetUNB()
+    private function resetUNB(): void
     {
-        $this->encoding = 'UNOB';
+        $this->syntaxID = 'UNOB';
         $this->unbChecked = false;
     }
 
     /**
-     * Unwrap string splitting rows on terminator (if not escaped)
-     *
-     * @param string $string
+     * Unwrap string splitting rows on terminator (if not escaped).
      *
      * @return string[]
      */
     private function unwrap(string &$string): array
     {
         if (
-            !$this->unaChecked
+            ! $this->unaChecked
             &&
             \strpos($string, 'UNA') === 0
         ) {
@@ -463,7 +448,7 @@ class Parser
         }
 
         if (
-            !$this->unbChecked
+            ! $this->unbChecked
             &&
             \strpos($string, 'UNB') === 0
         ) {
@@ -477,17 +462,17 @@ class Parser
         }
 
         if (preg_match_all("/[A-Z0-9]+[\r\n]+/i", $string, $matches, PREG_OFFSET_CAPTURE) > 0) {
-            $this->errors[] = "This file contains some segments without terminators";
+            $this->errors[] = 'This file contains some segments without terminators';
         }
 
         $string = (string) \preg_replace(
-            '/(([^' . $this->symbRel . ']' . $this->symbRel . '{2})+|[^' . $this->symbRel . '])' . $this->symbEnd . '|[\r\n]+/',
-            '$1' . $this->stringSafe,
+            '/(([^'.$this->symbRel.']'.$this->symbRel.'{2})+|[^'.$this->symbRel.'])'.$this->symbEnd.'|[\r\n]+/',
+            '$1'.$this->stringSafe,
             $string
         );
 
         $file = \preg_split(
-            self::$DELIMITER . $this->stringSafe . self::$DELIMITER . 'i',
+            self::$DELIMITER.$this->stringSafe.self::$DELIMITER.'i',
             $string
         );
         // fallback
@@ -495,7 +480,7 @@ class Parser
             $file = [];
         }
 
-        $end = \stripslashes($this->symbEnd . '');
+        $end = \stripslashes($this->symbEnd.'');
         foreach ($file as $fc => &$line) {
             if (\trim($line) == '') {
                 /* @noinspection OffsetOperationsInspection */
@@ -508,9 +493,7 @@ class Parser
     }
 
     /**
-     * Segments
-     *
-     * @param string $str
+     * Split segment.
      *
      * @return array|string[]
      */
@@ -519,7 +502,7 @@ class Parser
         // remove ending "symbEnd"
         $str = \trim(
             (string) \preg_replace(
-                self::$DELIMITER . $this->symbEnd . '$' . self::$DELIMITER,
+                self::$DELIMITER.$this->symbEnd.'$'.self::$DELIMITER,
                 '',
                 $str
             )
@@ -527,14 +510,14 @@ class Parser
 
         // replace duplicate "symbRel"
         $str = \str_replace(
-            $this->symbUnescapedRel . $this->symbUnescapedRel . '',
+            $this->symbUnescapedRel.$this->symbUnescapedRel.'',
             $this->stringSafe ?? '',
             $str
         );
 
         // split on "sepData" if not escaped (negative lookbehind)
         $matches = \preg_split(
-            self::$DELIMITER . '(?<!' . $this->symbRel . ')' . $this->sepData . self::$DELIMITER,
+            self::$DELIMITER.'(?<!'.$this->symbRel.')'.$this->sepData.self::$DELIMITER,
             $str
         );
         // fallback
@@ -560,8 +543,8 @@ class Parser
                 &&
                 \strpos($value, $this->symbEnd) !== false
             ) {
-                if (\preg_match(self::$DELIMITER . '(?<!' . $this->symbRel . ')' . $this->symbEnd . self::$DELIMITER, $value)) {
-                    $this->errors[] = "There's a " . \stripslashes($this->symbEnd) . ' not escaped in the data; string ' . $str;
+                if (\preg_match(self::$DELIMITER.'(?<!'.$this->symbRel.')'.$this->symbEnd.self::$DELIMITER, $value)) {
+                    $this->errors[] = "There's a ".\stripslashes($this->symbEnd).' not escaped in the data; string '.$str;
                 }
             }
 
@@ -570,8 +553,8 @@ class Parser
                 &&
                 \strpos($value, $this->symbUnescapedRel) !== false
             ) {
-                if (\preg_match(self::$DELIMITER . '(?<!' . $this->symbRel . ')' . $this->symbRel . '(?!' . $this->symbRel . ')(?!' . $this->sepData . ')(?!' . $this->sepComp . ')(?!' . $this->symbEnd . ')' . self::$DELIMITER, $value)) {
-                    $this->errors[] = "There's a character not escaped with " . \stripslashes($this->symbRel ?? '') . ' in the data; string ' . $value;
+                if (\preg_match(self::$DELIMITER.'(?<!'.$this->symbRel.')'.$this->symbRel.'(?!'.$this->symbRel.')(?!'.$this->sepData.')(?!'.$this->sepComp.')(?!'.$this->symbEnd.')'.self::$DELIMITER, $value)) {
+                    $this->errors[] = "There's a character not escaped with ".\stripslashes($this->symbRel ?? '').' in the data; string '.$value;
                 }
             }
 
@@ -583,9 +566,7 @@ class Parser
     }
 
     /**
-     * Composite data element
-     *
-     * @param string $str
+     * Composite data element.
      *
      * @return mixed
      */
@@ -598,7 +579,7 @@ class Parser
         $replace = function (&$string) {
             if ($this->symbUnescapedRel && \strpos($string, $this->symbUnescapedRel) !== false) {
                 $string = \preg_replace(
-                    self::$DELIMITER . $this->symbRel . '(?=' . $this->symbRel . ')|' . $this->symbRel . '(?=' . $this->sepData . ')|' . $this->symbRel . '(?=' . $this->sepComp . ')|' . $this->symbRel . '(?=' . $this->symbEnd . ')' . self::$DELIMITER,
+                    self::$DELIMITER.$this->symbRel.'(?='.$this->symbRel.')|'.$this->symbRel.'(?='.$this->sepData.')|'.$this->symbRel.'(?='.$this->sepComp.')|'.$this->symbRel.'(?='.$this->symbEnd.')'.self::$DELIMITER,
                     '',
                     $string
                 );
@@ -618,7 +599,7 @@ class Parser
 
         // split on "sepComp" if not escaped (negative lookbehind)
         $array = \preg_split(
-            self::$DELIMITER . '(?<!' . $this->symbRel . ')' . $this->sepComp . self::$DELIMITER,
+            self::$DELIMITER.'(?<!'.$this->symbRel.')'.$this->sepComp.self::$DELIMITER,
             $str
         );
         // fallback

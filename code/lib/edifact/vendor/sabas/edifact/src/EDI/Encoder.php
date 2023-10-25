@@ -18,7 +18,7 @@ class Encoder
     /**
      * @var bool
      */
-    private $UNAActive = false; // disable by default to preserve backward compatibility
+    private $UNAActive = false; // disabled by default to preserve backward compatibility
 
     /**
      * @var array
@@ -26,37 +26,37 @@ class Encoder
     private $originalArray = [];
 
     /**
-     * @var bool
+     * @var bool When false adds a new line after each segment
      */
-    private $wrap = true; //when false adds a newline after each segment
+    private $compact = true;
 
     /**
-     * @var string : component separator character (default :)
+     * @var string Component separator character (default :)
      */
     private $sepComp;
 
     /**
-     * @var string : data separator character (default +)
+     * @var string Data separator character (default +)
      */
     private $sepData;
 
     /**
-     * @var string : dec separator character (no use but here) (default .)
+     * @var string Dec separator character (no use but here) (default .)
      */
     private $sepDec;
 
     /**
-     * @var string : release character (default ?)
+     * @var string Release character (default ?)
      */
     private $symbRel;
 
     /**
-     * @var string : repetition character (no use but here) (default space)
+     * @var string Repetition character (no use but here) (default space)
      */
     private $symbRep;
 
     /**
-     * @var string : end character (default ')
+     * @var string End character (default ')
      */
     private $symbEnd;
 
@@ -64,9 +64,9 @@ class Encoder
      * Encoder constructor.
      *
      * @param array|null $array
-     * @param bool       $wrap
+     * @param bool       $compact
      */
-    public function __construct($array = null, $wrap = true)
+    public function __construct($array = null, $compact = true)
     {
         $this->setUNA(":+.? '", false);
         if ($array === null) {
@@ -74,32 +74,30 @@ class Encoder
         }
 
         /** @noinspection UnusedFunctionResultInspection */
-        $this->encode($array, $wrap);
+        $this->encode($array, $compact);
     }
 
     /**
-     * @param array $array
-     * @param bool  $wrap
-     * @param bool  $filterKeys
-     *
-     * @return string
+     * @param array[] $array
+     * @param bool    $compact All segments on a single line?
+     * @param bool    $filterKeys
      */
-    public function encode(array $array, $wrap = true, $filterKeys = false): string
+    public function encode(array $array, $compact = true, $filterKeys = false): string
     {
         $this->originalArray = $array;
-        $this->wrap = $wrap;
+        $this->compact = $compact;
 
         $edistring = '';
         $count = \count($array);
         $k = 0;
         foreach ($array as $row) {
-            ++$k;
+            $k++;
             if ($filterKeys) {
                 unset($row['segmentIdx']);
             }
             $row = \array_values($row);
             $edistring .= $this->encodeSegment($row);
-            if (!$wrap && $k < $count) {
+            if (! $compact && $k < $count) {
                 $edistring .= "\n";
             }
         }
@@ -108,11 +106,6 @@ class Encoder
         return $edistring;
     }
 
-    /**
-     * @param array $row
-     *
-     * @return string
-     */
     public function encodeSegment(array $row): string
     {
         // init
@@ -155,34 +148,25 @@ class Encoder
         return $str;
     }
 
-    /**
-     * @return string
-     */
     public function get(): string
     {
         if ($this->UNAActive) {
-            $una = 'UNA' . $this->sepComp .
-                   $this->sepData .
-                   $this->sepDec .
-                   $this->symbRel .
-                   $this->symbRep .
+            $una = 'UNA'.$this->sepComp.
+                   $this->sepData.
+                   $this->sepDec.
+                   $this->symbRel.
+                   $this->symbRep.
                    $this->symbEnd;
-            if ($this->wrap === false) {
+            if ($this->compact === false) {
                 $una .= "\n";
             }
 
-            return $una . $this->output;
+            return $una.$this->output;
         }
 
         return $this->output;
     }
 
-    /**
-     * @param string $chars
-     * @param bool   $user_call
-     *
-     * @return bool
-     */
     public function setUNA(string $chars, bool $user_call = true): bool
     {
         if (\strlen($chars) == 6) {
@@ -225,8 +209,6 @@ class Encoder
 
     /**
      * @param int|string $str
-     *
-     * @return string
      */
     private function escapeValue(&$str): string
     {
@@ -237,10 +219,10 @@ class Encoder
             $this->symbEnd,
         ];
         $replace = [
-            $this->symbRel . $this->symbRel,
-            $this->symbRel . $this->sepComp,
-            $this->symbRel . $this->sepData,
-            $this->symbRel . $this->symbEnd,
+            $this->symbRel.$this->symbRel,
+            $this->symbRel.$this->sepComp,
+            $this->symbRel.$this->sepData,
+            $this->symbRel.$this->symbEnd,
         ];
 
         return \str_replace($search, $replace, (string) $str);
