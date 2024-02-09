@@ -2667,6 +2667,7 @@ saltos.form_field_ckeditor = function (field) {
                 //~ uiColor:"transparent",
                 allowedContent:true,
                 extraAllowedContent:$(this).attr("ckextra"),
+                versionCheck: false,
             },function () {
                 var obj = $("#" + $(this).attr("name")).next();
                 $(obj).addClass("ui-state-default ui-corner-all");

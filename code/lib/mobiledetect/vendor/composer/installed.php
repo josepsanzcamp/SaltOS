@@ -20,9 +20,9 @@
             'dev_requirement' => false,
         ),
         'mobiledetect/mobiledetectlib' => array(
-            'pretty_version' => '2.8.41',
-            'version' => '2.8.41.0',
-            'reference' => 'fc9cccd4d3706d5a7537b562b59cc18f9e4c0cb1',
+            'pretty_version' => '2.8.45',
+            'version' => '2.8.45.0',
+            'reference' => '96aaebcf4f50d3d2692ab81d2c5132e425bca266',
             'type' => 'library',
             'install_path' => __DIR__ . '/../mobiledetect/mobiledetectlib',
             'aliases' => array(),

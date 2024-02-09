@@ -2076,6 +2076,7 @@ if (typeof __default__ == "undefined" && typeof parent.__default__ == "undefined
                 //~ uiColor:"transparent",
                 allowedContent:true,
                 extraAllowedContent:$(this).attr("ckextra"),
+                versionCheck: false,
             },function () {
                 var obj = $("#" + $(this).attr("name")).next();
                 $(obj).addClass("ui-state-default ui-corner-all");

@@ -304,19 +304,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://www.tcpdf.org")</onclick>
                         </field>
                         <field>
-                            <label>PHPMailer 6.8.1 (LGPL-2.1)</label>
+                            <label>PHPMailer 6.9.1 (LGPL-2.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
                         </field>
                         <field>
-                            <label>PHPSpreadsheet 1.29.0 (LGPL-2.1)</label>
+                            <label>PHPSpreadsheet 2.0.0 (LGPL-2.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
                         </field>
                         <field>
-                            <label>PHP Mobile Detect 2.8.41 (MIT)</label>
+                            <label>PHP Mobile Detect 2.8.45 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
