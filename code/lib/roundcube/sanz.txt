@@ -1,2 +1,4 @@
 
 This library requires to use the error_reporting(0)!!!
+
+Too, do you must replace RCUBE_CHARSET by "UTF-8" to avoid errors
