@@ -465,9 +465,7 @@ function html2text($html)
 {
     require_once "lib/roundcube/rcube_html2text.php";
     $obj = new rcube_html2text($html);
-    capture_next_error();
     $text = $obj->get_text();
-    get_clear_error();
     return $text;
 }
 
