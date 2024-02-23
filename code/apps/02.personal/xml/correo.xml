@@ -580,17 +580,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <temp global="only,only_array" eval="true">$only=isset($only_array[$only])?$only:"000"</temp>
         <query global="page,filtro,id_usuario,id_cuenta,hidespam,withfiles,withoutfiles,onlyinbox,onlyoutbox,fecha1,fecha2,campos,fecha3,campos_array,fecha3_array,only,only_array" eval="true">"SELECT
             id,id2,
-            CONCAT('mailto:',de) de2,
-            CASE WHEN para!='' THEN CONCAT('mailto:',para)
+            de,CONCAT('mailto:',de) de2,
+            para,CASE WHEN para!='' THEN CONCAT('mailto:',para)
             ELSE
                 (SELECT
                     CASE WHEN email_name='' THEN CONCAT('mailto:',email_from) ELSE
                     CONCAT('mailto:',email_name,' &lt;',email_from,'&gt;') END
                 FROM tbl_usuarios_c WHERE id=id_cuenta)
             END para2,
-            CONCAT('link:openapp(\'correo\',',-id,'):',subject) subject2,
+            subject,CONCAT('link:openapp(\'correo\',',-id,'):',subject) subject2,
             datetime,
-            CASE
+            size,CASE
                 WHEN size&gt;=1073741824 THEN CONCAT(ROUND(size/1073741824.0,2),' Gbytes')
                 WHEN size&gt;=1048576 THEN CONCAT(ROUND(size/1048576.0,2),' Mbytes')
                 WHEN size&gt;=1024 THEN CONCAT(ROUND(size/1024.0,2),' Kbytes')
