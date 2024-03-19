@@ -61,7 +61,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <font>"normal","B",8,CONFIG("color_text1")</font>
         <textarea>105,$row["y"],25,4,"R",LANG("epigrafe")</textarea>
         <font>"normal","",8,CONFIG("color_text2")</font>
-        <textarea>130,$row["y"],75,4,"L",strlen($row["epigrafe"])>30?mb_substr($row["epigrafe"],0,30,"UTF-8")."...":$row["epigrafe"]</textarea>
+        <textarea>130,$row["y"],75,4,"L",strlen($row["epigrafe"] ?? "")>30?mb_substr($row["epigrafe"],0,30,"UTF-8")."...":$row["epigrafe"]</textarea>
         <getxy>"x","y"</getxy>
         <setxy>$row["x"],$row["y"]+2</setxy>
         <getxy>"x","y"</getxy>
