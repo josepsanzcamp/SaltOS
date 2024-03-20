@@ -463,6 +463,9 @@ function ismsie($version = null)
 // USING ROUNDCUBEMAIL FEATURES
 function html2text($html)
 {
+    if (!defined("RCUBE_CHARSET")) {
+        define("RCUBE_CHARSET", "UTF-8");
+    }
     require_once "lib/roundcube/rcube_html2text.php";
     $obj = new rcube_html2text($html);
     $text = $obj->get_text();

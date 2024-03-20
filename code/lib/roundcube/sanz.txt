@@ -1,2 +1,2 @@
 
-Replace RCUBE_CHARSET by "UTF-8" to avoid errors
+define("RCUBE_CHARSET", "UTF-8");
