@@ -587,7 +587,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://www.dafont.com/gorrisans.font")</onclick>
                         </field>
                         <field>
-                            <label>Font Awesome Free 6.4.2 (SIL OFL 1.1)</label>
+                            <label>Font Awesome Free 6.5.2 (SIL OFL 1.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://fontawesome.com/")</onclick>
