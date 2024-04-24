@@ -298,7 +298,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     </row>
                     <row>
                         <field>
-                            <label>TCPDF 6.7.4 (LGPL-3.0)</label>
+                            <label>TCPDF 6.7.5 (LGPL-3.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.tcpdf.org")</onclick>
