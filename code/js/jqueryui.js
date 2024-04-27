@@ -2020,6 +2020,7 @@ saltos.form_field_text = function (field) {
         }
         obj.push(td);
     }
+    field.oncomplete = str_replace('"', "'", field.oncomplete);
     var td = $(`
         <td class="left nowrap ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
             <input type="text" name="${field.name}" id="${field.name}" value="" style="width:${field.width}"
@@ -2071,19 +2072,19 @@ saltos.form_field_autocomplete_helper = function (td) {
     // PROGRAM AUTOCOMPLETE FIELDS
     $("input[isautocomplete=true],textarea[isautocomplete=true]",td).each(function () {
         var key = $(this).attr("name");
-        var prefix = "";
-        $("input[name^=prefix_]").each(function () {
-            var val = $(this).val();
-            if (key.substr(0,val.length) == val) {
-                prefix = val;
-            }
-        });
         var query = $(this).attr("querycomplete");
         var filter = $(this).attr("filtercomplete");
         var fn = $(this).attr("oncomplete");
         $(this).autocomplete({
             delay:300,
             source:function (request,response) {
+                var prefix = "";
+                $("input[name^=prefix_]").each(function () {
+                    var val = $(this).val();
+                    if (val.length > 0 && key.substr(0,val.length) == val) {
+                        prefix = val;
+                    }
+                });
                 var term = request.term;
                 var input = this.element;
                 var data = "action=ajax&query=" + query + "&term=" + encodeURIComponent(term);
@@ -2115,6 +2116,13 @@ saltos.form_field_autocomplete_helper = function (td) {
             select:function (event,ui) {
                 this.value = ui.item.label;
                 if (typeof fn != "undefined") {
+                    var prefix = "";
+                    $("input[name^=prefix_]").each(function () {
+                        var val = $(this).val();
+                        if (val.length > 0 && key.substr(0,val.length) == val) {
+                            prefix = val;
+                        }
+                    });
                     eval(fn);
                 }
                 return false;
@@ -2564,6 +2572,7 @@ saltos.form_field_textarea = function (field) {
             $(td).prepend("(*) ");
         }
     }
+    field.oncomplete = str_replace('"', "'", field.oncomplete);
     var td = $(`
         <td class="left ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
             <textarea name="${field.name}" id="${field.name}" style="width:${field.width};height:${field.height}"
