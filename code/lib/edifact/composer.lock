@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd751b794fdd8d4577141676d1c3f3e4",
+    "content-hash": "c940d182a0142a1c22d6beaa27aec308",
     "packages": [
         {
             "name": "sabas/edifact",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-edifact/edifact.git",
-                "reference": "29498658298fa9df8d9fe5763bfd7353ec3b6658"
+                "reference": "e54c693b3dc68397d49a3893f9b3ee7734f76625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-edifact/edifact/zipball/29498658298fa9df8d9fe5763bfd7353ec3b6658",
-                "reference": "29498658298fa9df8d9fe5763bfd7353ec3b6658",
+                "url": "https://api.github.com/repos/php-edifact/edifact/zipball/e54c693b3dc68397d49a3893f9b3ee7734f76625",
+                "reference": "e54c693b3dc68397d49a3893f9b3ee7734f76625",
                 "shasum": ""
             },
             "require": {
@@ -67,9 +67,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-edifact/edifact/issues",
-                "source": "https://github.com/php-edifact/edifact/tree/1.0.0"
+                "source": "https://github.com/php-edifact/edifact/tree/1.1.0"
             },
-            "time": "2023-10-25T12:42:30+00:00"
+            "time": "2024-05-21T08:21:52+00:00"
         }
     ],
     "packages-dev": [],

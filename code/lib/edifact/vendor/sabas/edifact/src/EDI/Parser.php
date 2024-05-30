@@ -81,9 +81,9 @@ class Parser
     private $stringSafe = '§SS§';
 
     /**
-     * @var string|null Syntax identifier
+     * @var string UNB Syntax identifier
      */
-    private $syntaxID = 'UNOB';
+    private string $syntaxID = '';
 
     /**
      * @var string|null Message format from UNH
@@ -130,6 +130,11 @@ class Parser
      * @var bool TRUE when UNB encoding is known.
      */
     private $unbChecked = false;
+
+    /**
+     * Optionally disable workarounds.
+     */
+    private bool $strict = false;
 
     /**
      * Parse EDI array.
@@ -268,21 +273,25 @@ class Parser
     }
 
     /**
-     * Check if the encoding of the text actually matches the one declared by the UNB syntax identifier.
+     * Check if the file's character encoding actually matches the one declared in the UNB header.
      *
+     * @throws \LogicException
      * @throws \RuntimeException
      */
     public function checkEncoding(): bool
     {
         if (empty($this->parsedfile)) {
-            throw new \RuntimeException('No text has been parsed yet');
+            throw new \LogicException('No text has been parsed yet');
         }
-
         if (! isset(self::$charsets[$this->syntaxID])) {
-            throw new \RuntimeException('Unsupported syntax identifier');
+            throw new \RuntimeException('Unsupported syntax identifier: ' . $this->syntaxID);
         }
 
-        return mb_check_encoding($this->parsedfile, self::$charsets[$this->syntaxID]);
+        $check = mb_check_encoding($this->parsedfile, self::$charsets[$this->syntaxID]);
+        if(!$check)
+            $this->errors[] = 'Character encoding does not match declaration in UNB interchange header';
+
+        return $check;
     }
 
     /**
@@ -291,6 +300,14 @@ class Parser
     public function errors(): array
     {
         return $this->errors;
+    }
+
+    /**
+     * (Un)Set strict parsing.
+     */
+    public function setStrict(bool $strict):void
+    {
+        $this->strict = $strict;
     }
 
     /**
@@ -313,6 +330,18 @@ class Parser
     public function getRawSegments(): array
     {
         return $this->rawSegments;
+    }
+
+    /**
+     * Get syntax identifier from the UNB header.
+     * Does not necessarily mean that the text is actually encoded as such.
+     *
+     * @return string
+     * @throws \RuntimeException
+     */
+    public function getSyntaxIdentifier(): string
+    {
+        return $this->syntaxID;
     }
 
     /**
@@ -426,7 +455,7 @@ class Parser
      */
     private function resetUNB(): void
     {
-        $this->syntaxID = 'UNOB';
+        $this->syntaxID = '';
         $this->unbChecked = false;
     }
 
@@ -460,13 +489,18 @@ class Parser
                 )
             );
         }
-
-        if (preg_match_all("/[A-Z0-9]+[\r\n]+/i", $string, $matches, PREG_OFFSET_CAPTURE) > 0) {
+        if (preg_match_all("/[A-Z0-9]+(?:\?'|$)[\r\n]+/i", $string, $matches, PREG_OFFSET_CAPTURE) > 0) {
             $this->errors[] = 'This file contains some segments without terminators';
         }
 
+        $terminatorRegex = '/(([^'.$this->symbRel.']'.$this->symbRel.'{2})+|[^'.$this->symbRel.'])'.$this->symbEnd.'|[\r\n]+/';
+
+        if ($this->strict) {
+            $terminatorRegex = '/(([^'.$this->symbRel.']'.$this->symbRel.'{2})+|[^'.$this->symbRel.'])'.$this->symbEnd.'/';
+        }
+
         $string = (string) \preg_replace(
-            '/(([^'.$this->symbRel.']'.$this->symbRel.'{2})+|[^'.$this->symbRel.'])'.$this->symbEnd.'|[\r\n]+/',
+            $terminatorRegex,
             '$1'.$this->stringSafe,
             $string
         );
