@@ -310,7 +310,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
                         </field>
                         <field>
-                            <label>PHPSpreadsheet 2.1.0 (LGPL-2.1)</label>
+                            <label>PHPSpreadsheet 2.2.2 (LGPL-2.1)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
@@ -388,7 +388,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://www.phpclasses.org/package/3-PHP-HTTP-client-to-access-Web-site-pages.html")</onclick>
                         </field>
                         <field>
-                            <label>EDIFACT 1.1.0 (LGPL-3.0)</label>
+                            <label>EDIFACT 1.1.1 (LGPL-3.0)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("https://github.com/php-edifact/edifact")</onclick>
@@ -420,7 +420,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                             <onclick>openwin("http://www.jquery.com/")</onclick>
                         </field>
                         <field>
-                            <label>JQuery UI 1.13.3 (MIT)</label>
+                            <label>JQuery UI 1.14.0 (MIT)</label>
                             <type>link</type>
                             <class>tbody</class>
                             <onclick>openwin("http://www.jqueryui.com/")</onclick>

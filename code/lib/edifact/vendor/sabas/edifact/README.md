@@ -75,6 +75,7 @@ Requires the EDI\Mapping package.
         $analyser = new EDI\Analyser();
         $mapping = new EDI\MappingProvider('D95B');
         $analyser->loadSegmentsXml($mapping->getSegments());
+        $analyser->loadSegmentsXml($mapping->getServiceSegments(), false);
         $analyser->loadMessageXml($mapping->getMessage('coparn'));
         $analyser->loadCodesXml($mapping->getCodes());
         $analyser->directory = 'D95B';
@@ -468,7 +469,7 @@ $p = new EDI\Parser();
 $p->load($x);
 $r = new EDI\Reader($p);
 $sender = $r->readEdiDataValue('UNB', 2);
-$Dt = $r->readUNBDateTimeOfPreperation();
+$Dt = $r->readUNBDateTimeOfPreparation();
 
 ```
 See section about EDI\Parser above on how to load a file into a parser.
