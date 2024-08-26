@@ -81,7 +81,7 @@ while ($row = db_fetch_row($result)) {
                 "file" => getDefault("debug/warningfile", "warning.log"),
                 "die" => false
             ));
-            $QUERY = make_update_query("tbl_ficheros", array(
+            $query = make_update_query("tbl_ficheros", array(
                 "retries" => "3"
             ), make_where_query(array("id" => $row["id"])));
             db_query($query);
