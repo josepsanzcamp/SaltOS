@@ -367,6 +367,9 @@ class mime_parser_class
 	var $message_position = 0;
 	var $warn_unexpected_quoted_printable_characters = 0;
 
+	// Fix for unaligned chunks by sanz
+	var $body_fix_unaligned_chunks = '';
+
 	/* Private functions */
 
 	Function SetError($error)
@@ -1405,7 +1408,17 @@ class mime_parser_class
 					}
 					elseif(IsSet($this->headers['Base64']))
 					{
-						$part['Data'] = base64_decode($this->body_buffer_position ? substr($this->body_buffer,$this->body_buffer_position) : $this->body_buffer);
+						// Fix for unaligned chunks by sanz
+						$buffer = $this->body_buffer_position ? substr($this->body_buffer,$this->body_buffer_position) : $this->body_buffer;
+						$buffer = $this->body_fix_unaligned_chunks . str_replace([' ', "\n", "\r", "\t"], '', $buffer);
+						$this->body_fix_unaligned_chunks = '';
+						$remain = strlen($buffer) % 4;
+						if ($remain) {
+							$this->body_fix_unaligned_chunks = substr($buffer, -$remain);
+							$buffer = substr($buffer, 0, -$remain);
+						}
+						$part['Data'] = base64_decode($buffer);
+						//~ $part['Data'] = base64_decode($this->body_buffer_position ? substr($this->body_buffer,$this->body_buffer_position) : $this->body_buffer);
 						$this->body_offset += strlen($this->body_buffer) - $this->body_buffer_position;
 						$this->body_buffer_position = 0;
 						$this->body_buffer = '';

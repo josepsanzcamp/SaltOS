@@ -1,16 +1,8 @@
+
 Code downloaded from:
 - http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html
 
-Fixed a bug in php8.0 in mime_parser.php:
------------------------------------------
-// BEGIN TO SOLVE THE PROBLEM WHEN HEX CONTAINS NON HEXADECIMAL CHARS BY SANZ
-$hex = strtolower(substr($value, $position+1, 2));
-$h = ctype_xdigit($hex) ? HexDec($hex) : -1;
-// END TO SOLVE THE PROBLEM WHEN HEX CONTAINS NON HEXADECIMAL CHARS BY SANZ
-
-Fixed a bug in php8.1 in rfc822_addresses.php:
-----------------------------------------------
-// BEGIN TO SOLVE THE PROBLEM WHEN LOCAL_PART IS NULL IN PHP8.1 BY SANZ
-if(!IsSet($local_part))
-	return(1);
-// END TO SOLVE THE PROBLEM WHEN LOCAL_PART IS NULL IN PHP8.1 BY SANZ
+Fixed bugs by sanz:
+- Fixed a bug in php8.0 in mime_parser.php to solve the problem when hex contains non hexadecimal chars
+- Fixed a bug in php8.1 in rfc822_addresses.php to solve the problem when local_part is null
+- Fixed a bug when tries to do a base64_decode of unaligned chunks, see the body_fix_unaligned_chunks variable
