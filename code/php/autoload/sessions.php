@@ -102,6 +102,39 @@ function sess_gc_handler($maxlifetime)
     return true;
 }
 
+class CustomSessionHandler implements SessionHandlerInterface
+{
+	public function open($savePath, $sessionName): bool
+	{
+		return sess_open_handler($savePath, $sessionName);
+	}
+
+	public function close(): bool
+	{
+		return sess_close_handler();
+	}
+
+	public function read($sessionId): string
+	{
+		return sess_read_handler($sessionId);
+	}
+
+	public function write($sessionId, $sessionData): bool
+	{
+		return sess_write_handler($sessionId, $sessionData);
+	}
+
+	public function destroy($sessionId): bool
+	{
+		return sess_destroy_handler($sessionId);
+	}
+
+	public function gc($maxLifetime): int
+	{
+		return sess_gc_handler($maxLifetime);
+	}
+}
+
 function sess_init()
 {
     $ini_set = array(
@@ -114,14 +147,7 @@ function sess_init()
     foreach ($ini_set as $varname => $newvalue) {
         ini_set($varname, $newvalue);
     }
-    session_set_save_handler(
-        "sess_open_handler",
-        "sess_close_handler",
-        "sess_read_handler",
-        "sess_write_handler",
-        "sess_destroy_handler",
-        "sess_gc_handler"
-    );
+    session_set_save_handler(new CustomSessionHandler(), true);
     session_save_path(getDefault("sess/save_path"));
     session_set_cookie_params(
         0,
